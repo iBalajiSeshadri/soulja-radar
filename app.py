@@ -62,6 +62,10 @@ st.markdown("""
     /* Crunched news insight text in the intel column */
     .intel-note { color: #e5e7eb; font-size: 0.82rem; line-height: 1.25; }
     .intel-note-hot { color: #fde68a; font-weight: 700; font-size: 0.82rem; line-height: 1.25; }
+    /* 2026 coaching-change scheme-fit badges */
+    .intel-scheme-fit { background-color: #7c3aed35; color: #c4b5fd; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.72rem; border: 1px solid #7c3aed; }
+    .intel-scheme-risk { background-color: #b4530935; color: #fdba74; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.72rem; border: 1px solid #ea580c; }
+    .intel-scheme-new { background-color: #37415535; color: #cbd5e1; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.72rem; border: 1px solid #475569; }
 
     .arch-badge { padding: 3px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; }
     .arch-stars { background: #dc262625; color: #f87171; border: 1px solid #ef444460; }
@@ -164,19 +168,92 @@ def load_camp_overrides():
 df_board = load_draft_board()
 clean_overrides = load_camp_overrides()
 
+@st.cache_data(ttl=300)
+def load_coaching_scheme():
+    """Real 2026 coaching-change scheme data (sourced from DraftSharks). Maps a
+    player's clean-name -> scheme fit note + tag when their team changed
+    HC/OC/play-caller for 2026, so the board can show scheme-fit badges."""
+    if not os.path.exists("coaching_scheme.json"):
+        return {}, {}
+    try:
+        with open("coaching_scheme.json") as f:
+            raw = json.load(f)
+    except Exception:
+        return {}, {}
+    player_map = {}   # clean_name -> {"tag","note","team"}
+    team_map = {}     # TEAM -> team-level scheme summary
+    for team, info in raw.items():
+        if team.startswith("_"):
+            continue
+        caller = info.get("caller", info.get("oc", ""))
+        scheme = info.get("scheme", "")
+        team_map[team] = {
+            "caller": caller, "scheme": scheme,
+            "summary": f"New play-caller {caller} — {scheme}. {info.get('note','')}".strip()
+        }
+        for pname, why in (info.get("beneficiaries") or {}).items():
+            player_map[clean_name(pname)] = {
+                "tag": "SCHEME_FIT", "team": team,
+                "note": f"🎬 SCHEME FIT ({caller}): {why}"
+            }
+        for pname, why in (info.get("risk") or {}).items():
+            player_map[clean_name(pname)] = {
+                "tag": "SCHEME_RISK", "team": team,
+                "note": f"🎬 SCHEME RISK ({caller}): {why}"
+            }
+    return player_map, team_map
+
+scheme_players, scheme_teams = load_coaching_scheme()
+
 # 3. Sidebar Controls & League Customizer
 st.sidebar.title("⚡ Soulja Soulja Radar")
 
 if st.sidebar.button("🚀 Pull Latest News & Sync Wire", use_container_width=True, type="primary"):
-    with st.spinner("Scraping live beat wires, Superflex mock drafts, and recalculating board..."):
+    with st.spinner("Scraping live beat wires, Superflex mock drafts, and crunching news via LLM..."):
+        # Pass the Groq key (and full env) into the child processes so the LLM
+        # actually runs on Streamlit Cloud, where there is no secrets.toml file.
+        child_env = os.environ.copy()
+        groq_key = ""
         try:
-            subprocess.run([sys.executable, "sync_fantasy_news.py"], capture_output=True, text=True)
-            subprocess.run([sys.executable, "fantasy_engine.py"], capture_output=True, text=True)
-            st.cache_data.clear()
-            st.toast("✅ Live News, Superflex Mocks & Board Synchronized!", icon="🔥")
-            st.rerun()
-        except Exception as e:
-            st.sidebar.error(f"Sync execution notice: {e}")
+            if hasattr(st, "secrets") and "GROQ_API_KEY" in st.secrets:
+                groq_key = str(st.secrets["GROQ_API_KEY"]).strip()
+        except Exception:
+            pass
+        if groq_key:
+            child_env["GROQ_API_KEY"] = groq_key
+
+        if not groq_key:
+            st.sidebar.warning("No GROQ_API_KEY found in Streamlit secrets — news will sync but the "
+                               "AI 'crunchy' insights will be skipped. Add GROQ_API_KEY in app Settings → Secrets.")
+
+        news_res = subprocess.run([sys.executable, "sync_fantasy_news.py"],
+                                  capture_output=True, text=True, env=child_env, timeout=600)
+        eng_res = subprocess.run([sys.executable, "fantasy_engine.py"],
+                                 capture_output=True, text=True, env=child_env, timeout=600)
+        st.cache_data.clear()
+
+        # Report what actually happened instead of swallowing it.
+        try:
+            with open("camp_overrides.json") as _f:
+                _n = len(json.load(_f))
+        except Exception:
+            _n = 0
+        llm_line = next((l for l in news_res.stdout.splitlines() if "Groq LLM enriched" in l), "")
+        san_line = next((l for l in news_res.stdout.splitlines() if "Sanitized overrides" in l), "")
+
+        if news_res.returncode != 0:
+            st.sidebar.error("News sync hit an error:")
+            st.sidebar.code((news_res.stderr or news_res.stdout)[-1500:])
+        elif eng_res.returncode != 0:
+            st.sidebar.error("Board rebuild hit an error:")
+            st.sidebar.code((eng_res.stderr or eng_res.stdout)[-1500:])
+        else:
+            st.toast(f"✅ Synced — {_n} intel entries loaded.", icon="🔥")
+            if llm_line:
+                st.sidebar.success(llm_line.strip())
+            if san_line:
+                st.sidebar.caption(san_line.strip())
+        st.rerun()
 
 draft_mode = st.sidebar.radio("Draft Format:", ["🔨 Auction / Salary Cap", "🐍 Snake Draft"], horizontal=True)
 
@@ -215,6 +292,8 @@ df_board['live_multiplier'] = 1.0
 df_board['intel_note'] = ""
 df_board['intel_tag'] = ""
 df_board['source_url'] = ""
+df_board['scheme_note'] = ""
+df_board['scheme_tag'] = ""
 
 if not include_idp:
     df_board = df_board[~df_board['position'].isin(['LB', 'DL', 'DB'])].copy().reset_index(drop=True)
@@ -235,6 +314,16 @@ for idx, row in df_board.iterrows():
         df_board.at[idx, 'intel_note'] = matched_data.get('note', '')
         df_board.at[idx, 'intel_tag'] = matched_data.get('type', '')
         df_board.at[idx, 'source_url'] = matched_data.get('source_url', '')
+
+    # 2026 coaching-change scheme fit (real, sourced data)
+    sch = scheme_players.get(c_p)
+    if sch:
+        df_board.at[idx, 'scheme_note'] = sch['note']
+        df_board.at[idx, 'scheme_tag'] = sch['tag']
+    elif row.get('team') in scheme_teams:
+        # team changed coaches but this player isn't a named beneficiary/risk
+        df_board.at[idx, 'scheme_note'] = f"🎬 NEW SCHEME: {scheme_teams[row['team']]['summary']}"
+        df_board.at[idx, 'scheme_tag'] = "SCHEME_NEW"
 
 # Scalable VORP Adjuster
 if qb_format == "🏈 Standard 1-QB":
@@ -331,7 +420,20 @@ def format_intel_cell(r):
         note_class = "intel-note-hot" if is_positive else "intel-note"
         note_html = f'<span class="{note_class}">{note}</span>'
 
+    # 2026 coaching-change scheme-fit badge + note (real sourced data)
+    scheme_tag = str(r.get('scheme_tag', '')).upper()
+    scheme_note = str(r.get('scheme_note', '')).strip()
+    scheme_html = ""
+    if scheme_tag == "SCHEME_FIT":
+        scheme_html = f'<span class="intel-scheme-fit">🎬 SCHEME FIT</span> <span class="intel-note-hot">{scheme_note}</span>'
+    elif scheme_tag == "SCHEME_RISK":
+        scheme_html = f'<span class="intel-scheme-risk">🎬 SCHEME RISK</span> <span class="intel-note">{scheme_note}</span>'
+    elif scheme_tag == "SCHEME_NEW":
+        scheme_html = f'<span class="intel-scheme-new">🎬 NEW SCHEME</span> <span class="intel-note">{scheme_note}</span>'
+
     body = f"{pref_badge}{tag_badge}{note_html}{link_html}".strip()
+    if scheme_html:
+        body = f"{body}<br>{scheme_html}" if body and body != "—" else scheme_html
     return body if body else "—"
 
 # Sidebar Wishlist & Fade Manager
@@ -515,14 +617,19 @@ def build_camp_intel_digest(board_df, only_available=True, max_players=40):
     rows = []
     for _, pr in board_df.iterrows():
         note = str(pr.get("intel_note", "")).strip()
-        if not note or note in ("—", "-"):
+        sch_note = str(pr.get("scheme_note", "")).strip()
+        # include a player if they have real news OR a coaching scheme-fit read
+        if (not note or note in ("—", "-")) and not sch_note:
             continue
         if only_available and pr["clean_name"] in picked_clean:
             continue
         tag = str(pr.get("intel_tag", "")).upper()
         is_pos = any(t in tag for t in POS_TAGS)
+        # fold in 2026 coaching scheme-fit note when present
+        sch = str(pr.get("scheme_note", "")).strip()
+        full_note = f"{note} {sch}".strip() if sch else note
         # sort key: positive-signal players first, then by VORP
-        rows.append((is_pos, float(pr.get("live_vorp", 0.0)), pr["player_name"], pr["position"], tag, note))
+        rows.append((is_pos, float(pr.get("live_vorp", 0.0)), pr["player_name"], pr["position"], tag, full_note))
     rows.sort(key=lambda x: (x[0], x[1]), reverse=True)
     lines = [
         f"• {name} ({pos}) [{tag or 'BEAT'} | VORP +{vorp:.0f}]: {note}"

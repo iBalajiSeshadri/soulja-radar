@@ -25,7 +25,19 @@ def clean_url(url: str) -> str:
     return match.group(0) if match else str(url).strip()
 
 def get_active_groq_key() -> str:
-    """Safely retrieves Groq API Key from secrets.toml or environment."""
+    """Retrieves Groq API Key from (in order): Streamlit secrets, .streamlit/secrets.toml, env var.
+    On Streamlit Cloud there is no secrets.toml file — the key lives in st.secrets and
+    (when this runs as a subprocess) in the GROQ_API_KEY env var passed by the parent app."""
+    # 1. Streamlit secrets (works when imported inside the running app)
+    try:
+        import streamlit as st  # noqa
+        if hasattr(st, "secrets") and "GROQ_API_KEY" in st.secrets:
+            k = str(st.secrets["GROQ_API_KEY"]).strip().strip('"').strip("'")
+            if k:
+                return k
+    except Exception:
+        pass
+    # 2. Local secrets.toml (local dev)
     if os.path.exists(".streamlit/secrets.toml"):
         try:
             with open(".streamlit/secrets.toml", "r") as f:
@@ -34,6 +46,7 @@ def get_active_groq_key() -> str:
                         return line.split("=", 1)[1].strip().strip('"').strip("'")
         except Exception:
             pass
+    # 3. Environment variable (subprocess path)
     return os.getenv("GROQ_API_KEY", "").strip().strip('"').strip("'")
 
 def get_available_groq_models(api_key: str):
@@ -91,19 +104,32 @@ def clean_snippet_text(text, max_len=180):
         return text[:max_len].rsplit(' ', 1)[0] + "..."
     return text
 
-def extract_players_fast(text, registry):
-    """
-    O(1) Fast Proper Noun Extractor: Matches capitalized 2-word names against registry in 0.0001s.
-    """
+def extract_players_fast(text, registry, primary_only=False):
+    """Fast proper-noun extractor matching 2-word names against the registry.
+
+    Beat blurbs lead with their SUBJECT ("Puka Nacua left practice ..."), so when
+    primary_only=True we return just the player named in the first ~140 chars —
+    this prevents attaching an article to a star it merely *mentions* later
+    (the wrong-player bug where a Bijan contract note landed on Gibbs/CMC)."""
     found = []
     if not text or len(text) < 10:
         return found
-    candidates = re.findall(r'\b[A-Z][a-zA-Z\.\'-]+\s+[A-Z][a-zA-Z\.\'-]+\b', text)
-    for cand in candidates:
-        c_cand = clean_name(cand)
+    scan = text if not primary_only else text[:110]
+    if primary_only:
+        # Strip leading boilerplate so the real subject is at the front.
+        scan = re.sub(r'^(fantasy impact|news|update|report|injury)\s*[:\-]\s*', '', scan, flags=re.IGNORECASE)
+    for m in re.finditer(r'\b[A-Z][a-zA-Z\.\'-]+\s+[A-Z][a-zA-Z\.\'-]+\b', scan):
+        c_cand = clean_name(m.group(0))
         if c_cand in registry:
             found.append(registry[c_cand])
-    return list(set(found))
+            if primary_only:
+                break  # first (subject) player only
+    # de-dupe preserving order
+    seen, out = set(), []
+    for f in found:
+        if f not in seen:
+            seen.add(f); out.append(f)
+    return out
 
 # ==============================================================================
 # 1. PARALLEL GROQ LLM BEAT SENTIMENT WORKER
@@ -149,6 +175,30 @@ def parse_llm_batch_response(raw_text: str, batch_map: dict):
                     mult = max(0.75, min(1.15, mult))
                     note = str(it.get("note") or it.get("crunchy_note") or "").strip()
 
+                    meta_src = batch_map[matched_orig]
+                    src_label = meta_src.get('source_name', 'BEAT WIRE')
+                    raw_lc = str(meta_src.get('raw_text', '')).lower()
+
+                    # HARD ANTI-FABRICATION GUARD (enforced in code, not just the prompt):
+                    # If the source was ONLY an injury/roster status line (no real
+                    # performance text), the model is NOT allowed to conjure camp
+                    # performance ("separation", "flashes", "beat the CB", "standout").
+                    injury_only = ("INJURY WIRE" in src_label.upper() or raw_lc.startswith("official injury wire")) \
+                        and not any(k in raw_lc for k in ["caught", "target", "route", "beat ", "reps", "1st-team",
+                                                          "first-team", "practice report", "standout", "explosive",
+                                                          "quote", "said", "coach", "yards", "touchdown", "snaps"])
+                    if injury_only:
+                        FABRICATION = ["separation", "flash", "beat the", "standout", "explosive", "burst",
+                                       "red zone drills", "consistent catches", "deep threat", "impressive",
+                                       "agility", "reps with the", "shining", "dominat"]
+                        if any(f in note.lower() for f in FABRICATION):
+                            note = ""  # drop the invented camp read; fall back to the factual snippet below
+                        # a bare injury line can never be an upgrade
+                        if tag in ("TIER_JUMPER", "SUPERFLEX_EDGE", "WAIVER_SURGE"):
+                            tag = "QUESTIONABLE" if "questionable" in raw_lc else "INJURY_ALERT"
+                        if mult > 1.0:
+                            mult = 0.90 if "questionable" in raw_lc else 0.82
+
                     # Quality gate: reject generic, detail-free notes so the intel
                     # column never shows fluff like "positive camp buzz".
                     GENERIC_JUNK = [
@@ -162,10 +212,8 @@ def parse_llm_batch_response(raw_text: str, batch_map: dict):
                     ) if note else True
                     if is_generic:
                         # Fall back to the richest raw snippet rather than a vague label.
-                        note = meta.get('snippet', '') or note
+                        note = meta_src.get('snippet', '') or note
 
-                    meta_src = batch_map[matched_orig]
-                    src_label = meta_src.get('source_name', 'BEAT WIRE')
                     results[matched_orig] = {
                         "multiplier": round(mult, 2),
                         "type": tag,
@@ -226,6 +274,10 @@ CRUNCHY NOTE RULES (this is the most important part):
   GOOD: "Hamstring strain, held out of team drills; considered week-to-week, handcuff RB seeing 1st-team work."
   BAD (never do this): "Positive camp buzz." / "Injury report." / "Trending up." / "Looking good in camp."
 - If the raw report is vague or has NO concrete detail, tag it "NOISE" — do NOT invent details.
+- If the report is ONLY an injury/roster STATUS line (e.g. "Questionable (Undisclosed) - Limited practice",
+  "Placed on PUP", "IR") with NO performance description, you MUST NOT invent camp performance, separation,
+  routes, or "flashes". Report ONLY the injury status factually and tag it INJURY_ALERT/QUESTIONABLE/CLEARED.
+  NEVER tag a bare injury line as TIER_JUMPER.
 - Never fabricate stats, defenders, or quotes that are not supported by the report text.
 - One sentence, present tense, punchy, specific.
 
@@ -270,16 +322,44 @@ print("==================================================================")
 print("  SOULJA SOULJA MULTI-SOURCE BEAT, IDP & SUPERFLEX AGGREGATOR")
 print("==================================================================")
 
-# Load existing overrides to preserve valid historical notes
+# Start from a clean slate each run so stale/hallucinated notes from prior runs
+# never persist. All sources are re-scraped fresh below.
 camp_overrides = {}
-if os.path.exists("camp_overrides.json"):
-    try:
-        with open("camp_overrides.json", "r") as f:
-            camp_overrides = json.load(f)
-    except Exception:
-        pass
 
 scraped_intel_by_player = {}
+
+# Source tiers: real beat/article text (with performance detail) should WIN over a
+# bare injury-status line for the same player. Higher = richer, more crunchable.
+_SOURCE_RANK = {
+    "INJURY WIRE": 1, "WAIVER SURGE": 2, "FFTODAY IDP": 2,
+    "CBS": 3, "FFTODAY NEWS": 3, "FFTODAY ARTICLE": 3, "FFTODAY RSS": 3,
+    "YAHOO": 3, "FOOTBALLGUYS": 3, "PFF": 4, "NFL.COM": 4,
+    "ROTOBALLER": 4, "FANTASYSP": 4, "CBS RSS": 4, "FANTASYPROS": 5,
+    "ROTOWIRE": 5, "32BEAT": 5, "TWITTER": 5,
+}
+
+def _src_rank(name):
+    up = str(name).upper()
+    best = 0
+    for key, val in _SOURCE_RANK.items():
+        if key in up:
+            best = max(best, val)
+    return best or 3
+
+def add_intel(c_p, entry):
+    """Merge an intel entry, letting richer sources / longer real text override a
+    bare injury-status line so the LLM gets actual camp performance to crunch."""
+    existing = scraped_intel_by_player.get(c_p)
+    if existing is None:
+        scraped_intel_by_player[c_p] = entry
+        return
+    new_rank = _src_rank(entry.get("source_name", ""))
+    old_rank = _src_rank(existing.get("source_name", ""))
+    new_len = len(str(entry.get("raw_text", "")))
+    old_len = len(str(existing.get("raw_text", "")))
+    # Prefer higher source tier; tie-break on longer (more detailed) report text.
+    if new_rank > old_rank or (new_rank == old_rank and new_len > old_len):
+        scraped_intel_by_player[c_p] = entry
 
 web_headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
@@ -334,13 +414,13 @@ if p_db:
                 desc += f" - {clean_n}"
                 
             c_p = clean_name(p_name)
-            scraped_intel_by_player[c_p] = {
+            add_intel(c_p, {
                 "player_name": p_name,
                 "raw_text": f"Official Injury Wire: {desc}",
                 "snippet": clean_snippet_text(desc),
                 "source_url": wire_link,
                 "source_name": "INJURY WIRE"
-            }
+            })
             sleeper_injuries_found += 1
             
     print(f"✓ Ingested and queued {sleeper_injuries_found} Sleeper injury records for LLM analysis!")
@@ -366,20 +446,19 @@ for r_url, src_label in reddit_endpoints:
                 full_text = f"{title}. {selftext}".strip()
                 
                 # Check player mentions including alias resolution
-                matched_players = extract_players_fast(full_text, player_registry)
+                matched_players = extract_players_fast(full_text, player_registry, primary_only=True)
                 for full_pname in matched_players:
                     c_p = clean_name(full_pname)
-                    if c_p not in scraped_intel_by_player:
-                        rep_match = re.search(r'\[(.*?)\]', title)
-                        reporter = rep_match.group(1).strip() if rep_match else src_label
-                        scraped_intel_by_player[c_p] = {
-                            "player_name": full_pname,
-                            "raw_text": full_text,
-                            "snippet": clean_snippet_text(title),
-                            "source_url": post_url,
-                            "source_name": f"{src_label} ({reporter})"
-                        }
-                        twitter_matched += 1
+                    rep_match = re.search(r'\[(.*?)\]', title)
+                    reporter = rep_match.group(1).strip() if rep_match else src_label
+                    add_intel(c_p, {
+                        "player_name": full_pname,
+                        "raw_text": full_text,
+                        "snippet": clean_snippet_text(title),
+                        "source_url": post_url,
+                        "source_name": f"{src_label} ({reporter})"
+                    })
+                    twitter_matched += 1
     except Exception:
         pass
 
@@ -413,16 +492,15 @@ if BS4_AVAILABLE:
                             
                             has_inj = any(k in row_text.lower() for k in ['out', 'ir', 'pup', 'doubtful', 'inj'])
                             c_matched = clean_name(orig_player)
-                            if c_matched not in scraped_intel_by_player:
-                                desc_note = f"Active starting {pos_label} projection on FFToday depth chart" if not has_inj else f"Active injury designation on {pos_label} depth chart"
-                                scraped_intel_by_player[c_matched] = {
-                                    "player_name": orig_player,
-                                    "raw_text": f"FFToday IDP: {desc_note}",
-                                    "snippet": desc_note,
-                                    "source_url": full_url,
-                                    "source_name": "FFTODAY IDP"
-                                }
-                                idp_wire_matched += 1
+                            desc_note = f"Active starting {pos_label} projection on FFToday depth chart" if not has_inj else f"Active injury designation on {pos_label} depth chart"
+                            add_intel(c_matched, {
+                                "player_name": orig_player,
+                                "raw_text": f"FFToday IDP: {desc_note}",
+                                "snippet": desc_note,
+                                "source_url": full_url,
+                                "source_name": "FFTODAY IDP"
+                            })
+                            idp_wire_matched += 1
         except Exception as e:
             print(f"⚠️ FFToday IDP notice ({pos_label}): {e}")
 
@@ -447,19 +525,18 @@ if BS4_AVAILABLE:
                     if len(b_text) < 20 or len(b_text) > 1200:
                         continue
                     
-                    matched_players = extract_players_fast(b_text, player_registry)
+                    matched_players = extract_players_fast(b_text, player_registry, primary_only=True)
                     for full_pname in matched_players:
                         c_p = clean_name(full_pname)
-                        if c_p not in scraped_intel_by_player or len(b_text) > len(scraped_intel_by_player[c_p]["raw_text"]):
-                            clean_b = clean_snippet_text(b_text)
-                            scraped_intel_by_player[c_p] = {
-                                "player_name": full_pname,
-                                "raw_text": b_text,
-                                "snippet": clean_b,
-                                "source_url": url,
-                                "source_name": src_label
-                            }
-                            fftoday_matched += 1
+                        clean_b = clean_snippet_text(b_text)
+                        add_intel(c_p, {
+                            "player_name": full_pname,
+                            "raw_text": b_text,
+                            "snippet": clean_b,
+                            "source_url": url,
+                            "source_name": src_label
+                        })
+                        fftoday_matched += 1
         except Exception as e:
             print(f"⚠️ FFToday ({src_label}) notice: {e}")
 
@@ -486,22 +563,30 @@ if BS4_AVAILABLE:
                 article_blocks = soup.find_all(['div', 'article', 'section', 'h2', 'h3', 'h4', 'p', 'li'])
                 for art in article_blocks:
                     raw_text = art.get_text(separator=" ").strip()
-                    if len(raw_text) < 20 or len(raw_text) > 1500:
+                    if len(raw_text) < 40 or len(raw_text) > 1500:
                         continue
-                    
-                    matched_players = extract_players_fast(raw_text, player_registry)
+                    # Skip site navigation / section-menu junk ("Explore ... News Scores
+                    # Schedule Rankings Standings ...") that isn't real player news.
+                    low = raw_text.lower()
+                    nav_hits = sum(low.count(w) for w in ["explore", "scores", "schedule", "standings", "rankings", "watch live", "shop", "podcast"])
+                    news_hits = any(w in low for w in ["caught", "targets", "practice", "camp", "snaps", "reps", "injury",
+                                                       "questionable", "return", "starter", "backfield", "role", "yards",
+                                                       "touchdown", "carries", "workload", "depth chart", "beat", "cleared"])
+                    if nav_hits >= 3 or not news_hits:
+                        continue
+
+                    matched_players = extract_players_fast(raw_text, player_registry, primary_only=True)
                     for full_pname in matched_players:
                         c_p = clean_name(full_pname)
-                        if c_p not in scraped_intel_by_player or "CBS" not in scraped_intel_by_player[c_p]["source_name"]:
-                            clean_b = clean_snippet_text(raw_text)
-                            scraped_intel_by_player[c_p] = {
-                                "player_name": full_pname,
-                                "raw_text": raw_text,
-                                "snippet": clean_b,
-                                "source_url": page_url,
-                                "source_name": src_label
-                            }
-                            cbs_matched += 1
+                        clean_b = clean_snippet_text(raw_text)
+                        add_intel(c_p, {
+                            "player_name": full_pname,
+                            "raw_text": raw_text,
+                            "snippet": clean_b,
+                            "source_url": page_url,
+                            "source_name": src_label
+                        })
+                        cbs_matched += 1
         except Exception:
             pass
 
@@ -551,15 +636,67 @@ except Exception as e:
 
 print(f"✓ Extracted {bw_matched} beat nuggets from 32BeatWriters.com!")
 
+# 7b. Source F2: High-quality free HTML news hubs (NFL.com, FantasyPros, PFF, Footballguys)
+print("\n7b. [SOURCE 6b] Scraping NFL.com / FantasyPros / PFF / Footballguys news hubs...")
+hub_matched = 0
+NEWS_KEYWORDS = ["caught", "targets", "practice", "camp", "snaps", "reps", "injury",
+                 "questionable", "return", "starter", "backfield", "role", "yards",
+                 "touchdown", "carries", "workload", "depth chart", "beat", "cleared",
+                 "qb1", "named", "activated", "fantasy impact", "trending", "1st-team",
+                 "first-team", "separation", "explosive"]
+if BS4_AVAILABLE:
+    news_hubs = [
+        ("https://www.rotowire.com/football/news.php", "ROTOWIRE"),
+        ("https://www.nfl.com/news/", "NFL.COM"),
+        ("https://www.fantasypros.com/nfl/player-news.php", "FANTASYPROS"),
+        ("https://www.pff.com/news", "PFF"),
+        ("https://www.footballguys.com/news", "FOOTBALLGUYS"),
+    ]
+    for hub_url, src_label in news_hubs:
+        try:
+            res = requests.get(clean_url(hub_url), headers=web_headers, timeout=8)
+            if res.status_code != 200:
+                continue
+            soup = BeautifulSoup(res.text, 'html.parser')
+            for block in soup.find_all(['p', 'li', 'h2', 'h3', 'h4', 'div', 'article']):
+                raw_text = block.get_text(separator=" ").strip()
+                if len(raw_text) < 40 or len(raw_text) > 1200:
+                    continue
+                low = raw_text.lower()
+                nav_hits = sum(low.count(w) for w in ["explore", "scores", "schedule", "standings",
+                                                      "rankings", "watch live", "shop", "podcast", "all articles"])
+                if nav_hits >= 3 or not any(w in low for w in NEWS_KEYWORDS):
+                    continue
+                for full_pname in extract_players_fast(raw_text, player_registry, primary_only=True):
+                    c_p = clean_name(full_pname)
+                    add_intel(c_p, {
+                        "player_name": full_pname,
+                        "raw_text": raw_text,
+                        "snippet": clean_snippet_text(raw_text),
+                        "source_url": clean_url(hub_url),
+                        "source_name": src_label
+                    })
+                    hub_matched += 1
+        except Exception as e:
+            print(f"⚠️ News hub notice ({src_label}): {e}")
+
+print(f"✓ Extracted {hub_matched} reports from premium free news hubs!")
+
 # 8. Source G: Free Multi-Source XML RSS Feeds
 print("\n8. [SOURCE 7] Ingesting Non-Paywalled XML RSS Feeds...")
 rss_matched = 0
 rss_urls = [
-    (clean_url("[https://www.rotoballer.com/feed](https://www.rotoballer.com/feed)"), "ROTOBALLER"),
-    (clean_url("[https://www.fantasysp.com/rss/nfl/allplayer/](https://www.fantasysp.com/rss/nfl/allplayer/)"), "FANTASYSP"),
-    (clean_url("[https://www.fantasysp.com/rss/nfl/headlines/](https://www.fantasysp.com/rss/nfl/headlines/)"), "FANTASYSP WIRE"),
-    (clean_url("[https://www.fftoday.com/rss/news.xml](https://www.fftoday.com/rss/news.xml)"), "FFTODAY RSS"),
-    (clean_url("[https://www.cbssports.com/rss/headlines/fantasy/football/](https://www.cbssports.com/rss/headlines/fantasy/football/)"), "CBS RSS")
+    (clean_url("https://www.rotowire.com/rss/news.php?sport=NFL"), "ROTOWIRE"),
+    (clean_url("https://www.rotowire.com/rss/news.php?sport=NFL&posID=RB"), "ROTOWIRE"),
+    (clean_url("https://www.rotowire.com/rss/news.php?sport=NFL&posID=WR"), "ROTOWIRE"),
+    (clean_url("https://www.rotowire.com/rss/news.php?sport=NFL&posID=QB"), "ROTOWIRE"),
+    (clean_url("https://www.rotowire.com/rss/news.php?sport=NFL&posID=TE"), "ROTOWIRE"),
+    (clean_url("https://sports.yahoo.com/nfl/rss/"), "YAHOO NFL"),
+    (clean_url("https://www.rotoballer.com/feed"), "ROTOBALLER"),
+    (clean_url("https://www.fantasysp.com/rss/nfl/allplayer/"), "FANTASYSP"),
+    (clean_url("https://www.fantasysp.com/rss/nfl/headlines/"), "FANTASYSP WIRE"),
+    (clean_url("https://www.fftoday.com/rss/news.xml"), "FFTODAY RSS"),
+    (clean_url("https://www.cbssports.com/rss/headlines/fantasy/football/"), "CBS RSS")
 ]
 
 for r_url, src_tag in rss_urls:
@@ -573,19 +710,28 @@ for r_url, src_tag in rss_urls:
                 link = item.find("link").text if item.find("link") is not None else ""
                 clean_desc = re.sub(r'<[^>]+>', '', desc).strip()
                 full_body = f"{title}. {clean_desc}"
-                
-                matched_players = extract_players_fast(full_body, player_registry)
+
+                # RotoWire/RotoBaller titles are "Player Name: Headline" — the subject
+                # is explicit before the colon, so resolve it directly (most accurate).
+                matched_players = []
+                if ":" in title:
+                    subj = title.split(":", 1)[0].strip()
+                    c_subj = clean_name(subj)
+                    if c_subj in player_registry:
+                        matched_players = [player_registry[c_subj]]
+                if not matched_players:
+                    matched_players = extract_players_fast(full_body, player_registry, primary_only=True)
+
                 for full_pname in matched_players:
                     c_p = clean_name(full_pname)
-                    if c_p not in scraped_intel_by_player:
-                        scraped_intel_by_player[c_p] = {
-                            "player_name": full_pname,
-                            "raw_text": full_body,
-                            "snippet": clean_snippet_text(full_body),
-                            "source_url": clean_url(link) if link else clean_url("[https://www.rotoballer.com](https://www.rotoballer.com)"),
-                            "source_name": src_tag
-                        }
-                        rss_matched += 1
+                    add_intel(c_p, {
+                        "player_name": full_pname,
+                        "raw_text": full_body,
+                        "snippet": clean_snippet_text(full_body),
+                        "source_url": clean_url(link) if link else "",
+                        "source_name": src_tag
+                    })
+                    rss_matched += 1
     except Exception as e:
         print(f"⚠️ RSS Notice for {src_tag}: {e}")
 
@@ -608,25 +754,52 @@ try:
                 
                 if p_name:
                     c_p = clean_name(p_name)
-                    scraped_intel_by_player[c_p] = {
+                    add_intel(c_p, {
                         "player_name": p_name,
                         "raw_text": f"Surging on waiver wire across competitive leagues (+{add_cnt} adds in last 24 hours). Opportunity breakout or camp role spike.",
                         "snippet": f"Waiver Surge (+{add_cnt} adds in 24h)",
                         "source_url": wire_link,
                         "source_name": "WAIVER SURGE"
-                    }
+                    })
                     trending_adds_count += 1
     print(f"✓ Matched {trending_adds_count} surging waiver additions!")
 except Exception as e:
     print(f"⚠️ Sleeper Waiver Notice: {e}")
 
 # ==============================================================================
-# 10. CONCURRENT PARALLEL GROQ LLM SENTIMENT ANALYSIS (ALL REAL SIGNALS)
+# 10. CONCURRENT PARALLEL GROQ LLM SENTIMENT ANALYSIS (PRIORITIZED)
 # ==============================================================================
 
-queue_list = list(scraped_intel_by_player.values())
-target_count = min(len(queue_list), 220)
-print(f"\n10. Running Concurrent Parallel Groq LLM Analysis on {target_count} real-world player reports...")
+# Load the draft-board player set so we spend the LLM budget on players you can
+# actually draft first, and real beat/news sources before the mass injury wire.
+board_clean = set()
+try:
+    import csv
+    with open("top_150_draft_board.csv") as _bf:
+        for _row in csv.DictReader(_bf):
+            cn = _row.get("clean_name") or clean_name(_row.get("player_name", ""))
+            if cn:
+                board_clean.add(cn)
+except Exception:
+    pass
+
+# Sources that carry real performance/beat text worth crunching (vs. bare injury status).
+RICH_SOURCES = ("32BEAT", "CBS", "FFTODAY NEWS", "FFTODAY ARTICLE", "ROTOBALLER",
+                "FANTASYSP", "TWITTER", "WAIVER", "FFTODAY RSS", "CBS RSS",
+                "ROTOWIRE", "NFL.COM", "FANTASYPROS", "PFF", "FOOTBALLGUYS", "YAHOO")
+
+def _priority(item):
+    cn = clean_name(item.get("player_name", ""))
+    on_board = cn in board_clean
+    src = str(item.get("source_name", "")).upper()
+    rich = any(s in src for s in RICH_SOURCES)
+    # higher score = analyzed first
+    return (2 if on_board else 0) + (1 if rich else 0)
+
+queue_list = sorted(scraped_intel_by_player.values(), key=_priority, reverse=True)
+target_count = min(len(queue_list), 320)
+print(f"\n10. Running Concurrent Parallel Groq LLM Analysis on {target_count} prioritized player reports "
+      f"({sum(1 for i in queue_list[:target_count] if clean_name(i.get('player_name','')) in board_clean)} on your draft board)...")
 
 llm_evaluated_count = 0
 api_key = get_active_groq_key()
