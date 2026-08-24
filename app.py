@@ -60,6 +60,42 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# 32-Team D/ST Weeks 1-3 Matchup Difficulty & Streaming Map
+DST_SCHEDULE_MAP = {
+    "HOU": "📅 W1: @ IND (🟢 Easy) | W2: vs TEN (🟢 Easy) | W3: @ MIN (🟡 Neutral) • 🟢 Top 5 Streamer",
+    "DAL": "📅 W1: @ NYG (🟢 Easy) | W2: vs WAS (🟢 Easy) | W3: @ ARI (🟢 Easy) • 🟢 Top 3 Smash",
+    "BAL": "📅 W1: @ KC (🔴 Tough) | W2: vs LV (🟢 Easy) | W3: @ DAL (🟡 Neutral) • 🟡 Neutral Start",
+    "SF":  "📅 W1: vs NYJ (🟡 Neutral) | W2: @ MIN (🟢 Easy) | W3: @ LAR (🟡 Neutral) • 🟢 Favorable",
+    "NYJ": "📅 W1: @ SF (🔴 Tough) | W2: @ TEN (🟢 Easy) | W3: vs NE (🟢 Easy) • 🟢 Favorable W2-3",
+    "CLE": "📅 W1: vs DAL (🟡 Neutral) | W2: @ JAX (🟡 Neutral) | W3: vs NYG (🟢 Easy) • 🟢 Strong Start",
+    "PIT": "📅 W1: @ ATL (🟡 Neutral) | W2: @ DEN (🟢 Easy) | W3: vs LAC (🟡 Neutral) • 🟢 Strong Start",
+    "KC":  "📅 W1: vs BAL (🔴 Tough) | W2: vs CIN (🔴 Tough) | W3: @ ATL (🟡 Neutral) • 🔴 Brutal Early",
+    "BUF": "📅 W1: vs ARI (🟡 Neutral) | W2: @ MIA (🔴 Tough) | W3: vs JAX (🟡 Neutral) • 🟡 Neutral",
+    "PHI": "📅 W1: vs GB (🔴 Tough) | W2: vs ATL (🟡 Neutral) | W3: @ NO (🟢 Easy) • 🟡 Moderate",
+    "MIA": "📅 W1: vs JAX (🟡 Neutral) | W2: vs BUF (🔴 Tough) | W3: @ SEA (🟡 Neutral) • 🟡 Neutral",
+    "CIN": "📅 W1: vs NE (🟢 Easy) | W2: @ KC (🔴 Tough) | W3: vs WAS (🟢 Easy) • 🟢 W1 & W3 Stream",
+    "CHI": "📅 W1: vs TEN (🟢 Easy) | W2: @ HOU (🔴 Tough) | W3: @ IND (🟢 Easy) • 🟢 W1 Streamer",
+    "DEN": "📅 W1: @ SEA (🟡 Neutral) | W2: vs PIT (🟡 Neutral) | W3: @ TB (🟡 Neutral) • 🟡 Neutral",
+    "LAC": "📅 W1: vs LV (🟢 Easy) | W2: @ CAR (🟢 Easy) | W3: @ PIT (🟡 Neutral) • 🟢 Top 3 Early Stream",
+    "LAR": "📅 W1: @ DET (🔴 Tough) | W2: @ ARI (🟡 Neutral) | W3: vs SF (🔴 Tough) • 🔴 Tough Early",
+    "DET": "📅 W1: vs LAR (🟡 Neutral) | W2: vs TB (🟡 Neutral) | W3: @ ARI (🟡 Neutral) • 🟡 Neutral",
+    "GB":  "📅 W1: @ PHI (🔴 Tough) | W2: vs IND (🟢 Easy) | W3: @ TEN (🟢 Easy) • 🟢 W2-3 Stream",
+    "IND": "📅 W1: vs HOU (🔴 Tough) | W2: @ GB (🟡 Neutral) | W3: vs CHI (🟡 Neutral) • 🟡 Neutral",
+    "JAX": "📅 W1: @ MIA (🔴 Tough) | W2: vs CLE (🟡 Neutral) | W3: @ BUF (🔴 Tough) • 🔴 Tough Start",
+    "LV":  "📅 W1: @ LAC (🟡 Neutral) | W2: @ BAL (🔴 Tough) | W3: vs CAR (🟢 Easy) • 🟡 W3 Target",
+    "MIN": "📅 W1: @ NYG (🟢 Easy) | W2: vs SF (🔴 Tough) | W3: vs HOU (🔴 Tough) • 🟡 W1 Only",
+    "NE":  "📅 W1: @ CIN (🔴 Tough) | W2: vs SEA (🟡 Neutral) | W3: @ NYJ (🔴 Tough) • 🔴 Tough Start",
+    "NO":  "📅 W1: vs CAR (🟢 Easy) | W2: @ DAL (🔴 Tough) | W3: vs PHI (🔴 Tough) • 🟡 W1 Stream",
+    "NYG": "📅 W1: vs MIN (🟡 Neutral) | W2: @ WAS (🟢 Easy) | W3: @ CLE (🔴 Tough) • 🟡 Neutral",
+    "SEA": "📅 W1: vs DEN (🟢 Easy) | W2: @ NE (🟢 Easy) | W3: vs MIA (🔴 Tough) • 🟢 Top 5 Early Stream",
+    "TB":  "📅 W1: vs WAS (🟢 Easy) | W2: @ DET (🔴 Tough) | W3: vs DEN (🟢 Easy) • 🟢 W1 & W3 Stream",
+    "TEN": "📅 W1: @ CHI (🟡 Neutral) | W2: vs NYJ (🔴 Tough) | W3: vs GB (🟡 Neutral) • 🔴 Tough Start",
+    "WAS": "📅 W1: @ TB (🟡 Neutral) | W2: vs NYG (🟡 Neutral) | W3: @ CIN (🔴 Tough) • 🟡 Neutral",
+    "ARI": "📅 W1: @ BUF (🔴 Tough) | W2: vs LAR (🟡 Neutral) | W3: vs DET (🔴 Tough) • 🔴 Avoid Early",
+    "ATL": "📅 W1: vs PIT (🟡 Neutral) | W2: @ PHI (🔴 Tough) | W3: vs KC (🔴 Tough) • 🔴 Tough Start",
+    "CAR": "📅 W1: @ NO (🟡 Neutral) | W2: vs LAC (🟡 Neutral) | W3: @ LV (🟡 Neutral) • 🟡 Low Floor"
+}
+
 def clean_name(name):
     if not isinstance(name, str):
         return ""
@@ -543,7 +579,6 @@ else:
     st.markdown("#### 🐍 SNAKE DRAFT TURN PREDICTOR & VALUE ENGINE")
     snake_col1, snake_col2, snake_col3 = st.columns(3)
     
-    # 1. Best Available VORP Anchor
     primary_candidate_pool = non_faded_unpicked[non_faded_unpicked['position'].isin(display_positions)].copy()
     user_targets_pool = primary_candidate_pool[primary_candidate_pool['clean_name'].isin(st.session_state.my_targets)]
     
@@ -567,7 +602,6 @@ else:
                 '</div>', unsafe_allow_html=True
             )
 
-    # 2. Top ADP Fallers (Values Sliding Down Draft)
     with snake_col2:
         non_faded_unpicked['adp_fall'] = curr_overall_pick - non_faded_unpicked['custom_rank']
         fallers = non_faded_unpicked[non_faded_unpicked['adp_fall'] >= 2].sort_values(by=['adp_fall', 'live_vorp'], ascending=[False, False]).head(4)
@@ -595,7 +629,6 @@ else:
             f'</div>', unsafe_allow_html=True
         )
 
-    # 3. "Will He Make It Back?" Turn Survival Watch
     with snake_col3:
         dead_zone_targets = non_faded_unpicked[
             (non_faded_unpicked['custom_rank'] > curr_overall_pick) &
@@ -677,9 +710,14 @@ with col_left:
         elif "SLEEPER SURGE" in note or "WAIVER SPIKE" in note:
             tag_html += '<span class="intel-surge">🔥 WAIVER SPIKE</span> '
 
-        d_raw = p_data.get('depth_chart_order')
-        d_order = int(d_raw) if pd.notna(d_raw) else 1
-        fallback_desc = f"Active {p_data['team']} {p_data['position']} • Depth Chart: #{d_order}"
+        # Custom Description Check for D/ST vs. Skill Positions
+        if p_data['position'] == 'DEF':
+            fallback_desc = DST_SCHEDULE_MAP.get(p_data['team'], f"Active {p_data['team']} DEF")
+        else:
+            d_raw = p_data.get('depth_chart_order')
+            d_order = int(d_raw) if pd.notna(d_raw) else 1
+            fallback_desc = f"Active {p_data['team']} {p_data['position']} • Depth Chart: #{d_order}"
+            
         intel_display = note if note else fallback_desc
         
         p_url = str(p_data.get('source_url', '')).strip()
@@ -806,13 +844,17 @@ def render_board_table(df_subset):
         elif "SLEEPER SURGE" in note or "WAIVER SPIKE" in note:
             tag_badge = '<span class="intel-surge">🔥 WAIVER</span> '
 
-        d_raw = r.get('depth_chart_order')
-        d_order = int(d_raw) if pd.notna(d_raw) else 1
-        
+        # Custom Description Check for D/ST vs. Skill Positions
+        if pos_curr == 'DEF':
+            fallback_desc = DST_SCHEDULE_MAP.get(r['team'], f"Active {r['team']} DEF")
+        else:
+            d_raw = r.get('depth_chart_order')
+            d_order = int(d_raw) if pd.notna(d_raw) else 1
+            fallback_desc = f"Active {r['team']} {r['position']} • Depth Chart: #{d_order}"
+            
         url = str(r.get('source_url', '')).strip()
         link_html = f' <a href="{url}" target="_blank" class="source-link">🔗 Source</a>' if url and url.startswith("http") else ''
         
-        fallback_desc = f"Active {r['team']} {r['position']} • Depth Chart: #{d_order}"
         intel_text = f"{pref_badge}{tag_badge}{note}{link_html}" if note else f"{pref_badge}{fallback_desc}"
 
         row_dict = {
