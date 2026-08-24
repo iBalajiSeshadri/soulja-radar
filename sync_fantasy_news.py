@@ -150,13 +150,13 @@ def process_single_groq_batch(batch_items, api_key, candidate_models):
         {
             "name": item["player_name"],
             "source": item.get("source_name", "Beat Wire"),
-            "report": item["raw_text"][:300]
+            "report": item["raw_text"][:320]
         }
         for item in batch_items
     ]
 
     system_prompt = f"""You are an expert quantitative NFL fantasy football beat analyst.
-Analyze these {len(prompt_payload)} genuine NFL beat reports and Superflex takeaways.
+Analyze these {len(prompt_payload)} genuine NFL beat reports, camp updates, and Superflex takeaways.
 
 STRICT MANDATE:
 You MUST return a JSON array containing EXACTLY {len(prompt_payload)} objects (one for every player listed). Do NOT omit any player.
@@ -238,7 +238,7 @@ try:
 except Exception as e:
     print(f"Registry notice: {e}")
 
-# 2. Source A: Sleeper Official Injury Wire & Real-Time Beat Blurbs
+# 2. Source A: Sleeper Official Injury Wire & Active Camp Reports
 print("\n2. [SOURCE 1] Ingesting Sleeper Official Injury Wire & Active Notes...")
 sleeper_injuries_found = 0
 if p_db:
@@ -334,7 +334,7 @@ if BS4_AVAILABLE:
 
 print(f"✓ Ingested {idp_wire_matched} FFToday IDP player profiles!")
 
-# 4. Source C: FFToday Live News & Articles Hub
+# 4. Source C: FFToday News & Articles Hub
 print("\n4. [SOURCE 3] Scraping FFToday News & Strategy Articles...")
 fftoday_matched = 0
 if BS4_AVAILABLE:
@@ -347,16 +347,17 @@ if BS4_AVAILABLE:
             res = requests.get(url, headers=web_headers, timeout=8)
             if res.status_code == 200:
                 soup = BeautifulSoup(res.text, 'html.parser')
-                blocks = soup.find_all(['tr', 'p', 'div'])
+                blocks = soup.find_all(['tr', 'p', 'div', 'article'])
                 for block in blocks:
                     b_text = block.get_text(separator=" ").strip()
-                    if len(b_text) < 35 or len(b_text) > 800:
+                    if len(b_text) < 20 or len(b_text) > 1200:
                         continue
                     
                     matched_players = extract_players_fast(b_text, player_registry)
                     for full_pname in matched_players:
                         c_p = clean_name(full_pname)
-                        if c_p not in scraped_intel_by_player:
+                        # Store or enrich if longer
+                        if c_p not in scraped_intel_by_player or len(b_text) > len(scraped_intel_by_player[c_p]["raw_text"]):
                             clean_b = clean_snippet_text(b_text)
                             scraped_intel_by_player[c_p] = {
                                 "player_name": full_pname,
@@ -371,7 +372,7 @@ if BS4_AVAILABLE:
 
 print(f"✓ Extracted {fftoday_matched} live reports from FFToday!")
 
-# 5. Source D: CBS Sports Multi-Page News Archive & Superflex Hub
+# 5. Source D: CBS Sports Deep Multi-Page News Archive & Superflex Hub
 print("\n5. [SOURCE 4] Scraping CBS Sports Multi-Page News Archive & Superflex Hub...")
 cbs_matched = 0
 if BS4_AVAILABLE:
@@ -381,7 +382,7 @@ if BS4_AVAILABLE:
         (clean_url("[https://www.cbssports.com/fantasy/football/news/](https://www.cbssports.com/fantasy/football/news/)"), "CBS NEWS"),
         (clean_url("[https://www.cbssports.com/fantasy/football/](https://www.cbssports.com/fantasy/football/)"), "CBS WIRE")
     ]
-    for p_num in range(1, 9):
+    for p_num in range(1, 10):
         cbs_pages.append((clean_url(f"[https://www.cbssports.com/fantasy/football/players/news/all/](https://www.cbssports.com/fantasy/football/players/news/all/){p_num}/"), f"CBS ARCHIVE P{p_num}"))
 
     for page_url, src_label in cbs_pages:
@@ -389,16 +390,18 @@ if BS4_AVAILABLE:
             res = requests.get(page_url, headers=web_headers, timeout=6)
             if res.status_code == 200:
                 soup = BeautifulSoup(res.text, 'html.parser')
-                article_blocks = soup.find_all(['div', 'article', 'h2', 'h3', 'h4', 'p', 'li'])
+                # Target dedicated article tags, paragraphs, and list items
+                article_blocks = soup.find_all(['div', 'article', 'section', 'h2', 'h3', 'h4', 'p', 'li'])
                 for art in article_blocks:
                     raw_text = art.get_text(separator=" ").strip()
-                    if len(raw_text) < 35 or len(raw_text) > 750:
+                    if len(raw_text) < 20 or len(raw_text) > 1500:
                         continue
                     
                     matched_players = extract_players_fast(raw_text, player_registry)
                     for full_pname in matched_players:
                         c_p = clean_name(full_pname)
-                        if c_p not in scraped_intel_by_player:
+                        # Always register or enrich with richer CBS content
+                        if c_p not in scraped_intel_by_player or "CBS" not in scraped_intel_by_player[c_p]["source_name"]:
                             clean_b = clean_snippet_text(raw_text)
                             scraped_intel_by_player[c_p] = {
                                 "player_name": full_pname,
@@ -473,7 +476,7 @@ for r_url, src_tag in rss_urls:
         r_res = requests.get(r_url, headers=web_headers, timeout=6)
         if r_res.status_code == 200:
             root = ET.fromstring(r_res.content)
-            for item in root.findall(".//item")[:30]:
+            for item in root.findall(".//item")[:35]:
                 title = item.find("title").text if item.find("title") is not None else ""
                 desc = item.find("description").text if item.find("description") is not None else ""
                 link = item.find("link").text if item.find("link") is not None else ""
@@ -495,7 +498,7 @@ for r_url, src_tag in rss_urls:
     except Exception as e:
         print(f"⚠️ RSS Notice for {src_tag}: {e}")
 
-print(f"✓ Ingested {rss_matched} RSS beat wire reports across free feeds!")
+print(f"✓ Ingested {rss_matched} RSS beat wire reports!")
 
 # 8. Source G: Sleeper 24-Hour Live Trending Waiver Adds
 print("\n8. [SOURCE 7] Querying Sleeper Live 24h Waiver Surges...")
@@ -530,7 +533,7 @@ except Exception as e:
 # 9. CONCURRENT PARALLEL GROQ LLM SENTIMENT ANALYSIS (GENUINE SIGNALS ONLY)
 # ==============================================================================
 
-# Deduplicate queue strictly by verified player name (ONLY real reports)
+# Queue consists STRICTLY of players with verified real news & reports
 queue_list = list(scraped_intel_by_player.values())
 target_count = min(len(queue_list), 220)
 print(f"\n9. Running Concurrent Parallel Groq LLM Analysis on {target_count} verified distinct player reports...")
