@@ -6,17 +6,24 @@ import streamlit as st
 OLLAMA_API_URL = os.getenv("OLLAMA_API_URL", "http://localhost:11434/api/generate")
 LOCAL_MODEL = os.getenv("LOCAL_LLM_MODEL", "llama3.1:8b")
 
-# Retrieve Groq Key from Streamlit Secrets or Environment
-GROQ_API_KEY = st.secrets.get("GROQ_API_KEY", os.getenv("GROQ_API_KEY", ""))
+def get_active_groq_key() -> str:
+    """Safely retrieves the Groq API key from Streamlit secrets or environment."""
+    try:
+        if hasattr(st, "secrets") and "GROQ_API_KEY" in st.secrets:
+            return st.secrets["GROQ_API_KEY"]
+    except Exception:
+        pass
+    return os.getenv("GROQ_API_KEY", "")
 
 def query_groq_api(prompt: str, system_prompt: str = "You are a quantitative fantasy football auction draft analyst. Be direct, tactical, and concise. No fluff.", model: str = "llama-3.1-8b-instant") -> str:
-    """Ultra-fast cloud fallback via Groq API (~300 tokens/sec)."""
-    if not GROQ_API_KEY:
-        return "⚠️ Add `GROQ_API_KEY` to Streamlit Secrets to enable cloud AI advice."
+    """Ultra-fast cloud inference via Groq API (~300 tokens/sec)."""
+    api_key = get_active_groq_key()
+    if not api_key:
+        return "⚠️ Missing Groq API Key. Add `GROQ_API_KEY` to Streamlit Secrets or .streamlit/secrets.toml."
     
     url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {
-        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Authorization": f"Bearer {api_key.strip()}",
         "Content-Type": "application/json"
     }
     payload = {
@@ -26,18 +33,18 @@ def query_groq_api(prompt: str, system_prompt: str = "You are a quantitative fan
             {"role": "user", "content": prompt}
         ],
         "temperature": 0.25,
-        "max_tokens": 200
+        "max_tokens": 220
     }
     try:
-        res = requests.post(url, headers=headers, json=payload, timeout=5)
+        res = requests.post(url, headers=headers, json=payload, timeout=6)
         if res.status_code == 200:
             return res.json()["choices"][0]["message"]["content"].strip()
-        return f"⚠️ Groq API Error: {res.status_code}"
+        return f"⚠️ Groq API Error ({res.status_code}): {res.text}"
     except Exception as e:
-        return f"⚠️ Groq Error: {e}"
+        return f"⚠️ Groq Connection Notice: {e}"
 
 def query_local_ollama(prompt: str, system_prompt: str = "") -> str:
-    """Queries local Ollama endpoint."""
+    """Queries local Ollama endpoint if available."""
     full_prompt = f"{system_prompt}\n\n{prompt}" if system_prompt else prompt
     payload = {
         "model": LOCAL_MODEL,
@@ -45,19 +52,20 @@ def query_local_ollama(prompt: str, system_prompt: str = "") -> str:
         "stream": False,
         "options": {"temperature": 0.25, "num_predict": 180}
     }
-    res = requests.post(OLLAMA_API_URL, json=payload, timeout=3)
-    if res.status_code == 200:
-        return res.json().get("response", "").strip()
+    try:
+        res = requests.post(OLLAMA_API_URL, json=payload, timeout=2)
+        if res.status_code == 200:
+            return res.json().get("response", "").strip()
+    except Exception:
+        pass
     return ""
 
 def query_llm_hybrid(prompt: str, system_prompt: str = "You are an elite fantasy football auction strategist.") -> str:
-    """Tries Local Ollama first; automatically falls back to Groq Cloud."""
-    try:
-        local_resp = query_local_ollama(prompt, system_prompt)
-        if local_resp:
-            return f"*(Local Ollama)*\n\n{local_resp}"
-    except Exception:
-        pass
+    """Routes to local Ollama if online; otherwise routes directly to Groq Cloud."""
+    local_resp = query_local_ollama(prompt, system_prompt)
+    if local_resp:
+        return f"*(Local Ollama)*\n\n{local_resp}"
+    
     groq_resp = query_groq_api(prompt, system_prompt)
     return f"*(Groq Cloud)*\n\n{groq_resp}"
 
