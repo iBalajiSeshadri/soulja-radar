@@ -3,6 +3,7 @@ import requests
 import json
 import re
 import xml.etree.ElementTree as ET
+import time
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -17,7 +18,7 @@ except ImportError:
 # ==============================================================================
 
 def clean_url(url: str) -> str:
-    """Strips markdown link syntax like [url](url) and whitespace."""
+    """Strips markdown link syntax and whitespace."""
     if not url:
         return ""
     match = re.search(r'https?://[^\s\)\]\'"]+', str(url))
@@ -74,7 +75,7 @@ def clean_snippet_text(text, max_len=180):
 
 def extract_players_fast(text, registry):
     """
-    O(1) Fast Proper Noun Extractor: Matches 2-word capitalized names against registry in 0.0001s.
+    O(1) Fast Proper Noun Extractor: Matches capitalized 2-word names against registry in 0.0001s.
     """
     found = []
     if not text or len(text) < 10:
@@ -87,11 +88,11 @@ def extract_players_fast(text, registry):
     return list(set(found))
 
 # ==============================================================================
-# 1. PARALLEL GROQ LLM BATCH WORKER
+# 1. PARALLEL GROQ LLM BATCH WORKER WITH 1:1 ENFORCEMENT & FUZZY MATCH
 # ==============================================================================
 
 def parse_llm_batch_response(raw_text: str, batch_map: dict):
-    """Direct Name-Matching parser with thinking tag suppression."""
+    """Token-aware fuzzy name matcher with thinking suppression."""
     clean_text = re.sub(r'<think>.*?</think>', '', raw_text, flags=re.DOTALL)
     clean_text = re.sub(r'```(?:json)?', '', clean_text).strip()
     
@@ -107,11 +108,22 @@ def parse_llm_batch_response(raw_text: str, batch_map: dict):
                 
                 c_p = clean_name(p_name)
                 matched_orig = None
+                
+                # 1. Exact match
                 for b_name in batch_map:
-                    if clean_name(b_name) == c_p or c_p in clean_name(b_name) or clean_name(b_name) in c_p:
+                    if clean_name(b_name) == c_p:
                         matched_orig = b_name
                         break
                 
+                # 2. Token-overlap match (e.g. "Kenneth Walker" vs "Kenneth Walker III")
+                if not matched_orig:
+                    p_tokens = set(c_p.split())
+                    for b_name in batch_map:
+                        b_tokens = set(clean_name(b_name).split())
+                        if len(p_tokens & b_tokens) >= 2 or (len(p_tokens) == 1 and p_tokens.issubset(b_tokens)):
+                            matched_orig = b_name
+                            break
+
                 if matched_orig:
                     mult = float(it.get("mult") or it.get("multiplier") or 1.0)
                     mult = max(0.75, min(1.15, mult)) # Clamped guardrail
@@ -130,7 +142,7 @@ def parse_llm_batch_response(raw_text: str, batch_map: dict):
     return results
 
 def process_single_groq_batch(batch_items, api_key, candidate_models):
-    """Worker function for concurrent thread pool execution."""
+    """Worker function for concurrent thread pool execution with 1:1 mandate."""
     if not batch_items or not api_key:
         return {}
 
@@ -140,21 +152,24 @@ def process_single_groq_batch(batch_items, api_key, candidate_models):
         for item in batch_items
     ]
 
-    system_prompt = """You are an expert quantitative fantasy football analyst.
-Analyze these beat reports and Superflex takeaways. Output JSON ONLY.
+    system_prompt = f"""You are an expert quantitative fantasy football analyst.
+Analyze these {len(prompt_payload)} beat reports and Superflex takeaways.
+
+STRICT MANDATE:
+You MUST return a JSON array containing EXACTLY {len(prompt_payload)} objects (one for every single player listed). Do not skip or omit any player.
 
 TAG RULES:
-- TIER_JUMPER: Concrete 1st-team target domination, depth chart ascent. (Multiplier: 1.06 to 1.15)
+- TIER_JUMPER: 1st-team target domination, depth chart ascent. (Multiplier: 1.06 to 1.15)
 - SUPERFLEX_EDGE: Superflex/2QB draft value surge, QB tier leverage. (Multiplier: 1.05 to 1.12)
 - ROLE_PINCH: Loss of goal-line/3rd-down snaps, committee split. (Multiplier: 0.84 to 0.94)
 - VET_MAINTENANCE: Precautionary rest, zero structural risk. (Multiplier: 0.96 to 0.99)
 - INJURY_ALERT: Multi-week sprain, PUP, or IR risk. (Multiplier: 0.75 to 0.88)
 - CLEARED: Full participant in 11-on-11 contact. (Multiplier: 1.00 to 1.03)
-- NOISE: Preseason fluff. (Multiplier: 1.00)
+- NOISE: Preseason fluff / neutral report. (Multiplier: 1.00)
 
-OUTPUT FORMAT: Return a valid JSON array:
+OUTPUT FORMAT: Return a valid JSON array of {len(prompt_payload)} objects:
 [
-  {"name": "Player Name", "tag": "TAG", "mult": 1.10, "note": "1 concise sentence on volume/role."}
+  {{"name": "Player Name", "tag": "TAG", "mult": 1.10, "note": "1 concise sentence on volume/role."}}
 ]
 """
 
@@ -169,15 +184,17 @@ OUTPUT FORMAT: Return a valid JSON array:
                 {"role": "user", "content": f"Analyze these {len(prompt_payload)} players:\n" + json.dumps(prompt_payload)}
             ],
             "temperature": 0.1,
-            "max_tokens": 1500
+            "max_tokens": 1600
         }
         try:
-            res = requests.post(url, headers=headers, json=payload, timeout=8)
+            res = requests.post(url, headers=headers, json=payload, timeout=9)
             if res.status_code == 200:
                 raw_content = res.json()["choices"][0]["message"]["content"]
                 results = parse_llm_batch_response(raw_content, batch_map)
                 if results:
                     return results
+            elif res.status_code == 429:
+                time.sleep(1.0)
         except Exception:
             continue
             
@@ -390,7 +407,7 @@ if BS4_AVAILABLE:
 
 print(f"✓ Extracted {cbs_matched} deep CBS Sports & Superflex mock updates across all pages!")
 
-# 6. Source E: 32BeatWriters Aggregator Feed
+# 6. Source E: 32BeatWriters Aggregator Feed (Dual Heuristics)
 print("\n6. [SOURCE 5] Scraping 32BeatWriters.com Aggregator Feed...")
 bw_matched = 0
 try:
@@ -541,11 +558,11 @@ api_key = get_active_groq_key()
 candidate_models = get_available_groq_models(api_key) if api_key else []
 
 if queue_list and api_key:
-    # Micro-batches of 6 players across 6 concurrent threads for zero truncation
-    batch_size = 6
+    # Compact micro-batches of 5 players across 4 concurrent threads
+    batch_size = 5
     batches = [queue_list[i:i + batch_size] for i in range(0, target_count, batch_size)]
     
-    with ThreadPoolExecutor(max_workers=6) as executor:
+    with ThreadPoolExecutor(max_workers=4) as executor:
         futures = [executor.submit(process_single_groq_batch, batch, api_key, candidate_models) for batch in batches]
         for future in as_completed(futures):
             try:
