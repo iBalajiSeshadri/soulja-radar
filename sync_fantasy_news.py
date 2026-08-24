@@ -4,7 +4,6 @@ import json
 import re
 import xml.etree.ElementTree as ET
 import time
-import pandas as pd
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -89,12 +88,12 @@ def extract_players_fast(text, registry):
     return list(set(found))
 
 # ==============================================================================
-# 1. PARALLEL GROQ LLM BATCH WORKER
+# 1. PARALLEL GROQ LLM BEAT SENTIMENT WORKER
 # ==============================================================================
 
 def parse_llm_batch_response(raw_text: str, batch_map: dict):
     """Token-aware fuzzy name matcher with thinking suppression."""
-    clean_text = re.sub(r'<think>.*?</think>', '', raw_text, flags=re.DOTALL)
+    clean_text = re.sub(r'<think>[\s\S]*?</think>', '', raw_text, flags=re.DOTALL)
     clean_text = re.sub(r'```(?:json)?', '', clean_text).strip()
     
     results = {}
@@ -124,16 +123,21 @@ def parse_llm_batch_response(raw_text: str, batch_map: dict):
                             break
 
                 if matched_orig:
+                    tag = str(it.get("tag") or "BEAT").upper().strip()
+                    # Filter out NOISE so normal healthy practices don't create visual clutter
+                    if tag in ["NOISE", "ROUTINE", "NONE"]:
+                        continue
+
                     mult = float(it.get("mult") or it.get("multiplier") or 1.0)
                     mult = max(0.75, min(1.15, mult))
-                    tag = str(it.get("tag") or "BEAT").upper()
                     note = str(it.get("note") or it.get("crunchy_note") or "").strip()
                     meta = batch_map[matched_orig]
                     
+                    src_label = meta.get('source_name', 'BEAT WIRE')
                     results[matched_orig] = {
                         "multiplier": round(mult, 2),
                         "type": tag,
-                        "note": note if note else meta['snippet'],
+                        "note": f"📰 {src_label}: {note if note else meta['snippet']}",
                         "source_url": meta.get('source_url', '')
                     }
         except Exception:
@@ -141,7 +145,7 @@ def parse_llm_batch_response(raw_text: str, batch_map: dict):
     return results
 
 def process_single_groq_batch(batch_items, api_key, candidate_models):
-    """Worker function for concurrent thread pool execution with strict output rules."""
+    """Worker function for concurrent thread pool execution with strict signal extraction."""
     if not batch_items or not api_key:
         return {}
 
@@ -149,38 +153,32 @@ def process_single_groq_batch(batch_items, api_key, candidate_models):
     prompt_payload = [
         {
             "name": item["player_name"],
-            "pos": item.get("pos", "FLEX"),
-            "team": item.get("team", "NFL"),
-            "tier": item.get("tier", "Tier 2"),
-            "intel_context": item["raw_text"][:340]
+            "source": item.get("source_name", "Beat Wire"),
+            "report": item["raw_text"][:340]
         }
         for item in batch_items
     ]
 
-    system_prompt = f"""You are an elite quantitative NFL fantasy football beat analyst and draft strategist.
-Analyze these {len(prompt_payload)} players. You MUST return a JSON array containing EXACTLY {len(prompt_payload)} objects (one per player).
+    system_prompt = f"""You are an expert quantitative NFL fantasy football beat analyst.
+Analyze these {len(prompt_payload)} genuine beat reports, camp updates, injury notes, and Superflex mock takeaways.
 
-TAG ASSIGNMENT CRITERIA:
-- TIER_JUMPER: Concrete 1st-team target dominance, camp ascent, manufactured touch design. (Multiplier: 1.06 to 1.15)
-- SUPERFLEX_EDGE: Superflex/2QB draft value surge, dual-threat rushing floor, late-round QB leverage. (Multiplier: 1.05 to 1.12)
-- CORE_ANCHOR: High-volume, healthy elite starter in prime offensive role. (Multiplier: 1.02 to 1.05)
-- VALUE_TARGET: Mispriced relative to ADP, post-hype sleeper, or high VORP efficiency. (Multiplier: 1.02 to 1.06)
-- ROLE_PINCH: Loss of goal-line/3rd-down snaps to backups, 50/50 committee squeeze. (Multiplier: 0.84 to 0.94)
+TAG DEFINITIONS (Assign ONLY if supported by the text; otherwise assign NOISE):
+- TIER_JUMPER: Concrete 1st-team target domination, camp ascent, beating DBs consistently, winning starting job. (Multiplier: 1.06 to 1.15)
+- SUPERFLEX_EDGE: Superflex/2QB draft value surge, dual-threat rushing floor, late-round QB arbitrage. (Multiplier: 1.05 to 1.12)
+- ROLE_PINCH: Loss of goal-line or 3rd-down snaps to backups, 50/50 committee squeeze, struggling in camp. (Multiplier: 0.84 to 0.94)
 - VET_MAINTENANCE: Precautionary veteran rest, minor soreness with zero regular-season risk. (Multiplier: 0.96 to 0.99)
-- QUESTIONABLE: Soft tissue strain, limited practice reps, game-time decision risk. (Multiplier: 0.86 to 0.92)
-- INJURY_ALERT: Multi-week structural injury, surgery, PUP, or IR risk. (Multiplier: 0.75 to 0.85)
-- CLEARED: Full participant in 11-on-11 contact after injury. (Multiplier: 1.00 to 1.03)
-- WAIVER_SURGE: Surging pickup on waiver wire (+1,000s of adds in 24h). (Multiplier: 1.04 to 1.08)
+- QUESTIONABLE: Active soft-tissue strain, limited practice reps, game-time decision risk. (Multiplier: 0.86 to 0.92)
+- INJURY_ALERT: Multi-week structural injury, surgery, PUP, or IR designation. (Multiplier: 0.75 to 0.85)
+- CLEARED: Full participant in 11-on-11 contact after prior injury. (Multiplier: 1.00 to 1.03)
+- NOISE: Generic preseason fluff, routine quotes, or no meaningful draft impact. (Multiplier: 1.00)
 
 CRUNCHY NOTE RULES:
-- If injured (e.g. CMC, Puka, Mahomes): Explain the injury severity, Week 1 outlook, and critical handcuff implications.
-- If QB/Superflex (e.g. Kyler Murray, Jayden Daniels, Drake Maye, Josh Allen): Highlight rushing floor, offensive pace, weapon quality, or Superflex draft leverage.
-- If skill player (e.g. Gibbs, Bijan, Taylor, Chase): Highlight target share, red-zone goal-line touches, or backfield committee dynamics.
-- Keep each note strictly 1 punchy, specific sentence. NEVER output generic filler.
+- Write 1 concise, punchy sentence explaining the exact schematic, health, or volume impact.
+- Mention specific details (e.g. target volume, recovery timeline, backup threat).
 
-OUTPUT FORMAT: Return a valid JSON array of {len(prompt_payload)} objects:
+OUTPUT FORMAT: Return a valid JSON array:
 [
-  {{"name": "Player Name", "tag": "TAG", "mult": 1.08, "note": "1 concise, crunchy sentence on volume, health, and draft leverage."}}
+  {{"name": "Player Name", "tag": "TIER_JUMPER | SUPERFLEX_EDGE | ROLE_PINCH | VET_MAINTENANCE | QUESTIONABLE | INJURY_ALERT | CLEARED | NOISE", "mult": 1.10, "note": "1 concise sentence."}}
 ]
 """
 
@@ -192,13 +190,13 @@ OUTPUT FORMAT: Return a valid JSON array of {len(prompt_payload)} objects:
             "model": model_name,
             "messages": [
                 {"role": "system", "content": system_prompt},
-                {"role": "user", "content": f"Analyze these {len(prompt_payload)} players:\n" + json.dumps(prompt_payload)}
+                {"role": "user", "content": f"Analyze these {len(prompt_payload)} beat reports:\n" + json.dumps(prompt_payload)}
             ],
-            "temperature": 0.15,
-            "max_tokens": 1800
+            "temperature": 0.1,
+            "max_tokens": 1600
         }
         try:
-            res = requests.post(url, headers=headers, json=payload, timeout=10)
+            res = requests.post(url, headers=headers, json=payload, timeout=9)
             if res.status_code == 200:
                 raw_content = res.json()["choices"][0]["message"]["content"]
                 results = parse_llm_batch_response(raw_content, batch_map)
@@ -212,7 +210,7 @@ OUTPUT FORMAT: Return a valid JSON array of {len(prompt_payload)} objects:
     return {}
 
 # ==============================================================================
-# 2. MAIN MULTI-SOURCE INGESTION PIPELINE
+# 2. MAIN NEWS AGGREGATION PIPELINE (ALL REAL DATA SOURCES)
 # ==============================================================================
 
 print("==================================================================")
@@ -246,7 +244,7 @@ try:
 except Exception as e:
     print(f"Registry notice: {e}")
 
-# 2. Source A: Sleeper Official Injury Wire & Camp Notes
+# 2. Source A: Sleeper Official Injury Wire & Active Camp Reports
 print("\n2. [SOURCE 1] Ingesting Sleeper Official Injury Wire & Queuing for LLM...")
 sleeper_injuries_found = 0
 if p_db:
@@ -510,7 +508,7 @@ try:
                     c_p = clean_name(p_name)
                     scraped_intel_by_player[c_p] = {
                         "player_name": p_name,
-                        "raw_text": f"Surging on waiver wire across competitive leagues (+{add_cnt} adds in last 24 hours). Opportunity breakout or camp role spike.",
+                        "raw_text": f"Surging on waiver wire across competitive leagues (+{add_cnt} adds in last 24 hours). Camp breakout or opportunity spike.",
                         "snippet": f"Waiver Surge (+{add_cnt} adds in 24h)",
                         "source_url": wire_link,
                         "source_name": "WAIVER SURGE"
@@ -521,80 +519,22 @@ except Exception as e:
     print(f"⚠️ Sleeper Waiver Notice: {e}")
 
 # ==============================================================================
-# 9. QUEUE ASSEMBLE: TOP 150 DRAFT BOARD + ALL SCRAPED INTEL
+# 9. CONCURRENT PARALLEL GROQ LLM SENTIMENT ANALYSIS
 # ==============================================================================
-print("\n9. Assembling Comprehensive Draft Board & News Queue for Groq LLM...")
-final_groq_queue = []
 
-if os.path.exists("top_150_draft_board.csv"):
-    try:
-        b_df = pd.read_csv("top_150_draft_board.csv")
-        b_df.columns = [c.lower() for c in b_df.columns]
-        p_col = 'player_name' if 'player_name' in b_df.columns else 'player'
-        
-        for _, row in b_df.iterrows():
-            raw_p = str(row[p_col]).strip()
-            c_p = clean_name(raw_p)
-            pos = str(row.get('position', 'FLEX')).upper()
-            team = str(row.get('team', 'NFL')).upper()
-            tier = str(row.get('tier', 'Tier 1'))
-            
-            if c_p in scraped_intel_by_player:
-                intel_data = scraped_intel_by_player[c_p]
-                final_groq_queue.append({
-                    "player_name": raw_p,
-                    "pos": pos,
-                    "team": team,
-                    "tier": tier,
-                    "raw_text": intel_data["raw_text"],
-                    "snippet": intel_data["snippet"],
-                    "source_name": intel_data["source_name"],
-                    "source_url": intel_data.get("source_url", "")
-                })
-            else:
-                # Provide contextual scheme & draft role prompt for non-injured players
-                final_groq_queue.append({
-                    "player_name": raw_p,
-                    "pos": pos,
-                    "team": team,
-                    "tier": tier,
-                    "raw_text": f"Healthy {tier} starter for {team} at {pos}. Evaluate schematic touch volume, passing/rushing upside, and draft leverage.",
-                    "snippet": f"Active {team} {pos}",
-                    "source_name": "SCHEMATIC OUTLOOK",
-                    "source_url": ""
-                })
-    except Exception as e:
-        print(f"⚠️ Board queue note: {e}")
-
-# Append any remaining breaking news players outside top 150
-queued_names = {clean_name(p["player_name"]) for p in final_groq_queue}
-for c_p, data in scraped_intel_by_player.items():
-    if c_p not in queued_names:
-        final_groq_queue.append({
-            "player_name": data["player_name"],
-            "pos": "FLEX",
-            "team": "NFL",
-            "tier": "Tier 3",
-            "raw_text": data["raw_text"],
-            "snippet": data["snippet"],
-            "source_name": data["source_name"],
-            "source_url": data.get("source_url", "")
-        })
-
-# ==============================================================================
-# 10. CONCURRENT PARALLEL GROQ LLM SENTIMENT ANALYSIS (150+ PLAYERS)
-# ==============================================================================
-print(f"\n10. Running Concurrent Parallel Groq LLM Analysis on {len(final_groq_queue)} distinct players...")
+queue_list = list(scraped_intel_by_player.values())
+target_count = min(len(queue_list), 220)
+print(f"\n9. Running Concurrent Parallel Groq LLM Analysis on {target_count} verified distinct player reports...")
 
 llm_evaluated_count = 0
 api_key = get_active_groq_key()
 candidate_models = get_available_groq_models(api_key) if api_key else []
 
-if final_groq_queue and api_key:
-    batch_size = 6
-    batches = [final_groq_queue[i:i + batch_size] for i in range(0, len(final_groq_queue), batch_size)]
+if queue_list and api_key:
+    batch_size = 5
+    batches = [queue_list[i:i + batch_size] for i in range(0, target_count, batch_size)]
     
-    with ThreadPoolExecutor(max_workers=5) as executor:
+    with ThreadPoolExecutor(max_workers=4) as executor:
         futures = [executor.submit(process_single_groq_batch, batch, api_key, candidate_models) for batch in batches]
         for future in as_completed(futures):
             try:
@@ -605,22 +545,22 @@ if final_groq_queue and api_key:
             except Exception:
                 pass
 
-print(f"✓ Groq LLM enriched {llm_evaluated_count} player profiles with tailored tactical insights!")
+print(f"✓ Groq LLM classified & enriched {llm_evaluated_count} high-signal player profiles!")
 
 # Fallback for remaining items
-for art in final_groq_queue:
+for art in queue_list[:target_count]:
     orig_player = art["player_name"]
     if orig_player not in camp_overrides:
         src_label = art.get("source_name", "BEAT WIRE")
         camp_overrides[orig_player] = {
-            "multiplier": 1.00,
-            "type": "CORE_ANCHOR" if "Tier 1" in art.get("tier", "") else ("SUPERFLEX" if art.get("pos") == "QB" else "BEAT"),
-            "note": art['snippet'],
+            "multiplier": 1.04 if "WAIVER" in src_label else 1.00,
+            "type": "WAIVER_SURGE" if "WAIVER" in src_label else "BEAT",
+            "note": f"📰 {src_label}: {art['snippet']}",
             "source_url": art.get("source_url", "")
         }
 
 # ==============================================================================
-# 11. PERSIST OUTPUT TO CAMP_OVERRIDES.JSON
+# 10. PERSIST OUTPUT TO CAMP_OVERRIDES.JSON
 # ==============================================================================
 
 with open("camp_overrides.json", "w") as f:

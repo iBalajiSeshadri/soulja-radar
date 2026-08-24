@@ -27,33 +27,49 @@ def get_active_groq_key() -> str:
     return key.strip().strip('"').strip("'")
 
 def parse_clean_output(text: str) -> str:
-    """Strips thinking tags, reasoning preambles, and raw HTML tags cleanly."""
+    """
+    Bulletproof parser that strips XML thinking tags, reasoning scratchpads,
+    mental refinement notes, and returns strictly the final clean markdown bullet points.
+    """
     if not text:
         return "⚠️ No response generated. Please click again."
     
-    # Strip <think>...</think> tags
-    text = re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL)
+    # 1. Strip explicit <think>...</think> tags
+    text = re.sub(r'<think>[\s\S]*?</think>', '', text, flags=re.DOTALL)
     
-    if "<think>" in text:
-        parts = re.split(r'</think>', text)
-        if len(parts) > 1:
-            text = parts[-1]
-        else:
-            m = re.search(r'(\n\s*[\*\-•]\s+\*{0,2}(?:Verdict|Tactical|Rival|Action|Cutoff|Target|Reach|Survival)[\s\S]*)', text, flags=re.IGNORECASE)
-            if m:
-                text = m.group(1)
-            else:
-                text = re.sub(r'<think>.*', '', text, flags=re.DOTALL)
+    # 2. Extract final clean bullet block if scratchpad is present
+    all_bullets = re.findall(r'(?:^|\n)\s*[\*\-•]\s+[\s\S]*?(?=(?:\n\s*[\*\-•]|\Z))', text)
+    valid_bullets = [
+        b.strip() for b in all_bullets 
+        if not any(k in b.lower() for k in [
+            'deconstruct', 'formulate', 'mental refinement', 'check constraints', 
+            'bullet 1:', 'bullet 2:', 'bullet 3:', 'self-correction', "let's verify"
+        ])
+    ]
+    
+    if len(valid_bullets) >= 2:
+        return "\n\n".join(valid_bullets[-3:]).strip()
 
-    # Strip thinking preambles
-    text = re.sub(r'(?i)here\'?s\s+a\s+thinking\s+process:.*?(?=\n\s*[\*\-•\d]|\Z)', '', text, flags=re.DOTALL)
+    # 3. Fallback regex cleanup of common LLM thought artifacts
+    noise_patterns = [
+        r'(?i)groq cloud\]',
+        r'(?i)constraints:[\s\S]*?(?=\n\s*[\*\-•]|\Z)',
+        r'(?i)deconstruct requirements:[\s\S]*?(?=\n\s*[\*\-•]|\Z)',
+        r'(?i)formulate content[\s\S]*?:[\s\S]*?(?=\n\s*[\*\-•]|\Z)',
+        r'(?i)check constraints:[\s\S]*?(?=\n\s*[\*\-•]|\Z)',
+        r'(?i)self-correction[\s\S]*?:[\s\S]*?(?=\n\s*[\*\-•]|\Z)',
+        r'(?i)let\'?s verify[\s\S]*?(?=\n\s*[\*\-•]|\Z)',
+        r'(?i)all constraints met[\s\S]*?(?=\n\s*[\*\-•]|\Z)'
+    ]
+    for p in noise_patterns:
+        text = re.sub(p, '', text, flags=re.DOTALL)
+        
     text = re.sub(r'</?[a-zA-Z0-9_\-]+>', '', text)
     text = re.sub(r'\n{3,}', '\n\n', text)
-    
     return text.strip()
 
 def query_groq_api(prompt: str, system_prompt: str = "You are an elite quantitative fantasy football strategist. Output ONLY direct markdown bullet points. Do NOT output internal reasoning.") -> str:
-    """Ultra-fast cloud inference via Groq verified production models."""
+    """Inference via Groq verified production models."""
     api_key = get_active_groq_key()
     if not api_key:
         return "⚠️ Missing GROQ_API_KEY. Add `GROQ_API_KEY` to Streamlit Secrets or `.streamlit/secrets.toml`."
@@ -72,7 +88,7 @@ def query_groq_api(prompt: str, system_prompt: str = "You are an elite quantitat
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt}
             ],
-            "temperature": 0.15,
+            "temperature": 0.1,
             "max_tokens": 1024
         }
         try:
@@ -97,7 +113,7 @@ def query_local_ollama(prompt: str, system_prompt: str = "") -> str:
         "model": LOCAL_MODEL,
         "prompt": full_prompt,
         "stream": False,
-        "options": {"temperature": 0.15, "num_predict": 400}
+        "options": {"temperature": 0.1, "num_predict": 400}
     }
     try:
         res = requests.post(OLLAMA_API_URL, json=payload, timeout=2)
@@ -112,10 +128,10 @@ def query_llm_hybrid(prompt: str, system_prompt: str = "You are an elite fantasy
     """Routes to local Ollama if online; otherwise routes directly to Groq Cloud."""
     local_resp = query_local_ollama(prompt, system_prompt)
     if local_resp:
-        return f"**[Local Ollama]**\n\n{local_resp}"
+        return local_resp
     
     groq_resp = query_groq_api(prompt, system_prompt)
-    return f"**[Groq Cloud]**\n\n{groq_resp}"
+    return groq_resp
 
 # ==============================================================================
 # LIVE AI WAR ROOM ENGINES (AUCTION + SNAKE + GROUNDED STRATEGIST)
@@ -126,7 +142,7 @@ def generate_live_auction_advice(player_name, pos, fair_val, mkt_val, max_bid_to
 LIVE AUCTION SITUATION:
 - Nominated Player: {player_name} ({pos})
 - Fair Value: ${fair_val} | Market ADP: ${mkt_val} | Hard Bid Limit: ${max_bid_to}
-- Active Room Inflation: {inflation_index}x (>1.0x overpaying, <1.0x bargains)
+- Active Room Inflation: {inflation_index}x
 - Medical / Intel: {news_note if news_note else 'Healthy & Active'}
 - My Budget Left: ${my_budget}
 - My Current Roster: {my_roster_summary}
@@ -136,12 +152,10 @@ LIVE ROOM TELEMETRY:
 - Active Rival Needs & Cap: {live_rivals_telemetry}
 
 TASK:
-Provide exactly 3 direct, tactical markdown bullet points:
-* **Verdict & Price Cutoff**: State whether to Anchor Stud, Price-Enforce Trap, or Fade, with the exact hard dollar drop-out limit (${max_bid_to}).
+Provide exactly 3 direct markdown bullet points (NO preambles, NO thinking process, start immediately):
+* **Verdict & Price Cutoff**: State Anchor Stud, Price-Enforce Trap, or Fade, with the exact hard dollar limit (${max_bid_to}).
 * **Momentum & Roster Fit**: How this bid aligns with your current open roster gaps and recent draft velocity.
 * **Target Rival Exploit**: Name a specific active manager with high cap and need at {pos} to push into overpaying.
-
-Do NOT output preambles or analysis outlines. Start immediately with the first bullet point.
 """
     return query_llm_hybrid(prompt)
 
@@ -150,7 +164,7 @@ def generate_snake_turn_advice(player_name, pos, adp_rank, vorp_val, tier_name, 
     prompt = f"""
 LIVE SNAKE DRAFT SITUATION:
 - Targeted Player: {player_name} ({pos}) | Tier: {tier_name}
-- Consensus ADP: #{adp_rank} | VORP Rating: +{vorp_val} pts
+- Consensus ADP: #{adp_rank} | True VORP: +{vorp_val} pts
 - Current Overall Pick: #{curr_pick}
 - Distance to Your Next Turn: {distance} picks away (Your next pick: #{next_my_pick})
 - Medical / Intel: {news_note if news_note else 'Healthy & Active'}
@@ -160,12 +174,10 @@ OPPONENTS ON THE CLOCK BEFORE YOUR NEXT PICK:
 - Teams Picking In-Between & Their Roster Gaps: {teams_between_needs}
 
 TASK:
-Provide exactly 3 direct, actionable markdown bullet points:
-* **Reach vs. Wait Verdict**: State whether to TAKE NOW or RISK WAITING, with specific odds he survives back to pick #{next_my_pick}.
-* **Run Risk Assessment**: Which managers picking between you are desperate for a {pos} and will snipe him if passed.
+Provide exactly 3 direct markdown bullet points (NO preambles, NO thinking process, start immediately):
+* **Reach vs. Wait Verdict**: State TAKE NOW or RISK WAITING, with survival odds to pick #{next_my_pick}.
+* **Run Risk Assessment**: Which manager picking before your next turn is desperate for {pos} and will snipe him.
 * **Roster Construction Impact**: How locking in this player solidifies your build archetype vs available alternatives.
-
-Do NOT output preambles or analysis outlines. Start immediately with the first bullet point.
 """
     return query_llm_hybrid(prompt)
 
@@ -178,11 +190,9 @@ SITUATION:
 - Top Available Players: {unpicked_summary}
 
 TASK:
-Provide exactly 2 direct bullet points:
-* **Target Nomination**: Name ONE exact player to put on the block right now.
-* **Psychological Trap**: Explain how this drains specific rivals (e.g. Kopite, Chaitu, Harsha) or establishes your position advantage.
-
-Do NOT output an outline or thinking process. Start immediately with the first bullet point.
+Provide exactly 2 direct markdown bullet points (NO preambles, start immediately):
+* **Target Nomination**: Name ONE exact player to nominate right now.
+* **Psychological Trap**: Explain how this drains specific rivals or establishes your positional advantage.
 """
     return query_llm_hybrid(prompt)
 
@@ -197,10 +207,9 @@ GROUNDED PLAYER DATABASE TELEMETRY:
 USER QUESTION:
 {user_query}
 
-STRICT QUANTITATIVE INSTRUCTIONS:
-- You MUST use the exact dollar values, VORP numbers, and consensus ADPs provided in the GROUNDED PLAYER TELEMETRY above.
-- NEVER invent or hallucinate fake auction prices (e.g. do not say studs are $10-$15).
-- If draft format is Auction, refer strictly to dollar values ($). If Snake, refer strictly to round/pick numbers (#).
-- Give a razor-sharp, decisive recommendation in 2-3 direct markdown bullet points comparing their exact True VORP values and roster construction impact.
+STRICT INSTRUCTIONS:
+- Refer strictly to the grounded player values, VORPs, and ADPs provided above.
+- Never hallucinate fake auction prices.
+- Provide a razor-sharp, decisive recommendation in 2-3 direct markdown bullet points comparing their exact values and roster impact. Do NOT output internal reasoning.
 """
     return query_llm_hybrid(prompt)
