@@ -6,6 +6,8 @@ import json
 import os
 import re
 import random
+import subprocess
+import sys
 
 # Page Configuration
 st.set_page_config(
@@ -240,6 +242,24 @@ player_display_map = dict(zip(df_board['clean_name'], df_board['player_name']))
 
 # 4. Sidebar Controls & Real Sleeper Sync
 st.sidebar.title("⚡ Soulja Soulja Radar")
+
+# ==========================================
+# 🚀 1-CLICK LIVE NEWS & SCRAPER SYNC BUTTON
+# ==========================================
+if st.sidebar.button("🚀 Pull Latest News & Sync Wire", use_container_width=True, type="primary"):
+    with st.spinner("Scraping live beat wires, Sleeper injury reports, and recalculating board..."):
+        try:
+            # 1. Run live news scraper
+            res_news = subprocess.run([sys.executable, "sync_fantasy_news.py"], capture_output=True, text=True)
+            # 2. Run fantasy engine to update VORP/board
+            res_eng = subprocess.run([sys.executable, "fantasy_engine.py"], capture_output=True, text=True)
+            
+            st.cache_data.clear()
+            st.toast("✅ Live News, Injuries & Board Synchronized!", icon="🔥")
+            st.rerun()
+        except Exception as e:
+            st.sidebar.error(f"Sync execution notice: {e}")
+
 draft_mode = st.sidebar.radio("Draft Format:", ["🔨 Auction / Salary Cap", "🐍 Snake Draft"], horizontal=True)
 
 league_size = 10
