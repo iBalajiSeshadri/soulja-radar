@@ -99,18 +99,18 @@ DST_SCHEDULE_MAP = {
     "CAR": "📅 W1: @ NO (🟡 Neutral) | W2: vs LAC (🟡 Neutral) | W3: @ LV (🟡 Neutral) • 🟡 Low Floor"
 }
 
-# 🌟 VERIFIED SOULJA SOULJA HISTORICAL CREW MAPPING
+# 🌟 VERIFIED SOULJA SOULJA HISTORICAL CREW MAPPING (Exact Draft History)
 SOULJA_SOULJA_DEFAULTS = {
-    1: {"handle": "addyrao", "name": "Addy Rao", "archetype": "🐢 Patient Hoarder", "class": "arch-hoard", "bias": "Late Room Dominator", "exploit": "Hoards cash early (2,366.2 avg pts). Nominate his primary starting targets early to force capital spend."},
-    2: {"handle": "skongara", "name": "Shantanu", "archetype": "👑 Studs Double-Dip", "class": "arch-stars", "bias": "Aggressive Marquee RB/WR1", "exploit": "2025 champion (73.2% win rate, 2,443.4 avg pts). Double-dips on top-5 assets ($136+). Push bids to fair value and let him choke early budget."},
-    3: {"handle": "bluewatermelon", "name": "Bluewatermelon", "archetype": "🛡️ Floor Buyer", "class": "arch-idp", "bias": "Defensive Floor Focus", "exploit": "Conservative early bidder. Capitalize on his patient early cadence by securing deflated Tier 1/2 studs."},
-    4: {"handle": "DjBallz", "name": "Balaji (You)", "archetype": "👑 Disciplined Anchor", "class": "arch-stars", "bias": "Pure VORP & IDP Efficiency", "exploit": "Strict mathematical surplus execution; avoids emotional bidding traps."},
-    5: {"handle": "vnayini", "name": "Vivek", "archetype": "⚖️ Mid-Tier Value Hunter", "class": "arch-hoard", "bias": "$15-$25 Value Sweeper", "exploit": "Consistent playoff contender (#4 in 2025, #5 in 2024). Nominate his secondary positions early to disrupt planned value traps."},
-    6: {"handle": "Kopite", "name": "Kopite", "archetype": "👑 Studs Double-Dip", "class": "arch-stars", "bias": "Early Stud Aggressor", "exploit": "2025 runner-up (66.1% win rate, 2,428.2 avg pts). Fires big early on dual studs ($129+). Push bids on his second stud to max retail."},
-    7: {"handle": "chaituat", "name": "Chaitu", "archetype": "💥 Big Game Hunter", "class": "arch-stars", "bias": "High-Spend Aggressor", "exploit": "Spends big early on top targets ($124+). Nominate high-cost non-targets to burn his capital quickly."},
-    8: {"handle": "cardinalsin", "name": "Harsha", "archetype": "🛡️ IDP & Elite TE Spender", "class": "arch-idp", "bias": "Heavy Defensive & TE Allocation", "exploit": "2024 runner-up who consistently spends up for premier LBs and top TEs. Nominate them early to burn his offensive cap."},
-    9: {"handle": "rookieqbme", "name": "Siddanth", "archetype": "🥷 Opportunistic Value Sniper", "class": "arch-hoard", "bias": "Positional Run Exploiter", "exploit": "Capitalizes on late draft runs. Trigger tier cliffs at RB/TE to force him into suboptimal reaches."},
-    10: {"handle": "siddharthasagar", "name": "Siddu", "archetype": "👑 Superstar Chaser", "class": "arch-stars", "bias": "High-Ceiling Champion (2024)", "exploit": "2024 champion (2,439.5 avg pts). Double-dips on elite superstars; bait with overvalued landmines and avoid bidding wars on his target anchors."}
+    1: {"handle": "addyrao", "name": "Addy Rao", "archetype": "🐢 Patient Value Shark", "class": "arch-hoard", "bias": "$119 Top-3 Spend | Late Monopolist", "exploit": "Holds budget until mid-round deflation; surged to 2025 #3 finish with league-high 2,537 pts. Nominate his starting targets early to force spend."},
+    2: {"handle": "skongara", "name": "Shantanu", "archetype": "👑 Stud Anchor + Value Weapons", "class": "arch-stars", "bias": "$107.5 Top-3 Spend | 2025 Champion", "exploit": "2025 champion (73.2% win rate, 2,443.4 avg pts). Secures 1 stud at ~$50, then dominates the $25-$33 tier. Push his secondary targets to full fair value."},
+    3: {"handle": "bluewatermelon", "name": "Bluewatermelon", "archetype": "🛡️ Top-Heavy / Depth Starved", "class": "arch-idp", "bias": "$126.5 Top-3 Spend | Rebuild Floor", "exploit": "Spends $102-$136 on 3 stars, starving bench depth ($2,163.7 pts). Secure deflated Tier 1/2 players while he sits on empty cap."},
+    4: {"handle": "DjBallz", "name": "Balaji (You)", "archetype": "👑 Disciplined Anchor (VORP Surplus)", "class": "arch-stars", "bias": "$122 Top-3 Spend | 2024 Final Four", "exploit": "1 Stud Anchor + disciplined surplus spread and IDP value snipes; avoids emotional bidding wars."},
+    5: {"handle": "vnayini", "name": "Vivek", "archetype": "⚖️ Mid-Tier Value Optimizer", "class": "arch-balanced", "bias": "$112 Top-3 Spend | Playoff Lock", "exploit": "Constructs high-floor rosters in $32-$42 range with zero $50+ studs (2025 #4, 2024 #5). Nominate his key positions early to disrupt planned values."},
+    6: {"handle": "Kopite", "name": "Kopite", "archetype": "🔥 Extreme Stud Triple-Dipper", "class": "arch-stars", "bias": "$155.5 Top-3 Spend (77.8% of Cap)", "exploit": "2025 runner-up (66.1% win rate, 2,428.2 avg pts). Spent $163 on Saquon ($56), Allen ($55), Chase ($52) in '25. Force him to pay full retail on his 2nd/3rd stud."},
+    7: {"handle": "chaituat", "name": "Chaitu", "archetype": "💥 High-Spend Aggressor", "class": "arch-stars", "bias": "$133 Flat Top-3 Spend | High Volatility", "exploit": "Spends exactly $133 on 3 stars every year ($98 on dual QBs in '24). Nominate high-cost non-targets early to burn his capital quickly."},
+    8: {"handle": "cardinalsin", "name": "Harsha", "archetype": "🛡️ Dual-RB Anchor + Elite IDP", "class": "arch-idp", "bias": "$125.5 Top-3 Spend | 2024 Runner-Up", "exploit": "Spent $106 on Bijan/Breece in '24 + heavy IDP/TE budget. Reached 2024 finals (#2). Nominate top LBs/TEs early to burn offensive cap."},
+    9: {"handle": "rookieqbme", "name": "Siddanth", "archetype": "🥷 Post-Cliff Value Sniper", "class": "arch-hoard", "bias": "$104 Top-3 Spend | 2025 Top 5", "exploit": "Waits out the initial stud spike to grab post-cliff bargains ($24-$29 range). Trigger positional runs to force him into suboptimal reaches."},
+    10: {"handle": "siddharthasagar", "name": "Siddu", "archetype": "👑 High-Ceiling Value Builder", "class": "arch-stars", "bias": "$89.5 Top-3 Spend | 2024 Champion", "exploit": "Won 2024 Championship on $74 top-3 spend + elite IDP depth ($2,439.5 avg pts). Bait with overvalued landmines; avoid bidding wars on his target anchors."}
 }
 
 def clean_name(name):
@@ -1049,22 +1049,25 @@ with tab_matrix:
     
     # Visual Analytics Section
     st.markdown("---")
-    st.markdown("##### 📊 Visual League Analytics: Draft Spend Aggression & Historical Scoring")
+    st.markdown("##### 📊 Visual League Analytics: Exact Top-3 Stud Spend & Purchasing Power")
     
     chart_col1, chart_col2 = st.columns(2)
     
     with chart_col1:
-        st.markdown("**Estimated % of $200 Budget Spent on Top 2 Studs:**")
-        spend_est_df = pd.DataFrame([{
-            "Manager": SOULJA_SOULJA_DEFAULTS[s]['name'],
-            "Top-2 Spend %": {
-                'skongara': 68.0, 'siddharthasagar': 65.0, 'Kopite': 64.5,
-                'chaituat': 62.0, 'DjBallz': 48.0, 'cardinalsin': 45.0,
-                'vnayini': 42.0, 'rookieqbme': 38.0, 'addyrao': 36.0,
-                'bluewatermelon': 32.0
-            }.get(SOULJA_SOULJA_DEFAULTS[s]['handle'], 45.0)
-        } for s in range(1, 11)]).set_index("Manager").sort_values(by="Top-2 Spend %", ascending=True)
-        st.bar_chart(spend_est_df)
+        st.markdown("**Historical 2-Year Average Top-3 Stud Spend ($ out of $200):**")
+        top3_hist_df = pd.DataFrame([
+            {"Manager": "Kopite", "Top-3 Spend ($)": 155.5},
+            {"Manager": "Chaitu", "Top-3 Spend ($)": 133.0},
+            {"Manager": "Bluewatermelon", "Top-3 Spend ($)": 126.5},
+            {"Manager": "Harsha", "Top-3 Spend ($)": 125.5},
+            {"Manager": "Balaji", "Top-3 Spend ($)": 122.0},
+            {"Manager": "Addy Rao", "Top-3 Spend ($)": 119.0},
+            {"Manager": "Vivek", "Top-3 Spend ($)": 112.0},
+            {"Manager": "Shantanu", "Top-3 Spend ($)": 107.5},
+            {"Manager": "Siddanth", "Top-3 Spend ($)": 104.0},
+            {"Manager": "Siddu", "Top-3 Spend ($)": 89.5}
+        ]).set_index("Manager")
+        st.bar_chart(top3_hist_df)
             
     with chart_col2:
         st.markdown("**Live Manager Purchasing Power (Remaining Budget vs Max Bid):**")
