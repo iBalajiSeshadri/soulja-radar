@@ -8,10 +8,10 @@ OLLAMA_API_URL = os.getenv("OLLAMA_API_URL", "http://localhost:11434/api/generat
 LOCAL_MODEL = os.getenv("LOCAL_LLM_MODEL", "llama3.1:8b")
 
 VERIFIED_GROQ_MODELS = [
-    "llama-3.3-70b-versatile",
-    "llama-3.1-8b-instant",
+    "openai/gpt-oss-120b",
     "openai/gpt-oss-20b",
-    "qwen/qwen3.6-27b"
+    "qwen/qwen3.6-27b",
+    "llama-3.3-70b-versatile"
 ]
 
 def get_active_groq_key() -> str:
@@ -217,8 +217,10 @@ USER QUESTION:
 {user_query}
 
 STRICT INSTRUCTIONS:
-- Refer strictly to the grounded player values, VORPs, and ADPs provided above.
-- Never hallucinate fake auction prices.
-- Provide a razor-sharp, decisive recommendation in 2-3 direct markdown bullet points comparing their exact values and roster impact. Do NOT output internal reasoning or scratchpads.
+- Refer strictly to the grounded player values, VORPs, ADPs, and CAMP INTEL notes provided above.
+- When you name a player as an edge/target/fade, QUOTE the specific camp detail from their intel note
+  (the actual catch totals, coverage wins, role/depth-chart change, or injury) so the read is verifiable.
+- Never hallucinate fake auction prices, stats, or camp details not present in the grounding above.
+- Provide a razor-sharp, decisive recommendation in direct markdown bullet points. Do NOT output internal reasoning or scratchpads.
 """
     return query_llm_hybrid(prompt)
