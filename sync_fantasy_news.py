@@ -19,7 +19,7 @@ def clean_name(name):
 
 def clean_snippet_text(text, max_len=160):
     text = " ".join(text.split())
-    text = re.sub(r"^(Rotowire|CBS Sports|Fantasy Staff|RotoBaller)\s*[:\-]\s*", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"^(Rotowire|CBS Sports|Fantasy Staff|RotoBaller|FFToday)\s*[:\-]\s*", "", text, flags=re.IGNORECASE)
     if len(text) > max_len:
         return text[:max_len].rsplit(' ', 1)[0] + "..."
     return text
@@ -44,11 +44,11 @@ def extract_headline_subject(raw_text):
     headline_text = parts[1].strip()
     
     subject_clean = re.sub(r"^[A-Za-z0-9\s\.\-]+\'\s*", "", subject_raw).strip()
-    subject_clean = re.sub(r"\s+(QB|RB|WR|TE|K|DEF|LB|DL|DB)\s*\|.*$", "", subject_clean, flags=re.IGNORECASE).strip()
+    subject_clean = re.sub(r"\s+(QB|RB|WR|TE|K|DEF|LB|DL|DB|DE|DT|CB|S|ILB|OLB|SS|FS)\s*\|.*$", "", subject_clean, flags=re.IGNORECASE).strip()
     return subject_clean, headline_text
 
 print("==================================================================")
-print("  SOULJA SOULJA SURGICAL NEWS & INJURY AGGREGATOR               ")
+print("  SOULJA SOULJA MULTI-SOURCE NEWS & INJURY AGGREGATOR (OFF + IDP)")
 print("==================================================================")
 
 camp_overrides = {}
@@ -71,7 +71,7 @@ try:
 except Exception as e:
     print(f"Registry notice: {e}")
 
-# 2. Source A: Sleeper Official Real-Time Injury Wire
+# 2. Source A: Sleeper Official Real-Time Injury Wire (Offense + IDP)
 print("\n2. [SOURCE 1] Ingesting Sleeper Official API Injury Wire...")
 sleeper_injuries_found = 0
 if p_db:
@@ -125,8 +125,57 @@ if p_db:
             
     print(f"✓ Ingested {sleeper_injuries_found} official injury designations!")
 
-# 3. Source B: CBS Sports Feed (Subject Isolation)
-print("\n3. [SOURCE 2] Scraping CBS RotoWire Feed with Subject Isolation...")
+# 3. Source B: FFToday IDP Wire & Beat Profiles (DL=50, LB=60, DB=70)
+print("\n3. [SOURCE 2] Ingesting FFToday IDP Player Wire & Statuses...")
+idp_wire_matched = 0
+if BS4_AVAILABLE:
+    idp_pos_urls = [
+        ("DL", "https://www.fftoday.com/rankings/playerproj.php?PosID=50"),
+        ("LB", "https://www.fftoday.com/rankings/playerproj.php?PosID=60"),
+        ("DB", "https://www.fftoday.com/rankings/playerproj.php?PosID=70")
+    ]
+    for pos_label, url in idp_pos_urls:
+        try:
+            res = requests.get(url, headers=headers, timeout=8)
+            if res.status_code == 200:
+                soup = BeautifulSoup(res.text, 'html.parser')
+                rows = soup.find_all('tr')
+                for row in rows:
+                    link_tag = row.find('a', href=re.compile(r'stats/players/'))
+                    if link_tag:
+                        player_raw = link_tag.get_text().strip()
+                        c_p = clean_name(player_raw)
+                        if c_p in player_registry:
+                            orig_player = player_registry[c_p]
+                            href = link_tag['href']
+                            full_url = f"https://www.fftoday.com{href}" if href.startswith('/') else href
+                            
+                            # Check if row has an injury / news flag note
+                            row_text = row.get_text()
+                            if any(k in row_text.lower() for k in ['out', 'ir', 'pup', 'doubtful', 'inj']):
+                                if orig_player not in camp_overrides:
+                                    camp_overrides[orig_player] = {
+                                        "multiplier": 0.60,
+                                        "type": "INJURY",
+                                        "note": f"🩹 FFTODAY IDP WIRE: Active injury designation on {pos_label} depth chart",
+                                        "source_url": full_url
+                                    }
+                                    idp_wire_matched += 1
+                            elif orig_player not in camp_overrides:
+                                camp_overrides[orig_player] = {
+                                    "multiplier": 1.00,
+                                    "type": "BEAT",
+                                    "note": f"🛡️ FFTODAY IDP: Core starting {pos_label} projection",
+                                    "source_url": full_url
+                                }
+                                idp_wire_matched += 1
+        except Exception as e:
+            print(f"⚠️ FFToday IDP parser notice for {pos_label}: {e}")
+
+print(f"✓ Ingested {idp_wire_matched} FFToday IDP player profiles!")
+
+# 4. Source C: CBS Sports Feed (Offense + IDP Subject Isolation)
+print("\n4. [SOURCE 3] Scraping CBS RotoWire Feed with Subject Isolation...")
 cbs_fresh = 0
 cbs_historical = 0
 
@@ -187,8 +236,8 @@ for page in range(1, 10):
 
 print(f"✓ Processed CBS feed: {cbs_fresh} fresh subject updates & {cbs_historical} historical updates!")
 
-# 4. Source C: Sleeper 24-Hour Live Trending Waiver Adds
-print("\n4. [SOURCE 3] Querying Sleeper Live 24h Waiver Surges...")
+# 5. Source D: Sleeper 24-Hour Live Trending Waiver Adds
+print("\n5. [SOURCE 4] Querying Sleeper Live 24h Waiver Surges...")
 try:
     trending_adds = requests.get("https://api.sleeper.app/v1/players/nfl/trending/add?lookback_hours=24&limit=30", timeout=5).json()
     adds_matched = 0
@@ -219,4 +268,4 @@ except Exception as e:
 with open("camp_overrides.json", "w") as f:
     json.dump(camp_overrides, f, indent=2)
 
-print(f"\n✅ SUCCESS: Saved {len(camp_overrides)} pure news/injury overrides to 'camp_overrides.json'!")
+print(f"\n✅ SUCCESS: Saved {len(camp_overrides)} multi-source overrides to 'camp_overrides.json'!")

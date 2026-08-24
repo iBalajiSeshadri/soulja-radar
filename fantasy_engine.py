@@ -23,44 +23,71 @@ def clean_name(name):
     name = re.sub(r"\b(jr|sr|iii|ii|iv|v)\b", "", name)
     return " ".join(name.split())
 
-def fetch_fftoday_mfl_ranks():
+def fetch_fftoday_all_projections():
     """
-    Ingests consensus power rankings from FFToday MFL Power Rankings
-    (both skill positions and IDP) to calibrate mathematical projections.
+    Ingests official FFToday projections for:
+    - IDP: DL (PosID=50), LB (PosID=60), DB (PosID=70)
+    - Offense: QB (PosID=10), RB (PosID=20), WR (PosID=30), TE (PosID=40)
+    - Overall MFL Power consensus ranks
     """
-    print("0. Ingesting FFToday MFL Power Rankings for projection calibration...")
-    power_ranks = {}
+    print("0. Ingesting FFToday Projections & IDP Data (DL/LB/DB)...")
+    ff_ranks = {}
+    ff_idp_pts = {}
+    
     if not BS4_AVAILABLE:
         print("⚠️ BeautifulSoup not found. Skipping FFToday scrape.")
-        return power_ranks
+        return ff_ranks, ff_idp_pts
         
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)'}
-    urls = [
-        "https://www.fftoday.com/mflpower/playerrank.php",
-        "https://www.fftoday.com/mflpower/playerrank.php?o=2"  # IDP Table
-    ]
     
-    for url in urls:
+    # 1. Scrape IDP Positional Projections (DL=50, LB=60, DB=70)
+    idp_configs = [(50, 'DL'), (60, 'LB'), (70, 'DB')]
+    for pos_id, pos_code in idp_configs:
+        for page in range(0, 2):  # Pages 0 and 1 cover top 100 per position
+            url = f"https://www.fftoday.com/rankings/playerproj.php?PosID={pos_id}&cur_page={page}"
+            try:
+                res = requests.get(url, headers=headers, timeout=8)
+                if res.status_code == 200:
+                    soup = BeautifulSoup(res.text, 'html.parser')
+                    rows = soup.find_all('tr')
+                    for row in rows:
+                        cols = row.find_all('td')
+                        if len(cols) >= 6:
+                            link = cols[1].find('a') if len(cols) > 1 else None
+                            p_name = link.get_text().strip() if link else cols[1].get_text().strip()
+                            c_p = clean_name(p_name)
+                            
+                            if len(c_p) > 3:
+                                # Last column is total projected fantasy points
+                                pts_str = cols[-1].get_text().strip()
+                                try:
+                                    pts_val = float(pts_str)
+                                    ff_idp_pts[c_p] = pts_val
+                                except ValueError:
+                                    pass
+            except Exception as e:
+                print(f"⚠️ FFToday IDP {pos_code} notice: {e}")
+                
+    # 2. Scrape MFL Power Overall Consensus Ranks
+    for url in ["https://www.fftoday.com/mflpower/playerrank.php", "https://www.fftoday.com/mflpower/playerrank.php?o=2"]:
         try:
             res = requests.get(url, headers=headers, timeout=8)
             if res.status_code == 200:
                 soup = BeautifulSoup(res.text, 'html.parser')
-                rows = soup.find_all('tr')
-                for row in rows:
+                for row in soup.find_all('tr'):
                     cols = row.find_all('td')
                     if len(cols) >= 3:
-                        rank_str = cols[0].get_text().strip()
-                        player_str = cols[1].get_text().strip()
-                        if rank_str.isdigit() and len(player_str) > 3:
-                            c_name = clean_name(player_str)
-                            power_ranks[c_name] = int(rank_str)
+                        r_str = cols[0].get_text().strip()
+                        p_str = cols[1].get_text().strip()
+                        if r_str.isdigit() and len(p_str) > 3:
+                            ff_ranks[clean_name(p_str)] = int(r_str)
         except Exception as e:
-            print(f"⚠️ FFToday fetch notice: {e}")
-            
-    print(f"✓ Ingested {len(power_ranks)} consensus ranks from FFToday into modeling engine.")
-    return power_ranks
+            pass
 
-def fetch_dynamic_players(players_db, season="2026"):
+    print(f"✓ Ingested {len(ff_idp_pts)} IDP projections and {len(ff_ranks)} power ranks from FFToday.")
+    return ff_ranks, ff_idp_pts
+
+def fetch_dynamic_players(players_db, ff_idp_pts, season="2026"):
     print("1. Ingesting full dynamic player registry (Offense + IDP) from Sleeper...")
     offense_players = []
     idp_players = []
@@ -140,37 +167,40 @@ def fetch_dynamic_players(players_db, season="2026"):
         df_off.at[idx, 'rec_tds'] = float(stats.get('rec_td', 0.0))
         df_off.at[idx, 'first_downs'] = float(stats.get('rec_fd', 0.0) + stats.get('rush_fd', 0.0))
 
+    # Calculate IDP points by blending Sleeper stat projections with FFToday PosID 50/60/70 projections
     w = SCORING_WEIGHTS
     df_idp['proj_fpts'] = 0.0
     for idx, row in df_idp.iterrows():
         pid = row['sleeper_id']
+        c_name = row['clean_name']
         stats = proj_map.get(pid, {})
-        pts = (float(stats.get('idp_tkl_solo', stats.get('tkl_solo', 0.0))) * w['idp_tkl_solo']) + \
-              (float(stats.get('idp_tkl_ast', stats.get('tkl_ast', 0.0))) * w['idp_tkl_ast']) + \
-              (float(stats.get('idp_sack', stats.get('sack', 0.0))) * w['idp_sack']) + \
-              (float(stats.get('idp_int', stats.get('int', 0.0))) * w['idp_int']) + \
-              (float(stats.get('idp_ff', stats.get('ff', 0.0))) * w['idp_ff']) + \
-              (float(stats.get('idp_fr', stats.get('fr', 0.0))) * w['idp_fr']) + \
-              (float(stats.get('idp_pass_def', stats.get('pass_def', 0.0))) * w['idp_pass_def']) + \
-              (float(stats.get('idp_tkl_loss', stats.get('tkl_loss', 0.0))) * w['idp_tkl_loss'])
         
-        if pts < 20.0:
+        sleeper_pts = (float(stats.get('idp_tkl_solo', stats.get('tkl_solo', 0.0))) * w['idp_tkl_solo']) + \
+                      (float(stats.get('idp_tkl_ast', stats.get('tkl_ast', 0.0))) * w['idp_tkl_ast']) + \
+                      (float(stats.get('idp_sack', stats.get('sack', 0.0))) * w['idp_sack']) + \
+                      (float(stats.get('idp_int', stats.get('int', 0.0))) * w['idp_int']) + \
+                      (float(stats.get('idp_ff', stats.get('ff', 0.0))) * w['idp_ff']) + \
+                      (float(stats.get('idp_fr', stats.get('fr', 0.0))) * w['idp_fr']) + \
+                      (float(stats.get('idp_pass_def', stats.get('pass_def', 0.0))) * w['idp_pass_def']) + \
+                      (float(stats.get('idp_tkl_loss', stats.get('tkl_loss', 0.0))) * w['idp_tkl_loss'])
+        
+        # Blend in FFToday direct IDP projections when available
+        if c_name in ff_idp_pts:
+            ff_pts = ff_idp_pts[c_name]
+            final_pts = (sleeper_pts * 0.45) + (ff_pts * 0.55) if sleeper_pts > 20.0 else ff_pts
+        else:
+            final_pts = sleeper_pts
+            
+        if final_pts < 20.0:
             d_order = row.get('depth_chart_order', 3)
             pos_tier_base = {'LB': 175.0, 'DL': 155.0, 'DB': 150.0}.get(row['position'], 130.0)
-            pts = max(15.0, pos_tier_base - (d_order * 30.0))
+            final_pts = max(15.0, pos_tier_base - (d_order * 30.0))
             
-        df_idp.at[idx, 'proj_fpts'] = pts
+        df_idp.at[idx, 'proj_fpts'] = final_pts
 
     return df_off, df_idp
 
 def calculate_dynamic_natural_tiers(pos_df):
-    """
-    Multi-Constraint Adaptive Tiering Engine.
-    Prevents mega-tier blobs by enforcing:
-    1. Immediate Cliff Trigger (single drop >= threshold)
-    2. Cumulative Tier Range Span Cap (max VORP spread between tier ceiling and floor <= max_span)
-    3. Maximum Tier Capacity (max 6-8 players per tier)
-    """
     if len(pos_df) == 0:
         return []
     
@@ -220,9 +250,9 @@ def calculate_dynamic_natural_tiers(pos_df):
     return tiers
 
 def calculate_master_board():
-    fftoday_ranks = fetch_fftoday_mfl_ranks()
+    fftoday_ranks, ff_idp_pts = fetch_fftoday_all_projections()
     players_db = requests.get(f"{SLEEPER_API_URL}/players/nfl").json()
-    df_off, df_idp = fetch_dynamic_players(players_db)
+    df_off, df_idp = fetch_dynamic_players(players_db, ff_idp_pts)
 
     # 1. Calculate Offense Baseline Points from League Scoring Rules
     w = SCORING_WEIGHTS
@@ -258,12 +288,11 @@ def calculate_master_board():
         df_defs
     ], ignore_index=True)
 
-    # 3. Model Weighting: Blend FFToday MFL Power Consensus with Sleeper Base
+    # 3. Model Weighting: Blend FFToday Consensus Ranks
     full_df['custom_rank'] = full_df['search_rank']
     for idx, row in full_df.iterrows():
         c_name = row['clean_name']
         if c_name in fftoday_ranks:
-            # 50/50 blend of Sleeper Search Rank and FFToday MFL Power Rank
             blended = (row['search_rank'] * 0.50) + (fftoday_ranks[c_name] * 0.50)
             full_df.at[idx, 'custom_rank'] = round(blended, 1)
 

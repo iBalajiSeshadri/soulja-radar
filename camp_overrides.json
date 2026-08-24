@@ -2423,6 +2423,738 @@
     "note": "\u274c INJURY WIRE: IR (Knee - ACL)",
     "source_url": "https://www.rotowire.com/football/player/kendrick-law-19443"
   },
+  "Brian Burns": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/16533/Brian_Burns?LeagueID="
+  },
+  "Aidan Hutchinson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/18105/Aidan_Hutchinson?LeagueID="
+  },
+  "Maxx Crosby": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/16547/Maxx_Crosby?LeagueID="
+  },
+  "Danielle Hunter": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/15214/Danielle_Hunter?LeagueID="
+  },
+  "Andrew Van Ginkel": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/16727/Andrew_Van_Ginkel?LeagueID="
+  },
+  "Will Anderson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/18457/Will_Anderson_Jr?LeagueID="
+  },
+  "Nik Bonitto": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/18019/Nik_Bonitto?LeagueID="
+  },
+  "T.J. Watt": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/16032/T.J._Watt?LeagueID="
+  },
+  "Tuli Tuipulotu": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/18676/Tuli_Tuipulotu?LeagueID="
+  },
+  "Jeffery Simmons": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/16698/Jeffery_Simmons?LeagueID="
+  },
+  "Trey Hendrickson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/15893/Trey_Hendrickson?LeagueID="
+  },
+  "Montez Sweat": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/16713/Montez_Sweat?LeagueID="
+  },
+  "Jared Verse": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/19134/Jared_Verse?LeagueID="
+  },
+  "Alex Highsmith": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/17105/Alex_Highsmith?LeagueID="
+  },
+  "Chase Young": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/17253/Chase_Young?LeagueID="
+  },
+  "Laiatu Latu": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/19029/Laiatu_Latu?LeagueID="
+  },
+  "DeForest Buckner": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/15527/DeForest_Buckner?LeagueID="
+  },
+  "Greg Rousseau": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/17692/Greg_Rousseau?LeagueID="
+  },
+  "Josh Hines-Allen": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/16504/Josh_Hines-Allen?LeagueID="
+  },
+  "Carl Granderson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/16833/Carl_Granderson?LeagueID="
+  },
+  "Dallas Turner": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/19129/Dallas_Turner?LeagueID="
+  },
+  "Chop Robinson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/19094/Chop_Robinson?LeagueID="
+  },
+  "David Bailey": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/19766/David_Bailey?LeagueID="
+  },
+  "Yaya Diaby": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/18505/YaYa_Diaby?LeagueID="
+  },
+  "Quinnen Williams": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/16742/Quinnen_Williams?LeagueID="
+  },
+  "Leonard Williams": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/15347/Leonard_Williams?LeagueID="
+  },
+  "Cameron Heyward": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/11885/Cameron_Heyward?LeagueID="
+  },
+  "Travon Walker": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/18232/Travon_Walker?LeagueID="
+  },
+  "Rashan Gary": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/16576/Rashan_Gary?LeagueID="
+  },
+  "DeMarcus Lawrence": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/14235/Demarcus_Lawrence?LeagueID="
+  },
+  "Donovan Ezeiruaku": {
+    "multiplier": 0.6,
+    "type": "INJURY",
+    "note": "\ud83e\ude79 FFTODAY IDP WIRE: Active injury designation on DL depth chart",
+    "source_url": "https://www.fftoday.com/stats/players/19357/Donovan_Ezeiruaku?LeagueID="
+  },
+  "Bradley Chubb": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/16123/Bradley_Chubb?LeagueID="
+  },
+  "George Karlaftis": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/18125/George_Karlaftis?LeagueID="
+  },
+  "Boye Mafe": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/18142/Boye_Mafe?LeagueID="
+  },
+  "Will McDonald": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/18589/Will_McDonald_IV?LeagueID="
+  },
+  "Jalen Redmond": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/19191/Jalen_Redmond?LeagueID="
+  },
+  "Mike Green": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
+    "source_url": "https://www.fftoday.com/stats/players/19375/Mike_Green?LeagueID="
+  },
+  "Jack Campbell": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18492/Jack_Campbell?LeagueID="
+  },
+  "Nick Bolton": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/17513/Nick_Bolton?LeagueID="
+  },
+  "Blake Cashman": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16539/Blake_Cashman?LeagueID="
+  },
+  "Quay Walker": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18233/Quay_Walker?LeagueID="
+  },
+  "Zack Baun": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/17011/Zack_Baun?LeagueID="
+  },
+  "Fred Warner": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16182/Fred_Warner?LeagueID="
+  },
+  "Patrick Queen": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/17187/Patrick_Queen?LeagueID="
+  },
+  "Foyesade Oluokun": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16180/Foyesade_Oluokun?LeagueID="
+  },
+  "Demario Davis": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/12351/DeMario_Davis?LeagueID="
+  },
+  "Ernest Jones": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/17616/Ernest_Jones?LeagueID="
+  },
+  "Roquan Smith": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16312/Roquan_Smith?LeagueID="
+  },
+  "Tremaine Edmunds": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16337/Tremaine_Edmunds?LeagueID="
+  },
+  "Edgerrin Cooper": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18940/Edgerrin_Cooper?LeagueID="
+  },
+  "Daiyan Henley": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18539/Daiyan_Henley?LeagueID="
+  },
+  "Kaden Elliss": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16561/Kaden_Elliss?LeagueID="
+  },
+  "Nate Landman": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18738/Nate_Landman?LeagueID="
+  },
+  "Alex Singleton": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16846/Alex_Singleton?LeagueID="
+  },
+  "Jamien Sherwood": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/17701/Jamien_Sherwood?LeagueID="
+  },
+  "Nakobe Dean": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18054/Nakobe_Dean?LeagueID="
+  },
+  "Tyrel Dodson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/17266/Tyrel_Dodson?LeagueID="
+  },
+  "Azeez Al-Shaair": {
+    "multiplier": 0.6,
+    "type": "INJURY",
+    "note": "\ud83e\ude79 FFTODAY IDP WIRE: Active injury designation on LB depth chart",
+    "source_url": "https://www.fftoday.com/stats/players/16778/Azeez_Al-Shaair?LeagueID="
+  },
+  "Devin Lloyd": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18136/Devin_Lloyd?LeagueID="
+  },
+  "Cedric Gray": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18977/Cedric_Gray?LeagueID="
+  },
+  "Robert Spillane": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16862/Robert_Spillane?LeagueID="
+  },
+  "Barrett Carter": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/19338/Barrett_Carter?LeagueID="
+  },
+  "CJ Allen": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/19752/CJ_Allen?LeagueID="
+  },
+  "Payton Wilson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/19151/Payton_Wilson?LeagueID="
+  },
+  "Sonny Styles": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/19926/Sonny_Styles?LeagueID="
+  },
+  "Demetrius Knight": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/19417/Demetrius_Knight_Jr?LeagueID="
+  },
+  "DeMarvion Overshown": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18611/DeMarvion_Overshown?LeagueID="
+  },
+  "Zaire Franklin": {
+    "multiplier": 0.6,
+    "type": "INJURY",
+    "note": "\ud83e\ude79 FFTODAY IDP WIRE: Active injury designation on LB depth chart",
+    "source_url": "https://www.fftoday.com/stats/players/16355/Zaire_Franklin?LeagueID="
+  },
+  "Devin Bush": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16535/Devin_Bush?LeagueID="
+  },
+  "Eric Wilson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/14947/Eric_Wilson?LeagueID="
+  },
+  "Quincy Williams": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16741/Quincy_Williams?LeagueID="
+  },
+  "Josiah Trotter": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/19842/Josiah_Trotter?LeagueID="
+  },
+  "Terrel Bernard": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18017/Terrel_Bernard?LeagueID="
+  },
+  "Leo Chenal": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18040/Leo_Chenal?LeagueID="
+  },
+  "Henry To'oTo'o": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18672/Henry_To'oTo'o?LeagueID="
+  },
+  "Divine Deablo": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/17552/Divine_Deablo?LeagueID="
+  },
+  "Drake Thomas": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18731/Drake_Thomas?LeagueID="
+  },
+  "Dee Winters": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18698/Dee_Winters?LeagueID="
+  },
+  "Alex Anzalone": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/15809/Alex_Anzalone?LeagueID="
+  },
+  "Jihaad Campbell": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/19335/Jihaad_Campbell?LeagueID="
+  },
+  "Akeem Davis-Gaither": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/17056/Akeem_Davis-Gaither?LeagueID="
+  },
+  "Christian Harris": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18091/Christian_Harris?LeagueID="
+  },
+  "Arvell Reese": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
+    "source_url": "https://www.fftoday.com/stats/players/19713/Arvell_Reese?LeagueID="
+  },
+  "Nick Cross": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18048/Nick_Cross?LeagueID="
+  },
+  "Budda Baker": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/15813/Budda_Baker?LeagueID="
+  },
+  "Kevin Byard": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/15534/Kevin_Byard?LeagueID="
+  },
+  "Kyle Hamilton": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18088/Kyle_Hamilton?LeagueID="
+  },
+  "Antoine Winfield": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/17248/Antoine_Winfield_Jr?LeagueID="
+  },
+  "Xavier McKinney": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/17155/Xavier_McKinney?LeagueID="
+  },
+  "Tykee Smith": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/19109/Tykee_Smith?LeagueID="
+  },
+  "Derwin James": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16168/Derwin_James?LeagueID="
+  },
+  "Amani Hooker": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16605/Amani_Hooker?LeagueID="
+  },
+  "Xavier Watts": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/19541/Xavier_Watts?LeagueID="
+  },
+  "Jessie Bates": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16214/Jessie_Bates_III?LeagueID="
+  },
+  "Jordan Battle": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18466/Jordan_Battle?LeagueID="
+  },
+  "Chamarri Conner": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18499/Chamarri_Conner?LeagueID="
+  },
+  "Alontae Taylor": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18212/Alontae_Taylor?LeagueID="
+  },
+  "Talanoa Hufanga": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/17606/Talanoa_Hufanga?LeagueID="
+  },
+  "Tre'von Moehrig": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/17649/Trevon_Moehrig?LeagueID="
+  },
+  "Jeremy Chinn": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/17033/Jeremy_Chinn?LeagueID="
+  },
+  "Quentin Lake": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18131/Quentin_Lake?LeagueID="
+  },
+  "Julian Love": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16639/Julian_Love?LeagueID="
+  },
+  "Dillon Thieneman": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/19777/Dillon_Thieneman?LeagueID="
+  },
+  "Brandon Jones": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/17132/Brandon_Jones?LeagueID="
+  },
+  "Kamari Lassiter": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/19027/Kamari_Lassiter?LeagueID="
+  },
+  "Geno Stone": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/17215/Geno_Stone?LeagueID="
+  },
+  "Jalen Pitre": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18183/Jalen_Pitre?LeagueID="
+  },
+  "Cole Bishop": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18919/Cole_Bishop?LeagueID="
+  },
+  "Grant Delpit": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/17058/Grant_Delpit?LeagueID="
+  },
+  "Minkah Fitzpatrick": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16285/Minkah_Fitzpatrick?LeagueID="
+  },
+  "Ronnie Hickman": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18792/Ronnie_Hickman?LeagueID="
+  },
+  "Keisean Nixon": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16792/Keisean_Nixon?LeagueID="
+  },
+  "DeShon Elliott": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16169/DeShon_Elliott?LeagueID="
+  },
+  "Mike Sainristil": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/19101/Mike_Sainristil?LeagueID="
+  },
+  "Marlon Humphrey": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/15905/Marlon_Humphrey?LeagueID="
+  },
+  "Caleb Downs": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/19736/Caleb_Downs?LeagueID="
+  },
+  "Kamren Kinchens": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/19021/Kamren_Kinchens?LeagueID="
+  },
+  "Devon Witherspoon": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/18699/Devon_Witherspoon?LeagueID="
+  },
+  "Tyson Campbell": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/17529/Tyson_Campbell?LeagueID="
+  },
+  "Evan Williams": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/19148/Evan_Williams?LeagueID="
+  },
+  "Byron Murphy": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16662/Byron_Murphy?LeagueID="
+  },
+  "Jalen Thompson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
+    "source_url": "https://www.fftoday.com/stats/players/16825/Jalen_Thompson?LeagueID="
+  },
   "Jack Strand": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
