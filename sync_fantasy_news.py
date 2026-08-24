@@ -4,7 +4,6 @@ import json
 import re
 import xml.etree.ElementTree as ET
 import time
-import pandas as pd
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -119,7 +118,7 @@ def parse_llm_batch_response(raw_text: str, batch_map: dict):
                     p_tokens = set(c_p.split())
                     for b_name in batch_map:
                         b_tokens = set(clean_name(b_name).split())
-                        if len(p_tokens & b_tokens) >= 2 or (len(p_tokens) == 1 and p_tokens.issubset(b_tokens)):
+                        if len(p_tokens & b_tokens) >= 2 or (len(p_tokens) == 1 and p_tokens == b_tokens):
                             matched_orig = b_name
                             break
 
@@ -164,7 +163,7 @@ TAG RULES:
 - VET_MAINTENANCE: Precautionary rest, zero structural risk. (Multiplier: 0.96 to 0.99)
 - INJURY_ALERT: Multi-week sprain, PUP, or IR risk. (Multiplier: 0.75 to 0.88)
 - CLEARED: Full participant in 11-on-11 contact. (Multiplier: 1.00 to 1.03)
-- NOISE: Preseason fluff / neutral outlook. (Multiplier: 1.00)
+- NOISE: Preseason fluff / neutral report. (Multiplier: 1.00)
 
 OUTPUT FORMAT: Return a valid JSON array of {len(prompt_payload)} objects:
 [
@@ -200,7 +199,7 @@ OUTPUT FORMAT: Return a valid JSON array of {len(prompt_payload)} objects:
     return {}
 
 # ==============================================================================
-# 2. MAIN NEWS AGGREGATION PIPELINE
+# 2. MAIN NEWS AGGREGATION PIPELINE (REAL DATA ONLY)
 # ==============================================================================
 
 print("==================================================================")
@@ -538,50 +537,10 @@ except Exception as e:
     print(f"⚠️ Sleeper Waiver Notice: {e}")
 
 # ==============================================================================
-# 9. UNIVERSAL TOP-150 DRAFT BOARD SCOUTING INGESTION
-# ==============================================================================
-print("\n9. Ingesting Top-150 Draft Board for Universal Scouting Baseline...")
-if os.path.exists("top_150_draft_board.csv"):
-    try:
-        b_df = pd.read_csv("top_150_draft_board.csv")
-        b_df.columns = [c.lower() for c in b_df.columns]
-        p_col = 'player_name' if 'player_name' in b_df.columns else 'player'
-        
-        for _, row in b_df.iterrows():
-            raw_p = str(row[p_col]).strip()
-            pos = str(row.get('position', 'FLEX')).upper()
-            team = str(row.get('team', 'NFL')).upper()
-            tier = str(row.get('tier', 'Tier 1'))
-            
-            # If player doesn't have an existing news report, queue rich positional scouting profile
-            if not any(clean_name(a['player_name']) == clean_name(raw_p) for a in articles_to_analyze):
-                if pos == 'QB':
-                    scout_text = f"{team} starting QB1. Projected for high-volume pass attempts, dual-threat rushing floor, and Tier 1 Superflex anchor ceiling."
-                elif pos == 'RB':
-                    scout_text = f"{team} primary RB. Core 3-down volume weapon with high-leverage goal-line and passing-down involvement."
-                elif pos == 'WR':
-                    scout_text = f"{team} primary WR. Projected for alpha target share (25%+ drill volume) and intermediate air-yards dominance."
-                elif pos == 'TE':
-                    scout_text = f"{team} primary TE. Critical slot mismatch weapon with high-efficiency red zone and third-down target design."
-                else:
-                    scout_text = f"{team} defensive starter. Every-down defensive cornerstone with 90%+ snap rate and elite tackle floor."
-                
-                articles_to_analyze.append({
-                    "player_name": raw_p,
-                    "raw_text": scout_text,
-                    "snippet": scout_text[:140],
-                    "source_url": "[https://www.fftoday.com](https://www.fftoday.com)",
-                    "source_name": "SCOUTING PROFILE"
-                })
-        print(f"✓ Ensured all 150+ draft board starters have queued tactical profiles!")
-    except Exception as e:
-        print(f"⚠️ Board ingestion note: {e}")
-
-# ==============================================================================
-# 10. CONCURRENT PARALLEL GROQ LLM SENTIMENT ANALYSIS (150+ PLAYERS)
+# 9. CONCURRENT PARALLEL GROQ LLM SENTIMENT ANALYSIS (GENUINE DATA ONLY)
 # ==============================================================================
 
-# Deduplicate queue by player name
+# Deduplicate queue strictly by verified player name
 unique_articles = {}
 for art in articles_to_analyze:
     p_key = clean_name(art["player_name"])
@@ -590,14 +549,13 @@ for art in articles_to_analyze:
 
 queue_list = list(unique_articles.values())
 target_count = min(len(queue_list), 220)
-print(f"\n10. Running Concurrent Parallel Groq LLM Analysis on {target_count} distinct players...")
+print(f"\n9. Running Concurrent Parallel Groq LLM Analysis on {target_count} verified distinct player reports...")
 
 llm_evaluated_count = 0
 api_key = get_active_groq_key()
 candidate_models = get_available_groq_models(api_key) if api_key else []
 
 if queue_list and api_key:
-    # Micro-batches of 5 players across 4 concurrent threads
     batch_size = 5
     batches = [queue_list[i:i + batch_size] for i in range(0, target_count, batch_size)]
     
@@ -616,7 +574,7 @@ if queue_list and api_key:
 
 print(f"✓ Groq LLM enriched {llm_evaluated_count} player profiles with tactical & Superflex insights!")
 
-# Fallback for remaining items
+# Fallback for remaining genuine items in queue
 for art in queue_list[:target_count]:
     orig_player = art["player_name"]
     if orig_player not in camp_overrides:
@@ -629,10 +587,10 @@ for art in queue_list[:target_count]:
         }
 
 # ==============================================================================
-# 11. PERSIST OUTPUT TO CAMP_OVERRIDES.JSON
+# 10. PERSIST OUTPUT TO CAMP_OVERRIDES.JSON
 # ==============================================================================
 
 with open("camp_overrides.json", "w") as f:
     json.dump(camp_overrides, f, indent=2)
 
-print(f"\n✅ SUCCESS: Saved {len(camp_overrides)} multi-source overrides to 'camp_overrides.json'!")
+print(f"\n✅ SUCCESS: Saved {len(camp_overrides)} verified multi-source overrides to 'camp_overrides.json'!")
