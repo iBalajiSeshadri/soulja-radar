@@ -64,39 +64,6 @@ st.markdown("""
     .pos-DL { background: #f43f5e30; color: #fb7185; border: 1px solid #f43f5e60; }
     .pos-DB { background: #a855f730; color: #c084fc; border: 1px solid #a855f760; }
     .pos-DEF { background: #ec489930; color: #f472b6; border: 1px solid #ec489960; }
-
-    /* Modern Scrollable AI War Room Containers */
-    .ai-scroll-container {
-        background: #0f172a;
-        border: 1px solid #1e293b;
-        border-left: 4px solid #10b981;
-        padding: 12px 14px;
-        border-radius: 8px;
-        max-height: 220px;
-        overflow-y: auto;
-        color: #f1f5f9;
-        font-size: 0.88rem;
-        line-height: 1.5;
-        margin-top: 8px;
-        margin-bottom: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    }
-    .ai-scroll-nom {
-        border-left: 4px solid #f59e0b !important;
-    }
-    .ai-scroll-container::-webkit-scrollbar {
-        width: 6px;
-    }
-    .ai-scroll-container::-webkit-scrollbar-track {
-        background: #0b0f19;
-    }
-    .ai-scroll-container::-webkit-scrollbar-thumb {
-        background: #334155;
-        border-radius: 4px;
-    }
-    .ai-scroll-container::-webkit-scrollbar-thumb:hover {
-        background: #475569;
-    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -453,7 +420,8 @@ if st.sidebar.button("Ask AI Strategist", use_container_width=True):
         live_snapshot = f"Total Spent: ${sum(v['price'] for v in st.session_state.drafted_picks.values())} | Inflation: {round(((league_size*200)-sum(v['price'] for v in st.session_state.drafted_picks.values()))/max(1.0, df_board[~df_board['clean_name'].isin(st.session_state.drafted_picks.keys())]['fair_value'].sum()), 2)}x | Your Cap: ${200 - manager_wallets[my_slot]['spent']}"
         with st.spinner("AI analyzing draft state..."):
             ans = ask_ai_strategist(ai_query, live_snapshot)
-            st.sidebar.markdown(f"**AI Strategy Read:**\n\n{ans}")
+            with st.chat_message("assistant", avatar="⚡"):
+                st.markdown(ans)
 
 # Wallet Accounting
 for c_p, pdata in st.session_state.drafted_picks.items():
@@ -648,9 +616,8 @@ if draft_mode == "🔨 Auction / Salary Cap":
             st.session_state.last_ai_nom = generate_ai_nomination(nom_strategy, unpicked_top, rivals_sum, needs_sum)
 
     if st.session_state.last_ai_nom:
-        st.markdown(f'<div class="ai-scroll-container ai-scroll-nom"><div style="font-size:0.8rem; color:#fbbf24; font-weight:700; margin-bottom:6px;">🎯 AI TACTICAL NOMINATION READ</div>', unsafe_allow_html=True)
-        st.markdown(st.session_state.last_ai_nom)
-        st.markdown('</div>', unsafe_allow_html=True)
+        with st.chat_message("assistant", avatar="🎯"):
+            st.markdown(st.session_state.last_ai_nom)
 
     pos_nom_rows = []
     for target_pos in display_positions:
@@ -877,9 +844,8 @@ with col_left:
                 )
 
         if st.session_state.last_ai_read:
-            st.markdown(f'<div class="ai-scroll-container"><div style="font-size:0.8rem; color:#34d399; font-weight:700; margin-bottom:6px;">🤖 AI TACTICAL VERDICT</div>', unsafe_allow_html=True)
-            st.markdown(st.session_state.last_ai_read)
-            st.markdown('</div>', unsafe_allow_html=True)
+            with st.chat_message("assistant", avatar="⚡"):
+                st.markdown(st.session_state.last_ai_read)
 
         bcol1, bcol2, _ = st.columns([1, 1, 2])
         with bcol1:

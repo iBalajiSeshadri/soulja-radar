@@ -8,10 +8,10 @@ OLLAMA_API_URL = os.getenv("OLLAMA_API_URL", "http://localhost:11434/api/generat
 LOCAL_MODEL = os.getenv("LOCAL_LLM_MODEL", "llama3.1:8b")
 
 VERIFIED_GROQ_MODELS = [
+    "llama-3.3-70b-versatile",
+    "llama-3.1-8b-instant",
     "openai/gpt-oss-20b",
-    "openai/gpt-oss-120b",
-    "qwen/qwen3.6-27b",
-    "llama-3.3-70b-versatile"
+    "qwen/qwen3.6-27b"
 ]
 
 def get_active_groq_key() -> str:
@@ -26,23 +26,35 @@ def get_active_groq_key() -> str:
         key = os.getenv("GROQ_API_KEY", "")
     return key.strip().strip('"').strip("'")
 
-def clean_llm_output(text: str) -> str:
-    """Strips thinking processes, reasoning preambles, and XML tags."""
+def parse_clean_output(text: str) -> str:
+    """Strips thinking tags, reasoning preambles, and raw HTML tags cleanly."""
     if not text:
-        return ""
-    # Strip <think>...</think> tags
+        return "⚠️ No response generated. Please click again."
+    
+    # 1. Strip complete <think>...</think> tags
     text = re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL)
     
-    # Strip "Here's a thinking process" / analysis preambles
-    if "Here's a thinking process" in text or "Thinking Process:" in text or "Analyze User Input" in text:
-        m = re.search(r'(?:\n\s*|\A)([\*\-•\d\.]+\s+\*{0,2}(?:Verdict|Action|Strategy|Tactical|Hard Cutoff|Bid|Fade|Recommendation|Execution)[\s\S]*)', text, flags=re.IGNORECASE)
-        if m:
-            text = m.group(1).strip()
+    # 2. If <think> was unclosed (due to token limits), extract the real bullet points
+    if "<think>" in text:
+        parts = re.split(r'</think>', text)
+        if len(parts) > 1:
+            text = parts[-1]
         else:
-            blocks = text.split("\n\n")
-            clean_blocks = [b for b in blocks if not any(w in b.lower() for w in ["thinking process", "analyze user input", "evaluate key metrics", "constraint:", "task:"])]
-            text = "\n\n".join(clean_blocks).strip()
-            
+            m = re.search(r'(\n\s*[\*\-•]\s+\*{0,2}(?:Verdict|Tactical|Rival|Action|Cutoff|Target)[\s\S]*)', text, flags=re.IGNORECASE)
+            if m:
+                text = m.group(1)
+            else:
+                text = re.sub(r'<think>.*', '', text, flags=re.DOTALL)
+
+    # 3. Strip any leftover thinking preambles
+    text = re.sub(r'(?i)here\'?s\s+a\s+thinking\s+process:.*?(?=\n\s*[\*\-•\d]|\Z)', '', text, flags=re.DOTALL)
+    
+    # 4. Strip stray XML/HTML tags
+    text = re.sub(r'</?[a-zA-Z0-9_\-]+>', '', text)
+    
+    # 5. Clean up excessive newlines
+    text = re.sub(r'\n{3,}', '\n\n', text)
+    
     return text.strip()
 
 def query_groq_api(prompt: str, system_prompt: str = "You are an elite quantitative fantasy football auction draft strategist. Output ONLY 2-3 direct markdown bullet points. Do NOT output internal reasoning, outlines, or preambles.") -> str:
@@ -66,14 +78,14 @@ def query_groq_api(prompt: str, system_prompt: str = "You are an elite quantitat
                 {"role": "user", "content": prompt}
             ],
             "temperature": 0.2,
-            "max_tokens": 500
+            "max_tokens": 1024
         }
         try:
             res = requests.post(url, headers=headers, json=payload, timeout=8)
             if res.status_code == 200:
                 data = res.json()
                 content = data.get("choices", [{}])[0].get("message", {}).get("content", "")
-                cleaned = clean_llm_output(content)
+                cleaned = parse_clean_output(content)
                 if cleaned:
                     return cleaned
             else:
@@ -96,7 +108,7 @@ def query_local_ollama(prompt: str, system_prompt: str = "") -> str:
         res = requests.post(OLLAMA_API_URL, json=payload, timeout=2)
         if res.status_code == 200:
             resp = res.json().get("response", "").strip()
-            return clean_llm_output(resp)
+            return parse_clean_output(resp)
     except Exception:
         pass
     return ""
@@ -105,10 +117,10 @@ def query_llm_hybrid(prompt: str, system_prompt: str = "You are an elite fantasy
     """Routes to local Ollama if online; otherwise routes directly to Groq Cloud."""
     local_resp = query_local_ollama(prompt, system_prompt)
     if local_resp:
-        return f"*(Local Ollama)*\n\n{local_resp}"
+        return f"**[Local Ollama]**\n\n{local_resp}"
     
     groq_resp = query_groq_api(prompt, system_prompt)
-    return f"*(Groq Cloud)*\n\n{groq_resp}"
+    return f"**[Groq Cloud]**\n\n{groq_resp}"
 
 # ==============================================================================
 # 3 LIVE AI WAR ROOM ENGINES
@@ -118,7 +130,7 @@ def generate_tactical_advice(player_name, pos, fair_val, mkt_val, max_bid_to, in
     prompt = f"""
 SITUATION:
 - Player: {player_name} ({pos})
-- Model Fair Value: ${fair_val} | Market ADP: ${mkt_val} | Max Bid Ceiling: ${max_bid_to}
+- Model Fair Value: ${fair_val} | Market ADP: ${mkt_val} | Target Ceiling: ${max_bid_to}
 - Draft Room Inflation: {inflation_index}x (>1.0x overpaying room, <1.0x bargains)
 - Medical / News Intel: {news_note if news_note else 'Healthy & Active'}
 - My Budget Remaining: ${my_budget}
@@ -138,7 +150,7 @@ def generate_ai_nomination(nom_intent, unpicked_summary, rivals_summary, my_need
     prompt = f"""
 SITUATION:
 - Tactical Intent: {nom_intent}
-- My Needs: {my_needs}
+- My Lineup Needs: {my_needs}
 - Rival Budgets & Needs: {rivals_summary}
 - Top Available Players: {unpicked_summary}
 
