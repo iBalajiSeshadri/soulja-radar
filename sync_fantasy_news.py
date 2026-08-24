@@ -50,17 +50,18 @@ def get_available_groq_models(api_key: str):
                 m for m in active_ids 
                 if not any(k in m.lower() for k in ["whisper", "guard", "audio", "safeguard", "embed", "vision", "orpheus"])
             ]
-            # Best free reasoning models first. llama-3.3-70b is the strongest
-            # general free model on Groq; 70b/120b beat the 8b/20b on nuanced
-            # beat-report synthesis (the "caught 10/12, beat the DB" reads).
-            preferred = ["llama-3.3-70b-versatile", "openai/gpt-oss-120b", "openai/gpt-oss-20b", "llama-3.1-8b-instant"]
+            # Best available free reasoning models first. gpt-oss-120b is the
+            # strongest general model available on standard Groq keys for nuanced
+            # beat-report synthesis (the "caught 10/12, beat the DB" reads);
+            # gpt-oss-20b is the faster fallback.
+            preferred = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "qwen/qwen3.6-27b", "llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
             ordered = [p for p in preferred if p in valid] + [v for v in valid if v not in preferred]
             if ordered:
                 return ordered
     except Exception:
         pass
-    # Fallback list only contains models known to exist on Groq (no invalid qwen id).
-    return ["llama-3.3-70b-versatile", "openai/gpt-oss-120b", "llama-3.1-8b-instant"]
+    # Fallback list only contains models commonly available on Groq keys.
+    return ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "qwen/qwen3.6-27b"]
 
 def clean_name(name):
     """Normalizes player name and resolves common alias spellings."""
@@ -206,6 +207,16 @@ TAG CRITERIA (pick the single best-fit tag):
 - QUESTIONABLE: Soft-tissue strain, limited practice, game-time-decision risk. (mult 0.86-0.92)
 - INJURY_ALERT: Multi-week structural injury, surgery, PUP, or IR. (mult 0.75-0.85)
 - NOISE: Generic fluff, routine quote, or no draft impact -> use tag "NOISE" and it will be dropped.
+
+TAG-SELECTION LOGIC (critical — the tag must match the SENTIMENT of the note):
+- If the report is POSITIVE for the player (dominating, earning targets/snaps, beating defenders,
+  winning a job, explosive, promoted up the depth chart) -> it MUST be a positive tag
+  (TIER_JUMPER / SUPERFLEX_EDGE / CLEARED / WAIVER_SURGE) with a multiplier >= 1.00.
+  NEVER tag a clearly positive report as ROLE_PINCH or any downgrade.
+- ROLE_PINCH is ONLY for the player LOSING work (their OWN snaps/touches shrinking). If the player
+  is the one WINNING the job at a teammate's expense, that is a TIER_JUMPER for THIS player.
+- Only use a downgrade tag (ROLE_PINCH / QUESTIONABLE / INJURY_ALERT / VET_MAINTENANCE) when the
+  report is genuinely negative or health-related FOR THIS player.
 
 CRUNCHY NOTE RULES (this is the most important part):
 - The note MUST contain the CONCRETE, SPECIFIC detail from the report, not a generic label.

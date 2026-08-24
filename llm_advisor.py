@@ -8,10 +8,10 @@ OLLAMA_API_URL = os.getenv("OLLAMA_API_URL", "http://localhost:11434/api/generat
 LOCAL_MODEL = os.getenv("LOCAL_LLM_MODEL", "llama3.1:8b")
 
 VERIFIED_GROQ_MODELS = [
-    "llama-3.3-70b-versatile",
-    "llama-3.1-8b-instant",
+    "openai/gpt-oss-120b",
     "openai/gpt-oss-20b",
-    "qwen/qwen3.6-27b"
+    "qwen/qwen3.6-27b",
+    "llama-3.3-70b-versatile"
 ]
 
 def get_active_groq_key() -> str:
