@@ -31,10 +31,9 @@ def parse_clean_output(text: str) -> str:
     if not text:
         return "⚠️ No response generated. Please click again."
     
-    # 1. Strip complete <think>...</think> tags
+    # Strip <think>...</think> tags
     text = re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL)
     
-    # 2. If <think> was unclosed (token truncation), extract the real bullet points
     if "<think>" in text:
         parts = re.split(r'</think>', text)
         if len(parts) > 1:
@@ -46,18 +45,14 @@ def parse_clean_output(text: str) -> str:
             else:
                 text = re.sub(r'<think>.*', '', text, flags=re.DOTALL)
 
-    # 3. Strip any leftover thinking preambles
+    # Strip thinking preambles
     text = re.sub(r'(?i)here\'?s\s+a\s+thinking\s+process:.*?(?=\n\s*[\*\-•\d]|\Z)', '', text, flags=re.DOTALL)
-    
-    # 4. Strip stray XML/HTML tags
     text = re.sub(r'</?[a-zA-Z0-9_\-]+>', '', text)
-    
-    # 5. Clean up excessive newlines
     text = re.sub(r'\n{3,}', '\n\n', text)
     
     return text.strip()
 
-def query_groq_api(prompt: str, system_prompt: str = "You are an elite quantitative fantasy football strategist. Output ONLY 2-3 direct markdown bullet points. Do NOT output internal reasoning, outlines, or preambles.") -> str:
+def query_groq_api(prompt: str, system_prompt: str = "You are an elite quantitative fantasy football strategist. Output ONLY direct markdown bullet points. Do NOT output internal reasoning.") -> str:
     """Ultra-fast cloud inference via Groq verified production models."""
     api_key = get_active_groq_key()
     if not api_key:
@@ -77,7 +72,7 @@ def query_groq_api(prompt: str, system_prompt: str = "You are an elite quantitat
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt}
             ],
-            "temperature": 0.2,
+            "temperature": 0.15,
             "max_tokens": 1024
         }
         try:
@@ -102,7 +97,7 @@ def query_local_ollama(prompt: str, system_prompt: str = "") -> str:
         "model": LOCAL_MODEL,
         "prompt": full_prompt,
         "stream": False,
-        "options": {"temperature": 0.2, "num_predict": 400}
+        "options": {"temperature": 0.15, "num_predict": 400}
     }
     try:
         res = requests.post(OLLAMA_API_URL, json=payload, timeout=2)
@@ -113,7 +108,7 @@ def query_local_ollama(prompt: str, system_prompt: str = "") -> str:
         pass
     return ""
 
-def query_llm_hybrid(prompt: str, system_prompt: str = "You are an elite fantasy football draft strategist. Return exactly 2-3 direct markdown bullet points with specific strategic reasoning.") -> str:
+def query_llm_hybrid(prompt: str, system_prompt: str = "You are an elite fantasy football draft strategist. Return exactly direct markdown bullet points.") -> str:
     """Routes to local Ollama if online; otherwise routes directly to Groq Cloud."""
     local_resp = query_local_ollama(prompt, system_prompt)
     if local_resp:
@@ -123,7 +118,7 @@ def query_llm_hybrid(prompt: str, system_prompt: str = "You are an elite fantasy
     return f"**[Groq Cloud]**\n\n{groq_resp}"
 
 # ==============================================================================
-# LIVE AI WAR ROOM ENGINES (AUCTION + SNAKE)
+# LIVE AI WAR ROOM ENGINES (AUCTION + SNAKE + GROUNDED STRATEGIST)
 # ==============================================================================
 
 def generate_live_auction_advice(player_name, pos, fair_val, mkt_val, max_bid_to, inflation_index, news_note, my_budget, my_roster_summary, live_rivals_telemetry, recent_picks_ledger):
@@ -142,7 +137,7 @@ LIVE ROOM TELEMETRY:
 
 TASK:
 Provide exactly 3 direct, tactical markdown bullet points:
-* **Verdict & Price Cutoff**: State whether to Anchor Stud, Price-Enforce Trap, or Fade, with the exact hard dollar drop-out limit.
+* **Verdict & Price Cutoff**: State whether to Anchor Stud, Price-Enforce Trap, or Fade, with the exact hard dollar drop-out limit (${max_bid_to}).
 * **Momentum & Roster Fit**: How this bid aligns with your current open roster gaps and recent draft velocity.
 * **Target Rival Exploit**: Name a specific active manager with high cap and need at {pos} to push into overpaying.
 
@@ -191,15 +186,21 @@ Do NOT output an outline or thinking process. Start immediately with the first b
 """
     return query_llm_hybrid(prompt)
 
-def ask_ai_strategist(user_query, live_draft_state):
+def ask_ai_strategist(user_query, live_draft_state, player_telemetry_grounding=""):
     prompt = f"""
 LIVE DRAFT CONTEXT:
 {live_draft_state}
 
+GROUNDED PLAYER DATABASE TELEMETRY:
+{player_telemetry_grounding if player_telemetry_grounding else 'No specific player cards requested in query.'}
+
 USER QUESTION:
 {user_query}
 
-TASK:
-Provide a razor-sharp, quantitative tactical answer in 2-3 sentences. Reference specific manager budgets or values when relevant.
+STRICT QUANTITATIVE INSTRUCTIONS:
+- You MUST use the exact dollar values, VORP numbers, and consensus ADPs provided in the GROUNDED PLAYER TELEMETRY above.
+- NEVER invent or hallucinate fake auction prices (e.g. do not say studs are $10-$15).
+- If draft format is Auction, refer strictly to dollar values ($). If Snake, refer strictly to round/pick numbers (#).
+- Give a razor-sharp, decisive recommendation in 2-3 direct markdown bullet points comparing their exact True VORP values and roster construction impact.
 """
     return query_llm_hybrid(prompt)

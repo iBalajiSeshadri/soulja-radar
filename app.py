@@ -45,6 +45,10 @@ st.markdown("""
     .pref-target { background-color: #10b98130; color: #34d399; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; border: 1px solid #10b981; margin-right: 4px; }
     .pref-fade { background-color: #64748b30; color: #94a3b8; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; border: 1px solid #64748b; margin-right: 4px; }
 
+    .intel-tier-jumper { background-color: #10b98135; color: #34d399; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; border: 1px solid #10b981; }
+    .intel-superflex { background-color: #8b5cf635; color: #c084fc; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; border: 1px solid #8b5cf6; }
+    .intel-role-pinch { background-color: #ea580c35; color: #fb923c; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; border: 1px solid #ea580c; }
+    .intel-vet-rest { background-color: #3b82f635; color: #93c5fd; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #3b82f6; }
     .intel-healthy { background-color: #10b98125; color: #34d399; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #10b98160; }
     .intel-beat { background-color: #3b82f625; color: #93c5fd; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #3b82f660; }
     .intel-hist { background-color: #64748b25; color: #cbd5e1; padding: 2px 6px; border-radius: 4px; font-weight: 600; font-size: 0.75rem; border: 1px solid #64748b60; }
@@ -142,7 +146,7 @@ if "last_ai_nom" not in st.session_state:
     st.session_state.last_ai_nom = ""
 
 # 2. Data Loading Engine
-@st.cache_data(ttl=30)
+@st.cache_data(ttl=15)
 def load_draft_board():
     board_file = "top_150_draft_board.csv"
     if not os.path.exists(board_file):
@@ -166,12 +170,15 @@ def load_draft_board():
         
     return df
 
-@st.cache_data(ttl=10)
+@st.cache_data(ttl=5)
 def load_camp_overrides():
     if os.path.exists("camp_overrides.json"):
-        with open("camp_overrides.json", "r") as f:
-            raw_data = json.load(f)
-            return {clean_name(k): v for k, v in raw_data.items()}
+        try:
+            with open("camp_overrides.json", "r") as f:
+                raw_data = json.load(f)
+                return {clean_name(k): v for k, v in raw_data.items()}
+        except Exception:
+            return {}
     return {}
 
 @st.cache_data(ttl=60)
@@ -198,14 +205,24 @@ df_board['intel_note'] = ""
 df_board['intel_tag'] = ""
 df_board['source_url'] = ""
 
+# Fuzzy Robust Override Binding
 for idx, row in df_board.iterrows():
     c_p = row['clean_name']
-    if c_p in clean_overrides:
-        data = clean_overrides[c_p]
-        df_board.at[idx, 'live_multiplier'] = data.get('multiplier', 1.0)
-        df_board.at[idx, 'intel_note'] = data.get('note', '')
-        df_board.at[idx, 'intel_tag'] = data.get('type', '')
-        df_board.at[idx, 'source_url'] = data.get('source_url', '')
+    matched_data = clean_overrides.get(c_p)
+    if not matched_data:
+        # Check token match
+        p_tokens = set(c_p.split())
+        for o_name, o_data in clean_overrides.items():
+            o_tokens = set(o_name.split())
+            if len(p_tokens & o_tokens) >= 2 or (len(p_tokens) == 1 and p_tokens == o_tokens):
+                matched_data = o_data
+                break
+                
+    if matched_data:
+        df_board.at[idx, 'live_multiplier'] = matched_data.get('multiplier', 1.0)
+        df_board.at[idx, 'intel_note'] = matched_data.get('note', '')
+        df_board.at[idx, 'intel_tag'] = matched_data.get('type', '')
+        df_board.at[idx, 'source_url'] = matched_data.get('source_url', '')
 
 df_board['live_vorp'] = df_board['vorp'] * df_board['live_multiplier']
 
@@ -255,7 +272,7 @@ st.sidebar.title("⚡ Soulja Soulja Radar")
 
 # 🚀 1-Click Live News & Scraper Sync Button
 if st.sidebar.button("🚀 Pull Latest News & Sync Wire", use_container_width=True, type="primary"):
-    with st.spinner("Scraping live beat wires, Sleeper injury reports, and recalculating board..."):
+    with st.spinner("Scraping live beat wires, Sleeper injury reports, Superflex mocks, and recalculating board..."):
         try:
             subprocess.run([sys.executable, "sync_fantasy_news.py"], capture_output=True, text=True)
             subprocess.run([sys.executable, "fantasy_engine.py"], capture_output=True, text=True)
@@ -425,18 +442,6 @@ selected_fades = st.sidebar.multiselect(
 )
 st.session_state.my_fades = {clean_name(p) for p in selected_fades}
 
-# 💬 FEATURE 3: ASK THE AI STRATEGIST (SIDEBAR)
-st.sidebar.markdown("---")
-st.sidebar.markdown("### 🤖 Ask the AI War Room")
-ai_query = st.sidebar.text_input("Ask situational draft question:", placeholder="e.g. Should I reach for Bowers or wait?")
-if st.sidebar.button("Ask AI Strategist", use_container_width=True):
-    if ai_query.strip():
-        live_snapshot = f"Format: {draft_mode} | Total Picks Drafted: {len(st.session_state.drafted_picks)} | Your Budget: ${200 - manager_wallets[my_slot]['spent']} | Your Next Pick: #{next_my_pick_num}"
-        with st.spinner("AI analyzing draft state..."):
-            ans = ask_ai_strategist(ai_query, live_snapshot)
-            with st.chat_message("assistant", avatar="⚡"):
-                st.markdown(ans)
-
 # Wallet Accounting
 for c_p, pdata in st.session_state.drafted_picks.items():
     s = pdata["team"]
@@ -466,6 +471,43 @@ my_wallet = manager_wallets.get(my_slot, {"spent": 0, "picks": 0})
 my_cap_left = 200 - my_wallet['spent']
 my_slots_left = total_roster_slots - my_wallet['picks']
 my_max_bid = max(1, my_cap_left - (my_slots_left - 1))
+
+# 💬 FEATURE 3: ASK THE AI STRATEGIST (WITH GROUNDED PLAYER RAG)
+st.sidebar.markdown("---")
+st.sidebar.markdown("### 🤖 Ask the AI War Room")
+ai_query = st.sidebar.text_input("Ask situational draft question:", placeholder="e.g. Should I take Gibbs or Bijan?")
+if st.sidebar.button("Ask AI Strategist", use_container_width=True):
+    if ai_query.strip():
+        # RAG Entity Extraction from user question
+        grounded_player_cards = []
+        q_tokens = clean_name(ai_query).split()
+        
+        for _, p_row in df_board.iterrows():
+            p_clean = p_row['clean_name']
+            p_parts = p_clean.split()
+            last_n = p_parts[-1] if p_parts else ""
+            
+            # Check full name or distinct last name in query
+            if p_clean in ai_query.lower() or (len(last_n) >= 4 and last_n in q_tokens):
+                grounded_player_cards.append(
+                    f"• {p_row['player_name']} ({p_row['position']}): Tier: {p_row['tier']} | "
+                    f"Model Fair Value: ${int(p_row['fair_value'])} | Market ADP: ${int(p_row['market_cost'])} (Consensus Rank #{int(p_row['custom_rank'])}) | "
+                    f"VORP Rating: +{round(p_row['live_vorp'], 1)} pts | Beat Intel: {p_row['intel_note'] if p_row['intel_note'] else 'Active & Healthy'}"
+                )
+                
+        telemetry_str = "\n".join(grounded_player_cards) if grounded_player_cards else "No specific player matches detected."
+        
+        live_snapshot = (
+            f"Draft Format: {draft_mode}\n"
+            f"Your Remaining Budget: ${my_cap_left} (Max Single Bid: ${my_max_bid}, Open Slots: {my_slots_left})\n"
+            f"Room Inflation Index: {inflation_index}x\n"
+            f"Your Current Roster: {', '.join(my_wallet['roster']) if my_wallet['roster'] else 'None'}"
+        )
+        
+        with st.spinner("AI evaluating exact player values, VORPs, and draft room state..."):
+            ans = ask_ai_strategist(ai_query, live_snapshot, telemetry_str)
+            with st.chat_message("assistant", avatar="⚡"):
+                st.markdown(ans)
 
 if draft_mode == "🔨 Auction / Salary Cap":
     st.markdown(f"### 🏈 SOULJA SOULJA SALARY CAP AUCTION RADAR • `{my_manager_display}`")
@@ -620,7 +662,6 @@ if draft_mode == "🔨 Auction / Salary Cap":
     # Nomination Playbook & AI Generator
     nom_strategy = st.radio("Select Your Tactical Nomination Intent:", ["💸 Bleed Rival Wallets (High-Cost Bait)", "💣 Landmine Trap (Overvalued Decoy)", "🥷 Stealth Sneak ($1-$3 Value Snipe)", "👑 Set the Market (Target Price Discovery)"], horizontal=True)
     
-    # 🎯 FEATURE 2: AI NOMINATION GENERATOR
     if st.button("🤖 Generate AI Nomination Trap Suggestion", use_container_width=True):
         with st.spinner("AI analyzing opponent budgets, positional voids, and traps..."):
             unpicked_top = ", ".join([f"{r['player_name']} (${r['market_cost']})" for _, r in df_unpicked.head(8).iterrows()])
@@ -808,19 +849,24 @@ with col_left:
         elif c_name_curr in st.session_state.my_fades:
             tag_html += '<span class="pref-fade">🚫 MY FADE</span> '
 
-        tag = p_data['intel_tag']
-        note = p_data['intel_note']
-        if tag == 'INJURY' or "INJURY" in note or "IR" in note or "PUP" in note or "OUT" in note:
+        tag = str(p_data.get('intel_tag', '')).upper()
+        note = p_data.get('intel_note', '')
+        
+        if "TIER_JUMPER" in tag:
+            tag_html += '<span class="intel-tier-jumper">🚀 TIER JUMPER</span> '
+        elif "SUPERFLEX" in tag:
+            tag_html += '<span class="intel-superflex">⚡ SUPERFLEX</span> '
+        elif "ROLE_PINCH" in tag:
+            tag_html += '<span class="intel-role-pinch">📉 ROLE PINCH</span> '
+        elif "VET_MAINTENANCE" in tag or "VET_REST" in tag:
+            tag_html += '<span class="intel-vet-rest">🩹 VET REST</span> '
+        elif "INJURY" in tag or "IR" in note or "PUP" in note:
             tag_html += '<span class="intel-injury">❌ INJURY ALERT</span> '
-        elif tag == 'QUESTIONABLE' or "Questionable" in note:
+        elif "QUESTIONABLE" in tag or "Questionable" in note:
             tag_html += '<span class="intel-bust">🩹 QUESTIONABLE</span> '
-        elif tag == 'HEALTHY' or "CLEARED" in note:
+        elif "CLEARED" in tag or "CLEARED" in note:
             tag_html += '<span class="intel-healthy">✅ CLEARED</span> '
-        elif tag == 'BEAT' or "BEAT WIRE" in note or "ROTOBALLER" in note:
-            tag_html += '<span class="intel-beat">📰 LIVE BEAT</span> '
-        elif tag == 'HISTORICAL' or "LAST UPDATE" in note or "RECENT WIRE" in note:
-            tag_html += '<span class="intel-hist">📰 RECENT WIRE</span> '
-        elif "SLEEPER SURGE" in note or "WAIVER SPIKE" in note:
+        elif "WAIVER" in tag or "BREAKOUT" in tag or "SLEEPER SURGE" in note:
             tag_html += '<span class="intel-surge">🔥 WAIVER SPIKE</span> '
 
         if p_data['position'] == 'DEF':
@@ -833,7 +879,7 @@ with col_left:
         intel_display = note if note else fallback_desc
         
         p_url = str(p_data.get('source_url', '')).strip()
-        p_link = f' <a href="{p_url}" target="_blank" class="source-link">🔗 Read Full Beat Wire</a>' if p_url and p_url.startswith("http") else ''
+        p_link = f' <a href="{p_url}" target="_blank" class="source-link">🔗 Read Source</a>' if p_url and p_url.startswith("http") else ''
         
         st.markdown(f"**Position:** <span class='badge-pos pos-{p_data['position']}'>{p_data['position']}</span> | **Team:** `{p_data['team']}` | {tag_html} {intel_display}{p_link}", unsafe_allow_html=True)
 
@@ -844,7 +890,6 @@ with col_left:
                 my_roster_str = ", ".join(manager_wallets[my_slot]['roster']) if manager_wallets[my_slot]['roster'] else "No players drafted yet"
                 
                 if draft_mode == "🔨 Auction / Salary Cap":
-                    # Pack live auction telemetry
                     recent_picks = [f"{v['player_name']} (${v['price']})" for v in list(st.session_state.drafted_picks.values())[-5:]]
                     recent_str = ", ".join(recent_picks)
                     
@@ -867,7 +912,6 @@ with col_left:
                         recent_picks_ledger=recent_str
                     )
                 else:
-                    # Pack live snake telemetry
                     between_summary = "; ".join([
                         f"{st.session_state.custom_manager_names.get(t, f'Slot {t}')} (Has: {manager_wallets[t]['pos_counts']['RB']} RBs, {manager_wallets[t]['pos_counts']['WR']} WRs, {manager_wallets[t]['pos_counts']['QB']} QBs)"
                         for t in teams_between if t != my_slot
@@ -1009,20 +1053,27 @@ def render_board_table(df_subset):
             pref_badge = '<span class="pref-fade">🚫 FADE</span> '
 
         tag_badge = ""
-        tag = r['intel_tag']
+        tag = str(r['intel_tag']).upper()
         note = r['intel_note']
-        if tag == 'INJURY' or "INJURY" in note or "IR" in note or "PUP" in note or "OUT" in note:
+        
+        if "TIER_JUMPER" in tag:
+            tag_badge = '<span class="intel-tier-jumper">🚀 TIER JUMPER</span> '
+        elif "SUPERFLEX" in tag:
+            tag_badge = '<span class="intel-superflex">⚡ SUPERFLEX</span> '
+        elif "ROLE_PINCH" in tag:
+            tag_badge = '<span class="intel-role-pinch">📉 ROLE PINCH</span> '
+        elif "VET_MAINTENANCE" in tag or "VET_REST" in tag:
+            tag_badge = '<span class="intel-vet-rest">🩹 VET REST</span> '
+        elif "INJURY" in tag or "IR" in note or "PUP" in note:
             tag_badge = '<span class="intel-injury">❌ INJURY</span> '
-        elif tag == 'QUESTIONABLE' or "Questionable" in note:
+        elif "QUESTIONABLE" in tag or "Questionable" in note:
             tag_badge = '<span class="intel-bust">🩹 QUESTIONABLE</span> '
-        elif tag == 'HEALTHY' or "CLEARED" in note:
+        elif "CLEARED" in tag or "CLEARED" in note:
             tag_badge = '<span class="intel-healthy">✅ CLEARED</span> '
-        elif tag == 'BEAT' or "BEAT WIRE" in note or "ROTOBALLER" in note:
-            tag_badge = '<span class="intel-beat">📰 LIVE BEAT</span> '
-        elif tag == 'HISTORICAL' or "LAST UPDATE" in note or "RECENT WIRE" in note:
-            tag_badge = '<span class="intel-hist">📰 RECENT WIRE</span> '
-        elif "SLEEPER SURGE" in note or "WAIVER SPIKE" in note:
+        elif "WAIVER" in tag or "BREAKOUT" in tag or "SLEEPER SURGE" in note:
             tag_badge = '<span class="intel-surge">🔥 WAIVER</span> '
+        elif "BEAT" in tag or "BEAT WIRE" in note:
+            tag_badge = '<span class="intel-beat">📰 LIVE BEAT</span> '
 
         if pos_curr == 'DEF':
             fallback_desc = DST_SCHEDULE_MAP.get(r['team'], f"Active {r['team']} DEF")
@@ -1094,7 +1145,6 @@ with tab_matrix:
         hist_class = def_p['class']
         hist_exploit = f"<b>{def_p['bias']}:</b> {def_p['exploit']}"
 
-        # Live Execution Drift Flags
         if spent >= 100 or (len(bids) >= 1 and bids[0] >= 55) or (len(bids) >= 2 and (bids[0] + bids[1]) >= 85):
             return "👑 Stars & Scrubs (Live)", "arch-stars", f"<b>{mgr_display}:</b> Blew budget on top anchors (${spent} spent). Let him exhaust capital; push next wants to full fair value."
             
