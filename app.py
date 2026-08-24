@@ -41,11 +41,11 @@ st.markdown("""
     .intel-healthy { background-color: #10b98125; color: #34d399; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #10b98160; }
     .intel-beat { background-color: #3b82f625; color: #93c5fd; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #3b82f660; }
     .intel-hist { background-color: #64748b25; color: #cbd5e1; padding: 2px 6px; border-radius: 4px; font-weight: 600; font-size: 0.75rem; border: 1px solid #64748b60; }
-    .intel-breakout { background-color: #10b98130; color: #34d399; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #10b98160; }
-    .intel-jumper { background-color: #3b82f630; color: #60a5fa; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #3b82f660; }
     .intel-bust { background-color: #ef444430; color: #f87171; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #ef444460; }
     .intel-injury { background-color: #dc262640; color: #fca5a5; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; border: 1px solid #dc2626; }
     .intel-surge { background-color: #f59e0b30; color: #fbbf24; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #f59e0b60; }
+    .source-link { color: #60a5fa; text-decoration: none; font-weight: 700; font-size: 0.72rem; border: 1px solid #3b82f660; padding: 1px 6px; border-radius: 3px; background: #3b82f615; margin-left: 6px; display: inline-block; }
+    .source-link:hover { background: #3b82f630; color: #93c5fd; }
 
     /* Positional Badges */
     .badge-pos { font-weight: 700; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
@@ -115,6 +115,7 @@ clean_overrides = load_camp_overrides()
 df_board['live_multiplier'] = 1.0
 df_board['intel_note'] = ""
 df_board['intel_tag'] = ""
+df_board['source_url'] = ""
 
 for idx, row in df_board.iterrows():
     c_p = row['clean_name']
@@ -123,10 +124,11 @@ for idx, row in df_board.iterrows():
         df_board.at[idx, 'live_multiplier'] = data.get('multiplier', 1.0)
         df_board.at[idx, 'intel_note'] = data.get('note', '')
         df_board.at[idx, 'intel_tag'] = data.get('type', '')
+        df_board.at[idx, 'source_url'] = data.get('source_url', '')
 
 df_board['live_vorp'] = df_board['vorp'] * df_board['live_multiplier']
 
-# 3. Real-World Positional Valuation Math ($2,000 Total League Pool)
+# 3. Positional Valuation Math ($2,000 Total League Pool)
 off_mask = df_board['position'].isin(['QB', 'RB', 'WR', 'TE'])
 pos_off_vorp = df_board.loc[off_mask, 'live_vorp'].clip(lower=0).sum()
 df_board.loc[off_mask, 'fair_value'] = (df_board.loc[off_mask, 'live_vorp'].clip(lower=0) / max(1.0, pos_off_vorp)) * (180 * 10 * 0.75)
@@ -601,7 +603,7 @@ with col_left:
 
         tag = p_data['intel_tag']
         note = p_data['intel_note']
-        if tag == 'INJURY' or "INJURY" in note or "IR" in note or "PUP" in note:
+        if tag == 'INJURY' or "INJURY" in note or "IR" in note or "PUP" in note or "OUT" in note:
             tag_html += '<span class="intel-injury">❌ INJURY ALERT</span> '
         elif tag == 'QUESTIONABLE' or "Questionable" in note:
             tag_html += '<span class="intel-bust">🩹 QUESTIONABLE</span> '
@@ -619,9 +621,11 @@ with col_left:
         fallback_desc = f"Active {p_data['team']} {p_data['position']} • Depth Chart: #{d_order}"
         intel_display = note if note else fallback_desc
         
-        st.markdown(f"**Position:** <span class='badge-pos pos-{p_data['position']}'>{p_data['position']}</span> | **Team:** `{p_data['team']}` | {tag_html} {intel_display}", unsafe_allow_html=True)
+        p_url = str(p_data.get('source_url', '')).strip()
+        p_link = f' <a href="{p_url}" target="_blank" class="source-link">🔗 Read Full Beat Wire</a>' if p_url and p_url.startswith("http") else ''
+        
+        st.markdown(f"**Position:** <span class='badge-pos pos-{p_data['position']}'>{p_data['position']}</span> | **Team:** `{p_data['team']}` | {tag_html} {intel_display}{p_link}", unsafe_allow_html=True)
 
-        # Quick Tagging Buttons (Want / Fade)
         bcol1, bcol2, _ = st.columns([1, 1, 2])
         with bcol1:
             is_target = c_name_curr in st.session_state.my_targets
@@ -716,7 +720,7 @@ def render_board_table(df_subset):
         tag_badge = ""
         tag = r['intel_tag']
         note = r['intel_note']
-        if tag == 'INJURY' or "INJURY" in note or "IR" in note or "PUP" in note:
+        if tag == 'INJURY' or "INJURY" in note or "IR" in note or "PUP" in note or "OUT" in note:
             tag_badge = '<span class="intel-injury">❌ INJURY</span> '
         elif tag == 'QUESTIONABLE' or "Questionable" in note:
             tag_badge = '<span class="intel-bust">🩹 QUESTIONABLE</span> '
@@ -731,8 +735,12 @@ def render_board_table(df_subset):
 
         d_raw = r.get('depth_chart_order')
         d_order = int(d_raw) if pd.notna(d_raw) else 1
+        
+        url = str(r.get('source_url', '')).strip()
+        link_html = f' <a href="{url}" target="_blank" class="source-link">🔗 Source</a>' if url and url.startswith("http") else ''
+        
         fallback_desc = f"Active {r['team']} {r['position']} • Depth Chart: #{d_order}"
-        intel_text = f"{pref_badge}{tag_badge}{note}" if note else f"{pref_badge}{fallback_desc}"
+        intel_text = f"{pref_badge}{tag_badge}{note}{link_html}" if note else f"{pref_badge}{fallback_desc}"
 
         table_rows.append({
             "Priority": int(r['auction_rank']),
