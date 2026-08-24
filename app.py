@@ -20,7 +20,7 @@ st.set_page_config(
 
 LEAGUE_ID = "1385816551680143360"
 
-# Custom Styling & Archetype Badges
+# Custom Styling & Badges
 st.markdown("""
 <style>
     .stApp { background-color: #0b0f19; color: #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
@@ -64,6 +64,39 @@ st.markdown("""
     .pos-DL { background: #f43f5e30; color: #fb7185; border: 1px solid #f43f5e60; }
     .pos-DB { background: #a855f730; color: #c084fc; border: 1px solid #a855f760; }
     .pos-DEF { background: #ec489930; color: #f472b6; border: 1px solid #ec489960; }
+
+    /* Modern Scrollable AI War Room Containers */
+    .ai-scroll-container {
+        background: #0f172a;
+        border: 1px solid #1e293b;
+        border-left: 4px solid #10b981;
+        padding: 12px 14px;
+        border-radius: 8px;
+        max-height: 220px;
+        overflow-y: auto;
+        color: #f1f5f9;
+        font-size: 0.88rem;
+        line-height: 1.5;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    .ai-scroll-nom {
+        border-left: 4px solid #f59e0b !important;
+    }
+    .ai-scroll-container::-webkit-scrollbar {
+        width: 6px;
+    }
+    .ai-scroll-container::-webkit-scrollbar-track {
+        background: #0b0f19;
+    }
+    .ai-scroll-container::-webkit-scrollbar-thumb {
+        background: #334155;
+        border-radius: 4px;
+    }
+    .ai-scroll-container::-webkit-scrollbar-thumb:hover {
+        background: #475569;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -248,14 +281,12 @@ player_display_map = dict(zip(df_board['clean_name'], df_board['player_name']))
 # 4. Sidebar Controls & Real Sleeper Sync
 st.sidebar.title("⚡ Soulja Soulja Radar")
 
-# ==========================================
-# 🚀 1-CLICK LIVE NEWS & SCRAPER SYNC BUTTON
-# ==========================================
+# 🚀 1-Click Live News & Scraper Sync Button
 if st.sidebar.button("🚀 Pull Latest News & Sync Wire", use_container_width=True, type="primary"):
     with st.spinner("Scraping live beat wires, Sleeper injury reports, and recalculating board..."):
         try:
-            res_news = subprocess.run([sys.executable, "sync_fantasy_news.py"], capture_output=True, text=True)
-            res_eng = subprocess.run([sys.executable, "fantasy_engine.py"], capture_output=True, text=True)
+            subprocess.run([sys.executable, "sync_fantasy_news.py"], capture_output=True, text=True)
+            subprocess.run([sys.executable, "fantasy_engine.py"], capture_output=True, text=True)
             st.cache_data.clear()
             st.toast("✅ Live News, Injuries & Board Synchronized!", icon="🔥")
             st.rerun()
@@ -413,9 +444,7 @@ selected_fades = st.sidebar.multiselect(
 )
 st.session_state.my_fades = {clean_name(p) for p in selected_fades}
 
-# ==========================================
 # 💬 FEATURE 3: ASK THE AI STRATEGIST (SIDEBAR)
-# ==========================================
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🤖 Ask the AI War Room")
 ai_query = st.sidebar.text_input("Ask situational draft question:", placeholder="e.g. Should I bid $42 on Nabers?")
@@ -609,9 +638,7 @@ if draft_mode == "🔨 Auction / Salary Cap":
     # Nomination Playbook & AI Generator
     nom_strategy = st.radio("Select Your Tactical Nomination Intent:", ["💸 Bleed Rival Wallets (High-Cost Bait)", "💣 Landmine Trap (Overvalued Decoy)", "🥷 Stealth Sneak ($1-$3 Value Snipe)", "👑 Set the Market (Target Price Discovery)"], horizontal=True)
     
-    # ==========================================
     # 🎯 FEATURE 2: AI NOMINATION GENERATOR
-    # ==========================================
     if st.button("🤖 Generate AI Nomination Trap Suggestion", use_container_width=True):
         with st.spinner("AI analyzing opponent budgets, positional voids, and traps..."):
             unpicked_top = ", ".join([f"{r['player_name']} (${r['market_cost']})" for _, r in df_unpicked.head(8).iterrows()])
@@ -621,12 +648,9 @@ if draft_mode == "🔨 Auction / Salary Cap":
             st.session_state.last_ai_nom = generate_ai_nomination(nom_strategy, unpicked_top, rivals_sum, needs_sum)
 
     if st.session_state.last_ai_nom:
-        st.markdown(
-            f'<div style="background:#131b2e; border-left:4px solid #f59e0b; padding:12px; border-radius:6px; margin:8px 0;">'
-            f'<div style="font-size:0.8rem; color:#fbbf24; font-weight:700; margin-bottom:4px;">🎯 AI TACTICAL NOMINATION READ</div>'
-            f'<div style="font-size:0.85rem; color:#f1f5f9; line-height:1.4;">{st.session_state.last_ai_nom}</div>'
-            f'</div>', unsafe_allow_html=True
-        )
+        st.markdown(f'<div class="ai-scroll-container ai-scroll-nom"><div style="font-size:0.8rem; color:#fbbf24; font-weight:700; margin-bottom:6px;">🎯 AI TACTICAL NOMINATION READ</div>', unsafe_allow_html=True)
+        st.markdown(st.session_state.last_ai_nom)
+        st.markdown('</div>', unsafe_allow_html=True)
 
     pos_nom_rows = []
     for target_pos in display_positions:
@@ -832,9 +856,7 @@ with col_left:
         
         st.markdown(f"**Position:** <span class='badge-pos pos-{p_data['position']}'>{p_data['position']}</span> | **Team:** `{p_data['team']}` | {tag_html} {intel_display}{p_link}", unsafe_allow_html=True)
 
-        # ==========================================
         # 🧠 FEATURE 1: REAL-TIME AI BID/FADE ADVISOR
-        # ==========================================
         if st.button("🤖 Generate Real-Time AI Tactical Read", use_container_width=True):
             with st.spinner("AI evaluating rival psychological histories and budget curve..."):
                 rivals_ctx = "; ".join([
@@ -855,12 +877,9 @@ with col_left:
                 )
 
         if st.session_state.last_ai_read:
-            st.markdown(
-                f'<div style="background:#131b2e; border-left:4px solid #10b981; padding:12px; border-radius:6px; margin:8px 0;">'
-                f'<div style="font-size:0.8rem; color:#34d399; font-weight:700; margin-bottom:4px;">🤖 AI TACTICAL VERDICT</div>'
-                f'<div style="font-size:0.85rem; color:#f1f5f9; line-height:1.4;">{st.session_state.last_ai_read}</div>'
-                f'</div>', unsafe_allow_html=True
-            )
+            st.markdown(f'<div class="ai-scroll-container"><div style="font-size:0.8rem; color:#34d399; font-weight:700; margin-bottom:6px;">🤖 AI TACTICAL VERDICT</div>', unsafe_allow_html=True)
+            st.markdown(st.session_state.last_ai_read)
+            st.markdown('</div>', unsafe_allow_html=True)
 
         bcol1, bcol2, _ = st.columns([1, 1, 2])
         with bcol1:

@@ -1,16 +1,17 @@
 import os
 import requests
 import json
+import re
 import streamlit as st
 
 OLLAMA_API_URL = os.getenv("OLLAMA_API_URL", "http://localhost:11434/api/generate")
 LOCAL_MODEL = os.getenv("LOCAL_LLM_MODEL", "llama3.1:8b")
 
-# Verified active Groq production chat models (1,000 tokens/sec)
 VERIFIED_GROQ_MODELS = [
     "openai/gpt-oss-20b",
     "openai/gpt-oss-120b",
-    "qwen/qwen3.6-27b"
+    "qwen/qwen3.6-27b",
+    "llama-3.3-70b-versatile"
 ]
 
 def get_active_groq_key() -> str:
@@ -25,11 +26,30 @@ def get_active_groq_key() -> str:
         key = os.getenv("GROQ_API_KEY", "")
     return key.strip().strip('"').strip("'")
 
-def query_groq_api(prompt: str, system_prompt: str = "You are an elite quantitative fantasy football auction draft strategist. Give 2-3 direct tactical bullet points with exact dollar limits. No conversational filler.") -> str:
+def clean_llm_output(text: str) -> str:
+    """Strips thinking processes, reasoning preambles, and XML tags."""
+    if not text:
+        return ""
+    # Strip <think>...</think> tags
+    text = re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL)
+    
+    # Strip "Here's a thinking process" / analysis preambles
+    if "Here's a thinking process" in text or "Thinking Process:" in text or "Analyze User Input" in text:
+        m = re.search(r'(?:\n\s*|\A)([\*\-•\d\.]+\s+\*{0,2}(?:Verdict|Action|Strategy|Tactical|Hard Cutoff|Bid|Fade|Recommendation|Execution)[\s\S]*)', text, flags=re.IGNORECASE)
+        if m:
+            text = m.group(1).strip()
+        else:
+            blocks = text.split("\n\n")
+            clean_blocks = [b for b in blocks if not any(w in b.lower() for w in ["thinking process", "analyze user input", "evaluate key metrics", "constraint:", "task:"])]
+            text = "\n\n".join(clean_blocks).strip()
+            
+    return text.strip()
+
+def query_groq_api(prompt: str, system_prompt: str = "You are an elite quantitative fantasy football auction draft strategist. Output ONLY 2-3 direct markdown bullet points. Do NOT output internal reasoning, outlines, or preambles.") -> str:
     """Ultra-fast cloud inference via Groq verified production models."""
     api_key = get_active_groq_key()
     if not api_key:
-        return "⚠️ Missing GROQ_API_KEY. Please verify it is added in Streamlit Secrets or `.streamlit/secrets.toml`."
+        return "⚠️ Missing GROQ_API_KEY. Add `GROQ_API_KEY` to Streamlit Secrets or `.streamlit/secrets.toml`."
     
     url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {
@@ -46,15 +66,16 @@ def query_groq_api(prompt: str, system_prompt: str = "You are an elite quantitat
                 {"role": "user", "content": prompt}
             ],
             "temperature": 0.2,
-            "max_tokens": 280
+            "max_tokens": 500
         }
         try:
-            res = requests.post(url, headers=headers, json=payload, timeout=7)
+            res = requests.post(url, headers=headers, json=payload, timeout=8)
             if res.status_code == 200:
                 data = res.json()
                 content = data.get("choices", [{}])[0].get("message", {}).get("content", "")
-                if content.strip():
-                    return content.strip().replace("\n", "<br>")
+                cleaned = clean_llm_output(content)
+                if cleaned:
+                    return cleaned
             else:
                 last_err = f"HTTP {res.status_code}: {res.text}"
         except Exception as e:
@@ -69,25 +90,25 @@ def query_local_ollama(prompt: str, system_prompt: str = "") -> str:
         "model": LOCAL_MODEL,
         "prompt": full_prompt,
         "stream": False,
-        "options": {"temperature": 0.2, "num_predict": 200}
+        "options": {"temperature": 0.2, "num_predict": 400}
     }
     try:
         res = requests.post(OLLAMA_API_URL, json=payload, timeout=2)
         if res.status_code == 200:
             resp = res.json().get("response", "").strip()
-            return resp.replace("\n", "<br>")
+            return clean_llm_output(resp)
     except Exception:
         pass
     return ""
 
-def query_llm_hybrid(prompt: str, system_prompt: str = "You are an elite fantasy football auction strategist.") -> str:
+def query_llm_hybrid(prompt: str, system_prompt: str = "You are an elite fantasy football auction strategist. Return exactly 2-3 direct markdown bullet points with specific dollar numbers.") -> str:
     """Routes to local Ollama if online; otherwise routes directly to Groq Cloud."""
     local_resp = query_local_ollama(prompt, system_prompt)
     if local_resp:
-        return f"<b>(Local Ollama)</b><br><br>{local_resp}"
+        return f"*(Local Ollama)*\n\n{local_resp}"
     
     groq_resp = query_groq_api(prompt, system_prompt)
-    return f"<b>(Groq Cloud)</b><br><br>{groq_resp}"
+    return f"*(Groq Cloud)*\n\n{groq_resp}"
 
 # ==============================================================================
 # 3 LIVE AI WAR ROOM ENGINES
@@ -97,18 +118,19 @@ def generate_tactical_advice(player_name, pos, fair_val, mkt_val, max_bid_to, in
     prompt = f"""
 SITUATION:
 - Player: {player_name} ({pos})
-- Model True Value: ${fair_val} | Market ADP: ${mkt_val} | Target Ceiling: ${max_bid_to}
-- Draft Inflation: {inflation_index}x (>1.0x overpaying, <1.0x bargains)
-- Medical / Beat News: {news_note if news_note else 'Healthy & Active'}
-- My Budget Left: ${my_budget}
-- Key Rivals Context: {rivals_summary}
+- Model Fair Value: ${fair_val} | Market ADP: ${mkt_val} | Max Bid Ceiling: ${max_bid_to}
+- Draft Room Inflation: {inflation_index}x (>1.0x overpaying room, <1.0x bargains)
+- Medical / News Intel: {news_note if news_note else 'Healthy & Active'}
+- My Budget Remaining: ${my_budget}
+- Active Rivals in Room: {rivals_summary}
 
 TASK:
-Give 2-3 direct bullet points on:
-1. Exact bid/fade verdict (Anchor stud vs. Price-enforce trap vs. Fade).
-2. The exact hard dollar cutoff where I must drop out.
-3. Specific rival to exploit or avoid bidding against on this player.
-No introductory text.
+Provide exactly 3 direct bullet points:
+* **Verdict & Price Ceiling**: State whether to Anchor, Price-Enforce Trap, or Fade, with the exact hard dollar drop-out limit.
+* **Tactical Execution**: Why and how to manage the bidding velocity on this asset.
+* **Rival Exploit**: Name a specific manager from the active room to bait or avoid fighting.
+
+Do NOT output an analysis outline or thinking process. Start immediately with the first bullet point.
 """
     return query_llm_hybrid(prompt)
 
@@ -117,11 +139,15 @@ def generate_ai_nomination(nom_intent, unpicked_summary, rivals_summary, my_need
 SITUATION:
 - Tactical Intent: {nom_intent}
 - My Needs: {my_needs}
-- Rival Budgets: {rivals_summary}
-- Available Players: {unpicked_summary}
+- Rival Budgets & Needs: {rivals_summary}
+- Top Available Players: {unpicked_summary}
 
 TASK:
-Name ONE specific player to nominate right now and give 2 short bullet points explaining why this forces rival spending (e.g. Kopite, Chaitu, Harsha) or protects my targets.
+Provide exactly 2 direct bullet points:
+* **Target Nomination**: Name ONE exact player to put on the auction block right now.
+* **Psychological Trap**: Explain how this drains specific rivals (e.g. Kopite, Chaitu, Harsha) or protects your targets.
+
+Do NOT output an outline or thinking process. Start immediately with the first bullet point.
 """
     return query_llm_hybrid(prompt)
 
