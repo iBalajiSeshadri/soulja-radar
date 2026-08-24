@@ -53,7 +53,7 @@ st.markdown("""
     .arch-hoard { background: #10b98125; color: #34d399; border: 1px solid #10b98160; }
     .arch-balanced { background: #3b82f625; color: #60a5fa; border: 1px solid #3b82f660; }
     .arch-idp { background: #8b5cf625; color: #c084fc; border: 1px solid #8b5cf660; }
-    .arch-early { background: #64748b25; color: #94a3b8; border: 1px solid #64748b60; }
+    .arch-drift { background: #f59e0b25; color: #fbbf24; border: 1px solid #f59e0b60; }
 
     /* Positional Badges */
     .badge-pos { font-weight: 700; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
@@ -102,6 +102,20 @@ DST_SCHEDULE_MAP = {
     "ARI": "📅 W1: @ BUF (🔴 Tough) | W2: vs LAR (🟡 Neutral) | W3: vs DET (🔴 Tough) • 🔴 Avoid Early",
     "ATL": "📅 W1: vs PIT (🟡 Neutral) | W2: @ PHI (🔴 Tough) | W3: vs KC (🔴 Tough) • 🔴 Tough Start",
     "CAR": "📅 W1: @ NO (🟡 Neutral) | W2: vs LAC (🟡 Neutral) | W3: @ LV (🟡 Neutral) • 🟡 Low Floor"
+}
+
+# Historical 3-Year Manager Baseline Profiles (Pre-Draft Prior)
+DEFAULT_HISTORICAL_ARCHETYPES = {
+    1: {"name": "Team 1", "archetype": "👑 Stars & Scrubs", "class": "arch-stars", "bias": "Heavy RB1 Spend", "exploit": "Bait early with marquee RBs; let them exhaust budget on 2 studs."},
+    2: {"name": "Team 2", "archetype": "🐢 Patient Hoarder", "class": "arch-hoard", "bias": "Late Room Dominator", "exploit": "Nominate their starting positional targets early to force cash drawdown."},
+    3: {"name": "Team 3", "archetype": "⚖️ Balanced Accumulator", "class": "arch-balanced", "bias": "Tier 2/3 Depth", "exploit": "Contest their target depth directly; do not let them get mid-tier steals."},
+    4: {"name": "Team 4", "archetype": "👑 Stars & Scrubs", "class": "arch-stars", "bias": "Elite WR Anchor", "exploit": "Push bids on top WRs to full fair value; drop out to let them absorb landmines."},
+    5: {"name": "Team 5", "archetype": "🛡️ IDP & Premium Spender", "class": "arch-idp", "bias": "Overpays on Defense/TE", "exploit": "Nominate marquee LBs and top TEs early to drain their offensive cap."},
+    6: {"name": "Team 6", "archetype": "🐢 Slow Bidder", "class": "arch-hoard", "bias": "Value Trapper", "exploit": "Set price floors on your targets before this manager enters late inflation wars."},
+    7: {"name": "Team 7", "archetype": "⚖️ Balanced Accumulator", "class": "arch-balanced", "bias": "Spread Capital", "exploit": "Bait with high-ADP names; draft superior VORP assets at lower tiers."},
+    8: {"name": "Team 8", "archetype": "👑 Hyper-Aggressive Anchor", "class": "arch-stars", "bias": "Dual Top-10 Studs", "exploit": "Let them burn $130+ on 2 players, then control the middle 8 rounds."},
+    9: {"name": "Team 9", "archetype": "🛡️ IDP Enthusiast", "class": "arch-idp", "bias": "High IDP Allocation", "exploit": "Nominate top-ranked defenders early; force them to spend offensive budget."},
+    10: {"name": "Team 10", "archetype": "🐢 Patient Hoarder", "class": "arch-hoard", "bias": "Endgame Monopolist", "exploit": "Do not leave Tier 2 studs on the board for cheap late-game sweeps."}
 }
 
 def clean_name(name):
@@ -924,31 +938,46 @@ with tab_intel:
 with tab_matrix:
     st.markdown("#### 🧠 RIVAL DRAFTER INTELLIGENCE, ARCHETYPES & TACTICAL EXPLOITS")
     
-    # Archetype Classification Function
-    def classify_manager_archetype(data):
+    # Behavioral Archetype Classifier Blending 3-Year Prior + Live Execution
+    def classify_manager_archetype(data, slot_num):
         spent = data['spent']
         picks = data['picks']
         bids = sorted(data['bid_history'], reverse=True)
         idp_spent = data['itemized_spent']['IDP']
+        total_picks_in_room = len(st.session_state.drafted_picks)
         
-        # 1. Stars and scrubs
-        if spent >= 110 and picks <= 3:
-            return "👑 Stars & Scrubs", "arch-stars", "Let them choke their own budget; avoid bidding wars and dominate mid-tier."
-        elif len(bids) >= 2 and (bids[0] + bids[1]) >= 100:
-            return "👑 Stars & Scrubs", "arch-stars", "Already committed 50%+ on 2 assets. Push bids on their next targets to max fair value."
-        # 2. Patient hoarder / slow bidder
-        elif picks >= 4 and spent <= 45:
-            return "🐢 Patient Hoarder", "arch-hoard", "Nominate their starting positional targets now to force cash drawdown."
-        elif picks == 0 and len(st.session_state.drafted_picks) >= 15:
-            return "🐢 Extreme Hoarder", "arch-hoard", "Sitting completely cold. Bait them with mid-tier anchors to test their reserve floor."
-        # 3. IDP / DST Spender
-        elif idp_spent >= 12 or (data['pos_counts']['IDP'] >= 2 and idp_spent >= 8):
-            return "🛡️ IDP Spender", "arch-idp", "Overpays for defensive assets. Nominate elite LBs/DLs early to drain offensive budget."
-        # 4. Balanced Spender
+        # Pull Historical Baseline Prior
+        hist_prior = DEFAULT_HISTORICAL_ARCHETYPES.get(slot_num, {
+            "archetype": "⚖️ Balanced Accumulator", "class": "arch-balanced",
+            "bias": "Standard Spread", "exploit": "Monitor early nominations."
+        })
+        
+        # Override with custom CSV if available
+        if not df_hist.empty and 'team' in df_hist.columns:
+            m_hist = df_hist[df_hist['team'] == f"Team {slot_num}"]
+            if not m_hist.empty and 'archetype' in m_hist.columns:
+                hist_prior['archetype'] = m_hist.iloc[0]['archetype']
+                hist_prior['exploit'] = m_hist.iloc[0].get('exploit', hist_prior['exploit'])
+
+        # 1. LIVE EXECUTION CHECKS (Overrides Baseline when triggered)
+        if spent >= 100 or (len(bids) >= 1 and bids[0] >= 55) or (len(bids) >= 2 and (bids[0] + bids[1]) >= 85):
+            return "👑 Stars & Scrubs (Live)", "arch-stars", "Let them choke their own budget; push bids on their next targets to max fair value."
+            
+        elif idp_spent >= 10 or (data['pos_counts']['IDP'] >= 2 and idp_spent >= 6):
+            return "🛡️ IDP Spender (Live)", "arch-idp", "Overpays on defense. Nominate elite LBs/DLs early to drain their offensive cap."
+            
+        elif total_picks_in_room >= 6 and picks == 0:
+            return "🐢 Active Hoarder (Live)", "arch-hoard", "Sitting completely cold. Nominate their key positional targets to force spending."
+            
+        elif picks >= 3 and spent <= 45:
+            return "🥷 Value Hunter (Live)", "arch-hoard", "Accumulating cheap assets. Contest their Tier 3 nominations directly."
+            
         elif picks >= 3:
-            return "⚖️ Balanced Accumulator", "arch-balanced", "Spreading capital evenly. Contest their Tier 2/3 targets directly."
+            return "⚖️ Balanced Spender (Live)", "arch-balanced", "Spreading capital evenly. Avoid bidding wars on their non-target positions."
+            
+        # 2. PRE-DRAFT & EARLY-GAME PRIOR (Uses Historical 3-Year Archetype)
         else:
-            return "⏳ Early Calibration", "arch-early", "Monitoring early price discovery. Exploit price enforcement bids."
+            return f"📜 {hist_prior['archetype']} (Historical)", hist_prior['class'], f"<b>{hist_prior['bias']}:</b> {hist_prior['exploit']}"
 
     matrix_rows = []
     for s, data in manager_wallets.items():
@@ -965,7 +994,7 @@ with tab_matrix:
         if counts['DEF'] < 1: needs.append(f"DEF ({counts['DEF']}/1)")
         needs_str = ", ".join(needs) if needs else "✅ Lineup Filled"
         
-        arch_title, arch_class, exploit_text = classify_manager_archetype(data)
+        arch_title, arch_class, exploit_text = classify_manager_archetype(data, s)
         
         if draft_mode == "🔨 Auction / Salary Cap":
             threat_level = "🟢 LOW"
@@ -1005,12 +1034,12 @@ with tab_matrix:
     
     insp_data = manager_wallets[inspect_slot]
     insp_spent = insp_data['itemized_spent']
-    arch_title, _, exploit_text = classify_manager_archetype(insp_data)
+    arch_title, _, exploit_text = classify_manager_archetype(insp_data, inspect_slot)
     
     with insp_col2:
         st.markdown(
             f'<div style="background:#131b2e; border-left:4px solid #3b82f6; padding:12px; border-radius:6px;">'
-            f'<div style="font-size:0.85rem; color:#94a3b8;"><b>Team {inspect_slot} Behavioral Profile:</b> <span style="color:#60a5fa; font-weight:700;">{arch_title}</span></div>'
+            f'<div style="font-size:0.85rem; color:#94a3b8;"><b>Team {inspect_slot} Profile:</b> <span style="color:#60a5fa; font-weight:700;">{arch_title}</span></div>'
             f'<div style="font-size:0.8rem; color:#cbd5e1; margin-top:4px;"><b>Positional Capital Spent:</b> QB: ${insp_spent["QB"]} | RB: ${insp_spent["RB"]} | WR: ${insp_spent["WR"]} | TE: ${insp_spent["TE"]} | IDP: ${insp_spent["IDP"]} | DEF: ${insp_spent["DEF"]}</div>'
             f'<div style="font-size:0.8rem; color:#34d399; margin-top:6px;"><b>Exploit:</b> {exploit_text}</div>'
             f'</div>', unsafe_allow_html=True
