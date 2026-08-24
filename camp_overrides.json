@@ -6,7 +6,7 @@
     "source_url": "https://www.rotowire.com/football/player/parker-washington-16690"
   },
   "Mykel Williams": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Knee - ACL) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/mykel-williams-18584"
@@ -36,16 +36,10 @@
     "source_url": "https://www.rotowire.com/football/player/jay-higgins-18732"
   },
   "Andrew Farmer": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Back)",
     "source_url": "https://www.rotowire.com/football/player/andrew-farmer-17309"
-  },
-  "Duplicate Player": {
-    "multiplier": 0.5,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: Out",
-    "source_url": "https://www.rotowire.com/football/player/duplicate-player-12972"
   },
   "Teddye Buchanan": {
     "multiplier": 0.88,
@@ -54,7 +48,7 @@
     "source_url": "https://www.rotowire.com/football/player/teddye-buchanan-18734"
   },
   "Cade Mays": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: Out (Wrist)",
     "source_url": "https://www.rotowire.com/football/player/cade-mays-15882"
@@ -66,7 +60,7 @@
     "source_url": "https://www.rotowire.com/football/player/vj-payne-19586"
   },
   "Anterio Thompson": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/anterio-thompson-19744"
@@ -78,7 +72,7 @@
     "source_url": "https://www.rotowire.com/football/player/dadrion-taylordemerson-17996"
   },
   "Trey Sermon": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/trey-sermon-15413"
@@ -96,7 +90,7 @@
     "source_url": "https://www.rotowire.com/football/player/audric-estime-17788"
   },
   "Johnny Wilson": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee)",
     "source_url": "https://www.rotowire.com/football/player/johnny-wilson-17011"
@@ -114,13 +108,13 @@
     "source_url": "https://www.rotowire.com/football/player/kenneth-grant-18583"
   },
   "Corey Rucker": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/corey-rucker-17072"
   },
   "M.J. Stewart": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/mj-stewart-12836"
@@ -138,7 +132,7 @@
     "source_url": "https://www.rotowire.com/football/player/micah-morris-19468"
   },
   "Tariq Castro-Fields": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Heel)",
     "source_url": "https://www.rotowire.com/football/player/tariq-castrofields-15959"
@@ -150,13 +144,13 @@
     "source_url": "https://www.rotowire.com/football/player/michael-coats-19787"
   },
   "Brian Branch": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Achilles) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/brian-branch-16816"
   },
   "Tanner McLachlan": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/tanner-mclachlan-17866"
@@ -168,7 +162,7 @@
     "source_url": "https://www.rotowire.com/football/player/chris-rumph-15311"
   },
   "Taylor Moton": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Illness)",
     "source_url": "https://www.rotowire.com/football/player/taylor-moton-11812"
@@ -180,7 +174,7 @@
     "source_url": "https://www.rotowire.com/football/player/cade-otton-16032"
   },
   "Brenden Bates": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/brenden-bates-18253"
@@ -222,7 +216,7 @@
     "source_url": "https://www.rotowire.com/football/player/chance-campbell-16260"
   },
   "Tershawn Wharton": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Neck) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/tershawn-wharton-15077"
@@ -240,7 +234,7 @@
     "source_url": "https://www.rotowire.com/football/player/luke-wattenberg-16088"
   },
   "Omarr Norman-Lott": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Knee - ACL) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/omarr-normanlott-18705"
@@ -270,25 +264,25 @@
     "source_url": "https://www.rotowire.com/football/player/caullin-lacy-19376"
   },
   "Danny Pinter": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: Doubtful (Leg)",
     "source_url": "https://www.rotowire.com/football/player/danny-pinter-14691"
   },
   "Rene Konga": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/rene-konga-19743"
   },
   "Matt Orzech": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/matt-orzech-14127"
   },
   "Levelle Bailey": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Leg) - Fracture",
     "source_url": "https://www.rotowire.com/football/player/levelle-bailey-18343"
@@ -306,25 +300,25 @@
     "source_url": "https://www.rotowire.com/football/player/braxton-berrios-12771"
   },
   "John Michael Gyllenborg": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee)",
     "source_url": "https://www.rotowire.com/football/player/john-michael-gyllenborg-19351"
   },
   "Kingsley Jonathan": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Thigh) - Bruise",
     "source_url": "https://www.rotowire.com/football/player/kingsley-jonathan-16499"
   },
   "Jordon Riley": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Achilles)",
     "source_url": "https://www.rotowire.com/football/player/jordon-riley-17414"
   },
   "Elijah Hicks": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Shin)",
     "source_url": "https://www.rotowire.com/football/player/elijah-hicks-16296"
@@ -342,7 +336,7 @@
     "source_url": "https://www.rotowire.com/football/player/xavier-weaver-18041"
   },
   "DeAngelo Malone": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/deangelo-malone-16094"
@@ -354,7 +348,7 @@
     "source_url": "https://www.rotowire.com/football/player/will-mallory-17014"
   },
   "Logan Lee": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/logan-lee-17935"
@@ -366,7 +360,7 @@
     "source_url": "https://www.rotowire.com/football/player/isiah-pacheco-16104"
   },
   "E.J. Speed": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Quadriceps) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/ej-speed-13984"
@@ -378,13 +372,13 @@
     "source_url": "https://www.rotowire.com/football/player/trey-benson-17767"
   },
   "Kerby Joseph": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Knee)",
     "source_url": "https://www.rotowire.com/football/player/kerby-joseph-16071"
   },
   "Jake Bobo": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee)",
     "source_url": "https://www.rotowire.com/football/player/jake-bobo-17040"
@@ -408,13 +402,13 @@
     "source_url": "https://www.rotowire.com/football/player/julius-wood-18247"
   },
   "Jaren Kanak": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Pectoral)",
     "source_url": "https://www.rotowire.com/football/player/jaren-kanak-19359"
   },
   "Giovanni Manu": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Knee)",
     "source_url": "https://www.rotowire.com/football/player/giovanni-manu-18072"
@@ -438,13 +432,13 @@
     "source_url": "https://www.rotowire.com/football/player/dani-dennissutton-19253"
   },
   "Jamari Thrash": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/jamari-thrash-17686"
   },
   "Chase Bisontis": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee - MCL) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/chase-bisontis-19420"
@@ -456,7 +450,7 @@
     "source_url": "https://www.rotowire.com/football/player/britain-covey-16337"
   },
   "Tyler Baron": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Knee)",
     "source_url": "https://www.rotowire.com/football/player/tyler-baron-18491"
@@ -504,7 +498,7 @@
     "source_url": "https://www.rotowire.com/football/player/zach-carter-16198"
   },
   "Nick Gargiulo": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Knee)",
     "source_url": "https://www.rotowire.com/football/player/nick-gargiulo-18018"
@@ -528,13 +522,13 @@
     "source_url": "https://www.rotowire.com/football/player/jakobi-meyers-13517"
   },
   "Demetrius Flannigan-Fowles": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/demetrius-flanniganfowles-14074"
   },
   "Isaac Guerendo": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Pectoral) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/isaac-guerendo-17947"
@@ -552,7 +546,7 @@
     "source_url": "https://www.rotowire.com/football/player/john-michael-schmitz-16799"
   },
   "Ricky Pearsall": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee - PCL)",
     "source_url": "https://www.rotowire.com/football/player/ricky-pearsall-17761"
@@ -576,7 +570,7 @@
     "source_url": "https://www.rotowire.com/football/player/trey-moore-19525"
   },
   "Mason Tipton": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Groin)",
     "source_url": "https://www.rotowire.com/football/player/mason-tipton-18107"
@@ -594,7 +588,7 @@
     "source_url": "https://www.rotowire.com/football/player/mory-bamba-19796"
   },
   "Joey Blount": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed) - Stinger",
     "source_url": "https://www.rotowire.com/football/player/joey-blount-16453"
@@ -606,7 +600,7 @@
     "source_url": "https://www.rotowire.com/football/player/tucker-kraft-16649"
   },
   "Billy Bowman": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Achilles)",
     "source_url": "https://www.rotowire.com/football/player/billy-bowman-18618"
@@ -624,7 +618,7 @@
     "source_url": "https://www.rotowire.com/football/player/chris-bell-19309"
   },
   "Donte Kent": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/donte-kent-18819"
@@ -642,7 +636,7 @@
     "source_url": "https://www.rotowire.com/football/player/michael-niese-16478"
   },
   "Skylar Thompson": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/skylar-thompson-15974"
@@ -654,7 +648,7 @@
     "source_url": "https://www.rotowire.com/football/player/british-brooks-18300"
   },
   "Laremy Tunsil": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: Out (Triceps)",
     "source_url": "https://www.rotowire.com/football/player/laremy-tunsil-10964"
@@ -690,19 +684,19 @@
     "source_url": "https://www.rotowire.com/football/player/donnie-ernsberger-12948"
   },
   "Nikola Kalinic": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee)",
     "source_url": "https://www.rotowire.com/football/player/nikola-kalinic-15869"
   },
   "Darrell Baker": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/darrell-baker-16385"
   },
   "Parker Hughes": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/parker-hughes-19803"
@@ -726,7 +720,7 @@
     "source_url": "https://www.rotowire.com/football/player/nahshon-wright-15549"
   },
   "Jerome Ford": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/jerome-ford-15989"
@@ -738,7 +732,7 @@
     "source_url": "https://www.rotowire.com/football/player/darian-kinnard-16048"
   },
   "Robbie Ouzts": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/robbie-ouzts-18624"
@@ -768,7 +762,7 @@
     "source_url": "https://www.rotowire.com/football/player/brandin-echols-15626"
   },
   "Jack Stoll": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/jack-stoll-15510"
@@ -786,7 +780,7 @@
     "source_url": "https://www.rotowire.com/football/player/dezhaun-stribling-19330"
   },
   "Darrick Forrest": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/darrick-forrest-15598"
@@ -804,7 +798,7 @@
     "source_url": "https://www.rotowire.com/football/player/christian-mccaffrey-11690"
   },
   "Gunner Olszewski": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Achilles) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/gunner-olszewski-14318"
@@ -834,7 +828,7 @@
     "source_url": "https://www.rotowire.com/football/player/aeneas-peebles-18700"
   },
   "Chris Brazzell": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee)",
     "source_url": "https://www.rotowire.com/football/player/chris-brazzell-19239"
@@ -864,7 +858,7 @@
     "source_url": "https://www.rotowire.com/football/player/tyrone-wheatley-15782"
   },
   "Alec Pierce": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Ankle) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/alec-pierce-16022"
@@ -876,7 +870,7 @@
     "source_url": "https://www.rotowire.com/football/player/julian-neal-19584"
   },
   "Ethan Downs": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee - ACL)",
     "source_url": "https://www.rotowire.com/football/player/ethan-downs-18677"
@@ -894,7 +888,7 @@
     "source_url": "https://www.rotowire.com/football/player/jakobe-thomas-19599"
   },
   "Alex Wright": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Achilles)",
     "source_url": "https://www.rotowire.com/football/player/alex-wright-16190"
@@ -954,7 +948,7 @@
     "source_url": "https://www.rotowire.com/football/player/ljarius-sneed-14688"
   },
   "Dallis Flowers": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/dallis-flowers-16547"
@@ -984,7 +978,7 @@
     "source_url": "https://www.rotowire.com/football/player/jordan-magee-17882"
   },
   "Thaddeus Dixon": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Achilles)",
     "source_url": "https://www.rotowire.com/football/player/thaddeus-dixon-19565"
@@ -1020,7 +1014,7 @@
     "source_url": "https://www.rotowire.com/football/player/dru-phillips-17846"
   },
   "Ikem Ekwonu": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Knee) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/ikem-ekwonu-15819"
@@ -1044,19 +1038,19 @@
     "source_url": "https://www.rotowire.com/football/player/keyshawn-jamesnewby-19632"
   },
   "Deatrich Wise": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/deatrich-wise-11954"
   },
   "Titus Leo": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/titus-leo-17290"
   },
   "Tyler Biadasz": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee)",
     "source_url": "https://www.rotowire.com/football/player/tyler-biadasz-14485"
@@ -1074,7 +1068,7 @@
     "source_url": "https://www.rotowire.com/football/player/marvin-mims-16849"
   },
   "Jalon Walker": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee - ACL) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/jalon-walker-18683"
@@ -1098,13 +1092,13 @@
     "source_url": "https://www.rotowire.com/football/player/jeremiyah-love-19235"
   },
   "Dante Miller": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Groin)",
     "source_url": "https://www.rotowire.com/football/player/dante-miller-18036"
   },
   "Joshua Pitsenberger": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Ankle)",
     "source_url": "https://www.rotowire.com/football/player/joshua-pitsenberger-20032"
@@ -1128,7 +1122,7 @@
     "source_url": "https://www.rotowire.com/football/player/shaun-dolac-18913"
   },
   "Kaleb Proctor": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee - Meniscus)",
     "source_url": "https://www.rotowire.com/football/player/kaleb-proctor-19529"
@@ -1152,7 +1146,7 @@
     "source_url": "https://www.rotowire.com/football/player/cooper-dejean-17705"
   },
   "Julian Hill": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee)",
     "source_url": "https://www.rotowire.com/football/player/julian-hill-17335"
@@ -1176,13 +1170,13 @@
     "source_url": "https://www.rotowire.com/football/player/dax-hill-15941"
   },
   "Jimmy Kibble": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/jimmy-kibble-20075"
   },
   "Micah Parsons": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Knee - ACL) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/micah-parsons-15182"
@@ -1194,7 +1188,7 @@
     "source_url": "https://www.rotowire.com/football/player/ronnie-harrison-12625"
   },
   "Jonathan Greenard": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Pectoral) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/jonathan-greenard-14550"
@@ -1206,19 +1200,19 @@
     "source_url": "https://www.rotowire.com/football/player/brevin-jordan-15369"
   },
   "Matt Henningsen": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Achilles)",
     "source_url": "https://www.rotowire.com/football/player/matt-henningsen-15915"
   },
   "Keyshaun Elliott": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/keyshaun-elliott-19558"
   },
   "Joseph Vaughn": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/joseph-vaughn-19225"
@@ -1260,7 +1254,7 @@
     "source_url": "https://www.rotowire.com/football/player/austen-pleasants-14958"
   },
   "Brennan Jackson": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/brennan-jackson-17842"
@@ -1272,7 +1266,7 @@
     "source_url": "https://www.rotowire.com/football/player/connor-mcgovern-13509"
   },
   "Patrick Taylor": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/patrick-taylor-14573"
@@ -1290,13 +1284,13 @@
     "source_url": "https://www.rotowire.com/football/player/alaric-jackson-15456"
   },
   "Sanoussi Kane": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/sanoussi-kane-18080"
   },
   "Dan Chisena": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/dan-chisena-14889"
@@ -1308,7 +1302,7 @@
     "source_url": "https://www.rotowire.com/football/player/tyrique-stevenson-17120"
   },
   "Eddie Walls": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/eddie-walls-19738"
@@ -1332,13 +1326,13 @@
     "source_url": "https://www.rotowire.com/football/player/shemar-stewart-18655"
   },
   "Jeremiah Webb": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Arm)",
     "source_url": "https://www.rotowire.com/football/player/jeremiah-webb-18890"
   },
   "Rico Payton": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/rico-payton-18110"
@@ -1350,7 +1344,7 @@
     "source_url": "https://www.rotowire.com/football/player/carrington-valentine-16721"
   },
   "Jaylen Harrell": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee - ACL)",
     "source_url": "https://www.rotowire.com/football/player/jaylen-harrell-17682"
@@ -1368,13 +1362,13 @@
     "source_url": "https://www.rotowire.com/football/player/malcolm-rodriguez-16052"
   },
   "Jahquez Robinson": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/jahquez-robinson-19777"
   },
   "Roy Robertson-Harris": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Achilles) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/roy-robertsonharris-11356"
@@ -1392,7 +1386,7 @@
     "source_url": "https://www.rotowire.com/football/player/quincy-riley-18600"
   },
   "Luke Musgrave": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/luke-musgrave-16663"
@@ -1422,7 +1416,7 @@
     "source_url": "https://www.rotowire.com/football/player/jordyn-brooks-14739"
   },
   "Jordyn Tyson": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: Doubtful (Hamstring) - Strain",
     "source_url": "https://www.rotowire.com/football/player/jordyn-tyson-19233"
@@ -1470,19 +1464,19 @@
     "source_url": "https://www.rotowire.com/football/player/kader-kohou-16330"
   },
   "Austin Keys": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/austin-keys-18833"
   },
   "Matt Waletzko": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/matt-waletzko-16082"
   },
   "Jamal Adams": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee)",
     "source_url": "https://www.rotowire.com/football/player/jamal-adams-11985"
@@ -1494,7 +1488,7 @@
     "source_url": "https://www.rotowire.com/football/player/rasheen-ali-17026"
   },
   "Chigozie Anusiem": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee)",
     "source_url": "https://www.rotowire.com/football/player/chigozie-anusiem-18155"
@@ -1506,13 +1500,13 @@
     "source_url": "https://www.rotowire.com/football/player/kyle-monangai-18520"
   },
   "Jer'Zhan Newton": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: Out (Pectoral) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/jerzhan-newton-17707"
   },
   "Jonathan Garvin": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/jonathan-garvin-14365"
@@ -1524,7 +1518,7 @@
     "source_url": "https://www.rotowire.com/football/player/nate-evans-20055"
   },
   "Kobe King": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/kobe-king-18724"
@@ -1542,13 +1536,13 @@
     "source_url": "https://www.rotowire.com/football/player/tory-horton-17772"
   },
   "Jalen Ramsey": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Knee)",
     "source_url": "https://www.rotowire.com/football/player/jalen-ramsey-11111"
   },
   "Kyler Gordon": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/kyler-gordon-16150"
@@ -1572,19 +1566,19 @@
     "source_url": "https://www.rotowire.com/football/player/nick-allegretti-13682"
   },
   "Cole Burgess": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/cole-burgess-18281"
   },
   "Harold Landry": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/harold-landry-12883"
   },
   "Jaylen Reed": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=jaylen-reed"
@@ -1596,49 +1590,49 @@
     "source_url": "https://www.rotowire.com/football/player/christian-kirk-12508"
   },
   "Joey Porter": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/joey-porter-16896"
   },
   "Jarrick Bernard-Converse": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee)",
     "source_url": "https://www.rotowire.com/football/player/jarrick-bernardconverse-16854"
   },
   "Josh Sweat": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/josh-sweat-12546"
   },
   "Matt Hennessy": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Neck) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/matt-hennessy-14408"
   },
   "Daequan Hardy": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/daequan-hardy-17906"
   },
   "Carson Towt": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/carson-towt-19605"
   },
   "Ethan Robinson": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/ethan-robinson-19160"
   },
   "James Ester": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/james-ester-18213"
@@ -1662,7 +1656,7 @@
     "source_url": "https://www.rotowire.com/football/player/joshua-ezeudu-16055"
   },
   "Graham Mertz": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee - ACL) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/graham-mertz-18653"
@@ -1680,7 +1674,7 @@
     "source_url": "https://www.rotowire.com/football/player/jamon-johnson-18737"
   },
   "Noah Sewell": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Achilles)",
     "source_url": "https://www.rotowire.com/football/player/noah-sewell-16756"
@@ -1692,7 +1686,7 @@
     "source_url": "https://www.rotowire.com/football/player/sione-vaki-17760"
   },
   "Damarri Mathis": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/damarri-mathis-15956"
@@ -1710,13 +1704,13 @@
     "source_url": "https://www.rotowire.com/football/player/keon-coleman-17732"
   },
   "Justin Shorter": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/justin-shorter-16656"
   },
   "Jamaree Salyer": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/jamaree-salyer-15884"
@@ -1740,7 +1734,7 @@
     "source_url": "https://www.rotowire.com/football/player/jaquinden-jackson-18527"
   },
   "Jayden Higgins": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee - ACL) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/jayden-higgins-18551"
@@ -1758,7 +1752,7 @@
     "source_url": "https://www.rotowire.com/football/player/juju-brents-17112"
   },
   "Tyrell Shavers": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Knee - ACL) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/tyrell-shavers-17555"
@@ -1782,7 +1776,7 @@
     "source_url": "https://www.rotowire.com/football/player/michael-woods-16030"
   },
   "Dillon Radunz": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee - ACL)",
     "source_url": "https://www.rotowire.com/football/player/dillon-radunz-15504"
@@ -1812,7 +1806,7 @@
     "source_url": "https://www.rotowire.com/football/player/klavon-chaisson-14523"
   },
   "Jeremiah Owusu-Koramoah": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Neck)",
     "source_url": "https://www.rotowire.com/football/player/jeremiah-owusukoramoah-15505"
@@ -1878,7 +1872,7 @@
     "source_url": "https://www.rotowire.com/football/player/derrick-moore-19524"
   },
   "Marlon Jones": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/marlon-jones-20108"
@@ -1896,7 +1890,7 @@
     "source_url": "https://www.rotowire.com/football/player/dennis-houston-16356"
   },
   "Kye Robichaux": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Foot) - Fracture",
     "source_url": "https://www.rotowire.com/football/player/kye-robichaux-18948"
@@ -1908,7 +1902,7 @@
     "source_url": "https://www.rotowire.com/football/player/chukwuebuka-godrick-17553"
   },
   "Jared Bartlett": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Leg)",
     "source_url": "https://www.rotowire.com/football/player/jared-bartlett-19073"
@@ -1944,13 +1938,13 @@
     "source_url": "https://www.rotowire.com/football/player/chuba-hubbard-15242"
   },
   "Kendrick Green": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/kendrick-green-15386"
   },
   "Princeton Fant": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee - ACL + MCL) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/princeton-fant-17135"
@@ -1962,7 +1956,7 @@
     "source_url": "https://www.rotowire.com/football/player/skyler-bell-19251"
   },
   "Mikail Kamara": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee)",
     "source_url": "https://www.rotowire.com/football/player/mikail-kamara-19713"
@@ -1974,7 +1968,7 @@
     "source_url": "https://www.rotowire.com/football/player/lonnie-johnson-13820"
   },
   "Tucker Large": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/tucker-large-19988"
@@ -1992,7 +1986,7 @@
     "source_url": "https://www.rotowire.com/football/player/bub-means-17942"
   },
   "Carter Warren": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/carter-warren-16738"
@@ -2004,19 +1998,19 @@
     "source_url": "https://www.rotowire.com/football/player/billy-schrauth-19460"
   },
   "Michael Deiter": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Quadriceps) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/michael-deiter-13581"
   },
   "Coby Bryant": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: Out (Knee) - Fracture",
     "source_url": "https://www.rotowire.com/football/player/coby-bryant-16070"
   },
   "Luke Grimm": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/luke-grimm-18838"
@@ -2028,13 +2022,13 @@
     "source_url": "https://www.rotowire.com/football/player/zion-childress-18807"
   },
   "Shemar Turner": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Knee - ACL) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/shemar-turner-18577"
   },
   "Shemar Jean-Charles": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/shemar-jeancharles-15636"
@@ -2046,13 +2040,13 @@
     "source_url": "https://www.rotowire.com/football/player/alvin-kamara-11732"
   },
   "Bryan Bresee": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee - ACL) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/bryan-bresee-17173"
   },
   "Tip Reiman": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Ankle)",
     "source_url": "https://www.rotowire.com/football/player/tip-reiman-17966"
@@ -2082,7 +2076,7 @@
     "source_url": "https://www.rotowire.com/football/player/jamarcus-ingram-16342"
   },
   "Garrett DiGiorgio": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/garrett-digiorgio-19478"
@@ -2106,7 +2100,7 @@
     "source_url": "https://www.rotowire.com/football/player/elijah-higgins-16959"
   },
   "Kadarius Calloway": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/kadarius-calloway-20081"
@@ -2124,7 +2118,7 @@
     "source_url": "https://www.rotowire.com/football/player/tank-dell-16935"
   },
   "Justin Dedich": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/justin-dedich-18379"
@@ -2142,13 +2136,13 @@
     "source_url": "https://www.rotowire.com/football/player/jawhar-jordan-17916"
   },
   "Chris Collier": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/chris-collier-18118"
   },
   "Nazeeh Johnson": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Ankle)",
     "source_url": "https://www.rotowire.com/football/player/nazeeh-johnson-16297"
@@ -2208,13 +2202,13 @@
     "source_url": "https://www.rotowire.com/football/player/keagen-trost-19453"
   },
   "Isaiah World": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Knee)",
     "source_url": "https://www.rotowire.com/football/player/isaiah-world-19603"
   },
   "Zach Charbonnet": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Knee - ACL) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/zach-charbonnet-16897"
@@ -2226,13 +2220,13 @@
     "source_url": "https://www.rotowire.com/football/player/ruben-hyppolite-18814"
   },
   "Storm Duck": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Knee)",
     "source_url": "https://www.rotowire.com/football/player/storm-duck-18276"
   },
   "Dorian Strong": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Neck)",
     "source_url": "https://www.rotowire.com/football/player/dorian-strong-18592"
@@ -2250,7 +2244,7 @@
     "source_url": "https://www.rotowire.com/football/player/mckinnley-jackson-17780"
   },
   "Storm Norton": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Foot) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/storm-norton-12437"
@@ -2268,7 +2262,7 @@
     "source_url": "https://www.rotowire.com/football/player/trey-amos-18588"
   },
   "Nick Saldiveri": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Knee)",
     "source_url": "https://www.rotowire.com/football/player/nick-saldiveri-16967"
@@ -2280,7 +2274,7 @@
     "source_url": "https://www.rotowire.com/football/player/john-ojukwu-17142"
   },
   "K.C. Ossai": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/kc-ossai-18893"
@@ -2292,7 +2286,7 @@
     "source_url": "https://www.rotowire.com/football/player/kobie-turner-17157"
   },
   "Brenden Schooler": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/brenden-schooler-16469"
@@ -2316,7 +2310,7 @@
     "source_url": "https://www.rotowire.com/football/player/michael-pittman-14378"
   },
   "Johnathan Baldwin": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee)",
     "source_url": "https://www.rotowire.com/football/player/johnathan-baldwin-18975"
@@ -2352,7 +2346,7 @@
     "source_url": "https://www.rotowire.com/football/player/breece-hall-15810"
   },
   "Jameson Geers": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/jameson-geers-19355"
@@ -2364,7 +2358,7 @@
     "source_url": "https://www.rotowire.com/football/player/noah-whittington-19305"
   },
   "Maliek Collins": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: PUP (Quadriceps) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/maliek-collins-10976"
@@ -2382,7 +2376,7 @@
     "source_url": "https://www.rotowire.com/football/player/dominick-puni-17786"
   },
   "Nic Scourton": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee - ACL) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/nic-scourton-18658"
@@ -2418,7 +2412,7 @@
     "source_url": "https://www.rotowire.com/football/player/makai-lemon-19231"
   },
   "Kendrick Law": {
-    "multiplier": 0.5,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\u274c INJURY WIRE: IR (Knee - ACL)",
     "source_url": "https://www.rotowire.com/football/player/kendrick-law-19443"
@@ -2604,7 +2598,7 @@
     "source_url": "https://www.fftoday.com/stats/players/14235/Demarcus_Lawrence?LeagueID="
   },
   "Donovan Ezeiruaku": {
-    "multiplier": 0.6,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\ud83e\ude79 FFTODAY IDP WIRE: Active injury designation on DL depth chart",
     "source_url": "https://www.fftoday.com/stats/players/19357/Donovan_Ezeiruaku?LeagueID="
@@ -2766,7 +2760,7 @@
     "source_url": "https://www.fftoday.com/stats/players/17266/Tyrel_Dodson?LeagueID="
   },
   "Azeez Al-Shaair": {
-    "multiplier": 0.6,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\ud83e\ude79 FFTODAY IDP WIRE: Active injury designation on LB depth chart",
     "source_url": "https://www.fftoday.com/stats/players/16778/Azeez_Al-Shaair?LeagueID="
@@ -2826,7 +2820,7 @@
     "source_url": "https://www.fftoday.com/stats/players/18611/DeMarvion_Overshown?LeagueID="
   },
   "Zaire Franklin": {
-    "multiplier": 0.6,
+    "multiplier": 0.75,
     "type": "INJURY",
     "note": "\ud83e\ude79 FFTODAY IDP WIRE: Active injury designation on LB depth chart",
     "source_url": "https://www.fftoday.com/stats/players/16355/Zaire_Franklin?LeagueID="

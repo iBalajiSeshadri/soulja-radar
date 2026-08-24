@@ -50,13 +50,17 @@ def get_available_groq_models(api_key: str):
                 m for m in active_ids 
                 if not any(k in m.lower() for k in ["whisper", "guard", "audio", "safeguard", "embed", "vision", "orpheus"])
             ]
-            preferred = ["openai/gpt-oss-20b", "openai/gpt-oss-120b", "qwen/qwen3.6-27b", "llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
+            # Best free reasoning models first. llama-3.3-70b is the strongest
+            # general free model on Groq; 70b/120b beat the 8b/20b on nuanced
+            # beat-report synthesis (the "caught 10/12, beat the DB" reads).
+            preferred = ["llama-3.3-70b-versatile", "openai/gpt-oss-120b", "openai/gpt-oss-20b", "llama-3.1-8b-instant"]
             ordered = [p for p in preferred if p in valid] + [v for v in valid if v not in preferred]
             if ordered:
                 return ordered
     except Exception:
         pass
-    return ["openai/gpt-oss-20b", "openai/gpt-oss-120b", "qwen/qwen3.6-27b", "llama-3.3-70b-versatile"]
+    # Fallback list only contains models known to exist on Groq (no invalid qwen id).
+    return ["llama-3.3-70b-versatile", "openai/gpt-oss-120b", "llama-3.1-8b-instant"]
 
 def clean_name(name):
     """Normalizes player name and resolves common alias spellings."""
@@ -143,14 +147,29 @@ def parse_llm_batch_response(raw_text: str, batch_map: dict):
                     mult = float(it.get("mult") or it.get("multiplier") or 1.0)
                     mult = max(0.75, min(1.15, mult))
                     note = str(it.get("note") or it.get("crunchy_note") or "").strip()
-                    meta = batch_map[matched_orig]
-                    
-                    src_label = meta.get('source_name', 'BEAT WIRE')
+
+                    # Quality gate: reject generic, detail-free notes so the intel
+                    # column never shows fluff like "positive camp buzz".
+                    GENERIC_JUNK = [
+                        "positive camp buzz", "trending up", "looking good", "injury report",
+                        "camp standout", "one to watch", "buzz", "report", "update", "n/a", "none"
+                    ]
+                    note_l = note.lower()
+                    is_generic = (len(note) < 25) or (note_l in GENERIC_JUNK) or all(
+                        w in ("positive", "camp", "buzz", "trending", "up", "looking", "good", "report")
+                        for w in re.findall(r"[a-z]+", note_l)
+                    ) if note else True
+                    if is_generic:
+                        # Fall back to the richest raw snippet rather than a vague label.
+                        note = meta.get('snippet', '') or note
+
+                    meta_src = batch_map[matched_orig]
+                    src_label = meta_src.get('source_name', 'BEAT WIRE')
                     results[matched_orig] = {
                         "multiplier": round(mult, 2),
                         "type": tag,
-                        "note": note if note else meta['snippet'],
-                        "source_url": meta.get('source_url', '')
+                        "note": note if note else meta_src['snippet'],
+                        "source_url": meta_src.get('source_url', '')
                     }
         except Exception:
             pass
@@ -166,33 +185,42 @@ def process_single_groq_batch(batch_items, api_key, candidate_models):
         {
             "name": item["player_name"],
             "source": item.get("source_name", "Beat Wire"),
-            "report": item["raw_text"][:340]
+            # Keep more of the raw report so the model has the concrete details
+            # (catch totals, coverage wins, snap counts, coach quotes) to crunch.
+            "report": item["raw_text"][:600]
         }
         for item in batch_items
     ]
 
-    system_prompt = f"""You are an expert quantitative NFL fantasy football beat analyst.
-Analyze these {len(prompt_payload)} genuine beat reports, Twitter wire updates, injury notes, and Superflex takeaways.
+    system_prompt = f"""You are an elite NFL fantasy football beat reporter and film analyst.
+You are given {len(prompt_payload)} REAL beat reports, camp notes, injury wires, and Superflex takeaways.
+Your job is to CRUNCH each raw report into ONE genuine, specific scouting insight a sharp manager can act on.
 
-TAG CRITERIA:
-- TIER_JUMPER: Concrete 1st-team target dominance, camp ascent, winning starting job, manufactured touch design. (Multiplier: 1.06 to 1.15)
-- SUPERFLEX_EDGE: Superflex/2QB draft value surge, dual-threat rushing floor, late-round QB leverage. (Multiplier: 1.05 to 1.12)
-- ROLE_PINCH: Loss of goal-line/3rd-down snaps to backups, 50/50 committee squeeze. (Multiplier: 0.84 to 0.94)
-- VET_MAINTENANCE: Precautionary veteran rest, minor soreness with zero regular-season risk. (Multiplier: 0.96 to 0.99)
-- QUESTIONABLE: Soft-tissue strain, limited practice reps, game-time decision risk. (Multiplier: 0.86 to 0.92)
-- INJURY_ALERT: Multi-week structural injury, surgery, PUP, or IR designation. (Multiplier: 0.75 to 0.85)
-- CLEARED: Full participant in 11-on-11 contact after injury. (Multiplier: 1.00 to 1.03)
-- WAIVER_SURGE: Surging pickup on waiver wire (+1,000s of adds in 24h). (Multiplier: 1.04 to 1.08)
-- NOISE: Generic preseason fluff, routine quotes, or no meaningful draft impact. (Multiplier: 1.00)
+TAG CRITERIA (pick the single best-fit tag):
+- TIER_JUMPER: Concrete camp dominance / winning a starting job / manufactured-touch design / breakout usage. (mult 1.06-1.15)
+- SUPERFLEX_EDGE: 2QB/Superflex value surge, dual-threat rushing floor, late-round QB leverage. (mult 1.05-1.12)
+- CLEARED: Full participant in 11-on-11 contact after an injury. (mult 1.00-1.03)
+- WAIVER_SURGE: Surging pickup (+thousands of adds in 24h) signaling a role/opportunity spike. (mult 1.04-1.08)
+- VET_MAINTENANCE: Precautionary veteran rest / minor soreness, no regular-season risk. (mult 0.96-0.99)
+- ROLE_PINCH: Losing goal-line/3rd-down snaps, committee squeeze, target competition. (mult 0.84-0.94)
+- QUESTIONABLE: Soft-tissue strain, limited practice, game-time-decision risk. (mult 0.86-0.92)
+- INJURY_ALERT: Multi-week structural injury, surgery, PUP, or IR. (mult 0.75-0.85)
+- NOISE: Generic fluff, routine quote, or no draft impact -> use tag "NOISE" and it will be dropped.
 
-CRUNCHY NOTE RULES:
-- Write 1 concise, punchy sentence explaining the exact schematic, health, or volume impact.
-- For injuries: State injury type, recovery outlook, and critical handcuff implications.
-- For standouts/camp buzz: Detail target volume, depth-chart movement, or offensive role.
+CRUNCHY NOTE RULES (this is the most important part):
+- The note MUST contain the CONCRETE, SPECIFIC detail from the report, not a generic label.
+  GOOD: "Caught 10 of 12 targets in the joint practice and beat the starting CB on back-to-back reps down the seam."
+  GOOD: "Working as the clear 1st-team RB, taking every goal-line rep; backup has been demoted to scout team."
+  GOOD: "Looked explosive in pads — reporters clocked two 40+ yard TD runs and praised his burst through the hole."
+  GOOD: "Hamstring strain, held out of team drills; considered week-to-week, handcuff RB seeing 1st-team work."
+  BAD (never do this): "Positive camp buzz." / "Injury report." / "Trending up." / "Looking good in camp."
+- If the raw report is vague or has NO concrete detail, tag it "NOISE" — do NOT invent details.
+- Never fabricate stats, defenders, or quotes that are not supported by the report text.
+- One sentence, present tense, punchy, specific.
 
-OUTPUT FORMAT: Return a valid JSON array:
+OUTPUT FORMAT: Return ONLY a valid JSON array, no prose:
 [
-  {{"name": "Player Name", "tag": "TIER_JUMPER | SUPERFLEX_EDGE | ROLE_PINCH | VET_MAINTENANCE | QUESTIONABLE | INJURY_ALERT | CLEARED | WAIVER_SURGE | NOISE", "mult": 1.10, "note": "1 concise sentence."}}
+  {{"name": "Player Name", "tag": "TIER_JUMPER", "mult": 1.10, "note": "One specific, detail-rich sentence pulled from the report."}}
 ]
 """
 
@@ -207,10 +235,10 @@ OUTPUT FORMAT: Return a valid JSON array:
                 {"role": "user", "content": f"Analyze these {len(prompt_payload)} beat reports:\n" + json.dumps(prompt_payload)}
             ],
             "temperature": 0.1,
-            "max_tokens": 1600
+            "max_tokens": 2400
         }
         try:
-            res = requests.post(url, headers=headers, json=payload, timeout=9)
+            res = requests.post(url, headers=headers, json=payload, timeout=15)
             if res.status_code == 200:
                 raw_content = res.json()["choices"][0]["message"]["content"]
                 results = parse_llm_batch_response(raw_content, batch_map)
@@ -623,7 +651,46 @@ for art in queue_list[:target_count]:
         }
 
 # ==============================================================================
-# 11. PERSIST OUTPUT TO CAMP_OVERRIDES.JSON
+# 11. SANITIZE + VALIDATE OVERRIDES (kill junk keys, dupes, generic notes)
+# ==============================================================================
+
+def sanitize_overrides(raw: dict) -> dict:
+    """Cleans the override map before persisting:
+    - drops junk/placeholder keys (e.g. 'Duplicate Player', blanks, 1-word names)
+    - clamps multipliers into a sane [0.75, 1.15] band
+    - de-duplicates on normalized name (keeps the richest note)
+    - drops entries with empty/generic notes so the intel column never shows fluff
+    """
+    JUNK_KEYS = {"duplicate player", "player", "unknown", "n/a", "none", "team", ""}
+    GENERIC = {"positive camp buzz", "trending up", "looking good", "injury report",
+               "report", "update", "buzz", "n/a", "none", "-", "—"}
+    by_clean = {}
+    for name, entry in raw.items():
+        if not isinstance(entry, dict):
+            continue
+        cname = clean_name(name)
+        if cname in JUNK_KEYS or len(cname) < 4 or len(cname.split()) < 2:
+            continue
+        note = str(entry.get("note", "")).strip()
+        if not note or note.lower() in GENERIC:
+            continue
+        try:
+            mult = float(entry.get("multiplier", 1.0))
+        except (TypeError, ValueError):
+            mult = 1.0
+        entry["multiplier"] = round(max(0.75, min(1.15, mult)), 2)
+        # de-dupe: keep the entry with the longer (more specific) note
+        prev = by_clean.get(cname)
+        if prev is None or len(note) > len(str(prev[1].get("note", ""))):
+            by_clean[cname] = (name, entry)
+    return {orig: entry for (orig, entry) in by_clean.values()}
+
+before_count = len(camp_overrides)
+camp_overrides = sanitize_overrides(camp_overrides)
+print(f"✓ Sanitized overrides: {before_count} -> {len(camp_overrides)} (dropped junk keys, dupes, and generic notes).")
+
+# ==============================================================================
+# 12. PERSIST OUTPUT TO CAMP_OVERRIDES.JSON
 # ==============================================================================
 
 with open("camp_overrides.json", "w") as f:

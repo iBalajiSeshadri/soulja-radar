@@ -59,6 +59,10 @@ st.markdown("""
     .source-link { color: #60a5fa; text-decoration: none; font-weight: 700; font-size: 0.72rem; border: 1px solid #3b82f660; padding: 1px 6px; border-radius: 3px; background: #3b82f615; margin-left: 6px; display: inline-block; }
     .source-link:hover { background: #3b82f630; color: #93c5fd; }
 
+    /* Crunched news insight text in the intel column */
+    .intel-note { color: #e5e7eb; font-size: 0.82rem; line-height: 1.25; }
+    .intel-note-hot { color: #fde68a; font-weight: 700; font-size: 0.82rem; line-height: 1.25; }
+
     .arch-badge { padding: 3px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; }
     .arch-stars { background: #dc262625; color: #f87171; border: 1px solid #ef444460; }
     .arch-hoard { background: #10b98125; color: #34d399; border: 1px solid #10b98160; }
@@ -317,8 +321,18 @@ def format_intel_cell(r):
 
     url = str(r.get('source_url', '')).strip()
     link_html = f' <a href="{url}" target="_blank" class="source-link">🔗 Read Source</a>' if url and url.startswith("http") else ''
-    
-    return f"{pref_badge}{tag_badge}{note}{link_html}" if (note or tag_badge) else "—"
+
+    # The crunched insight is the star of the intel column. Render it prominently
+    # (bold, in its own span) so genuine reads like "caught 10/12, beat the DB"
+    # read clearly instead of getting lost next to the badge.
+    note_html = ""
+    if note and note not in ("—", "-"):
+        is_positive = any(k in tag for k in ("TIER_JUMPER", "SUPERFLEX", "CORE_ANCHOR", "STUD", "VALUE", "BREAKOUT", "CLEARED", "WAIVER", "SURGE"))
+        note_class = "intel-note-hot" if is_positive else "intel-note"
+        note_html = f'<span class="{note_class}">{note}</span>'
+
+    body = f"{pref_badge}{tag_badge}{note_html}{link_html}".strip()
+    return body if body else "—"
 
 # Sidebar Wishlist & Fade Manager
 st.sidebar.markdown("---")
@@ -490,6 +504,50 @@ my_max_bid = max(1, my_cap_left - (my_slots_left - 1))
 # 💬 FEATURE 3: ASK THE AI STRATEGIST
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🤖 Ask the AI War Room")
+
+def build_camp_intel_digest(board_df, only_available=True, max_players=40):
+    """Collect every player carrying a REAL crunched intel note and rank them so
+    the strategist can synthesize the genuine edge (tier jumpers, camp risers,
+    role pinches) instead of only reacting to names typed in the query."""
+    picked_clean = picked_clean_names if 'picked_clean_names' in globals() else set(st.session_state.get("drafted_picks", {}).keys())
+
+    POS_TAGS = ("TIER_JUMPER", "SUPERFLEX", "BREAKOUT", "VALUE", "CLEARED", "WAIVER", "SURGE", "CORE_ANCHOR", "STUD")
+    rows = []
+    for _, pr in board_df.iterrows():
+        note = str(pr.get("intel_note", "")).strip()
+        if not note or note in ("—", "-"):
+            continue
+        if only_available and pr["clean_name"] in picked_clean:
+            continue
+        tag = str(pr.get("intel_tag", "")).upper()
+        is_pos = any(t in tag for t in POS_TAGS)
+        # sort key: positive-signal players first, then by VORP
+        rows.append((is_pos, float(pr.get("live_vorp", 0.0)), pr["player_name"], pr["position"], tag, note))
+    rows.sort(key=lambda x: (x[0], x[1]), reverse=True)
+    lines = [
+        f"• {name} ({pos}) [{tag or 'BEAT'} | VORP +{vorp:.0f}]: {note}"
+        for (_, vorp, name, pos, tag, note) in rows[:max_players]
+    ]
+    return "\n".join(lines) if lines else "No crunched camp intel available — run 'Pull Latest News & Sync Wire' first."
+
+# One-click: synthesize the edge from ALL crunched news (no need to name players)
+if st.sidebar.button("📈 Give Me the Edge (Tier Jumpers & Camp Risers)", use_container_width=True):
+    digest = build_camp_intel_digest(df_board, only_available=True, max_players=40)
+    live_snapshot = (
+        f"Draft Format: {draft_mode} ({qb_format})\n"
+        f"Your Current Roster: {', '.join(my_wallet['roster']) if my_wallet['roster'] else 'None yet'}"
+    )
+    edge_query = (
+        "Using ONLY the crunched camp intel below, give me my edge for this draft. "
+        "Identify the 3-5 biggest TIER JUMPERS / camp risers I should target, and 2-3 players "
+        "whose camp news is a red flag to fade. Cite the specific detail from each player's note "
+        "(the actual catch totals, coverage wins, role changes, or injuries) so I know it is real."
+    )
+    with st.spinner("AI crunching all collected camp news for your edge..."):
+        ans = ask_ai_strategist(edge_query, live_snapshot, digest)
+        with st.chat_message("assistant", avatar="📈"):
+            st.markdown(ans)
+
 ai_query = st.sidebar.text_input("Ask situational draft question:", placeholder="e.g. Should I take Gibbs or Bijan?")
 if st.sidebar.button("Ask AI Strategist", use_container_width=True):
     if ai_query.strip():
@@ -507,8 +565,13 @@ if st.sidebar.button("Ask AI Strategist", use_container_width=True):
                     f"Model Fair Value: ${int(p_row['fair_value'])} | Market ADP: #{int(p_row['market_adp'])} | "
                     f"True VORP: +{round(p_row['live_vorp'], 1)} pts | Intel: {p_row['intel_note'] if p_row['intel_note'] else 'Healthy & Active'}"
                 )
-                
-        telemetry_str = "\n".join(grounded_player_cards) if grounded_player_cards else "No specific player matches detected."
+
+        # If the question is open-ended (no specific player named), still ground the
+        # model on the full crunched-news digest so it never answers from thin air.
+        if not grounded_player_cards:
+            telemetry_str = build_camp_intel_digest(df_board, only_available=True, max_players=40)
+        else:
+            telemetry_str = "\n".join(grounded_player_cards)
         
         live_snapshot = (
             f"Draft Format: {draft_mode} ({qb_format})\n"

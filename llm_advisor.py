@@ -217,8 +217,10 @@ USER QUESTION:
 {user_query}
 
 STRICT INSTRUCTIONS:
-- Refer strictly to the grounded player values, VORPs, and ADPs provided above.
-- Never hallucinate fake auction prices.
-- Provide a razor-sharp, decisive recommendation in 2-3 direct markdown bullet points comparing their exact values and roster impact. Do NOT output internal reasoning or scratchpads.
+- Refer strictly to the grounded player values, VORPs, ADPs, and CAMP INTEL notes provided above.
+- When you name a player as an edge/target/fade, QUOTE the specific camp detail from their intel note
+  (the actual catch totals, coverage wins, role/depth-chart change, or injury) so the read is verifiable.
+- Never hallucinate fake auction prices, stats, or camp details not present in the grounding above.
+- Provide a razor-sharp, decisive recommendation in direct markdown bullet points. Do NOT output internal reasoning or scratchpads.
 """
     return query_llm_hybrid(prompt)
