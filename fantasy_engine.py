@@ -9,6 +9,12 @@ from config import (
     STARTERS_CONFIG, DST_RANKINGS_2026
 )
 
+try:
+    from bs4 import BeautifulSoup
+    BS4_AVAILABLE = True
+except ImportError:
+    BS4_AVAILABLE = False
+
 def clean_name(name):
     if not isinstance(name, str):
         return ""
@@ -16,6 +22,43 @@ def clean_name(name):
     name = re.sub(r"[^\w\s]", "", name)
     name = re.sub(r"\b(jr|sr|iii|ii|iv|v)\b", "", name)
     return " ".join(name.split())
+
+def fetch_fftoday_mfl_ranks():
+    """
+    Ingests consensus power rankings from FFToday MFL Power Rankings
+    (both skill positions and IDP) to calibrate mathematical projections.
+    """
+    print("0. Ingesting FFToday MFL Power Rankings for projection calibration...")
+    power_ranks = {}
+    if not BS4_AVAILABLE:
+        print("⚠️ BeautifulSoup not found. Skipping FFToday scrape.")
+        return power_ranks
+        
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)'}
+    urls = [
+        "https://www.fftoday.com/mflpower/playerrank.php",
+        "https://www.fftoday.com/mflpower/playerrank.php?o=2"  # IDP Table
+    ]
+    
+    for url in urls:
+        try:
+            res = requests.get(url, headers=headers, timeout=8)
+            if res.status_code == 200:
+                soup = BeautifulSoup(res.text, 'html.parser')
+                rows = soup.find_all('tr')
+                for row in rows:
+                    cols = row.find_all('td')
+                    if len(cols) >= 3:
+                        rank_str = cols[0].get_text().strip()
+                        player_str = cols[1].get_text().strip()
+                        if rank_str.isdigit() and len(player_str) > 3:
+                            c_name = clean_name(player_str)
+                            power_ranks[c_name] = int(rank_str)
+        except Exception as e:
+            print(f"⚠️ FFToday fetch notice: {e}")
+            
+    print(f"✓ Ingested {len(power_ranks)} consensus ranks from FFToday into modeling engine.")
+    return power_ranks
 
 def fetch_dynamic_players(players_db, season="2026"):
     print("1. Ingesting full dynamic player registry (Offense + IDP) from Sleeper...")
@@ -47,7 +90,8 @@ def fetch_dynamic_players(players_db, season="2026"):
                 'position': pos,
                 'team': team,
                 'clean_name': c_name,
-                'depth_chart_order': pdata.get('depth_chart_order', 1)
+                'depth_chart_order': pdata.get('depth_chart_order', 1),
+                'search_rank': float(pdata.get('search_rank') or 999)
             })
         elif pos in pos_map_idp:
             idp_players.append({
@@ -56,13 +100,14 @@ def fetch_dynamic_players(players_db, season="2026"):
                 'position': pos_map_idp[pos],
                 'team': team,
                 'clean_name': c_name,
-                'depth_chart_order': pdata.get('depth_chart_order', 1)
+                'depth_chart_order': pdata.get('depth_chart_order', 1),
+                'search_rank': float(pdata.get('search_rank') or 999)
             })
 
     df_off = pd.DataFrame(offense_players)
     df_idp = pd.DataFrame(idp_players)
 
-    # Pull Stat Projections
+    # Pull Stat Projections from Sleeper API
     proj_url = f"{SLEEPER_PROJ_URL}/projections/nfl/{season}?season_type=regular"
     proj_map = {}
     try:
@@ -124,7 +169,7 @@ def calculate_dynamic_natural_tiers(pos_df):
     Prevents mega-tier blobs by enforcing:
     1. Immediate Cliff Trigger (single drop >= threshold)
     2. Cumulative Tier Range Span Cap (max VORP spread between tier ceiling and floor <= max_span)
-    3. Maximum Tier Capacity (max 6-7 players per tier)
+    3. Maximum Tier Capacity (max 6-8 players per tier)
     """
     if len(pos_df) == 0:
         return []
@@ -175,10 +220,11 @@ def calculate_dynamic_natural_tiers(pos_df):
     return tiers
 
 def calculate_master_board():
+    fftoday_ranks = fetch_fftoday_mfl_ranks()
     players_db = requests.get(f"{SLEEPER_API_URL}/players/nfl").json()
     df_off, df_idp = fetch_dynamic_players(players_db)
 
-    # Calculate Offense Baseline Points
+    # 1. Calculate Offense Baseline Points from League Scoring Rules
     w = SCORING_WEIGHTS
     df_off['incompletions'] = np.maximum(0.0, df_off['pass_att'] - df_off['completions'])
     pass_pts = (df_off['pass_yds'] * w['pass_yd']) + (df_off['pass_tds'] * w['pass_td']) + \
@@ -186,6 +232,7 @@ def calculate_master_board():
                (df_off['sacks'] * w['pass_sack']) + np.where(df_off['pass_yds'] >= 4000, w['bonus_pass_300'], 0)
     rush_pts = (df_off['carries'] * w['rush_att']) + (df_off['rush_yds'] * w['rush_yd']) + \
                (df_off['rush_tds'] * w['rush_td']) + np.where(df_off['rush_yds'] >= 1000, w['bonus_rush_100'], 0)
+    
     te_mask = df_off['position'] == 'TE'
     rec_bonus = np.where(te_mask, w['bonus_rec_te'], 0.0)
     fd_bonus = np.where(te_mask, w['bonus_fd_te'], 0.0)
@@ -198,19 +245,29 @@ def calculate_master_board():
     df_off['proj_fpts'] = pass_pts + rush_pts + rec_pts
     df_off = df_off[df_off['proj_fpts'] > 20.0].copy()
 
+    # 2. Defenses (D/ST)
     df_defs = pd.DataFrame([{
         "player_name": d["name"], "position": "DEF", "team": d["team"],
         "proj_fpts": float(d["proj_pts"]), "clean_name": clean_name(d["name"]),
-        "depth_chart_order": 1
-    } for d in DST_RANKINGS_2026])
+        "depth_chart_order": 1, "search_rank": float(idx + 150)
+    } for idx, d in enumerate(DST_RANKINGS_2026)])
 
     full_df = pd.concat([
-        df_off[['player_name', 'position', 'team', 'proj_fpts', 'clean_name', 'depth_chart_order']],
-        df_idp[['player_name', 'position', 'team', 'proj_fpts', 'clean_name', 'depth_chart_order']],
+        df_off[['player_name', 'position', 'team', 'proj_fpts', 'clean_name', 'depth_chart_order', 'search_rank']],
+        df_idp[['player_name', 'position', 'team', 'proj_fpts', 'clean_name', 'depth_chart_order', 'search_rank']],
         df_defs
     ], ignore_index=True)
 
-    # Pure Baseline VORP
+    # 3. Model Weighting: Blend FFToday MFL Power Consensus with Sleeper Base
+    full_df['custom_rank'] = full_df['search_rank']
+    for idx, row in full_df.iterrows():
+        c_name = row['clean_name']
+        if c_name in fftoday_ranks:
+            # 50/50 blend of Sleeper Search Rank and FFToday MFL Power Rank
+            blended = (row['search_rank'] * 0.50) + (fftoday_ranks[c_name] * 0.50)
+            full_df.at[idx, 'custom_rank'] = round(blended, 1)
+
+    # 4. Pure Baseline VORP Calculation
     full_df['vorp'] = 0.0
     for pos, threshold in STARTERS_CONFIG.items():
         pos_mask = full_df['position'] == pos
@@ -223,7 +280,7 @@ def calculate_master_board():
             replacement_val = 0.0
         full_df.loc[pos_mask, 'vorp'] = full_df['proj_fpts'] - replacement_val
 
-    # Apply Multi-Constraint Natural Tiers
+    # 5. Apply Multi-Constraint Natural Tiers
     full_df['tier'] = "Tier 4"
     for pos in full_df['position'].unique():
         pm = full_df['position'] == pos
@@ -232,7 +289,7 @@ def calculate_master_board():
         full_df.loc[pos_sorted.index, 'tier'] = pos_tiers
 
     full_df = full_df.sort_values(by='vorp', ascending=False).reset_index(drop=True)
-    full_df['custom_rank'] = full_df.index + 1
+    full_df['rank'] = full_df.index + 1
     return full_df
 
 if __name__ == "__main__":

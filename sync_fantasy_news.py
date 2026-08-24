@@ -19,7 +19,7 @@ def clean_name(name):
 
 def clean_snippet_text(text, max_len=160):
     text = " ".join(text.split())
-    text = re.sub(r"^(Rotowire|CBS Sports|Fantasy Staff|RotoBaller|FFToday)\s*[:\-]\s*", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"^(Rotowire|CBS Sports|Fantasy Staff|RotoBaller)\s*[:\-]\s*", "", text, flags=re.IGNORECASE)
     if len(text) > max_len:
         return text[:max_len].rsplit(' ', 1)[0] + "..."
     return text
@@ -48,7 +48,7 @@ def extract_headline_subject(raw_text):
     return subject_clean, headline_text
 
 print("==================================================================")
-print("  SOULJA SOULJA SURGICAL MULTI-FEED INTEL & RANKINGS SYNC       ")
+print("  SOULJA SOULJA SURGICAL NEWS & INJURY AGGREGATOR               ")
 print("==================================================================")
 
 camp_overrides = {}
@@ -125,56 +125,8 @@ if p_db:
             
     print(f"✓ Ingested {sleeper_injuries_found} official injury designations!")
 
-# 3. Source B: FFToday MFL Power Rankings & Positional Tiers
-print("\n3. [SOURCE 2] Ingesting FFToday MFL Power Rankings & Tiers...")
-fftoday_matched = 0
-fftoday_urls = [
-    "https://www.fftoday.com/mflpower/playerrank.php",
-    "https://www.fftoday.com/mflpower/playerrank.php?o=2"  # IDP Table
-]
-
-for url in fftoday_urls:
-    try:
-        res = requests.get(url, headers=headers, timeout=10)
-        if res.status_code == 200 and BS4_AVAILABLE:
-            soup = BeautifulSoup(res.text, 'html.parser')
-            rows = soup.find_all('tr')
-            current_tier = "Tier 1"
-            
-            for row in rows:
-                row_text = row.get_text().strip()
-                if "Tier " in row_text:
-                    tier_match = re.search(r'(Tier\s+\d+)', row_text, re.IGNORECASE)
-                    if tier_match:
-                        current_tier = tier_match.group(1).title()
-                    continue
-                
-                cols = row.find_all('td')
-                if len(cols) >= 3:
-                    rank_str = cols[0].get_text().strip()
-                    player_cell = cols[1].get_text().strip()
-                    
-                    if rank_str.isdigit() and len(player_cell) > 3:
-                        c_p = clean_name(player_cell)
-                        if c_p in player_registry:
-                            orig_player = player_registry[c_p]
-                            
-                            # Only attach note if not currently carrying a severe injury flag
-                            if orig_player not in camp_overrides or camp_overrides[orig_player].get("type") in ["BEAT", "HISTORICAL"]:
-                                camp_overrides[orig_player] = {
-                                    "multiplier": 1.00,
-                                    "type": "BEAT",
-                                    "note": f"🏆 FFTODAY MFL: Pos Rank #{rank_str} ({current_tier})",
-                                    "source_url": url
-                                }
-                                fftoday_matched += 1
-    except Exception as e:
-        print(f"⚠️ FFToday Parser Notice: {e}")
-
-print(f"✓ Matched {fftoday_matched} player rankings from FFToday MFL Power!")
-
-# 4. Source C: CBS Sports Feed (Subject Isolation)
-print("\n4. [SOURCE 3] Scraping CBS RotoWire Feed with Subject Isolation...")
+# 3. Source B: CBS Sports Feed (Subject Isolation)
+print("\n3. [SOURCE 2] Scraping CBS RotoWire Feed with Subject Isolation...")
 cbs_fresh = 0
 cbs_historical = 0
 
@@ -235,8 +187,8 @@ for page in range(1, 10):
 
 print(f"✓ Processed CBS feed: {cbs_fresh} fresh subject updates & {cbs_historical} historical updates!")
 
-# 5. Source D: Sleeper 24-Hour Live Trending Waiver Adds
-print("\n5. [SOURCE 4] Querying Sleeper Live 24h Waiver Surges...")
+# 4. Source C: Sleeper 24-Hour Live Trending Waiver Adds
+print("\n4. [SOURCE 3] Querying Sleeper Live 24h Waiver Surges...")
 try:
     trending_adds = requests.get("https://api.sleeper.app/v1/players/nfl/trending/add?lookback_hours=24&limit=30", timeout=5).json()
     adds_matched = 0
@@ -267,4 +219,4 @@ except Exception as e:
 with open("camp_overrides.json", "w") as f:
     json.dump(camp_overrides, f, indent=2)
 
-print(f"\n✅ SUCCESS: Saved {len(camp_overrides)} multi-source overrides to 'camp_overrides.json'!")
+print(f"\n✅ SUCCESS: Saved {len(camp_overrides)} pure news/injury overrides to 'camp_overrides.json'!")
