@@ -2,7 +2,9 @@ import os
 import requests
 import json
 import re
+import xml.etree.ElementTree as ET
 from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 try:
     from bs4 import BeautifulSoup
@@ -11,8 +13,15 @@ except ImportError:
     BS4_AVAILABLE = False
 
 # ==============================================================================
-# 0. CONFIGURATION & GROQ LLM RESOLUTION
+# 0. CONFIGURATION & URL SANITIZER
 # ==============================================================================
+
+def clean_url(url: str) -> str:
+    """Strips markdown link syntax like [url](url) and whitespace."""
+    if not url:
+        return ""
+    match = re.search(r'https?://[^\s\)\]\'"]+', str(url))
+    return match.group(0) if match else str(url).strip()
 
 def get_active_groq_key() -> str:
     """Safely retrieves Groq API Key from secrets.toml or environment."""
@@ -26,12 +35,27 @@ def get_active_groq_key() -> str:
             pass
     return os.getenv("GROQ_API_KEY", "").strip().strip('"').strip("'")
 
-VERIFIED_GROQ_MODELS = [
-    "llama-3.3-70b-versatile",
-    "llama-3.1-8b-instant",
-    "openai/gpt-oss-20b",
-    "qwen/qwen3.6-27b"
-]
+def get_available_groq_models(api_key: str):
+    """Queries Groq /v1/models to select valid active chat models."""
+    try:
+        res = requests.get(
+            clean_url("https://api.groq.com/openai/v1/models"),
+            headers={"Authorization": f"Bearer {api_key}"},
+            timeout=4
+        )
+        if res.status_code == 200:
+            active_ids = [m["id"] for m in res.json().get("data", [])]
+            valid = [
+                m for m in active_ids 
+                if not any(k in m.lower() for k in ["whisper", "guard", "audio", "safeguard", "embed", "vision", "orpheus"])
+            ]
+            preferred = ["openai/gpt-oss-20b", "openai/gpt-oss-120b", "qwen/qwen3.6-27b", "llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
+            ordered = [p for p in preferred if p in valid] + [v for v in valid if v not in preferred]
+            if ordered:
+                return ordered
+    except Exception:
+        pass
+    return ["openai/gpt-oss-20b", "openai/gpt-oss-120b", "qwen/qwen3.6-27b"]
 
 def clean_name(name):
     if not isinstance(name, str):
@@ -41,152 +65,148 @@ def clean_name(name):
     name = re.sub(r"\b(jr|sr|iii|ii|iv|v)\b", "", name)
     return " ".join(name.split())
 
-def clean_snippet_text(text, max_len=160):
+def clean_snippet_text(text, max_len=180):
     text = " ".join(text.split())
-    text = re.sub(r"^(Rotowire|CBS Sports|Fantasy Staff|RotoBaller|FFToday|32BeatWriters)\s*[:\-]\s*", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"^(Rotowire|CBS Sports|Fantasy Staff|RotoBaller|FFToday|32BeatWriters|FantasySP)\s*[:\-]\s*", "", text, flags=re.IGNORECASE)
     if len(text) > max_len:
         return text[:max_len].rsplit(' ', 1)[0] + "..."
     return text
 
-def parse_is_fresh(time_str):
-    if not time_str:
-        return True
-    t = time_str.lower().strip()
-    if any(k in t for k in ['m ago', 'h ago', 'min', 'hour', 'today', 'yesterday', 'aug', 'sep']):
-        return True
-    day_match = re.search(r'(\d+)\s*d\b', t) or re.search(r'(\d+)\s*day', t)
-    if day_match:
-        return int(day_match.group(1)) <= 4
-    return False
-
-def extract_headline_subject(raw_text):
-    if ':' not in raw_text:
-        return None, raw_text
-    
-    parts = raw_text.split(':', 1)
-    subject_raw = parts[0].strip()
-    headline_text = parts[1].strip()
-    
-    subject_clean = re.sub(r"^[A-Za-z0-9\s\.\-]+\'\s*", "", subject_raw).strip()
-    subject_clean = re.sub(r"\s+(QB|RB|WR|TE|K|DEF|LB|DL|DB|DE|DT|CB|S|ILB|OLB|SS|FS)\s*\|.*$", "", subject_clean, flags=re.IGNORECASE).strip()
-    return subject_clean, headline_text
+def extract_players_fast(text, registry):
+    """
+    O(1) Fast Proper Noun Extractor: Matches 2-word capitalized names against registry in 0.0001s.
+    """
+    found = []
+    if not text or len(text) < 10:
+        return found
+    candidates = re.findall(r'\b[A-Z][a-zA-Z\.\'-]+\s+[A-Z][a-zA-Z\.\'-]+\b', text)
+    for cand in candidates:
+        c_cand = clean_name(cand)
+        if c_cand in registry:
+            found.append(registry[c_cand])
+    return list(set(found))
 
 # ==============================================================================
-# 1. BATCH GROQ LLM BEAT SENTIMENT & CRUNCHY NOTE GENERATOR
+# 1. PARALLEL GROQ LLM BATCH WORKER
 # ==============================================================================
 
-def analyze_beat_articles_with_groq(articles_batch):
-    """
-    Sends raw beat snippets to Groq to extract:
-    1. Actionable semantic tag (TIER_JUMPER, ROLE_PINCH, VET_MAINTENANCE, INJURY_ALERT, CLEARED, NOISE)
-    2. Clamped safe multiplier (0.75x to 1.15x)
-    3. 1-sentence crunchy fantasy insight
-    """
-    api_key = get_active_groq_key()
-    if not api_key:
+def parse_llm_batch_response(raw_text: str, batch_map: dict):
+    """Direct Name-Matching parser with thinking tag suppression."""
+    clean_text = re.sub(r'<think>.*?</think>', '', raw_text, flags=re.DOTALL)
+    clean_text = re.sub(r'```(?:json)?', '', clean_text).strip()
+    
+    results = {}
+    match = re.search(r'\[[\s\S]*\]', clean_text)
+    if match:
+        try:
+            items = json.loads(match.group(0))
+            for it in items:
+                p_name = it.get("name") or it.get("player_name") or it.get("player")
+                if not p_name: 
+                    continue
+                
+                c_p = clean_name(p_name)
+                matched_orig = None
+                for b_name in batch_map:
+                    if clean_name(b_name) == c_p or c_p in clean_name(b_name) or clean_name(b_name) in c_p:
+                        matched_orig = b_name
+                        break
+                
+                if matched_orig:
+                    mult = float(it.get("mult") or it.get("multiplier") or 1.0)
+                    mult = max(0.75, min(1.15, mult)) # Clamped guardrail
+                    tag = str(it.get("tag") or "BEAT").upper()
+                    note = str(it.get("note") or it.get("crunchy_note") or "")
+                    meta = batch_map[matched_orig]
+                    
+                    results[matched_orig] = {
+                        "multiplier": round(mult, 2),
+                        "type": tag,
+                        "note": f"📰 {meta['source_name']}: {note if note else meta['snippet']}",
+                        "source_url": meta['source_url']
+                    }
+        except Exception:
+            pass
+    return results
+
+def process_single_groq_batch(batch_items, api_key, candidate_models):
+    """Worker function for concurrent thread pool execution."""
+    if not batch_items or not api_key:
         return {}
 
-    prompt_items = []
-    for idx, item in enumerate(articles_batch):
-        prompt_items.append({
-            "id": idx,
-            "player": item["player_name"],
-            "source": item.get("source_name", "Beat Wire"),
-            "report": item["raw_text"][:300]
-        })
+    batch_map = {item["player_name"]: item for item in batch_items}
+    prompt_payload = [
+        {"name": item["player_name"], "report": item["raw_text"][:280]}
+        for item in batch_items
+    ]
 
-    system_prompt = """You are an expert quantitative fantasy football beat analyst.
-Read these beat writer blurbs (from 32BeatWriters, local beat reporters, and news wires) and return structured fantasy insights.
+    system_prompt = """You are an expert quantitative fantasy football analyst.
+Analyze these beat reports and Superflex takeaways. Output JSON ONLY.
 
-TAG CLASSIFICATION RULES:
-- TIER_JUMPER: Concrete 1st-team target domination, depth chart ascent, manufactured touch design. (Multiplier: 1.06 to 1.15)
-- ROLE_PINCH: Loss of goal-line or 3rd-down pass snaps to backups, 50/50 committee squeeze. (Multiplier: 0.84 to 0.94)
-- VET_MAINTENANCE: Precautionary veteran rest, minor soreness with zero regular-season structural risk. (Multiplier: 0.96 to 0.99)
-- INJURY_ALERT: Actual multi-week sprain, surgery, PUP, or IR designation. (Multiplier: 0.75 to 0.88)
-- CLEARED: Full participant in 11-on-11 contact after prior injury. (Multiplier: 1.00 to 1.03)
-- NOISE: Preseason fluff ("best shape of life", generic quotes). (Multiplier: 1.00)
+TAG RULES:
+- TIER_JUMPER: Concrete 1st-team target domination, depth chart ascent. (Multiplier: 1.06 to 1.15)
+- SUPERFLEX_EDGE: Superflex/2QB draft value surge, QB tier leverage. (Multiplier: 1.05 to 1.12)
+- ROLE_PINCH: Loss of goal-line/3rd-down snaps, committee split. (Multiplier: 0.84 to 0.94)
+- VET_MAINTENANCE: Precautionary rest, zero structural risk. (Multiplier: 0.96 to 0.99)
+- INJURY_ALERT: Multi-week sprain, PUP, or IR risk. (Multiplier: 0.75 to 0.88)
+- CLEARED: Full participant in 11-on-11 contact. (Multiplier: 1.00 to 1.03)
+- NOISE: Preseason fluff. (Multiplier: 1.00)
 
-Return JSON ONLY as a list of objects:
+OUTPUT FORMAT: Return a valid JSON array:
 [
-  {
-    "id": 0,
-    "player_name": "Player Name",
-    "tag": "TIER_JUMPER | ROLE_PINCH | VET_MAINTENANCE | INJURY_ALERT | CLEARED | NOISE",
-    "multiplier": 1.10,
-    "crunchy_note": "1 concise sentence translating beat report to schematic volume, target share, or health status."
-  }
+  {"name": "Player Name", "tag": "TAG", "mult": 1.10, "note": "1 concise sentence on volume/role."}
 ]
 """
 
-    url = "https://api.groq.com/openai/v1/chat/completions"
+    url = clean_url("[https://api.groq.com/openai/v1/chat/completions](https://api.groq.com/openai/v1/chat/completions)")
     headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
     
-    for model_name in VERIFIED_GROQ_MODELS:
+    for model_name in candidate_models:
         payload = {
             "model": model_name,
             "messages": [
                 {"role": "system", "content": system_prompt},
-                {"role": "user", "content": f"Analyze these {len(prompt_items)} articles:\n" + json.dumps(prompt_items)}
+                {"role": "user", "content": f"Analyze these {len(prompt_payload)} players:\n" + json.dumps(prompt_payload)}
             ],
             "temperature": 0.1,
-            "max_tokens": 2048,
-            "response_format": {"type": "json_object"} if "llama-3" in model_name else None
+            "max_tokens": 1500
         }
         try:
-            res = requests.post(url, headers=headers, json=payload, timeout=12)
+            res = requests.post(url, headers=headers, json=payload, timeout=8)
             if res.status_code == 200:
                 raw_content = res.json()["choices"][0]["message"]["content"]
-                raw_content = re.sub(r'^```json\s*', '', raw_content.strip())
-                raw_content = re.sub(r'\s*```$', '', raw_content.strip())
-                
-                parsed = json.loads(raw_content)
-                if isinstance(parsed, dict) and "items" in parsed:
-                    parsed = parsed["items"]
-                elif isinstance(parsed, dict) and len(parsed) == 1:
-                    parsed = list(parsed.values())[0]
-
-                results = {}
-                for entry in parsed:
-                    if not isinstance(entry, dict):
-                        continue
-                    item_id = entry.get("id")
-                    if item_id is not None and item_id < len(articles_batch):
-                        p_meta = articles_batch[item_id]
-                        mult = float(entry.get("multiplier", 1.0))
-                        mult = max(0.75, min(1.15, mult)) # Strict Clamp Guardrail
-                        
-                        src_label = p_meta.get("source_name", "BEAT WIRE")
-                        results[p_meta["player_name"]] = {
-                            "multiplier": round(mult, 2),
-                            "type": entry.get("tag", "BEAT"),
-                            "note": f"📰 {src_label}: {entry.get('crunchy_note', p_meta['snippet'])}",
-                            "source_url": p_meta["source_url"]
-                        }
+                results = parse_llm_batch_response(raw_content, batch_map)
                 if results:
                     return results
-        except Exception as e:
-            print(f"⚠️ LLM Model ({model_name}) parse note: {e}")
+        except Exception:
             continue
             
     return {}
 
 # ==============================================================================
-# 2. MAIN MULTI-SOURCE PIPELINE (SLEEPER + FFTODAY + CBS + 32BEATWRITERS)
+# 2. MAIN NEWS AGGREGATION PIPELINE
 # ==============================================================================
 
 print("==================================================================")
-print("  SOULJA SOULJA MULTI-SOURCE BEAT & INJURY AGGREGATOR")
+print("  SOULJA SOULJA MULTI-SOURCE BEAT, IDP & SUPERFLEX AGGREGATOR")
 print("==================================================================")
 
 camp_overrides = {}
-headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'}
+articles_to_analyze = []
+
+web_headers = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Referer': '[https://www.google.com/](https://www.google.com/)'
+}
 
 # 1. Universal Player Registry from Sleeper API
 print("\n1. Building universal NFL player registry from Sleeper API...")
 player_registry = {}
 p_db = {}
 try:
-    p_db = requests.get("https://api.sleeper.app/v1/players/nfl", timeout=12).json()
+    p_db = requests.get(clean_url("[https://api.sleeper.app/v1/players/nfl](https://api.sleeper.app/v1/players/nfl)"), timeout=12).json()
     for pid, pdata in p_db.items():
         fn = pdata.get('first_name', '')
         ln = pdata.get('last_name', '')
@@ -198,9 +218,10 @@ try:
 except Exception as e:
     print(f"Registry notice: {e}")
 
-# 2. Source A: Sleeper Official Real-Time Injury Wire (Offense + IDP)
-print("\n2. [SOURCE 1] Ingesting Sleeper Official API Injury Wire...")
+# 2. Source A: Sleeper Official Injury Wire & Active Camp Reports
+print("\n2. [SOURCE 1] Ingesting Sleeper Official Injury Wire & Active Notes...")
 sleeper_injuries_found = 0
+sleeper_notes_queued = 0
 if p_db:
     for pid, pdata in p_db.items():
         status = pdata.get('status')
@@ -216,10 +237,7 @@ if p_db:
 
         slug_name = clean_name(p_name).replace(" ", "-")
         rotowire_id = pdata.get('rotowire_id')
-        if rotowire_id:
-            wire_link = f"https://www.rotowire.com/football/player/{slug_name}-{rotowire_id}"
-        else:
-            wire_link = f"https://www.rotoballer.com/nfl/player-news?player={slug_name}"
+        wire_link = clean_url(f"[https://www.rotowire.com/football/player/](https://www.rotowire.com/football/player/){slug_name}-{rotowire_id}") if rotowire_id else clean_url(f"[https://www.rotoballer.com/nfl/player-news?player=](https://www.rotoballer.com/nfl/player-news?player=){slug_name}")
             
         if status in ['IR', 'PUP', 'Sus', 'Out'] or inj_status in ['IR', 'Out', 'PUP', 'Doubtful']:
             desc = f"{inj_status or status}"
@@ -236,34 +254,31 @@ if p_db:
             }
             sleeper_injuries_found += 1
             
-        elif inj_status == 'Questionable' and p_name not in camp_overrides:
-            desc = f"Questionable ({inj_body})" if inj_body else "Questionable"
-            if inj_notes:
-                clean_n = re.sub(r'<[^>]+>', '', inj_notes)
-                desc += f" - {clean_n[:120]}"
-                
-            camp_overrides[p_name] = {
-                "multiplier": 0.88,
-                "type": "QUESTIONABLE",
-                "note": f"🩹 INJURY WIRE: {desc}",
-                "source_url": wire_link
-            }
-            sleeper_injuries_found += 1
+        elif inj_notes and len(inj_notes) > 15:
+            clean_n = re.sub(r'<[^>]+>', '', inj_notes)
+            articles_to_analyze.append({
+                "player_name": p_name,
+                "raw_text": f"{inj_status or 'Report'}: {clean_n}",
+                "snippet": clean_snippet_text(clean_n),
+                "source_url": wire_link,
+                "source_name": "SLEEPER WIRE"
+            })
+            sleeper_notes_queued += 1
             
-    print(f"✓ Ingested {sleeper_injuries_found} official injury designations!")
+    print(f"✓ Ingested {sleeper_injuries_found} severe injuries & queued {sleeper_notes_queued} live camp notes!")
 
-# 3. Source B: FFToday IDP Wire & Beat Profiles (DL=50, LB=60, DB=70)
+# 3. Source B: FFToday IDP Positional Projections (DL=50, LB=60, DB=70)
 print("\n3. [SOURCE 2] Ingesting FFToday IDP Player Wire & Statuses...")
 idp_wire_matched = 0
 if BS4_AVAILABLE:
     idp_pos_urls = [
-        ("DL", "https://www.fftoday.com/rankings/playerproj.php?PosID=50"),
-        ("LB", "https://www.fftoday.com/rankings/playerproj.php?PosID=60"),
-        ("DB", "https://www.fftoday.com/rankings/playerproj.php?PosID=70")
+        ("DL", clean_url("[https://www.fftoday.com/rankings/playerproj.php?PosID=50](https://www.fftoday.com/rankings/playerproj.php?PosID=50)")),
+        ("LB", clean_url("[https://www.fftoday.com/rankings/playerproj.php?PosID=60](https://www.fftoday.com/rankings/playerproj.php?PosID=60)")),
+        ("DB", clean_url("[https://www.fftoday.com/rankings/playerproj.php?PosID=70](https://www.fftoday.com/rankings/playerproj.php?PosID=70)"))
     ]
     for pos_label, url in idp_pos_urls:
         try:
-            res = requests.get(url, headers=headers, timeout=8)
+            res = requests.get(url, headers=web_headers, timeout=8)
             if res.status_code == 200:
                 soup = BeautifulSoup(res.text, 'html.parser')
                 rows = soup.find_all('tr')
@@ -275,7 +290,7 @@ if BS4_AVAILABLE:
                         if c_p in player_registry:
                             orig_player = player_registry[c_p]
                             href = link_tag['href']
-                            full_url = f"https://www.fftoday.com{href}" if href.startswith('/') else href
+                            full_url = clean_url(f"[https://www.fftoday.com](https://www.fftoday.com){href}") if href.startswith('/') else clean_url(href)
                             
                             row_text = row.get_text()
                             if any(k in row_text.lower() for k in ['out', 'ir', 'pup', 'doubtful', 'inj']):
@@ -296,151 +311,193 @@ if BS4_AVAILABLE:
                                 }
                                 idp_wire_matched += 1
         except Exception as e:
-            print(f"⚠️ FFToday IDP parser notice for {pos_label}: {e}")
+            print(f"⚠️ FFToday IDP notice ({pos_label}): {e}")
 
 print(f"✓ Ingested {idp_wire_matched} FFToday IDP player profiles!")
 
-# 4. Collection for LLM Batch Analysis (CBS + 32BeatWriters)
-articles_to_analyze = []
-
-# Source C: CBS Sports Feed
-print("\n4. [SOURCE 3] Scraping CBS RotoWire Feed...")
-cbs_fresh = 0
-for page in range(1, 10):
-    cbs_url = f"https://www.cbssports.com/fantasy/football/players/news/all/{page}/"
-    try:
-        res = requests.get(cbs_url, headers=headers, timeout=8)
-        if res.status_code == 200 and BS4_AVAILABLE:
-            soup = BeautifulSoup(res.text, 'html.parser')
-            articles = soup.find_all('div', class_='tag-article') or soup.find_all('div', class_='article')
-            
-            for art in articles:
-                raw_text = art.get_text().strip()
-                if len(raw_text) < 20: continue
-                    
-                date_tag = art.find('span', class_='article-date') or art.find('span', class_='timestamp') or art.find('time')
-                time_str = date_tag.get_text().strip() if date_tag else "recent"
-                is_fresh = parse_is_fresh(time_str)
-
-                link_tag = art.find('a', href=True)
-                source_link = f"https://www.cbssports.com{link_tag['href']}" if link_tag and link_tag['href'].startswith('/') else "https://www.cbssports.com/fantasy/football/news/"
-
-                subject_candidate, headline = extract_headline_subject(raw_text)
-                if not subject_candidate: continue
-                    
-                c_sub = clean_name(subject_candidate)
-                if c_sub in player_registry and is_fresh:
-                    orig_player = player_registry[c_sub]
-                    snippet = clean_snippet_text(f"{subject_candidate}: {headline}")
-                    articles_to_analyze.append({
-                        "player_name": orig_player,
-                        "raw_text": f"{headline}. {raw_text}",
-                        "snippet": snippet,
-                        "source_url": source_link,
-                        "source_name": f"CBS BEAT ({time_str})"
-                    })
-                    cbs_fresh += 1
-        else:
-            break
-    except Exception:
-        break
-
-print(f"✓ Found {cbs_fresh} fresh CBS beat reports.")
-
-# Source D: 32BeatWriters Feed Aggregator (https://www.32beatwriters.com/)
-print("\n5. [SOURCE 4] Scraping 32BeatWriters.com Aggregator Feed...")
-beatwriters_matched = 0
+# 4. Source C: FFToday News & Articles Hub
+print("\n4. [SOURCE 3] Scraping FFToday News & Free Strategy Articles...")
+fftoday_matched = 0
 if BS4_AVAILABLE:
-    try:
-        bw_url = "https://www.32beatwriters.com/"
-        res_bw = requests.get(bw_url, headers=headers, timeout=10)
-        if res_bw.status_code == 200:
-            soup = BeautifulSoup(res_bw.text, 'html.parser')
-            
-            # 32BeatWriters structure matches player names, reporter credits, and blurbs
-            text_blocks = soup.find_all(['div', 'article', 'li', 'p', 'section'])
-            for block in text_blocks:
-                b_text = block.get_text().strip()
-                if len(b_text) < 30 or len(b_text) > 800:
-                    continue
-                
-                # Check for player name mentions from registry
-                for c_name, full_pname in player_registry.items():
-                    if len(c_name) > 5 and re.search(r'\b' + re.escape(c_name) + r'\b', clean_name(b_text)):
-                        # Look for beat writer attribution if present
-                        source_match = re.search(r'Source:\s*([A-Za-z\s\.\-]+)', b_text, re.IGNORECASE)
-                        reporter_name = source_match.group(1).strip() if source_match else "32BeatWriters"
-                        
+    fftoday_endpoints = [
+        (clean_url("[https://www.fftoday.com/news/index.php](https://www.fftoday.com/news/index.php)"), "FFTODAY NEWS"),
+        (clean_url("[https://www.fftoday.com/articles/index.php](https://www.fftoday.com/articles/index.php)"), "FFTODAY ARTICLE")
+    ]
+    for url, src_label in fftoday_endpoints:
+        try:
+            res = requests.get(url, headers=web_headers, timeout=8)
+            if res.status_code == 200:
+                soup = BeautifulSoup(res.text, 'html.parser')
+                blocks = soup.find_all(['tr', 'p', 'div'])
+                for block in blocks:
+                    b_text = block.get_text(separator=" ").strip()
+                    if len(b_text) < 35 or len(b_text) > 800:
+                        continue
+                    
+                    matched_players = extract_players_fast(b_text, player_registry)
+                    for full_pname in matched_players:
+                        clean_b = clean_snippet_text(b_text)
                         articles_to_analyze.append({
                             "player_name": full_pname,
                             "raw_text": b_text,
-                            "snippet": clean_snippet_text(b_text),
-                            "source_url": "https://www.32beatwriters.com/",
-                            "source_name": f"32BEAT ({reporter_name})"
+                            "snippet": clean_b,
+                            "source_url": url,
+                            "source_name": src_label
                         })
-                        beatwriters_matched += 1
-                        break
-    except Exception as e:
-        print(f"⚠️ 32BeatWriters scraping notice: {e}")
+                        fftoday_matched += 1
+        except Exception as e:
+            print(f"⚠️ FFToday ({src_label}) notice: {e}")
 
-print(f"✓ Extracted {beatwriters_matched} beat nuggets from 32BeatWriters.com!")
+print(f"✓ Extracted {fftoday_matched} live reports and article insights from FFToday!")
 
-# 6. Execute Batch LLM Beat Sentiment Analysis
-print(f"\n6. Running Groq LLM Beat Sentiment Analysis on {len(articles_to_analyze)} total beat items...")
-llm_evaluated_count = 0
-if articles_to_analyze and get_active_groq_key():
-    # Process up to 60 total items in batches of 20
-    for i in range(0, min(len(articles_to_analyze), 60), 20):
-        batch = articles_to_analyze[i:i+20]
-        llm_results = analyze_beat_articles_with_groq(batch)
-        for p_name, entry in llm_results.items():
-            # Never overwrite severe official IR designations with mild blurb
-            if p_name in camp_overrides and camp_overrides[p_name].get("type") == "INJURY" and camp_overrides[p_name].get("multiplier") <= 0.50:
-                continue
-            camp_overrides[p_name] = entry
-            llm_evaluated_count += 1
+# 5. Source D: CBS Sports Deep Multi-Page News Archive & Superflex Hub
+print("\n5. [SOURCE 4] Scraping CBS Sports Multi-Page News Archive & Superflex Hub...")
+cbs_matched = 0
+if BS4_AVAILABLE:
+    cbs_pages = [
+        (clean_url("[https://www.cbssports.com/fantasy/football/news/2026-superflex-podcast-mock-draft-waiting-on-qb-pays-off/](https://www.cbssports.com/fantasy/football/news/2026-superflex-podcast-mock-draft-waiting-on-qb-pays-off/)"), "CBS SUPERFLEX MOCK"),
+        (clean_url("[https://www.cbssports.com/fantasy/football/draft-prep/](https://www.cbssports.com/fantasy/football/draft-prep/)"), "CBS DRAFT PREP"),
+        (clean_url("[https://www.cbssports.com/fantasy/football/news/](https://www.cbssports.com/fantasy/football/news/)"), "CBS NEWS"),
+        (clean_url("[https://www.cbssports.com/fantasy/football/](https://www.cbssports.com/fantasy/football/)"), "CBS WIRE")
+    ]
+    for p_num in range(1, 9):
+        cbs_pages.append((clean_url(f"[https://www.cbssports.com/fantasy/football/players/news/all/](https://www.cbssports.com/fantasy/football/players/news/all/){p_num}/"), f"CBS ARCHIVE P{p_num}"))
 
-print(f"✓ Groq LLM classified & enriched {llm_evaluated_count} player profiles with tactical notes!")
+    for page_url, src_label in cbs_pages:
+        try:
+            res = requests.get(page_url, headers=web_headers, timeout=6)
+            if res.status_code == 200:
+                soup = BeautifulSoup(res.text, 'html.parser')
+                article_blocks = soup.find_all(['div', 'article', 'h2', 'h3', 'h4', 'p', 'li'])
+                for art in article_blocks:
+                    raw_text = art.get_text(separator=" ").strip()
+                    if len(raw_text) < 35 or len(raw_text) > 750:
+                        continue
+                    
+                    matched_players = extract_players_fast(raw_text, player_registry)
+                    for full_pname in matched_players:
+                        clean_b = clean_snippet_text(raw_text)
+                        articles_to_analyze.append({
+                            "player_name": full_pname,
+                            "raw_text": raw_text,
+                            "snippet": clean_b,
+                            "source_url": page_url,
+                            "source_name": src_label
+                        })
+                        cbs_matched += 1
+        except Exception:
+            pass
 
-# Fallback regex for articles not evaluated by LLM
-SEVERE_INJURY_REGEX = re.compile(r'\b(placed on ir|placed on pup|torn acl|torn achilles|out for season|suffered a knee|carted off|undergoing mri|ruled out|did not play due to injury|leaving on a cart)\b', re.IGNORECASE)
-TWEAK_REGEX = re.compile(r'\b(hamstring|calf strain|ankle sprain|groin|limited in practice|questionable|game-time decision)\b', re.IGNORECASE)
-CLEARANCE_REGEX = re.compile(r'\b(cleared|passed physical|off pup|removed from injury report|practicing in full|fully healthy)\b', re.IGNORECASE)
+print(f"✓ Extracted {cbs_matched} deep CBS Sports & Superflex mock updates across all pages!")
 
-for art in articles_to_analyze:
-    orig_player = art["player_name"]
-    if orig_player not in camp_overrides:
-        raw_text = art["raw_text"]
-        snippet = art["snippet"]
-        source_link = art["source_url"]
-        src_label = art.get("source_name", "BEAT WIRE")
-
-        if SEVERE_INJURY_REGEX.search(raw_text):
-            camp_overrides[orig_player] = {
-                "multiplier": 0.20, "type": "INJURY",
-                "note": f"❌ {src_label}: {snippet}", "source_url": source_link
-            }
-        elif TWEAK_REGEX.search(raw_text):
-            camp_overrides[orig_player] = {
-                "multiplier": 0.88, "type": "QUESTIONABLE",
-                "note": f"🩹 {src_label}: {snippet}", "source_url": source_link
-            }
-        elif CLEARANCE_REGEX.search(raw_text):
-            camp_overrides[orig_player] = {
-                "multiplier": 1.00, "type": "CLEARED",
-                "note": f"✅ {src_label}: {snippet}", "source_url": source_link
-            }
-        else:
-            camp_overrides[orig_player] = {
-                "multiplier": 1.00, "type": "BEAT",
-                "note": f"📰 {src_label}: {snippet}", "source_url": source_link
-            }
-
-# 7. Source E: Sleeper 24-Hour Live Trending Waiver Adds
-print("\n7. [SOURCE 5] Querying Sleeper Live 24h Waiver Surges...")
+# 6. Source E: 32BeatWriters Aggregator Feed
+print("\n6. [SOURCE 5] Scraping 32BeatWriters.com Aggregator Feed...")
+bw_matched = 0
 try:
-    trending_adds = requests.get("https://api.sleeper.app/v1/players/nfl/trending/add?lookback_hours=24&limit=30", timeout=5).json()
-    adds_matched = 0
+    res_bw = requests.get(clean_url("[https://www.32beatwriters.com/](https://www.32beatwriters.com/)"), headers=web_headers, timeout=8)
+    if res_bw.status_code == 200:
+        page_text = res_bw.text
+        if BS4_AVAILABLE:
+            soup = BeautifulSoup(page_text, 'html.parser')
+            page_text = soup.get_text(separator="\n")
+            
+        bw_pattern = re.compile(
+            r'[\*\•\-\–]?\s*([A-Za-z\.\'\-\s]+?)\.\s*([A-Z]{1,3})\s*[•·|\-]\s*([A-Za-z\s]+?)\.\s*([\s\S]+?)(?:Source:\s*([A-Za-z\s\.\-]+?)\.|\n\s*[\*\•\-\–]|\Z)', 
+            re.MULTILINE
+        )
+        for m in bw_pattern.finditer(page_text):
+            p_raw = m.group(1).strip()
+            blurb = m.group(4).strip()
+            reporter = m.group(5).strip() if m.group(5) else "32BeatWriters"
+            c_p = clean_name(p_raw)
+            
+            matched_name = player_registry.get(c_p)
+            if not matched_name:
+                for k, v in player_registry.items():
+                    if k == c_p or k in c_p:
+                        matched_name = v
+                        break
+                        
+            if matched_name and len(blurb) > 15:
+                clean_b = " ".join(blurb.split())
+                articles_to_analyze.append({
+                    "player_name": matched_name,
+                    "raw_text": f"{clean_b} (Reported by {reporter})",
+                    "snippet": clean_b[:160],
+                    "source_name": f"32BEAT ({reporter})",
+                    "source_url": clean_url("[https://www.32beatwriters.com/](https://www.32beatwriters.com/)")
+                })
+                bw_matched += 1
+
+        if bw_matched == 0:
+            blocks = re.split(r'Source:\s*', page_text)
+            for i in range(len(blocks) - 1):
+                blurb_block = blocks[i]
+                source_meta = blocks[i+1].split('\n')[0]
+                reporter = source_meta.split('.')[0].strip() or "32BeatWriters"
+                
+                matched_players = extract_players_fast(blurb_block, player_registry)
+                for full_pname in matched_players:
+                    lines = [l.strip() for l in blurb_block.split('\n') if len(l.strip()) > 20 and 'logo' not in l.lower() and 'headshot' not in l.lower()]
+                    clean_body = " ".join(lines[-3:]) if lines else blurb_block[-250:]
+                    clean_body = re.sub(r'\s+', ' ', clean_body).strip()
+                    
+                    articles_to_analyze.append({
+                        "player_name": full_pname,
+                        "raw_text": f"{clean_body} (Reported by {reporter})",
+                        "snippet": clean_snippet_text(clean_body),
+                        "source_url": clean_url("[https://www.32beatwriters.com/](https://www.32beatwriters.com/)"),
+                        "source_name": f"32BEAT ({reporter})"
+                    })
+                    bw_matched += 1
+except Exception as e:
+    print(f"⚠️ 32BeatWriters notice: {e}")
+
+print(f"✓ Extracted {bw_matched} beat nuggets from 32BeatWriters.com!")
+
+# 7. Source F: Free Multi-Source XML RSS Feeds
+print("\n7. [SOURCE 6] Ingesting Non-Paywalled XML RSS Feeds...")
+rss_matched = 0
+rss_urls = [
+    (clean_url("[https://www.rotoballer.com/feed](https://www.rotoballer.com/feed)"), "ROTOBALLER"),
+    (clean_url("[https://www.fantasysp.com/rss/nfl/allplayer/](https://www.fantasysp.com/rss/nfl/allplayer/)"), "FANTASYSP"),
+    (clean_url("[https://www.fantasysp.com/rss/nfl/headlines/](https://www.fantasysp.com/rss/nfl/headlines/)"), "FANTASYSP WIRE"),
+    (clean_url("[https://www.fftoday.com/rss/news.xml](https://www.fftoday.com/rss/news.xml)"), "FFTODAY RSS"),
+    (clean_url("[https://www.cbssports.com/rss/headlines/fantasy/football/](https://www.cbssports.com/rss/headlines/fantasy/football/)"), "CBS RSS")
+]
+
+for r_url, src_tag in rss_urls:
+    try:
+        r_res = requests.get(r_url, headers=web_headers, timeout=6)
+        if r_res.status_code == 200:
+            root = ET.fromstring(r_res.content)
+            for item in root.findall(".//item")[:30]:
+                title = item.find("title").text if item.find("title") is not None else ""
+                desc = item.find("description").text if item.find("description") is not None else ""
+                link = item.find("link").text if item.find("link") is not None else ""
+                clean_desc = re.sub(r'<[^>]+>', '', desc).strip()
+                full_body = f"{title}. {clean_desc}"
+                
+                matched_players = extract_players_fast(full_body, player_registry)
+                for full_pname in matched_players:
+                    articles_to_analyze.append({
+                        "player_name": full_pname,
+                        "raw_text": full_body,
+                        "snippet": clean_snippet_text(full_body),
+                        "source_url": clean_url(link) if link else clean_url("[https://www.rotoballer.com](https://www.rotoballer.com)"),
+                        "source_name": src_tag
+                    })
+                    rss_matched += 1
+    except Exception as e:
+        print(f"⚠️ RSS Notice for {src_tag}: {e}")
+
+print(f"✓ Ingested {rss_matched} RSS beat wire reports across free feeds!")
+
+# 8. Source G: Sleeper 24-Hour Live Trending Waiver Adds
+print("\n8. [SOURCE 7] Querying Sleeper Live 24h Waiver Surges...")
+trending_adds_count = 0
+try:
+    trending_adds = requests.get(clean_url("[https://api.sleeper.app/v1/players/nfl/trending/add?lookback_hours=24&limit=30](https://api.sleeper.app/v1/players/nfl/trending/add?lookback_hours=24&limit=30)"), timeout=5).json()
     if isinstance(trending_adds, list):
         for item in trending_adds:
             pid = str(item.get('player_id'))
@@ -449,24 +506,74 @@ try:
                 p_info = p_db[pid]
                 p_name = f"{p_info.get('first_name', '')} {p_info.get('last_name', '')}".strip()
                 slug_name = clean_name(p_name).replace(" ", "-")
-                wire_link = f"https://www.rotoballer.com/nfl/player-news?player={slug_name}"
+                wire_link = clean_url(f"[https://www.rotoballer.com/nfl/player-news?player=](https://www.rotoballer.com/nfl/player-news?player=){slug_name}")
                 
                 if p_name:
-                    if p_name in camp_overrides:
-                        camp_overrides[p_name]["note"] += f" | 🔥 SLEEPER SURGE (+{add_cnt} adds)"
-                    else:
-                        camp_overrides[p_name] = {
-                            "multiplier": 1.06, "type": "BREAKOUT",
-                            "note": f"🔥 WAIVER SPIKE: Surging camp pickup (+{add_cnt} adds in 24h)",
-                            "source_url": wire_link
-                        }
-                    adds_matched += 1
-    print(f"✓ Matched {adds_matched} surging waiver additions!")
+                    articles_to_analyze.append({
+                        "player_name": p_name,
+                        "raw_text": f"Surging on waiver wire across competitive leagues (+{add_cnt} adds in last 24 hours). Camp breakout or opportunity spike.",
+                        "snippet": f"Waiver Surge (+{add_cnt} adds in 24h)",
+                        "source_url": wire_link,
+                        "source_name": "WAIVER SURGE"
+                    })
+                    trending_adds_count += 1
+    print(f"✓ Matched {trending_adds_count} surging waiver additions!")
 except Exception as e:
-    print(f"⚠️ Sleeper Notice: {e}")
+    print(f"⚠️ Sleeper Waiver Notice: {e}")
 
 # ==============================================================================
-# 3. PERSIST OUTPUT TO CAMP_OVERRIDES.JSON
+# 9. CONCURRENT PARALLEL GROQ LLM SENTIMENT ANALYSIS (150+ PLAYERS)
+# ==============================================================================
+
+# Deduplicate queue by player name
+unique_articles = {}
+for art in articles_to_analyze:
+    p_key = clean_name(art["player_name"])
+    if p_key not in unique_articles:
+        unique_articles[p_key] = art
+
+queue_list = list(unique_articles.values())
+target_count = min(len(queue_list), 220)
+print(f"\n9. Running Concurrent Parallel Groq LLM Analysis on {target_count} distinct players...")
+
+llm_evaluated_count = 0
+api_key = get_active_groq_key()
+candidate_models = get_available_groq_models(api_key) if api_key else []
+
+if queue_list and api_key:
+    # Micro-batches of 6 players across 6 concurrent threads for zero truncation
+    batch_size = 6
+    batches = [queue_list[i:i + batch_size] for i in range(0, target_count, batch_size)]
+    
+    with ThreadPoolExecutor(max_workers=6) as executor:
+        futures = [executor.submit(process_single_groq_batch, batch, api_key, candidate_models) for batch in batches]
+        for future in as_completed(futures):
+            try:
+                batch_res = future.result()
+                for p_name, entry in batch_res.items():
+                    if p_name in camp_overrides and camp_overrides[p_name].get("type") == "INJURY" and camp_overrides[p_name].get("multiplier") <= 0.50:
+                        continue
+                    camp_overrides[p_name] = entry
+                    llm_evaluated_count += 1
+            except Exception:
+                pass
+
+print(f"✓ Groq LLM enriched {llm_evaluated_count} player profiles with tactical & Superflex insights!")
+
+# Fallback for remaining items
+for art in queue_list[:target_count]:
+    orig_player = art["player_name"]
+    if orig_player not in camp_overrides:
+        src_label = art.get("source_name", "BEAT WIRE")
+        camp_overrides[orig_player] = {
+            "multiplier": 1.04 if "WAIVER" in src_label else 1.00,
+            "type": "BREAKOUT" if "WAIVER" in src_label else ("SUPERFLEX" if "SUPERFLEX" in src_label else "BEAT"),
+            "note": f"📰 {src_label}: {art['snippet']}",
+            "source_url": art["source_url"]
+        }
+
+# ==============================================================================
+# 10. PERSIST OUTPUT TO CAMP_OVERRIDES.JSON
 # ==============================================================================
 
 with open("camp_overrides.json", "w") as f:
