@@ -97,18 +97,18 @@ DST_SCHEDULE_MAP = {
     "CAR": "📅 W1: @ NO (🟡 Neutral) | W2: vs LAC (🟡 Neutral) | W3: @ LV (🟡 Neutral) • 🟡 Low Floor"
 }
 
-# 🌟 SOULJA SOULJA HISTORICAL CREW PROFILES
-SOULJA_SOULJA_PROFILES = {
-    1: {"name": "Balaji", "archetype": "👑 Disciplined Anchor", "class": "arch-stars", "bias": "Pure VORP & IDP Arbitrage", "exploit": "Focuses strictly on math surplus; will never chase emotional bidding runs."},
-    2: {"name": "Shantanu", "archetype": "👑 Stars & Scrubs", "class": "arch-stars", "bias": "Aggressive Marquee Starters", "exploit": "Aggressively chases top-tier anchors. Push bids to fair value and let him choke early cap."},
-    3: {"name": "Addy", "archetype": "🐢 Patient Hoarder", "class": "arch-hoard", "bias": "Late-Room Dominator", "exploit": "Stays quiet early to accumulate cash. Nominate his starting targets early to force spend."},
-    4: {"name": "Rao", "archetype": "⚖️ Balanced Accumulator", "class": "arch-balanced", "bias": "High-Floor Depth", "exploit": "Spreads capital across rounds 3-7. Contest his target depth directly."},
-    5: {"name": "Raghu", "archetype": "🛡️ IDP & Elite TE Spender", "class": "arch-idp", "bias": "Heavy Defensive Allocation", "exploit": "Overpays on marquee defenders and tight ends. Nominate them early as bait."},
-    6: {"name": "Dee", "archetype": "🐢 Slow Bidder / Sniper", "class": "arch-hoard", "bias": "Opportunistic Value", "exploit": "Establish early price floors before he initiates late-draft bidding wars."},
-    7: {"name": "Manager 7", "archetype": "⚖️ Balanced Spender", "class": "arch-balanced", "bias": "Even Allocation", "exploit": "Bait with high-name recognition; draft superior VORP assets at lower tiers."},
-    8: {"name": "Manager 8", "archetype": "👑 Hyper-Aggressive Studs", "class": "arch-stars", "bias": "Dual Stud Strategy", "exploit": "Let him spend $120+ on two elite starters, then dominate the middle tiers."},
-    9: {"name": "Manager 9", "archetype": "🛡️ IDP Enthusiast", "class": "arch-idp", "bias": "High IDP Spend", "exploit": "Nominate top-ranked defenders early to drain offensive budget."},
-    10: {"name": "Manager 10", "archetype": "🐢 Endgame Monopolist", "class": "arch-hoard", "bias": "Endgame Sweeper", "exploit": "Do not leave top Tier 2 studs uncontested late; force him to pay fair value."}
+# 🌟 VERIFIED SOULJA SOULJA HISTORICAL CREW MAPPING
+SOULJA_SOULJA_DEFAULTS = {
+    1: {"handle": "addyrao", "name": "Addy Rao", "archetype": "🐢 Patient Hoarder", "class": "arch-hoard", "bias": "Late Room Dominator", "exploit": "Hoards cash early to clean up Tier 2/3 depth. Nominate his starting targets early to force capital spend."},
+    2: {"handle": "skongara", "name": "Shantanu", "archetype": "👑 Stars & Scrubs", "class": "arch-stars", "bias": "Aggressive Marquee RB/WR1", "exploit": "Defending champion with 73.2% win rate. Pushes aggressively for top-5 overall assets. Push bids to fair value and let him choke early budget."},
+    3: {"handle": "bluewatermelon", "name": "Bluewatermelon", "archetype": "🛡️ IDP & Floor Buyer", "class": "arch-idp", "bias": "Defensive Floor Focus", "exploit": "Conservative early bidder. Exploit his patient early cadence by securing deflated Tier 1/2 studs."},
+    4: {"handle": "DjBallz", "name": "Balaji (You)", "archetype": "👑 Disciplined Anchor", "class": "arch-stars", "bias": "Pure VORP & IDP Efficiency", "exploit": "Focuses strictly on positive mathematical surplus; avoids inflated emotional bidding traps."},
+    5: {"handle": "vnayini", "name": "Vinay", "archetype": "🐢 Mid-Tier Value Hunter", "class": "arch-hoard", "bias": "$15-$25 Value Sweeper", "exploit": "Consistent playoff contender (#4 finish in 2025). Nominate his secondary positions early to disrupt planned value traps."},
+    6: {"handle": "Kopite", "name": "Kopite", "archetype": "⚖️ Balanced Accumulator", "class": "arch-balanced", "bias": "Tier 2/3 Depth", "exploit": "66.1% historical win rate (#2 in 2025). Spreads capital evenly across rounds 3-8. Contest his target depth directly."},
+    7: {"handle": "chaituat", "name": "Chaitu", "archetype": "⚖️ Balanced Spender", "class": "arch-balanced", "bias": "Even Positional Allocation", "exploit": "Bait with high-name recognition; draft superior VORP assets in the subsequent tier."},
+    8: {"handle": "cardinalsin", "name": "Harsha", "archetype": "🛡️ IDP & Elite TE Spender", "class": "arch-idp", "bias": "Heavy Defensive & TE Allocation", "exploit": "2024 runner-up who consistently spends up for premier LBs and top TEs. Nominate them early to burn his offensive cap."},
+    9: {"handle": "rookieqbme", "name": "Siddanth", "archetype": "🥷 Opportunistic Value Sniper", "class": "arch-hoard", "bias": "Positional Run Exploiter", "exploit": "Capitalizes on late draft runs. Trigger tier cliffs at RB/TE to force him into suboptimal reaches."},
+    10: {"handle": "siddharthasagar", "name": "Siddu", "archetype": "👑 Superstar Chaser", "class": "arch-stars", "bias": "High-Ceiling Champion (2024)", "exploit": "2024 champion with league-high point totals. Chases elite studs; bait with overvalued landmines and avoid bidding wars on his target anchors."}
 }
 
 def clean_name(name):
@@ -161,8 +161,8 @@ def load_camp_overrides():
     return {}
 
 @st.cache_data(ttl=60)
-def load_historical_profiles():
-    hist_file = "soulja_3yr_auction_history.csv"
+def load_historical_standings():
+    hist_file = "soulja_3yr_final_standings.csv"
     if os.path.exists(hist_file):
         try:
             hdf = pd.read_csv(hist_file)
@@ -174,21 +174,10 @@ def load_historical_profiles():
 
 df_board = load_draft_board()
 clean_overrides = load_camp_overrides()
-df_hist = load_historical_profiles()
+df_standings = load_historical_standings()
 
-# Auto-Discover Managers from CSV if Available
 if "custom_manager_names" not in st.session_state:
-    st.session_state.custom_manager_names = {}
-    if not df_hist.empty and any(c in df_hist.columns for c in ['manager', 'owner', 'team_name']):
-        col = 'manager' if 'manager' in df_hist.columns else ('owner' if 'owner' in df_hist.columns else 'team_name')
-        discovered_managers = [str(m).strip() for m in df_hist[col].dropna().unique() if len(str(m).strip()) > 1]
-        for i in range(1, 11):
-            if i - 1 < len(discovered_managers):
-                st.session_state.custom_manager_names[i] = discovered_managers[i - 1]
-            else:
-                st.session_state.custom_manager_names[i] = SOULJA_SOULJA_PROFILES.get(i, {}).get("name", f"Team {i}")
-    else:
-        st.session_state.custom_manager_names = {s: p["name"] for s, p in SOULJA_SOULJA_PROFILES.items()}
+    st.session_state.custom_manager_names = {s: p["name"] for s, p in SOULJA_SOULJA_DEFAULTS.items()}
 
 df_board['live_multiplier'] = 1.0
 df_board['intel_note'] = ""
@@ -206,7 +195,7 @@ for idx, row in df_board.iterrows():
 
 df_board['live_vorp'] = df_board['vorp'] * df_board['live_multiplier']
 
-# 3. Valuation Math
+# 3. Positional Valuation Math
 off_mask = df_board['position'].isin(['QB', 'RB', 'WR', 'TE'])
 pos_off_vorp = df_board.loc[off_mask, 'live_vorp'].clip(lower=0).sum()
 df_board.loc[off_mask, 'fair_value'] = (df_board.loc[off_mask, 'live_vorp'].clip(lower=0) / max(1.0, pos_off_vorp)) * (180 * 10 * 0.75)
@@ -247,24 +236,24 @@ df_board['auction_rank'] = df_board.index + 1
 player_pos_map = dict(zip(df_board['clean_name'], df_board['position']))
 player_display_map = dict(zip(df_board['clean_name'], df_board['player_name']))
 
-# 4. Sidebar Controls & Custom Manager Names
+# 4. Sidebar Controls & Real Sleeper Sync
 st.sidebar.title("⚡ Soulja Soulja Radar")
 draft_mode = st.sidebar.radio("Draft Format:", ["🔨 Auction / Salary Cap", "🐍 Snake Draft"], horizontal=True)
 
 league_size = 10
 total_roster_slots = 18
 
-with st.sidebar.expander("👥 Soulja Soulja Managers", expanded=False):
+with st.sidebar.expander("👥 Soulja Soulja League Managers", expanded=False):
     for i in range(1, league_size + 1):
-        def_name = st.session_state.custom_manager_names.get(i, f"Team {i}")
+        def_name = st.session_state.custom_manager_names.get(i, SOULJA_SOULJA_DEFAULTS.get(i, {}).get("name", f"Team {i}"))
         new_n = st.text_input(f"Slot #{i} Manager:", value=def_name, key=f"mgr_slot_input_{i}")
         st.session_state.custom_manager_names[i] = new_n
 
 my_slot = st.sidebar.number_input(
-    "Your Slot / Team #", 
+    "Your Draft Slot / Team #", 
     min_value=1, 
     max_value=league_size, 
-    value=1,
+    value=4, # Default to Balaji (Slot 4)
     format="%d"
 )
 my_manager_display = st.session_state.custom_manager_names.get(my_slot, f"Team {my_slot}")
@@ -341,12 +330,12 @@ if room_mode == "🎮 Mock Sim Sandbox":
         st.session_state.drafted_picks = {}
         st.rerun()
 else:
-    draft_id = st.sidebar.text_input("Sleeper Draft / League ID", value="")
+    draft_id = st.sidebar.text_input("Sleeper Draft / League ID", value="1385816551680143360")
     if st.sidebar.button("🔄 Sync Live Sleeper API", use_container_width=True):
         st.rerun()
     if draft_id and draft_id.strip():
         try:
-            # Try loading users from league endpoint if available
+            # 1. Resolve live manager display names directly from Sleeper League endpoint
             u_res = requests.get(f"https://api.sleeper.app/v1/league/{draft_id.strip()}/users", timeout=4)
             if u_res.status_code == 200:
                 for idx, u in enumerate(u_res.json()):
@@ -355,6 +344,7 @@ else:
                     if disp and slot_idx <= league_size:
                         st.session_state.custom_manager_names[slot_idx] = disp
                         
+            # 2. Ingest live picks directly from Sleeper Draft endpoint
             p_res = requests.get(f"https://api.sleeper.app/v1/draft/{draft_id.strip()}/picks", timeout=4)
             if p_res.status_code == 200:
                 for p in p_res.json():
@@ -867,7 +857,7 @@ tab_off, tab_def, tab_intel, tab_matrix, tab_log = st.tabs([
     "⚔️ Offense War Room", 
     "🛡️ IDP & D/ST War Room", 
     "🚀 Live News & Active Intel Board", 
-    "🧠 Soulja Soulja Rival Intelligence & Behavior Matrix", 
+    "🧠 Soulja Soulja Rival Intelligence & Visual Analytics", 
     "📜 Drafted Log"
 ])
 
@@ -969,42 +959,34 @@ with tab_matrix:
         bids = sorted(data['bid_history'], reverse=True)
         idp_spent = data['itemized_spent']['IDP']
         total_picks_in_room = len(st.session_state.drafted_picks)
-        mgr_name = data['name']
+        mgr_display = data['name']
         
-        hist_prior = SOULJA_SOULJA_PROFILES.get(slot_num, {
-            "name": mgr_name, "archetype": "⚖️ Balanced Accumulator", "class": "arch-balanced",
-            "bias": "Standard Spread", "exploit": "Monitor early nominations."
+        def_p = SOULJA_SOULJA_DEFAULTS.get(slot_num, {
+            "name": mgr_display, "archetype": "⚖️ Balanced Accumulator",
+            "class": "arch-balanced", "bias": "Standard Spread", "exploit": "Monitor early nominations."
         })
-        
-        # Override with custom CSV if matching manager name is found
-        if not df_hist.empty:
-            for col in ['manager', 'owner', 'team_name']:
-                if col in df_hist.columns:
-                    c_matches = df_hist[df_hist[col].astype(str).str.lower() == mgr_name.lower()]
-                    if not c_matches.empty:
-                        if 'archetype' in c_matches.columns: hist_prior['archetype'] = c_matches.iloc[0]['archetype']
-                        if 'bias' in c_matches.columns: hist_prior['bias'] = c_matches.iloc[0]['bias']
-                        if 'exploit' in c_matches.columns: hist_prior['exploit'] = c_matches.iloc[0]['exploit']
-                        break
+        hist_title = def_p['archetype']
+        hist_class = def_p['class']
+        hist_exploit = f"<b>{def_p['bias']}:</b> {def_p['exploit']}"
 
         # Live Execution Drift Flags
         if spent >= 100 or (len(bids) >= 1 and bids[0] >= 55) or (len(bids) >= 2 and (bids[0] + bids[1]) >= 85):
-            return "👑 Stars & Scrubs (Live)", "arch-stars", f"<b>{mgr_name}:</b> Aggressively blew cap on top anchors early. Let him choke; push his next wants to full fair value."
+            return "👑 Stars & Scrubs (Live)", "arch-stars", f"<b>{mgr_display}:</b> Blew budget on top anchors (${spent} spent). Let him exhaust capital; push next wants to full fair value."
             
         elif idp_spent >= 10 or (data['pos_counts']['IDP'] >= 2 and idp_spent >= 6):
-            return "🛡️ IDP Spender (Live)", "arch-idp", f"<b>{mgr_name}:</b> Overpaying on defensive assets. Nominate top LBs/DLs early to drain his offensive budget."
+            return "🛡️ IDP Spender (Live)", "arch-idp", f"<b>{mgr_display}:</b> Overpaying on defensive assets. Nominate top LBs/DLs early to drain offensive budget."
             
         elif total_picks_in_room >= 6 and picks == 0:
-            return "🐢 Active Hoarder (Live)", "arch-hoard", f"<b>{mgr_name}:</b> Sitting completely cold. Nominate his primary positional targets to force cash drawdown."
+            return "🐢 Active Hoarder (Live)", "arch-hoard", f"<b>{mgr_display}:</b> Sitting completely cold (${spent} spent). Nominate his primary starting positional needs to force spending."
             
         elif picks >= 3 and spent <= 45:
-            return "🥷 Value Hunter (Live)", "arch-hoard", f"<b>{mgr_name}:</b> Accumulating high-efficiency depth. Contest his Tier 3 nominations directly."
+            return "🥷 Value Hunter (Live)", "arch-hoard", f"<b>{mgr_display}:</b> Accumulating cheap mid-tier assets. Contest his Tier 3 nominations directly."
             
         elif picks >= 3:
-            return "⚖️ Balanced Spender (Live)", "arch-balanced", f"<b>{mgr_name}:</b> Spreading capital evenly. Avoid bidding wars on his secondary non-targets."
+            return "⚖️ Balanced Spender (Live)", "arch-balanced", f"<b>{mgr_display}:</b> Spreading capital evenly across tiers. Avoid bidding wars on non-target positions."
             
         else:
-            return f"📜 {hist_prior['archetype']} (Historical)", hist_prior['class'], f"<b>{hist_prior['bias']}:</b> {hist_prior['exploit']}"
+            return f"📜 {hist_title} (Historical)", hist_class, hist_exploit
 
     matrix_rows = []
     for s, data in manager_wallets.items():
@@ -1053,9 +1035,37 @@ with tab_matrix:
     
     st.write(pd.DataFrame(matrix_rows).to_html(escape=False, index=False), unsafe_allow_html=True)
     
+    # Visual Analytics Section
+    st.markdown("---")
+    st.markdown("##### 📊 Visual League Analytics: Historical Scoring & Live Purchasing Power")
+    
+    chart_col1, chart_col2 = st.columns(2)
+    
+    with chart_col1:
+        st.markdown("**Historical 2-Year Average Fantasy Points (2024–2025):**")
+        if not df_standings.empty:
+            df_act = df_standings[df_standings['season'].isin([2024, 2025])]
+            if not df_act.empty:
+                fpts_summary = df_act.groupby('manager')['reg_fpts'].mean().reset_index()
+                handle_to_name = {p['handle']: p['name'] for p in SOULJA_SOULJA_DEFAULTS.values()}
+                fpts_summary['Manager Name'] = fpts_summary['manager'].map(handle_to_name).fillna(fpts_summary['manager'])
+                fpts_summary = fpts_summary.set_index('Manager Name')['reg_fpts'].sort_values(ascending=True)
+                st.bar_chart(fpts_summary)
+        else:
+            st.info("Historical standings CSV not detected.")
+            
+    with chart_col2:
+        st.markdown("**Live Manager Purchasing Power (Remaining Budget vs Max Bid):**")
+        live_spend_df = pd.DataFrame([{
+            "Manager": data['name'],
+            "Cash Left": 200 - data['spent'],
+            "Max Single Bid": max(1, (200 - data['spent']) - ((total_roster_slots - data['picks']) - 1))
+        } for data in manager_wallets.values()]).set_index("Manager")
+        st.bar_chart(live_spend_df)
+
     # Deep-Dive Rival Inspector
     st.markdown("---")
-    st.markdown("##### 🔍 Deep-Dive Rival Behavioral Inspector")
+    st.markdown("##### 🔍 Deep-Dive Soulja Soulja Manager Inspector")
     insp_col1, insp_col2 = st.columns([1.2, 2.5])
     with insp_col1:
         inspect_slot = st.selectbox(
