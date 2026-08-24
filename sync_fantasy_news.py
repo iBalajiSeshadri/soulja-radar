@@ -59,16 +59,29 @@ def get_available_groq_models(api_key: str):
     return ["openai/gpt-oss-20b", "openai/gpt-oss-120b", "qwen/qwen3.6-27b", "llama-3.3-70b-versatile"]
 
 def clean_name(name):
+    """Normalizes player name and resolves common alias spellings."""
     if not isinstance(name, str):
         return ""
     name = name.lower().strip()
     name = re.sub(r"[^\w\s]", "", name)
     name = re.sub(r"\b(jr|sr|iii|ii|iv|v)\b", "", name)
-    return " ".join(name.split())
+    name = " ".join(name.split())
+    
+    # Common phonetic and media aliases
+    aliases = {
+        "jeremiah love": "jeremiyah love",
+        "cam akers": "camerun akers",
+        "gabe davis": "gabriel davis",
+        "mitch trubisky": "mitchell trubisky",
+        "chig okazie": "chigoziem okonkwo",
+        "chig okonkwo": "chigoziem okonkwo",
+        "hollywood brown": "marquise brown"
+    }
+    return aliases.get(name, name)
 
 def clean_snippet_text(text, max_len=180):
     text = " ".join(text.split())
-    text = re.sub(r"^(Rotowire|CBS Sports|Fantasy Staff|RotoBaller|FFToday|32BeatWriters|FantasySP)\s*[:\-]\s*", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"^(Rotowire|CBS Sports|Fantasy Staff|RotoBaller|FFToday|32BeatWriters|FantasySP|Twitter)\s*[:\-]\s*", "", text, flags=re.IGNORECASE)
     if len(text) > max_len:
         return text[:max_len].rsplit(' ', 1)[0] + "..."
     return text
@@ -124,7 +137,6 @@ def parse_llm_batch_response(raw_text: str, batch_map: dict):
 
                 if matched_orig:
                     tag = str(it.get("tag") or "BEAT").upper().strip()
-                    # Filter out NOISE so normal healthy practices don't create visual clutter
                     if tag in ["NOISE", "ROUTINE", "NONE"]:
                         continue
 
@@ -137,7 +149,7 @@ def parse_llm_batch_response(raw_text: str, batch_map: dict):
                     results[matched_orig] = {
                         "multiplier": round(mult, 2),
                         "type": tag,
-                        "note": f"📰 {src_label}: {note if note else meta['snippet']}",
+                        "note": note if note else meta['snippet'],
                         "source_url": meta.get('source_url', '')
                     }
         except Exception:
@@ -160,25 +172,27 @@ def process_single_groq_batch(batch_items, api_key, candidate_models):
     ]
 
     system_prompt = f"""You are an expert quantitative NFL fantasy football beat analyst.
-Analyze these {len(prompt_payload)} genuine beat reports, camp updates, injury notes, and Superflex mock takeaways.
+Analyze these {len(prompt_payload)} genuine beat reports, Twitter wire updates, injury notes, and Superflex takeaways.
 
-TAG DEFINITIONS (Assign ONLY if supported by the text; otherwise assign NOISE):
-- TIER_JUMPER: Concrete 1st-team target domination, camp ascent, beating DBs consistently, winning starting job. (Multiplier: 1.06 to 1.15)
-- SUPERFLEX_EDGE: Superflex/2QB draft value surge, dual-threat rushing floor, late-round QB arbitrage. (Multiplier: 1.05 to 1.12)
-- ROLE_PINCH: Loss of goal-line or 3rd-down snaps to backups, 50/50 committee squeeze, struggling in camp. (Multiplier: 0.84 to 0.94)
+TAG CRITERIA:
+- TIER_JUMPER: Concrete 1st-team target dominance, camp ascent, winning starting job, manufactured touch design. (Multiplier: 1.06 to 1.15)
+- SUPERFLEX_EDGE: Superflex/2QB draft value surge, dual-threat rushing floor, late-round QB leverage. (Multiplier: 1.05 to 1.12)
+- ROLE_PINCH: Loss of goal-line/3rd-down snaps to backups, 50/50 committee squeeze. (Multiplier: 0.84 to 0.94)
 - VET_MAINTENANCE: Precautionary veteran rest, minor soreness with zero regular-season risk. (Multiplier: 0.96 to 0.99)
-- QUESTIONABLE: Active soft-tissue strain, limited practice reps, game-time decision risk. (Multiplier: 0.86 to 0.92)
+- QUESTIONABLE: Soft-tissue strain, limited practice reps, game-time decision risk. (Multiplier: 0.86 to 0.92)
 - INJURY_ALERT: Multi-week structural injury, surgery, PUP, or IR designation. (Multiplier: 0.75 to 0.85)
-- CLEARED: Full participant in 11-on-11 contact after prior injury. (Multiplier: 1.00 to 1.03)
+- CLEARED: Full participant in 11-on-11 contact after injury. (Multiplier: 1.00 to 1.03)
+- WAIVER_SURGE: Surging pickup on waiver wire (+1,000s of adds in 24h). (Multiplier: 1.04 to 1.08)
 - NOISE: Generic preseason fluff, routine quotes, or no meaningful draft impact. (Multiplier: 1.00)
 
 CRUNCHY NOTE RULES:
 - Write 1 concise, punchy sentence explaining the exact schematic, health, or volume impact.
-- Mention specific details (e.g. target volume, recovery timeline, backup threat).
+- For injuries: State injury type, recovery outlook, and critical handcuff implications.
+- For standouts/camp buzz: Detail target volume, depth-chart movement, or offensive role.
 
 OUTPUT FORMAT: Return a valid JSON array:
 [
-  {{"name": "Player Name", "tag": "TIER_JUMPER | SUPERFLEX_EDGE | ROLE_PINCH | VET_MAINTENANCE | QUESTIONABLE | INJURY_ALERT | CLEARED | NOISE", "mult": 1.10, "note": "1 concise sentence."}}
+  {{"name": "Player Name", "tag": "TIER_JUMPER | SUPERFLEX_EDGE | ROLE_PINCH | VET_MAINTENANCE | QUESTIONABLE | INJURY_ALERT | CLEARED | WAIVER_SURGE | NOISE", "mult": 1.10, "note": "1 concise sentence."}}
 ]
 """
 
@@ -210,14 +224,22 @@ OUTPUT FORMAT: Return a valid JSON array:
     return {}
 
 # ==============================================================================
-# 2. MAIN NEWS AGGREGATION PIPELINE (ALL REAL DATA SOURCES)
+# 2. MAIN NEWS AGGREGATION PIPELINE
 # ==============================================================================
 
 print("==================================================================")
 print("  SOULJA SOULJA MULTI-SOURCE BEAT, IDP & SUPERFLEX AGGREGATOR")
 print("==================================================================")
 
+# Load existing overrides to preserve valid historical notes
 camp_overrides = {}
+if os.path.exists("camp_overrides.json"):
+    try:
+        with open("camp_overrides.json", "r") as f:
+            camp_overrides = json.load(f)
+    except Exception:
+        pass
+
 scraped_intel_by_player = {}
 
 web_headers = {
@@ -226,6 +248,7 @@ web_headers = {
     'Accept-Language': 'en-US,en;q=0.9',
     'Referer': '[https://www.google.com/](https://www.google.com/)'
 }
+reddit_headers = {'User-Agent': 'python:soulja-fantasy-aggregator:v2.2 (by /u/DjBallz)'}
 
 # 1. Universal Player Registry from Sleeper API
 print("\n1. Building universal NFL player registry from Sleeper API...")
@@ -274,17 +297,57 @@ if p_db:
             c_p = clean_name(p_name)
             scraped_intel_by_player[c_p] = {
                 "player_name": p_name,
-                "raw_text": f"Sleeper Medical Wire: {desc}",
+                "raw_text": f"Official Injury Wire: {desc}",
                 "snippet": clean_snippet_text(desc),
                 "source_url": wire_link,
                 "source_name": "INJURY WIRE"
             }
             sleeper_injuries_found += 1
             
-    print(f"✓ Ingested and queued {sleeper_injuries_found} Sleeper injury records for LLM!")
+    print(f"✓ Ingested and queued {sleeper_injuries_found} Sleeper injury records for LLM analysis!")
 
-# 3. Source B: FFToday IDP Positional Projections (DL=50, LB=60, DB=70)
-print("\n3. [SOURCE 2] Ingesting FFToday IDP Player Wire & Statuses...")
+# 3. Source B: Twitter Beat Aggregation via Reddit Real-Time Feeds (r/nfl + r/fantasyfootball)
+print("\n3. [SOURCE 2] Ingesting Live Twitter Beat Reports via Curated Feeds...")
+twitter_matched = 0
+reddit_endpoints = [
+    ("[https://www.reddit.com/r/nfl/search.json?q=flair%3A%22Roster+Move%22+OR+flair%3A%22News%22&restrict_sr=1&sort=new&limit=40](https://www.reddit.com/r/nfl/search.json?q=flair%3A%22Roster+Move%22+OR+flair%3A%22News%22&restrict_sr=1&sort=new&limit=40)", "TWITTER NFL"),
+    ("[https://www.reddit.com/r/fantasyfootball/search.json?q=flair%3ANews&restrict_sr=1&sort=new&limit=40](https://www.reddit.com/r/fantasyfootball/search.json?q=flair%3ANews&restrict_sr=1&sort=new&limit=40)", "TWITTER BEAT")
+]
+
+for r_url, src_label in reddit_endpoints:
+    try:
+        r_resp = requests.get(r_url, headers=reddit_headers, timeout=6)
+        if r_resp.status_code == 200:
+            posts = r_resp.json().get("data", {}).get("children", [])
+            for post in posts:
+                d = post.get("data", {})
+                title = d.get("title", "")
+                selftext = d.get("selftext", "")
+                post_url = d.get("url", "[https://www.reddit.com](https://www.reddit.com)")
+                full_text = f"{title}. {selftext}".strip()
+                
+                # Check player mentions including alias resolution
+                matched_players = extract_players_fast(full_text, player_registry)
+                for full_pname in matched_players:
+                    c_p = clean_name(full_pname)
+                    if c_p not in scraped_intel_by_player:
+                        rep_match = re.search(r'\[(.*?)\]', title)
+                        reporter = rep_match.group(1).strip() if rep_match else src_label
+                        scraped_intel_by_player[c_p] = {
+                            "player_name": full_pname,
+                            "raw_text": full_text,
+                            "snippet": clean_snippet_text(title),
+                            "source_url": post_url,
+                            "source_name": f"{src_label} ({reporter})"
+                        }
+                        twitter_matched += 1
+    except Exception:
+        pass
+
+print(f"✓ Ingested {twitter_matched} curated real-time beat tweets & roster updates!")
+
+# 4. Source C: FFToday IDP Positional Projections (DL=50, LB=60, DB=70)
+print("\n4. [SOURCE 3] Ingesting FFToday IDP Player Wire & Statuses...")
 idp_wire_matched = 0
 if BS4_AVAILABLE:
     idp_pos_urls = [
@@ -326,8 +389,8 @@ if BS4_AVAILABLE:
 
 print(f"✓ Ingested {idp_wire_matched} FFToday IDP player profiles!")
 
-# 4. Source C: FFToday News & Articles Hub
-print("\n4. [SOURCE 3] Scraping FFToday News & Strategy Articles...")
+# 5. Source D: FFToday News & Articles Hub
+print("\n5. [SOURCE 4] Scraping FFToday News & Strategy Articles...")
 fftoday_matched = 0
 if BS4_AVAILABLE:
     fftoday_endpoints = [
@@ -363,8 +426,8 @@ if BS4_AVAILABLE:
 
 print(f"✓ Extracted {fftoday_matched} live reports from FFToday!")
 
-# 5. Source D: CBS Sports Multi-Page News Archive & Superflex Hub
-print("\n5. [SOURCE 4] Scraping CBS Sports Multi-Page News Archive & Superflex Hub...")
+# 6. Source E: CBS Sports Deep Multi-Page News Archive & Superflex Hub
+print("\n6. [SOURCE 5] Scraping CBS Sports Multi-Page News Archive & Superflex Hub...")
 cbs_matched = 0
 if BS4_AVAILABLE:
     cbs_pages = [
@@ -405,8 +468,8 @@ if BS4_AVAILABLE:
 
 print(f"✓ Extracted {cbs_matched} deep CBS Sports & Superflex mock updates across pages!")
 
-# 6. Source E: 32BeatWriters Aggregator Feed
-print("\n6. [SOURCE 5] Scraping 32BeatWriters.com Aggregator Feed...")
+# 7. Source F: 32BeatWriters Aggregator Feed
+print("\n7. [SOURCE 6] Scraping 32BeatWriters.com Aggregator Feed...")
 bw_matched = 0
 try:
     res_bw = requests.get(clean_url("[https://www.32beatwriters.com/](https://www.32beatwriters.com/)"), headers=web_headers, timeout=8)
@@ -449,8 +512,8 @@ except Exception as e:
 
 print(f"✓ Extracted {bw_matched} beat nuggets from 32BeatWriters.com!")
 
-# 7. Source F: Free Multi-Source XML RSS Feeds
-print("\n7. [SOURCE 6] Ingesting Non-Paywalled XML RSS Feeds...")
+# 8. Source G: Free Multi-Source XML RSS Feeds
+print("\n8. [SOURCE 7] Ingesting Non-Paywalled XML RSS Feeds...")
 rss_matched = 0
 rss_urls = [
     (clean_url("[https://www.rotoballer.com/feed](https://www.rotoballer.com/feed)"), "ROTOBALLER"),
@@ -489,8 +552,8 @@ for r_url, src_tag in rss_urls:
 
 print(f"✓ Ingested {rss_matched} RSS beat wire reports!")
 
-# 8. Source G: Sleeper 24-Hour Live Trending Waiver Adds
-print("\n8. [SOURCE 7] Querying Sleeper Live 24h Waiver Surges...")
+# 9. Source H: Sleeper 24-Hour Live Trending Waiver Adds
+print("\n9. [SOURCE 8] Querying Sleeper Live 24h Waiver Surges...")
 trending_adds_count = 0
 try:
     trending_adds = requests.get(clean_url("[https://api.sleeper.app/v1/players/nfl/trending/add?lookback_hours=24&limit=30](https://api.sleeper.app/v1/players/nfl/trending/add?lookback_hours=24&limit=30)"), timeout=5).json()
@@ -508,7 +571,7 @@ try:
                     c_p = clean_name(p_name)
                     scraped_intel_by_player[c_p] = {
                         "player_name": p_name,
-                        "raw_text": f"Surging on waiver wire across competitive leagues (+{add_cnt} adds in last 24 hours). Camp breakout or opportunity spike.",
+                        "raw_text": f"Surging on waiver wire across competitive leagues (+{add_cnt} adds in last 24 hours). Opportunity breakout or camp role spike.",
                         "snippet": f"Waiver Surge (+{add_cnt} adds in 24h)",
                         "source_url": wire_link,
                         "source_name": "WAIVER SURGE"
@@ -519,12 +582,12 @@ except Exception as e:
     print(f"⚠️ Sleeper Waiver Notice: {e}")
 
 # ==============================================================================
-# 9. CONCURRENT PARALLEL GROQ LLM SENTIMENT ANALYSIS
+# 10. CONCURRENT PARALLEL GROQ LLM SENTIMENT ANALYSIS (ALL REAL SIGNALS)
 # ==============================================================================
 
 queue_list = list(scraped_intel_by_player.values())
 target_count = min(len(queue_list), 220)
-print(f"\n9. Running Concurrent Parallel Groq LLM Analysis on {target_count} verified distinct player reports...")
+print(f"\n10. Running Concurrent Parallel Groq LLM Analysis on {target_count} real-world player reports...")
 
 llm_evaluated_count = 0
 api_key = get_active_groq_key()
@@ -545,7 +608,7 @@ if queue_list and api_key:
             except Exception:
                 pass
 
-print(f"✓ Groq LLM classified & enriched {llm_evaluated_count} high-signal player profiles!")
+print(f"✓ Groq LLM enriched {llm_evaluated_count} high-signal player profiles with crunchy tactical reads!")
 
 # Fallback for remaining items
 for art in queue_list[:target_count]:
@@ -554,13 +617,13 @@ for art in queue_list[:target_count]:
         src_label = art.get("source_name", "BEAT WIRE")
         camp_overrides[orig_player] = {
             "multiplier": 1.04 if "WAIVER" in src_label else 1.00,
-            "type": "WAIVER_SURGE" if "WAIVER" in src_label else "BEAT",
-            "note": f"📰 {src_label}: {art['snippet']}",
+            "type": "WAIVER_SURGE" if "WAIVER" in src_label else ("INJURY_ALERT" if "INJURY" in src_label else "BEAT"),
+            "note": art['snippet'],
             "source_url": art.get("source_url", "")
         }
 
 # ==============================================================================
-# 10. PERSIST OUTPUT TO CAMP_OVERRIDES.JSON
+# 11. PERSIST OUTPUT TO CAMP_OVERRIDES.JSON
 # ==============================================================================
 
 with open("camp_overrides.json", "w") as f:

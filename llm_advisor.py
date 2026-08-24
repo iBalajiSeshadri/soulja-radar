@@ -38,6 +38,16 @@ def parse_clean_output(text: str) -> str:
     text = re.sub(r'<think>[\s\S]*?</think>', '', text, flags=re.DOTALL)
     
     # 2. Extract final clean bullet block if scratchpad is present
+    final_bullets = re.findall(
+        r'(?:^|\n)\s*[\*\-•]\s+\*{0,2}(?:Verdict|Momentum|Target|Reach|Run Risk|Roster|Stealth|Psychological|Exploit|Action|Value|Risk|Floor|Ceiling)[\s\S]*?'
+        r'(?=(?:\n\s*[\*\-•]\s+\*{0,2}(?:Verdict|Momentum|Target|Reach|Run Risk|Roster|Stealth|Psychological|Exploit|Action|Value|Risk|Floor|Ceiling)|\Z))', 
+        text, 
+        flags=re.IGNORECASE
+    )
+    if len(final_bullets) >= 2:
+        return "\n\n".join([b.strip() for b in final_bullets[-3:]]).strip()
+        
+    # 3. If standard bullet extractor fails, find any markdown bullets at the end
     all_bullets = re.findall(r'(?:^|\n)\s*[\*\-•]\s+[\s\S]*?(?=(?:\n\s*[\*\-•]|\Z))', text)
     valid_bullets = [
         b.strip() for b in all_bullets 
@@ -46,11 +56,10 @@ def parse_clean_output(text: str) -> str:
             'bullet 1:', 'bullet 2:', 'bullet 3:', 'self-correction', "let's verify"
         ])
     ]
-    
     if len(valid_bullets) >= 2:
         return "\n\n".join(valid_bullets[-3:]).strip()
 
-    # 3. Fallback regex cleanup of common LLM thought artifacts
+    # 4. Fallback noise cleanup
     noise_patterns = [
         r'(?i)groq cloud\]',
         r'(?i)constraints:[\s\S]*?(?=\n\s*[\*\-•]|\Z)',
@@ -152,7 +161,7 @@ LIVE ROOM TELEMETRY:
 - Active Rival Needs & Cap: {live_rivals_telemetry}
 
 TASK:
-Provide exactly 3 direct markdown bullet points (NO preambles, NO thinking process, start immediately):
+Provide exactly 3 direct markdown bullet points (NO preambles, NO thinking process, start immediately with first bullet):
 * **Verdict & Price Cutoff**: State Anchor Stud, Price-Enforce Trap, or Fade, with the exact hard dollar limit (${max_bid_to}).
 * **Momentum & Roster Fit**: How this bid aligns with your current open roster gaps and recent draft velocity.
 * **Target Rival Exploit**: Name a specific active manager with high cap and need at {pos} to push into overpaying.
@@ -174,7 +183,7 @@ OPPONENTS ON THE CLOCK BEFORE YOUR NEXT PICK:
 - Teams Picking In-Between & Their Roster Gaps: {teams_between_needs}
 
 TASK:
-Provide exactly 3 direct markdown bullet points (NO preambles, NO thinking process, start immediately):
+Provide exactly 3 direct markdown bullet points (NO preambles, NO thinking process, start immediately with first bullet):
 * **Reach vs. Wait Verdict**: State TAKE NOW or RISK WAITING, with survival odds to pick #{next_my_pick}.
 * **Run Risk Assessment**: Which manager picking before your next turn is desperate for {pos} and will snipe him.
 * **Roster Construction Impact**: How locking in this player solidifies your build archetype vs available alternatives.
@@ -190,7 +199,7 @@ SITUATION:
 - Top Available Players: {unpicked_summary}
 
 TASK:
-Provide exactly 2 direct markdown bullet points (NO preambles, start immediately):
+Provide exactly 2 direct markdown bullet points (NO preambles, start immediately with first bullet):
 * **Target Nomination**: Name ONE exact player to nominate right now.
 * **Psychological Trap**: Explain how this drains specific rivals or establishes your positional advantage.
 """
@@ -210,6 +219,6 @@ USER QUESTION:
 STRICT INSTRUCTIONS:
 - Refer strictly to the grounded player values, VORPs, and ADPs provided above.
 - Never hallucinate fake auction prices.
-- Provide a razor-sharp, decisive recommendation in 2-3 direct markdown bullet points comparing their exact values and roster impact. Do NOT output internal reasoning.
+- Provide a razor-sharp, decisive recommendation in 2-3 direct markdown bullet points comparing their exact values and roster impact. Do NOT output internal reasoning or scratchpads.
 """
     return query_llm_hybrid(prompt)
