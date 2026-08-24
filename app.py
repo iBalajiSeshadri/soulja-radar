@@ -133,20 +133,6 @@ def clean_name(name):
     name = re.sub(r"\b(jr|sr|iii|ii|iv|v)\b", "", name)
     return " ".join(name.split())
 
-def generate_tactical_baseline_intel(player_name, pos, team, tier):
-    """Guarantees every top player has a rich tactical scouting blurb if breaking beat news is absent."""
-    if pos == "QB":
-        return f"👑 {team} QB1: Elite Tier 1 Superflex dual-threat anchor with top-3 weekly ceiling; high passing & rushing touchdown floor."
-    elif pos == "RB":
-        return f"👑 {team} RB1: Dynamic 3-down volume weapon with high-leverage goal-line touches and manufactured pass-catching schematics."
-    elif pos == "TE":
-        return f"👑 {team} TE1: Generational positional mismatch weapon; targeted as primary slot read and red zone focal point."
-    elif pos == "WR":
-        return f"👑 {team} WR1: Alpha target hog projected for 26%+ target share and high-efficiency air-yards dominance."
-    elif pos in ["LB", "DL", "DB"]:
-        return f"🛡️ {team} {pos}: Every-down defensive cornerstone with 90%+ snap rate and elite tackle/sack floor."
-    return f"Active starting {team} {pos}"
-
 # 1. State Initialization
 if "drafted_picks" not in st.session_state:
     st.session_state.drafted_picks = {}
@@ -215,7 +201,7 @@ if st.sidebar.button("🚀 Pull Latest News & Sync Wire", use_container_width=Tr
 
 draft_mode = st.sidebar.radio("Draft Format:", ["🔨 Auction / Salary Cap", "🐍 Snake Draft"], horizontal=True)
 
-# 🌐 MULTI-LEAGUE SCALING CONTROLS (SUPERFLEX VS 1-QB)
+# 🌐 MULTI-LEAGUE SCALING CONTROLS
 with st.sidebar.expander("⚙️ League Settings & Scaling (Shareable)", expanded=False):
     league_preset = st.selectbox(
         "League Preset:",
@@ -259,7 +245,7 @@ st.sidebar.caption(f"Drafting as: **{my_manager_display}** (Slot {my_slot})")
 
 room_mode = st.sidebar.radio("Connection Mode:", ["🎮 Mock Sim Sandbox", "🌐 Live Sleeper Room Sync"], horizontal=True)
 
-# 4. Dynamic VORP & Multi-Source Override Binding
+# 4. Dynamic VORP & Multi-Source Override Binding (GENUINE DATA ONLY)
 df_board['live_multiplier'] = 1.0
 df_board['intel_note'] = ""
 df_board['intel_tag'] = ""
@@ -285,10 +271,6 @@ for idx, row in df_board.iterrows():
         df_board.at[idx, 'intel_note'] = matched_data.get('note', '')
         df_board.at[idx, 'intel_tag'] = matched_data.get('type', '')
         df_board.at[idx, 'source_url'] = matched_data.get('source_url', '')
-    else:
-        # Guarantee universal rich scouting baseline
-        df_board.at[idx, 'intel_note'] = generate_tactical_baseline_intel(row['player_name'], row['position'], row['team'], row['tier'])
-        df_board.at[idx, 'intel_tag'] = "STUD_ANCHOR" if row['tier'] == 'Tier 1' else "SCOUT"
 
 # Scalable VORP Adjuster: 1-QB shifts QB VORP down to standard baseline
 if qb_format == "Standard 1-QB":
@@ -441,10 +423,10 @@ else:
         st.rerun()
     if draft_id and draft_id.strip():
         try:
-            u_res = requests.get(f"https://api.sleeper.app/v1/league/{draft_id.strip()}/users", timeout=4)
+            u_res = requests.get(f"[https://api.sleeper.app/v1/league/](https://api.sleeper.app/v1/league/){draft_id.strip()}/users", timeout=4)
             if u_res.status_code == 200:
                 user_map_raw = {u['user_id']: (u.get('display_name') or u.get('metadata', {}).get('team_name')) for u in u_res.json()}
-                r_res = requests.get(f"https://api.sleeper.app/v1/league/{draft_id.strip()}/rosters", timeout=4)
+                r_res = requests.get(f"[https://api.sleeper.app/v1/league/](https://api.sleeper.app/v1/league/){draft_id.strip()}/rosters", timeout=4)
                 if r_res.status_code == 200:
                     for r in r_res.json():
                         r_id = r.get('roster_id')
@@ -457,7 +439,7 @@ else:
                                     break
                             st.session_state.custom_manager_names[r_id] = disp_name
                         
-            p_res = requests.get(f"https://api.sleeper.app/v1/draft/{draft_id.strip()}/picks", timeout=4)
+            p_res = requests.get(f"[https://api.sleeper.app/v1/draft/](https://api.sleeper.app/v1/draft/){draft_id.strip()}/picks", timeout=4)
             if p_res.status_code == 200:
                 for p in p_res.json():
                     meta = p.get('metadata', {})
@@ -522,7 +504,7 @@ if st.sidebar.button("Ask AI Strategist", use_container_width=True):
                 grounded_player_cards.append(
                     f"• {p_row['player_name']} ({p_row['position']}): Tier: {p_row['tier']} | "
                     f"Model Fair Value: ${int(p_row['fair_value'])} | Market ADP: ${int(p_row['market_cost'])} (Consensus Rank #{int(p_row['custom_rank'])}) | "
-                    f"True VORP: +{round(p_row['live_vorp'], 1)} pts | Intel: {p_row['intel_note']}"
+                    f"True VORP: +{round(p_row['live_vorp'], 1)} pts | Intel: {p_row['intel_note'] if p_row['intel_note'] else 'Healthy & Active'}"
                 )
                 
         telemetry_str = "\n".join(grounded_player_cards) if grounded_player_cards else "No specific player matches detected."
@@ -781,7 +763,7 @@ else:
                 '<div style="background:#131b2e; border-top:4px solid #10b981; padding:12px; border-radius:6px; height:100%;">'
                 f'<div style="font-size:0.75rem; color:#10b981; font-weight:700;">{s_title}</div>'
                 f'<div style="font-size:1.15rem; font-weight:700; color:white; margin:4px 0;">{best_p["player_name"]} <span class="badge-pos pos-{best_p["position"]}">{best_p["position"]}</span></div>'
-                f'<div style="font-size:0.85rem; color:#94a3b8;">Consensus ADP: <b>#{int(best_p["custom_rank"])}</b> | VORP: <b style="color:#10b981;">+{round(best_p["live_vorp"], 1)}</b> ({best_p["tier"]})</div>'
+                f'<div style="font-size:0.85rem; color:#94a3b8;">Consensus ADP: <b>#{int(best_p["custom_rank"])}</b> | True VORP: <b style="color:#10b981;">+{round(best_p["live_vorp"], 1)}</b> ({best_p["tier"]})</div>'
                 f'<div style="font-size:0.75rem; color:#cbd5e1; margin-top:6px;"><b>Recommendation:</b> Premier VORP target to fill your starting {best_p["position"]} slot.</div>'
                 '</div>', unsafe_allow_html=True
             )
@@ -903,7 +885,8 @@ with col_left:
         p_url = str(p_data.get('source_url', '')).strip()
         p_link = f' <a href="{p_url}" target="_blank" class="source-link">🔗 Read Source</a>' if p_url and p_url.startswith("http") else ''
         
-        st.markdown(f"**Position:** <span class='badge-pos pos-{p_data['position']}'>{p_data['position']}</span> | **Team:** `{p_data['team']}` | {tag_html} {note}{p_link}", unsafe_allow_html=True)
+        intel_display = f"{tag_html} {note}{p_link}" if note else "—"
+        st.markdown(f"**Position:** <span class='badge-pos pos-{p_data['position']}'>{p_data['position']}</span> | **Team:** `{p_data['team']}` | {intel_display}", unsafe_allow_html=True)
 
         # 🧠 FEATURE 1: DYNAMIC LIVE AI STRATEGY ENGINE
         ai_btn_label = "🤖 Generate Real-Time AI Tactical Read" if draft_mode == "🔨 Auction / Salary Cap" else "🤖 Generate Snake Turn & Reach Analysis"
@@ -1076,7 +1059,7 @@ def render_board_table(df_subset):
 
         tag_badge = ""
         tag = str(r['intel_tag']).upper()
-        note = r['intel_note']
+        note = str(r['intel_note']).strip()
         
         if "TIER_JUMPER" in tag:
             tag_badge = '<span class="intel-tier-jumper">🚀 TIER JUMPER</span> '
@@ -1099,7 +1082,7 @@ def render_board_table(df_subset):
 
         url = str(r.get('source_url', '')).strip()
         link_html = f' <a href="{url}" target="_blank" class="source-link">🔗 Source</a>' if url and url.startswith("http") else ''
-        intel_text = f"{pref_badge}{tag_badge}{note}{link_html}" if note else f"{pref_badge}Active {r['team']} {r['position']}"
+        intel_text = f"{pref_badge}{tag_badge}{note}{link_html}" if note else "—"
 
         row_dict = {
             "Priority": int(r['auction_rank']),
@@ -1145,7 +1128,7 @@ with tab_def:
 
 with tab_intel:
     df_i = df_unpicked[df_unpicked['intel_note'] != ""]
-    st.markdown(f"**Showing {len(df_i)} active players with tactical scouting profiles, live news, and injury alerts:**")
+    st.markdown(f"**Showing {len(df_i)} active players with verified live news, beat insights, or injury alerts:**")
     render_board_table(df_i)
 
 with tab_matrix:
@@ -1232,7 +1215,6 @@ with tab_matrix:
     st.markdown("##### 📊 Visual League Analytics: Purchasing Power & Spending Distributions")
     chart_col1, chart_col2 = st.columns(2)
     with chart_col1:
-        st.markdown("**Historical 2-Year Average Top-3 Stud Spend ($ out of $200):**")
         top3_hist_df = pd.DataFrame([
             {"Manager": "Kopite", "Top-3 Spend ($)": 155.5},
             {"Manager": "Chaitu", "Top-3 Spend ($)": 133.0},
@@ -1248,7 +1230,6 @@ with tab_matrix:
         st.bar_chart(top3_hist_df)
             
     with chart_col2:
-        st.markdown("**Live Manager Purchasing Power (Remaining Budget vs Max Bid):**")
         live_spend_df = pd.DataFrame([{
             "Manager": data['name'],
             "Cash Left": 200 - data['spent'],
