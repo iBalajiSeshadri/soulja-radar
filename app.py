@@ -146,7 +146,7 @@ if "last_ai_nom" not in st.session_state:
     st.session_state.last_ai_nom = ""
 
 # 2. Data Loading Engine
-@st.cache_data(ttl=15)
+@st.cache_data(ttl=10)
 def load_draft_board():
     board_file = "top_150_draft_board.csv"
     if not os.path.exists(board_file):
@@ -210,7 +210,6 @@ for idx, row in df_board.iterrows():
     c_p = row['clean_name']
     matched_data = clean_overrides.get(c_p)
     if not matched_data:
-        # Check token match
         p_tokens = set(c_p.split())
         for o_name, o_data in clean_overrides.items():
             o_tokens = set(o_name.split())
@@ -272,12 +271,12 @@ st.sidebar.title("⚡ Soulja Soulja Radar")
 
 # 🚀 1-Click Live News & Scraper Sync Button
 if st.sidebar.button("🚀 Pull Latest News & Sync Wire", use_container_width=True, type="primary"):
-    with st.spinner("Scraping live beat wires, Sleeper injury reports, Superflex mocks, and recalculating board..."):
+    with st.spinner("Scraping live beat wires, Sleeper reports, Superflex mocks, and recalculating board..."):
         try:
             subprocess.run([sys.executable, "sync_fantasy_news.py"], capture_output=True, text=True)
             subprocess.run([sys.executable, "fantasy_engine.py"], capture_output=True, text=True)
             st.cache_data.clear()
-            st.toast("✅ Live News, Injuries & Board Synchronized!", icon="🔥")
+            st.toast("✅ Live News, Superflex Mocks & Board Synchronized!", icon="🔥")
             st.rerun()
         except Exception as e:
             st.sidebar.error(f"Sync execution notice: {e}")
@@ -390,10 +389,10 @@ else:
         st.rerun()
     if draft_id and draft_id.strip():
         try:
-            u_res = requests.get(f"https://api.sleeper.app/v1/league/{draft_id.strip()}/users", timeout=4)
+            u_res = requests.get(f"[https://api.sleeper.app/v1/league/](https://api.sleeper.app/v1/league/){draft_id.strip()}/users", timeout=4)
             if u_res.status_code == 200:
                 user_map_raw = {u['user_id']: (u.get('display_name') or u.get('metadata', {}).get('team_name')) for u in u_res.json()}
-                r_res = requests.get(f"https://api.sleeper.app/v1/league/{draft_id.strip()}/rosters", timeout=4)
+                r_res = requests.get(f"[https://api.sleeper.app/v1/league/](https://api.sleeper.app/v1/league/){draft_id.strip()}/rosters", timeout=4)
                 if r_res.status_code == 200:
                     for r in r_res.json():
                         r_id = r.get('roster_id')
@@ -406,7 +405,7 @@ else:
                                     break
                             st.session_state.custom_manager_names[r_id] = disp_name
                         
-            p_res = requests.get(f"https://api.sleeper.app/v1/draft/{draft_id.strip()}/picks", timeout=4)
+            p_res = requests.get(f"[https://api.sleeper.app/v1/draft/](https://api.sleeper.app/v1/draft/){draft_id.strip()}/picks", timeout=4)
             if p_res.status_code == 200:
                 for p in p_res.json():
                     meta = p.get('metadata', {})
@@ -478,7 +477,6 @@ st.sidebar.markdown("### 🤖 Ask the AI War Room")
 ai_query = st.sidebar.text_input("Ask situational draft question:", placeholder="e.g. Should I take Gibbs or Bijan?")
 if st.sidebar.button("Ask AI Strategist", use_container_width=True):
     if ai_query.strip():
-        # RAG Entity Extraction from user question
         grounded_player_cards = []
         q_tokens = clean_name(ai_query).split()
         
@@ -487,7 +485,6 @@ if st.sidebar.button("Ask AI Strategist", use_container_width=True):
             p_parts = p_clean.split()
             last_n = p_parts[-1] if p_parts else ""
             
-            # Check full name or distinct last name in query
             if p_clean in ai_query.lower() or (len(last_n) >= 4 and last_n in q_tokens):
                 grounded_player_cards.append(
                     f"• {p_row['player_name']} ({p_row['position']}): Tier: {p_row['tier']} | "
@@ -751,26 +748,26 @@ else:
                 '<div style="background:#131b2e; border-top:4px solid #10b981; padding:12px; border-radius:6px; height:100%;">'
                 f'<div style="font-size:0.75rem; color:#10b981; font-weight:700;">{s_title}</div>'
                 f'<div style="font-size:1.15rem; font-weight:700; color:white; margin:4px 0;">{best_p["player_name"]} <span class="badge-pos pos-{best_p["position"]}">{best_p["position"]}</span></div>'
-                f'<div style="font-size:0.85rem; color:#94a3b8;">Consensus ADP: <b>#{int(best_p["custom_rank"])}</b> | VORP: <b style="color:#10b981;">{round(best_p["live_vorp"], 1)}</b> ({best_p["tier"]})</div>'
+                f'<div style="font-size:0.85rem; color:#94a3b8;">Consensus ADP: <b>#{int(best_p["custom_rank"])}</b> | VORP: <b style="color:#10b981;">+{round(best_p["live_vorp"], 1)}</b> ({best_p["tier"]})</div>'
                 f'<div style="font-size:0.75rem; color:#cbd5e1; margin-top:6px;"><b>Recommendation:</b> Premier VORP target to fill your starting {best_p["position"]} slot.</div>'
                 '</div>', unsafe_allow_html=True
             )
 
     with snake_col2:
-        non_faded_unpicked['adp_fall'] = curr_overall_pick - non_faded_unpicked['custom_rank']
-        fallers = non_faded_unpicked[non_faded_unpicked['adp_fall'] >= 2].sort_values(by=['adp_fall', 'live_vorp'], ascending=[False, False]).head(4)
+        non_faded_unpicked['adp_surplus'] = non_faded_unpicked['custom_rank'] - non_faded_unpicked['auction_rank']
+        fallers = non_faded_unpicked[non_faded_unpicked['adp_surplus'] >= 2].sort_values(by=['adp_surplus', 'live_vorp'], ascending=[False, False]).head(4)
         
         faller_rows = []
         for _, f_row in fallers.iterrows():
             f_starred = "⭐ " if f_row['clean_name'] in st.session_state.my_targets else ""
-            drop_spots = int(f_row['adp_fall'])
+            val_spots = int(f_row['adp_surplus'])
             row_html = (
                 '<div style="display:flex; justify-content:space-between; align-items:center; background:#0b0f19; padding:5px 8px; margin-bottom:4px; border-radius:4px; border-left:3px solid #3b82f6;">'
                 '<div>'
                 f'<span class="badge-pos pos-{f_row["position"]}">{f_row["position"]}</span> <b>{f_row["player_name"]}</b> {f_starred}<br>'
-                f'<span style="font-size:0.72rem; color:#94a3b8;">ADP: #{int(f_row["custom_rank"])} | VORP: {round(f_row["live_vorp"], 1)}</span>'
+                f'<span style="font-size:0.72rem; color:#94a3b8;">ADP: #{int(f_row["custom_rank"])} | VORP Rank: #{int(f_row["auction_rank"])}</span>'
                 '</div>'
-                f'<div style="font-size:0.8rem; font-weight:700; color:#38bdf8;">+{drop_spots} Spots</div>'
+                f'<div style="font-size:0.8rem; font-weight:700; color:#38bdf8;">+{val_spots} Spots Value</div>'
                 '</div>'
             )
             faller_rows.append(row_html)
@@ -778,7 +775,7 @@ else:
         rendered_fallers = "".join(faller_rows) if faller_rows else '<div style="font-size:0.85rem; color:#94a3b8;">Draft proceeding precisely on consensus ADP.</div>'
         st.markdown(
             f'<div style="background:#131b2e; border-top:4px solid #3b82f6; padding:10px 12px; border-radius:6px; height:100%;">'
-            f'<div style="font-size:0.75rem; color:#3b82f6; font-weight:700; margin-bottom:6px;">📉 TOP ADP FALLERS (VALUE DROPS)</div>'
+            f'<div style="font-size:0.75rem; color:#3b82f6; font-weight:700; margin-bottom:6px;">💎 TOP MARKET VALUE TARGETS (STEALS AT ADP)</div>'
             f'{rendered_fallers}'
             f'</div>', unsafe_allow_html=True
         )
@@ -828,6 +825,7 @@ with col_left:
         plan_cap = int(round(fair_val * 0.95))
         delta_vs_mkt = int(bid_to - mkt_val)
         adp_rank = int(p_data['custom_rank'])
+        my_board_rank = int(p_data['auction_rank'])
         
         p_card_col1, p_card_col2, p_card_col3, p_card_col4 = st.columns(4)
         if draft_mode == "🔨 Auction / Salary Cap":
@@ -837,10 +835,10 @@ with col_left:
             p_card_col4.metric("MAX BID-TO", f"${bid_to}", f"{delta_vs_mkt:+d} vs Mkt")
         else:
             p_card_col1.metric("Consensus ADP", f"#{adp_rank}")
-            adp_delta = curr_overall_pick - adp_rank
-            p_card_col2.metric("ADP Delta", f"{adp_delta:+d} Spots", "Value Drop" if adp_delta > 0 else "Reach")
+            val_delta = adp_rank - my_board_rank
+            p_card_col2.metric("Market Value Delta", f"{val_delta:+d} Spots", "Value Steal" if val_delta > 0 else "Overpriced")
             p_card_col3.metric("Tier Rating", f"{p_data['tier']}")
-            p_card_col4.metric("VORP Rating", f"{round(p_data['live_vorp'], 1)} pts")
+            p_card_col4.metric("VORP Rating", f"+{round(p_data['live_vorp'], 1)} pts")
         
         tag_html = ""
         c_name_curr = p_data['clean_name']
@@ -869,15 +867,7 @@ with col_left:
         elif "WAIVER" in tag or "BREAKOUT" in tag or "SLEEPER SURGE" in note:
             tag_html += '<span class="intel-surge">🔥 WAIVER SPIKE</span> '
 
-        if p_data['position'] == 'DEF':
-            fallback_desc = DST_SCHEDULE_MAP.get(p_data['team'], f"Active {p_data['team']} DEF")
-        else:
-            d_raw = p_data.get('depth_chart_order')
-            d_order = int(d_raw) if pd.notna(d_raw) else 1
-            fallback_desc = f"Active {p_data['team']} {p_data['position']} • Depth Chart: #{d_order}"
-            
-        intel_display = note if note else fallback_desc
-        
+        intel_display = note if note else f"Active {p_data['team']} {p_data['position']}"
         p_url = str(p_data.get('source_url', '')).strip()
         p_link = f' <a href="{p_url}" target="_blank" class="source-link">🔗 Read Source</a>' if p_url and p_url.startswith("http") else ''
         
@@ -1014,7 +1004,7 @@ with col_right:
             card_html = (
                 '<div style="background:#131b2e; border-left:3px solid #3b82f6; padding:8px 12px; margin-bottom:6px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">'
                 f'<div><b>{hr["player_name"]}</b> <span class="badge-pos pos-{hr["position"]}">{hr["position"]}</span><br>'
-                f'<span style="font-size:0.75rem; color:#94a3b8;">ADP: #{int(hr["custom_rank"])} | VORP: <b>{round(hr["live_vorp"], 1)}</b> ({hr["tier"]})</span></div>'
+                f'<span style="font-size:0.75rem; color:#94a3b8;">ADP: #{int(hr["custom_rank"])} | VORP: <b>+{round(hr["live_vorp"], 1)}</b> ({hr["tier"]})</span></div>'
                 f'<span class="landmine-tag" style="background:#3b82f620; color:#60a5fa; border:1px solid #3b82f640;">ELITE VORP</span></div>'
             )
             st.markdown(card_html, unsafe_allow_html=True)
@@ -1075,17 +1065,9 @@ def render_board_table(df_subset):
         elif "BEAT" in tag or "BEAT WIRE" in note:
             tag_badge = '<span class="intel-beat">📰 LIVE BEAT</span> '
 
-        if pos_curr == 'DEF':
-            fallback_desc = DST_SCHEDULE_MAP.get(r['team'], f"Active {r['team']} DEF")
-        else:
-            d_raw = r.get('depth_chart_order')
-            d_order = int(d_raw) if pd.notna(d_raw) else 1
-            fallback_desc = f"Active {r['team']} {r['position']} • Depth Chart: #{d_order}"
-            
         url = str(r.get('source_url', '')).strip()
         link_html = f' <a href="{url}" target="_blank" class="source-link">🔗 Source</a>' if url and url.startswith("http") else ''
-        
-        intel_text = f"{pref_badge}{tag_badge}{note}{link_html}" if note else f"{pref_badge}{fallback_desc}"
+        intel_text = f"{pref_badge}{tag_badge}{note}{link_html}" if note else f"{pref_badge}Active {r['team']} {r['position']}"
 
         row_dict = {
             "Priority": int(r['auction_rank']),
@@ -1101,8 +1083,13 @@ def render_board_table(df_subset):
             row_dict["Market ADP"] = f"${int(r['market_cost'])}"
         else:
             row_dict["Consensus ADP"] = f"#{int(r['custom_rank'])}"
-            adp_diff = curr_overall_pick - int(r['custom_rank'])
-            row_dict["ADP Status"] = f'<span style="color:#38bdf8; font-weight:700;">+{adp_diff} (Faller)</span>' if adp_diff > 0 else (f'<span style="color:#f87171;">{adp_diff} (Reach)</span>' if adp_diff < 0 else 'Even')
+            val_delta = int(r['custom_rank']) - int(r['auction_rank'])
+            if val_delta > 0:
+                row_dict["Market Value Delta"] = f'<span style="color:#34d399; font-weight:700;">+{val_delta} (Steal at ADP)</span>'
+            elif val_delta < 0:
+                row_dict["Market Value Delta"] = f'<span style="color:#f87171; font-weight:700;">{val_delta} (Overpriced)</span>'
+            else:
+                row_dict["Market Value Delta"] = '<span style="color:#94a3b8; font-weight:700;">Market Fair</span>'
 
         row_dict["Intel / Real-Time Wire"] = intel_text
         table_rows.append(row_dict)
