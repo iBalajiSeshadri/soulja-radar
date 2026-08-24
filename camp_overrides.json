@@ -2120,7 +2120,7 @@
   "Tank Dell": {
     "multiplier": 0.88,
     "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee - ACL + MCL) - Surgery | \ud83d\udd25 SLEEPER SURGE (+11888 adds)",
+    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee - ACL + MCL) - Surgery | \ud83d\udd25 SLEEPER SURGE (+11752 adds)",
     "source_url": "https://www.rotowire.com/football/player/tank-dell-16935"
   },
   "Justin Dedich": {
@@ -3158,175 +3158,175 @@
   "Jack Strand": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+150435 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+135555 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=jack-strand"
   },
   "Malik Davis": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+65952 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+78480 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=malik-davis"
   },
   "Xavier Hutchinson": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+52381 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+48454 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=xavier-hutchinson"
-  },
-  "Barion Brown": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+42912 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=barion-brown"
   },
   "Mike Washington": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+42392 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+44133 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=mike-washington"
+  },
+  "Barion Brown": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+40050 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player=barion-brown"
   },
   "Dylan Laube": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+35812 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+39270 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=dylan-laube"
   },
   "MarShawn Lloyd": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+35478 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+33723 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=marshawn-lloyd"
   },
   "Darren Waller": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+30672 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+29799 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=darren-waller"
   },
   "Caleb Douglas": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+27336 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+27240 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=caleb-douglas"
   },
   "Malik Washington": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+23312 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+23424 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=malik-washington"
-  },
-  "Jacksonville Jaguars": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+21588 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=jacksonville-jaguars"
   },
   "Jalen Nailor": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+21402 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+21879 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=jalen-nailor"
+  },
+  "Jacksonville Jaguars": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+21804 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player=jacksonville-jaguars"
   },
   "Seth McGowan": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+19640 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+20600 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=seth-mcgowan"
-  },
-  "Devaughn Vele": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+19544 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=devaughn-vele"
   },
   "Roman Hemby": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+16938 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+18996 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=roman-hemby"
+  },
+  "Devaughn Vele": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+18921 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player=devaughn-vele"
   },
   "Odell Beckham": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+16618 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+15715 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=odell-beckham"
-  },
-  "Joe Milton": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+16336 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=joe-milton"
   },
   "Kaelon Black": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+15666 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+15407 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=kaelon-black"
   },
   "Malik Willis": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+14504 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+14749 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=malik-willis"
   },
   "Tyler Loop": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+14076 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+14616 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=tyler-loop"
+  },
+  "Joe Milton": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+14520 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player=joe-milton"
   },
   "Keaton Mitchell": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+14049 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+14472 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=keaton-mitchell"
-  },
-  "Detroit Lions": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13851 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=detroit-lions"
   },
   "Colbie Young": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13560 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13710 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=colbie-young"
+  },
+  "Detroit Lions": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13545 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player=detroit-lions"
   },
   "Najee Harris": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13220 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+12350 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=najee-harris"
   },
   "Cyrus Allen": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+12336 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+12270 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=cyrus-allen"
-  },
-  "Keenan Allen": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+12076 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=keenan-allen"
   },
   "Terrance Ferguson": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+11464 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+12040 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=terrance-ferguson"
+  },
+  "Keenan Allen": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+11844 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player=keenan-allen"
   },
   "Chris Rodriguez": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+11259 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+11583 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=chris-rodriguez"
   },
   "Ryan Flournoy": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+10872 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+10784 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=ryan-flournoy"
   }
 }
