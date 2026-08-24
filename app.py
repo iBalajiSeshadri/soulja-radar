@@ -15,6 +15,8 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+LEAGUE_ID = "1385816551680143360"
+
 # Custom Styling & Archetype Badges
 st.markdown("""
 <style>
@@ -99,16 +101,16 @@ DST_SCHEDULE_MAP = {
 
 # 🌟 VERIFIED SOULJA SOULJA HISTORICAL CREW MAPPING
 SOULJA_SOULJA_DEFAULTS = {
-    1: {"handle": "addyrao", "name": "Addy Rao", "archetype": "🐢 Patient Hoarder", "class": "arch-hoard", "bias": "Late Room Dominator", "exploit": "Hoards cash early to clean up Tier 2/3 depth. Nominate his starting targets early to force capital spend."},
-    2: {"handle": "skongara", "name": "Shantanu", "archetype": "👑 Stars & Scrubs", "class": "arch-stars", "bias": "Aggressive Marquee RB/WR1", "exploit": "Defending champion with 73.2% win rate. Pushes aggressively for top-5 overall assets. Push bids to fair value and let him choke early budget."},
-    3: {"handle": "bluewatermelon", "name": "Bluewatermelon", "archetype": "🛡️ IDP & Floor Buyer", "class": "arch-idp", "bias": "Defensive Floor Focus", "exploit": "Conservative early bidder. Exploit his patient early cadence by securing deflated Tier 1/2 studs."},
-    4: {"handle": "DjBallz", "name": "Balaji (You)", "archetype": "👑 Disciplined Anchor", "class": "arch-stars", "bias": "Pure VORP & IDP Efficiency", "exploit": "Focuses strictly on positive mathematical surplus; avoids inflated emotional bidding traps."},
+    1: {"handle": "addyrao", "name": "Addy Rao", "archetype": "🐢 Patient Hoarder", "class": "arch-hoard", "bias": "Late Room Dominator", "exploit": "Hoards cash early (2,366.2 avg pts). Nominate his primary starting targets early to force capital spend."},
+    2: {"handle": "skongara", "name": "Shantanu", "archetype": "👑 Stars & Scrubs", "class": "arch-stars", "bias": "Aggressive Marquee RB/WR1", "exploit": "2025 champion (73.2% win rate, 2,443.4 avg pts). Pushes for top-5 overall assets. Push bids to fair value and let him choke early budget."},
+    3: {"handle": "bluewatermelon", "name": "Bluewatermelon", "archetype": "🛡️ IDP & Floor Buyer", "class": "arch-idp", "bias": "Defensive Floor Focus", "exploit": "Conservative early bidder. Capitalize on his patient early cadence by securing deflated Tier 1/2 studs."},
+    4: {"handle": "DjBallz", "name": "Balaji (You)", "archetype": "👑 Disciplined Anchor", "class": "arch-stars", "bias": "Pure VORP & IDP Efficiency", "exploit": "Strict mathematical surplus execution; avoids emotional bidding traps."},
     5: {"handle": "vnayini", "name": "Vinay", "archetype": "🐢 Mid-Tier Value Hunter", "class": "arch-hoard", "bias": "$15-$25 Value Sweeper", "exploit": "Consistent playoff contender (#4 finish in 2025). Nominate his secondary positions early to disrupt planned value traps."},
-    6: {"handle": "Kopite", "name": "Kopite", "archetype": "⚖️ Balanced Accumulator", "class": "arch-balanced", "bias": "Tier 2/3 Depth", "exploit": "66.1% historical win rate (#2 in 2025). Spreads capital evenly across rounds 3-8. Contest his target depth directly."},
+    6: {"handle": "Kopite", "name": "Kopite", "archetype": "⚖️ Balanced Accumulator", "class": "arch-balanced", "bias": "Tier 2/3 Depth", "exploit": "66.1% win rate (#2 in 2025). Spreads capital evenly across rounds 3-8. Contest his target depth directly."},
     7: {"handle": "chaituat", "name": "Chaitu", "archetype": "⚖️ Balanced Spender", "class": "arch-balanced", "bias": "Even Positional Allocation", "exploit": "Bait with high-name recognition; draft superior VORP assets in the subsequent tier."},
     8: {"handle": "cardinalsin", "name": "Harsha", "archetype": "🛡️ IDP & Elite TE Spender", "class": "arch-idp", "bias": "Heavy Defensive & TE Allocation", "exploit": "2024 runner-up who consistently spends up for premier LBs and top TEs. Nominate them early to burn his offensive cap."},
     9: {"handle": "rookieqbme", "name": "Siddanth", "archetype": "🥷 Opportunistic Value Sniper", "class": "arch-hoard", "bias": "Positional Run Exploiter", "exploit": "Capitalizes on late draft runs. Trigger tier cliffs at RB/TE to force him into suboptimal reaches."},
-    10: {"handle": "siddharthasagar", "name": "Siddu", "archetype": "👑 Superstar Chaser", "class": "arch-stars", "bias": "High-Ceiling Champion (2024)", "exploit": "2024 champion with league-high point totals. Chases elite studs; bait with overvalued landmines and avoid bidding wars on his target anchors."}
+    10: {"handle": "siddharthasagar", "name": "Siddu", "archetype": "👑 Superstar Chaser", "class": "arch-stars", "bias": "High-Ceiling Champion (2024)", "exploit": "2024 champion (2,439.5 avg pts). Chases elite studs; bait with overvalued landmines and avoid bidding wars on his target anchors."}
 }
 
 def clean_name(name):
@@ -330,19 +332,30 @@ if room_mode == "🎮 Mock Sim Sandbox":
         st.session_state.drafted_picks = {}
         st.rerun()
 else:
-    draft_id = st.sidebar.text_input("Sleeper Draft / League ID", value="1385816551680143360")
+    draft_id = st.sidebar.text_input("Sleeper Draft / League ID", value=LEAGUE_ID)
     if st.sidebar.button("🔄 Sync Live Sleeper API", use_container_width=True):
         st.rerun()
     if draft_id and draft_id.strip():
         try:
-            # 1. Resolve live manager display names directly from Sleeper League endpoint
+            # 1. Direct Sleeper Users Ingestion
             u_res = requests.get(f"https://api.sleeper.app/v1/league/{draft_id.strip()}/users", timeout=4)
             if u_res.status_code == 200:
-                for idx, u in enumerate(u_res.json()):
-                    slot_idx = idx + 1
-                    disp = u.get('display_name') or u.get('metadata', {}).get('team_name')
-                    if disp and slot_idx <= league_size:
-                        st.session_state.custom_manager_names[slot_idx] = disp
+                user_map_raw = {u['user_id']: (u.get('display_name') or u.get('metadata', {}).get('team_name')) for u in u_res.json()}
+                
+                # Check rosters to get exact slot mapping
+                r_res = requests.get(f"https://api.sleeper.app/v1/league/{draft_id.strip()}/rosters", timeout=4)
+                if r_res.status_code == 200:
+                    for r in r_res.json():
+                        r_id = r.get('roster_id')
+                        owner_id = r.get('owner_id')
+                        disp_name = user_map_raw.get(owner_id)
+                        if disp_name and r_id and r_id <= league_size:
+                            # Map handle if matching alias exists
+                            for def_info in SOULJA_SOULJA_DEFAULTS.values():
+                                if def_info['handle'].lower() == disp_name.lower():
+                                    disp_name = def_info['name']
+                                    break
+                            st.session_state.custom_manager_names[r_id] = disp_name
                         
             # 2. Ingest live picks directly from Sleeper Draft endpoint
             p_res = requests.get(f"https://api.sleeper.app/v1/draft/{draft_id.strip()}/picks", timeout=4)
@@ -1042,14 +1055,14 @@ with tab_matrix:
     chart_col1, chart_col2 = st.columns(2)
     
     with chart_col1:
-        st.markdown("**Historical 2-Year Average Fantasy Points (2024–2025):**")
+        st.markdown("**Historical 2-Year Average Regular Season Scoring (2024–2025):**")
         if not df_standings.empty:
             df_act = df_standings[df_standings['season'].isin([2024, 2025])]
             if not df_act.empty:
                 fpts_summary = df_act.groupby('manager')['reg_fpts'].mean().reset_index()
                 handle_to_name = {p['handle']: p['name'] for p in SOULJA_SOULJA_DEFAULTS.values()}
-                fpts_summary['Manager Name'] = fpts_summary['manager'].map(handle_to_name).fillna(fpts_summary['manager'])
-                fpts_summary = fpts_summary.set_index('Manager Name')['reg_fpts'].sort_values(ascending=True)
+                fpts_summary['Manager'] = fpts_summary['manager'].map(handle_to_name).fillna(fpts_summary['manager'])
+                fpts_summary = fpts_summary.set_index('Manager')['reg_fpts'].sort_values(ascending=True)
                 st.bar_chart(fpts_summary)
         else:
             st.info("Historical standings CSV not detected.")
