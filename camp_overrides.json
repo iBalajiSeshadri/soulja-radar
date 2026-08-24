@@ -1,0 +1,2167 @@
+{
+  "Parker Washington": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Mykel Williams": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Knee - ACL) - Surgery"
+  },
+  "Wyatt Milum": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Adam Randall": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Nate Hobbs": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Groin)"
+  },
+  "Jay Higgins": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Concussion)"
+  },
+  "Andrew Farmer": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Back)"
+  },
+  "Duplicate Player": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: Out"
+  },
+  "Teddye Buchanan": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee - ACL)"
+  },
+  "Cade Mays": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: Out (Wrist)"
+  },
+  "VJ Payne": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Anterio Thompson": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Undisclosed)"
+  },
+  "Dadrion Taylor-Demerson": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ribs)"
+  },
+  "Trey Sermon": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Dominique Robinson": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Calf)"
+  },
+  "Audric Estime": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Leg)"
+  },
+  "Johnny Wilson": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee)"
+  },
+  "Khalil Shakir": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Kenneth Grant": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Corey Rucker": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "M.J. Stewart": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Undisclosed)"
+  },
+  "Rachaad White": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Micah Morris": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Shoulder)"
+  },
+  "Tariq Castro-Fields": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Heel)"
+  },
+  "Michael Coats": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ankle)"
+  },
+  "Brian Branch": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Achilles) - Surgery"
+  },
+  "Tanner McLachlan": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Chris Rumph": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ankle)"
+  },
+  "Taylor Moton": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Illness)"
+  },
+  "Cade Otton": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Brenden Bates": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Greg Newsome": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Odafe Oweh": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Isaiah Davis": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Parker Brailsford": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hand)"
+  },
+  "Brenen Thompson": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Chance Campbell": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Tershawn Wharton": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Neck) - Surgery"
+  },
+  "Patrick Mekari": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Back)"
+  },
+  "Luke Wattenberg": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Omarr Norman-Lott": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Knee - ACL) - Surgery"
+  },
+  "Blake Gillikin": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Groin)"
+  },
+  "Malik Mustapha": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Jabari Small": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Concussion)"
+  },
+  "Caullin Lacy": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Danny Pinter": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: Doubtful (Leg)"
+  },
+  "Rene Konga": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Matt Orzech": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Undisclosed)"
+  },
+  "Levelle Bailey": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Leg) - Fracture"
+  },
+  "Nick Emmanwori": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ankle)"
+  },
+  "Braxton Berrios": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "John Michael Gyllenborg": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee)"
+  },
+  "Kingsley Jonathan": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Thigh) - Bruise"
+  },
+  "Jordon Riley": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Achilles)"
+  },
+  "Elijah Hicks": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Shin)"
+  },
+  "Ennis Rakestraw": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Upper Body)"
+  },
+  "Xavier Weaver": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Concussion)"
+  },
+  "DeAngelo Malone": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Undisclosed)"
+  },
+  "Will Mallory": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Thumb)"
+  },
+  "Logan Lee": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Isiah Pacheco": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee - MCL)"
+  },
+  "E.J. Speed": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Quadriceps) - Surgery"
+  },
+  "Trey Benson": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Kerby Joseph": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Knee)"
+  },
+  "Jake Bobo": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee)"
+  },
+  "Patrick Mahomes": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee - ACL)"
+  },
+  "Grant Calcaterra": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Back)"
+  },
+  "Julius Wood": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Concussion)"
+  },
+  "Jaren Kanak": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Pectoral)"
+  },
+  "Giovanni Manu": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Knee)"
+  },
+  "Tyler Guyton": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Elbow)"
+  },
+  "Sam LaPorta": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hip)"
+  },
+  "Dani Dennis-Sutton": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Illness)"
+  },
+  "Jamari Thrash": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Chase Bisontis": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee - MCL) - Surgery"
+  },
+  "Britain Covey": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Tyler Baron": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Knee)"
+  },
+  "Luther Burden": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Lower Body)"
+  },
+  "Jalen McMillan": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Calf)"
+  },
+  "RJ Maryland": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Jeremy McNichols": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Quadriceps)"
+  },
+  "James Conner": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Foot)"
+  },
+  "Tyler Warren": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Groin)"
+  },
+  "Zach Carter": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Nick Gargiulo": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Knee)"
+  },
+  "Kenyon Sadiq": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Abdomen)"
+  },
+  "Tre' Harris": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Jakobi Meyers": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hand)"
+  },
+  "Demetrius Flannigan-Fowles": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Isaac Guerendo": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Pectoral) - Surgery"
+  },
+  "Carson Beck": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ribs)"
+  },
+  "John Michael Schmitz": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Head)"
+  },
+  "Ricky Pearsall": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee - PCL)"
+  },
+  "Emeka Egbuka": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Jakorian Bennett": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Trey Moore": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ankle)"
+  },
+  "Mason Tipton": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Groin)"
+  },
+  "Caleb Lohner": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Lower Body)"
+  },
+  "Mory Bamba": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Joey Blount": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed) - Stinger"
+  },
+  "Tucker Kraft": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee - ACL)"
+  },
+  "Billy Bowman": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Achilles)"
+  },
+  "Elijah Moore": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Neck)"
+  },
+  "Chris Bell": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee - ACL)"
+  },
+  "Donte Kent": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Undisclosed)"
+  },
+  "D'Angelo Ponds": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Calf)"
+  },
+  "Michael Niese": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Leg)"
+  },
+  "Skylar Thompson": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "British Brooks": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hand)"
+  },
+  "Laremy Tunsil": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: Out (Triceps)"
+  },
+  "Haynes King": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Alohi Gilman": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Back)"
+  },
+  "Mike Evans": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Foot)"
+  },
+  "Michael Trigg": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Toe)"
+  },
+  "Donnie Ernsberger": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable ()"
+  },
+  "Nikola Kalinic": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee)"
+  },
+  "Darrell Baker": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Undisclosed)"
+  },
+  "Parker Hughes": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Trey Smith": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hip)"
+  },
+  "Dayton Wade": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Nahshon Wright": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hip)"
+  },
+  "Jerome Ford": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Darian Kinnard": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ankle)"
+  },
+  "Robbie Ouzts": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Puka Nacua": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Jake Hansen": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Chest)"
+  },
+  "Jack Kiser": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Brandin Echols": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ankle)"
+  },
+  "Jack Stoll": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Marcus Bryant": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Lower Body)"
+  },
+  "De'Zhaun Stribling": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Shoulder)"
+  },
+  "Darrick Forrest": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Renardo Green": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Christian McCaffrey": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Gunner Olszewski": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Achilles) - Surgery"
+  },
+  "Myles Garrett": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Wade Woodaz": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Thumb)"
+  },
+  "Drue Tranquill": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Back)"
+  },
+  "Aeneas Peebles": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Chris Brazzell": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee)"
+  },
+  "Jonathan Bullard": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Christen Miller": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Romello Height": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Tyrone Wheatley": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Alec Pierce": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Ankle) - Surgery"
+  },
+  "Julian Neal": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Leg)"
+  },
+  "Ethan Downs": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee - ACL)"
+  },
+  "Francis Mauigoa": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Upper Body)"
+  },
+  "Jakobe Thomas": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Back)"
+  },
+  "Alex Wright": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Achilles)"
+  },
+  "Sean McKeon": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Tim Settle": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Calf)"
+  },
+  "Mitchell Trubisky": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Biceps)"
+  },
+  "Terell Smith": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Payton Turner": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Back)"
+  },
+  "Chase Curtis": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Jacory Croskey-Merritt": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Cole Wisniewski": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "L'Jarius Sneed": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Dallis Flowers": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "J.J. McCarthy": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Javon Bullard": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Jeff Caldwell": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Jordan Magee": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Thaddeus Dixon": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Achilles)"
+  },
+  "Ashton Jeanty": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Luke Gifford": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Ben Sims": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Clelin Ferrell": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Dru Phillips": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Lower Leg)"
+  },
+  "Ikem Ekwonu": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Knee) - Surgery"
+  },
+  "Ollie Gordon": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Brien Taylor": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Neck)"
+  },
+  "Keyshawn James-Newby": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Deatrich Wise": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Undisclosed)"
+  },
+  "Titus Leo": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Tyler Biadasz": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee)"
+  },
+  "Pete Werner": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Groin)"
+  },
+  "Marvin Mims": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Jalon Walker": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee - ACL) - Surgery"
+  },
+  "Michael Penix": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee - ACL)"
+  },
+  "Colton Hood": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Jeremiyah Love": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ankle)"
+  },
+  "Dante Miller": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Groin)"
+  },
+  "Joshua Pitsenberger": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Ankle)"
+  },
+  "DeVonta Smith": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Devin Neal": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Shaun Dolac": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee - PCL)"
+  },
+  "Kaleb Proctor": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee - Meniscus)"
+  },
+  "Malik Nabers": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee - ACL)"
+  },
+  "Xavier Woods": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Groin)"
+  },
+  "Cooper DeJean": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Groin)"
+  },
+  "Julian Hill": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee)"
+  },
+  "Xavier Worthy": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Shoulder)"
+  },
+  "Davis Allen": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Quadriceps)"
+  },
+  "Dax Hill": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Jimmy Kibble": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Micah Parsons": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Knee - ACL) - Surgery"
+  },
+  "Ronnie Harrison": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Jonathan Greenard": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Pectoral) - Surgery"
+  },
+  "Brevin Jordan": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Matt Henningsen": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Achilles)"
+  },
+  "Keyshaun Elliott": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Undisclosed)"
+  },
+  "Joseph Vaughn": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Cedric Tillman": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Shaun Wade": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Shoulder)"
+  },
+  "George Kittle": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Achilles)"
+  },
+  "Moliki Matavao": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Bud Clark": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Leg)"
+  },
+  "Austen Pleasants": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Brennan Jackson": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Connor McGovern": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Leg)"
+  },
+  "Patrick Taylor": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Chris Braswell": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Alaric Jackson": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Illness)"
+  },
+  "Sanoussi Kane": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Dan Chisena": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Tyrique Stevenson": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Eddie Walls": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Dont'e Thornton": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Quinshon Judkins": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Shemar Stewart": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Leg)"
+  },
+  "Jeremiah Webb": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Arm)"
+  },
+  "Rico Payton": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Carrington Valentine": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Leg)"
+  },
+  "Jaylen Harrell": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee - ACL)"
+  },
+  "Kam Dewberry": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Leg)"
+  },
+  "Malcolm Rodriguez": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ankle)"
+  },
+  "Jahquez Robinson": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Roy Robertson-Harris": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Achilles) - Surgery"
+  },
+  "Jaquan Brisker": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Quincy Riley": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Groin)"
+  },
+  "Luke Musgrave": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Undisclosed)"
+  },
+  "Ashton Gillotte": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Tyreke Smith": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Dameon Pierce": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Jordyn Brooks": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Jordyn Tyson": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: Doubtful (Hamstring) - Strain"
+  },
+  "Caleb Tiernan": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ankle)"
+  },
+  "Max Iheanachor": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Upper Body)"
+  },
+  "Jaelan Phillips": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Arm)"
+  },
+  "Bryan Cook": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Daniel Rickert": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Jaylin Noel": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Kader Kohou": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Austin Keys": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Matt Waletzko": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Jamal Adams": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee)"
+  },
+  "Rasheen Ali": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Chigozie Anusiem": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee)"
+  },
+  "Kyle Monangai": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Jer'Zhan Newton": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: Out (Pectoral) - Surgery"
+  },
+  "Jonathan Garvin": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Nate Evans": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Quadriceps)"
+  },
+  "Kobe King": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Ben Brown": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Tory Horton": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Jalen Ramsey": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Knee)"
+  },
+  "Kyler Gordon": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Undisclosed)"
+  },
+  "Lucas Patrick": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Sauce Gardner": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Calf)"
+  },
+  "Nick Allegretti": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Calf)"
+  },
+  "Cole Burgess": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Harold Landry": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Undisclosed)"
+  },
+  "Jaylen Reed": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR"
+  },
+  "Christian Kirk": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Joey Porter": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Undisclosed)"
+  },
+  "Jarrick Bernard-Converse": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee)"
+  },
+  "Josh Sweat": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Undisclosed)"
+  },
+  "Matt Hennessy": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Neck) - Surgery"
+  },
+  "Daequan Hardy": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Carson Towt": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Ethan Robinson": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "James Ester": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Derrick Brown": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Byron Young": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Shoulder)"
+  },
+  "Joshua Ezeudu": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Leg)"
+  },
+  "Graham Mertz": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee - ACL) - Surgery"
+  },
+  "Keion White": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ankle)"
+  },
+  "Jamon Johnson": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Thumb)"
+  },
+  "Noah Sewell": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Achilles)"
+  },
+  "Sione Vaki": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Back)"
+  },
+  "Damarri Mathis": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Xavier Legette": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Lower Body)"
+  },
+  "Keon Coleman": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Foot)"
+  },
+  "Justin Shorter": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Jamaree Salyer": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Quinn Ewers": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Groin)"
+  },
+  "Brandon Pili": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Lower Leg)"
+  },
+  "Ja'Quinden Jackson": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Jayden Higgins": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee - ACL) - Surgery"
+  },
+  "Gracen Halton": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ankle)"
+  },
+  "JuJu Brents": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Tyrell Shavers": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Knee - ACL) - Surgery"
+  },
+  "Keir Thomas": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Groin)"
+  },
+  "Mekhi Wingo": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Head)"
+  },
+  "Michael Woods": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Leg)"
+  },
+  "Dillon Radunz": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee - ACL)"
+  },
+  "Quentin Johnston": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Lower Body)"
+  },
+  "Christian Gonzalez": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Paulson Adebo": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "K'Lavon Chaisson": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Jeremiah Owusu-Koramoah": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Neck)"
+  },
+  "Myles Murphy": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "DJ Giddens": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Jordan James": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ribs)"
+  },
+  "Carson Schwesinger": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Anthony Gould": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Groin)"
+  },
+  "Kalel Mullings": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hip)"
+  },
+  "Ty Johnson": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Jimmy Rolder": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Leg)"
+  },
+  "LeQuint Allen": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Derrick Moore": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Groin)"
+  },
+  "Marlon Jones": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Lorenzo Styles": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Calf)"
+  },
+  "Dennis Houston": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Groin)"
+  },
+  "Kye Robichaux": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Foot) - Fracture"
+  },
+  "Chukwuebuka Godrick": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ankle)"
+  },
+  "Jared Bartlett": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Leg)"
+  },
+  "Jalin Hyatt": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ankle)"
+  },
+  "Kyle Juszczyk": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Finger)"
+  },
+  "Vederian Lowe": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ankle)"
+  },
+  "John Ridgeway": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Back)"
+  },
+  "Chuba Hubbard": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Kendrick Green": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Princeton Fant": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee - ACL + MCL) - Surgery"
+  },
+  "Skyler Bell": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Lower Body)"
+  },
+  "Mikail Kamara": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee)"
+  },
+  "Lonnie Johnson": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Leg)"
+  },
+  "Tucker Large": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Undisclosed)"
+  },
+  "Nick Bosa": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee - ACL)"
+  },
+  "Bub Means": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Carter Warren": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Billy Schrauth": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Michael Deiter": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Quadriceps) - Surgery"
+  },
+  "Coby Bryant": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: Out (Knee) - Fracture"
+  },
+  "Luke Grimm": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Zion Childress": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Shemar Turner": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Knee - ACL) - Surgery"
+  },
+  "Shemar Jean-Charles": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Alvin Kamara": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Bryan Bresee": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee - ACL) - Surgery"
+  },
+  "Tip Reiman": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Ankle)"
+  },
+  "Qwan'tez Stiggers": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Cedrick Wilson": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Cameron Jordan": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Ja'Marcus Ingram": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Shoulder)"
+  },
+  "Garrett DiGiorgio": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Emanuel Wilson": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Buddy Johnson": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Shoulder)"
+  },
+  "Elijah Higgins": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Concussion)"
+  },
+  "Kadarius Calloway": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Da'Quan Felton": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Tank Dell": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee - ACL + MCL) | \ud83d\udd25 SLEEPER SURGE (+11720 adds)"
+  },
+  "Justin Dedich": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Undisclosed)"
+  },
+  "Marcus Mariota": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee)"
+  },
+  "Jawhar Jordan": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hip)"
+  },
+  "Chris Collier": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Nazeeh Johnson": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Ankle)"
+  },
+  "Tyson Bagent": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "D.J. Reed": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Groin)"
+  },
+  "Nephi Sewell": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Concussion)"
+  },
+  "Brett Toth": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Concussion)"
+  },
+  "Joe Royer": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Personal)"
+  },
+  "Brandon Smith": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Carsen Ryan": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Foot)"
+  },
+  "Josh Jacobs": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Groin)"
+  },
+  "Keagen Trost": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Isaiah World": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Knee)"
+  },
+  "Zach Charbonnet": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Knee - ACL) - Surgery"
+  },
+  "Ruben Hyppolite": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Shoulder)"
+  },
+  "Storm Duck": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Knee)"
+  },
+  "Dorian Strong": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Neck)"
+  },
+  "Jonathan Jones": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Shoulder)"
+  },
+  "McKinnley Jackson": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ankle)"
+  },
+  "Storm Norton": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Foot) - Surgery"
+  },
+  "Danny Gray": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Concussion)"
+  },
+  "Trey Amos": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ankle)"
+  },
+  "Nick Saldiveri": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Knee)"
+  },
+  "John Ojukwu": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Pectoral)"
+  },
+  "K.C. Ossai": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Kobie Turner": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Brenden Schooler": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Undisclosed)"
+  },
+  "Sam Scott": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Rashawn Slater": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Michael Pittman": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Leg)"
+  },
+  "Johnathan Baldwin": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee)"
+  },
+  "Tez Johnson": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Groin)"
+  },
+  "Riley Moss": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ribs)"
+  },
+  "Phil Mafah": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Chest)"
+  },
+  "DK Metcalf": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Breece Hall": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Thigh)"
+  },
+  "Jameson Geers": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Undisclosed)"
+  },
+  "Noah Whittington": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Ankle)"
+  },
+  "Maliek Collins": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: PUP (Quadriceps) - Surgery"
+  },
+  "John Bates": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Hamstring)"
+  },
+  "Dominick Puni": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Concussion)"
+  },
+  "Nic Scourton": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee - ACL) - Surgery"
+  },
+  "Michael Hoecht": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Achilles)"
+  },
+  "Zach Sieler": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Torricelli Simpkins": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Concussion)"
+  },
+  "Charvarius Ward": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Back)"
+  },
+  "Makai Lemon": {
+    "multiplier": 0.88,
+    "type": "QUESTIONABLE",
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Undisclosed)"
+  },
+  "Kendrick Law": {
+    "multiplier": 0.5,
+    "type": "INJURY",
+    "note": "\u274c OFFICIAL INJURY WIRE: IR (Knee - ACL)"
+  },
+  "Jack Strand": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+148760 adds in 24h)"
+  },
+  "Malik Davis": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+61209 adds in 24h)"
+  },
+  "Xavier Hutchinson": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+53074 adds in 24h)"
+  },
+  "Barion Brown": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+43263 adds in 24h)"
+  },
+  "Mike Washington": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+41422 adds in 24h)"
+  },
+  "MarShawn Lloyd": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+35766 adds in 24h)"
+  },
+  "Dylan Laube": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+33873 adds in 24h)"
+  },
+  "Darren Waller": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+30897 adds in 24h)"
+  },
+  "Caleb Douglas": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+26840 adds in 24h)"
+  },
+  "Malik Washington": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+22808 adds in 24h)"
+  },
+  "Jacksonville Jaguars": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+21312 adds in 24h)"
+  },
+  "Jalen Nailor": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+20907 adds in 24h)"
+  },
+  "Devaughn Vele": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+19264 adds in 24h)"
+  },
+  "Seth McGowan": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+18560 adds in 24h)"
+  },
+  "Joe Milton": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+16884 adds in 24h)"
+  },
+  "Odell Beckham": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+16506 adds in 24h)"
+  },
+  "Roman Hemby": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+16008 adds in 24h)"
+  },
+  "Kaelon Black": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+15568 adds in 24h)"
+  },
+  "Malik Willis": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+14098 adds in 24h)"
+  },
+  "Keaton Mitchell": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13725 adds in 24h)"
+  },
+  "Tyler Loop": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13674 adds in 24h)"
+  },
+  "Detroit Lions": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13428 adds in 24h)"
+  },
+  "Najee Harris": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13400 adds in 24h)"
+  },
+  "Colbie Young": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13398 adds in 24h)"
+  },
+  "Cyrus Allen": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+12168 adds in 24h)"
+  },
+  "Keenan Allen": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+11988 adds in 24h)"
+  },
+  "Terrance Ferguson": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+11160 adds in 24h)"
+  },
+  "Chris Rodriguez": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+11133 adds in 24h)"
+  },
+  "Ryan Flournoy": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+10576 adds in 24h)"
+  }
+}

@@ -1,0 +1,517 @@
+season,week,manager,player_added,position,player_dropped,faab_bid
+2025,1,vnayini,Derwin James,DB,None,0
+2025,1,Kopite,Marquise Brown,WR,Byron Murphy,0
+2025,1,skongara,Jaylen Waddle,WR,None,0
+2025,1,rookieqbme,Jordyn Brooks,LB,Andrew Van Ginkel,0
+2025,1,DjBallz,Nate Landman,LB,Terrel Bernard,0
+2025,1,cardinalsin,Keenan Allen,WR,Kevin Byard,0
+2025,1,addyrao,Jessie Bates,DB,Kyle Hamilton,0
+2025,1,addyrao,Michael Pittman,WR,Adam Thielen,0
+2025,1,bluewatermelon,Dylan Sampson,RB,RJ Harvey,0
+2025,1,bluewatermelon,Bobby Okereke,LB,Robert Spillane,0
+2025,1,bluewatermelon,Indianapolis Colts,DEF,Malaki Starks,0
+2025,1,DjBallz,Pete Werner,LB,Blake Cashman,0
+2025,1,DjBallz,Los Angeles Chargers,DEF,Washington Commanders,0
+2025,1,DjBallz,Hunter Henry,TE,Evan Engram,0
+2025,1,skongara,George Pickens,WR,None,0
+2025,1,vnayini,Daniel Jones,QB,None,0
+2025,1,vnayini,Dallas Cowboys,DEF,None,0
+2025,1,rookieqbme,Keon Coleman,WR,Christian Benford,0
+2025,1,chaituat,Antoine Winfield,DB,Marlon Humphrey,0
+2025,2,Kopite,Paulson Adebo,CB,None,0
+2025,2,Kopite,Tampa Bay Buccaneers,DEF,San Francisco 49ers,0
+2025,2,Kopite,Bhayshul Tuten,RB,Xavier Watts,0
+2025,2,vnayini,Atlanta Falcons,DEF,None,0
+2025,2,addyrao,Zach Ertz,TE,David Njoku,0
+2025,2,addyrao,Quentin Johnston,WR,Brian Robinson,0
+2025,2,addyrao,D.J. Reed,CB,Jessie Bates,0
+2025,2,vnayini,Kyle Hamilton,DB,None,0
+2025,2,cardinalsin,Mac Jones,QB,Alex Singleton,0
+2025,2,bluewatermelon,Jauan Jennings,WR,Tyrone Tracy,0
+2025,2,cardinalsin,Jake Ferguson,TE,T.J. Hockenson,0
+2025,2,bluewatermelon,Jake Browning,QB,Zyon McCollum,0
+2025,2,siddharthasagar,Chamarri Conner,DB,Bryce Young,0
+2025,2,siddharthasagar,Kansas City Chiefs,DEF,None,0
+2025,2,skongara,Rhamondre Stevenson,RB,Arizona Cardinals,0
+2025,2,cardinalsin,Cam Skattebo,RB,Tarheeb Still,0
+2025,2,DjBallz,Carson Wentz,QB,None,0
+2025,2,DjBallz,Russell Wilson,QB,None,0
+2025,2,chaituat,Jaylen Waddle,WR,Wan'Dale Robinson,0
+2025,2,siddharthasagar,RJ Harvey,RB,None,0
+2025,3,Kopite,T.J. Hockenson,TE,Paulson Adebo,0
+2025,3,addyrao,Minkah Fitzpatrick,DB,Jevon Holland,0
+2025,3,addyrao,Pete Werner,LB,Jamien Sherwood,0
+2025,3,Kopite,Arizona Cardinals,DEF,Tampa Bay Buccaneers,0
+2025,3,addyrao,Bobby Wagner,LB,Budda Baker,0
+2025,3,bluewatermelon,Zach Charbonnet,RB,Nick Chubb,0
+2025,3,bluewatermelon,Chris Godwin,WR,Marquise Brown,0
+2025,3,cardinalsin,Carson Schwesinger,LB,Ernest Jones,0
+2025,3,cardinalsin,Jordan Addison,WR,Marlon Humphrey,0
+2025,3,siddharthasagar,Jordan Battle,DB,None,0
+2025,3,vnayini,Blake Corum,RB,None,0
+2025,3,vnayini,San Francisco 49ers,DEF,None,0
+2025,3,rookieqbme,Talanoa Hufanga,DB,Jaylen Watson,0
+2025,3,DjBallz,Tyrel Dodson,LB,Quay Walker,0
+2025,3,skongara,Tre Tucker,WR,Rhamondre Stevenson,0
+2025,3,addyrao,Hunter Henry,TE,Zach Ertz,0
+2025,3,DjBallz,Jaxson Dart,QB,Kerby Joseph,0
+2025,3,skongara,Brandon Jones,DB,None,0
+2025,3,DjBallz,Bryce Young,QB,Russell Wilson,0
+2025,4,Kopite,Brian Burns,DE,Cam Ward,0
+2025,4,Kopite,RJ Harvey,RB,Bhayshul Tuten,0
+2025,4,addyrao,Ernest Jones,LB,Pete Werner,0
+2025,4,addyrao,Chamarri Conner,DB,Donovan Wilson,0
+2025,4,addyrao,Bryce Young,QB,Carson Wentz,0
+2025,4,vnayini,Brenton Strange,TE,None,0
+2025,4,rookieqbme,Kansas City Chiefs,DEF,Talanoa Hufanga,0
+2025,4,bluewatermelon,Jamien Sherwood,LB,Bobby Okereke,0
+2025,4,bluewatermelon,Dillon Gabriel,QB,Jake Browning,0
+2025,4,bluewatermelon,Jacksonville Jaguars,DEF,None,0
+2025,4,skongara,Jourdan Lewis,CB,Will Anderson,0
+2025,4,skongara,Jacory Croskey-Merritt,RB,Matthew Golden,0
+2025,4,cardinalsin,Tyson Campbell,CB,Nik Bonitto,0
+2025,4,vnayini,Byron Young,LB,None,0
+2025,4,cardinalsin,Rachaad White,RB,Andre Cisco,0
+2025,4,DjBallz,Aidan Hutchinson,DL,Nate Landman,0
+2025,4,DjBallz,Dallas Goedert,TE,Zach Ertz,0
+2025,4,DjBallz,Woody Marks,RB,Dax Hill,0
+2025,4,DjBallz,Zach Ertz,TE,Harold Fannin,0
+2025,4,cardinalsin,Terry McLaurin,WR,Brian Branch,0
+2025,5,skongara,RJ Harvey,RB,None,0
+2025,5,vnayini,Kevin Byard,DB,None,0
+2025,5,vnayini,Mason Taylor,TE,None,0
+2025,5,addyrao,Calvin Ridley,WR,Chamarri Conner,0
+2025,5,addyrao,David Njoku,TE,None,0
+2025,5,skongara,Mike Sainristil,DB,Carson Wentz,0
+2025,5,rookieqbme,Jeremy Chinn,DB,Jakobi Meyers,0
+2025,5,rookieqbme,Kendre Miller,RB,Kansas City Chiefs,0
+2025,5,bluewatermelon,Joe Flacco,QB,Dillon Gabriel,0
+2025,5,bluewatermelon,Hassan Haskins,RB,Andrew Wingard,0
+2025,5,Kopite,Spencer Rattler,QB,Jake Browning,0
+2025,5,DjBallz,Micah Parsons,LB,Aidan Hutchinson,0
+2025,5,addyrao,Patrick Queen,LB,Ernest Jones,0
+2025,5,skongara,Quay Walker,LB,Derwin James,0
+2025,5,vnayini,Kendrick Bourne,WR,None,0
+2025,5,DjBallz,Chase Brown,RB,Craig Woodson,0
+2025,5,cardinalsin,New England Patriots,DEF,Tyson Campbell,0
+2025,5,Kopite,Los Angeles Chargers,DEF,Arizona Cardinals,0
+2025,5,Kopite,Kimani Vidal,RB,Brian Burns,0
+2025,5,siddharthasagar,Terry McLaurin,WR,None,0
+2025,6,bluewatermelon,Harold Fannin,TE,Sterling Shepard,0
+2025,6,bluewatermelon,Zonovan Knight,RB,Hassan Haskins,0
+2025,6,vnayini,Kayshon Boutte,WR,None,0
+2025,6,DjBallz,Justin Fields,QB,Jaquan Brisker,0
+2025,6,Kopite,Atlanta Falcons,DEF,Los Angeles Chargers,0
+2025,6,Kopite,Brian Burns,DE,Edgerrin Cooper,0
+2025,6,Kopite,Matthew Golden,WR,Tyrique Stevenson,0
+2025,6,skongara,Carolina Panthers,DEF,Buffalo Bills,0
+2025,6,skongara,Coby Bryant,DB,Mike Sainristil,0
+2025,6,chaituat,Tyrel Dodson,LB,None,0
+2025,6,addyrao,Marques Sigle,DB,David Njoku,0
+2025,6,addyrao,Nate Landman,LB,Patrick Queen,0
+2025,6,addyrao,Houston Texans,DEF,Cleveland Browns,0
+2025,6,rookieqbme,Tykee Smith,DB,Jaylen Watson,0
+2025,6,siddharthasagar,Woody Marks,RB,None,0
+2025,6,vnayini,Tampa Bay Buccaneers,DEF,None,0
+2025,6,vnayini,Jamien Sherwood,LB,None,0
+2025,6,vnayini,Robert Spillane,LB,None,0
+2025,6,bluewatermelon,Kendrick Bourne,WR,Emari Demercado,0
+2025,7,chaituat,Jamien Sherwood,LB,Bobby Okereke,0
+2025,7,chaituat,DeShon Elliott,DB,Antoine Winfield,0
+2025,7,Kopite,Isiah Pacheco,RB,Matthew Golden,0
+2025,7,addyrao,Andy Dalton,QB,Bryce Young,0
+2025,7,cardinalsin,Marcus Mariota,QB,Jalen Pitre,0
+2025,7,cardinalsin,Baltimore Ravens,DEF,Jack Campbell,0
+2025,7,bluewatermelon,Kyle Monangai,RB,None,0
+2025,7,bluewatermelon,Rhamondre Stevenson,RB,None,0
+2025,7,skongara,Quan Martin,DB,Coby Bryant,0
+2025,7,DjBallz,Cleveland Browns,DEF,Kansas City Chiefs,0
+2025,7,DjBallz,Evan Engram,TE,Zach Ertz,0
+2025,7,skongara,Cincinnati Bengals,DEF,Carolina Panthers,0
+2025,7,vnayini,Tremaine Edmunds,LB,None,0
+2025,7,vnayini,Trent McDuffie,DB,None,0
+2025,7,siddharthasagar,Chamarri Conner,DB,None,0
+2025,7,vnayini,Oronde Gadsden,TE,None,0
+2025,7,DjBallz,Kayshon Boutte,WR,Jacob Parrish,0
+2025,7,rookieqbme,Zach Charbonnet,RB,Kendre Miller,0
+2025,7,skongara,Edgerrin Cooper,LB,Quay Walker,0
+2025,7,cardinalsin,Cleveland Browns,DEF,Brian Branch,0
+2025,8,Kopite,TreVeyon Henderson,RB,Atlanta Falcons,0
+2025,8,Kopite,Blake Cashman,LB,Shemar James,0
+2025,8,skongara,Ernest Jones,LB,Cedric Gray,0
+2025,8,Kopite,New Orleans Saints,DEF,Kansas City Chiefs,0
+2025,8,bluewatermelon,Brashard Smith,RB,Kyle Monangai,0
+2025,8,bluewatermelon,Aidan Hutchinson,DL,Jonathon Cooper,0
+2025,8,bluewatermelon,Tyrone Tracy,RB,None,0
+2025,8,addyrao,Budda Baker,DB,Xavier McKinney,0
+2025,8,DjBallz,Byron Young,LB,Robert Spillane,0
+2025,8,DjBallz,Detroit Lions,DEF,Tez Johnson,0
+2025,8,cardinalsin,Jack Campbell,LB,Marcus Mariota,0
+2025,8,rookieqbme,Zonovan Knight,RB,Theo Johnson,0
+2025,8,vnayini,Christian Watson,WR,None,0
+2025,8,skongara,Baltimore Ravens,DEF,Cincinnati Bengals,0
+2025,8,vnayini,Kareem Hunt,RB,None,0
+2025,8,addyrao,Mac Jones,QB,Tyler Huntley,0
+2025,8,addyrao,Tank Bigsby,RB,Myles Garrett,0
+2025,8,vnayini,Troy Franklin,WR,None,0
+2025,8,cardinalsin,Los Angeles Chargers,DEF,Cam Skattebo,0
+2025,8,vnayini,Tyler Allgeier,RB,Tremaine Edmunds,0
+2025,8,rookieqbme,Kayshon Boutte,WR,Tyler Allgeier,0
+2025,9,addyrao,Dalton Schultz,TE,Zach Ertz,4
+2025,9,addyrao,Xavier McKinney,DB,Budda Baker,2
+2025,9,skongara,Jalen Ramsey,CB,None,1
+2025,9,vnayini,Hunter Henry,TE,None,7
+2025,9,cardinalsin,Carolina Panthers,DEF,Los Angeles Chargers,19
+2025,9,vnayini,Derwin James,DB,None,3
+2025,9,vnayini,Geno Smith,QB,None,30
+2025,9,skongara,DJ Moore,WR,None,11
+2025,9,cardinalsin,Marcus Mariota,QB,Jalen Thompson,16
+2025,9,siddharthasagar,Parker Washington,WR,None,10
+2025,9,bluewatermelon,Troy Franklin,WR,Michael Carter,14
+2025,9,Kopite,Colston Loveland,TE,Devon Witherspoon,22
+2025,9,cardinalsin,Alec Pierce,WR,T.J. Edwards,23
+2025,9,bluewatermelon,Kyle Monangai,RB,Darnell Mooney,0
+2025,9,siddharthasagar,Robert Spillane,LB,Terry McLaurin,0
+2025,10,bluewatermelon,Kareem Hunt,RB,Isiah Pacheco,21
+2025,10,Kopite,Jauan Jennings,WR,Reed Blankenship,8
+2025,10,skongara,Isaiah Pola-Mao,DB,Jalen Ramsey,3
+2025,10,rookieqbme,Khalil Shakir,WR,Romeo Doubs,11
+2025,10,cardinalsin,Atlanta Falcons,DEF,Myles Garrett,19
+2025,10,cardinalsin,Brian Branch,DB,Joey Porter,11
+2025,10,rookieqbme,Jeremy Chinn,DB,Chuck Clark,9
+2025,10,addyrao,Tony Pollard,RB,Jordan Mason,3
+2025,10,skongara,Cade Otton,TE,Christian Watson,19
+2025,10,bluewatermelon,RJ Harvey,RB,Tyrone Tracy,78
+2025,10,vnayini,Ricky Pearsall,WR,None,10
+2025,10,vnayini,Alvin Kamara,RB,None,7
+2025,10,vnayini,Jacory Croskey-Merritt,RB,None,5
+2025,10,bluewatermelon,Alvin Kamara,RB,Khalil Shakir,8
+2025,10,rookieqbme,Los Angeles Chargers,DEF,Zach Charbonnet,3
+2025,11,addyrao,Kam Curl,DB,DaRon Bland,5
+2025,11,bluewatermelon,Romeo Doubs,WR,None,7
+2025,11,bluewatermelon,Christian Watson,WR,None,7
+2025,11,skongara,Antoine Winfield,DB,Isaiah Pola-Mao,3
+2025,11,vnayini,Myles Garrett,DE,Maxx Crosby,35
+2025,11,vnayini,Jacksonville Jaguars,DEF,None,20
+2025,11,DjBallz,Parker Washington,WR,None,11
+2025,11,DjBallz,Kaden Elliss,LB,Nik Bonitto,0
+2025,11,cardinalsin,Tyler Shough,QB,Tua Tagovailoa,13
+2025,11,addyrao,Bhayshul Tuten,RB,Quentin Johnston,4
+2025,11,rookieqbme,Kirk Cousins,QB,Khalil Shakir,11
+2025,11,rookieqbme,Emanuel Wilson,RB,Harold Fannin,83
+2025,11,cardinalsin,Carson Schwesinger,LB,Devin White,4
+2025,11,cardinalsin,Tre'von Moehrig,DB,Brian Branch,6
+2025,11,chaituat,Las Vegas Raiders,DEF,None,10
+2025,11,chaituat,Tykee Smith,DB,None,10
+2025,11,vnayini,Tyrone Tracy,RB,None,25
+2025,12,skongara,Kansas City Chiefs,DEF,Minnesota Vikings,9
+2025,12,skongara,Miami Dolphins,DEF,Antoine Winfield,9
+2025,12,addyrao,Talanoa Hufanga,DB,Kam Curl,5
+2025,12,skongara,Tyrel Dodson,LB,Bobby Okereke,3
+2025,12,addyrao,Dalton Schultz,TE,Hunter Henry,4
+2025,12,vnayini,Chimere Dike,WR,None,15
+2025,12,vnayini,Kyle Monangai,RB,None,20
+2025,12,rookieqbme,Devin Neal,RB,Bryce Young,15
+2025,12,DjBallz,Arizona Cardinals,DEF,Detroit Lions,6
+2025,12,DjBallz,Brenton Strange,TE,Kyle Pitts,12
+2025,12,skongara,Bobby Okereke,LB,Tremaine Edmunds,1
+2025,12,addyrao,Maxx Crosby,DE,Brock Wright,1
+2025,12,rookieqbme,Devin White,LB,Bobby Okereke,0
+2025,13,addyrao,Derwin James,DB,Talanoa Hufanga,5
+2025,13,vnayini,Marcus Mariota,QB,None,15
+2025,13,Kopite,Tyrod Taylor,QB,Paulson Adebo,13
+2025,13,Kopite,Zach Ertz,TE,Colston Loveland,36
+2025,13,Kopite,Nik Bonitto,LB,Tre Tucker,35
+2025,13,siddharthasagar,Devin White,LB,Robert Spillane,9
+2025,13,siddharthasagar,Green Bay Packers,DEF,Los Angeles Chargers,30
+2025,13,DjBallz,Adonai Mitchell,WR,Parker Washington,13
+2025,13,rookieqbme,Devin Singletary,RB,Emanuel Wilson,3
+2025,13,addyrao,Jordan Mason,RB,Keenan Allen,4
+2025,14,addyrao,Kyle Hamilton,DB,Aaron Jones,3
+2025,14,vnayini,DaRon Bland,DB,None,0
+2025,14,vnayini,Hunter Henry,TE,None,0
+2025,14,Kopite,Jauan Jennings,WR,Cooper DeJean,5
+2025,14,Kopite,Harold Fannin,TE,Zach Ertz,17
+2025,14,skongara,Emeka Egbuka,WR,Kyle Pitts,68
+2025,14,skongara,Dallas Cowboys,DEF,Baltimore Ravens,3
+2025,14,addyrao,Mike Gesicki,TE,Dalton Schultz,6
+2025,14,vnayini,Tyler Shough,QB,None,8
+2025,14,Kopite,Brian Burns,DE,Nik Bonitto,6
+2025,14,rookieqbme,Jaylen Wright,RB,Kenny Gainwell,9
+2025,14,Kopite,Shedeur Sanders,QB,Tyrod Taylor,5
+2025,15,vnayini,Maxx Crosby,DE,None,0
+2025,15,addyrao,Jayden Reed,WR,Michael Pittman,9
+2025,15,Kopite,Dalton Schultz,TE,Juwan Johnson,2
+2025,15,Kopite,Michael Carter,RB,Kimani Vidal,8
+2025,15,Kopite,Malik Mustapha,DB,Minnesota Vikings,5
+2025,15,vnayini,Jawhar Jordan,RB,None,0
+2025,15,addyrao,Kyle Pitts,TE,Mike Gesicki,71
+2025,15,addyrao,Tyrel Dodson,LB,Nate Landman,14
+2025,15,vnayini,Aaron Jones,RB,None,0
+2025,16,Kopite,Tony Pollard,RB,Dalton Kincaid,2
+2025,16,skongara,Stefon Diggs,WR,Ladd McConkey,0
+2025,16,skongara,Kam Curl,DB,None,10
+2025,16,Kopite,Malik Willis,QB,Brian Robinson,6
+2025,16,skongara,Juwan Johnson,TE,Nick Cross,21
+2025,16,skongara,Detroit Lions,DEF,Kansas City Chiefs,39
+2025,16,Kopite,Tyler Huntley,QB,Aaron Rodgers,1
+2025,17,Kopite,Lamar Jackson,QB,Tyler Huntley,2
+2024,1,bluewatermelon,Colby Parkinson,TE,None,0
+2024,1,bluewatermelon,Jaylen Wright,RB,Tyler Allgeier,0
+2024,1,bluewatermelon,Indianapolis Colts,DEF,Cincinnati Bengals,0
+2024,1,Kopite,Jessie Bates,DB,Patrick Queen,0
+2024,1,DjBallz,Jacksonville Jaguars,DEF,New Orleans Saints,0
+2024,1,skongara,Pat Freiermuth,TE,Jake Ferguson,0
+2024,1,cardinalsin,Tyrique Stevenson,CB,Aidan Hutchinson,0
+2024,1,addyrao,Daniel Jones,QB,Joshua Palmer,0
+2024,1,addyrao,Tyler Lockett,WR,Terry McLaurin,0
+2024,1,addyrao,Houston Texans,DEF,D.J. Reed,0
+2024,1,DjBallz,Tyrel Dodson,LB,Nick Bolton,0
+2024,1,DjBallz,Demarcus Robinson,WR,Ji'Ayir Brown,0
+2024,1,cardinalsin,Jameson Williams,WR,Brian Branch,0
+2024,1,rookieqbme,Isaiah Likely,TE,Ernest Jones,0
+2024,1,vnayini,Zack Baun,LB,Azeez Al-Shaair,0
+2024,1,skongara,E.J. Speed,LB,Danielle Hunter,0
+2024,2,chaituat,Justin Reid,DB,DeAndre Hopkins,0
+2024,2,chaituat,Jaxon Smith-Njigba,WR,C.J. Gardner-Johnson,0
+2024,2,skongara,Benjamin St-Juste,DB,Jalen Pitre,0
+2024,2,cardinalsin,Braelon Allen,RB,Tyrique Stevenson,0
+2024,2,vnayini,Jerry Jeudy,WR,David Njoku,0
+2024,2,addyrao,Andy Dalton,QB,Jaquan Brisker,0
+2024,2,cardinalsin,New Orleans Saints,DEF,Kyzir White,0
+2024,2,skongara,Tampa Bay Buccaneers,DEF,Kansas City Chiefs,0
+2024,2,addyrao,Tennessee Titans,DEF,Philadelphia Eagles,0
+2024,2,addyrao,Carson Steele,RB,Daniel Jones,0
+2024,2,bluewatermelon,D'Onta Foreman,RB,Terry McLaurin,0
+2024,2,DjBallz,Cam Akers,RB,Javonte Williams,0
+2024,2,rookieqbme,Rico Dowdle,RB,Mike Hughes,0
+2024,2,rookieqbme,Rashid Shaheed,WR,Evan Engram,0
+2024,2,Kopite,Jordan Addison,WR,Gus Edwards,0
+2024,2,Kopite,Keenan Allen,WR,Keon Coleman,0
+2024,2,DjBallz,Bucky Irving,RB,Reed Blankenship,0
+2024,2,DjBallz,Buffalo Bills,DEF,Jacksonville Jaguars,0
+2024,2,vnayini,T.J. Hockenson,TE,Dalton Schultz,0
+2024,2,vnayini,Colby Parkinson,TE,Kevin Byard,0
+2024,2,addyrao,Philadelphia Eagles,DEF,Rome Odunze,0
+2024,3,DjBallz,Quentin Johnston,WR,Demarcus Robinson,0
+2024,3,DjBallz,Tennessee Titans,DEF,None,0
+2024,3,Kopite,Kyle Hamilton,DB,Jessie Bates,0
+2024,3,Kopite,Christian Kirk,WR,Baylon Spector,0
+2024,3,cardinalsin,Rome Odunze,WR,Zay Flowers,0
+2024,3,bluewatermelon,Tyler Conklin,TE,D'Andre Swift,0
+2024,3,cardinalsin,Jonathon Brooks,RB,Tank Dell,0
+2024,3,vnayini,Andrew Van Ginkel,LB,None,0
+2024,3,addyrao,Cam Akers,RB,Calvin Ridley,0
+2024,3,siddharthasagar,Robert Spillane,LB,None,0
+2024,3,skongara,Denver Broncos,DEF,None,0
+2024,3,rookieqbme,Terry McLaurin,WR,Antonio Johnson,0
+2024,3,skongara,Miami Dolphins,DEF,Tampa Bay Buccaneers,0
+2024,3,addyrao,Rayshawn Jenkins,DB,Harold Landry,0
+2024,3,addyrao,Minnesota Vikings,DEF,Las Vegas Raiders,0
+2024,3,bluewatermelon,Braelon Allen,RB,None,0
+2024,3,vnayini,Jauan Jennings,WR,None,0
+2024,3,skongara,Cole Kmet,TE,Hunter Henry,0
+2024,3,chaituat,Julian Love,DB,Justin Reid,0
+2024,3,vnayini,Philadelphia Eagles,DEF,None,0
+2024,4,DjBallz,Washington Commanders,DEF,Isaiah Likely,0
+2024,4,cardinalsin,Daniel Jones,QB,Devon Witherspoon,0
+2024,4,bluewatermelon,Alexander Mattison,RB,Braelon Allen,0
+2024,4,bluewatermelon,Dontayvion Wicks,WR,Zach Charbonnet,0
+2024,4,cardinalsin,New England Patriots,DEF,Rome Odunze,0
+2024,4,bluewatermelon,Tucker Kraft,TE,Kerby Joseph,0
+2024,4,addyrao,Minkah Fitzpatrick,DB,Rayshawn Jenkins,0
+2024,4,addyrao,Terrel Bernard,LB,Myles Garrett,0
+2024,4,addyrao,Courtland Sutton,WR,DeAndre Hopkins,0
+2024,4,addyrao,D'Andre Swift,RB,Cam Akers,0
+2024,4,rookieqbme,Trey Sermon,RB,Carlton Davis,0
+2024,4,skongara,Alontae Taylor,DB,Cam Lewis,0
+2024,4,DjBallz,Eric Kendricks,LB,None,0
+2024,4,DjBallz,Josh Downs,WR,None,0
+2024,4,Kopite,Paulson Adebo,CB,Kyle Hamilton,0
+2024,4,Kopite,David Njoku,TE,Alex Anzalone,0
+2024,4,rookieqbme,Pat Freiermuth,TE,Kyle Pitts,0
+2024,4,vnayini,Tutu Atwell,WR,None,0
+2024,4,vnayini,Jerome Ford,RB,None,0
+2024,4,vnayini,Chase Brown,RB,None,0
+2024,4,DjBallz,Isaiah Likely,TE,Tennessee Titans,0
+2024,4,rookieqbme,Zay Flowers,WR,Isaiah Likely,0
+2024,4,DjBallz,Tank Dell,WR,Quentin Johnston,0
+2024,5,bluewatermelon,Trevin Wallace,LB,T.J. Edwards,0
+2024,5,Kopite,Tank Dell,WR,Chris Jones,0
+2024,5,bluewatermelon,Darnell Mooney,WR,Antonio Gibson,0
+2024,5,skongara,Deonte Banks,DB,Alontae Taylor,0
+2024,5,addyrao,Jalen Tolbert,WR,Courtland Sutton,0
+2024,5,addyrao,JuJu Smith-Schuster,WR,Minkah Fitzpatrick,0
+2024,5,cardinalsin,D.J. Reed,CB,Cam Akers,0
+2024,5,cardinalsin,Tampa Bay Buccaneers,DEF,Nick Bolton,0
+2024,5,cardinalsin,Ladd McConkey,WR,DeShon Elliott,0
+2024,5,cardinalsin,Wan'Dale Robinson,WR,Juwan Johnson,0
+2024,5,vnayini,Tyrone Tracy,RB,None,0
+2024,5,vnayini,Isaiah Likely,TE,None,0
+2024,5,vnayini,Tank Bigsby,RB,None,0
+2024,5,rookieqbme,Evan Engram,TE,Pat Freiermuth,0
+2024,5,DjBallz,Chase Brown,RB,None,0
+2024,5,siddharthasagar,Indianapolis Colts,DEF,Zamir White,0
+2024,5,chaituat,Miami Dolphins,DEF,Jaxon Smith-Njigba,0
+2024,5,chaituat,Kyle Pitts,TE,Jaylen Warren,0
+2024,6,chaituat,Lavonte David,LB,Bobby Okereke,0
+2024,6,bluewatermelon,Los Angeles Rams,DEF,Tennessee Titans,0
+2024,6,bluewatermelon,Isaac Guerendo,RB,None,0
+2024,6,DjBallz,Ty Chandler,RB,None,0
+2024,6,vnayini,Detroit Lions,DEF,None,0
+2024,6,vnayini,Roman Wilson,WR,None,0
+2024,6,vnayini,Washington Commanders,DEF,None,0
+2024,6,addyrao,Antoine Winfield,DB,Jason Pinnock,0
+2024,6,addyrao,David Njoku,TE,DeAndre Hopkins,0
+2024,6,addyrao,Rhamondre Stevenson,RB,Jalen Tolbert,0
+2024,6,skongara,Kyle Hamilton,DB,None,0
+2024,6,cardinalsin,Ladd McConkey,WR,Khalil Shakir,0
+2024,6,siddharthasagar,Budda Baker,DB,None,0
+2024,6,Kopite,Cincinnati Bengals,DEF,Chuck Clark,0
+2024,6,rookieqbme,Drake Maye,QB,Christian Benford,0
+2024,6,DjBallz,DeMario Douglas,WR,None,0
+2024,6,cardinalsin,New York Giants,DEF,Tampa Bay Buccaneers,0
+2024,6,cardinalsin,Keenan Allen,WR,Nick Bosa,0
+2024,6,skongara,Khalil Shakir,WR,Joe Flacco,0
+2024,6,skongara,Jameson Williams,WR,Quentin Johnston,0
+2024,7,addyrao,Donovan Wilson,DB,Antoine Winfield,0
+2024,7,addyrao,Jauan Jennings,WR,Brandon Aiyuk,0
+2024,7,addyrao,Alexander Mattison,RB,JuJu Smith-Schuster,0
+2024,7,cardinalsin,Deommodore Lenoir,DB,Brandon Stephens,0
+2024,7,Kopite,Andrew Van Ginkel,LB,Jordan Whitehead,0
+2024,7,Kopite,Cincinnati Bengals,DEF,Indianapolis Colts,0
+2024,7,Kopite,Rachaad White,RB,Paulson Adebo,0
+2024,7,bluewatermelon,Minkah Fitzpatrick,DB,Tyler Huntley,0
+2024,7,skongara,Rome Odunze,WR,Zach Ertz,0
+2024,7,bluewatermelon,Ivan Pace,LB,Trevin Wallace,0
+2024,7,skongara,Charvarius Ward,CB,Kyle Hamilton,0
+2024,7,DjBallz,Marcus Mariota,QB,Zack Moss,0
+2024,7,DjBallz,Seattle Seahawks,DEF,None,0
+2024,7,bluewatermelon,Romeo Doubs,WR,None,0
+2024,7,bluewatermelon,Jameis Winston,QB,None,0
+2024,7,rookieqbme,Javonte Williams,RB,Quay Walker,0
+2024,7,siddharthasagar,Tyler Nubin,DB,None,0
+2024,7,DjBallz,Eric Kendricks,LB,Tyrel Dodson,0
+2024,7,skongara,Maxx Crosby,DE,Ernest Jones,0
+2024,7,Kopite,Indianapolis Colts,DEF,Cincinnati Bengals,0
+2024,8,cardinalsin,Khalil Shakir,WR,Daniel Jones,0
+2024,8,addyrao,Dalton Schultz,TE,Keenan Allen,0
+2024,8,addyrao,Antoine Winfield,DB,Donovan Wilson,0
+2024,8,skongara,Jake Ferguson,TE,Dalton Kincaid,0
+2024,8,DjBallz,Jakobi Meyers,WR,Taysom Hill,0
+2024,8,Kopite,Zach Ertz,TE,Cole Kmet,0
+2024,8,Kopite,Cedric Tillman,WR,Malik Mustapha,0
+2024,8,Kopite,Kyle Hamilton,DB,Dorian Williams,0
+2024,8,vnayini,Isaac Guerendo,RB,None,0
+2024,8,chaituat,Courtland Sutton,WR,None,0
+2024,8,chaituat,New England Patriots,DEF,None,0
+2024,8,addyrao,Joe Flacco,QB,Andy Dalton,0
+2024,8,rookieqbme,Tennessee Titans,DEF,None,0
+2024,8,cardinalsin,Cam Bynum,DB,Deommodore Lenoir,0
+2024,8,bluewatermelon,Ernest Jones,LB,None,0
+2024,8,bluewatermelon,Calvin Ridley,WR,None,0
+2024,8,vnayini,Elijah Moore,WR,None,0
+2024,8,skongara,Zack Baun,LB,None,0
+2024,8,DjBallz,Drake Maye,QB,None,0
+2024,9,addyrao,Mike Gesicki,TE,Brian Burns,4
+2024,9,siddharthasagar,Taysom Hill,TE,Arizona Cardinals,20
+2024,9,DjBallz,Tampa Bay Buccaneers,DEF,None,6
+2024,9,bluewatermelon,Daniel Jones,QB,Ernest Jones,22
+2024,9,Kopite,Kyle Hamilton,DB,Jaylon Jones,2
+2024,9,bluewatermelon,Kaden Elliss,LB,Austin Ekeler,2
+2024,9,Kopite,Hunter Henry,TE,Zach Ertz,3
+2024,9,Kopite,Los Angeles Rams,DEF,Nick Bolton,17
+2024,9,skongara,Quentin Lake,DB,Terrel Bernard,11
+2024,9,bluewatermelon,Kerby Joseph,DB,None,7
+2024,9,bluewatermelon,Rico Dowdle,RB,None,32
+2024,9,vnayini,Calvin Ridley,WR,None,15
+2024,9,cardinalsin,Jaxon Smith-Njigba,WR,Dalton Kincaid,17
+2024,9,cardinalsin,Cleveland Browns,DEF,Frankie Luvu,3
+2024,9,cardinalsin,Jalen Pitre,DB,Cam Bynum,7
+2024,9,rookieqbme,Green Bay Packers,DEF,DeShon Elliott,0
+2024,10,vnayini,Calvin Ridley,WR,None,35
+2024,10,Kopite,Ricky Pearsall,WR,Hunter Henry,12
+2024,10,Kopite,Ernest Jones,LB,Andrew Van Ginkel,4
+2024,10,Kopite,Alohi Gilman,DB,Quentin Lake,3
+2024,10,Kopite,Daiyan Henley,LB,Kyle Hamilton,5
+2024,10,skongara,Miami Dolphins,DEF,None,21
+2024,10,bluewatermelon,Dawson Knox,TE,Baltimore Ravens,9
+2024,10,bluewatermelon,Jakobi Meyers,WR,Daniel Jones,12
+2024,10,DjBallz,Ivan Pace,LB,Eric Kendricks,7
+2024,10,bluewatermelon,Derwin James,DB,Kerby Joseph,8
+2024,10,DjBallz,Arizona Cardinals,DEF,Buffalo Bills,33
+2024,10,rookieqbme,Marquez Valdes-Scantling,WR,Kenny Gainwell,37
+2024,10,addyrao,Taylor Rapp,DB,Derek Stingley,4
+2024,10,Kopite,Quentin Lake,DB,Jordan Mason,2
+2024,11,vnayini,Frankie Luvu,LB,None,1
+2024,11,Kopite,Seattle Seahawks,DEF,Tank Dell,11
+2024,11,bluewatermelon,Jerry Jeudy,WR,Jakobi Meyers,14
+2024,11,bluewatermelon,Zach Ertz,TE,Green Bay Packers,8
+2024,11,addyrao,Reed Blankenship,DB,Cam Taylor-Britt,4
+2024,11,addyrao,Tommy DeVito,QB,Cooper Rush,1
+2024,11,addyrao,Gardner Minshew,QB,Joe Flacco,9
+2024,11,cardinalsin,Javonte Williams,RB,Jared Verse,33
+2024,11,skongara,Christian Watson,WR,None,33
+2024,11,DjBallz,Nakobe Dean,LB,Ivan Pace,3
+2024,11,skongara,Quentin Lake,DB,Miami Dolphins,9
+2024,11,rookieqbme,Austin Ekeler,RB,Jimmie Ward,23
+2024,11,cardinalsin,Kyle Hamilton,DB,Jalen Pitre,17
+2024,11,cardinalsin,Drake Maye,QB,New Orleans Saints,13
+2024,12,Kopite,DeVonta Smith,WR,Dalton Kincaid,8
+2024,12,Kopite,DJ Moore,WR,Quentin Johnston,12
+2024,12,Kopite,Taylor Rapp,DB,Alohi Gilman,0
+2024,12,cardinalsin,Grant Delpit,DB,Kyle Hamilton,7
+2024,12,cardinalsin,Baltimore Ravens,DEF,Javonte Williams,7
+2024,12,cardinalsin,Seattle Seahawks,DEF,Bobby Okereke,7
+2024,12,rookieqbme,Gus Edwards,RB,Brandon Stephens,17
+2024,12,rookieqbme,New Orleans Saints,DEF,Green Bay Packers,13
+2024,12,Kopite,Dallas Cowboys,DEF,Los Angeles Rams,18
+2024,12,vnayini,Trey Hendrickson,DE,None,0
+2024,12,vnayini,Jaylen Waddle,WR,None,46
+2024,12,bluewatermelon,Taron Johnson,CB,Derwin James,6
+2024,12,addyrao,Riley Moss,DB,Reed Blankenship,3
+2024,12,bluewatermelon,Kaden Elliss,LB,Quay Walker,2
+2024,12,bluewatermelon,Keenan Allen,WR,Brandon Allen,14
+2024,12,addyrao,Jameis Winston,QB,Gardner Minshew,22
+2024,12,skongara,Brandon Jones,DB,Quentin Lake,9
+2024,12,Kopite,Tank Dell,WR,Cedric Tillman,6
+2024,12,rookieqbme,Dallas Goedert,TE,New York Jets,8
+2024,12,addyrao,DeAndre Hopkins,WR,Tommy DeVito,11
+2024,12,siddharthasagar,Jakobi Meyers,WR,DJ Moore,21
+2024,13,addyrao,DeAndre Hopkins,WR,Hunter Henry,6
+2024,13,addyrao,Cam Taylor-Britt,DB,P.J. Locke,5
+2024,13,Kopite,Xavier McKinney,DB,Taylor Rapp,1
+2024,13,vnayini,Miami Dolphins,DEF,None,10
+2024,13,DjBallz,Cooper Rush,QB,None,0
+2024,13,vnayini,Kenneth Murray,LB,None,5
+2024,13,Kopite,Adam Thielen,WR,Jordan Mason,0
+2024,13,Kopite,Green Bay Packers,DEF,None,6
+2024,13,bluewatermelon,Eric Kendricks,LB,Andrew Van Ginkel,3
+2024,13,bluewatermelon,Derwin James,DB,Taron Johnson,19
+2024,13,skongara,Aidan O'Connell,QB,Bryce Young,27
+2024,13,chaituat,Isaac Guerendo,RB,None,152
+2024,13,cardinalsin,Justin Reid,DB,Grant Delpit,7
+2024,14,Kopite,DK Metcalf,WR,DeVonta Smith,2
+2024,14,Kopite,Tucker Kraft,TE,Nick Chubb,7
+2024,14,vnayini,Jordan Addison,WR,None,15
+2024,14,siddharthasagar,Patrick Taylor,RB,Robert Spillane,51
+2024,14,DjBallz,Sincere McCormick,RB,Cooper Rush,23
+2024,14,siddharthasagar,Ugo Amadi,DB,Tarheeb Still,1
+2024,14,DjBallz,Tre'von Moehrig,DB,None,18
+2024,14,cardinalsin,Kevin Byard,DB,DaRon Bland,11
+2024,14,vnayini,Quay Walker,LB,None,5
+2024,14,vnayini,Frankie Luvu,LB,None,5
+2024,14,vnayini,New York Jets,DEF,None,15
+2024,14,skongara,Buffalo Bills,DEF,Tennessee Titans,90
+2024,15,siddharthasagar,Mac Jones,QB,None,21
+2024,15,siddharthasagar,Kendre Miller,RB,None,11
+2024,15,addyrao,Cooper Rush,QB,Jameis Winston,11
+2024,15,cardinalsin,Donovan Wilson,DB,Kevin Byard,2
+2024,15,cardinalsin,Tyjae Spears,RB,David Montgomery,12
+2024,15,DjBallz,Jerome Ford,RB,Tre'von Moehrig,108
+2024,16,siddharthasagar,Jeremy Chinn,DB,Ugo Amadi,0
+2024,16,cardinalsin,Miami Dolphins,DEF,Baltimore Ravens,18
+2024,16,cardinalsin,Bryce Young,QB,Geno Smith,1
+2024,16,cardinalsin,Las Vegas Raiders,DEF,Ernest Jones,18
+2024,16,cardinalsin,Brian Branch,DB,Donovan Wilson,18
+2024,16,siddharthasagar,Patrick Taylor,RB,Jakobi Meyers,58

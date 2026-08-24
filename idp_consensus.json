@@ -1,0 +1,442 @@
+[
+  {
+    "rank": 1,
+    "name": "Jack Campbell",
+    "pos": "LB",
+    "team": "DET",
+    "proj_pts": 226.0,
+    "source": "Guru / RotoBaller Consensus #1 LB"
+  },
+  {
+    "rank": 2,
+    "name": "Jordyn Brooks",
+    "pos": "LB",
+    "team": "MIA",
+    "proj_pts": 222.0,
+    "source": "Guru / ECR Consensus #2 LB"
+  },
+  {
+    "rank": 3,
+    "name": "Carson Schwesinger",
+    "pos": "LB",
+    "team": "CLE",
+    "proj_pts": 216.0,
+    "source": "RotoBaller / ECR Top 10"
+  },
+  {
+    "rank": 4,
+    "name": "Zack Baun",
+    "pos": "LB",
+    "team": "PHI",
+    "proj_pts": 212.0,
+    "source": "Guru EDLB / RotoBaller Tier 2"
+  },
+  {
+    "rank": 5,
+    "name": "Sonny Styles",
+    "pos": "LB",
+    "team": "CAR",
+    "proj_pts": 208.0,
+    "source": "RotoBaller Top 10 Overall IDP"
+  },
+  {
+    "rank": 6,
+    "name": "Fred Warner",
+    "pos": "LB",
+    "team": "SF",
+    "proj_pts": 204.0,
+    "source": "Guru 3-Down Anchor"
+  },
+  {
+    "rank": 7,
+    "name": "Cedric Gray",
+    "pos": "LB",
+    "team": "TEN",
+    "proj_pts": 198.0,
+    "source": "RotoBaller Tier 2"
+  },
+  {
+    "rank": 8,
+    "name": "Blake Cashman",
+    "pos": "LB",
+    "team": "MIN",
+    "proj_pts": 195.0,
+    "source": "Guru Green-Dot Playcaller"
+  },
+  {
+    "rank": 9,
+    "name": "Roquan Smith",
+    "pos": "LB",
+    "team": "BAL",
+    "proj_pts": 192.0,
+    "source": "ECR Consensus Tier 3"
+  },
+  {
+    "rank": 10,
+    "name": "Foyesade Oluokun",
+    "pos": "LB",
+    "team": "JAC",
+    "proj_pts": 190.0,
+    "source": "ECR / RotoBaller Veteran Anchor"
+  },
+  {
+    "rank": 11,
+    "name": "Edgerrin Cooper",
+    "pos": "LB",
+    "team": "GB",
+    "proj_pts": 186.0,
+    "source": "Guru Breakout Tracker"
+  },
+  {
+    "rank": 12,
+    "name": "Ernest Jones IV",
+    "pos": "LB",
+    "team": "SEA",
+    "proj_pts": 184.0,
+    "source": "Guru EDLB Lead Anchor"
+  },
+  {
+    "rank": 13,
+    "name": "Alex Singleton",
+    "pos": "LB",
+    "team": "DEN",
+    "proj_pts": 180.0,
+    "source": "RotoBaller Tackle Floor"
+  },
+  {
+    "rank": 14,
+    "name": "Zaire Franklin",
+    "pos": "LB",
+    "team": "GB",
+    "proj_pts": 178.0,
+    "source": "ECR Consensus Starter"
+  },
+  {
+    "rank": 15,
+    "name": "Tyrel Dodson",
+    "pos": "LB",
+    "team": "MIA",
+    "proj_pts": 174.0,
+    "source": "RotoBaller Tier 4"
+  },
+  {
+    "rank": 16,
+    "name": "Nate Landman",
+    "pos": "LB",
+    "team": "LAR",
+    "proj_pts": 172.0,
+    "source": "Guru 100% Snap LB"
+  },
+  {
+    "rank": 17,
+    "name": "Nick Bolton",
+    "pos": "LB",
+    "team": "KC",
+    "proj_pts": 170.0,
+    "source": "ECR Consensus Anchor"
+  },
+  {
+    "rank": 18,
+    "name": "CJ Allen",
+    "pos": "LB",
+    "team": "IND",
+    "proj_pts": 166.0,
+    "source": "RotoBaller Rookie Surge"
+  },
+  {
+    "rank": 19,
+    "name": "Quay Walker",
+    "pos": "LB",
+    "team": "GB",
+    "proj_pts": 164.0,
+    "source": "ECR Consensus Starter"
+  },
+  {
+    "rank": 20,
+    "name": "Jamien Sherwood",
+    "pos": "LB",
+    "team": "NYJ",
+    "proj_pts": 160.0,
+    "source": "Guru Green-Dot Replacement"
+  },
+  {
+    "rank": 21,
+    "name": "Daiyan Henley",
+    "pos": "LB",
+    "team": "LAC",
+    "proj_pts": 158.0,
+    "source": "RotoBaller Tier 5"
+  },
+  {
+    "rank": 22,
+    "name": "Robert Spillane",
+    "pos": "LB",
+    "team": "NE",
+    "proj_pts": 155.0,
+    "source": "Guru EDLB Inside Anchor"
+  },
+  {
+    "rank": 23,
+    "name": "Bobby Wagner",
+    "pos": "LB",
+    "team": "WAS",
+    "proj_pts": 152.0,
+    "source": "ECR Veteran Baseline"
+  },
+  {
+    "rank": 24,
+    "name": "Tremaine Edmunds",
+    "pos": "LB",
+    "team": "NYG",
+    "proj_pts": 150.0,
+    "source": "RotoBaller Tier 5"
+  },
+  {
+    "rank": 25,
+    "name": "Patrick Queen",
+    "pos": "LB",
+    "team": "PIT",
+    "proj_pts": 148.0,
+    "source": "ECR Starter"
+  },
+  {
+    "rank": 26,
+    "name": "Kaden Elliss",
+    "pos": "LB",
+    "team": "NO",
+    "proj_pts": 145.0,
+    "source": "Guru Scheme Blitz Fit"
+  },
+  {
+    "rank": 1,
+    "name": "Myles Garrett",
+    "pos": "DL",
+    "team": "LAR",
+    "proj_pts": 220.0,
+    "source": "Consensus #1 Overall IDP (Guru / RotoBaller)"
+  },
+  {
+    "rank": 2,
+    "name": "Maxx Crosby",
+    "pos": "DL",
+    "team": "LV",
+    "proj_pts": 214.0,
+    "source": "Consensus #2 Overall IDP (RotoBaller / ECR)"
+  },
+  {
+    "rank": 3,
+    "name": "Aidan Hutchinson",
+    "pos": "DL",
+    "team": "DET",
+    "proj_pts": 208.0,
+    "source": "Consensus #3 Overall IDP"
+  },
+  {
+    "rank": 4,
+    "name": "Will Anderson Jr.",
+    "pos": "DL",
+    "team": "HOU",
+    "proj_pts": 202.0,
+    "source": "RotoBaller Tier 2 / ECR DL4"
+  },
+  {
+    "rank": 5,
+    "name": "T.J. Watt",
+    "pos": "DL",
+    "team": "PIT",
+    "proj_pts": 198.0,
+    "source": "Consensus Tier 2 Pass Rusher"
+  },
+  {
+    "rank": 6,
+    "name": "Nik Bonitto",
+    "pos": "DL",
+    "team": "DEN",
+    "proj_pts": 192.0,
+    "source": "RotoBaller Tier 2 Breakout"
+  },
+  {
+    "rank": 7,
+    "name": "Brian Burns",
+    "pos": "DL",
+    "team": "NYG",
+    "proj_pts": 188.0,
+    "source": "ECR Consensus Edge"
+  },
+  {
+    "rank": 8,
+    "name": "Jeffery Simmons",
+    "pos": "DL",
+    "team": "TEN",
+    "proj_pts": 182.0,
+    "source": "RotoBaller Tier 3 DT/DL"
+  },
+  {
+    "rank": 9,
+    "name": "Byron Young",
+    "pos": "DL",
+    "team": "LAR",
+    "proj_pts": 178.0,
+    "source": "Guru Pass Rush Index"
+  },
+  {
+    "rank": 10,
+    "name": "Jared Verse",
+    "pos": "DL",
+    "team": "LAR",
+    "proj_pts": 175.0,
+    "source": "RotoBaller Tier 3 Edge"
+  },
+  {
+    "rank": 11,
+    "name": "Danielle Hunter",
+    "pos": "DL",
+    "team": "HOU",
+    "proj_pts": 172.0,
+    "source": "ECR Veteran Pass Rusher"
+  },
+  {
+    "rank": 12,
+    "name": "Abdul Carter",
+    "pos": "DL",
+    "team": "ARI",
+    "proj_pts": 168.0,
+    "source": "RotoBaller Tier 4 Rookie"
+  },
+  {
+    "rank": 13,
+    "name": "Trey Hendrickson",
+    "pos": "DL",
+    "team": "CIN",
+    "proj_pts": 164.0,
+    "source": "ECR Sack Anchor"
+  },
+  {
+    "rank": 14,
+    "name": "Nick Bosa",
+    "pos": "DL",
+    "team": "SF",
+    "proj_pts": 162.0,
+    "source": "Guru 1-Gap Attacking Front"
+  },
+  {
+    "rank": 15,
+    "name": "Montez Sweat",
+    "pos": "DL",
+    "team": "CHI",
+    "proj_pts": 158.0,
+    "source": "RotoBaller Tier 5"
+  },
+  {
+    "rank": 1,
+    "name": "Kyle Hamilton",
+    "pos": "DB",
+    "team": "BAL",
+    "proj_pts": 204.0,
+    "source": "Consensus #1 DB (Guru / RotoBaller / ECR)"
+  },
+  {
+    "rank": 2,
+    "name": "Brian Branch",
+    "pos": "DB",
+    "team": "DET",
+    "proj_pts": 196.0,
+    "source": "RotoBaller #2 DB / Slot Anchor"
+  },
+  {
+    "rank": 3,
+    "name": "Nick Emmanwori",
+    "pos": "DB",
+    "team": "SEA",
+    "proj_pts": 192.0,
+    "source": "Guru Rookie Box Rover / RotoBaller Tier 4"
+  },
+  {
+    "rank": 4,
+    "name": "Derwin James Jr.",
+    "pos": "DB",
+    "team": "LAC",
+    "proj_pts": 188.0,
+    "source": "ECR Consensus Box Safety"
+  },
+  {
+    "rank": 5,
+    "name": "Budda Baker",
+    "pos": "DB",
+    "team": "ARI",
+    "proj_pts": 182.0,
+    "source": "Guru High-Tackle Safety"
+  },
+  {
+    "rank": 6,
+    "name": "Caleb Downs",
+    "pos": "DB",
+    "team": "NO",
+    "proj_pts": 178.0,
+    "source": "RotoBaller Tier 5 Rookie"
+  },
+  {
+    "rank": 7,
+    "name": "Jessie Bates III",
+    "pos": "DB",
+    "team": "ATL",
+    "proj_pts": 174.0,
+    "source": "ECR Turnover Magnet"
+  },
+  {
+    "rank": 8,
+    "name": "Kamren Curl",
+    "pos": "DB",
+    "team": "LAR",
+    "proj_pts": 170.0,
+    "source": "Guru Box-Safety Anchor"
+  },
+  {
+    "rank": 9,
+    "name": "Antoine Winfield Jr.",
+    "pos": "DB",
+    "team": "TB",
+    "proj_pts": 168.0,
+    "source": "ECR Stat-Sheet Stuffer"
+  },
+  {
+    "rank": 10,
+    "name": "Travis Hunter",
+    "pos": "DB",
+    "team": "NE",
+    "proj_pts": 165.0,
+    "source": "RotoBaller Tier 5 Two-Way Star"
+  },
+  {
+    "rank": 11,
+    "name": "Nick Cross",
+    "pos": "DB",
+    "team": "WAS",
+    "proj_pts": 160.0,
+    "source": "Guru Breakout Box Safety"
+  },
+  {
+    "rank": 12,
+    "name": "Quentin Lake",
+    "pos": "DB",
+    "team": "LAR",
+    "proj_pts": 156.0,
+    "source": "RotoBaller Slot Safety"
+  },
+  {
+    "rank": 13,
+    "name": "Xavier McKinney",
+    "pos": "DB",
+    "team": "GB",
+    "proj_pts": 152.0,
+    "source": "ECR Ballhawk Safety"
+  },
+  {
+    "rank": 14,
+    "name": "Jordan Battle",
+    "pos": "DB",
+    "team": "CIN",
+    "proj_pts": 148.0,
+    "source": "Guru In-the-Box Tackler"
+  }
+]
