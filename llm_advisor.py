@@ -6,6 +6,15 @@ import streamlit as st
 OLLAMA_API_URL = os.getenv("OLLAMA_API_URL", "http://localhost:11434/api/generate")
 LOCAL_MODEL = os.getenv("LOCAL_LLM_MODEL", "llama3.1:8b")
 
+# Candidate Groq models in order of speed and capability
+CANDIDATE_GROQ_MODELS = [
+    "openai/gpt-oss-20b",
+    "llama-3.3-70b-versatile",
+    "qwen/qwen3.6-27b",
+    "openai/gpt-oss-120b",
+    "llama-3.1-8b-instant"
+]
+
 def get_active_groq_key() -> str:
     """Safely retrieves the Groq API key from Streamlit secrets or environment."""
     try:
@@ -15,8 +24,30 @@ def get_active_groq_key() -> str:
         pass
     return os.getenv("GROQ_API_KEY", "")
 
-def query_groq_api(prompt: str, system_prompt: str = "You are a quantitative fantasy football auction draft analyst. Be direct, tactical, and concise. No fluff.", model: str = "llama-3.1-8b-instant") -> str:
-    """Ultra-fast cloud inference via Groq API (~300 tokens/sec)."""
+def get_available_groq_model(api_key: str) -> str:
+    """Queries Groq /v1/models to find the best active chat model."""
+    try:
+        res = requests.get(
+            "https://api.groq.com/openai/v1/models",
+            headers={"Authorization": f"Bearer {api_key.strip()}"},
+            timeout=3
+        )
+        if res.status_code == 200:
+            available = [m["id"] for m in res.json().get("data", [])]
+            for candidate in CANDIDATE_GROQ_MODELS:
+                if candidate in available:
+                    return candidate
+            if available:
+                # Return the first text completion model available
+                text_models = [m for m in available if "whisper" not in m and "guard" not in m]
+                if text_models:
+                    return text_models[0]
+    except Exception:
+        pass
+    return CANDIDATE_GROQ_MODELS[0]
+
+def query_groq_api(prompt: str, system_prompt: str = "You are a quantitative fantasy football auction draft analyst. Be direct, tactical, and concise. No fluff.") -> str:
+    """Ultra-fast cloud inference via Groq API (~300-1000 tokens/sec)."""
     api_key = get_active_groq_key()
     if not api_key:
         return "⚠️ Missing Groq API Key. Add `GROQ_API_KEY` to Streamlit Secrets or .streamlit/secrets.toml."
@@ -26,8 +57,12 @@ def query_groq_api(prompt: str, system_prompt: str = "You are a quantitative fan
         "Authorization": f"Bearer {api_key.strip()}",
         "Content-Type": "application/json"
     }
+    
+    # Auto-resolve best available active model
+    active_model = get_available_groq_model(api_key)
+    
     payload = {
-        "model": model,
+        "model": active_model,
         "messages": [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": prompt}
@@ -39,6 +74,15 @@ def query_groq_api(prompt: str, system_prompt: str = "You are a quantitative fan
         res = requests.post(url, headers=headers, json=payload, timeout=6)
         if res.status_code == 200:
             return res.json()["choices"][0]["message"]["content"].strip()
+        
+        # Fallback loop across candidates if specific model fails
+        for fallback_model in CANDIDATE_GROQ_MODELS:
+            if fallback_model != active_model:
+                payload["model"] = fallback_model
+                res_fb = requests.post(url, headers=headers, json=payload, timeout=4)
+                if res_fb.status_code == 200:
+                    return res_fb.json()["choices"][0]["message"]["content"].strip()
+                    
         return f"⚠️ Groq API Error ({res.status_code}): {res.text}"
     except Exception as e:
         return f"⚠️ Groq Connection Notice: {e}"
