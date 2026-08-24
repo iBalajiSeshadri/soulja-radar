@@ -169,13 +169,15 @@ df_board['auction_rank'] = df_board.index + 1
 player_pos_map = dict(zip(df_board['clean_name'], df_board['position']))
 player_display_map = dict(zip(df_board['clean_name'], df_board['player_name']))
 
-# 4. Sidebar Controls & Live Sync
-st.sidebar.title("⚙️ Draft Room Link")
-room_mode = st.sidebar.radio("Connection Mode:", ["🎮 Mock Sim Sandbox", "🌐 Live Sleeper Room Sync"], horizontal=True)
+# 4. Sidebar Controls & Draft Format Switcher
+st.sidebar.title("⚡ Draft Mode & Sync")
+draft_mode = st.sidebar.radio("Draft Format:", ["🔨 Auction / Salary Cap", "🐍 Snake Draft"], horizontal=True)
 
 league_size = 10
 total_roster_slots = 18
-my_slot = st.sidebar.number_input("Your Slot / Team #", min_value=1, max_value=league_size, value=1)
+my_slot = st.sidebar.number_input("Your Draft Slot / Team #", min_value=1, max_value=league_size, value=1)
+
+room_mode = st.sidebar.radio("Connection Mode:", ["🎮 Mock Sim Sandbox", "🌐 Live Sleeper Room Sync"], horizontal=True)
 
 manager_wallets = {}
 for i in range(1, league_size + 1):
@@ -183,6 +185,27 @@ for i in range(1, league_size + 1):
         "spent": 0, "picks": 0, "name": f"Team {i}",
         "roster": [], "pos_counts": {'QB': 0, 'RB': 0, 'WR': 0, 'TE': 0, 'IDP': 0, 'DEF': 0}
     }
+
+# Snake Slot Calculation Helper
+def get_snake_team_on_clock(pick_idx, n_teams):
+    round_num = (pick_idx - 1) // n_teams + 1
+    pick_in_r = (pick_idx - 1) % n_teams + 1
+    if round_num % 2 == 1:
+        return pick_in_r
+    else:
+        return n_teams - pick_in_r + 1
+
+def get_next_my_pick(curr_pick, my_slot_num, n_teams, total_picks):
+    for p in range(curr_pick, total_picks + 1):
+        if get_snake_team_on_clock(p, n_teams) == my_slot_num:
+            return p
+    return total_picks + 1
+
+curr_overall_pick = len(st.session_state.drafted_picks) + 1
+total_league_picks = league_size * total_roster_slots
+snake_on_clock_team = get_snake_team_on_clock(curr_overall_pick, league_size)
+next_my_pick_num = get_next_my_pick(curr_overall_pick, my_slot, league_size, total_league_picks)
+picks_until_my_turn = max(0, next_my_pick_num - curr_overall_pick)
 
 if room_mode == "🎮 Mock Sim Sandbox":
     st.sidebar.markdown("---")
@@ -193,8 +216,12 @@ if room_mode == "🎮 Mock Sim Sandbox":
             unpicked_now = df_board[~df_board['clean_name'].isin(st.session_state.drafted_picks.keys())]
             if len(unpicked_now) > 0:
                 target_p = unpicked_now.iloc[0]
-                rand_team = random.choice([t for t in range(1, league_size + 1) if t != my_slot])
-                var_price = max(1, int(round(target_p['market_cost'] * random.uniform(0.92, 1.08))))
+                if draft_mode == "🔨 Auction / Salary Cap":
+                    rand_team = random.choice([t for t in range(1, league_size + 1) if t != my_slot])
+                    var_price = max(1, int(round(target_p['market_cost'] * random.uniform(0.92, 1.08))))
+                else:
+                    rand_team = snake_on_clock_team
+                    var_price = curr_overall_pick
                 st.session_state.drafted_picks[target_p['clean_name']] = {
                     "price": var_price, "team": rand_team,
                     "player_name": target_p['player_name'], "position": target_p['position']
@@ -205,8 +232,13 @@ if room_mode == "🎮 Mock Sim Sandbox":
             unpicked_now = df_board[~df_board['clean_name'].isin(st.session_state.drafted_picks.keys())]
             for i in range(min(5, len(unpicked_now))):
                 target_p = unpicked_now.iloc[i]
-                rand_team = random.choice([t for t in range(1, league_size + 1) if t != my_slot])
-                var_price = max(1, int(round(target_p['market_cost'] * random.uniform(0.90, 1.10))))
+                sim_pick_num = len(st.session_state.drafted_picks) + 1
+                if draft_mode == "🔨 Auction / Salary Cap":
+                    rand_team = random.choice([t for t in range(1, league_size + 1) if t != my_slot])
+                    var_price = max(1, int(round(target_p['market_cost'] * random.uniform(0.90, 1.10))))
+                else:
+                    rand_team = get_snake_team_on_clock(sim_pick_num, league_size)
+                    var_price = sim_pick_num
                 st.session_state.drafted_picks[target_p['clean_name']] = {
                     "price": var_price, "team": rand_team,
                     "player_name": target_p['player_name'], "position": target_p['position']
@@ -226,7 +258,7 @@ else:
                 for p in p_res.json():
                     meta = p.get('metadata', {})
                     c_name = clean_name(f"{meta.get('first_name', '')} {meta.get('last_name', '')}")
-                    amt = int(meta.get('amount') or p.get('amount') or 1)
+                    amt = int(meta.get('amount') or p.get('amount') or p.get('pick_no') or 1)
                     slot = p.get('draft_slot', 1)
                     pos = player_pos_map.get(c_name, meta.get('position', 'FLEX'))
                     display_name = player_display_map.get(c_name, f"{meta.get('first_name', '')} {meta.get('last_name', '')}")
@@ -244,14 +276,14 @@ st.sidebar.markdown("### 🎯 Wishlist & Fade Manager")
 all_player_names = sorted(df_board['player_name'].tolist())
 
 selected_targets = st.sidebar.multiselect(
-    "⭐ My Targets (Never Bait / Prioritize Buying)",
+    "⭐ My Targets (Prioritize Drafting)",
     options=all_player_names,
     default=[p for p in all_player_names if clean_name(p) in st.session_state.my_targets]
 )
 st.session_state.my_targets = {clean_name(p) for p in selected_targets}
 
 selected_fades = st.sidebar.multiselect(
-    "🚫 My Fades (Do Not Buy / Prime Bait)",
+    "🚫 My Fades (Do Not Draft)",
     options=all_player_names,
     default=[p for p in all_player_names if clean_name(p) in st.session_state.my_fades]
 )
@@ -264,7 +296,8 @@ for c_p, pdata in st.session_state.drafted_picks.items():
     if s in manager_wallets:
         manager_wallets[s]["spent"] += pdata["price"]
         manager_wallets[s]["picks"] += 1
-        manager_wallets[s]["roster"].append(f"{pdata['player_name']} (${pdata['price']})")
+        label_val = f"${pdata['price']}" if draft_mode == "🔨 Auction / Salary Cap" else f"Pick #{pdata['price']}"
+        manager_wallets[s]["roster"].append(f"{pdata['player_name']} ({label_val})")
         if pos in ['LB', 'DL', 'DB']:
             manager_wallets[s]["pos_counts"]['IDP'] += 1
         elif pos in manager_wallets[s]["pos_counts"]:
@@ -278,18 +311,31 @@ df_unpicked = df_board[~df_board['clean_name'].isin(picked_clean_names)].copy()
 remaining_league_cash = (league_size * 200) - total_cash_spent
 unpicked_fair_sum = df_unpicked['fair_value'].sum()
 inflation_index = round(remaining_league_cash / max(1.0, unpicked_fair_sum), 2)
-
-st.markdown("### 🏈 SOULJA SOULJA QUANTITATIVE RADAR (OFFENSE + IDP)")
-
-c1, c2, c3, c4 = st.columns(4)
-c1.metric("League Capital Remaining", f"${remaining_league_cash}", f"-${total_cash_spent} Spent")
-c2.metric("Room Inflation Index", f"{inflation_index}x", "Deflation (Bargains)" if inflation_index < 1.0 else "Inflation (Overpay)")
-c3.metric("Players Drafted", f"{len(picked_clean_names)} / 180", f"{180 - len(picked_clean_names)} Left")
 my_wallet = manager_wallets.get(my_slot, {"spent": 0, "picks": 0})
 my_cap_left = 200 - my_wallet['spent']
 my_slots_left = total_roster_slots - my_wallet['picks']
 my_max_bid = max(1, my_cap_left - (my_slots_left - 1))
-c4.metric("Your Max Single Bid", f"${my_max_bid}", f"${my_cap_left} Budget Left")
+
+if draft_mode == "🔨 Auction / Salary Cap":
+    st.markdown("### 🏈 SOULJA SOULJA SALARY CAP AUCTION RADAR")
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("League Capital Remaining", f"${remaining_league_cash}", f"-${total_cash_spent} Spent")
+    c2.metric("Room Inflation Index", f"{inflation_index}x", "Deflation (Bargains)" if inflation_index < 1.0 else "Inflation (Overpay)")
+    c3.metric("Players Drafted", f"{len(picked_clean_names)} / 180", f"{180 - len(picked_clean_names)} Left")
+    c4.metric("Your Max Single Bid", f"${my_max_bid}", f"${my_cap_left} Budget Left")
+else:
+    st.markdown("### 🐍 SOULJA SOULJA SNAKE DRAFT WAR ROOM")
+    c1, c2, c3, c4 = st.columns(4)
+    curr_round = (curr_overall_pick - 1) // league_size + 1
+    curr_round_pick = (curr_overall_pick - 1) % league_size + 1
+    c1.metric("Current Draft Pick", f"Round {curr_round}, Pick {curr_round_pick}", f"Overall Pick #{curr_overall_pick}")
+    
+    clock_label = "⭐ YOU ARE ON CLOCK!" if snake_on_clock_team == my_slot else f"Team {snake_on_clock_team}"
+    c2.metric("On The Clock", clock_label, f"Draft Slot #{snake_on_clock_team}")
+    
+    turn_str = "NOW DRAFTING" if picks_until_my_turn == 0 else f"{picks_until_my_turn} Picks Away"
+    c3.metric("Distance to Your Turn", turn_str, f"Your Pick: #{next_my_pick_num}")
+    c4.metric("Roster Completed", f"{my_wallet['picks']} / {total_roster_slots}", f"{my_slots_left} Slots Needed")
 
 st.markdown("---")
 
@@ -350,249 +396,264 @@ for idx, pos in enumerate(['RB', 'WR', 'TE', 'QB']):
 st.markdown("---")
 
 # ==============================================================================
-# 5.5 DYNAMIC REAL-TIME TARGETING & STRATEGIC NOMINATION PLAYBOOK
+# 5.5 DYNAMIC REAL-TIME TARGETING & STRATEGIC PLAYBOOK
 # ==============================================================================
-st.markdown("#### 🧠 REAL-TIME DYNAMIC TARGETING & NOMINATION ADVISOR")
-
 my_counts = my_wallet['pos_counts']
 pos_targets = {'QB': 2, 'RB': 4, 'WR': 4, 'TE': 2, 'IDP': 4, 'DEF': 1}
 pos_gaps = {pos: max(0, target - my_counts.get(pos, 0)) for pos, target in pos_targets.items()}
 
 non_faded_unpicked = df_unpicked[~df_unpicked['clean_name'].isin(st.session_state.my_fades)].copy()
-affordable_df = non_faded_unpicked[non_faded_unpicked['fair_value'] <= my_max_bid].copy()
-
-# STRICT ISOLATION: Are starting offensive positions still open?
 offense_needed = [p for p in ['QB', 'RB', 'WR', 'TE'] if pos_gaps.get(p, 0) > 0]
-
-if offense_needed:
-    primary_candidate_pool = affordable_df[affordable_df['position'].isin(offense_needed)].copy()
-else:
-    idp_needed = [p for p in ['LB', 'DL', 'DB', 'DEF'] if pos_gaps.get('IDP', 0) > 0 or pos_gaps.get('DEF', 0) > 0]
-    primary_candidate_pool = affordable_df[affordable_df['position'].isin(idp_needed)].copy()
-
-# 1. Top Recommended Target (Anchor)
-top_stud_name = ""
-user_priority_pool = primary_candidate_pool[primary_candidate_pool['clean_name'].isin(st.session_state.my_targets)]
-
-if not user_priority_pool.empty:
-    top_stud = user_priority_pool.sort_values(by='fair_value', ascending=False).iloc[0]
-    top_stud_name = top_stud['clean_name']
-    rec_bid = min(my_max_bid, int(round(top_stud['fair_value'] * max(0.90, inflation_index))))
-    stud_badge_text = "⭐ YOUR PRIORITY TARGET"
-    stud_card_html = (
-        '<div style="background:#131b2e; border-top:4px solid #10b981; padding:12px; border-radius:6px; height:100%;">'
-        f'<div style="font-size:0.75rem; color:#10b981; font-weight:700;">{stud_badge_text}</div>'
-        f'<div style="font-size:1.15rem; font-weight:700; color:white; margin:4px 0;">{top_stud["player_name"]} <span class="badge-pos pos-{top_stud["position"]}">{top_stud["position"]}</span></div>'
-        f'<div style="font-size:0.85rem; color:#94a3b8;">Max Bid-To: <b style="color:#10b981;">${rec_bid}</b> | Market ADP: ${top_stud["market_cost"]}</div>'
-        f'<div style="font-size:0.75rem; color:#cbd5e1; margin-top:6px;"><b>Strategy:</b> Starred priority target. Secure before positional runs exhaust budget.</div>'
-        '</div>'
-    )
-elif not primary_candidate_pool.empty:
-    top_stud = primary_candidate_pool.sort_values(by='fair_value', ascending=False).iloc[0]
-    top_stud_name = top_stud['clean_name']
-    rec_bid = min(my_max_bid, int(round(top_stud['fair_value'] * max(0.90, inflation_index))))
-    stud_card_html = (
-        '<div style="background:#131b2e; border-top:4px solid #10b981; padding:12px; border-radius:6px; height:100%;">'
-        '<div style="font-size:0.75rem; color:#10b981; font-weight:700;">👑 RECOMMENDED ANCHOR / STUD</div>'
-        f'<div style="font-size:1.15rem; font-weight:700; color:white; margin:4px 0;">{top_stud["player_name"]} <span class="badge-pos pos-{top_stud["position"]}">{top_stud["position"]}</span></div>'
-        f'<div style="font-size:0.85rem; color:#94a3b8;">Max Bid-To: <b style="color:#10b981;">${rec_bid}</b> | Market ADP: ${top_stud["market_cost"]}</div>'
-        f'<div style="font-size:0.75rem; color:#cbd5e1; margin-top:6px;"><b>Strategy:</b> Highest available VORP ({round(top_stud["live_vorp"], 1)}) to fill your open {top_stud["position"]} slot.</div>'
-        '</div>'
-    )
-else:
-    stud_card_html = (
-        '<div style="background:#131b2e; border-top:4px solid #10b981; padding:12px; border-radius:6px;">'
-        '<div style="font-size:0.75rem; color:#10b981; font-weight:700;">👑 RECOMMENDED ANCHOR / STUD</div>'
-        '<div style="font-size:0.9rem; color:#94a3b8; margin-top:8px;">All primary starting slots filled or budget constrained. Focus on value snipes.</div>'
-        '</div>'
-    )
-
-# 2. MULTI-POSITIONAL ARBITRAGE & EFFICIENCY BREAKDOWN (QB / RB / WR / TE)
 display_positions = ['QB', 'RB', 'WR', 'TE'] if offense_needed else ['LB', 'DL', 'DB', 'DEF']
-pos_arb_rows = []
 
-for target_pos in display_positions:
-    pos_pool = primary_candidate_pool[
-        (primary_candidate_pool['position'] == target_pos) &
-        (primary_candidate_pool['clean_name'] != top_stud_name)
-    ].copy()
-    
-    if not pos_pool.empty:
-        pos_pool['surplus_val'] = pos_pool['fair_value'] - pos_pool['market_cost']
-        pos_pool['ppd'] = pos_pool['live_vorp'] / pos_pool['market_cost'].clip(lower=1)
-        pos_pool['target_boost'] = pos_pool['clean_name'].apply(lambda x: 1.6 if x in st.session_state.my_targets else 1.0)
-        
-        # Priority A: Genuine Positive Surplus
-        pos_surplus = pos_pool[pos_pool['surplus_val'] > 0].copy()
-        if not pos_surplus.empty:
-            pos_surplus['score'] = pos_surplus['surplus_val'] * pos_surplus['ppd'] * pos_surplus['target_boost']
-            best_p = pos_surplus.sort_values(by=['score', 'live_vorp'], ascending=[False, False]).iloc[0]
-            val_text = f"+${int(best_p['surplus_val'])} Surplus"
-            val_color = "#10b981"
-        else:
-            # Priority B: Points-Per-Dollar (PPD) Intra-Tier Efficiency
-            pos_pool['eff_score'] = pos_pool['ppd'] * pos_pool['target_boost']
-            best_p = pos_pool.sort_values(by=['eff_score', 'live_vorp'], ascending=[False, False]).iloc[0]
-            ppd_val = round(float(best_p['live_vorp']) / max(1, float(best_p['market_cost'])), 1)
-            val_text = f"{ppd_val} VORP/$"
-            val_color = "#60a5fa"
+if draft_mode == "🔨 Auction / Salary Cap":
+    st.markdown("#### 🧠 REAL-TIME DYNAMIC TARGETING & NOMINATION ADVISOR")
+    affordable_df = non_faded_unpicked[non_faded_unpicked['fair_value'] <= my_max_bid].copy()
+    primary_candidate_pool = affordable_df[affordable_df['position'].isin(display_positions)].copy()
+
+    # 1. Top Recommended Target (Anchor)
+    top_stud_name = ""
+    user_priority_pool = primary_candidate_pool[primary_candidate_pool['clean_name'].isin(st.session_state.my_targets)]
+
+    if not user_priority_pool.empty:
+        top_stud = user_priority_pool.sort_values(by='fair_value', ascending=False).iloc[0]
+        top_stud_name = top_stud['clean_name']
+        rec_bid = min(my_max_bid, int(round(top_stud['fair_value'] * max(0.90, inflation_index))))
+        stud_card_html = (
+            '<div style="background:#131b2e; border-top:4px solid #10b981; padding:12px; border-radius:6px; height:100%;">'
+            '<div style="font-size:0.75rem; color:#10b981; font-weight:700;">⭐ YOUR PRIORITY TARGET</div>'
+            f'<div style="font-size:1.15rem; font-weight:700; color:white; margin:4px 0;">{top_stud["player_name"]} <span class="badge-pos pos-{top_stud["position"]}">{top_stud["position"]}</span></div>'
+            f'<div style="font-size:0.85rem; color:#94a3b8;">Max Bid-To: <b style="color:#10b981;">${rec_bid}</b> | Market ADP: ${top_stud["market_cost"]}</div>'
+            f'<div style="font-size:0.75rem; color:#cbd5e1; margin-top:6px;"><b>Strategy:</b> Starred priority target. Secure before positional runs exhaust budget.</div>'
+            '</div>'
+        )
+    elif not primary_candidate_pool.empty:
+        top_stud = primary_candidate_pool.sort_values(by='fair_value', ascending=False).iloc[0]
+        top_stud_name = top_stud['clean_name']
+        rec_bid = min(my_max_bid, int(round(top_stud['fair_value'] * max(0.90, inflation_index))))
+        stud_card_html = (
+            '<div style="background:#131b2e; border-top:4px solid #10b981; padding:12px; border-radius:6px; height:100%;">'
+            '<div style="font-size:0.75rem; color:#10b981; font-weight:700;">👑 RECOMMENDED ANCHOR / STUD</div>'
+            f'<div style="font-size:1.15rem; font-weight:700; color:white; margin:4px 0;">{top_stud["player_name"]} <span class="badge-pos pos-{top_stud["position"]}">{top_stud["position"]}</span></div>'
+            f'<div style="font-size:0.85rem; color:#94a3b8;">Max Bid-To: <b style="color:#10b981;">${rec_bid}</b> | Market ADP: ${top_stud["market_cost"]}</div>'
+            f'<div style="font-size:0.75rem; color:#cbd5e1; margin-top:6px;"><b>Strategy:</b> Highest available VORP ({round(top_stud["live_vorp"], 1)}) to fill your open {top_stud["position"]} slot.</div>'
+            '</div>'
+        )
+    else:
+        stud_card_html = '<div style="background:#131b2e; border-top:4px solid #10b981; padding:12px; border-radius:6px;"><div style="font-size:0.75rem; color:#10b981; font-weight:700;">👑 RECOMMENDED ANCHOR / STUD</div><div style="font-size:0.9rem; color:#94a3b8; margin-top:8px;">Positions filled or budget constrained.</div></div>'
+
+    # 2. Multi-Positional Arbitrage
+    pos_arb_rows = []
+    for target_pos in display_positions:
+        pos_pool = primary_candidate_pool[(primary_candidate_pool['position'] == target_pos) & (primary_candidate_pool['clean_name'] != top_stud_name)].copy()
+        if not pos_pool.empty:
+            pos_pool['surplus_val'] = pos_pool['fair_value'] - pos_pool['market_cost']
+            pos_pool['ppd'] = pos_pool['live_vorp'] / pos_pool['market_cost'].clip(lower=1)
+            pos_pool['target_boost'] = pos_pool['clean_name'].apply(lambda x: 1.6 if x in st.session_state.my_targets else 1.0)
             
-        is_p_starred = "⭐ " if best_p['clean_name'] in st.session_state.my_targets else ""
-        exec_price = max(1, min(int(best_p['fair_value']), int(round(best_p['market_cost'] * 0.95))))
-        
+            pos_surplus = pos_pool[pos_pool['surplus_val'] > 0].copy()
+            if not pos_surplus.empty:
+                pos_surplus['score'] = pos_surplus['surplus_val'] * pos_surplus['ppd'] * pos_surplus['target_boost']
+                best_p = pos_surplus.sort_values(by=['score', 'live_vorp'], ascending=[False, False]).iloc[0]
+                val_text = f"+${int(best_p['surplus_val'])} Surplus"
+                val_color = "#10b981"
+            else:
+                pos_pool['eff_score'] = pos_pool['ppd'] * pos_pool['target_boost']
+                best_p = pos_pool.sort_values(by=['eff_score', 'live_vorp'], ascending=[False, False]).iloc[0]
+                ppd_val = round(float(best_p['live_vorp']) / max(1, float(best_p['market_cost'])), 1)
+                val_text = f"{ppd_val} VORP/$"
+                val_color = "#60a5fa"
+                
+            is_p_starred = "⭐ " if best_p['clean_name'] in st.session_state.my_targets else ""
+            exec_price = max(1, min(int(best_p['fair_value']), int(round(best_p['market_cost'] * 0.95))))
+            
+            row_html = (
+                '<div style="display:flex; justify-content:space-between; align-items:center; background:#0b0f19; padding:5px 8px; margin-bottom:4px; border-radius:4px; border-left:3px solid #3b82f6;">'
+                '<div>'
+                f'<span class="badge-pos pos-{best_p["position"]}">{best_p["position"]}</span> <b>{is_p_starred}{best_p["player_name"]}</b> <span style="font-size:0.75rem; color:#94a3b8;">({best_p["tier"]})</span><br>'
+                f'<span style="font-size:0.72rem; color:#94a3b8;">Fair: <b>${int(best_p["fair_value"])}</b> | Mkt: <b>${int(best_p["market_cost"])}</b> | Bid-To: <b>${exec_price}</b></span>'
+                '</div>'
+                f'<div style="font-size:0.8rem; font-weight:700; color:{val_color}; text-align:right;">{val_text}</div>'
+                '</div>'
+            )
+            pos_arb_rows.append(row_html)
+
+    rendered_rows = "".join(pos_arb_rows) if pos_arb_rows else '<div style="font-size:0.85rem; color:#94a3b8;">No arbitrage available.</div>'
+    bargain_card_html = f'<div style="background:#131b2e; border-top:4px solid #3b82f6; padding:10px 12px; border-radius:6px; height:100%;"><div style="font-size:0.75rem; color:#3b82f6; font-weight:700; margin-bottom:6px;">💎 POSITIONAL ARBITRAGE (BEST PER POSITION)</div>{rendered_rows}</div>'
+
+    # 3. Nomination Playbook
+    nom_strategy = st.radio("Select Your Tactical Nomination Intent:", ["💸 Bleed Rival Wallets (High-Cost Bait)", "💣 Landmine Trap (Overvalued Decoy)", "🥷 Stealth Sneak ($1-$3 Value Snipe)", "👑 Set the Market (Target Price Discovery)"], horizontal=True)
+    pos_nom_rows = []
+    for target_pos in display_positions:
+        pos_pool = df_unpicked[df_unpicked['position'] == target_pos].copy()
+        if pos_pool.empty: continue
+        if nom_strategy == "💸 Bleed Rival Wallets (High-Cost Bait)":
+            safe_pool = pos_pool[~pos_pool['clean_name'].isin(st.session_state.my_targets)].copy()
+            fade_pool = safe_pool[safe_pool['clean_name'].isin(st.session_state.my_fades)].sort_values(by='market_cost', ascending=False)
+            nom_p = fade_pool.iloc[0] if not fade_pool.empty else safe_pool.sort_values(by='market_cost', ascending=False).iloc[0]
+            val_text = f"${int(nom_p['market_cost'])} Fade" if not fade_pool.empty else f"${int(nom_p['market_cost'])} Drain"
+            val_color = "#ef4444" if not fade_pool.empty else "#f59e0b"
+            is_p_starred = "🚫 " if nom_p['clean_name'] in st.session_state.my_fades else ""
+            sub_desc = f"Fair: ${int(nom_p['fair_value'])} | Drain rival cap on non-target"
+        elif nom_strategy == "💣 Landmine Trap (Overvalued Decoy)":
+            safe_pool = pos_pool[~pos_pool['clean_name'].isin(st.session_state.my_targets)].copy()
+            safe_pool['landmine_gap'] = safe_pool['market_cost'] - safe_pool['fair_value']
+            nom_p = safe_pool.sort_values(by='landmine_gap', ascending=False).iloc[0]
+            gap = int(nom_p['market_cost'] - nom_p['fair_value'])
+            val_text = f"+${gap} Trap" if gap > 0 else f"${gap} Fair"
+            val_color = "#ef4444" if gap > 0 else "#94a3b8"
+            is_p_starred = "🚫 " if nom_p['clean_name'] in st.session_state.my_fades else ""
+            sub_desc = f"Bait: ${int(nom_p['market_cost'])} vs True Value ${int(nom_p['fair_value'])}"
+        elif nom_strategy == "🥷 Stealth Sneak ($1-$3 Value Snipe)":
+            cheap_pool = pos_pool[(pos_pool['market_cost'] <= 3) & (~pos_pool['clean_name'].isin(st.session_state.my_fades))].sort_values(by='live_vorp', ascending=False)
+            nom_p = cheap_pool.iloc[0] if not cheap_pool.empty else pos_pool.sort_values(by='market_cost', ascending=True).iloc[0]
+            val_text = f"${int(nom_p['market_cost'])} Snipe"
+            val_color = "#10b981"
+            is_p_starred = "⭐ " if nom_p['clean_name'] in st.session_state.my_targets else ""
+            sub_desc = f"Sneak {round(nom_p['live_vorp'], 1)} VORP while room is sleeping"
+        else:
+            user_targets = pos_pool[pos_pool['clean_name'].isin(st.session_state.my_targets)].sort_values(by='fair_value', ascending=False)
+            nom_p = user_targets.iloc[0] if not user_targets.empty else pos_pool.sort_values(by='fair_value', ascending=False).iloc[0]
+            val_text = f"${int(nom_p['fair_value'])} Floor"
+            val_color = "#10b981" if not user_targets.empty else "#60a5fa"
+            is_p_starred = "⭐ " if not user_targets.empty else ""
+            sub_desc = f"Establish floor price on your wishlist target"
+
         row_html = (
-            '<div style="display:flex; justify-content:space-between; align-items:center; background:#0b0f19; padding:5px 8px; margin-bottom:4px; border-radius:4px; border-left:3px solid #3b82f6;">'
+            '<div style="display:flex; justify-content:space-between; align-items:center; background:#0b0f19; padding:5px 8px; margin-bottom:4px; border-radius:4px; border-left:3px solid #f59e0b;">'
             '<div>'
-            f'<span class="badge-pos pos-{best_p["position"]}">{best_p["position"]}</span> <b>{is_p_starred}{best_p["player_name"]}</b> <span style="font-size:0.75rem; color:#94a3b8;">({best_p["tier"]})</span><br>'
-            f'<span style="font-size:0.72rem; color:#94a3b8;">Fair: <b>${int(best_p["fair_value"])}</b> | Mkt: <b>${int(best_p["market_cost"])}</b> | Bid-To: <b>${exec_price}</b></span>'
+            f'<span class="badge-pos pos-{nom_p["position"]}">{nom_p["position"]}</span> <b>{is_p_starred}{nom_p["player_name"]}</b> <span style="font-size:0.75rem; color:#94a3b8;">({nom_p["tier"]})</span><br>'
+            f'<span style="font-size:0.72rem; color:#94a3b8;">{sub_desc}</span>'
             '</div>'
             f'<div style="font-size:0.8rem; font-weight:700; color:{val_color}; text-align:right;">{val_text}</div>'
             '</div>'
         )
-        pos_arb_rows.append(row_html)
+        pos_nom_rows.append(row_html)
 
-if pos_arb_rows:
-    rendered_rows = "".join(pos_arb_rows)
-    bargain_card_html = (
-        '<div style="background:#131b2e; border-top:4px solid #3b82f6; padding:10px 12px; border-radius:6px; height:100%;">'
-        '<div style="font-size:0.75rem; color:#3b82f6; font-weight:700; margin-bottom:6px;">💎 POSITIONAL ARBITRAGE (BEST PER POSITION)</div>'
-        f'{rendered_rows}'
-        '</div>'
-    )
+    rendered_nom_rows = "".join(pos_nom_rows) if pos_nom_rows else '<div style="font-size:0.85rem; color:#94a3b8;">No nominations available.</div>'
+    nom_card_html = f'<div style="background:#131b2e; border-top:4px solid #f59e0b; padding:10px 12px; border-radius:6px; height:100%;"><div style="font-size:0.75rem; color:#f59e0b; font-weight:700; margin-bottom:6px;">🎯 POSITIONAL NOMINATIONS (BEST BAIT / SNIPES)</div>{rendered_nom_rows}</div>'
+
+    rec_col1, rec_col2, rec_col3 = st.columns(3)
+    with rec_col1: st.markdown(stud_card_html, unsafe_allow_html=True)
+    with rec_col2: st.markdown(bargain_card_html, unsafe_allow_html=True)
+    with rec_col3: st.markdown(nom_card_html, unsafe_allow_html=True)
+
 else:
-    bargain_card_html = (
-        '<div style="background:#131b2e; border-top:4px solid #3b82f6; padding:12px; border-radius:6px;">'
-        '<div style="font-size:0.75rem; color:#3b82f6; font-weight:700;">💎 POSITIONAL ARBITRAGE</div>'
-        '<div style="font-size:0.9rem; color:#94a3b8; margin-top:8px;">All starting positions filled or budget constrained.</div>'
-        '</div>'
-    )
+    # SNAKE DRAFT ADVISOR (Best Available, ADP Fallers, Turn Survival Reach Advisor)
+    st.markdown("#### 🐍 SNAKE DRAFT TURN PREDICTOR & VALUE ENGINE")
+    snake_col1, snake_col2, snake_col3 = st.columns(3)
+    
+    # 1. Best Available VORP Anchor
+    primary_candidate_pool = non_faded_unpicked[non_faded_unpicked['position'].isin(display_positions)].copy()
+    user_targets_pool = primary_candidate_pool[primary_candidate_pool['clean_name'].isin(st.session_state.my_targets)]
+    
+    if not user_targets_pool.empty:
+        best_p = user_targets_pool.sort_values(by='live_vorp', ascending=False).iloc[0]
+        s_title = "⭐ YOUR PRIORITY TARGET"
+    elif not primary_candidate_pool.empty:
+        best_p = primary_candidate_pool.sort_values(by='live_vorp', ascending=False).iloc[0]
+        s_title = "👑 BEST AVAILABLE (VORP ANCHOR)"
+    else:
+        best_p = None
 
-# 3. MULTI-POSITIONAL STRATEGIC NOMINATION PLAYBOOK (QB / RB / WR / TE)
-nom_strategy = st.radio(
-    "Select Your Tactical Nomination Intent:",
-    ["💸 Bleed Rival Wallets (High-Cost Bait)", "💣 Landmine Trap (Overvalued Decoy)", "🥷 Stealth Sneak ($1-$3 Value Snipe)", "👑 Set the Market (Target Price Discovery)"],
-    horizontal=True
-)
+    with snake_col1:
+        if best_p is not None:
+            st.markdown(
+                '<div style="background:#131b2e; border-top:4px solid #10b981; padding:12px; border-radius:6px; height:100%;">'
+                f'<div style="font-size:0.75rem; color:#10b981; font-weight:700;">{s_title}</div>'
+                f'<div style="font-size:1.15rem; font-weight:700; color:white; margin:4px 0;">{best_p["player_name"]} <span class="badge-pos pos-{best_p["position"]}">{best_p["position"]}</span></div>'
+                f'<div style="font-size:0.85rem; color:#94a3b8;">Consensus ADP: <b>#{int(best_p["custom_rank"])}</b> | VORP: <b style="color:#10b981;">{round(best_p["live_vorp"], 1)}</b> ({best_p["tier"]})</div>'
+                f'<div style="font-size:0.75rem; color:#cbd5e1; margin-top:6px;"><b>Recommendation:</b> Premier VORP target to fill your starting {best_p["position"]} slot.</div>'
+                '</div>', unsafe_allow_html=True
+            )
 
-pos_nom_rows = []
-
-for target_pos in display_positions:
-    pos_pool = df_unpicked[df_unpicked['position'] == target_pos].copy()
-    if pos_pool.empty:
-        continue
+    # 2. Top ADP Fallers (Values Sliding Down Draft)
+    with snake_col2:
+        non_faded_unpicked['adp_fall'] = curr_overall_pick - non_faded_unpicked['custom_rank']
+        fallers = non_faded_unpicked[non_faded_unpicked['adp_fall'] >= 2].sort_values(by=['adp_fall', 'live_vorp'], ascending=[False, False]).head(4)
         
-    if nom_strategy == "💸 Bleed Rival Wallets (High-Cost Bait)":
-        safe_pool = pos_pool[~pos_pool['clean_name'].isin(st.session_state.my_targets)].copy()
-        fade_pool = safe_pool[safe_pool['clean_name'].isin(st.session_state.my_fades)].sort_values(by='market_cost', ascending=False)
+        faller_rows = []
+        for _, f_row in fallers.iterrows():
+            f_starred = "⭐ " if f_row['clean_name'] in st.session_state.my_targets else ""
+            drop_spots = int(f_row['adp_fall'])
+            row_html = (
+                '<div style="display:flex; justify-content:space-between; align-items:center; background:#0b0f19; padding:5px 8px; margin-bottom:4px; border-radius:4px; border-left:3px solid #3b82f6;">'
+                '<div>'
+                f'<span class="badge-pos pos-{f_row["position"]}">{f_row["position"]}</span> <b>{f_row["player_name"]}</b> {f_starred}<br>'
+                f'<span style="font-size:0.72rem; color:#94a3b8;">ADP: #{int(f_row["custom_rank"])} | VORP: {round(f_row["live_vorp"], 1)}</span>'
+                '</div>'
+                f'<div style="font-size:0.8rem; font-weight:700; color:#38bdf8;">+{drop_spots} Spots</div>'
+                '</div>'
+            )
+            faller_rows.append(row_html)
         
-        if not fade_pool.empty:
-            nom_p = fade_pool.iloc[0]
-            val_text = f"${int(nom_p['market_cost'])} Fade"
-            val_color = "#ef4444"
-        else:
-            gen_pool = safe_pool[safe_pool['clean_name'] != top_stud_name].sort_values(by='market_cost', ascending=False)
-            nom_p = gen_pool.iloc[0] if not gen_pool.empty else pos_pool.iloc[0]
-            val_text = f"${int(nom_p['market_cost'])} Drain"
-            val_color = "#f59e0b"
+        rendered_fallers = "".join(faller_rows) if faller_rows else '<div style="font-size:0.85rem; color:#94a3b8;">Draft proceeding precisely on consensus ADP.</div>'
+        st.markdown(
+            f'<div style="background:#131b2e; border-top:4px solid #3b82f6; padding:10px 12px; border-radius:6px; height:100%;">'
+            f'<div style="font-size:0.75rem; color:#3b82f6; font-weight:700; margin-bottom:6px;">📉 TOP ADP FALLERS (VALUE DROPS)</div>'
+            f'{rendered_fallers}'
+            f'</div>', unsafe_allow_html=True
+        )
+
+    # 3. "Will He Make It Back?" Turn Survival Watch
+    with snake_col3:
+        dead_zone_targets = non_faded_unpicked[
+            (non_faded_unpicked['custom_rank'] > curr_overall_pick) &
+            (non_faded_unpicked['custom_rank'] <= next_my_pick_num)
+        ].sort_values(by='live_vorp', ascending=False).head(4)
+        
+        turn_rows = []
+        for _, t_row in dead_zone_targets.iterrows():
+            t_starred = "⭐ " if t_row['clean_name'] in st.session_state.my_targets else ""
+            row_html = (
+                '<div style="display:flex; justify-content:space-between; align-items:center; background:#0b0f19; padding:5px 8px; margin-bottom:4px; border-radius:4px; border-left:3px solid #ef4444;">'
+                '<div>'
+                f'<span class="badge-pos pos-{t_row["position"]}">{t_row["position"]}</span> <b>{t_row["player_name"]}</b> {t_starred}<br>'
+                f'<span style="font-size:0.72rem; color:#94a3b8;">ADP #{int(t_row["custom_rank"])} (Won\'t make pick #{next_my_pick_num})</span>'
+                '</div>'
+                f'<div style="font-size:0.75rem; font-weight:700; color:#f87171;">REACH TARGET</div>'
+                '</div>'
+            )
+            turn_rows.append(row_html)
             
-        is_p_starred = "🚫 " if nom_p['clean_name'] in st.session_state.my_fades else ""
-        sub_desc = f"Fair: ${int(nom_p['fair_value'])} | Drain rival cap on non-target"
-
-    elif nom_strategy == "💣 Landmine Trap (Overvalued Decoy)":
-        safe_pool = pos_pool[~pos_pool['clean_name'].isin(st.session_state.my_targets)].copy()
-        safe_pool['landmine_gap'] = safe_pool['market_cost'] - safe_pool['fair_value']
-        nom_p = safe_pool.sort_values(by='landmine_gap', ascending=False).iloc[0] if not safe_pool.empty else pos_pool.iloc[0]
-        
-        gap = int(nom_p['market_cost'] - nom_p['fair_value'])
-        val_text = f"+${gap} Trap" if gap > 0 else f"${gap} Fair"
-        val_color = "#ef4444" if gap > 0 else "#94a3b8"
-        is_p_starred = "🚫 " if nom_p['clean_name'] in st.session_state.my_fades else ""
-        sub_desc = f"Bait: ${int(nom_p['market_cost'])} vs True Value ${int(nom_p['fair_value'])}"
-
-    elif nom_strategy == "🥷 Stealth Sneak ($1-$3 Value Snipe)":
-        cheap_pool = pos_pool[
-            (pos_pool['market_cost'] <= 3) & 
-            (~pos_pool['clean_name'].isin(st.session_state.my_fades))
-        ].sort_values(by='live_vorp', ascending=False)
-        
-        nom_p = cheap_pool.iloc[0] if not cheap_pool.empty else pos_pool.sort_values(by='market_cost', ascending=True).iloc[0]
-        val_text = f"${int(nom_p['market_cost'])} Snipe"
-        val_color = "#10b981"
-        is_p_starred = "⭐ " if nom_p['clean_name'] in st.session_state.my_targets else ""
-        sub_desc = f"Sneak {round(nom_p['live_vorp'], 1)} VORP while room is distracted"
-
-    else: # Set the Market
-        user_targets = pos_pool[pos_pool['clean_name'].isin(st.session_state.my_targets)].sort_values(by='fair_value', ascending=False)
-        if not user_targets.empty:
-            nom_p = user_targets.iloc[0]
-            val_text = f"${int(nom_p['fair_value'])} Target"
-            val_color = "#10b981"
-            is_p_starred = "⭐ "
-            sub_desc = f"Establish floor price on your wishlist target"
-        else:
-            nom_p = pos_pool.sort_values(by='fair_value', ascending=False).iloc[0]
-            val_text = f"${int(nom_p['fair_value'])} Floor"
-            val_color = "#60a5fa"
-            is_p_starred = ""
-            sub_desc = f"Set baseline price before late inflation"
-
-    row_html = (
-        '<div style="display:flex; justify-content:space-between; align-items:center; background:#0b0f19; padding:5px 8px; margin-bottom:4px; border-radius:4px; border-left:3px solid #f59e0b;">'
-        '<div>'
-        f'<span class="badge-pos pos-{nom_p["position"]}">{nom_p["position"]}</span> <b>{is_p_starred}{nom_p["player_name"]}</b> <span style="font-size:0.75rem; color:#94a3b8;">({nom_p["tier"]})</span><br>'
-        f'<span style="font-size:0.72rem; color:#94a3b8;">{sub_desc}</span>'
-        '</div>'
-        f'<div style="font-size:0.8rem; font-weight:700; color:{val_color}; text-align:right;">{val_text}</div>'
-        '</div>'
-    )
-    pos_nom_rows.append(row_html)
-
-if pos_nom_rows:
-    rendered_nom_rows = "".join(pos_nom_rows)
-    nom_card_html = (
-        '<div style="background:#131b2e; border-top:4px solid #f59e0b; padding:10px 12px; border-radius:6px; height:100%;">'
-        '<div style="font-size:0.75rem; color:#f59e0b; font-weight:700; margin-bottom:6px;">🎯 POSITIONAL NOMINATIONS (BEST BAIT / SNIPES)</div>'
-        f'{rendered_nom_rows}'
-        '</div>'
-    )
-else:
-    nom_card_html = (
-        '<div style="background:#131b2e; border-top:4px solid #f59e0b; padding:12px; border-radius:6px;">'
-        '<div style="font-size:0.75rem; color:#f59e0b; font-weight:700;">🎯 POSITIONAL NOMINATIONS</div>'
-        '<div style="font-size:0.9rem; color:#94a3b8; margin-top:8px;">All available positions exhausted.</div>'
-        '</div>'
-    )
-
-rec_col1, rec_col2, rec_col3 = st.columns(3)
-with rec_col1:
-    st.markdown(stud_card_html, unsafe_allow_html=True)
-with rec_col2:
-    st.markdown(bargain_card_html, unsafe_allow_html=True)
-with rec_col3:
-    st.markdown(nom_card_html, unsafe_allow_html=True)
+        rendered_turns = "".join(turn_rows) if turn_rows else '<div style="font-size:0.85rem; color:#94a3b8;">Next pick is close or all top targets safely spaced.</div>'
+        st.markdown(
+            f'<div style="background:#131b2e; border-top:4px solid #ef4444; padding:10px 12px; border-radius:6px; height:100%;">'
+            f'<div style="font-size:0.75rem; color:#ef4444; font-weight:700; margin-bottom:6px;">🚨 TURN SURVIVAL WATCH (WON\'T MAKE IT BACK)</div>'
+            f'{rendered_turns}'
+            f'</div>', unsafe_allow_html=True
+        )
 
 st.markdown("---")
 
-# 6. On-The-Block Valuation & Decoys
+# 6. On-The-Block / Draft Console
 col_left, col_right = st.columns([1.2, 1])
 
 with col_left:
-    st.markdown("#### 🎯 ON-THE-BLOCK 4-PRICE VALUATION")
+    st.markdown("#### 🎯 PLAYER DRAFT CONSOLE")
     player_options = df_unpicked['player_name'].tolist()
     if player_options:
-        selected_player = st.selectbox("Search or Select Nominated Player (Offense or IDP):", player_options)
+        selected_player = st.selectbox("Search or Select Player (Offense or IDP):", player_options)
         p_data = df_unpicked[df_unpicked['player_name'] == selected_player].iloc[0]
         fair_val = int(round(float(p_data['fair_value'])))
         mkt_val = int(round(float(p_data['market_cost'])))
         bid_to = int(round(fair_val * max(0.90, inflation_index)))
         plan_cap = int(round(fair_val * 0.95))
         delta_vs_mkt = int(bid_to - mkt_val)
+        adp_rank = int(p_data['custom_rank'])
         
         p_card_col1, p_card_col2, p_card_col3, p_card_col4 = st.columns(4)
-        p_card_col1.metric("Fair Value", f"${fair_val}")
-        p_card_col2.metric("Market ADP", f"${mkt_val}")
-        p_card_col3.metric("Plan Budget", f"${plan_cap}")
-        p_card_col4.metric("MAX BID-TO", f"${bid_to}", f"{delta_vs_mkt:+d} vs Mkt")
+        if draft_mode == "🔨 Auction / Salary Cap":
+            p_card_col1.metric("Fair Value", f"${fair_val}")
+            p_card_col2.metric("Market ADP", f"${mkt_val}")
+            p_card_col3.metric("Plan Budget", f"${plan_cap}")
+            p_card_col4.metric("MAX BID-TO", f"${bid_to}", f"{delta_vs_mkt:+d} vs Mkt")
+        else:
+            p_card_col1.metric("Consensus ADP", f"#{adp_rank}")
+            adp_delta = curr_overall_pick - adp_rank
+            p_card_col2.metric("ADP Delta", f"{adp_delta:+d} Spots", "Value Drop" if adp_delta > 0 else "Reach")
+            p_card_col3.metric("Tier Rating", f"{p_data['tier']}")
+            p_card_col4.metric("VORP Rating", f"{round(p_data['live_vorp'], 1)} pts")
         
         tag_html = ""
         c_name_curr = p_data['clean_name']
@@ -646,12 +707,15 @@ with col_left:
                     st.session_state.my_targets.discard(c_name_curr)
                 st.rerun()
 
-        st.markdown("##### 🔨 Win or Record Nominated Bid")
+        st.markdown("##### 🔨 Draft Selection Confirmation")
         mcol1, mcol2, mcol3 = st.columns([1, 1, 1.2])
-        with mcol1:
-            won_price = st.number_input("Winning Bid ($)", min_value=1, max_value=200, value=mkt_val)
-        with mcol2:
-            won_team = st.number_input("Winning Team #", min_value=1, max_value=league_size, value=my_slot)
+        if draft_mode == "🔨 Auction / Salary Cap":
+            with mcol1: won_price = st.number_input("Winning Bid ($)", min_value=1, max_value=200, value=mkt_val)
+            with mcol2: won_team = st.number_input("Winning Team #", min_value=1, max_value=league_size, value=my_slot)
+        else:
+            with mcol1: won_price = st.number_input("Overall Pick #", min_value=1, max_value=total_league_picks, value=curr_overall_pick)
+            with mcol2: won_team = st.number_input("Drafting Team #", min_value=1, max_value=league_size, value=snake_on_clock_team)
+            
         with mcol3:
             st.write("")
             st.write("")
@@ -663,24 +727,35 @@ with col_left:
                 st.rerun()
 
 with col_right:
-    st.markdown("#### 💣 TOP LANDMINE NOMINATIONS (DECOYS)")
-    df_unpicked['landmine_delta'] = (df_unpicked['market_cost'] - df_unpicked['fair_value']).astype(int)
-    safe_landmines_box = df_unpicked[~df_unpicked['clean_name'].isin(st.session_state.my_targets)]
-    landmines = safe_landmines_box[safe_landmines_box['landmine_delta'] > 5].sort_values(by='landmine_delta', ascending=False).head(4)
-    for _, lm in landmines.iterrows():
-        p_name = lm['player_name']
-        pos = lm['position']
-        mkt = lm['market_cost']
-        fv = lm['fair_value']
-        delta = int(lm['landmine_delta'])
-        
-        card_html = (
-            '<div style="background:#131b2e; border-left:3px solid #ef4444; padding:8px 12px; margin-bottom:6px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">'
-            f'<div><b>{p_name}</b> <span class="badge-pos pos-{pos}">{pos}</span><br>'
-            f'<span style="font-size:0.75rem; color:#94a3b8;">Bait Market: <b>${mkt}</b> | True Value: <b>${fv}</b></span></div>'
-            f'<span class="landmine-tag">+${delta} TRAP</span></div>'
-        )
-        st.markdown(card_html, unsafe_allow_html=True)
+    if draft_mode == "🔨 Auction / Salary Cap":
+        st.markdown("#### 💣 TOP LANDMINE NOMINATIONS (DECOYS)")
+        df_unpicked['landmine_delta'] = (df_unpicked['market_cost'] - df_unpicked['fair_value']).astype(int)
+        safe_landmines_box = df_unpicked[~df_unpicked['clean_name'].isin(st.session_state.my_targets)]
+        landmines = safe_landmines_box[safe_landmines_box['landmine_delta'] > 5].sort_values(by='landmine_delta', ascending=False).head(4)
+        for _, lm in landmines.iterrows():
+            p_name = lm['player_name']
+            pos = lm['position']
+            mkt = lm['market_cost']
+            fv = lm['fair_value']
+            delta = int(lm['landmine_delta'])
+            card_html = (
+                '<div style="background:#131b2e; border-left:3px solid #ef4444; padding:8px 12px; margin-bottom:6px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">'
+                f'<div><b>{p_name}</b> <span class="badge-pos pos-{pos}">{pos}</span><br>'
+                f'<span style="font-size:0.75rem; color:#94a3b8;">Bait Market: <b>${mkt}</b> | True Value: <b>${fv}</b></span></div>'
+                f'<span class="landmine-tag">+${delta} TRAP</span></div>'
+            )
+            st.markdown(card_html, unsafe_allow_html=True)
+    else:
+        st.markdown("#### 🎯 QUICK REACH CANDIDATES")
+        high_vorp_unpicked = df_unpicked.sort_values(by='live_vorp', ascending=False).head(4)
+        for _, hr in high_vorp_unpicked.iterrows():
+            card_html = (
+                '<div style="background:#131b2e; border-left:3px solid #3b82f6; padding:8px 12px; margin-bottom:6px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">'
+                f'<div><b>{hr["player_name"]}</b> <span class="badge-pos pos-{hr["position"]}">{hr["position"]}</span><br>'
+                f'<span style="font-size:0.75rem; color:#94a3b8;">ADP: #{int(hr["custom_rank"])} | VORP: <b>{round(hr["live_vorp"], 1)}</b> ({hr["tier"]})</span></div>'
+                f'<span class="landmine-tag" style="background:#3b82f620; color:#60a5fa; border:1px solid #3b82f640;">ELITE VORP</span></div>'
+            )
+            st.markdown(card_html, unsafe_allow_html=True)
 
 st.markdown("---")
 
@@ -689,19 +764,17 @@ tab_off, tab_def, tab_intel, tab_matrix, tab_log = st.tabs([
     "⚔️ Offense War Room", 
     "🛡️ IDP & D/ST War Room", 
     "🚀 Live News & Active Intel Board", 
-    "👥 Rival Needs & Purchasing Power Matrix", 
+    "👥 Rival Needs & Roster Matrix", 
     "📜 Drafted Log"
 ])
 
 def render_board_table(df_subset):
     table_rows = []
-    
     tier_counts = df_unpicked.groupby(['position', 'tier']).size().to_dict()
     
     for _, r in df_subset.iterrows():
         pos_curr = r['position']
         tier_curr = str(r['tier'])
-        
         is_last_in_tier = (tier_counts.get((pos_curr, tier_curr), 0) == 1)
         
         if is_last_in_tier:
@@ -742,40 +815,47 @@ def render_board_table(df_subset):
         fallback_desc = f"Active {r['team']} {r['position']} • Depth Chart: #{d_order}"
         intel_text = f"{pref_badge}{tag_badge}{note}{link_html}" if note else f"{pref_badge}{fallback_desc}"
 
-        table_rows.append({
+        row_dict = {
             "Priority": int(r['auction_rank']),
             "Player": r['player_name'],
             "Pos": f'<span class="badge-pos pos-{r["position"]}">{r["position"]}</span>',
             "Team": r['team'],
             "Tier": tier_badge,
-            "VORP": round(float(r['live_vorp']), 1),
-            "Fair Value": f"${int(r['fair_value'])}",
-            "Market ADP": f"${int(r['market_cost'])}",
-            "Intel / Real-Time Wire": intel_text
-        })
+            "VORP": round(float(r['live_vorp']), 1)
+        }
+        
+        if draft_mode == "🔨 Auction / Salary Cap":
+            row_dict["Fair Value"] = f"${int(r['fair_value'])}"
+            row_dict["Market ADP"] = f"${int(r['market_cost'])}"
+        else:
+            row_dict["Consensus ADP"] = f"#{int(r['custom_rank'])}"
+            adp_diff = curr_overall_pick - int(r['custom_rank'])
+            row_dict["ADP Status"] = f'<span style="color:#38bdf8; font-weight:700;">+{adp_diff} (Faller)</span>' if adp_diff > 0 else (f'<span style="color:#f87171;">{adp_diff} (Reach)</span>' if adp_diff < 0 else 'Even')
+
+        row_dict["Intel / Real-Time Wire"] = intel_text
+        table_rows.append(row_dict)
+        
     st.write(pd.DataFrame(table_rows).to_html(escape=False, index=False), unsafe_allow_html=True)
 
 with tab_off:
     pos_sub = st.radio("Offense Filter:", ["ALL OFFENSE", "RB", "WR", "TE", "QB"], horizontal=True)
     df_o = df_unpicked[df_unpicked['position'].isin(['QB', 'RB', 'WR', 'TE'])]
-    if pos_sub != "ALL OFFENSE":
-        df_o = df_o[df_o['position'] == pos_sub]
+    if pos_sub != "ALL OFFENSE": df_o = df_o[df_o['position'] == pos_sub]
     render_board_table(df_o)
 
 with tab_def:
     def_sub = st.radio("Defense Filter:", ["ALL DEFENSE & IDP", "LB", "DL", "DB", "DEF"], horizontal=True)
     df_d = df_unpicked[df_unpicked['position'].isin(['LB', 'DL', 'DB', 'DEF'])]
-    if def_sub != "ALL DEFENSE & IDP":
-        df_d = df_d[df_d['position'] == def_sub]
+    if def_sub != "ALL DEFENSE & IDP": df_d = df_d[df_d['position'] == def_sub]
     render_board_table(df_d)
 
 with tab_intel:
     df_i = df_unpicked[df_unpicked['intel_note'] != ""]
-    st.markdown(f"**Showing {len(df_i)} active players with live news, injury designations, historical blurbs, or waiver surges:**")
+    st.markdown(f"**Showing {len(df_i)} active players with live news, injury designations, or waiver surges:**")
     render_board_table(df_i)
 
 with tab_matrix:
-    st.markdown("#### 👥 RIVAL ROSTER NEEDS & PURCHASING THREAT ENGINE")
+    st.markdown("#### 👥 RIVAL ROSTER NEEDS & THREAT MATRIX")
     matrix_rows = []
     for s, data in manager_wallets.items():
         c_left = 200 - data['spent']
@@ -789,25 +869,32 @@ with tab_matrix:
         if counts['TE'] < 1: needs.append(f"TE ({counts['TE']}/1)")
         if counts['IDP'] < 3: needs.append(f"IDP ({counts['IDP']}/3)")
         if counts['DEF'] < 1: needs.append(f"DEF ({counts['DEF']}/1)")
-        needs_str = ", ".join(needs) if needs else "✅ Starting Lineup Filled"
+        needs_str = ", ".join(needs) if needs else "✅ Lineup Filled"
         
-        threat_level = "🟢 LOW"
-        if m_bid >= 35 and any(pos in needs_str for pos in ['QB', 'RB', 'WR']):
-            threat_level = "🔴 EXTREME"
-        elif m_bid >= 20:
-            threat_level = "🟡 MEDIUM"
+        if draft_mode == "🔨 Auction / Salary Cap":
+            threat_level = "🟢 LOW"
+            if m_bid >= 35 and any(pos in needs_str for pos in ['QB', 'RB', 'WR']): threat_level = "🔴 EXTREME"
+            elif m_bid >= 20: threat_level = "🟡 MEDIUM"
+            metric_col_name = "Max Single Bid"
+            metric_val = f"${m_bid}"
+        else:
+            # Snake Threat
+            next_turn_diff = abs(s - snake_on_clock_team)
+            threat_level = "🔴 ON CLOCK" if s == snake_on_clock_team else ("🟡 UP NEXT" if next_turn_diff <= 2 else "🟢 WAITING")
+            metric_col_name = "Draft Slot"
+            metric_val = f"Slot #{s}"
             
         roster_str = ", ".join(data['roster'][-4:]) if data['roster'] else "None"
         matrix_rows.append({
             "Slot": s, "Manager": f"⭐ YOU (Slot {s})" if s == my_slot else data['name'],
-            "Cash Left": f"${c_left}", "Max Bid": f"${m_bid}", "Picks Made": data['picks'],
-            "Threat Level": threat_level, "Urgent Needs": needs_str, "Recent Drafted Roster": roster_str
+            metric_col_name: metric_val, "Picks Made": data['picks'],
+            "Draft Status / Threat": threat_level, "Urgent Needs": needs_str, "Recent Drafted Roster": roster_str
         })
-    st.dataframe(pd.DataFrame(matrix_rows).sort_values(by="Max Bid", ascending=False), use_container_width=True, hide_index=True)
+    st.dataframe(pd.DataFrame(matrix_rows).sort_values(by="Slot", ascending=True), use_container_width=True, hide_index=True)
 
 with tab_log:
     if st.session_state.drafted_picks:
-        log_rows = [{"Player": v["player_name"], "Pos": v.get("position", "-"), "Price": f"${v['price']}", "Team": f"Team {v['team']}"} for v in st.session_state.drafted_picks.values()]
+        log_rows = [{"Player": v["player_name"], "Pos": v.get("position", "-"), "Price / Pick": f"${v['price']}" if draft_mode == "🔨 Auction / Salary Cap" else f"Pick #{v['price']}", "Team": f"Team {v['team']}"} for v in st.session_state.drafted_picks.values()]
         st.table(pd.DataFrame(log_rows))
     else:
         st.info("No players drafted yet.")
