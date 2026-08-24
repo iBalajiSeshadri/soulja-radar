@@ -2120,7 +2120,7 @@
   "Tank Dell": {
     "multiplier": 0.88,
     "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee - ACL + MCL) - Surgery | \ud83d\udd25 SLEEPER SURGE (+11608 adds)",
+    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee - ACL + MCL) - Surgery | \ud83d\udd25 SLEEPER SURGE (+11888 adds)",
     "source_url": "https://www.rotowire.com/football/player/tank-dell-16935"
   },
   "Justin Dedich": {
@@ -2423,178 +2423,2092 @@
     "note": "\u274c INJURY WIRE: IR (Knee - ACL)",
     "source_url": "https://www.rotowire.com/football/player/kendrick-law-19443"
   },
+  "Josh Allen": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #1 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Drake Maye": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #2 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Lamar Jackson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #3 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jalen Hurts": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #4 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Joe Burrow": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #5 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jayden Daniels": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #6 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Caleb Williams": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #7 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Dak Prescott": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #8 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Bo Nix": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #9 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Justin Herbert": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #10 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Brock Purdy": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #11 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jaxson Dart": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #12 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jared Goff": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #13 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Trevor Lawrence": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #14 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Matthew Stafford": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #15 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tyler Shough": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #17 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Kyler Murray": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #18 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Malik Willis": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #19 (Tier 4) | \ud83d\udd25 SLEEPER SURGE (+14504 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Sam Darnold": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #20 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Baker Mayfield": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #21 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jordan Love": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #22 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Daniel Jones": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #23 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "C.J. Stroud": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #24 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Bryce Young": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #25 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Cam Ward": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #26 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Aaron Rodgers": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #27 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jacoby Brissett": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #28 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Fernando Mendoza": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #29 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Geno Smith": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #30 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tua Tagovailoa": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #31 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Deshaun Watson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #32 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Shedeur Sanders": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #33 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Kirk Cousins": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #34 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Riley Leonard": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #37 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Justin Fields": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #39 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jameis Winston": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #40 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Davis Mills": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #42 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Kenny Pickett": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #43 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tyrod Taylor": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #44 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Joe Milton": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #46 (Tier 7) | \ud83d\udd25 SLEEPER SURGE (+16336 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Will Howard": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #47 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Mac Jones": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #48 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Cade Klubnik": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #49 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Kyle Allen": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #50 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tyler Huntley": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #51 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Spencer Rattler": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #53 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Ty Simpson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #54 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Trey Lance": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #55 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Joe Flacco": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #57 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jarrett Stidham": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #58 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tommy DeVito": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #59 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Nick Mullens": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #60 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Joshua Dobbs": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #61 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Drew Lock": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #62 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jake Browning": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #63 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tanner McKee": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #64 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Brock Bowers": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #1 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Trey McBride": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #2 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Colston Loveland": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #3 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Harold Fannin": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #5 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Kyle Pitts": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #6 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Mark Andrews": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #8 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Travis Kelce": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #10 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Dallas Goedert": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #11 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Dalton Kincaid": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #13 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Hunter Henry": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #14 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jake Ferguson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #15 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Isaiah Likely": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #16 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Pat Freiermuth": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #17 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Greg Dulcich": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #18 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Juwan Johnson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #19 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Dalton Schultz": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #20 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Brenton Strange": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #21 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "T.J. Hockenson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #22 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Terrance Ferguson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #23 (Tier 4) | \ud83d\udd25 SLEEPER SURGE (+11464 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "AJ Barner": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #25 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Mike Gesicki": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #26 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Gunnar Helm": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #28 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Oronde Gadsden": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #29 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Mason Taylor": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #30 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Evan Engram": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #31 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Michael Mayer": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #33 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "David Njoku": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #34 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Colby Parkinson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #35 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Cole Kmet": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #36 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Darnell Washington": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #37 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Dawson Knox": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #38 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Theo Johnson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #39 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Darren Waller": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #40 (Tier 6) | \ud83d\udd25 SLEEPER SURGE (+30672 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jake Tonges": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #41 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tyler Higbee": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #42 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Noah Fant": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #43 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Austin Hooper": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #44 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Noah Gray": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #45 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Elijah Arroyo": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #46 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tommy Tremble": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #48 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Josh Oliver": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #49 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Charlie Kolar": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #50 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Adam Trautman": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #51 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Ja'Tavion Sanders": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #52 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Eli Stowers": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #54 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Cade Stover": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #55 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Brock Wright": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #56 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Will Kacmarek": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #57 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Daniel Bellinger": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #58 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Luke Schoonmaker": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #59 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Drew Sample": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #60 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Mo Alie-Cox": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #61 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Hunter Long": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #63 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Durham Smythe": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #64 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Blake Whiteheart": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #65 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Payne Durham": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #66 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jahmyr Gibbs": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #1 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Bijan Robinson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #2 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jonathan Taylor": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #4 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "James Cook": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #5 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Derrick Henry": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #6 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Saquon Barkley": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #7 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Kenneth Walker": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #8 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Omarion Hampton": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #9 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Chase Brown": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #10 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "De'Von Achane": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #11 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Kyren Williams": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #12 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Javonte Williams": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #15 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Cam Skattebo": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #18 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Bucky Irving": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #19 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "D'Andre Swift": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #20 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Travis Etienne": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #21 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Bhayshul Tuten": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #22 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "David Montgomery": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #24 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tony Pollard": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #25 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "J.K. Dobbins": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #26 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "TreVeyon Henderson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #27 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Rhamondre Stevenson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #28 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jaylen Warren": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #29 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jadarian Price": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #30 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Rico Dowdle": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #32 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Blake Corum": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #35 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jordan Mason": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #36 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jonathon Brooks": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #38 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "RJ Harvey": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #39 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Aaron Jones": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #40 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Chris Rodriguez": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #42 (Tier 6) | \ud83d\udd25 SLEEPER SURGE (+11259 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Woody Marks": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #43 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tyjae Spears": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #47 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Brian Robinson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #48 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Dylan Sampson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #49 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tank Bigsby": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #50 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tyler Allgeier": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #51 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Braelon Allen": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #52 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Ray Davis": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #53 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "MarShawn Lloyd": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #54 (Tier 7) | \ud83d\udd25 SLEEPER SURGE (+35478 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Justice Hill": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #55 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Keaton Mitchell": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #56 (Tier 7) | \ud83d\udd25 SLEEPER SURGE (+14049 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Kimani Vidal": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #57 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tyrone Tracy": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #58 (Tier 8)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Mike Washington": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #59 (Tier 8) | \ud83d\udd25 SLEEPER SURGE (+42392 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jonah Coleman": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #60 (Tier 8)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jaydon Blue": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #61 (Tier 8)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Sean Tucker": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #62 (Tier 8)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "George Holani": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #63 (Tier 8)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jaylen Wright": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #64 (Tier 8)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Samaje Perine": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #65 (Tier 8)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Seth McGowan": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #67 (Tier 9) | \ud83d\udd25 SLEEPER SURGE (+19640 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Emmett Johnson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #68 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Emari Demercado": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #71 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Kaytron Allen": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #73 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Raheim Sanders": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #75 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Will Shipley": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #76 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Kaelon Black": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #77 (Tier 9) | \ud83d\udd25 SLEEPER SURGE (+15666 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Demond Claiborne": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #81 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Najee Harris": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #82 (Tier 9) | \ud83d\udd25 SLEEPER SURGE (+13220 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Chris Brooks": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #83 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Kaleb Johnson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #86 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Trevor Etienne": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #87 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Roschon Johnson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #90 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Nicholas Singleton": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #91 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tahj Brooks": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #92 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Kendre Miller": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #93 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Ja'Marr Chase": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #2 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jaxon Smith-Njigba": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #3 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Amon-Ra St. Brown": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #4 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Drake London": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #5 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Justin Jefferson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #6 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "CeeDee Lamb": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #7 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Nico Collins": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #8 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "A.J. Brown": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #9 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Chris Olave": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #10 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "George Pickens": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #11 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Zay Flowers": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #12 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Rashee Rice": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #13 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jameson Williams": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #14 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Davante Adams": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #17 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tetairoa McMillan": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #18 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Garrett Wilson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #20 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tee Higgins": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #21 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Christian Watson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #22 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Rome Odunze": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #24 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Ladd McConkey": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #25 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jaylen Waddle": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #26 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "DJ Moore": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #27 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Terry McLaurin": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #28 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Marvin Harrison": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #30 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Courtland Sutton": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #32 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jayden Reed": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #34 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Carnell Tate": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #36 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Brian Thomas": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #37 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Chris Godwin": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #39 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Romeo Doubs": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #43 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Michael Wilson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #44 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jordan Addison": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #45 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Stefon Diggs": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #46 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Matthew Golden": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #47 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Josh Downs": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #48 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Wan'Dale Robinson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #51 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "KC Concepcion": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #52 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Rashid Shaheed": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #53 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Deebo Samuel": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #55 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jerry Jeudy": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #57 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tre Tucker": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #58 (Tier 6)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Keenan Allen": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #60 (Tier 7) | \ud83d\udd25 SLEEPER SURGE (+12076 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jalen Coker": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #61 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Rashod Bateman": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #62 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Adonai Mitchell": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #63 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Calvin Ridley": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #64 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Germie Bernard": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #65 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jalen Nailor": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #66 (Tier 7) | \ud83d\udd25 SLEEPER SURGE (+21402 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Malik Washington": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #67 (Tier 7) | \ud83d\udd25 SLEEPER SURGE (+23312 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Caleb Douglas": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #68 (Tier 7) | \ud83d\udd25 SLEEPER SURGE (+27336 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Ryan Flournoy": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #69 (Tier 7) | \ud83d\udd25 SLEEPER SURGE (+10872 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Denzel Boston": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #70 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jauan Jennings": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #71 (Tier 7)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Isaac TeSlaa": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #72 (Tier 8)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Omar Cooper": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #73 (Tier 8)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Travis Hunter": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #74 (Tier 8)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Cooper Kupp": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #75 (Tier 8)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Devaughn Vele": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #76 (Tier 8) | \ud83d\udd25 SLEEPER SURGE (+19544 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Ja'Kobi Lane": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #78 (Tier 8)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tyquan Thornton": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #80 (Tier 8)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Pat Bryant": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #81 (Tier 8)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "KaVontae Turpin": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #82 (Tier 8)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Kayshon Boutte": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #83 (Tier 8)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Darius Slayton": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #84 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Xavier Hutchinson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #85 (Tier 9) | \ud83d\udd25 SLEEPER SURGE (+52381 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Dontayvion Wicks": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #86 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Antonio Williams": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #88 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jalen Tolbert": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #89 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Olamide Zaccheaus": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #90 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Cyrus Allen": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #91 (Tier 9) | \ud83d\udd25 SLEEPER SURGE (+12336 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jack Bech": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #93 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Andrei Iosivas": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #94 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Dyami Brown": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #95 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Troy Franklin": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #96 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Darnell Mooney": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #98 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tutu Atwell": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #99 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Kalif Raymond": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #100 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Kendrick Bourne": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #101 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Mack Hollins": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #102 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Isaiah Bond": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #104 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "DeMario Douglas": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #105 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jahan Dotson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #106 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Zachariah Branch": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #107 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Isaiah Williams": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #108 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Calvin Austin": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #110 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jordan Whittington": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #111 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Devontez Walker": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #112 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Marquise Brown": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #113 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Elic Ayomanor": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #116 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Konata Mumpfield": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #117 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Malachi Fields": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #118 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "KeAndre Lambert-Smith": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #120 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Chimere Dike": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #121 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Treylon Burks": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #122 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Savion Williams": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #123 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jahdae Walker": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #124 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Brandon Aiyuk": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #125 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tai Felton": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #128 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Greg Dortch": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #129 (Tier 9)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Brandon Aubrey": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #1 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Cameron Dicker": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #2 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Ka'imi Fairbairn": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #3 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jason Myers": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #4 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Wil Lutz": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #5 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Chase McLaughlin": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #6 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Harrison Butker": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #7 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Eddy Pineiro": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #8 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tyler Loop": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #9 (Tier 2) | \ud83d\udd25 SLEEPER SURGE (+14076 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jake Bates": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #10 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Cam Little": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #11 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Will Reichard": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #12 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tyler Bass": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #14 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Cairo Santos": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #15 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Trey Smack": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #16 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Blake Grupe": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #17 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Evan McPherson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #18 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Chris Boswell": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #19 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Harrison Mevis": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #20 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Charlie Smyth": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #21 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jake Elliott": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #22 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Ben Sauls": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #23 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Drew Stevens": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #24 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Chad Ryland": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #25 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Riley Patterson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #26 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Ryan Fitzgerald": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #27 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Nick Folk": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #28 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Matt Gay": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #29 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Joey Slye": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #30 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Cade York": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #31 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Andre Szmyt": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #32 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Denver Broncos": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #1 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Houston Texans": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #2 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Seattle Seahawks": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #3 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Minnesota Vikings": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #4 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Pittsburgh Steelers": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #5 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Los Angeles Rams": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #6 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Los Angeles Chargers": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #7 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Philadelphia Eagles": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #8 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "New England Patriots": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #9 (Tier 2)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Detroit Lions": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #10 (Tier 3) | \ud83d\udd25 SLEEPER SURGE (+13851 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Buffalo Bills": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #11 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Jacksonville Jaguars": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #12 (Tier 3) | \ud83d\udd25 SLEEPER SURGE (+21588 adds)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Baltimore Ravens": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #13 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Cleveland Browns": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #14 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "New Orleans Saints": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #15 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Green Bay Packers": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #16 (Tier 3)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Cincinnati Bengals": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #17 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Dallas Cowboys": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #18 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "New York Giants": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #19 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tennessee Titans": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #20 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Atlanta Falcons": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #21 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Tampa Bay Buccaneers": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #22 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Washington Commanders": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #23 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Chicago Bears": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #24 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Indianapolis Colts": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #25 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Kansas City Chiefs": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #26 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "San Francisco 49ers": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #27 (Tier 4)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Arizona Cardinals": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #28 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "New York Jets": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #29 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Las Vegas Raiders": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #30 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Carolina Panthers": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #31 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
+  "Miami Dolphins": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "\ud83c\udfc6 FFTODAY MFL: Pos Rank #32 (Tier 5)",
+    "source_url": "https://www.fftoday.com/mflpower/playerrank.php?o=2"
+  },
   "Jack Strand": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+148245 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+150435 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=jack-strand"
   },
   "Malik Davis": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+63423 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+65952 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=malik-davis"
-  },
-  "Xavier Hutchinson": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+51520 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=xavier-hutchinson"
   },
   "Barion Brown": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+42192 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+42912 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=barion-brown"
-  },
-  "Mike Washington": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+42100 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=mike-washington"
   },
   "Dylan Laube": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+35287 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+35812 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=dylan-laube"
-  },
-  "MarShawn Lloyd": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+34938 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=marshawn-lloyd"
-  },
-  "Darren Waller": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+30240 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=darren-waller"
-  },
-  "Caleb Douglas": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+26816 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=caleb-douglas"
-  },
-  "Malik Washington": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+22888 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=malik-washington"
-  },
-  "Jacksonville Jaguars": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+21108 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=jacksonville-jaguars"
-  },
-  "Jalen Nailor": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+20952 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=jalen-nailor"
-  },
-  "Seth McGowan": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+19232 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=seth-mcgowan"
-  },
-  "Devaughn Vele": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+18963 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=devaughn-vele"
   },
   "Roman Hemby": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+16632 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+16938 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=roman-hemby"
   },
   "Odell Beckham": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+16373 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+16618 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=odell-beckham"
-  },
-  "Joe Milton": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+16056 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=joe-milton"
-  },
-  "Kaelon Black": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+15393 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=kaelon-black"
-  },
-  "Malik Willis": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+14147 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=malik-willis"
-  },
-  "Tyler Loop": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13722 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=tyler-loop"
-  },
-  "Keaton Mitchell": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13653 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=keaton-mitchell"
-  },
-  "Detroit Lions": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13491 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=detroit-lions"
   },
   "Colbie Young": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13344 adds in 24h)",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13560 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player=colbie-young"
-  },
-  "Najee Harris": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+12995 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=najee-harris"
-  },
-  "Cyrus Allen": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+12114 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=cyrus-allen"
-  },
-  "Keenan Allen": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+11816 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=keenan-allen"
-  },
-  "Terrance Ferguson": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+11200 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=terrance-ferguson"
-  },
-  "Chris Rodriguez": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+10971 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=chris-rodriguez"
-  },
-  "Ryan Flournoy": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+10544 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=ryan-flournoy"
   }
 }
