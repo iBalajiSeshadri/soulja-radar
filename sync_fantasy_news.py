@@ -114,7 +114,10 @@ def extract_players_fast(text, registry, primary_only=False):
     found = []
     if not text or len(text) < 10:
         return found
-    scan = text[:140] if primary_only else text
+    scan = text if not primary_only else text[:110]
+    if primary_only:
+        # Strip leading boilerplate so the real subject is at the front.
+        scan = re.sub(r'^(fantasy impact|news|update|report|injury)\s*[:\-]\s*', '', scan, flags=re.IGNORECASE)
     for m in re.finditer(r'\b[A-Z][a-zA-Z\.\'-]+\s+[A-Z][a-zA-Z\.\'-]+\b', scan):
         c_cand = clean_name(m.group(0))
         if c_cand in registry:
@@ -330,7 +333,9 @@ scraped_intel_by_player = {}
 _SOURCE_RANK = {
     "INJURY WIRE": 1, "WAIVER SURGE": 2, "FFTODAY IDP": 2,
     "CBS": 3, "FFTODAY NEWS": 3, "FFTODAY ARTICLE": 3, "FFTODAY RSS": 3,
-    "ROTOBALLER": 4, "FANTASYSP": 4, "CBS RSS": 4, "32BEAT": 5, "TWITTER": 5,
+    "YAHOO": 3, "FOOTBALLGUYS": 3, "PFF": 4, "NFL.COM": 4,
+    "ROTOBALLER": 4, "FANTASYSP": 4, "CBS RSS": 4, "FANTASYPROS": 5,
+    "ROTOWIRE": 5, "32BEAT": 5, "TWITTER": 5,
 }
 
 def _src_rank(name):
@@ -631,15 +636,67 @@ except Exception as e:
 
 print(f"✓ Extracted {bw_matched} beat nuggets from 32BeatWriters.com!")
 
+# 7b. Source F2: High-quality free HTML news hubs (NFL.com, FantasyPros, PFF, Footballguys)
+print("\n7b. [SOURCE 6b] Scraping NFL.com / FantasyPros / PFF / Footballguys news hubs...")
+hub_matched = 0
+NEWS_KEYWORDS = ["caught", "targets", "practice", "camp", "snaps", "reps", "injury",
+                 "questionable", "return", "starter", "backfield", "role", "yards",
+                 "touchdown", "carries", "workload", "depth chart", "beat", "cleared",
+                 "qb1", "named", "activated", "fantasy impact", "trending", "1st-team",
+                 "first-team", "separation", "explosive"]
+if BS4_AVAILABLE:
+    news_hubs = [
+        ("https://www.rotowire.com/football/news.php", "ROTOWIRE"),
+        ("https://www.nfl.com/news/", "NFL.COM"),
+        ("https://www.fantasypros.com/nfl/player-news.php", "FANTASYPROS"),
+        ("https://www.pff.com/news", "PFF"),
+        ("https://www.footballguys.com/news", "FOOTBALLGUYS"),
+    ]
+    for hub_url, src_label in news_hubs:
+        try:
+            res = requests.get(clean_url(hub_url), headers=web_headers, timeout=8)
+            if res.status_code != 200:
+                continue
+            soup = BeautifulSoup(res.text, 'html.parser')
+            for block in soup.find_all(['p', 'li', 'h2', 'h3', 'h4', 'div', 'article']):
+                raw_text = block.get_text(separator=" ").strip()
+                if len(raw_text) < 40 or len(raw_text) > 1200:
+                    continue
+                low = raw_text.lower()
+                nav_hits = sum(low.count(w) for w in ["explore", "scores", "schedule", "standings",
+                                                      "rankings", "watch live", "shop", "podcast", "all articles"])
+                if nav_hits >= 3 or not any(w in low for w in NEWS_KEYWORDS):
+                    continue
+                for full_pname in extract_players_fast(raw_text, player_registry, primary_only=True):
+                    c_p = clean_name(full_pname)
+                    add_intel(c_p, {
+                        "player_name": full_pname,
+                        "raw_text": raw_text,
+                        "snippet": clean_snippet_text(raw_text),
+                        "source_url": clean_url(hub_url),
+                        "source_name": src_label
+                    })
+                    hub_matched += 1
+        except Exception as e:
+            print(f"⚠️ News hub notice ({src_label}): {e}")
+
+print(f"✓ Extracted {hub_matched} reports from premium free news hubs!")
+
 # 8. Source G: Free Multi-Source XML RSS Feeds
 print("\n8. [SOURCE 7] Ingesting Non-Paywalled XML RSS Feeds...")
 rss_matched = 0
 rss_urls = [
-    (clean_url("[https://www.rotoballer.com/feed](https://www.rotoballer.com/feed)"), "ROTOBALLER"),
-    (clean_url("[https://www.fantasysp.com/rss/nfl/allplayer/](https://www.fantasysp.com/rss/nfl/allplayer/)"), "FANTASYSP"),
-    (clean_url("[https://www.fantasysp.com/rss/nfl/headlines/](https://www.fantasysp.com/rss/nfl/headlines/)"), "FANTASYSP WIRE"),
-    (clean_url("[https://www.fftoday.com/rss/news.xml](https://www.fftoday.com/rss/news.xml)"), "FFTODAY RSS"),
-    (clean_url("[https://www.cbssports.com/rss/headlines/fantasy/football/](https://www.cbssports.com/rss/headlines/fantasy/football/)"), "CBS RSS")
+    (clean_url("https://www.rotowire.com/rss/news.php?sport=NFL"), "ROTOWIRE"),
+    (clean_url("https://www.rotowire.com/rss/news.php?sport=NFL&posID=RB"), "ROTOWIRE"),
+    (clean_url("https://www.rotowire.com/rss/news.php?sport=NFL&posID=WR"), "ROTOWIRE"),
+    (clean_url("https://www.rotowire.com/rss/news.php?sport=NFL&posID=QB"), "ROTOWIRE"),
+    (clean_url("https://www.rotowire.com/rss/news.php?sport=NFL&posID=TE"), "ROTOWIRE"),
+    (clean_url("https://sports.yahoo.com/nfl/rss/"), "YAHOO NFL"),
+    (clean_url("https://www.rotoballer.com/feed"), "ROTOBALLER"),
+    (clean_url("https://www.fantasysp.com/rss/nfl/allplayer/"), "FANTASYSP"),
+    (clean_url("https://www.fantasysp.com/rss/nfl/headlines/"), "FANTASYSP WIRE"),
+    (clean_url("https://www.fftoday.com/rss/news.xml"), "FFTODAY RSS"),
+    (clean_url("https://www.cbssports.com/rss/headlines/fantasy/football/"), "CBS RSS")
 ]
 
 for r_url, src_tag in rss_urls:
@@ -653,15 +710,25 @@ for r_url, src_tag in rss_urls:
                 link = item.find("link").text if item.find("link") is not None else ""
                 clean_desc = re.sub(r'<[^>]+>', '', desc).strip()
                 full_body = f"{title}. {clean_desc}"
-                
-                matched_players = extract_players_fast(full_body, player_registry, primary_only=True)
+
+                # RotoWire/RotoBaller titles are "Player Name: Headline" — the subject
+                # is explicit before the colon, so resolve it directly (most accurate).
+                matched_players = []
+                if ":" in title:
+                    subj = title.split(":", 1)[0].strip()
+                    c_subj = clean_name(subj)
+                    if c_subj in player_registry:
+                        matched_players = [player_registry[c_subj]]
+                if not matched_players:
+                    matched_players = extract_players_fast(full_body, player_registry, primary_only=True)
+
                 for full_pname in matched_players:
                     c_p = clean_name(full_pname)
                     add_intel(c_p, {
                         "player_name": full_pname,
                         "raw_text": full_body,
                         "snippet": clean_snippet_text(full_body),
-                        "source_url": clean_url(link) if link else clean_url("[https://www.rotoballer.com](https://www.rotoballer.com)"),
+                        "source_url": clean_url(link) if link else "",
                         "source_name": src_tag
                     })
                     rss_matched += 1
@@ -718,7 +785,8 @@ except Exception:
 
 # Sources that carry real performance/beat text worth crunching (vs. bare injury status).
 RICH_SOURCES = ("32BEAT", "CBS", "FFTODAY NEWS", "FFTODAY ARTICLE", "ROTOBALLER",
-                "FANTASYSP", "TWITTER", "WAIVER", "FFTODAY RSS", "CBS RSS")
+                "FANTASYSP", "TWITTER", "WAIVER", "FFTODAY RSS", "CBS RSS",
+                "ROTOWIRE", "NFL.COM", "FANTASYPROS", "PFF", "FOOTBALLGUYS", "YAHOO")
 
 def _priority(item):
     cn = clean_name(item.get("player_name", ""))
