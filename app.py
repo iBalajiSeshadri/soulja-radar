@@ -47,11 +47,12 @@ st.markdown("""
 
     .intel-tier-jumper { background-color: #10b98135; color: #34d399; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; border: 1px solid #10b981; }
     .intel-superflex { background-color: #8b5cf635; color: #c084fc; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; border: 1px solid #8b5cf6; }
+    .intel-core-anchor { background-color: #f59e0b35; color: #fbbf24; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; border: 1px solid #f59e0b; }
+    .intel-value-target { background-color: #06b6d435; color: #22d3ee; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; border: 1px solid #06b6d4; }
     .intel-role-pinch { background-color: #ea580c35; color: #fb923c; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; border: 1px solid #ea580c; }
     .intel-vet-rest { background-color: #3b82f635; color: #93c5fd; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #3b82f6; }
     .intel-healthy { background-color: #10b98125; color: #34d399; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #10b98160; }
     .intel-beat { background-color: #3b82f625; color: #93c5fd; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #3b82f660; }
-    .intel-hist { background-color: #64748b25; color: #cbd5e1; padding: 2px 6px; border-radius: 4px; font-weight: 600; font-size: 0.75rem; border: 1px solid #64748b60; }
     .intel-bust { background-color: #ef444430; color: #f87171; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #ef444460; }
     .intel-injury { background-color: #dc262640; color: #fca5a5; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; border: 1px solid #dc2626; }
     .intel-surge { background-color: #f59e0b30; color: #fbbf24; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #f59e0b60; }
@@ -75,41 +76,6 @@ st.markdown("""
     .pos-DEF { background: #ec489930; color: #f472b6; border: 1px solid #ec489960; }
 </style>
 """, unsafe_allow_html=True)
-
-DST_SCHEDULE_MAP = {
-    "HOU": "📅 W1: @ IND (🟢 Easy) | W2: vs TEN (🟢 Easy) | W3: @ MIN (🟡 Neutral) • 🟢 Top 5 Streamer",
-    "DAL": "📅 W1: @ NYG (🟢 Easy) | W2: vs WAS (🟢 Easy) | W3: @ ARI (🟢 Easy) • 🟢 Top 3 Smash",
-    "BAL": "📅 W1: @ KC (🔴 Tough) | W2: vs LV (🟢 Easy) | W3: @ DAL (🟡 Neutral) • 🟡 Neutral Start",
-    "SF":  "📅 W1: vs NYJ (🟡 Neutral) | W2: @ MIN (🟢 Easy) | W3: @ LAR (🟡 Neutral) • 🟢 Favorable",
-    "NYJ": "📅 W1: @ SF (🔴 Tough) | W2: @ TEN (🟢 Easy) | W3: vs NE (🟢 Easy) • 🟢 Favorable W2-3",
-    "CLE": "📅 W1: vs DAL (🟡 Neutral) | W2: @ JAX (🟡 Neutral) | W3: vs NYG (🟢 Easy) • 🟢 Strong Start",
-    "PIT": "📅 W1: @ ATL (🟡 Neutral) | W2: @ DEN (🟢 Easy) | W3: vs LAC (🟡 Neutral) • 🟢 Strong Start",
-    "KC":  "📅 W1: vs BAL (🔴 Tough) | W2: vs CIN (🔴 Tough) | W3: @ ATL (🟡 Neutral) • 🔴 Brutal Early",
-    "BUF": "📅 W1: vs ARI (🟡 Neutral) | W2: @ MIA (🔴 Tough) | W3: vs JAX (🟡 Neutral) • 🟡 Neutral",
-    "PHI": "📅 W1: vs GB (🔴 Tough) | W2: vs ATL (🟡 Neutral) | W3: @ NO (🟢 Easy) • 🟡 Moderate",
-    "MIA": "📅 W1: vs JAX (🟡 Neutral) | W2: vs BUF (🔴 Tough) | W3: @ SEA (🟡 Neutral) • 🟡 Neutral",
-    "CIN": "📅 W1: vs NE (🟢 Easy) | W2: @ KC (🔴 Tough) | W3: vs WAS (🟢 Easy) • 🟢 W1 & W3 Stream",
-    "CHI": "📅 W1: vs TEN (🟢 Easy) | W2: @ HOU (🔴 Tough) | W3: @ IND (🟢 Easy) • 🟢 W1 Streamer",
-    "DEN": "📅 W1: @ SEA (🟡 Neutral) | W2: vs PIT (🟡 Neutral) | W3: @ TB (🟡 Neutral) • 🟡 Neutral",
-    "LAC": "📅 W1: vs LV (🟢 Easy) | W2: @ CAR (🟢 Easy) | W3: @ PIT (🟡 Neutral) • 🟢 Top 3 Early Stream",
-    "LAR": "📅 W1: @ DET (🔴 Tough) | W2: @ ARI (🟡 Neutral) | W3: vs SF (🔴 Tough) • 🔴 Tough Early",
-    "DET": "📅 W1: vs LAR (🟡 Neutral) | W2: vs TB (🟡 Neutral) | W3: @ ARI (🟡 Neutral) • 🟡 Neutral",
-    "GB":  "📅 W1: @ PHI (🔴 Tough) | W2: vs IND (🟢 Easy) | W3: @ TEN (🟢 Easy) • 🟢 W2-3 Stream",
-    "IND": "📅 W1: vs HOU (🔴 Tough) | W2: @ GB (🟡 Neutral) | W3: vs CHI (🟡 Neutral) • 🟡 Neutral",
-    "JAX": "📅 W1: @ MIA (🔴 Tough) | W2: vs CLE (🟡 Neutral) | W3: @ BUF (🔴 Tough) • 🔴 Tough Start",
-    "LV":  "📅 W1: @ LAC (🟡 Neutral) | W2: @ BAL (🔴 Tough) | W3: vs CAR (🟢 Easy) • 🟡 W3 Target",
-    "MIN": "📅 W1: @ NYG (🟢 Easy) | W2: vs SF (🔴 Tough) | W3: vs HOU (🔴 Tough) • 🟡 W1 Only",
-    "NE":  "📅 W1: @ CIN (🔴 Tough) | W2: vs SEA (🟡 Neutral) | W3: @ NYJ (🔴 Tough) • 🔴 Tough Start",
-    "NO":  "📅 W1: vs CAR (🟢 Easy) | W2: @ DAL (🔴 Tough) | W3: vs PHI (🔴 Tough) • 🟡 W1 Stream",
-    "NYG": "📅 W1: vs MIN (🟡 Neutral) | W2: @ WAS (🟢 Easy) | W3: @ CLE (🔴 Tough) • 🟡 Neutral",
-    "SEA": "📅 W1: vs DEN (🟢 Easy) | W2: @ NE (🟢 Easy) | W3: vs MIA (🔴 Tough) • 🟢 Top 5 Early Stream",
-    "TB":  "📅 W1: vs WAS (🟢 Easy) | W2: @ DET (🔴 Tough) | W3: vs DEN (🟢 Easy) • 🟢 W1 & W3 Stream",
-    "TEN": "📅 W1: @ CHI (🟡 Neutral) | W2: vs NYJ (🔴 Tough) | W3: vs GB (🟡 Neutral) • 🔴 Tough Start",
-    "WAS": "📅 W1: @ TB (🟡 Neutral) | W2: vs NYG (🟡 Neutral) | W3: @ CIN (🔴 Tough) • 🟡 Neutral",
-    "ARI": "📅 W1: @ BUF (🔴 Tough) | W2: vs LAR (🟡 Neutral) | W3: vs DET (🔴 Tough) • 🔴 Avoid Early",
-    "ATL": "📅 W1: vs PIT (🟡 Neutral) | W2: @ PHI (🔴 Tough) | W3: vs KC (🔴 Tough) • 🔴 Tough Start",
-    "CAR": "📅 W1: @ NO (🟡 Neutral) | W2: vs LAC (🟡 Neutral) | W3: @ LV (🟡 Neutral) • 🟡 Low Floor"
-}
 
 # 🌟 DEFAULT HISTORICAL LEAGUE CREW
 SOULJA_SOULJA_DEFAULTS = {
@@ -163,10 +129,10 @@ def load_draft_board():
     df['custom_rank'] = pd.to_numeric(df['custom_rank'], errors='coerce').fillna(999)
     df['tier'] = df['tier'].astype(str)
     
-    if 'depth_chart_order' in df.columns:
-        df['depth_chart_order'] = pd.to_numeric(df['depth_chart_order'], errors='coerce').fillna(1).astype(int)
+    if 'adp' in df.columns:
+        df['market_adp'] = pd.to_numeric(df['adp'], errors='coerce').fillna(df['custom_rank'])
     else:
-        df['depth_chart_order'] = 1
+        df['market_adp'] = df['custom_rank']
         
     return df
 
@@ -184,7 +150,7 @@ def load_camp_overrides():
 df_board = load_draft_board()
 clean_overrides = load_camp_overrides()
 
-# 3. Sidebar Controls & Multi-League Dynamic Customizer
+# 3. Sidebar Controls & League Customizer
 st.sidebar.title("⚡ Soulja Soulja Radar")
 
 # 🚀 1-Click Live News & Scraper Sync Button
@@ -201,28 +167,15 @@ if st.sidebar.button("🚀 Pull Latest News & Sync Wire", use_container_width=Tr
 
 draft_mode = st.sidebar.radio("Draft Format:", ["🔨 Auction / Salary Cap", "🐍 Snake Draft"], horizontal=True)
 
-# 🌐 MULTI-LEAGUE SCALING CONTROLS
-with st.sidebar.expander("⚙️ League Settings & Scaling (Shareable)", expanded=False):
-    league_preset = st.selectbox(
-        "League Preset:",
-        ["⚡ Soulja Soulja (10T Superflex + IDP)", "🏈 Standard Redraft (12T 1-QB Offense)", "🛠️ Custom League Config"]
-    )
-    
-    if league_preset == "⚡ Soulja Soulja (10T Superflex + IDP)":
-        league_size = 10
-        qb_format = "Superflex / 2-QB"
-        include_idp = True
-        total_roster_slots = 18
-    elif league_preset == "🏈 Standard Redraft (12T 1-QB Offense)":
-        league_size = 12
-        qb_format = "Standard 1-QB"
-        include_idp = False
-        total_roster_slots = 16
-    else:
-        league_size = st.number_input("League Teams:", min_value=8, max_value=16, value=10)
-        qb_format = st.selectbox("QB Format:", ["Superflex / 2-QB", "Standard 1-QB"])
-        include_idp = st.checkbox("Include IDP Positions (LB/DL/DB)", value=True)
-        total_roster_slots = st.number_input("Total Roster Slots:", min_value=12, max_value=24, value=18)
+# 🌐 FRONT-AND-CENTER SCALING CONTROLS
+st.sidebar.markdown("---")
+st.sidebar.markdown("### ⚙️ League Format Controls")
+qb_format = st.sidebar.radio("QB Roster Format:", ["⚡ Superflex / 2-QB", "🏈 Standard 1-QB"], horizontal=True)
+idp_mode = st.sidebar.radio("Defensive Format:", ["🛡️ Offense + IDP (Soulja)", "⚔️ Offense Only (Standard)"], horizontal=True)
+include_idp = (idp_mode == "🛡️ Offense + IDP (Soulja)")
+
+league_size = st.sidebar.number_input("League Teams:", min_value=8, max_value=16, value=10)
+total_roster_slots = 18 if include_idp else 16
 
 if "custom_manager_names" not in st.session_state:
     st.session_state.custom_manager_names = {s: p["name"] for s, p in SOULJA_SOULJA_DEFAULTS.items()}
@@ -245,13 +198,13 @@ st.sidebar.caption(f"Drafting as: **{my_manager_display}** (Slot {my_slot})")
 
 room_mode = st.sidebar.radio("Connection Mode:", ["🎮 Mock Sim Sandbox", "🌐 Live Sleeper Room Sync"], horizontal=True)
 
-# 4. Dynamic VORP & Multi-Source Override Binding (GENUINE DATA ONLY)
+# 4. Dynamic VORP & Multi-Source Override Binding
 df_board['live_multiplier'] = 1.0
 df_board['intel_note'] = ""
 df_board['intel_tag'] = ""
 df_board['source_url'] = ""
 
-# Filter IDP if 1-QB / offense-only league
+# Filter IDP if Offense Only is toggled
 if not include_idp:
     df_board = df_board[~df_board['position'].isin(['LB', 'DL', 'DB'])].copy().reset_index(drop=True)
 
@@ -272,10 +225,10 @@ for idx, row in df_board.iterrows():
         df_board.at[idx, 'intel_tag'] = matched_data.get('type', '')
         df_board.at[idx, 'source_url'] = matched_data.get('source_url', '')
 
-# Scalable VORP Adjuster: 1-QB shifts QB VORP down to standard baseline
-if qb_format == "Standard 1-QB":
+# Scalable VORP Adjuster
+if qb_format == "🏈 Standard 1-QB":
     qb_mask = df_board['position'] == 'QB'
-    df_board.loc[qb_mask, 'live_vorp'] = (df_board.loc[qb_mask, 'vorp'] * 0.42) * df_board.loc[qb_mask, 'live_multiplier']
+    df_board.loc[qb_mask, 'live_vorp'] = (df_board.loc[qb_mask, 'vorp'] * 0.40) * df_board.loc[qb_mask, 'live_multiplier']
     non_qb_mask = df_board['position'] != 'QB'
     df_board.loc[non_qb_mask, 'live_vorp'] = df_board.loc[non_qb_mask, 'vorp'] * df_board.loc[non_qb_mask, 'live_multiplier']
 else:
@@ -314,10 +267,51 @@ df_board.loc[def_mask, 'market_cost'] = df_board.loc[def_mask, 'clean_name'].map
 df_board['fair_value'] = df_board['fair_value'].fillna(1).astype(int)
 df_board['market_cost'] = df_board['market_cost'].fillna(1).astype(int)
 df_board = df_board.sort_values(by=['fair_value', 'live_vorp'], ascending=[False, False]).reset_index(drop=True)
-df_board['auction_rank'] = df_board.index + 1
+df_board['board_rank'] = df_board.index + 1
 
 player_pos_map = dict(zip(df_board['clean_name'], df_board['position']))
 player_display_map = dict(zip(df_board['clean_name'], df_board['player_name']))
+
+# Helper for rich badge rendering
+def format_intel_cell(r):
+    pref_badge = ""
+    c_n = r['clean_name']
+    if c_n in st.session_state.my_targets:
+        pref_badge = '<span class="pref-target">⭐ TARGET</span> '
+    elif c_n in st.session_state.my_fades:
+        pref_badge = '<span class="pref-fade">🚫 FADE</span> '
+
+    tag = str(r.get('intel_tag', '')).upper()
+    note = str(r.get('intel_note', '')).strip()
+    tag_badge = ""
+
+    if "TIER_JUMPER" in tag:
+        tag_badge = '<span class="intel-tier-jumper">🚀 TIER JUMPER</span> '
+    elif "SUPERFLEX" in tag:
+        tag_badge = '<span class="intel-superflex">⚡ SUPERFLEX</span> '
+    elif "CORE_ANCHOR" in tag or "STUD" in tag:
+        tag_badge = '<span class="intel-core-anchor">👑 CORE ANCHOR</span> '
+    elif "VALUE_TARGET" in tag or "BREAKOUT" in tag:
+        tag_badge = '<span class="intel-value-target">🎯 VALUE TARGET</span> '
+    elif "ROLE_PINCH" in tag:
+        tag_badge = '<span class="intel-role-pinch">📉 ROLE PINCH</span> '
+    elif "VET_MAINTENANCE" in tag or "VET_REST" in tag:
+        tag_badge = '<span class="intel-vet-rest">🩹 VET REST</span> '
+    elif "INJURY" in tag or "IR" in note or "PUP" in note:
+        tag_badge = '<span class="intel-injury">❌ INJURY ALERT</span> '
+    elif "QUESTIONABLE" in tag or "Questionable" in note:
+        tag_badge = '<span class="intel-bust">🩹 QUESTIONABLE</span> '
+    elif "CLEARED" in tag or "CLEARED" in note:
+        tag_badge = '<span class="intel-healthy">✅ CLEARED</span> '
+    elif "WAIVER" in tag or "SURGE" in note:
+        tag_badge = '<span class="intel-surge">🔥 WAIVER SPIKE</span> '
+    elif tag:
+        tag_badge = f'<span class="intel-beat">📰 {tag}</span> '
+
+    url = str(r.get('source_url', '')).strip()
+    link_html = f' <a href="{url}" target="_blank" class="source-link">🔗 Read Source</a>' if url and url.startswith("http") else ''
+    
+    return f"{pref_badge}{tag_badge}{note}{link_html}" if (note or tag_badge) else "—"
 
 # Sidebar Wishlist & Fade Manager
 st.sidebar.markdown("---")
@@ -486,7 +480,7 @@ my_cap_left = 200 - my_wallet['spent']
 my_slots_left = total_roster_slots - my_wallet['picks']
 my_max_bid = max(1, my_cap_left - (my_slots_left - 1))
 
-# 💬 FEATURE 3: ASK THE AI STRATEGIST (WITH GROUNDED PLAYER RAG)
+# 💬 FEATURE 3: ASK THE AI STRATEGIST
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🤖 Ask the AI War Room")
 ai_query = st.sidebar.text_input("Ask situational draft question:", placeholder="e.g. Should I take Gibbs or Bijan?")
@@ -503,7 +497,7 @@ if st.sidebar.button("Ask AI Strategist", use_container_width=True):
             if p_clean in ai_query.lower() or (len(last_n) >= 4 and last_n in q_tokens):
                 grounded_player_cards.append(
                     f"• {p_row['player_name']} ({p_row['position']}): Tier: {p_row['tier']} | "
-                    f"Model Fair Value: ${int(p_row['fair_value'])} | Market ADP: ${int(p_row['market_cost'])} (Consensus Rank #{int(p_row['custom_rank'])}) | "
+                    f"Model Fair Value: ${int(p_row['fair_value'])} | Market ADP: #{int(p_row['market_adp'])} | "
                     f"True VORP: +{round(p_row['live_vorp'], 1)} pts | Intel: {p_row['intel_note'] if p_row['intel_note'] else 'Healthy & Active'}"
                 )
                 
@@ -591,7 +585,7 @@ st.markdown("---")
 
 # 5.5 Dynamic Targeting & Playbook
 my_counts = my_wallet['pos_counts']
-pos_targets = {'QB': 2 if qb_format == 'Superflex / 2-QB' else 1, 'RB': 4, 'WR': 4, 'TE': 2, 'IDP': 4 if include_idp else 0, 'DEF': 1}
+pos_targets = {'QB': 2 if qb_format == '⚡ Superflex / 2-QB' else 1, 'RB': 4, 'WR': 4, 'TE': 2, 'IDP': 4 if include_idp else 0, 'DEF': 1}
 pos_gaps = {pos: max(0, target - my_counts.get(pos, 0)) for pos, target in pos_targets.items()}
 
 non_faded_unpicked = df_unpicked[~df_unpicked['clean_name'].isin(st.session_state.my_fades)].copy()
@@ -763,13 +757,13 @@ else:
                 '<div style="background:#131b2e; border-top:4px solid #10b981; padding:12px; border-radius:6px; height:100%;">'
                 f'<div style="font-size:0.75rem; color:#10b981; font-weight:700;">{s_title}</div>'
                 f'<div style="font-size:1.15rem; font-weight:700; color:white; margin:4px 0;">{best_p["player_name"]} <span class="badge-pos pos-{best_p["position"]}">{best_p["position"]}</span></div>'
-                f'<div style="font-size:0.85rem; color:#94a3b8;">Consensus ADP: <b>#{int(best_p["custom_rank"])}</b> | True VORP: <b style="color:#10b981;">+{round(best_p["live_vorp"], 1)}</b> ({best_p["tier"]})</div>'
+                f'<div style="font-size:0.85rem; color:#94a3b8;">Consensus ADP: <b>#{int(best_p["market_adp"])}</b> | True VORP: <b style="color:#10b981;">+{round(best_p["live_vorp"], 1)}</b> ({best_p["tier"]})</div>'
                 f'<div style="font-size:0.75rem; color:#cbd5e1; margin-top:6px;"><b>Recommendation:</b> Premier VORP target to fill your starting {best_p["position"]} slot.</div>'
                 '</div>', unsafe_allow_html=True
             )
 
     with snake_col2:
-        non_faded_unpicked['adp_surplus'] = non_faded_unpicked['custom_rank'] - non_faded_unpicked['auction_rank']
+        non_faded_unpicked['adp_surplus'] = non_faded_unpicked['market_adp'] - non_faded_unpicked['board_rank']
         fallers = non_faded_unpicked[non_faded_unpicked['adp_surplus'] >= 2].sort_values(by=['adp_surplus', 'live_vorp'], ascending=[False, False]).head(4)
         
         faller_rows = []
@@ -780,7 +774,7 @@ else:
                 '<div style="display:flex; justify-content:space-between; align-items:center; background:#0b0f19; padding:5px 8px; margin-bottom:4px; border-radius:4px; border-left:3px solid #3b82f6;">'
                 '<div>'
                 f'<span class="badge-pos pos-{f_row["position"]}">{f_row["position"]}</span> <b>{f_row["player_name"]}</b> {f_starred}<br>'
-                f'<span style="font-size:0.72rem; color:#94a3b8;">ADP: #{int(f_row["custom_rank"])} | VORP Board: #{int(f_row["auction_rank"])}</span>'
+                f'<span style="font-size:0.72rem; color:#94a3b8;">Market ADP: #{int(f_row["market_adp"])} | Board Rank: #{int(f_row["board_rank"])}</span>'
                 '</div>'
                 f'<div style="font-size:0.8rem; font-weight:700; color:#38bdf8;">+{val_spots} Spots Value</div>'
                 '</div>'
@@ -797,8 +791,8 @@ else:
 
     with snake_col3:
         dead_zone_targets = non_faded_unpicked[
-            (non_faded_unpicked['custom_rank'] > curr_overall_pick) &
-            (non_faded_unpicked['custom_rank'] <= next_my_pick_num)
+            (non_faded_unpicked['market_adp'] > curr_overall_pick) &
+            (non_faded_unpicked['market_adp'] <= next_my_pick_num)
         ].sort_values(by='live_vorp', ascending=False).head(4)
         
         turn_rows = []
@@ -808,7 +802,7 @@ else:
                 '<div style="display:flex; justify-content:space-between; align-items:center; background:#0b0f19; padding:5px 8px; margin-bottom:4px; border-radius:4px; border-left:3px solid #ef4444;">'
                 '<div>'
                 f'<span class="badge-pos pos-{t_row["position"]}">{t_row["position"]}</span> <b>{t_row["player_name"]}</b> {t_starred}<br>'
-                f'<span style="font-size:0.72rem; color:#94a3b8;">ADP #{int(t_row["custom_rank"])} (Won\'t make pick #{next_my_pick_num})</span>'
+                f'<span style="font-size:0.72rem; color:#94a3b8;">Market ADP #{int(t_row["market_adp"])} (Won\'t make pick #{next_my_pick_num})</span>'
                 '</div>'
                 f'<div style="font-size:0.75rem; font-weight:700; color:#f87171;">REACH TARGET</div>'
                 '</div>'
@@ -839,8 +833,8 @@ with col_left:
         bid_to = int(round(fair_val * max(0.90, inflation_index)))
         plan_cap = int(round(fair_val * 0.95))
         delta_vs_mkt = int(bid_to - mkt_val)
-        adp_rank = int(p_data['custom_rank'])
-        my_board_rank = int(p_data['auction_rank'])
+        adp_rank = int(p_data['market_adp'])
+        my_board_rank = int(p_data['board_rank'])
         
         p_card_col1, p_card_col2, p_card_col3, p_card_col4 = st.columns(4)
         if draft_mode == "🔨 Auction / Salary Cap":
@@ -855,38 +849,8 @@ with col_left:
             p_card_col3.metric("Tier Rating", f"{p_data['tier']}")
             p_card_col4.metric("True VORP", f"+{round(p_data['live_vorp'], 1)} pts")
         
-        tag_html = ""
-        c_name_curr = p_data['clean_name']
-        if c_name_curr in st.session_state.my_targets:
-            tag_html += '<span class="pref-target">⭐ MY TARGET</span> '
-        elif c_name_curr in st.session_state.my_fades:
-            tag_html += '<span class="pref-fade">🚫 MY FADE</span> '
-
-        tag = str(p_data.get('intel_tag', '')).upper()
-        note = p_data.get('intel_note', '')
-        
-        if "TIER_JUMPER" in tag:
-            tag_html += '<span class="intel-tier-jumper">🚀 TIER JUMPER</span> '
-        elif "SUPERFLEX" in tag:
-            tag_html += '<span class="intel-superflex">⚡ SUPERFLEX</span> '
-        elif "ROLE_PINCH" in tag:
-            tag_html += '<span class="intel-role-pinch">📉 ROLE PINCH</span> '
-        elif "VET_MAINTENANCE" in tag or "VET_REST" in tag:
-            tag_html += '<span class="intel-vet-rest">🩹 VET REST</span> '
-        elif "INJURY" in tag or "IR" in note or "PUP" in note:
-            tag_html += '<span class="intel-injury">❌ INJURY ALERT</span> '
-        elif "QUESTIONABLE" in tag or "Questionable" in note:
-            tag_html += '<span class="intel-bust">🩹 QUESTIONABLE</span> '
-        elif "CLEARED" in tag or "CLEARED" in note:
-            tag_html += '<span class="intel-healthy">✅ CLEARED</span> '
-        elif "WAIVER" in tag or "BREAKOUT" in tag or "SLEEPER SURGE" in note:
-            tag_html += '<span class="intel-surge">🔥 WAIVER SPIKE</span> '
-
-        p_url = str(p_data.get('source_url', '')).strip()
-        p_link = f' <a href="{p_url}" target="_blank" class="source-link">🔗 Read Source</a>' if p_url and p_url.startswith("http") else ''
-        
-        intel_display = f"{tag_html} {note}{p_link}" if note else "—"
-        st.markdown(f"**Position:** <span class='badge-pos pos-{p_data['position']}'>{p_data['position']}</span> | **Team:** `{p_data['team']}` | {intel_display}", unsafe_allow_html=True)
+        intel_formatted = format_intel_cell(p_data)
+        st.markdown(f"**Position:** <span class='badge-pos pos-{p_data['position']}'>{p_data['position']}</span> | **Team:** `{p_data['team']}` | {intel_formatted}", unsafe_allow_html=True)
 
         # 🧠 FEATURE 1: DYNAMIC LIVE AI STRATEGY ENGINE
         ai_btn_label = "🤖 Generate Real-Time AI Tactical Read" if draft_mode == "🔨 Auction / Salary Cap" else "🤖 Generate Snake Turn & Reach Analysis"
@@ -941,6 +905,7 @@ with col_left:
 
         bcol1, bcol2, _ = st.columns([1, 1, 2])
         with bcol1:
+            c_name_curr = p_data['clean_name']
             is_target = c_name_curr in st.session_state.my_targets
             if st.button("⭐ Target (Want)" if not is_target else "★ Remove Target", use_container_width=True):
                 if is_target:
@@ -1019,7 +984,7 @@ with col_right:
             card_html = (
                 '<div style="background:#131b2e; border-left:3px solid #3b82f6; padding:8px 12px; margin-bottom:6px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">'
                 f'<div><b>{hr["player_name"]}</b> <span class="badge-pos pos-{hr["position"]}">{hr["position"]}</span><br>'
-                f'<span style="font-size:0.75rem; color:#94a3b8;">ADP: #{int(hr["custom_rank"])} | VORP: <b>+{round(hr["live_vorp"], 1)}</b> ({hr["tier"]})</span></div>'
+                f'<span style="font-size:0.75rem; color:#94a3b8;">Market ADP: #{int(hr["market_adp"])} | True VORP: <b>+{round(hr["live_vorp"], 1)}</b> ({hr["tier"]})</span></div>'
                 f'<span class="landmine-tag" style="background:#3b82f620; color:#60a5fa; border:1px solid #3b82f640;">ELITE VORP</span></div>'
             )
             st.markdown(card_html, unsafe_allow_html=True)
@@ -1050,42 +1015,10 @@ def render_board_table(df_subset):
         else:
             tier_badge = tier_curr
         
-        pref_badge = ""
-        c_n = r['clean_name']
-        if c_n in st.session_state.my_targets:
-            pref_badge = '<span class="pref-target">⭐ TARGET</span> '
-        elif c_n in st.session_state.my_fades:
-            pref_badge = '<span class="pref-fade">🚫 FADE</span> '
-
-        tag_badge = ""
-        tag = str(r['intel_tag']).upper()
-        note = str(r['intel_note']).strip()
-        
-        if "TIER_JUMPER" in tag:
-            tag_badge = '<span class="intel-tier-jumper">🚀 TIER JUMPER</span> '
-        elif "SUPERFLEX" in tag:
-            tag_badge = '<span class="intel-superflex">⚡ SUPERFLEX</span> '
-        elif "ROLE_PINCH" in tag:
-            tag_badge = '<span class="intel-role-pinch">📉 ROLE PINCH</span> '
-        elif "VET_MAINTENANCE" in tag or "VET_REST" in tag:
-            tag_badge = '<span class="intel-vet-rest">🩹 VET REST</span> '
-        elif "INJURY" in tag or "IR" in note or "PUP" in note:
-            tag_badge = '<span class="intel-injury">❌ INJURY</span> '
-        elif "QUESTIONABLE" in tag or "Questionable" in note:
-            tag_badge = '<span class="intel-bust">🩹 QUESTIONABLE</span> '
-        elif "CLEARED" in tag or "CLEARED" in note:
-            tag_badge = '<span class="intel-healthy">✅ CLEARED</span> '
-        elif "WAIVER" in tag or "BREAKOUT" in tag or "SLEEPER SURGE" in note:
-            tag_badge = '<span class="intel-surge">🔥 WAIVER</span> '
-        elif "BEAT" in tag or "BEAT WIRE" in note:
-            tag_badge = '<span class="intel-beat">📰 LIVE BEAT</span> '
-
-        url = str(r.get('source_url', '')).strip()
-        link_html = f' <a href="{url}" target="_blank" class="source-link">🔗 Source</a>' if url and url.startswith("http") else ''
-        intel_text = f"{pref_badge}{tag_badge}{note}{link_html}" if note else "—"
+        intel_text = format_intel_cell(r)
 
         row_dict = {
-            "Priority": int(r['auction_rank']),
+            "Priority": int(r['board_rank']),
             "Player": r['player_name'],
             "Pos": f'<span class="badge-pos pos-{r["position"]}">{r["position"]}</span>',
             "Team": r['team'],
@@ -1097,12 +1030,12 @@ def render_board_table(df_subset):
             row_dict["Fair Value"] = f"${int(r['fair_value'])}"
             row_dict["Market ADP"] = f"${int(r['market_cost'])}"
         else:
-            row_dict["Consensus ADP"] = f"#{int(r['custom_rank'])}"
-            val_delta = int(r['custom_rank']) - int(r['auction_rank'])
+            row_dict["Consensus ADP"] = f"#{int(r['market_adp'])}"
+            val_delta = int(r['market_adp']) - int(r['board_rank'])
             if val_delta > 0:
                 row_dict["Market Value Delta"] = f'<span style="color:#34d399; font-weight:700;">+{val_delta} (Steal at ADP)</span>'
             elif val_delta < 0:
-                row_dict["Market Value Delta"] = f'<span style="color:#f87171; font-weight:700;">{val_delta} (Overpriced)</span>'
+                row_dict["Market Value Delta"] = f'<span style="color:#f87171; font-weight:700;">{val_delta} (Market Overpay)</span>'
             else:
                 row_dict["Market Value Delta"] = '<span style="color:#94a3b8; font-weight:700;">Market Fair</span>'
 
@@ -1170,7 +1103,7 @@ with tab_matrix:
         m_bid = max(1, c_left - (s_left - 1))
         counts = data['pos_counts']
         needs = []
-        if counts['QB'] < (2 if qb_format == 'Superflex / 2-QB' else 1): needs.append(f"QB ({counts['QB']})")
+        if counts['QB'] < (2 if qb_format == '⚡ Superflex / 2-QB' else 1): needs.append(f"QB ({counts['QB']})")
         if counts['RB'] < 3: needs.append(f"RB ({counts['RB']}/3)")
         if counts['WR'] < 3: needs.append(f"WR ({counts['WR']}/3)")
         if counts['TE'] < 1: needs.append(f"TE ({counts['TE']}/1)")
