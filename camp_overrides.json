@@ -1767,7 +1767,7 @@
   "Tank Dell": {
     "multiplier": 0.88,
     "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee - ACL + MCL) | \ud83d\udd25 SLEEPER SURGE (+11720 adds)"
+    "note": "\ud83e\ude79 OFFICIAL INJURY WIRE: Questionable (Knee - ACL + MCL) | \ud83d\udd25 SLEEPER SURGE (+11608 adds)"
   },
   "Justin Dedich": {
     "multiplier": 0.5,
@@ -2022,146 +2022,146 @@
   "Jack Strand": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+148760 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+148245 adds in 24h)"
   },
   "Malik Davis": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+61209 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+63423 adds in 24h)"
   },
   "Xavier Hutchinson": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+53074 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+51520 adds in 24h)"
   },
   "Barion Brown": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+43263 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+42192 adds in 24h)"
   },
   "Mike Washington": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+41422 adds in 24h)"
-  },
-  "MarShawn Lloyd": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+35766 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+42100 adds in 24h)"
   },
   "Dylan Laube": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+33873 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+35287 adds in 24h)"
+  },
+  "MarShawn Lloyd": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+34938 adds in 24h)"
   },
   "Darren Waller": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+30897 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+30240 adds in 24h)"
   },
   "Caleb Douglas": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+26840 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+26816 adds in 24h)"
   },
   "Malik Washington": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+22808 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+22888 adds in 24h)"
   },
   "Jacksonville Jaguars": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+21312 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+21108 adds in 24h)"
   },
   "Jalen Nailor": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+20907 adds in 24h)"
-  },
-  "Devaughn Vele": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+19264 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+20952 adds in 24h)"
   },
   "Seth McGowan": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+18560 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+19232 adds in 24h)"
   },
-  "Joe Milton": {
+  "Devaughn Vele": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+16884 adds in 24h)"
-  },
-  "Odell Beckham": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+16506 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+18963 adds in 24h)"
   },
   "Roman Hemby": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+16008 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+16632 adds in 24h)"
+  },
+  "Odell Beckham": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+16373 adds in 24h)"
+  },
+  "Joe Milton": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+16056 adds in 24h)"
   },
   "Kaelon Black": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+15568 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+15393 adds in 24h)"
   },
   "Malik Willis": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+14098 adds in 24h)"
-  },
-  "Keaton Mitchell": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13725 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+14147 adds in 24h)"
   },
   "Tyler Loop": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13674 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13722 adds in 24h)"
+  },
+  "Keaton Mitchell": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13653 adds in 24h)"
   },
   "Detroit Lions": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13428 adds in 24h)"
-  },
-  "Najee Harris": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13400 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13491 adds in 24h)"
   },
   "Colbie Young": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13398 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13344 adds in 24h)"
+  },
+  "Najee Harris": {
+    "multiplier": 1.06,
+    "type": "BREAKOUT",
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+12995 adds in 24h)"
   },
   "Cyrus Allen": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+12168 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+12114 adds in 24h)"
   },
   "Keenan Allen": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+11988 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+11816 adds in 24h)"
   },
   "Terrance Ferguson": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+11160 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+11200 adds in 24h)"
   },
   "Chris Rodriguez": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+11133 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+10971 adds in 24h)"
   },
   "Ryan Flournoy": {
     "multiplier": 1.06,
     "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+10576 adds in 24h)"
+    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+10544 adds in 24h)"
   }
 }
