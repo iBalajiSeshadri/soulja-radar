@@ -1,3326 +1,1916 @@
 {
-  "Parker Washington": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/parker-washington-16690"
+  "Malik Willis": {
+    "multiplier": 1.1,
+    "type": "TIER_JUMPER",
+    "note": "Rising on waiver wire, could see increased targets or start over established WRs.",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
-  "Mykel Williams": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/mykel-williams-18584"
-  },
-  "Wyatt Milum": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/wyatt-milum-18768"
-  },
-  "Adam Randall": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/adam-randall-19301"
-  },
-  "Nate Hobbs": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/nate-hobbs-15387"
+  "Detroit Lions": {
+    "multiplier": 1.1,
+    "type": "TIER_JUMPER",
+    "note": "Surging on waiver wire, could be a flex option or streaming target.",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Jay Higgins": {
-    "multiplier": 0.88,
+    "multiplier": 0.9,
     "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Concussion)",
-    "source_url": "https://www.rotowire.com/football/player/jay-higgins-18732"
+    "note": "Questionable (Concussion) - Monitor closely for game-time decision.",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
-  "Andrew Farmer": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Back)",
-    "source_url": "https://www.rotowire.com/football/player/andrew-farmer-17309"
-  },
-  "Teddye Buchanan": {
-    "multiplier": 0.88,
+  "TreVeyon Henderson": {
+    "multiplier": 0.9,
     "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/teddye-buchanan-18734"
-  },
-  "Cade Mays": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: Out (Wrist)",
-    "source_url": "https://www.rotowire.com/football/player/cade-mays-15882"
-  },
-  "VJ Payne": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed) - Bruise",
-    "source_url": "https://www.rotowire.com/football/player/vj-payne-19586"
-  },
-  "Anterio Thompson": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/anterio-thompson-19744"
-  },
-  "Dadrion Taylor-Demerson": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ribs)",
-    "source_url": "https://www.rotowire.com/football/player/dadrion-taylordemerson-17996"
-  },
-  "Trey Sermon": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/trey-sermon-15413"
-  },
-  "Dominique Robinson": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Calf)",
-    "source_url": "https://www.rotowire.com/football/player/dominique-robinson-16092"
-  },
-  "Audric Estime": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Leg)",
-    "source_url": "https://www.rotowire.com/football/player/audric-estime-17788"
-  },
-  "Johnny Wilson": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/johnny-wilson-17011"
-  },
-  "Khalil Shakir": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/khalil-shakir-15892"
-  },
-  "Kenneth Grant": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/kenneth-grant-18583"
-  },
-  "Corey Rucker": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/corey-rucker-17072"
-  },
-  "M.J. Stewart": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/mj-stewart-12836"
-  },
-  "Rachaad White": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/rachaad-white-15802"
-  },
-  "Micah Morris": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Shoulder)",
-    "source_url": "https://www.rotowire.com/football/player/micah-morris-19468"
-  },
-  "Tariq Castro-Fields": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Heel)",
-    "source_url": "https://www.rotowire.com/football/player/tariq-castrofields-15959"
-  },
-  "Michael Coats": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/michael-coats-19787"
-  },
-  "Brian Branch": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Achilles) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/brian-branch-16816"
-  },
-  "Tanner McLachlan": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/tanner-mclachlan-17866"
-  },
-  "Chris Rumph": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/chris-rumph-15311"
-  },
-  "Taylor Moton": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Illness)",
-    "source_url": "https://www.rotowire.com/football/player/taylor-moton-11812"
-  },
-  "Cade Otton": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/cade-otton-16032"
-  },
-  "Brenden Bates": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/brenden-bates-18253"
-  },
-  "Greg Newsome": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/greg-newsome-15275"
-  },
-  "Odafe Oweh": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/odafe-oweh-15305"
-  },
-  "Isaiah Davis": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/isaiah-davis-17057"
-  },
-  "Parker Brailsford": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hand)",
-    "source_url": "https://www.rotowire.com/football/player/parker-brailsford-19489"
-  },
-  "Brenen Thompson": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/brenen-thompson-19318"
-  },
-  "Chance Campbell": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/chance-campbell-16260"
-  },
-  "Tershawn Wharton": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Neck) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/tershawn-wharton-15077"
-  },
-  "Patrick Mekari": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Back) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/patrick-mekari-14126"
-  },
-  "Luke Wattenberg": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/luke-wattenberg-16088"
-  },
-  "Omarr Norman-Lott": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/omarr-normanlott-18705"
-  },
-  "Blake Gillikin": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/blake-gillikin-14868"
+    "note": "Questionable (Leg) - Keep an eye on his status for Sunday.",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Malik Mustapha": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring) - Strain",
-    "source_url": "https://www.rotowire.com/football/player/malik-mustapha-17808"
+    "multiplier": 1.05,
+    "type": "ACTIVE",
+    "note": "Starting DB, active for Week 1, could be a solid IDP option.",
+    "source_url": "https://www.fftoday.com"
   },
-  "Jabari Small": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Concussion)",
-    "source_url": "https://www.rotowire.com/football/player/jabari-small-17944"
-  },
-  "Caullin Lacy": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/caullin-lacy-19376"
-  },
-  "Danny Pinter": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: Doubtful (Leg)",
-    "source_url": "https://www.rotowire.com/football/player/danny-pinter-14691"
-  },
-  "Rene Konga": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/rene-konga-19743"
-  },
-  "Matt Orzech": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/matt-orzech-14127"
-  },
-  "Levelle Bailey": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Leg) - Fracture",
-    "source_url": "https://www.rotowire.com/football/player/levelle-bailey-18343"
-  },
-  "Nick Emmanwori": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ankle) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/nick-emmanwori-18617"
-  },
-  "Braxton Berrios": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/braxton-berrios-12771"
-  },
-  "John Michael Gyllenborg": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/john-michael-gyllenborg-19351"
-  },
-  "Kingsley Jonathan": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Thigh) - Bruise",
-    "source_url": "https://www.rotowire.com/football/player/kingsley-jonathan-16499"
-  },
-  "Jordon Riley": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Achilles)",
-    "source_url": "https://www.rotowire.com/football/player/jordon-riley-17414"
-  },
-  "Elijah Hicks": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Shin)",
-    "source_url": "https://www.rotowire.com/football/player/elijah-hicks-16296"
-  },
-  "Ennis Rakestraw": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Upper Body) - Bruise",
-    "source_url": "https://www.rotowire.com/football/player/ennis-rakestraw-17720"
-  },
-  "Xavier Weaver": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Concussion)",
-    "source_url": "https://www.rotowire.com/football/player/xavier-weaver-18041"
-  },
-  "DeAngelo Malone": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/deangelo-malone-16094"
-  },
-  "Will Mallory": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Thumb)",
-    "source_url": "https://www.rotowire.com/football/player/will-mallory-17014"
-  },
-  "Logan Lee": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/logan-lee-17935"
+  "Devon Witherspoon": {
+    "multiplier": 1.08,
+    "type": "TIER_JUMPER",
+    "note": "FFToday IDP: Active starting CB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Isiah Pacheco": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee - MCL)",
-    "source_url": "https://www.rotowire.com/football/player/isiah-pacheco-16104"
+    "multiplier": 1.05,
+    "type": "INJURY_ALERT",
+    "note": "FFTODAY NEWS: Isiah Pacheco will miss time with a sprained MCL, could be ready to go Week 1",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "E.J. Speed": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Quadriceps) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/ej-speed-13984"
-  },
-  "Trey Benson": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/trey-benson-17767"
-  },
-  "Kerby Joseph": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/kerby-joseph-16071"
-  },
-  "Jake Bobo": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/jake-bobo-17040"
-  },
-  "Patrick Mahomes": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/patrick-mahomes-11839"
-  },
-  "Grant Calcaterra": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Back)",
-    "source_url": "https://www.rotowire.com/football/player/grant-calcaterra-16039"
-  },
-  "Julius Wood": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Concussion)",
-    "source_url": "https://www.rotowire.com/football/player/julius-wood-18247"
-  },
-  "Jaren Kanak": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Pectoral)",
-    "source_url": "https://www.rotowire.com/football/player/jaren-kanak-19359"
-  },
-  "Giovanni Manu": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/giovanni-manu-18072"
+  "Dameon Pierce": {
+    "multiplier": 1.09,
+    "type": "TIER_JUMPER",
+    "note": "Eagles' Dameon Pierce: Back at practice Monday \nBy RotoWire Staff \n\nPierce (hamstring) participated in Monday's training camp practice, Brooks Kubena of The Athletic reports. He has been held out of practice the last two weeks after picking up a hamstring injury. He's progressed enough in his recovery to return to on-field work, putting him on track to play in Friday's preseason finale against the Bengals. Dameon Pierce, Will Shipley, and Carson Steele are battling for a depth spot in the Eagles' backfield, with Saquon Barkley and Tank Bigs.",
+    "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
   },
   "Tyler Guyton": {
-    "multiplier": 0.88,
+    "multiplier": 1.0,
     "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Elbow) - Soreness",
-    "source_url": "https://www.rotowire.com/football/player/tyler-guyton-17741"
-  },
-  "Sam LaPorta": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hip)",
-    "source_url": "https://www.rotowire.com/football/player/sam-laporta-17033"
+    "note": "Questionable (Elbow) - Soreness",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Dani Dennis-Sutton": {
-    "multiplier": 0.88,
+    "multiplier": 1.0,
     "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Illness)",
-    "source_url": "https://www.rotowire.com/football/player/dani-dennissutton-19253"
+    "note": "Questionable (Illness)",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Jamari Thrash": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/jamari-thrash-17686"
+    "multiplier": 1.0,
+    "type": "IR",
+    "note": "IR (Undisclosed) - Surgery",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Chase Bisontis": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee - MCL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/chase-bisontis-19420"
+    "multiplier": 1.0,
+    "type": "IR",
+    "note": "IR (Knee - MCL) - Surgery",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Britain Covey": {
-    "multiplier": 0.88,
+    "multiplier": 1.0,
     "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/britain-covey-16337"
-  },
-  "Tyler Baron": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/tyler-baron-18491"
-  },
-  "Luther Burden": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Lower Body)",
-    "source_url": "https://www.rotowire.com/football/player/luther-burden-18548"
-  },
-  "Jalen McMillan": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Calf)",
-    "source_url": "https://www.rotowire.com/football/player/jalen-mcmillan-17763"
-  },
-  "RJ Maryland": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/rj-maryland-19361"
-  },
-  "Jeremy McNichols": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Quadriceps)",
-    "source_url": "https://www.rotowire.com/football/player/jeremy-mcnichols-11767"
+    "note": "Questionable (Hamstring) - Soreness",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "James Conner": {
     "multiplier": 0.88,
     "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Foot)",
-    "source_url": "https://www.rotowire.com/football/player/james-conner-11691"
-  },
-  "Tyler Warren": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/tyler-warren-18534"
+    "note": "Official Injury Wire lists Conner as Questionable (Foot).",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Zach Carter": {
     "multiplier": 0.88,
     "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/zach-carter-16198"
+    "note": "Official Injury Wire lists Carter as Questionable (Knee).",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Nick Gargiulo": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/nick-gargiulo-18018"
+    "multiplier": 0.8,
+    "type": "INJURY_ALERT",
+    "note": "Official Injury Wire places Gargiulo on the PUP list (Knee).",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
-  "Kenyon Sadiq": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Abdomen) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/kenyon-sadiq-19279"
+  "Rodney Thomas": {
+    "multiplier": 0.8,
+    "type": "INJURY_ALERT",
+    "note": "Official Injury Wire lists Thomas as Questionable (Hand) \u2013 Surgery.",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Tre' Harris": {
     "multiplier": 0.88,
     "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/tre-harris-18478"
-  },
-  "Jakobi Meyers": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hand)",
-    "source_url": "https://www.rotowire.com/football/player/jakobi-meyers-13517"
-  },
-  "Demetrius Flannigan-Fowles": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/demetrius-flanniganfowles-14074"
-  },
-  "Isaac Guerendo": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Pectoral) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/isaac-guerendo-17947"
-  },
-  "Carson Beck": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ribs)",
-    "source_url": "https://www.rotowire.com/football/player/carson-beck-19287"
-  },
-  "John Michael Schmitz": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Head)",
-    "source_url": "https://www.rotowire.com/football/player/john-michael-schmitz-16799"
-  },
-  "Ricky Pearsall": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee - PCL)",
-    "source_url": "https://www.rotowire.com/football/player/ricky-pearsall-17761"
-  },
-  "Emeka Egbuka": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/emeka-egbuka-18549"
-  },
-  "Jakorian Bennett": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/jakorian-bennett-17096"
-  },
-  "Trey Moore": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/trey-moore-19525"
-  },
-  "Mason Tipton": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/mason-tipton-18107"
-  },
-  "Caleb Lohner": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Lower Body) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/caleb-lohner-18822"
-  },
-  "Mory Bamba": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/mory-bamba-19796"
-  },
-  "Joey Blount": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed) - Stinger",
-    "source_url": "https://www.rotowire.com/football/player/joey-blount-16453"
-  },
-  "Tucker Kraft": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/tucker-kraft-16649"
-  },
-  "Billy Bowman": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Achilles)",
-    "source_url": "https://www.rotowire.com/football/player/billy-bowman-18618"
-  },
-  "Elijah Moore": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Neck)",
-    "source_url": "https://www.rotowire.com/football/player/elijah-moore-15280"
-  },
-  "Chris Bell": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/chris-bell-19309"
-  },
-  "Donte Kent": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/donte-kent-18819"
-  },
-  "D'Angelo Ponds": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Calf)",
-    "source_url": "https://www.rotowire.com/football/player/dangelo-ponds-19397"
-  },
-  "Michael Niese": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Leg)",
-    "source_url": "https://www.rotowire.com/football/player/michael-niese-16478"
-  },
-  "Skylar Thompson": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/skylar-thompson-15974"
-  },
-  "British Brooks": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hand)",
-    "source_url": "https://www.rotowire.com/football/player/british-brooks-18300"
-  },
-  "Laremy Tunsil": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: Out (Triceps)",
-    "source_url": "https://www.rotowire.com/football/player/laremy-tunsil-10964"
-  },
-  "Haynes King": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/haynes-king-19429"
-  },
-  "Alohi Gilman": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Back)",
-    "source_url": "https://www.rotowire.com/football/player/alohi-gilman-14521"
-  },
-  "Mike Evans": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Foot)",
-    "source_url": "https://www.rotowire.com/football/player/mike-evans-9253"
-  },
-  "Michael Trigg": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Toe)",
-    "source_url": "https://www.rotowire.com/football/player/michael-trigg-19346"
-  },
-  "Donnie Ernsberger": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable",
-    "source_url": "https://www.rotowire.com/football/player/donnie-ernsberger-12948"
-  },
-  "Nikola Kalinic": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/nikola-kalinic-15869"
-  },
-  "Darrell Baker": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/darrell-baker-16385"
-  },
-  "Parker Hughes": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/parker-hughes-19803"
-  },
-  "Trey Smith": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hip)",
-    "source_url": "https://www.rotowire.com/football/player/trey-smith-15438"
-  },
-  "Dayton Wade": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/dayton-wade-18127"
-  },
-  "Nahshon Wright": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hip) - Strain",
-    "source_url": "https://www.rotowire.com/football/player/nahshon-wright-15549"
-  },
-  "Jerome Ford": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/jerome-ford-15989"
-  },
-  "Darian Kinnard": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/darian-kinnard-16048"
-  },
-  "Robbie Ouzts": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/robbie-ouzts-18624"
-  },
-  "Puka Nacua": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/puka-nacua-16790"
-  },
-  "Jake Hansen": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Chest)",
-    "source_url": "https://www.rotowire.com/football/player/jake-hansen-15314"
-  },
-  "Jack Kiser": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/jack-kiser-18727"
-  },
-  "Brandin Echols": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/brandin-echols-15626"
-  },
-  "Jack Stoll": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/jack-stoll-15510"
-  },
-  "Marcus Bryant": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Lower Body)",
-    "source_url": "https://www.rotowire.com/football/player/marcus-bryant-18817"
-  },
-  "De'Zhaun Stribling": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Shoulder)",
-    "source_url": "https://www.rotowire.com/football/player/dezhaun-stribling-19330"
-  },
-  "Darrick Forrest": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/darrick-forrest-15598"
-  },
-  "Renardo Green": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/renardo-green-17981"
-  },
-  "Christian McCaffrey": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/christian-mccaffrey-11690"
-  },
-  "Gunner Olszewski": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Achilles) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/gunner-olszewski-14318"
-  },
-  "Myles Garrett": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/myles-garrett-11914"
-  },
-  "Wade Woodaz": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Thumb)",
-    "source_url": "https://www.rotowire.com/football/player/wade-woodaz-19556"
-  },
-  "Drue Tranquill": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Back)",
-    "source_url": "https://www.rotowire.com/football/player/drue-tranquill-13814"
+    "note": "Official Injury Wire lists Harris as Questionable (Undisclosed).",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Aeneas Peebles": {
-    "multiplier": 0.88,
+    "multiplier": 0.9,
     "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/aeneas-peebles-18700"
-  },
-  "Chris Brazzell": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/chris-brazzell-19239"
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Jonathan Bullard": {
-    "multiplier": 0.88,
+    "multiplier": 0.9,
     "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring) - Soreness",
-    "source_url": "https://www.rotowire.com/football/player/jonathan-bullard-10926"
+    "note": "Questionable (Hamstring) - Soreness, but still participating in practice.",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Christen Miller": {
-    "multiplier": 0.88,
+    "multiplier": 0.9,
     "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/christen-miller-19266"
+    "note": "Questionable (Hamstring) - Limited practice, showing progress.",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Romello Height": {
-    "multiplier": 0.88,
+    "multiplier": 0.9,
     "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/romello-height-19373"
+    "note": "Questionable (Undisclosed) - Limited practice, showing improvement.",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Tyrone Wheatley": {
-    "multiplier": 0.88,
+    "multiplier": 0.9,
     "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/tyrone-wheatley-15782"
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
-  "Alec Pierce": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Ankle) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/alec-pierce-16022"
+  "Parker Washington": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Parker Washington - Start 'Em, Sit 'Em Fantasy Football Picks for Week 1 (2026). BALLER MOVE: Start in All Leagues POSITIONAL VALUE: WR2 ANALYSIS: Jacksonville Jaguars wide...",
+    "source_url": "https://www.rotoballer.com/parker-washington-start-em-sit-em-fantasy-football-picks-for-week-1-2026/1915168"
   },
-  "Julian Neal": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Leg)",
-    "source_url": "https://www.rotowire.com/football/player/julian-neal-19584"
+  "Sam LaPorta": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Week 1 in question for TE Sam LaPorta?. Hip injury Lions TE Sam LaPorta\u2019s status for Detroit\u2019s regular-season opener is unclear after he suffered a hip injury. The star tight end...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16960"
   },
-  "Ethan Downs": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee - ACL)",
-    "source_url": "https://www.rotowire.com/football/player/ethan-downs-18677"
+  "Luther Burden": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "#Bears wide receiver Luther Burden III , who suffered a groin injury Saturday, is currently expected to miss about a month, sources tell @CBSSports. The hope is that he\u2019ll be back...",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "Francis Mauigoa": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Upper Body)",
-    "source_url": "https://www.rotowire.com/football/player/francis-mauigoa-19396"
+  "Emeka Egbuka": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Emeka Egbuka in danger of missing season opener?. Considered &quot;day-to-day, week-to-week&quot; with toe injury Not a lot of clarity on Emeka Egbuka's toe and how long he'll be...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16951"
   },
-  "Jakobe Thomas": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Back) - Soreness",
-    "source_url": "https://www.rotowire.com/football/player/jakobe-thomas-19599"
+  "Tucker Kraft": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Kraft likely on a pitch count until the mid-season mark. Packers tight end coming off ACL injury Tucker Kraft; \u201cThey\u2019re going to take into account my rep range probably until...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16948"
   },
-  "Alex Wright": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Achilles)",
-    "source_url": "https://www.rotowire.com/football/player/alex-wright-16190"
-  },
-  "Sean McKeon": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/sean-mckeon-14478"
-  },
-  "Tim Settle": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Calf) - Strain",
-    "source_url": "https://www.rotowire.com/football/player/tim-settle-12544"
-  },
-  "Mitchell Trubisky": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Biceps)",
-    "source_url": "https://www.rotowire.com/football/player/mitchell-trubisky-11709"
-  },
-  "Terell Smith": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/terell-smith-17341"
-  },
-  "Payton Turner": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Back)",
-    "source_url": "https://www.rotowire.com/football/player/payton-turner-15435"
-  },
-  "Chase Curtis": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/chase-curtis-19693"
-  },
-  "Jacory Croskey-Merritt": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/jacory-croskeymerritt-18811"
-  },
-  "Cole Wisniewski": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/cole-wisniewski-19641"
-  },
-  "L'Jarius Sneed": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/ljarius-sneed-14688"
-  },
-  "Dallis Flowers": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/dallis-flowers-16547"
-  },
-  "J.J. McCarthy": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/jj-mccarthy-17689"
-  },
-  "Javon Bullard": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/javon-bullard-17765"
-  },
-  "Jeff Caldwell": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee) - Soreness",
-    "source_url": "https://www.rotowire.com/football/player/jeff-caldwell-19344"
-  },
-  "Jordan Magee": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/jordan-magee-17882"
-  },
-  "Thaddeus Dixon": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Achilles)",
-    "source_url": "https://www.rotowire.com/football/player/thaddeus-dixon-19565"
+  "Puka Nacua": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Rams WR Puka Nacua , who left practice while walking with a trainer, is dealing with minor soreness in his groin, I'm told. The team is just being cautious. ( NFL Network - Ian...",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
   "Ashton Jeanty": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/ashton-jeanty-18487"
-  },
-  "Luke Gifford": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/luke-gifford-14068"
-  },
-  "Ben Sims": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/ben-sims-17012"
-  },
-  "Clelin Ferrell": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/clelin-ferrell-13649"
-  },
-  "Dru Phillips": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Lower Leg)",
-    "source_url": "https://www.rotowire.com/football/player/dru-phillips-17846"
-  },
-  "Ikem Ekwonu": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Knee) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/ikem-ekwonu-15819"
-  },
-  "Ollie Gordon": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/ollie-gordon-18450"
-  },
-  "Brien Taylor": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Neck) - Stinger",
-    "source_url": "https://www.rotowire.com/football/player/brien-taylor-20140"
-  },
-  "Keyshawn James-Newby": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/keyshawn-jamesnewby-19632"
-  },
-  "Deatrich Wise": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/deatrich-wise-11954"
-  },
-  "Titus Leo": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/titus-leo-17290"
-  },
-  "Tyler Biadasz": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/tyler-biadasz-14485"
-  },
-  "Pete Werner": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/pete-werner-15600"
-  },
-  "Marvin Mims": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/marvin-mims-16849"
-  },
-  "Jalon Walker": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/jalon-walker-18683"
-  },
-  "Michael Penix": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/michael-penix-17700"
-  },
-  "Colton Hood": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/colton-hood-19404"
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Sprained ankle for RB Ashton Jeanty. No timeline yet for his return Raiders RB Ashton Jeanty, who had to be helped off the practice field today, is believed to have sprained his...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16961"
   },
   "Jeremiyah Love": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/jeremiyah-love-19235"
-  },
-  "Dante Miller": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/dante-miller-18036"
-  },
-  "Joshua Pitsenberger": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/joshua-pitsenberger-20032"
-  },
-  "DeVonta Smith": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/devonta-smith-15406"
-  },
-  "Devin Neal": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/devin-neal-18521"
-  },
-  "Shaun Dolac": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee - PCL)",
-    "source_url": "https://www.rotowire.com/football/player/shaun-dolac-18913"
-  },
-  "Kaleb Proctor": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee - Meniscus)",
-    "source_url": "https://www.rotowire.com/football/player/kaleb-proctor-19529"
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Jeremiyah Love out next week with ankle injury. Will sit for preseason game Week 2 Cardinals rookie running back Jeremiyah Love will miss the next week to let a sore ankle he...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16947"
   },
   "Malik Nabers": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/malik-nabers-17704"
-  },
-  "Xavier Woods": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/xavier-woods-12007"
-  },
-  "Cooper DeJean": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/cooper-dejean-17705"
-  },
-  "Julian Hill": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/julian-hill-17335"
-  },
-  "Xavier Worthy": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Shoulder)",
-    "source_url": "https://www.rotowire.com/football/player/xavier-worthy-17687"
-  },
-  "Davis Allen": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Quadriceps)",
-    "source_url": "https://www.rotowire.com/football/player/davis-allen-17030"
-  },
-  "Dax Hill": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring) - Soreness",
-    "source_url": "https://www.rotowire.com/football/player/dax-hill-15941"
-  },
-  "Jimmy Kibble": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/jimmy-kibble-20075"
-  },
-  "Micah Parsons": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/micah-parsons-15182"
-  },
-  "Ronnie Harrison": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/ronnie-harrison-12625"
-  },
-  "Jonathan Greenard": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Pectoral) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/jonathan-greenard-14550"
-  },
-  "Brevin Jordan": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/brevin-jordan-15369"
-  },
-  "Matt Henningsen": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Achilles)",
-    "source_url": "https://www.rotowire.com/football/player/matt-henningsen-15915"
-  },
-  "Keyshaun Elliott": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/keyshaun-elliott-19558"
-  },
-  "Joseph Vaughn": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/joseph-vaughn-19225"
-  },
-  "Cedric Tillman": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/cedric-tillman-16706"
-  },
-  "Shaun Wade": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Shoulder)",
-    "source_url": "https://www.rotowire.com/football/player/shaun-wade-15193"
-  },
-  "George Kittle": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Achilles) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/george-kittle-11892"
-  },
-  "Moliki Matavao": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/moliki-matavao-18623"
-  },
-  "Bud Clark": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Leg)",
-    "source_url": "https://www.rotowire.com/football/player/bud-clark-19562"
-  },
-  "Austen Pleasants": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/austen-pleasants-14958"
-  },
-  "Brennan Jackson": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/brennan-jackson-17842"
-  },
-  "Connor McGovern": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Leg)",
-    "source_url": "https://www.rotowire.com/football/player/connor-mcgovern-13509"
-  },
-  "Patrick Taylor": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/patrick-taylor-14573"
-  },
-  "Chris Braswell": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/chris-braswell-17718"
-  },
-  "Alaric Jackson": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Illness)",
-    "source_url": "https://www.rotowire.com/football/player/alaric-jackson-15456"
-  },
-  "Sanoussi Kane": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/sanoussi-kane-18080"
-  },
-  "Dan Chisena": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/dan-chisena-14889"
-  },
-  "Tyrique Stevenson": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/tyrique-stevenson-17120"
-  },
-  "Eddie Walls": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/eddie-walls-19738"
-  },
-  "Dont'e Thornton": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/donte-thornton-18558"
-  },
-  "Quinshon Judkins": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/quinshon-judkins-18516"
-  },
-  "Shemar Stewart": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Leg)",
-    "source_url": "https://www.rotowire.com/football/player/shemar-stewart-18655"
-  },
-  "Jeremiah Webb": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Arm)",
-    "source_url": "https://www.rotowire.com/football/player/jeremiah-webb-18890"
-  },
-  "Rico Payton": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/rico-payton-18110"
-  },
-  "Carrington Valentine": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Leg)",
-    "source_url": "https://www.rotowire.com/football/player/carrington-valentine-16721"
-  },
-  "Jaylen Harrell": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee - ACL)",
-    "source_url": "https://www.rotowire.com/football/player/jaylen-harrell-17682"
-  },
-  "Kam Dewberry": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Leg)",
-    "source_url": "https://www.rotowire.com/football/player/kam-dewberry-20044"
-  },
-  "Malcolm Rodriguez": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/malcolm-rodriguez-16052"
-  },
-  "Jahquez Robinson": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/jahquez-robinson-19777"
-  },
-  "Roy Robertson-Harris": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Achilles) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/roy-robertsonharris-11356"
-  },
-  "Jaquan Brisker": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/jaquan-brisker-15958"
-  },
-  "Quincy Riley": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/quincy-riley-18600"
-  },
-  "Luke Musgrave": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/luke-musgrave-16663"
-  },
-  "Ashton Gillotte": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/ashton-gillotte-18667"
-  },
-  "Tyreke Smith": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/tyreke-smith-15999"
-  },
-  "Dameon Pierce": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/dameon-pierce-15875"
-  },
-  "Jordyn Brooks": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/jordyn-brooks-14739"
-  },
-  "Jordyn Tyson": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: Doubtful (Hamstring) - Strain",
-    "source_url": "https://www.rotowire.com/football/player/jordyn-tyson-19233"
-  },
-  "Caleb Tiernan": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/caleb-tiernan-19454"
-  },
-  "Max Iheanachor": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Upper Body)",
-    "source_url": "https://www.rotowire.com/football/player/max-iheanachor-19389"
-  },
-  "Jaelan Phillips": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Arm)",
-    "source_url": "https://www.rotowire.com/football/player/jaelan-phillips-15263"
-  },
-  "Bryan Cook": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/bryan-cook-16184"
-  },
-  "Daniel Rickert": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/daniel-rickert-19722"
-  },
-  "Jaylin Noel": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/jaylin-noel-18555"
-  },
-  "Kader Kohou": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/kader-kohou-16330"
-  },
-  "Austin Keys": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/austin-keys-18833"
-  },
-  "Matt Waletzko": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/matt-waletzko-16082"
-  },
-  "Jamal Adams": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/jamal-adams-11985"
-  },
-  "Rasheen Ali": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/rasheen-ali-17026"
-  },
-  "Chigozie Anusiem": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/chigozie-anusiem-18155"
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Malik Nabers still being eased in. WR continues taking his time in ACL recovery John Harbaugh on Malik Nabers: \"Thought he looked good. Don't think he's at full-speed yet.\"...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16952"
   },
   "Kyle Monangai": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/kyle-monangai-18520"
-  },
-  "Jer'Zhan Newton": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: Out (Pectoral) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/jerzhan-newton-17707"
-  },
-  "Jonathan Garvin": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/jonathan-garvin-14365"
-  },
-  "Nate Evans": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Quadriceps)",
-    "source_url": "https://www.rotowire.com/football/player/nate-evans-20055"
-  },
-  "Kobe King": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/kobe-king-18724"
-  },
-  "Ben Brown": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/ben-brown-16512"
-  },
-  "Tory Horton": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/tory-horton-17772"
-  },
-  "Jalen Ramsey": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/jalen-ramsey-11111"
-  },
-  "Kyler Gordon": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/kyler-gordon-16150"
-  },
-  "Lucas Patrick": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/lucas-patrick-11453"
-  },
-  "Sauce Gardner": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Calf)",
-    "source_url": "https://www.rotowire.com/football/player/sauce-gardner-15926"
-  },
-  "Nick Allegretti": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Calf) - Strain",
-    "source_url": "https://www.rotowire.com/football/player/nick-allegretti-13682"
-  },
-  "Cole Burgess": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/cole-burgess-18281"
-  },
-  "Harold Landry": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/harold-landry-12883"
-  },
-  "Jaylen Reed": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=jaylen-reed"
-  },
-  "Christian Kirk": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/christian-kirk-12508"
-  },
-  "Joey Porter": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/joey-porter-16896"
-  },
-  "Jarrick Bernard-Converse": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/jarrick-bernardconverse-16854"
-  },
-  "Josh Sweat": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/josh-sweat-12546"
-  },
-  "Matt Hennessy": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Neck) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/matt-hennessy-14408"
-  },
-  "Daequan Hardy": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/daequan-hardy-17906"
-  },
-  "Carson Towt": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/carson-towt-19605"
-  },
-  "Ethan Robinson": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/ethan-robinson-19160"
-  },
-  "James Ester": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/james-ester-18213"
-  },
-  "Derrick Brown": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee) - Soreness",
-    "source_url": "https://www.rotowire.com/football/player/derrick-brown-13852"
-  },
-  "Byron Young": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Shoulder)",
-    "source_url": "https://www.rotowire.com/football/player/byron-young-17123"
-  },
-  "Joshua Ezeudu": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Leg)",
-    "source_url": "https://www.rotowire.com/football/player/joshua-ezeudu-16055"
-  },
-  "Graham Mertz": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/graham-mertz-18653"
-  },
-  "Keion White": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ankle) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/keion-white-17109"
-  },
-  "Jamon Johnson": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Thumb)",
-    "source_url": "https://www.rotowire.com/football/player/jamon-johnson-18737"
-  },
-  "Noah Sewell": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Achilles)",
-    "source_url": "https://www.rotowire.com/football/player/noah-sewell-16756"
-  },
-  "Sione Vaki": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Back) - Spasms",
-    "source_url": "https://www.rotowire.com/football/player/sione-vaki-17760"
-  },
-  "Damarri Mathis": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/damarri-mathis-15956"
-  },
-  "Xavier Legette": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Lower Body)",
-    "source_url": "https://www.rotowire.com/football/player/xavier-legette-17734"
-  },
-  "Keon Coleman": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Foot) - Sprain",
-    "source_url": "https://www.rotowire.com/football/player/keon-coleman-17732"
-  },
-  "Justin Shorter": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/justin-shorter-16656"
-  },
-  "Jamaree Salyer": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/jamaree-salyer-15884"
-  },
-  "Quinn Ewers": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/quinn-ewers-18505"
-  },
-  "Brandon Pili": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Lower Leg)",
-    "source_url": "https://www.rotowire.com/football/player/brandon-pili-17560"
-  },
-  "Ja'Quinden Jackson": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/jaquinden-jackson-18527"
-  },
-  "Jayden Higgins": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/jayden-higgins-18551"
-  },
-  "Gracen Halton": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/gracen-halton-19506"
-  },
-  "JuJu Brents": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/juju-brents-17112"
-  },
-  "Tyrell Shavers": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/tyrell-shavers-17555"
-  },
-  "Keir Thomas": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/keir-thomas-16416"
-  },
-  "Mekhi Wingo": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Head)",
-    "source_url": "https://www.rotowire.com/football/player/mekhi-wingo-17750"
-  },
-  "Michael Woods": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Leg)",
-    "source_url": "https://www.rotowire.com/football/player/michael-woods-16030"
-  },
-  "Dillon Radunz": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee - ACL)",
-    "source_url": "https://www.rotowire.com/football/player/dillon-radunz-15504"
-  },
-  "Quentin Johnston": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Lower Body)",
-    "source_url": "https://www.rotowire.com/football/player/quentin-johnston-16899"
-  },
-  "Christian Gonzalez": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/christian-gonzalez-16683"
-  },
-  "Paulson Adebo": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/paulson-adebo-15399"
-  },
-  "K'Lavon Chaisson": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/klavon-chaisson-14523"
-  },
-  "Jeremiah Owusu-Koramoah": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Neck)",
-    "source_url": "https://www.rotowire.com/football/player/jeremiah-owusukoramoah-15505"
-  },
-  "Myles Murphy": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/myles-murphy-16710"
-  },
-  "DJ Giddens": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/dj-giddens-18443"
-  },
-  "Jordan James": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ribs) - Fracture",
-    "source_url": "https://www.rotowire.com/football/player/jordan-james-18485"
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Kyle Monangai set to miss a few weeks. Suffered hyperextended knee over the weekend Source: Bears RB Kyle Monangai suffered a hyperextended knee. Expected to miss multiple weeks...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16953"
   },
   "Carson Schwesinger": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/carson-schwesinger-18717"
-  },
-  "Anthony Gould": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/anthony-gould-17971"
-  },
-  "Kalel Mullings": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hip)",
-    "source_url": "https://www.rotowire.com/football/player/kalel-mullings-18463"
-  },
-  "Ty Johnson": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/ty-johnson-13587"
-  },
-  "Jimmy Rolder": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Leg)",
-    "source_url": "https://www.rotowire.com/football/player/jimmy-rolder-19553"
-  },
-  "LeQuint Allen": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/lequint-allen-18476"
-  },
-  "Derrick Moore": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/derrick-moore-19524"
-  },
-  "Marlon Jones": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/marlon-jones-20108"
-  },
-  "Lorenzo Styles": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Calf)",
-    "source_url": "https://www.rotowire.com/football/player/lorenzo-styles-19597"
-  },
-  "Dennis Houston": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/dennis-houston-16356"
-  },
-  "Kye Robichaux": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Foot) - Fracture",
-    "source_url": "https://www.rotowire.com/football/player/kye-robichaux-18948"
-  },
-  "Chukwuebuka Godrick": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/chukwuebuka-godrick-17553"
-  },
-  "Jared Bartlett": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Leg)",
-    "source_url": "https://www.rotowire.com/football/player/jared-bartlett-19073"
-  },
-  "Jalin Hyatt": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/jalin-hyatt-16714"
-  },
-  "Kyle Juszczyk": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Finger)",
-    "source_url": "https://www.rotowire.com/football/player/kyle-juszczyk-8930"
-  },
-  "Vederian Lowe": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/vederian-lowe-16056"
-  },
-  "John Ridgeway": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Back)",
-    "source_url": "https://www.rotowire.com/football/player/john-ridgeway-16128"
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Carson Schwesinger LB | CLE 13M ago Browns' Carson Schwesinger: Limited in return to practice By RotoWire Staff Schwesinger (undisclosed) returned to practice Monday as a limited...",
+    "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
   },
   "Chuba Hubbard": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/chuba-hubbard-15242"
-  },
-  "Kendrick Green": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/kendrick-green-15386"
-  },
-  "Princeton Fant": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee - ACL + MCL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/princeton-fant-17135"
-  },
-  "Skyler Bell": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Lower Body)",
-    "source_url": "https://www.rotowire.com/football/player/skyler-bell-19251"
-  },
-  "Mikail Kamara": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/mikail-kamara-19713"
-  },
-  "Lonnie Johnson": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Leg)",
-    "source_url": "https://www.rotowire.com/football/player/lonnie-johnson-13820"
-  },
-  "Tucker Large": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/tucker-large-19988"
-  },
-  "Nick Bosa": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/nick-bosa-13421"
-  },
-  "Bub Means": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/bub-means-17942"
-  },
-  "Carter Warren": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/carter-warren-16738"
-  },
-  "Billy Schrauth": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/billy-schrauth-19460"
-  },
-  "Michael Deiter": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Quadriceps) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/michael-deiter-13581"
-  },
-  "Coby Bryant": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: Out (Knee) - Fracture",
-    "source_url": "https://www.rotowire.com/football/player/coby-bryant-16070"
-  },
-  "Luke Grimm": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/luke-grimm-18838"
-  },
-  "Zion Childress": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/zion-childress-18807"
-  },
-  "Shemar Turner": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/shemar-turner-18577"
-  },
-  "Shemar Jean-Charles": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/shemar-jeancharles-15636"
-  },
-  "Alvin Kamara": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/alvin-kamara-11732"
-  },
-  "Bryan Bresee": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/bryan-bresee-17173"
-  },
-  "Tip Reiman": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/tip-reiman-17966"
-  },
-  "Qwan'tez Stiggers": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/qwantez-stiggers-17940"
-  },
-  "Cedrick Wilson": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/cedrick-wilson-12773"
-  },
-  "Cameron Jordan": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/cameron-jordan-7447"
-  },
-  "Ja'Marcus Ingram": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Shoulder)",
-    "source_url": "https://www.rotowire.com/football/player/jamarcus-ingram-16342"
-  },
-  "Garrett DiGiorgio": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/garrett-digiorgio-19478"
-  },
-  "Emanuel Wilson": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/emanuel-wilson-17593"
-  },
-  "Buddy Johnson": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Shoulder)",
-    "source_url": "https://www.rotowire.com/football/player/buddy-johnson-15374"
-  },
-  "Elijah Higgins": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Concussion)",
-    "source_url": "https://www.rotowire.com/football/player/elijah-higgins-16959"
-  },
-  "Kadarius Calloway": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/kadarius-calloway-20081"
-  },
-  "Da'Quan Felton": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/daquan-felton-18644"
-  },
-  "Tank Dell": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee - ACL + MCL) - Surgery | \ud83d\udd25 SLEEPER SURGE (+11752 adds)",
-    "source_url": "https://www.rotowire.com/football/player/tank-dell-16935"
-  },
-  "Justin Dedich": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/justin-dedich-18379"
-  },
-  "Marcus Mariota": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/marcus-mariota-10074"
-  },
-  "Jawhar Jordan": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hip) - Strain",
-    "source_url": "https://www.rotowire.com/football/player/jawhar-jordan-17916"
-  },
-  "Chris Collier": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/chris-collier-18118"
-  },
-  "Nazeeh Johnson": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/nazeeh-johnson-16297"
-  },
-  "Tyson Bagent": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/tyson-bagent-16946"
-  },
-  "D.J. Reed": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/dj-reed-12505"
-  },
-  "Nephi Sewell": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Concussion)",
-    "source_url": "https://www.rotowire.com/football/player/nephi-sewell-16196"
-  },
-  "Brett Toth": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Concussion)",
-    "source_url": "https://www.rotowire.com/football/player/brett-toth-12696"
-  },
-  "Joe Royer": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Personal)",
-    "source_url": "https://www.rotowire.com/football/player/joe-royer-19312"
-  },
-  "Brandon Smith": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/brandon-smith-15307"
-  },
-  "Carsen Ryan": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Foot)",
-    "source_url": "https://www.rotowire.com/football/player/carsen-ryan-19608"
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Chuba Hubbard week-to-week with hamstring injury. Expected to be ready for Week 1 #Panthers RB Chuba Hubbard has a hamstring injury. He\u2019s week to week, per Dave Canales. (Mike...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16945"
   },
   "Josh Jacobs": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/josh-jacobs-13582"
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "HC Matt LaFleur on Josh Jacobs : \"He's gonna be out for at least this week.\" ( Packers.com - Wes Hodkiewicz ) FFToday's Take: Jacobs reportedly injured his groin on Monday or...",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "Keagen Trost": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/keagen-trost-19453"
+  "Rhamondre Stevenson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Patriots likely to employ split backfield. 50-50 split for Rhamondre Stevenson, TreVeyon Henderson? As TreVeyon Henderson enters his second season, it looks like he\u2019ll share the...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16950"
   },
-  "Isaiah World": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/isaiah-world-19603"
+  "Kyler Murray": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "ESPN sources: the Vikings have named Kyler Murray their starting QB. ( Adam Schefter on X ) FFToday's Take: According reports, neither Murray or J.J. McCarthy have been that...",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "Zach Charbonnet": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/zach-charbonnet-16897"
+  "Omarion Hampton": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Mike McDaniel on the running back share between Omarion Hampton , Kimani Vidal and Keaton Mitchell : \u201cBad news, fantasy owners. Good news is I see all three of those guys...",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "Ruben Hyppolite": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Shoulder)",
-    "source_url": "https://www.rotowire.com/football/player/ruben-hyppolite-18814"
+  "Jonathan Taylor": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Colts give Jonathan Taylor 2-year extension $39M guaranteed By: Mike Krueger | Aug 6 2026, 7:55 am",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "Storm Duck": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/storm-duck-18276"
+  "Zay Flowers": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Just in: Baltimore\u2019s two-time Pro-Bowl WR Zay Flowers reached agreement today with the Ravens on a four-year, $140 million extension that includes $108 million guaranteed, per his...",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "Dorian Strong": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Neck)",
-    "source_url": "https://www.rotowire.com/football/player/dorian-strong-18592"
+  "Bijan Robinson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "ESPN sources: Two-time Pro-Bowl selection Bijan Robinson and the Falcons reached agreement on a three-year extension worth up to $75 million that now will make him the...",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "Jonathan Jones": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Shoulder)",
-    "source_url": "https://www.rotowire.com/football/player/jonathan-jones-11081"
+  "Jacksonville Jaguars": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+21702 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
-  "McKinnley Jackson": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/mckinnley-jackson-17780"
+  "Nick Emmanwori": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
-  "Storm Norton": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Foot) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/storm-norton-12437"
+  "Patrick Mahomes": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Knee - ACL) - Surgery",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
-  "Danny Gray": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Concussion)",
-    "source_url": "https://www.rotowire.com/football/player/danny-gray-15804"
+  "Tyler Warren": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Groin)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Trey Moore": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Ankle)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Alohi Gilman": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Back)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Mike Evans": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Foot)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Christian McCaffrey": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Myles Garrett": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active starting DL projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
+  },
+  "Drue Tranquill": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
+  },
+  "Alec Pierce": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Ankle) - Surgery",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Tim Settle": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Calf) - Strain",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "L'Jarius Sneed": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Knee)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jordan Magee": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Shaun Dolac": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Knee - PCL)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Cooper DeJean": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
+  },
+  "Dax Hill": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Hamstring) - Soreness",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "George Kittle": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Achilles) - Surgery",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Quinshon Judkins": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jaquan Brisker": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Quincy Riley": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Groin)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jordyn Brooks": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
+  },
+  "Bryan Cook": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
+  },
+  "JuJu Brents": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jimmy Rolder": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Leg)",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Trey Amos": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/trey-amos-18588"
-  },
-  "Nick Saldiveri": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/nick-saldiveri-16967"
-  },
-  "John Ojukwu": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Pectoral)",
-    "source_url": "https://www.rotowire.com/football/player/john-ojukwu-17142"
-  },
-  "K.C. Ossai": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/kc-ossai-18893"
-  },
-  "Kobie Turner": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed) - Cramps",
-    "source_url": "https://www.rotowire.com/football/player/kobie-turner-17157"
-  },
-  "Brenden Schooler": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/brenden-schooler-16469"
-  },
-  "Sam Scott": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/sam-scott-20062"
-  },
-  "Rashawn Slater": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/rashawn-slater-15177"
-  },
-  "Michael Pittman": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Leg)",
-    "source_url": "https://www.rotowire.com/football/player/michael-pittman-14378"
-  },
-  "Johnathan Baldwin": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/johnathan-baldwin-18975"
-  },
-  "Tez Johnson": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Groin) - Strain",
-    "source_url": "https://www.rotowire.com/football/player/tez-johnson-18484"
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Ankle)",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Riley Moss": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ribs)",
-    "source_url": "https://www.rotowire.com/football/player/riley-moss-17104"
-  },
-  "Phil Mafah": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Chest)",
-    "source_url": "https://www.rotowire.com/football/player/phil-mafah-18531"
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "DK Metcalf": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/dk-metcalf-13424"
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Breece Hall": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Thigh)",
-    "source_url": "https://www.rotowire.com/football/player/breece-hall-15810"
-  },
-  "Jameson Geers": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/jameson-geers-19355"
-  },
-  "Noah Whittington": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/noah-whittington-19305"
-  },
-  "Maliek Collins": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: PUP (Quadriceps) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/maliek-collins-10976"
-  },
-  "John Bates": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/john-bates-15289"
-  },
-  "Dominick Puni": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Concussion)",
-    "source_url": "https://www.rotowire.com/football/player/dominick-puni-17786"
-  },
-  "Nic Scourton": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee - ACL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/nic-scourton-18658"
-  },
-  "Michael Hoecht": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Achilles) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/michael-hoecht-15087"
-  },
-  "Zach Sieler": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/zach-sieler-13011"
-  },
-  "Torricelli Simpkins": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Concussion)",
-    "source_url": "https://www.rotowire.com/football/player/torricelli-simpkins-18772"
-  },
-  "Charvarius Ward": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Back) - Soreness",
-    "source_url": "https://www.rotowire.com/football/player/charvarius-ward-13257"
-  },
-  "Makai Lemon": {
-    "multiplier": 0.88,
-    "type": "QUESTIONABLE",
-    "note": "\ud83e\ude79 INJURY WIRE: Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/makai-lemon-19231"
-  },
-  "Kendrick Law": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\u274c INJURY WIRE: IR (Knee - ACL)",
-    "source_url": "https://www.rotowire.com/football/player/kendrick-law-19443"
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Thigh)",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Brian Burns": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/16533/Brian_Burns?LeagueID="
+    "note": "Active starting DL projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Aidan Hutchinson": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/18105/Aidan_Hutchinson?LeagueID="
+    "note": "Active starting DL projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Maxx Crosby": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/16547/Maxx_Crosby?LeagueID="
+    "note": "Active starting DL projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Danielle Hunter": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/15214/Danielle_Hunter?LeagueID="
-  },
-  "Andrew Van Ginkel": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/16727/Andrew_Van_Ginkel?LeagueID="
+    "note": "Active starting DL projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Will Anderson": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/18457/Will_Anderson_Jr?LeagueID="
-  },
-  "Nik Bonitto": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/18019/Nik_Bonitto?LeagueID="
-  },
-  "T.J. Watt": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/16032/T.J._Watt?LeagueID="
+    "note": "Active starting DL projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Tuli Tuipulotu": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/18676/Tuli_Tuipulotu?LeagueID="
+    "note": "Active starting DL projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Jeffery Simmons": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/16698/Jeffery_Simmons?LeagueID="
-  },
-  "Trey Hendrickson": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/15893/Trey_Hendrickson?LeagueID="
-  },
-  "Montez Sweat": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/16713/Montez_Sweat?LeagueID="
+    "note": "Active starting DL projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Jared Verse": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/19134/Jared_Verse?LeagueID="
-  },
-  "Alex Highsmith": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/17105/Alex_Highsmith?LeagueID="
-  },
-  "Chase Young": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/17253/Chase_Young?LeagueID="
-  },
-  "Laiatu Latu": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/19029/Laiatu_Latu?LeagueID="
-  },
-  "DeForest Buckner": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/15527/DeForest_Buckner?LeagueID="
-  },
-  "Greg Rousseau": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/17692/Greg_Rousseau?LeagueID="
-  },
-  "Josh Hines-Allen": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/16504/Josh_Hines-Allen?LeagueID="
-  },
-  "Carl Granderson": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/16833/Carl_Granderson?LeagueID="
-  },
-  "Dallas Turner": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/19129/Dallas_Turner?LeagueID="
-  },
-  "Chop Robinson": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/19094/Chop_Robinson?LeagueID="
-  },
-  "David Bailey": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/19766/David_Bailey?LeagueID="
-  },
-  "Yaya Diaby": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/18505/YaYa_Diaby?LeagueID="
-  },
-  "Quinnen Williams": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/16742/Quinnen_Williams?LeagueID="
-  },
-  "Leonard Williams": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/15347/Leonard_Williams?LeagueID="
-  },
-  "Cameron Heyward": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/11885/Cameron_Heyward?LeagueID="
-  },
-  "Travon Walker": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/18232/Travon_Walker?LeagueID="
-  },
-  "Rashan Gary": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/16576/Rashan_Gary?LeagueID="
-  },
-  "DeMarcus Lawrence": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/14235/Demarcus_Lawrence?LeagueID="
-  },
-  "Donovan Ezeiruaku": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\ud83e\ude79 FFTODAY IDP WIRE: Active injury designation on DL depth chart",
-    "source_url": "https://www.fftoday.com/stats/players/19357/Donovan_Ezeiruaku?LeagueID="
-  },
-  "Bradley Chubb": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/16123/Bradley_Chubb?LeagueID="
-  },
-  "George Karlaftis": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/18125/George_Karlaftis?LeagueID="
-  },
-  "Boye Mafe": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/18142/Boye_Mafe?LeagueID="
-  },
-  "Will McDonald": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/18589/Will_McDonald_IV?LeagueID="
-  },
-  "Jalen Redmond": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/19191/Jalen_Redmond?LeagueID="
-  },
-  "Mike Green": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DL projection",
-    "source_url": "https://www.fftoday.com/stats/players/19375/Mike_Green?LeagueID="
+    "note": "Active starting DL projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Jack Campbell": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18492/Jack_Campbell?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Nick Bolton": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/17513/Nick_Bolton?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Blake Cashman": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16539/Blake_Cashman?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Quay Walker": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18233/Quay_Walker?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Zack Baun": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/17011/Zack_Baun?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Fred Warner": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16182/Fred_Warner?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Patrick Queen": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/17187/Patrick_Queen?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Foyesade Oluokun": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16180/Foyesade_Oluokun?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Demario Davis": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/12351/DeMario_Davis?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Ernest Jones": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/17616/Ernest_Jones?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Roquan Smith": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16312/Roquan_Smith?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Tremaine Edmunds": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16337/Tremaine_Edmunds?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Edgerrin Cooper": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18940/Edgerrin_Cooper?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Daiyan Henley": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18539/Daiyan_Henley?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Kaden Elliss": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16561/Kaden_Elliss?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Nate Landman": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18738/Nate_Landman?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Alex Singleton": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16846/Alex_Singleton?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Jamien Sherwood": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/17701/Jamien_Sherwood?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Nakobe Dean": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18054/Nakobe_Dean?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Tyrel Dodson": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/17266/Tyrel_Dodson?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Azeez Al-Shaair": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\ud83e\ude79 FFTODAY IDP WIRE: Active injury designation on LB depth chart",
-    "source_url": "https://www.fftoday.com/stats/players/16778/Azeez_Al-Shaair?LeagueID="
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active injury designation on LB depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Devin Lloyd": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18136/Devin_Lloyd?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Cedric Gray": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18977/Cedric_Gray?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Robert Spillane": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16862/Robert_Spillane?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Barrett Carter": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/19338/Barrett_Carter?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "CJ Allen": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/19752/CJ_Allen?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Payton Wilson": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/19151/Payton_Wilson?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Sonny Styles": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/19926/Sonny_Styles?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Demetrius Knight": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/19417/Demetrius_Knight_Jr?LeagueID="
-  },
-  "DeMarvion Overshown": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18611/DeMarvion_Overshown?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Zaire Franklin": {
-    "multiplier": 0.75,
-    "type": "INJURY",
-    "note": "\ud83e\ude79 FFTODAY IDP WIRE: Active injury designation on LB depth chart",
-    "source_url": "https://www.fftoday.com/stats/players/16355/Zaire_Franklin?LeagueID="
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active injury designation on LB depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Devin Bush": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16535/Devin_Bush?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Eric Wilson": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/14947/Eric_Wilson?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Quincy Williams": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16741/Quincy_Williams?LeagueID="
-  },
-  "Josiah Trotter": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/19842/Josiah_Trotter?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Terrel Bernard": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18017/Terrel_Bernard?LeagueID="
-  },
-  "Leo Chenal": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18040/Leo_Chenal?LeagueID="
-  },
-  "Henry To'oTo'o": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18672/Henry_To'oTo'o?LeagueID="
-  },
-  "Divine Deablo": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/17552/Divine_Deablo?LeagueID="
-  },
-  "Drake Thomas": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18731/Drake_Thomas?LeagueID="
-  },
-  "Dee Winters": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18698/Dee_Winters?LeagueID="
-  },
-  "Alex Anzalone": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/15809/Alex_Anzalone?LeagueID="
-  },
-  "Jihaad Campbell": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/19335/Jihaad_Campbell?LeagueID="
-  },
-  "Akeem Davis-Gaither": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/17056/Akeem_Davis-Gaither?LeagueID="
-  },
-  "Christian Harris": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18091/Christian_Harris?LeagueID="
-  },
-  "Arvell Reese": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting LB projection",
-    "source_url": "https://www.fftoday.com/stats/players/19713/Arvell_Reese?LeagueID="
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Nick Cross": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18048/Nick_Cross?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Budda Baker": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/15813/Budda_Baker?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Kevin Byard": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/15534/Kevin_Byard?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Kyle Hamilton": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18088/Kyle_Hamilton?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Antoine Winfield": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/17248/Antoine_Winfield_Jr?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Xavier McKinney": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/17155/Xavier_McKinney?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Tykee Smith": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/19109/Tykee_Smith?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Derwin James": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16168/Derwin_James?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Amani Hooker": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16605/Amani_Hooker?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Xavier Watts": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/19541/Xavier_Watts?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Jessie Bates": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16214/Jessie_Bates_III?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Jordan Battle": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18466/Jordan_Battle?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Chamarri Conner": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18499/Chamarri_Conner?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Alontae Taylor": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18212/Alontae_Taylor?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Talanoa Hufanga": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/17606/Talanoa_Hufanga?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Tre'von Moehrig": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/17649/Trevon_Moehrig?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Jeremy Chinn": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/17033/Jeremy_Chinn?LeagueID="
-  },
-  "Quentin Lake": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18131/Quentin_Lake?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Julian Love": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16639/Julian_Love?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Dillon Thieneman": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/19777/Dillon_Thieneman?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Brandon Jones": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/17132/Brandon_Jones?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Kamari Lassiter": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/19027/Kamari_Lassiter?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Geno Stone": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/17215/Geno_Stone?LeagueID="
-  },
-  "Jalen Pitre": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18183/Jalen_Pitre?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Cole Bishop": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18919/Cole_Bishop?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Grant Delpit": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/17058/Grant_Delpit?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Minkah Fitzpatrick": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16285/Minkah_Fitzpatrick?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Ronnie Hickman": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18792/Ronnie_Hickman?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Keisean Nixon": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16792/Keisean_Nixon?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "DeShon Elliott": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16169/DeShon_Elliott?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Mike Sainristil": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/19101/Mike_Sainristil?LeagueID="
-  },
-  "Marlon Humphrey": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/15905/Marlon_Humphrey?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Caleb Downs": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/19736/Caleb_Downs?LeagueID="
-  },
-  "Kamren Kinchens": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/19021/Kamren_Kinchens?LeagueID="
-  },
-  "Devon Witherspoon": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/18699/Devon_Witherspoon?LeagueID="
-  },
-  "Tyson Campbell": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/17529/Tyson_Campbell?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Evan Williams": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/19148/Evan_Williams?LeagueID="
-  },
-  "Byron Murphy": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16662/Byron_Murphy?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Jalen Thompson": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "\ud83d\udee1\ufe0f FFTODAY IDP: Core starting DB projection",
-    "source_url": "https://www.fftoday.com/stats/players/16825/Jalen_Thompson?LeagueID="
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
-  "Jack Strand": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+135555 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=jack-strand"
+  "Audric Estime": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Audric Estime RB | NO 2H ago Saints' Audric Estime: Returns to practice Monday By RotoWire Staff Estime (ankle) participated in practice Monday, Ross Jackson of WWL Louisiana...",
+    "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
   },
-  "Malik Davis": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+78480 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=malik-davis"
+  "Trey Benson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Trey Benson RB | ARI 1H ago Trey Benson: Cut by Cardinals By RotoWire Staff Benson (knee) was waived/injured by the Cardinals on Monday, Darren Urban of the team's official site...",
+    "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
   },
-  "Xavier Hutchinson": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+48454 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=xavier-hutchinson"
+  "Kenyon Sadiq": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Setback for Kenyon Sadiq, after hernia surgery Expected to be ready for the regular-season opener By: Mike Krueger | Aug 4 2026, 10:51 am",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "Mike Washington": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+44133 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=mike-washington"
+  "Ricky Pearsall": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "After lengthy discussions with doctors, 49ers wide receiver Ricky Pearsall is expected to undergo season-ending surgery on the nagging PCL injury that dates back to last season...",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "Barion Brown": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+40050 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=barion-brown"
+  "Theo Johnson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Theo Johnson TE | NYG 1H ago Giants' Theo Johnson: Exits Monday's practice By RotoWire Staff Johnson left Monday's practice due to an unspecified issue, Dan Bentonof USA Today...",
+    "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
   },
-  "Dylan Laube": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+39270 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=dylan-laube"
+  "Haynes King": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Haynes King QB | CAR 36M ago Panthers' Haynes King: Won't play preseason finale By RotoWire Staff King (hamstring) will not play in Friday's preseason finale against the Texans,...",
+    "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
   },
-  "MarShawn Lloyd": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+33723 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=marshawn-lloyd"
+  "Chris Brazzell": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Panthers' WR Chris Brazzell expected to miss 8 weeks Knee injury By: Mike Krueger | Jul 29 2026, 2:02 pm",
+    "source_url": "https://www.fftoday.com/news/index.php"
+  },
+  "J.J. McCarthy": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "J.J. McCarthy QB | MIN 37M ago Vikings' J.J. McCarthy: Practices Monday By RotoWire Staff McCarthy (undisclosed) participated in Monday's practice, Kevin Seifert of ESPN.com...",
+    "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
+  },
+  "Jordyn Tyson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Jordyn Tyson a candidate to begin season on IR. Expected to miss about two months with hamstring injury Saints rookie WR Jordyn Tyson, who has been a standout during training...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16954"
+  },
+  "Jaylen Reed": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Trade! The Patriots are sending WR Kayshon Boutte to the Texans for safety Jaylen Reed and a draft pick, sources tell @ringer @netflixsports. ( Tom Pelissero on X ) FFToday's...",
+    "source_url": "https://www.fftoday.com/news/index.php"
+  },
+  "Jayden Higgins": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Texans lose WR Jayden Higgins for the season, ACL. Occurred during joint practice with Raiders Sources: #Texans WR Jayden Higgins suffered a torn ACL yesterday during the joint...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16959"
+  },
+  "Alvin Kamara": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Alvin Kamara out the next month with sprained MCL. Saints lose another offensive weapon Saints RB Alvin Kamara is expected to be sidelined for at least the next month due to a...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16958"
+  },
+  "Tank Dell": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+11760 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Josh Sweat": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Josh Sweat LB | ARI 1H ago Cardinals' Josh Sweat: Activated from active/PUP list By RotoWire Staff Sweat (knee) was activated from the active/PUP list Monday, Darren Urban of the...",
+    "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
+  },
+  "Kayshon Boutte": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Trade: Kayshon Boutte on the move to Houston. Texans need WR help after Jayden Higgins injury Trade! The Patriots are sending WR Kayshon Boutte to the Texans for safety Jaylen...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16963"
+  },
+  "Deshaun Watson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Browns name Deshaun Watson as their starting QB. Likely outcome confirmed Sources say that the decision between Deshaun Watson and Shedeur Sanders truly came down to the end. Both...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16962"
+  },
+  "Jonah Coleman": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Jonah Coleman making an impression in Denver. RB was pulled early after showing well in preseason opener Rookie RB Jonah Coleman continues to work his way up the depth chart...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16957"
+  },
+  "John Harbaugh": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "John Harbaugh on Malik Nabers : \"Thought he looked good. Don't think he's at full-speed yet.\" ( ESPN.com - Jordan Raanan ) FFToday's Take: It seems safe to say at this point that...",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
   "Darren Waller": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+29799 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=darren-waller"
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Panthers add Darren Waller to tight end room. One-year deal Former Pro-Bowl tight end Darren Waller and the Carolina Panthers reached agreement today on a one-year deal, per...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16944"
   },
-  "Caleb Douglas": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+27240 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=caleb-douglas"
+  "Stefon Diggs": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Former #Patriots WR Stefon Diggs is set to sign with the #Commanders, sources say. With an offseason at full health, Diggs is ready to hit the ground running as a key weapon for...",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "Malik Washington": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+23424 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=malik-washington"
+  "Ben Johnson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Bears HC Ben Johnson told reporters that RB Kyle Monangai is dealing with a soft tissue injury. \u201cWe're taking it day-by-day,\u201d Johnson said. \u201cIt should be on the shorter side.\u201d (...",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "Jalen Nailor": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+21879 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=jalen-nailor"
-  },
-  "Jacksonville Jaguars": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+21804 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=jacksonville-jaguars"
-  },
-  "Seth McGowan": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+20600 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=seth-mcgowan"
-  },
-  "Roman Hemby": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+18996 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=roman-hemby"
-  },
-  "Devaughn Vele": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+18921 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=devaughn-vele"
-  },
-  "Odell Beckham": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+15715 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=odell-beckham"
-  },
-  "Kaelon Black": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+15407 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=kaelon-black"
-  },
-  "Malik Willis": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+14749 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=malik-willis"
-  },
-  "Tyler Loop": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+14616 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=tyler-loop"
-  },
-  "Joe Milton": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+14520 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=joe-milton"
-  },
-  "Keaton Mitchell": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+14472 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=keaton-mitchell"
-  },
-  "Colbie Young": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13710 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=colbie-young"
-  },
-  "Detroit Lions": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+13545 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=detroit-lions"
-  },
-  "Najee Harris": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+12350 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=najee-harris"
-  },
-  "Cyrus Allen": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+12270 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=cyrus-allen"
-  },
-  "Terrance Ferguson": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+12040 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=terrance-ferguson"
-  },
-  "Keenan Allen": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+11844 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=keenan-allen"
+  "Deebo Samuel": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "49ers bring back old friend of the show, Deebo Samuel One-year deal By: Mike Krueger | Jul 30 2026, 9:08 pm",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
   "Chris Rodriguez": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+11583 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=chris-rodriguez"
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "#Jaguars RB Chris Rodriguez Jr. (foot) has been cleared and will do individual work today but team will ramp him up so no team work initially. Same for CB Christian Braswell . (...",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "Ryan Flournoy": {
-    "multiplier": 1.06,
-    "type": "BREAKOUT",
-    "note": "\ud83d\udd25 WAIVER SPIKE: Surging camp pickup (+10784 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player=ryan-flournoy"
+  "Elijah Moore": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Elijah Moore WR | PHI 27M ago Eagles' Elijah Moore: Returns to practice Monday By RotoWire Staff Moore (neck) suited up for Monday's training camp practice, Olivia Reiner of The...",
+    "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
+  },
+  "Marvin Mims": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Marvin Mims WR | DEN 34M ago Broncos' Marvin Mims: Practices Monday By RotoWire Staff Mims (undisclosed) practiced Monday, Zac Stevens of TheDNVR.com reports. Mims didn't play in...",
+    "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
+  },
+  "Demond Claiborne": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Should I Draft Mike Washington Jr., Demond Claiborne, Kaytron Allen? Fantasy Football Outlooks for Rookie RBs. This year's rookie running back class was, unfortunately, not...",
+    "source_url": "https://www.rotoballer.com/fantasy-football-rookie-rb-outlooks-mike-washington-jr-demond-claiborne-kaytron-allen-2026/1915181"
+  },
+  "Antonio Williams": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Should I Draft Jordyn Tyson, Antonio Williams, Omar Cooper Jr.? Fantasy Football Outlooks for Rookie WRs. Unlike this year's rookie running back class, the group of WRs coming out...",
+    "source_url": "https://www.rotoballer.com/fantasy-football-rookie-wr-outlooks-jordyn-tyson-antonio-williams-omar-cooper-jr-2026/1915210"
+  },
+  "Malik Davis": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+122724 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Jack Strand": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+104110 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Xavier Hutchinson": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+45654 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Mike Washington": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+45645 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Dylan Laube": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+44779 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Barion Brown": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+35136 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "MarShawn Lloyd": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+31914 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Caleb Douglas": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+27728 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Malik Washington": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+24664 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Jalen Nailor": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+22572 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Roman Hemby": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+21978 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Seth McGowan": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+21312 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Devaughn Vele": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+19257 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Kaelon Black": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+15043 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Keaton Mitchell": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+14976 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Tyler Loop": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+14508 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Odell Beckham": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+13972 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Terrance Ferguson": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+13112 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Colbie Young": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+12984 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Cyrus Allen": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+12552 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Joe Milton": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+11596 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Keenan Allen": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+11572 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Mykel Williams": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Knee - ACL) - Surgery",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Wyatt Milum": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Adam Randall": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Nate Hobbs": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Groin)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Andrew Farmer": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Back)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Teddye Buchanan": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
+  },
+  "Cade Mays": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Wrist)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "VJ Payne": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed) - Bruise",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Anterio Thompson": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Nnamdi Madubuike": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Neck)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Dadrion Taylor-Demerson": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Ribs)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Trey Sermon": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Dominique Robinson": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Calf)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Johnny Wilson": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Knee)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Khalil Shakir": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Kenneth Grant": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Corey Rucker": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "M.J. Stewart": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Rachaad White": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Micah Morris": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Shoulder)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Tariq Castro-Fields": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Heel)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Michael Coats": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Ankle)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Brian Branch": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
+  },
+  "Tanner McLachlan": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Chris Rumph": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Ankle)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Taylor Moton": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Illness)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Israel Mukuamu": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Cade Otton": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Brenden Bates": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Greg Newsome": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Knee)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Odafe Oweh": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active starting DL projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
+  },
+  "Bryce Baringer": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Isaiah Davis": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Knee)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Parker Brailsford": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Hand)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Brenen Thompson": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Chance Campbell": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Hamstring)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Rejzohn Wright": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Hip)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Tershawn Wharton": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Neck) - Surgery",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Patrick Mekari": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Back) - Surgery",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Luke Wattenberg": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Omarr Norman-Lott": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Knee - ACL) - Surgery",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Blake Gillikin": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Groin)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jabari Small": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Concussion)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Danny Pinter": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Doubtful (Leg)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Rene Konga": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Matt Orzech": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Levelle Bailey": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Leg) - Fracture",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Taki Taimani": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Braxton Berrios": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "John Michael Gyllenborg": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Knee)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Kingsley Jonathan": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Thigh) - Bruise",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jordon Riley": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Achilles)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Elijah Hicks": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Shin)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Ennis Rakestraw": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Upper Body) - Bruise",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Xavier Weaver": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Concussion)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "DeAngelo Malone": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Will Mallory": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Thumb)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Logan Lee": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "E.J. Speed": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Quadriceps) - Surgery",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Kerby Joseph": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Knee)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jake Bobo": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Knee)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Grant Calcaterra": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Back)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Julius Wood": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Concussion)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jaren Kanak": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Pectoral)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Giovanni Manu": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Knee)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Tyler Baron": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Knee)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Eli Stowers": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Hamstring)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jalen McMillan": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Calf)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "RJ Maryland": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Hamstring)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jeremy McNichols": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Quadriceps)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jakobi Meyers": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Hand)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Demetrius Flannigan-Fowles": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Isaac Guerendo": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Pectoral) - Surgery",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Carson Beck": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Ribs)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "John Michael Schmitz": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Head)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jakorian Bennett": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Knee)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Mason Tipton": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Groin)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Caleb Lohner": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Lower Body) - Surgery",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Mory Bamba": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Knee)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Joey Blount": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Undisclosed) - Stinger",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Billy Bowman": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Achilles)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Donte Kent": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "D'Angelo Ponds": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Calf)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Michael Niese": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Leg)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Skylar Thompson": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "British Brooks": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Hand)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Laremy Tunsil": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Triceps)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Michael Trigg": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Toe)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Donnie Ernsberger": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Nikola Kalinic": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Knee)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Darrell Baker": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "PUP (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Parker Hughes": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Trey Smith": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Hip)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Joshua Williams": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Pectoral)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Dayton Wade": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Nahshon Wright": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Hip) - Strain",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jerome Ford": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Hamstring)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Darian Kinnard": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Ankle)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Robbie Ouzts": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jake Hansen": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Chest)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jack Kiser": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Markel Bell": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Thumb)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Brandin Echols": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Ankle)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jack Stoll": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Marcus Bryant": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Lower Body)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "De'Zhaun Stribling": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Shoulder)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Darrick Forrest": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Renardo Green": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Hamstring)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Gunner Olszewski": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Achilles) - Surgery",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Wade Woodaz": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Thumb)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Julian Neal": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Leg)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Ethan Downs": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Knee - ACL)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Francis Mauigoa": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Upper Body)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jakobe Thomas": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Back) - Soreness",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Alex Wright": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Achilles)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Sean McKeon": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Mitchell Trubisky": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Biceps)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Terell Smith": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Knee)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Payton Turner": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Back)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Chase Curtis": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Knee)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jacory Croskey-Merritt": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Cole Wisniewski": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Hamstring)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Dallis Flowers": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Javon Bullard": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jeff Caldwell": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Knee) - Soreness",
+    "source_url": "https://www.rotowire.com/football/player/"
   }
 }

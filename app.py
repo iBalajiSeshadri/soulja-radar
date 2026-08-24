@@ -168,15 +168,51 @@ clean_overrides = load_camp_overrides()
 st.sidebar.title("⚡ Soulja Soulja Radar")
 
 if st.sidebar.button("🚀 Pull Latest News & Sync Wire", use_container_width=True, type="primary"):
-    with st.spinner("Scraping live beat wires, Superflex mock drafts, and recalculating board..."):
+    with st.spinner("Scraping live beat wires, Superflex mock drafts, and crunching news via LLM..."):
+        # Pass the Groq key (and full env) into the child processes so the LLM
+        # actually runs on Streamlit Cloud, where there is no secrets.toml file.
+        child_env = os.environ.copy()
+        groq_key = ""
         try:
-            subprocess.run([sys.executable, "sync_fantasy_news.py"], capture_output=True, text=True)
-            subprocess.run([sys.executable, "fantasy_engine.py"], capture_output=True, text=True)
-            st.cache_data.clear()
-            st.toast("✅ Live News, Superflex Mocks & Board Synchronized!", icon="🔥")
-            st.rerun()
-        except Exception as e:
-            st.sidebar.error(f"Sync execution notice: {e}")
+            if hasattr(st, "secrets") and "GROQ_API_KEY" in st.secrets:
+                groq_key = str(st.secrets["GROQ_API_KEY"]).strip()
+        except Exception:
+            pass
+        if groq_key:
+            child_env["GROQ_API_KEY"] = groq_key
+
+        if not groq_key:
+            st.sidebar.warning("No GROQ_API_KEY found in Streamlit secrets — news will sync but the "
+                               "AI 'crunchy' insights will be skipped. Add GROQ_API_KEY in app Settings → Secrets.")
+
+        news_res = subprocess.run([sys.executable, "sync_fantasy_news.py"],
+                                  capture_output=True, text=True, env=child_env, timeout=600)
+        eng_res = subprocess.run([sys.executable, "fantasy_engine.py"],
+                                 capture_output=True, text=True, env=child_env, timeout=600)
+        st.cache_data.clear()
+
+        # Report what actually happened instead of swallowing it.
+        try:
+            with open("camp_overrides.json") as _f:
+                _n = len(json.load(_f))
+        except Exception:
+            _n = 0
+        llm_line = next((l for l in news_res.stdout.splitlines() if "Groq LLM enriched" in l), "")
+        san_line = next((l for l in news_res.stdout.splitlines() if "Sanitized overrides" in l), "")
+
+        if news_res.returncode != 0:
+            st.sidebar.error("News sync hit an error:")
+            st.sidebar.code((news_res.stderr or news_res.stdout)[-1500:])
+        elif eng_res.returncode != 0:
+            st.sidebar.error("Board rebuild hit an error:")
+            st.sidebar.code((eng_res.stderr or eng_res.stdout)[-1500:])
+        else:
+            st.toast(f"✅ Synced — {_n} intel entries loaded.", icon="🔥")
+            if llm_line:
+                st.sidebar.success(llm_line.strip())
+            if san_line:
+                st.sidebar.caption(san_line.strip())
+        st.rerun()
 
 draft_mode = st.sidebar.radio("Draft Format:", ["🔨 Auction / Salary Cap", "🐍 Snake Draft"], horizontal=True)
 
