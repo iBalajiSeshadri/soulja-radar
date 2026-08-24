@@ -34,13 +34,13 @@ def parse_clean_output(text: str) -> str:
     # 1. Strip complete <think>...</think> tags
     text = re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL)
     
-    # 2. If <think> was unclosed (due to token limits), extract the real bullet points
+    # 2. If <think> was unclosed (token truncation), extract the real bullet points
     if "<think>" in text:
         parts = re.split(r'</think>', text)
         if len(parts) > 1:
             text = parts[-1]
         else:
-            m = re.search(r'(\n\s*[\*\-•]\s+\*{0,2}(?:Verdict|Tactical|Rival|Action|Cutoff|Target)[\s\S]*)', text, flags=re.IGNORECASE)
+            m = re.search(r'(\n\s*[\*\-•]\s+\*{0,2}(?:Verdict|Tactical|Rival|Action|Cutoff|Target|Reach|Survival)[\s\S]*)', text, flags=re.IGNORECASE)
             if m:
                 text = m.group(1)
             else:
@@ -57,7 +57,7 @@ def parse_clean_output(text: str) -> str:
     
     return text.strip()
 
-def query_groq_api(prompt: str, system_prompt: str = "You are an elite quantitative fantasy football auction draft strategist. Output ONLY 2-3 direct markdown bullet points. Do NOT output internal reasoning, outlines, or preambles.") -> str:
+def query_groq_api(prompt: str, system_prompt: str = "You are an elite quantitative fantasy football strategist. Output ONLY 2-3 direct markdown bullet points. Do NOT output internal reasoning, outlines, or preambles.") -> str:
     """Ultra-fast cloud inference via Groq verified production models."""
     api_key = get_active_groq_key()
     if not api_key:
@@ -113,7 +113,7 @@ def query_local_ollama(prompt: str, system_prompt: str = "") -> str:
         pass
     return ""
 
-def query_llm_hybrid(prompt: str, system_prompt: str = "You are an elite fantasy football auction strategist. Return exactly 2-3 direct markdown bullet points with specific dollar numbers.") -> str:
+def query_llm_hybrid(prompt: str, system_prompt: str = "You are an elite fantasy football draft strategist. Return exactly 2-3 direct markdown bullet points with specific strategic reasoning.") -> str:
     """Routes to local Ollama if online; otherwise routes directly to Groq Cloud."""
     local_resp = query_local_ollama(prompt, system_prompt)
     if local_resp:
@@ -123,26 +123,54 @@ def query_llm_hybrid(prompt: str, system_prompt: str = "You are an elite fantasy
     return f"**[Groq Cloud]**\n\n{groq_resp}"
 
 # ==============================================================================
-# 3 LIVE AI WAR ROOM ENGINES
+# LIVE AI WAR ROOM ENGINES (AUCTION + SNAKE)
 # ==============================================================================
 
-def generate_tactical_advice(player_name, pos, fair_val, mkt_val, max_bid_to, inflation_index, news_note, my_budget, rivals_summary):
+def generate_live_auction_advice(player_name, pos, fair_val, mkt_val, max_bid_to, inflation_index, news_note, my_budget, my_roster_summary, live_rivals_telemetry, recent_picks_ledger):
     prompt = f"""
-SITUATION:
-- Player: {player_name} ({pos})
-- Model Fair Value: ${fair_val} | Market ADP: ${mkt_val} | Target Ceiling: ${max_bid_to}
-- Draft Room Inflation: {inflation_index}x (>1.0x overpaying room, <1.0x bargains)
-- Medical / News Intel: {news_note if news_note else 'Healthy & Active'}
-- My Budget Remaining: ${my_budget}
-- Active Rivals in Room: {rivals_summary}
+LIVE AUCTION SITUATION:
+- Nominated Player: {player_name} ({pos})
+- Fair Value: ${fair_val} | Market ADP: ${mkt_val} | Hard Bid Limit: ${max_bid_to}
+- Active Room Inflation: {inflation_index}x (>1.0x overpaying, <1.0x bargains)
+- Medical / Intel: {news_note if news_note else 'Healthy & Active'}
+- My Budget Left: ${my_budget}
+- My Current Roster: {my_roster_summary}
+
+LIVE ROOM TELEMETRY:
+- Recent Picks Momentum: {recent_picks_ledger if recent_picks_ledger else 'Draft just started'}
+- Active Rival Needs & Cap: {live_rivals_telemetry}
 
 TASK:
-Provide exactly 3 direct bullet points:
-* **Verdict & Price Ceiling**: State whether to Anchor, Price-Enforce Trap, or Fade, with the exact hard dollar drop-out limit.
-* **Tactical Execution**: Why and how to manage the bidding velocity on this asset.
-* **Rival Exploit**: Name a specific manager from the active room to bait or avoid fighting.
+Provide exactly 3 direct, tactical markdown bullet points:
+* **Verdict & Price Cutoff**: State whether to Anchor Stud, Price-Enforce Trap, or Fade, with the exact hard dollar drop-out limit.
+* **Momentum & Roster Fit**: How this bid aligns with your current open roster gaps and recent draft velocity.
+* **Target Rival Exploit**: Name a specific active manager with high cap and need at {pos} to push into overpaying.
 
-Do NOT output an analysis outline or thinking process. Start immediately with the first bullet point.
+Do NOT output preambles or analysis outlines. Start immediately with the first bullet point.
+"""
+    return query_llm_hybrid(prompt)
+
+def generate_snake_turn_advice(player_name, pos, adp_rank, vorp_val, tier_name, curr_pick, next_my_pick, my_roster_summary, teams_between_needs, news_note):
+    distance = max(0, next_my_pick - curr_pick)
+    prompt = f"""
+LIVE SNAKE DRAFT SITUATION:
+- Targeted Player: {player_name} ({pos}) | Tier: {tier_name}
+- Consensus ADP: #{adp_rank} | VORP Rating: +{vorp_val} pts
+- Current Overall Pick: #{curr_pick}
+- Distance to Your Next Turn: {distance} picks away (Your next pick: #{next_my_pick})
+- Medical / Intel: {news_note if news_note else 'Healthy & Active'}
+- Your Current Roster: {my_roster_summary}
+
+OPPONENTS ON THE CLOCK BEFORE YOUR NEXT PICK:
+- Teams Picking In-Between & Their Roster Gaps: {teams_between_needs}
+
+TASK:
+Provide exactly 3 direct, actionable markdown bullet points:
+* **Reach vs. Wait Verdict**: State whether to TAKE NOW or RISK WAITING, with specific odds he survives back to pick #{next_my_pick}.
+* **Run Risk Assessment**: Which managers picking between you are desperate for a {pos} and will snipe him if passed.
+* **Roster Construction Impact**: How locking in this player solidifies your build archetype vs available alternatives.
+
+Do NOT output preambles or analysis outlines. Start immediately with the first bullet point.
 """
     return query_llm_hybrid(prompt)
 
@@ -150,14 +178,14 @@ def generate_ai_nomination(nom_intent, unpicked_summary, rivals_summary, my_need
     prompt = f"""
 SITUATION:
 - Tactical Intent: {nom_intent}
-- My Lineup Needs: {my_needs}
-- Rival Budgets & Needs: {rivals_summary}
+- My Needs: {my_needs}
+- Rival Budgets & Open Spots: {rivals_summary}
 - Top Available Players: {unpicked_summary}
 
 TASK:
 Provide exactly 2 direct bullet points:
-* **Target Nomination**: Name ONE exact player to put on the auction block right now.
-* **Psychological Trap**: Explain how this drains specific rivals (e.g. Kopite, Chaitu, Harsha) or protects your targets.
+* **Target Nomination**: Name ONE exact player to put on the block right now.
+* **Psychological Trap**: Explain how this drains specific rivals (e.g. Kopite, Chaitu, Harsha) or establishes your position advantage.
 
 Do NOT output an outline or thinking process. Start immediately with the first bullet point.
 """

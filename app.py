@@ -8,7 +8,12 @@ import re
 import random
 import subprocess
 import sys
-from llm_advisor import generate_tactical_advice, generate_ai_nomination, ask_ai_strategist
+from llm_advisor import (
+    generate_live_auction_advice, 
+    generate_snake_turn_advice, 
+    generate_ai_nomination, 
+    ask_ai_strategist
+)
 
 # Page Configuration
 st.set_page_config(
@@ -305,11 +310,20 @@ def get_next_my_pick(curr_pick, my_slot_num, n_teams, total_picks):
             return p
     return total_picks + 1
 
+def get_teams_picking_between(curr_pick, next_pick, n_teams):
+    teams = []
+    for p in range(curr_pick, next_pick):
+        t = get_snake_team_on_clock(p, n_teams)
+        if t not in teams:
+            teams.append(t)
+    return teams
+
 curr_overall_pick = len(st.session_state.drafted_picks) + 1
 total_league_picks = league_size * total_roster_slots
 snake_on_clock_team = get_snake_team_on_clock(curr_overall_pick, league_size)
 next_my_pick_num = get_next_my_pick(curr_overall_pick, my_slot, league_size, total_league_picks)
 picks_until_my_turn = max(0, next_my_pick_num - curr_overall_pick)
+teams_between = get_teams_picking_between(curr_overall_pick, next_my_pick_num, league_size)
 
 if room_mode == "🎮 Mock Sim Sandbox":
     st.sidebar.markdown("---")
@@ -414,10 +428,10 @@ st.session_state.my_fades = {clean_name(p) for p in selected_fades}
 # 💬 FEATURE 3: ASK THE AI STRATEGIST (SIDEBAR)
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🤖 Ask the AI War Room")
-ai_query = st.sidebar.text_input("Ask situational draft question:", placeholder="e.g. Should I bid $42 on Nabers?")
+ai_query = st.sidebar.text_input("Ask situational draft question:", placeholder="e.g. Should I reach for Bowers or wait?")
 if st.sidebar.button("Ask AI Strategist", use_container_width=True):
     if ai_query.strip():
-        live_snapshot = f"Total Spent: ${sum(v['price'] for v in st.session_state.drafted_picks.values())} | Inflation: {round(((league_size*200)-sum(v['price'] for v in st.session_state.drafted_picks.values()))/max(1.0, df_board[~df_board['clean_name'].isin(st.session_state.drafted_picks.keys())]['fair_value'].sum()), 2)}x | Your Cap: ${200 - manager_wallets[my_slot]['spent']}"
+        live_snapshot = f"Format: {draft_mode} | Total Picks Drafted: {len(st.session_state.drafted_picks)} | Your Budget: ${200 - manager_wallets[my_slot]['spent']} | Your Next Pick: #{next_my_pick_num}"
         with st.spinner("AI analyzing draft state..."):
             ans = ask_ai_strategist(ai_query, live_snapshot)
             with st.chat_message("assistant", avatar="⚡"):
@@ -823,25 +837,54 @@ with col_left:
         
         st.markdown(f"**Position:** <span class='badge-pos pos-{p_data['position']}'>{p_data['position']}</span> | **Team:** `{p_data['team']}` | {tag_html} {intel_display}{p_link}", unsafe_allow_html=True)
 
-        # 🧠 FEATURE 1: REAL-TIME AI BID/FADE ADVISOR
-        if st.button("🤖 Generate Real-Time AI Tactical Read", use_container_width=True):
-            with st.spinner("AI evaluating rival psychological histories and budget curve..."):
-                rivals_ctx = "; ".join([
-                    f"{d['name']} (Cap: ${200 - d['spent']}, Spend Hist: {d.get('bias', 'Standard')})"
-                    for s, d in manager_wallets.items() if s != my_slot
-                ][:4])
+        # 🧠 FEATURE 1: DYNAMIC LIVE AI STRATEGY ENGINE
+        ai_btn_label = "🤖 Generate Real-Time AI Tactical Read" if draft_mode == "🔨 Auction / Salary Cap" else "🤖 Generate Snake Turn & Reach Analysis"
+        if st.button(ai_btn_label, use_container_width=True):
+            with st.spinner("AI analyzing live room telemetry, rosters, and draft board..."):
+                my_roster_str = ", ".join(manager_wallets[my_slot]['roster']) if manager_wallets[my_slot]['roster'] else "No players drafted yet"
                 
-                st.session_state.last_ai_read = generate_tactical_advice(
-                    player_name=p_data['player_name'],
-                    pos=p_data['position'],
-                    fair_val=fair_val,
-                    mkt_val=mkt_val,
-                    max_bid_to=bid_to,
-                    inflation_index=inflation_index,
-                    news_note=p_data.get('intel_note', ''),
-                    my_budget=my_cap_left,
-                    rivals_summary=rivals_ctx
-                )
+                if draft_mode == "🔨 Auction / Salary Cap":
+                    # Pack live auction telemetry
+                    recent_picks = [f"{v['player_name']} (${v['price']})" for v in list(st.session_state.drafted_picks.values())[-5:]]
+                    recent_str = ", ".join(recent_picks)
+                    
+                    rivals_telemetry = "; ".join([
+                        f"{d['name']} (Cap: ${200 - d['spent']}, Needs: {', '.join([pos for pos, cnt in d['pos_counts'].items() if cnt < (3 if pos in ['RB','WR'] else 1)])})"
+                        for s, d in manager_wallets.items() if s != my_slot
+                    ][:5])
+                    
+                    st.session_state.last_ai_read = generate_live_auction_advice(
+                        player_name=p_data['player_name'],
+                        pos=p_data['position'],
+                        fair_val=fair_val,
+                        mkt_val=mkt_val,
+                        max_bid_to=bid_to,
+                        inflation_index=inflation_index,
+                        news_note=p_data.get('intel_note', ''),
+                        my_budget=my_cap_left,
+                        my_roster_summary=my_roster_str,
+                        live_rivals_telemetry=rivals_telemetry,
+                        recent_picks_ledger=recent_str
+                    )
+                else:
+                    # Pack live snake telemetry
+                    between_summary = "; ".join([
+                        f"{st.session_state.custom_manager_names.get(t, f'Slot {t}')} (Has: {manager_wallets[t]['pos_counts']['RB']} RBs, {manager_wallets[t]['pos_counts']['WR']} WRs, {manager_wallets[t]['pos_counts']['QB']} QBs)"
+                        for t in teams_between if t != my_slot
+                    ])
+                    
+                    st.session_state.last_ai_read = generate_snake_turn_advice(
+                        player_name=p_data['player_name'],
+                        pos=p_data['position'],
+                        adp_rank=adp_rank,
+                        vorp_val=round(p_data['live_vorp'], 1),
+                        tier_name=p_data['tier'],
+                        curr_pick=curr_overall_pick,
+                        next_my_pick=next_my_pick_num,
+                        my_roster_summary=my_roster_str,
+                        teams_between_needs=between_summary if between_summary else "You are on the clock or picking next",
+                        news_note=p_data.get('intel_note', '')
+                    )
 
         if st.session_state.last_ai_read:
             with st.chat_message("assistant", avatar="⚡"):
