@@ -18,47 +18,68 @@ def get_active_groq_key() -> str:
         key = os.getenv("GROQ_API_KEY", "")
     return key.strip().strip('"').strip("'")
 
+def get_verified_groq_model(api_key: str) -> str:
+    """Queries Groq /v1/models to select an active chat model for your account."""
+    try:
+        res = requests.get(
+            "https://api.groq.com/openai/v1/models",
+            headers={"Authorization": f"Bearer {api_key}"},
+            timeout=4
+        )
+        if res.status_code == 200:
+            data = res.json().get("data", [])
+            active_ids = [
+                m["id"] for m in data 
+                if not any(k in m["id"].lower() for k in ["whisper", "guard", "audio", "safeguard", "embed"])
+            ]
+            # Match top preferred models available on your account
+            for candidate in [
+                "llama-3.3-70b-versatile",
+                "llama-3.3-70b-specdec",
+                "llama-3.1-70b-versatile",
+                "llama3-70b-8192",
+                "llama3-8b-8192"
+            ]:
+                if candidate in active_ids:
+                    return candidate
+            if active_ids:
+                return active_ids[0]
+    except Exception:
+        pass
+    return "llama-3.3-70b-versatile"
+
 def query_groq_api(prompt: str, system_prompt: str = "You are an elite quantitative fantasy football auction draft strategist. Give 2-3 direct tactical bullet points with exact dollar limits. No conversational filler.") -> str:
-    """Fast cloud inference via Groq API."""
+    """Ultra-fast cloud inference via dynamically resolved Groq model."""
     api_key = get_active_groq_key()
     if not api_key:
         return "⚠️ Missing GROQ_API_KEY. Please verify it is added in Streamlit Secrets or `.streamlit/secrets.toml`."
     
+    selected_model = get_verified_groq_model(api_key)
     url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
     }
+    payload = {
+        "model": selected_model,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": prompt}
+        ],
+        "temperature": 0.2,
+        "max_tokens": 250
+    }
     
-    # Priority models on Groq
-    target_models = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
-    
-    last_err = ""
-    for model in target_models:
-        payload = {
-            "model": model,
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": prompt}
-            ],
-            "temperature": 0.2,
-            "max_tokens": 250
-        }
-        try:
-            res = requests.post(url, headers=headers, json=payload, timeout=8)
-            if res.status_code == 200:
-                data = res.json()
-                content = data.get("choices", [{}])[0].get("message", {}).get("content", "")
-                if content.strip():
-                    return content.strip()
-            else:
-                last_err = f"HTTP {res.status_code}: {res.text}"
-                if res.status_code != 404:
-                    return f"⚠️ Groq API Error ({res.status_code}): {res.text}"
-        except Exception as e:
-            last_err = str(e)
-            
-    return f"⚠️ Groq Connection Issue: {last_err}"
+    try:
+        res = requests.post(url, headers=headers, json=payload, timeout=8)
+        if res.status_code == 200:
+            data = res.json()
+            content = data.get("choices", [{}])[0].get("message", {}).get("content", "")
+            if content.strip():
+                return content.strip()
+        return f"⚠️ Groq API Error ({res.status_code}): {res.text}"
+    except Exception as e:
+        return f"⚠️ Groq Connection Error: {e}"
 
 def query_local_ollama(prompt: str, system_prompt: str = "") -> str:
     """Queries local Ollama endpoint if online."""
@@ -105,7 +126,7 @@ Give 2-3 direct bullet points on:
 1. Exact bid/fade verdict (Anchor stud vs. Price-enforce trap vs. Fade).
 2. The exact hard dollar cutoff where I must drop out.
 3. Specific rival to exploit or avoid bidding against on this player.
-No conversational intro.
+No introductory text.
 """
     return query_llm_hybrid(prompt)
 
