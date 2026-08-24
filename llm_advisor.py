@@ -6,12 +6,12 @@ import streamlit as st
 OLLAMA_API_URL = os.getenv("OLLAMA_API_URL", "http://localhost:11434/api/generate")
 LOCAL_MODEL = os.getenv("LOCAL_LLM_MODEL", "llama3.1:8b")
 
-# Tested Groq chat models in priority order
-PRIMARY_GROQ_MODELS = [
+PREFERRED_GROQ_MODELS = [
+    "openai/gpt-oss-20b",
+    "qwen/qwen3.6-27b",
     "llama-3.3-70b-versatile",
-    "llama-3.1-8b-instant",
-    "llama3-70b-8192",
-    "llama3-8b-8192"
+    "openai/gpt-oss-120b",
+    "gemma2-9b-it"
 ]
 
 def get_active_groq_key() -> str:
@@ -23,41 +23,65 @@ def get_active_groq_key() -> str:
         pass
     return os.getenv("GROQ_API_KEY", "").strip()
 
-def query_groq_api(prompt: str, system_prompt: str = "You are an elite, quantitative fantasy football auction draft analyst. Provide direct, tactical bullet points. No conversational fluff.") -> str:
+def resolve_groq_model(api_key: str) -> str:
+    """Queries Groq's active model catalog to select the best available chat model."""
+    try:
+        res = requests.get(
+            "https://api.groq.com/openai/v1/models",
+            headers={"Authorization": f"Bearer {api_key}"},
+            timeout=3
+        )
+        if res.status_code == 200:
+            active_ids = [m["id"] for m in res.json().get("data", [])]
+            for candidate in PREFERRED_GROQ_MODELS:
+                if candidate in active_ids:
+                    return candidate
+            chat_models = [m for m in active_ids if "whisper" not in m and "guard" not in m]
+            if chat_models:
+                return chat_models[0]
+    except Exception:
+        pass
+    return PREFERRED_GROQ_MODELS[0]
+
+def query_groq_api(prompt: str, system_prompt: str = "You are an elite quantitative fantasy football auction strategist. Provide direct, tactical bullet points. No introductory filler.") -> str:
     """Ultra-fast cloud inference via Groq API."""
     api_key = get_active_groq_key()
     if not api_key:
         return "⚠️ Missing Groq API Key. Add `GROQ_API_KEY` to Streamlit Secrets or `.streamlit/secrets.toml`."
     
+    selected_model = resolve_groq_model(api_key)
     url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
     }
     
-    for model_name in PRIMARY_GROQ_MODELS:
-        payload = {
-            "model": model_name,
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": prompt}
-            ],
-            "temperature": 0.2,
-            "max_tokens": 250
-        }
-        try:
-            res = requests.post(url, headers=headers, json=payload, timeout=5)
-            if res.status_code == 200:
-                data = res.json()
-                content = data["choices"][0]["message"]["content"].strip()
-                if content:
-                    return content
-            elif res.status_code == 401:
-                return "⚠️ Invalid Groq API Key. Please verify your key in Streamlit Secrets."
-        except Exception:
-            continue
-            
-    return "⚠️ Groq Service Busy: Try clicking again in 2 seconds."
+    payload = {
+        "model": selected_model,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": prompt}
+        ],
+        "temperature": 0.2,
+        "max_tokens": 250
+    }
+    
+    try:
+        res = requests.post(url, headers=headers, json=payload, timeout=6)
+        if res.status_code == 200:
+            return res.json()["choices"][0]["message"]["content"].strip()
+        
+        # Fallback to secondary candidates if selected model returned an error
+        for alt_model in PREFERRED_GROQ_MODELS:
+            if alt_model != selected_model:
+                payload["model"] = alt_model
+                res_alt = requests.post(url, headers=headers, json=payload, timeout=4)
+                if res_alt.status_code == 200:
+                    return res_alt.json()["choices"][0]["message"]["content"].strip()
+                    
+        return f"⚠️ Groq API Error ({res.status_code}): {res.text}"
+    except Exception as e:
+        return f"⚠️ Groq Connection Error: {e}"
 
 def query_local_ollama(prompt: str, system_prompt: str = "") -> str:
     """Queries local Ollama endpoint if online."""
