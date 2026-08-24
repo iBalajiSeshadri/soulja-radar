@@ -62,6 +62,10 @@ st.markdown("""
     /* Crunched news insight text in the intel column */
     .intel-note { color: #e5e7eb; font-size: 0.82rem; line-height: 1.25; }
     .intel-note-hot { color: #fde68a; font-weight: 700; font-size: 0.82rem; line-height: 1.25; }
+    /* 2026 coaching-change scheme-fit badges */
+    .intel-scheme-fit { background-color: #7c3aed35; color: #c4b5fd; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.72rem; border: 1px solid #7c3aed; }
+    .intel-scheme-risk { background-color: #b4530935; color: #fdba74; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.72rem; border: 1px solid #ea580c; }
+    .intel-scheme-new { background-color: #37415535; color: #cbd5e1; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.72rem; border: 1px solid #475569; }
 
     .arch-badge { padding: 3px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; }
     .arch-stars { background: #dc262625; color: #f87171; border: 1px solid #ef444460; }
@@ -164,6 +168,43 @@ def load_camp_overrides():
 df_board = load_draft_board()
 clean_overrides = load_camp_overrides()
 
+@st.cache_data(ttl=300)
+def load_coaching_scheme():
+    """Real 2026 coaching-change scheme data (sourced from DraftSharks). Maps a
+    player's clean-name -> scheme fit note + tag when their team changed
+    HC/OC/play-caller for 2026, so the board can show scheme-fit badges."""
+    if not os.path.exists("coaching_scheme.json"):
+        return {}, {}
+    try:
+        with open("coaching_scheme.json") as f:
+            raw = json.load(f)
+    except Exception:
+        return {}, {}
+    player_map = {}   # clean_name -> {"tag","note","team"}
+    team_map = {}     # TEAM -> team-level scheme summary
+    for team, info in raw.items():
+        if team.startswith("_"):
+            continue
+        caller = info.get("caller", info.get("oc", ""))
+        scheme = info.get("scheme", "")
+        team_map[team] = {
+            "caller": caller, "scheme": scheme,
+            "summary": f"New play-caller {caller} — {scheme}. {info.get('note','')}".strip()
+        }
+        for pname, why in (info.get("beneficiaries") or {}).items():
+            player_map[clean_name(pname)] = {
+                "tag": "SCHEME_FIT", "team": team,
+                "note": f"🎬 SCHEME FIT ({caller}): {why}"
+            }
+        for pname, why in (info.get("risk") or {}).items():
+            player_map[clean_name(pname)] = {
+                "tag": "SCHEME_RISK", "team": team,
+                "note": f"🎬 SCHEME RISK ({caller}): {why}"
+            }
+    return player_map, team_map
+
+scheme_players, scheme_teams = load_coaching_scheme()
+
 # 3. Sidebar Controls & League Customizer
 st.sidebar.title("⚡ Soulja Soulja Radar")
 
@@ -251,6 +292,8 @@ df_board['live_multiplier'] = 1.0
 df_board['intel_note'] = ""
 df_board['intel_tag'] = ""
 df_board['source_url'] = ""
+df_board['scheme_note'] = ""
+df_board['scheme_tag'] = ""
 
 if not include_idp:
     df_board = df_board[~df_board['position'].isin(['LB', 'DL', 'DB'])].copy().reset_index(drop=True)
@@ -271,6 +314,16 @@ for idx, row in df_board.iterrows():
         df_board.at[idx, 'intel_note'] = matched_data.get('note', '')
         df_board.at[idx, 'intel_tag'] = matched_data.get('type', '')
         df_board.at[idx, 'source_url'] = matched_data.get('source_url', '')
+
+    # 2026 coaching-change scheme fit (real, sourced data)
+    sch = scheme_players.get(c_p)
+    if sch:
+        df_board.at[idx, 'scheme_note'] = sch['note']
+        df_board.at[idx, 'scheme_tag'] = sch['tag']
+    elif row.get('team') in scheme_teams:
+        # team changed coaches but this player isn't a named beneficiary/risk
+        df_board.at[idx, 'scheme_note'] = f"🎬 NEW SCHEME: {scheme_teams[row['team']]['summary']}"
+        df_board.at[idx, 'scheme_tag'] = "SCHEME_NEW"
 
 # Scalable VORP Adjuster
 if qb_format == "🏈 Standard 1-QB":
@@ -367,7 +420,20 @@ def format_intel_cell(r):
         note_class = "intel-note-hot" if is_positive else "intel-note"
         note_html = f'<span class="{note_class}">{note}</span>'
 
+    # 2026 coaching-change scheme-fit badge + note (real sourced data)
+    scheme_tag = str(r.get('scheme_tag', '')).upper()
+    scheme_note = str(r.get('scheme_note', '')).strip()
+    scheme_html = ""
+    if scheme_tag == "SCHEME_FIT":
+        scheme_html = f'<span class="intel-scheme-fit">🎬 SCHEME FIT</span> <span class="intel-note-hot">{scheme_note}</span>'
+    elif scheme_tag == "SCHEME_RISK":
+        scheme_html = f'<span class="intel-scheme-risk">🎬 SCHEME RISK</span> <span class="intel-note">{scheme_note}</span>'
+    elif scheme_tag == "SCHEME_NEW":
+        scheme_html = f'<span class="intel-scheme-new">🎬 NEW SCHEME</span> <span class="intel-note">{scheme_note}</span>'
+
     body = f"{pref_badge}{tag_badge}{note_html}{link_html}".strip()
+    if scheme_html:
+        body = f"{body}<br>{scheme_html}" if body and body != "—" else scheme_html
     return body if body else "—"
 
 # Sidebar Wishlist & Fade Manager
@@ -551,14 +617,19 @@ def build_camp_intel_digest(board_df, only_available=True, max_players=40):
     rows = []
     for _, pr in board_df.iterrows():
         note = str(pr.get("intel_note", "")).strip()
-        if not note or note in ("—", "-"):
+        sch_note = str(pr.get("scheme_note", "")).strip()
+        # include a player if they have real news OR a coaching scheme-fit read
+        if (not note or note in ("—", "-")) and not sch_note:
             continue
         if only_available and pr["clean_name"] in picked_clean:
             continue
         tag = str(pr.get("intel_tag", "")).upper()
         is_pos = any(t in tag for t in POS_TAGS)
+        # fold in 2026 coaching scheme-fit note when present
+        sch = str(pr.get("scheme_note", "")).strip()
+        full_note = f"{note} {sch}".strip() if sch else note
         # sort key: positive-signal players first, then by VORP
-        rows.append((is_pos, float(pr.get("live_vorp", 0.0)), pr["player_name"], pr["position"], tag, note))
+        rows.append((is_pos, float(pr.get("live_vorp", 0.0)), pr["player_name"], pr["position"], tag, full_note))
     rows.sort(key=lambda x: (x[0], x[1]), reverse=True)
     lines = [
         f"• {name} ({pos}) [{tag or 'BEAT'} | VORP +{vorp:.0f}]: {note}"
