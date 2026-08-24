@@ -97,7 +97,17 @@ def clean_name(name):
     name = name.lower().strip()
     name = re.sub(r"[^\w\s]", "", name)
     name = re.sub(r"\b(jr|sr|iii|ii|iv|v)\b", "", name)
-    return " ".join(name.split())
+    name = " ".join(name.split())
+    aliases = {
+        "jeremiah love": "jeremiyah love",
+        "cam akers": "camerun akers",
+        "gabe davis": "gabriel davis",
+        "mitch trubisky": "mitchell trubisky",
+        "chig okazie": "chigoziem okonkwo",
+        "chig okonkwo": "chigoziem okonkwo",
+        "hollywood brown": "marquise brown"
+    }
+    return aliases.get(name, name)
 
 # 1. State Initialization
 if "drafted_picks" not in st.session_state:
@@ -153,7 +163,6 @@ clean_overrides = load_camp_overrides()
 # 3. Sidebar Controls & League Customizer
 st.sidebar.title("⚡ Soulja Soulja Radar")
 
-# 🚀 1-Click Live News & Scraper Sync Button
 if st.sidebar.button("🚀 Pull Latest News & Sync Wire", use_container_width=True, type="primary"):
     with st.spinner("Scraping live beat wires, Superflex mock drafts, and recalculating board..."):
         try:
@@ -167,7 +176,6 @@ if st.sidebar.button("🚀 Pull Latest News & Sync Wire", use_container_width=Tr
 
 draft_mode = st.sidebar.radio("Draft Format:", ["🔨 Auction / Salary Cap", "🐍 Snake Draft"], horizontal=True)
 
-# 🌐 FRONT-AND-CENTER SCALING CONTROLS
 st.sidebar.markdown("---")
 st.sidebar.markdown("### ⚙️ League Format Controls")
 qb_format = st.sidebar.radio("QB Roster Format:", ["⚡ Superflex / 2-QB", "🏈 Standard 1-QB"], horizontal=True)
@@ -204,7 +212,6 @@ df_board['intel_note'] = ""
 df_board['intel_tag'] = ""
 df_board['source_url'] = ""
 
-# Filter IDP if Offense Only is toggled
 if not include_idp:
     df_board = df_board[~df_board['position'].isin(['LB', 'DL', 'DB'])].copy().reset_index(drop=True)
 
@@ -272,7 +279,7 @@ df_board['board_rank'] = df_board.index + 1
 player_pos_map = dict(zip(df_board['clean_name'], df_board['position']))
 player_display_map = dict(zip(df_board['clean_name'], df_board['player_name']))
 
-# Helper for rich badge rendering
+# Robust HTML Badge Formatter
 def format_intel_cell(r):
     pref_badge = ""
     c_n = r['clean_name']
@@ -303,7 +310,7 @@ def format_intel_cell(r):
         tag_badge = '<span class="intel-bust">🩹 QUESTIONABLE</span> '
     elif "CLEARED" in tag or "CLEARED" in note:
         tag_badge = '<span class="intel-healthy">✅ CLEARED</span> '
-    elif "WAIVER" in tag or "SURGE" in note:
+    elif "WAIVER" in tag or "SURGE" in tag or "SURGE" in note:
         tag_badge = '<span class="intel-surge">🔥 WAIVER SPIKE</span> '
     elif tag:
         tag_badge = f'<span class="intel-beat">📰 {tag}</span> '
@@ -417,10 +424,10 @@ else:
         st.rerun()
     if draft_id and draft_id.strip():
         try:
-            u_res = requests.get(f"[https://api.sleeper.app/v1/league/](https://api.sleeper.app/v1/league/){draft_id.strip()}/users", timeout=4)
+            u_res = requests.get(f"https://api.sleeper.app/v1/league/{draft_id.strip()}/users", timeout=4)
             if u_res.status_code == 200:
                 user_map_raw = {u['user_id']: (u.get('display_name') or u.get('metadata', {}).get('team_name')) for u in u_res.json()}
-                r_res = requests.get(f"[https://api.sleeper.app/v1/league/](https://api.sleeper.app/v1/league/){draft_id.strip()}/rosters", timeout=4)
+                r_res = requests.get(f"https://api.sleeper.app/v1/league/{draft_id.strip()}/rosters", timeout=4)
                 if r_res.status_code == 200:
                     for r in r_res.json():
                         r_id = r.get('roster_id')
@@ -433,7 +440,7 @@ else:
                                     break
                             st.session_state.custom_manager_names[r_id] = disp_name
                         
-            p_res = requests.get(f"[https://api.sleeper.app/v1/draft/](https://api.sleeper.app/v1/draft/){draft_id.strip()}/picks", timeout=4)
+            p_res = requests.get(f"https://api.sleeper.app/v1/draft/{draft_id.strip()}/picks", timeout=4)
             if p_res.status_code == 200:
                 for p in p_res.json():
                     meta = p.get('metadata', {})
@@ -852,7 +859,6 @@ with col_left:
         intel_formatted = format_intel_cell(p_data)
         st.markdown(f"**Position:** <span class='badge-pos pos-{p_data['position']}'>{p_data['position']}</span> | **Team:** `{p_data['team']}` | {intel_formatted}", unsafe_allow_html=True)
 
-        # 🧠 FEATURE 1: DYNAMIC LIVE AI STRATEGY ENGINE
         ai_btn_label = "🤖 Generate Real-Time AI Tactical Read" if draft_mode == "🔨 Auction / Salary Cap" else "🤖 Generate Snake Turn & Reach Analysis"
         if st.button(ai_btn_label, use_container_width=True):
             with st.spinner("AI analyzing live room telemetry, rosters, and draft board..."):
