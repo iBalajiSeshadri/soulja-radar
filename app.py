@@ -66,6 +66,9 @@ st.markdown("""
     .intel-scheme-fit { background-color: #7c3aed35; color: #c4b5fd; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.72rem; border: 1px solid #7c3aed; }
     .intel-scheme-risk { background-color: #b4530935; color: #fdba74; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.72rem; border: 1px solid #ea580c; }
     .intel-scheme-new { background-color: #37415535; color: #cbd5e1; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.72rem; border: 1px solid #475569; }
+    /* Defensive-coordinator scheme badges (IDP / D-ST) */
+    .intel-def-fit { background-color: #0e766535; color: #5eead4; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.72rem; border: 1px solid #0d9488; }
+    .intel-def-new { background-color: #1e3a5f35; color: #93c5fd; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.72rem; border: 1px solid #1d4ed8; }
 
     .arch-badge { padding: 3px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; }
     .arch-stars { background: #dc262625; color: #f87171; border: 1px solid #ef444460; }
@@ -182,6 +185,7 @@ def load_coaching_scheme():
         return {}, {}
     player_map = {}   # clean_name -> {"tag","note","team"}
     team_map = {}     # TEAM -> team-level scheme summary
+    def_map = {}      # TEAM -> new-DC defensive scheme summary (for D/ST rows)
     for team, info in raw.items():
         if team.startswith("_"):
             continue
@@ -201,9 +205,27 @@ def load_coaching_scheme():
                 "tag": "SCHEME_RISK", "team": team,
                 "note": f"🎬 SCHEME RISK ({caller}): {why}"
             }
-    return player_map, team_map
 
-scheme_players, scheme_teams = load_coaching_scheme()
+    # Defensive-coordinator changes: IDP beneficiaries + team D/ST scheme summary
+    for team, dinfo in (raw.get("_defense") or {}).items():
+        if team.startswith("_"):
+            continue
+        dc = dinfo.get("dc", "")
+        dscheme = dinfo.get("scheme", "")
+        def_map[team] = {
+            "dc": dc, "scheme": dscheme,
+            "summary": f"New DC {dc} — {dscheme}. {dinfo.get('note','')}".strip()
+        }
+        for pname, why in (dinfo.get("idp") or {}).items():
+            # don't overwrite an offensive fit if a name collides
+            if clean_name(pname) not in player_map:
+                player_map[clean_name(pname)] = {
+                    "tag": "DEF_SCHEME_FIT", "team": team,
+                    "note": f"🛡️ DEF SCHEME FIT ({dc}): {why}"
+                }
+    return player_map, team_map, def_map
+
+scheme_players, scheme_teams, scheme_defense = load_coaching_scheme()
 
 # 3. Sidebar Controls & League Customizer
 st.sidebar.title("⚡ Soulja Soulja Radar")
@@ -320,8 +342,14 @@ for idx, row in df_board.iterrows():
     if sch:
         df_board.at[idx, 'scheme_note'] = sch['note']
         df_board.at[idx, 'scheme_tag'] = sch['tag']
+    elif row.get('position') == 'DEF' and row.get('team') in scheme_defense:
+        df_board.at[idx, 'scheme_note'] = f"🛡️ NEW DC: {scheme_defense[row['team']]['summary']}"
+        df_board.at[idx, 'scheme_tag'] = "DEF_SCHEME_NEW"
+    elif row.get('position') in ('LB', 'DL', 'DB') and row.get('team') in scheme_defense:
+        df_board.at[idx, 'scheme_note'] = f"🛡️ NEW DC: {scheme_defense[row['team']]['summary']}"
+        df_board.at[idx, 'scheme_tag'] = "DEF_SCHEME_NEW"
     elif row.get('team') in scheme_teams:
-        # team changed coaches but this player isn't a named beneficiary/risk
+        # offensive team changed coaches but this player isn't a named beneficiary/risk
         df_board.at[idx, 'scheme_note'] = f"🎬 NEW SCHEME: {scheme_teams[row['team']]['summary']}"
         df_board.at[idx, 'scheme_tag'] = "SCHEME_NEW"
 
@@ -430,6 +458,10 @@ def format_intel_cell(r):
         scheme_html = f'<span class="intel-scheme-risk">🎬 SCHEME RISK</span> <span class="intel-note">{scheme_note}</span>'
     elif scheme_tag == "SCHEME_NEW":
         scheme_html = f'<span class="intel-scheme-new">🎬 NEW SCHEME</span> <span class="intel-note">{scheme_note}</span>'
+    elif scheme_tag == "DEF_SCHEME_FIT":
+        scheme_html = f'<span class="intel-def-fit">🛡️ DEF SCHEME FIT</span> <span class="intel-note-hot">{scheme_note}</span>'
+    elif scheme_tag == "DEF_SCHEME_NEW":
+        scheme_html = f'<span class="intel-def-new">🛡️ NEW DC</span> <span class="intel-note">{scheme_note}</span>'
 
     body = f"{pref_badge}{tag_badge}{note_html}{link_html}".strip()
     if scheme_html:
