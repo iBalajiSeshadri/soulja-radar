@@ -15,7 +15,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom Slate & Emerald Styling with Universal Tier-Last Badges & Archetype Badges
+# Custom Styling & Badges
 st.markdown("""
 <style>
     .stApp { background-color: #0b0f19; color: #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
@@ -25,7 +25,6 @@ st.markdown("""
     .cliff-alert { border-left: 4px solid #ef4444 !important; }
     .landmine-tag { background-color: #ef444420; color: #f87171; padding: 2px 8px; border-radius: 4px; font-weight: 600; font-size: 0.75rem; border: 1px solid #ef444440; }
     
-    /* Universal Tier-Last Cliff Badges */
     .t-last { padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.72rem; letter-spacing: 0.5px; }
     .t-last-t1 { background-color: #dc2626; color: white; border: 1px solid #f87171; box-shadow: 0 0 8px #dc262660; }
     .t-last-t2 { background-color: #ea580c; color: white; border: 1px solid #fb923c; }
@@ -33,11 +32,9 @@ st.markdown("""
     .t-last-t4 { background-color: #475569; color: #f1f5f9; border: 1px solid #94a3b8; }
     .t-last-t5 { background-color: #334155; color: #cbd5e1; border: 1px solid #64748b; }
     
-    /* User Preference Badges */
     .pref-target { background-color: #10b98130; color: #34d399; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; border: 1px solid #10b981; margin-right: 4px; }
     .pref-fade { background-color: #64748b30; color: #94a3b8; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; border: 1px solid #64748b; margin-right: 4px; }
 
-    /* Intel Status Badges */
     .intel-healthy { background-color: #10b98125; color: #34d399; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #10b98160; }
     .intel-beat { background-color: #3b82f625; color: #93c5fd; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #3b82f660; }
     .intel-hist { background-color: #64748b25; color: #cbd5e1; padding: 2px 6px; border-radius: 4px; font-weight: 600; font-size: 0.75rem; border: 1px solid #64748b60; }
@@ -47,15 +44,12 @@ st.markdown("""
     .source-link { color: #60a5fa; text-decoration: none; font-weight: 700; font-size: 0.72rem; border: 1px solid #3b82f660; padding: 1px 6px; border-radius: 3px; background: #3b82f615; margin-left: 6px; display: inline-block; }
     .source-link:hover { background: #3b82f630; color: #93c5fd; }
 
-    /* Archetype Badges */
     .arch-badge { padding: 3px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; }
     .arch-stars { background: #dc262625; color: #f87171; border: 1px solid #ef444460; }
     .arch-hoard { background: #10b98125; color: #34d399; border: 1px solid #10b98160; }
     .arch-balanced { background: #3b82f625; color: #60a5fa; border: 1px solid #3b82f660; }
     .arch-idp { background: #8b5cf625; color: #c084fc; border: 1px solid #8b5cf660; }
-    .arch-drift { background: #f59e0b25; color: #fbbf24; border: 1px solid #f59e0b60; }
 
-    /* Positional Badges */
     .badge-pos { font-weight: 700; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
     .pos-QB { background: #3b82f630; color: #60a5fa; border: 1px solid #3b82f660; }
     .pos-RB { background: #10b98130; color: #34d399; border: 1px solid #10b98160; }
@@ -68,7 +62,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# 32-Team D/ST Weeks 1-3 Matchup Difficulty & Streaming Map
 DST_SCHEDULE_MAP = {
     "HOU": "📅 W1: @ IND (🟢 Easy) | W2: vs TEN (🟢 Easy) | W3: @ MIN (🟡 Neutral) • 🟢 Top 5 Streamer",
     "DAL": "📅 W1: @ NYG (🟢 Easy) | W2: vs WAS (🟢 Easy) | W3: @ ARI (🟢 Easy) • 🟢 Top 3 Smash",
@@ -104,18 +97,18 @@ DST_SCHEDULE_MAP = {
     "CAR": "📅 W1: @ NO (🟡 Neutral) | W2: vs LAC (🟡 Neutral) | W3: @ LV (🟡 Neutral) • 🟡 Low Floor"
 }
 
-# Historical 3-Year Manager Baseline Profiles (Pre-Draft Prior)
-DEFAULT_HISTORICAL_ARCHETYPES = {
-    1: {"name": "Team 1", "archetype": "👑 Stars & Scrubs", "class": "arch-stars", "bias": "Heavy RB1 Spend", "exploit": "Bait early with marquee RBs; let them exhaust budget on 2 studs."},
-    2: {"name": "Team 2", "archetype": "🐢 Patient Hoarder", "class": "arch-hoard", "bias": "Late Room Dominator", "exploit": "Nominate their starting positional targets early to force cash drawdown."},
-    3: {"name": "Team 3", "archetype": "⚖️ Balanced Accumulator", "class": "arch-balanced", "bias": "Tier 2/3 Depth", "exploit": "Contest their target depth directly; do not let them get mid-tier steals."},
-    4: {"name": "Team 4", "archetype": "👑 Stars & Scrubs", "class": "arch-stars", "bias": "Elite WR Anchor", "exploit": "Push bids on top WRs to full fair value; drop out to let them absorb landmines."},
-    5: {"name": "Team 5", "archetype": "🛡️ IDP & Premium Spender", "class": "arch-idp", "bias": "Overpays on Defense/TE", "exploit": "Nominate marquee LBs and top TEs early to drain their offensive cap."},
-    6: {"name": "Team 6", "archetype": "🐢 Slow Bidder", "class": "arch-hoard", "bias": "Value Trapper", "exploit": "Set price floors on your targets before this manager enters late inflation wars."},
-    7: {"name": "Team 7", "archetype": "⚖️ Balanced Accumulator", "class": "arch-balanced", "bias": "Spread Capital", "exploit": "Bait with high-ADP names; draft superior VORP assets at lower tiers."},
-    8: {"name": "Team 8", "archetype": "👑 Hyper-Aggressive Anchor", "class": "arch-stars", "bias": "Dual Top-10 Studs", "exploit": "Let them burn $130+ on 2 players, then control the middle 8 rounds."},
-    9: {"name": "Team 9", "archetype": "🛡️ IDP Enthusiast", "class": "arch-idp", "bias": "High IDP Allocation", "exploit": "Nominate top-ranked defenders early; force them to spend offensive budget."},
-    10: {"name": "Team 10", "archetype": "🐢 Patient Hoarder", "class": "arch-hoard", "bias": "Endgame Monopolist", "exploit": "Do not leave Tier 2 studs on the board for cheap late-game sweeps."}
+# Baseline Named Historical Manager Profiles (Pre-Draft Prior)
+DEFAULT_MANAGER_PROFILES = {
+    1: {"name": "Balaji Seshadri", "archetype": "👑 Disciplined Anchor", "class": "arch-stars", "bias": "Elite VORP & IDP Efficiency", "exploit": "Focuses strictly on positive surplus value; avoids inflated bidding traps."},
+    2: {"name": "James Barr", "archetype": "👑 Stars & Scrubs", "class": "arch-stars", "bias": "Aggressive Early RB/WR1", "exploit": "Pushes aggressively for top-5 overall assets. Push bids to fair value and let him choke early budget."},
+    3: {"name": "Joseph Heller", "archetype": "🐢 Patient Hoarder", "class": "arch-hoard", "bias": "Late-Room Value Trap", "exploit": "Hoards cash through round 1. Nominate his starting targets early to force capital spend."},
+    4: {"name": "Brenan Poe", "archetype": "⚖️ Balanced Accumulator", "class": "arch-balanced", "bias": "Depth & Floor", "exploit": "Spreads capital evenly across rounds 3-8. Contest his Tier 2/3 depth directly."},
+    5: {"name": "Anna Tuura", "archetype": "🛡️ IDP & Elite TE Spender", "class": "arch-idp", "bias": "Overpays on Defense/TE", "exploit": "Nominate marquee Linebackers and top-3 Tight Ends early to drain offensive budget."},
+    6: {"name": "Ryan Halligan", "archetype": "🐢 Slow Bidder / Sniper", "class": "arch-hoard", "bias": "Mid-Round Value", "exploit": "Establish price floors on key targets before he enters late inflation bidding wars."},
+    7: {"name": "Kooi-Lim Hoe", "archetype": "⚖️ Balanced Accumulator", "class": "arch-balanced", "bias": "Even Allocation", "exploit": "Bait with high-name recognition; draft superior VORP assets in the next tier."},
+    8: {"name": "Christopher Milner", "archetype": "👑 Hyper-Aggressive Anchor", "class": "arch-stars", "bias": "Dual Stud Strategy", "exploit": "Let him spend $120+ on two elite starters, then control the draft during middle tiers."},
+    9: {"name": "Allison Burkhardt", "archetype": "🛡️ IDP Enthusiast", "class": "arch-idp", "bias": "High Defensive Spend", "exploit": "Nominate top-ranked defenders early; forces significant budget bleed."},
+    10: {"name": "Lloyd Vick", "archetype": "🐢 Patient Monopolist", "class": "arch-hoard", "bias": "Endgame Dominator", "exploit": "Do not leave top Tier 2 studs uncontested late; force him to pay fair value."}
 }
 
 def clean_name(name):
@@ -133,6 +126,8 @@ if "my_targets" not in st.session_state:
     st.session_state.my_targets = set()
 if "my_fades" not in st.session_state:
     st.session_state.my_fades = set()
+if "custom_manager_names" not in st.session_state:
+    st.session_state.custom_manager_names = {s: p["name"] for s, p in DEFAULT_MANAGER_PROFILES.items()}
 
 # 2. Data Loading Engine
 @st.cache_data(ttl=30)
@@ -199,7 +194,7 @@ for idx, row in df_board.iterrows():
 
 df_board['live_vorp'] = df_board['vorp'] * df_board['live_multiplier']
 
-# 3. Positional Valuation Math ($2,000 Total League Pool)
+# 3. Valuation Math
 off_mask = df_board['position'].isin(['QB', 'RB', 'WR', 'TE'])
 pos_off_vorp = df_board.loc[off_mask, 'live_vorp'].clip(lower=0).sum()
 df_board.loc[off_mask, 'fair_value'] = (df_board.loc[off_mask, 'live_vorp'].clip(lower=0) / max(1.0, pos_off_vorp)) * (180 * 10 * 0.75)
@@ -240,33 +235,46 @@ df_board['auction_rank'] = df_board.index + 1
 player_pos_map = dict(zip(df_board['clean_name'], df_board['position']))
 player_display_map = dict(zip(df_board['clean_name'], df_board['player_name']))
 
-# 4. Sidebar Controls & Draft Format Switcher
+# 4. Sidebar Controls & Custom Manager Names
 st.sidebar.title("⚡ Draft Mode & Sync")
 draft_mode = st.sidebar.radio("Draft Format:", ["🔨 Auction / Salary Cap", "🐍 Snake Draft"], horizontal=True)
 
 league_size = 10
 total_roster_slots = 18
-my_slot = st.sidebar.number_input("Your Draft Slot / Team #", min_value=1, max_value=league_size, value=1)
+
+with st.sidebar.expander("👥 Manager Names & Slots", expanded=False):
+    for i in range(1, league_size + 1):
+        def_name = st.session_state.custom_manager_names.get(i, f"Team {i}")
+        new_n = st.text_input(f"Slot #{i} Manager:", value=def_name, key=f"mgr_slot_input_{i}")
+        st.session_state.custom_manager_names[i] = new_n
+
+my_slot = st.sidebar.number_input(
+    "Your Slot / Team #", 
+    min_value=1, 
+    max_value=league_size, 
+    value=1,
+    format="%d"
+)
+my_manager_display = st.session_state.custom_manager_names.get(my_slot, f"Team {my_slot}")
+st.sidebar.caption(f"Drafting as: **{my_manager_display}** (Slot {my_slot})")
 
 room_mode = st.sidebar.radio("Connection Mode:", ["🎮 Mock Sim Sandbox", "🌐 Live Sleeper Room Sync"], horizontal=True)
 
 manager_wallets = {}
 for i in range(1, league_size + 1):
+    m_name = st.session_state.custom_manager_names.get(i, f"Team {i}")
     manager_wallets[i] = {
-        "spent": 0, "picks": 0, "name": f"Team {i}",
+        "spent": 0, "picks": 0, "name": m_name,
         "roster": [], "pos_counts": {'QB': 0, 'RB': 0, 'WR': 0, 'TE': 0, 'IDP': 0, 'DEF': 0},
         "itemized_spent": {'QB': 0, 'RB': 0, 'WR': 0, 'TE': 0, 'IDP': 0, 'DEF': 0},
         "bid_history": []
     }
 
-# Snake Slot Calculation Helper
+# Snake Slot Helper
 def get_snake_team_on_clock(pick_idx, n_teams):
     round_num = (pick_idx - 1) // n_teams + 1
     pick_in_r = (pick_idx - 1) % n_teams + 1
-    if round_num % 2 == 1:
-        return pick_in_r
-    else:
-        return n_teams - pick_in_r + 1
+    return pick_in_r if round_num % 2 == 1 else (n_teams - pick_in_r + 1)
 
 def get_next_my_pick(curr_pick, my_slot_num, n_teams, total_picks):
     for p in range(curr_pick, total_picks + 1):
@@ -321,11 +329,20 @@ if room_mode == "🎮 Mock Sim Sandbox":
         st.session_state.drafted_picks = {}
         st.rerun()
 else:
-    draft_id = st.sidebar.text_input("Sleeper Draft ID", value="")
+    draft_id = st.sidebar.text_input("Sleeper Draft / League ID", value="1385816551680143360")
     if st.sidebar.button("🔄 Sync Live Sleeper API", use_container_width=True):
         st.rerun()
     if draft_id and draft_id.strip():
         try:
+            # Auto-resolve real manager display names from Sleeper users endpoint
+            u_res = requests.get(f"https://api.sleeper.app/v1/league/{draft_id.strip()}/users", timeout=4)
+            if u_res.status_code == 200:
+                for idx, u in enumerate(u_res.json()):
+                    slot_idx = idx + 1
+                    disp = u.get('display_name') or u.get('metadata', {}).get('team_name')
+                    if disp and slot_idx <= league_size:
+                        st.session_state.custom_manager_names[slot_idx] = disp
+                        
             p_res = requests.get(f"https://api.sleeper.app/v1/draft/{draft_id.strip()}/picks", timeout=4)
             if p_res.status_code == 200:
                 for p in p_res.json():
@@ -362,7 +379,7 @@ selected_fades = st.sidebar.multiselect(
 )
 st.session_state.my_fades = {clean_name(p) for p in selected_fades}
 
-# Process Roster Breakdown and Wallet Accounting
+# Wallet Accounting
 for c_p, pdata in st.session_state.drafted_picks.items():
     s = pdata["team"]
     pos = pdata.get("position", player_pos_map.get(c_p, "FLEX"))
@@ -384,7 +401,6 @@ total_cash_spent = sum(v["price"] for v in st.session_state.drafted_picks.values
 picked_clean_names = set(st.session_state.drafted_picks.keys())
 df_unpicked = df_board[~df_board['clean_name'].isin(picked_clean_names)].copy()
 
-# Macro Metrics Bar
 remaining_league_cash = (league_size * 200) - total_cash_spent
 unpicked_fair_sum = df_unpicked['fair_value'].sum()
 inflation_index = round(remaining_league_cash / max(1.0, unpicked_fair_sum), 2)
@@ -394,20 +410,21 @@ my_slots_left = total_roster_slots - my_wallet['picks']
 my_max_bid = max(1, my_cap_left - (my_slots_left - 1))
 
 if draft_mode == "🔨 Auction / Salary Cap":
-    st.markdown("### 🏈 SOULJA SOULJA SALARY CAP AUCTION RADAR")
+    st.markdown(f"### 🏈 SOULJA SOULJA SALARY CAP AUCTION RADAR • `{my_manager_display}`")
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("League Capital Remaining", f"${remaining_league_cash}", f"-${total_cash_spent} Spent")
     c2.metric("Room Inflation Index", f"{inflation_index}x", "Deflation (Bargains)" if inflation_index < 1.0 else "Inflation (Overpay)")
     c3.metric("Players Drafted", f"{len(picked_clean_names)} / 180", f"{180 - len(picked_clean_names)} Left")
     c4.metric("Your Max Single Bid", f"${my_max_bid}", f"${my_cap_left} Budget Left")
 else:
-    st.markdown("### 🐍 SOULJA SOULJA SNAKE DRAFT WAR ROOM")
+    st.markdown(f"### 🐍 SOULJA SOULJA SNAKE DRAFT WAR ROOM • `{my_manager_display}`")
     c1, c2, c3, c4 = st.columns(4)
     curr_round = (curr_overall_pick - 1) // league_size + 1
     curr_round_pick = (curr_overall_pick - 1) % league_size + 1
     c1.metric("Current Draft Pick", f"Round {curr_round}, Pick {curr_round_pick}", f"Overall Pick #{curr_overall_pick}")
     
-    clock_label = "⭐ YOU ARE ON CLOCK!" if snake_on_clock_team == my_slot else f"Team {snake_on_clock_team}"
+    clock_name = st.session_state.custom_manager_names.get(snake_on_clock_team, f"Team {snake_on_clock_team}")
+    clock_label = f"⭐ YOU ({clock_name})" if snake_on_clock_team == my_slot else clock_name
     c2.metric("On The Clock", clock_label, f"Draft Slot #{snake_on_clock_team}")
     
     turn_str = "NOW DRAFTING" if picks_until_my_turn == 0 else f"{picks_until_my_turn} Picks Away"
@@ -416,37 +433,31 @@ else:
 
 st.markdown("---")
 
-# 5. POSITIONAL ACTIVE TIER CLIFF TRACKER
+# 5. Positional Cliff Tracker
 st.markdown("#### 🚨 POSITIONAL ACTIVE TIER CLIFF TRACKER")
 cliff_cols = st.columns(4)
 tier_order = ['Tier 1', 'Tier 2', 'Tier 3', 'Tier 4', 'Tier 5']
 
 for idx, pos in enumerate(['RB', 'WR', 'TE', 'QB']):
     pos_pool = df_unpicked[df_unpicked['position'] == pos].sort_values(by='live_vorp', ascending=False)
-    
     active_tier = None
     next_tier = None
-    
     for t_idx, t_name in enumerate(tier_order):
         count_in_t = len(pos_pool[pos_pool['tier'] == t_name])
         if count_in_t > 0:
             active_tier = t_name
-            if t_idx + 1 < len(tier_order):
-                next_tier = tier_order[t_idx + 1]
+            if t_idx + 1 < len(tier_order): next_tier = tier_order[t_idx + 1]
             break
             
     with cliff_cols[idx]:
         if active_tier:
             curr_pool = pos_pool[pos_pool['tier'] == active_tier]
             sub_pool = pos_pool[pos_pool['tier'] == next_tier] if next_tier else pd.DataFrame()
-            
             t_count = len(curr_pool)
             drop_pts = int(round(curr_pool['live_vorp'].iloc[-1] - sub_pool['live_vorp'].iloc[0])) if (len(curr_pool) > 0 and len(sub_pool) > 0) else 0
-            
             is_danger = t_count <= 2
             alert_class = "cliff-card cliff-alert" if is_danger else "cliff-card"
             badge = "🔥 URGENT" if is_danger else ("⚠️ CLIFF" if drop_pts >= 10 else "STABLE")
-            
             tier_label = active_tier.upper()
             drop_html = f'<span style="font-size:0.85rem; color:#ef4444;">(-{drop_pts} pts)</span>' if drop_pts > 0 else ''
             
@@ -462,19 +473,11 @@ for idx, pos in enumerate(['RB', 'WR', 'TE', 'QB']):
             )
             st.markdown(card_html, unsafe_allow_html=True)
         else:
-            card_html = (
-                '<div class="cliff-card">'
-                f'<div style="font-size:0.8rem; color:#94a3b8;"><b>{pos} TIERS</b></div>'
-                '<div style="font-size:1.1rem; font-weight:700; color:#64748b; margin-top:6px;">All Tiers Depleted</div>'
-                '</div>'
-            )
-            st.markdown(card_html, unsafe_allow_html=True)
+            st.markdown(f'<div class="cliff-card"><div style="font-size:0.8rem; color:#94a3b8;"><b>{pos} TIERS</b></div><div style="font-size:1.1rem; font-weight:700; color:#64748b; margin-top:6px;">All Tiers Depleted</div></div>', unsafe_allow_html=True)
 
 st.markdown("---")
 
-# ==============================================================================
-# 5.5 DYNAMIC REAL-TIME TARGETING & STRATEGIC PLAYBOOK
-# ==============================================================================
+# 5.5 Dynamic Targeting & Playbook
 my_counts = my_wallet['pos_counts']
 pos_targets = {'QB': 2, 'RB': 4, 'WR': 4, 'TE': 2, 'IDP': 4, 'DEF': 1}
 pos_gaps = {pos: max(0, target - my_counts.get(pos, 0)) for pos, target in pos_targets.items()}
@@ -488,7 +491,6 @@ if draft_mode == "🔨 Auction / Salary Cap":
     affordable_df = non_faded_unpicked[non_faded_unpicked['fair_value'] <= my_max_bid].copy()
     primary_candidate_pool = affordable_df[affordable_df['position'].isin(display_positions)].copy()
 
-    # 1. Top Recommended Target (Anchor)
     top_stud_name = ""
     user_priority_pool = primary_candidate_pool[primary_candidate_pool['clean_name'].isin(st.session_state.my_targets)]
 
@@ -519,7 +521,6 @@ if draft_mode == "🔨 Auction / Salary Cap":
     else:
         stud_card_html = '<div style="background:#131b2e; border-top:4px solid #10b981; padding:12px; border-radius:6px;"><div style="font-size:0.75rem; color:#10b981; font-weight:700;">👑 RECOMMENDED ANCHOR / STUD</div><div style="font-size:0.9rem; color:#94a3b8; margin-top:8px;">Positions filled or budget constrained.</div></div>'
 
-    # 2. Multi-Positional Arbitrage
     pos_arb_rows = []
     for target_pos in display_positions:
         pos_pool = primary_candidate_pool[(primary_candidate_pool['position'] == target_pos) & (primary_candidate_pool['clean_name'] != top_stud_name)].copy()
@@ -558,7 +559,6 @@ if draft_mode == "🔨 Auction / Salary Cap":
     rendered_rows = "".join(pos_arb_rows) if pos_arb_rows else '<div style="font-size:0.85rem; color:#94a3b8;">No arbitrage available.</div>'
     bargain_card_html = f'<div style="background:#131b2e; border-top:4px solid #3b82f6; padding:10px 12px; border-radius:6px; height:100%;"><div style="font-size:0.75rem; color:#3b82f6; font-weight:700; margin-bottom:6px;">💎 POSITIONAL ARBITRAGE (BEST PER POSITION)</div>{rendered_rows}</div>'
 
-    # 3. Nomination Playbook
     nom_strategy = st.radio("Select Your Tactical Nomination Intent:", ["💸 Bleed Rival Wallets (High-Cost Bait)", "💣 Landmine Trap (Overvalued Decoy)", "🥷 Stealth Sneak ($1-$3 Value Snipe)", "👑 Set the Market (Target Price Discovery)"], horizontal=True)
     pos_nom_rows = []
     for target_pos in display_positions:
@@ -616,7 +616,6 @@ if draft_mode == "🔨 Auction / Salary Cap":
     with rec_col3: st.markdown(nom_card_html, unsafe_allow_html=True)
 
 else:
-    # SNAKE DRAFT ADVISOR (Best Available, ADP Fallers, Turn Survival Reach Advisor)
     st.markdown("#### 🐍 SNAKE DRAFT TURN PREDICTOR & VALUE ENGINE")
     snake_col1, snake_col2, snake_col3 = st.columns(3)
     
@@ -700,7 +699,7 @@ else:
 
 st.markdown("---")
 
-# 6. On-The-Block / Draft Console
+# 6. Draft Console
 col_left, col_right = st.columns([1.2, 1])
 
 with col_left:
@@ -786,13 +785,27 @@ with col_left:
                 st.rerun()
 
         st.markdown("##### 🔨 Draft Selection Confirmation")
-        mcol1, mcol2, mcol3 = st.columns([1, 1, 1.2])
+        mcol1, mcol2, mcol3 = st.columns([1, 1.2, 1])
         if draft_mode == "🔨 Auction / Salary Cap":
             with mcol1: won_price = st.number_input("Winning Bid ($)", min_value=1, max_value=200, value=mkt_val)
-            with mcol2: won_team = st.number_input("Winning Team #", min_value=1, max_value=league_size, value=my_slot)
+            with mcol2:
+                mgr_choices = [i for i in range(1, league_size + 1)]
+                won_team = st.selectbox(
+                    "Winning Manager:", 
+                    mgr_choices, 
+                    index=my_slot - 1, 
+                    format_func=lambda x: f"Slot {x}: {st.session_state.custom_manager_names.get(x, f'Team {x}')}"
+                )
         else:
             with mcol1: won_price = st.number_input("Overall Pick #", min_value=1, max_value=total_league_picks, value=curr_overall_pick)
-            with mcol2: won_team = st.number_input("Drafting Team #", min_value=1, max_value=league_size, value=snake_on_clock_team)
+            with mcol2:
+                mgr_choices = [i for i in range(1, league_size + 1)]
+                won_team = st.selectbox(
+                    "Drafting Manager:", 
+                    mgr_choices, 
+                    index=snake_on_clock_team - 1, 
+                    format_func=lambda x: f"Slot {x}: {st.session_state.custom_manager_names.get(x, f'Team {x}')}"
+                )
             
         with mcol3:
             st.write("")
@@ -837,7 +850,7 @@ with col_right:
 
 st.markdown("---")
 
-# 7. Multi-Tab War Rooms & Rival Intelligence Matrix
+# 7. Multi-Tab War Rooms
 tab_off, tab_def, tab_intel, tab_matrix, tab_log = st.tabs([
     "⚔️ Offense War Room", 
     "🛡️ IDP & D/ST War Room", 
@@ -938,44 +951,43 @@ with tab_intel:
 with tab_matrix:
     st.markdown("#### 🧠 RIVAL DRAFTER INTELLIGENCE, ARCHETYPES & TACTICAL EXPLOITS")
     
-    # Behavioral Archetype Classifier Blending 3-Year Prior + Live Execution
     def classify_manager_archetype(data, slot_num):
         spent = data['spent']
         picks = data['picks']
         bids = sorted(data['bid_history'], reverse=True)
         idp_spent = data['itemized_spent']['IDP']
         total_picks_in_room = len(st.session_state.drafted_picks)
+        mgr_name = data['name']
         
-        # Pull Historical Baseline Prior
-        hist_prior = DEFAULT_HISTORICAL_ARCHETYPES.get(slot_num, {
-            "archetype": "⚖️ Balanced Accumulator", "class": "arch-balanced",
+        hist_prior = DEFAULT_MANAGER_PROFILES.get(slot_num, {
+            "name": mgr_name, "archetype": "⚖️ Balanced Accumulator", "class": "arch-balanced",
             "bias": "Standard Spread", "exploit": "Monitor early nominations."
         })
         
-        # Override with custom CSV if available
-        if not df_hist.empty and 'team' in df_hist.columns:
-            m_hist = df_hist[df_hist['team'] == f"Team {slot_num}"]
-            if not m_hist.empty and 'archetype' in m_hist.columns:
-                hist_prior['archetype'] = m_hist.iloc[0]['archetype']
-                hist_prior['exploit'] = m_hist.iloc[0].get('exploit', hist_prior['exploit'])
+        # Override with CSV profile by name or slot
+        if not df_hist.empty:
+            c_matches = df_hist[df_hist['manager'].astype(str).str.lower() == mgr_name.lower()] if 'manager' in df_hist.columns else pd.DataFrame()
+            if not c_matches.empty and 'archetype' in c_matches.columns:
+                hist_prior['archetype'] = c_matches.iloc[0]['archetype']
+                hist_prior['bias'] = c_matches.iloc[0].get('bias', hist_prior['bias'])
+                hist_prior['exploit'] = c_matches.iloc[0].get('exploit', hist_prior['exploit'])
 
-        # 1. LIVE EXECUTION CHECKS (Overrides Baseline when triggered)
+        # Live Execution Drift Flags
         if spent >= 100 or (len(bids) >= 1 and bids[0] >= 55) or (len(bids) >= 2 and (bids[0] + bids[1]) >= 85):
-            return "👑 Stars & Scrubs (Live)", "arch-stars", "Let them choke their own budget; push bids on their next targets to max fair value."
+            return "👑 Stars & Scrubs (Live)", "arch-stars", f"<b>{mgr_name}:</b> Aggressively committed budget early. Let them exhaust capital; push bids on next targets to fair value."
             
         elif idp_spent >= 10 or (data['pos_counts']['IDP'] >= 2 and idp_spent >= 6):
-            return "🛡️ IDP Spender (Live)", "arch-idp", "Overpays on defense. Nominate elite LBs/DLs early to drain their offensive cap."
+            return "🛡️ IDP Spender (Live)", "arch-idp", f"<b>{mgr_name}:</b> Overpaying on defense. Nominate elite LBs/DLs early to drain their offensive cap."
             
         elif total_picks_in_room >= 6 and picks == 0:
-            return "🐢 Active Hoarder (Live)", "arch-hoard", "Sitting completely cold. Nominate their key positional targets to force spending."
+            return "🐢 Active Hoarder (Live)", "arch-hoard", f"<b>{mgr_name}:</b> Sitting completely cold. Nominate their key starting positional needs to force spending."
             
         elif picks >= 3 and spent <= 45:
-            return "🥷 Value Hunter (Live)", "arch-hoard", "Accumulating cheap assets. Contest their Tier 3 nominations directly."
+            return "🥷 Value Hunter (Live)", "arch-hoard", f"<b>{mgr_name}:</b> Accumulating cheap assets. Contest their Tier 3 nominations directly."
             
         elif picks >= 3:
-            return "⚖️ Balanced Spender (Live)", "arch-balanced", "Spreading capital evenly. Avoid bidding wars on their non-target positions."
+            return "⚖️ Balanced Spender (Live)", "arch-balanced", f"<b>{mgr_name}:</b> Spreading capital evenly across tiers. Avoid bidding wars on non-target positions."
             
-        # 2. PRE-DRAFT & EARLY-GAME PRIOR (Uses Historical 3-Year Archetype)
         else:
             return f"📜 {hist_prior['archetype']} (Historical)", hist_prior['class'], f"<b>{hist_prior['bias']}:</b> {hist_prior['exploit']}"
 
@@ -995,6 +1007,7 @@ with tab_matrix:
         needs_str = ", ".join(needs) if needs else "✅ Lineup Filled"
         
         arch_title, arch_class, exploit_text = classify_manager_archetype(data, s)
+        mgr_name = data['name']
         
         if draft_mode == "🔨 Auction / Salary Cap":
             threat_level = "🟢 LOW"
@@ -1012,7 +1025,7 @@ with tab_matrix:
         
         matrix_rows.append({
             "Slot": s,
-            "Manager": f"⭐ YOU (Slot {s})" if s == my_slot else data['name'],
+            "Manager": f"⭐ YOU ({mgr_name})" if s == my_slot else f"<b>{mgr_name}</b> (Slot {s})",
             "Cash Left": f"${c_left}",
             metric_col_name: metric_val,
             "Picks": data['picks'],
@@ -1028,9 +1041,13 @@ with tab_matrix:
     # Deep-Dive Rival Inspector
     st.markdown("---")
     st.markdown("##### 🔍 Deep-Dive Rival Behavioral Inspector")
-    insp_col1, insp_col2 = st.columns([1, 2.5])
+    insp_col1, insp_col2 = st.columns([1.2, 2.5])
     with insp_col1:
-        inspect_slot = st.selectbox("Select Rival to Inspect:", [i for i in range(1, league_size + 1) if i != my_slot], format_func=lambda x: f"Team {x}")
+        inspect_slot = st.selectbox(
+            "Select Manager to Inspect:", 
+            [i for i in range(1, league_size + 1) if i != my_slot], 
+            format_func=lambda x: f"Slot {x}: {st.session_state.custom_manager_names.get(x, f'Team {x}')}"
+        )
     
     insp_data = manager_wallets[inspect_slot]
     insp_spent = insp_data['itemized_spent']
@@ -1039,7 +1056,7 @@ with tab_matrix:
     with insp_col2:
         st.markdown(
             f'<div style="background:#131b2e; border-left:4px solid #3b82f6; padding:12px; border-radius:6px;">'
-            f'<div style="font-size:0.85rem; color:#94a3b8;"><b>Team {inspect_slot} Profile:</b> <span style="color:#60a5fa; font-weight:700;">{arch_title}</span></div>'
+            f'<div style="font-size:0.85rem; color:#94a3b8;"><b>{insp_data["name"]} (Slot {inspect_slot}) Profile:</b> <span style="color:#60a5fa; font-weight:700;">{arch_title}</span></div>'
             f'<div style="font-size:0.8rem; color:#cbd5e1; margin-top:4px;"><b>Positional Capital Spent:</b> QB: ${insp_spent["QB"]} | RB: ${insp_spent["RB"]} | WR: ${insp_spent["WR"]} | TE: ${insp_spent["TE"]} | IDP: ${insp_spent["IDP"]} | DEF: ${insp_spent["DEF"]}</div>'
             f'<div style="font-size:0.8rem; color:#34d399; margin-top:6px;"><b>Exploit:</b> {exploit_text}</div>'
             f'</div>', unsafe_allow_html=True
@@ -1047,7 +1064,12 @@ with tab_matrix:
 
 with tab_log:
     if st.session_state.drafted_picks:
-        log_rows = [{"Player": v["player_name"], "Pos": v.get("position", "-"), "Price / Pick": f"${v['price']}" if draft_mode == "🔨 Auction / Salary Cap" else f"Pick #{v['price']}", "Team": f"Team {v['team']}"} for v in st.session_state.drafted_picks.values()]
+        log_rows = [{
+            "Player": v["player_name"], 
+            "Pos": v.get("position", "-"), 
+            "Price / Pick": f"${v['price']}" if draft_mode == "🔨 Auction / Salary Cap" else f"Pick #{v['price']}", 
+            "Manager": st.session_state.custom_manager_names.get(v['team'], f"Team {v['team']}")
+        } for v in st.session_state.drafted_picks.values()]
         st.table(pd.DataFrame(log_rows))
     else:
         st.info("No players drafted yet.")
