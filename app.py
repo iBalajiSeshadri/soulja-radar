@@ -8,6 +8,7 @@ import re
 import random
 import subprocess
 import sys
+from llm_advisor import generate_tactical_advice, generate_ai_nomination, ask_ai_strategist
 
 # Page Configuration
 st.set_page_config(
@@ -19,7 +20,7 @@ st.set_page_config(
 
 LEAGUE_ID = "1385816551680143360"
 
-# Custom Styling & Badges
+# Custom Styling & Archetype Badges
 st.markdown("""
 <style>
     .stApp { background-color: #0b0f19; color: #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
@@ -130,6 +131,10 @@ if "my_targets" not in st.session_state:
     st.session_state.my_targets = set()
 if "my_fades" not in st.session_state:
     st.session_state.my_fades = set()
+if "last_ai_read" not in st.session_state:
+    st.session_state.last_ai_read = ""
+if "last_ai_nom" not in st.session_state:
+    st.session_state.last_ai_nom = ""
 
 # 2. Data Loading Engine
 @st.cache_data(ttl=30)
@@ -249,11 +254,8 @@ st.sidebar.title("⚡ Soulja Soulja Radar")
 if st.sidebar.button("🚀 Pull Latest News & Sync Wire", use_container_width=True, type="primary"):
     with st.spinner("Scraping live beat wires, Sleeper injury reports, and recalculating board..."):
         try:
-            # 1. Run live news scraper
             res_news = subprocess.run([sys.executable, "sync_fantasy_news.py"], capture_output=True, text=True)
-            # 2. Run fantasy engine to update VORP/board
             res_eng = subprocess.run([sys.executable, "fantasy_engine.py"], capture_output=True, text=True)
-            
             st.cache_data.clear()
             st.toast("✅ Live News, Injuries & Board Synchronized!", icon="🔥")
             st.rerun()
@@ -350,6 +352,8 @@ if room_mode == "🎮 Mock Sim Sandbox":
             st.rerun()
     if st.sidebar.button("🗑️ Reset Draft Board", use_container_width=True):
         st.session_state.drafted_picks = {}
+        st.session_state.last_ai_read = ""
+        st.session_state.last_ai_nom = ""
         st.rerun()
 else:
     draft_id = st.sidebar.text_input("Sleeper Draft / League ID", value=LEAGUE_ID)
@@ -357,12 +361,9 @@ else:
         st.rerun()
     if draft_id and draft_id.strip():
         try:
-            # 1. Direct Sleeper Users Ingestion
             u_res = requests.get(f"https://api.sleeper.app/v1/league/{draft_id.strip()}/users", timeout=4)
             if u_res.status_code == 200:
                 user_map_raw = {u['user_id']: (u.get('display_name') or u.get('metadata', {}).get('team_name')) for u in u_res.json()}
-                
-                # Check rosters to get exact slot mapping
                 r_res = requests.get(f"https://api.sleeper.app/v1/league/{draft_id.strip()}/rosters", timeout=4)
                 if r_res.status_code == 200:
                     for r in r_res.json():
@@ -376,7 +377,6 @@ else:
                                     break
                             st.session_state.custom_manager_names[r_id] = disp_name
                         
-            # 2. Ingest live picks directly from Sleeper Draft endpoint
             p_res = requests.get(f"https://api.sleeper.app/v1/draft/{draft_id.strip()}/picks", timeout=4)
             if p_res.status_code == 200:
                 for p in p_res.json():
@@ -412,6 +412,19 @@ selected_fades = st.sidebar.multiselect(
     default=[p for p in all_player_names if clean_name(p) in st.session_state.my_fades]
 )
 st.session_state.my_fades = {clean_name(p) for p in selected_fades}
+
+# ==========================================
+# 💬 FEATURE 3: ASK THE AI STRATEGIST (SIDEBAR)
+# ==========================================
+st.sidebar.markdown("---")
+st.sidebar.markdown("### 🤖 Ask the AI War Room")
+ai_query = st.sidebar.text_input("Ask situational draft question:", placeholder="e.g. Should I bid $42 on Nabers?")
+if st.sidebar.button("Ask AI Strategist", use_container_width=True):
+    if ai_query.strip():
+        live_snapshot = f"Total Spent: ${sum(v['price'] for v in st.session_state.drafted_picks.values())} | Inflation: {round(((league_size*200)-sum(v['price'] for v in st.session_state.drafted_picks.values()))/max(1.0, df_board[~df_board['clean_name'].isin(st.session_state.drafted_picks.keys())]['fair_value'].sum()), 2)}x | Your Cap: ${200 - manager_wallets[my_slot]['spent']}"
+        with st.spinner("AI analyzing draft state..."):
+            ans = ask_ai_strategist(ai_query, live_snapshot)
+            st.sidebar.markdown(f"**AI Strategy Read:**\n\n{ans}")
 
 # Wallet Accounting
 for c_p, pdata in st.session_state.drafted_picks.items():
@@ -593,7 +606,28 @@ if draft_mode == "🔨 Auction / Salary Cap":
     rendered_rows = "".join(pos_arb_rows) if pos_arb_rows else '<div style="font-size:0.85rem; color:#94a3b8;">No arbitrage available.</div>'
     bargain_card_html = f'<div style="background:#131b2e; border-top:4px solid #3b82f6; padding:10px 12px; border-radius:6px; height:100%;"><div style="font-size:0.75rem; color:#3b82f6; font-weight:700; margin-bottom:6px;">💎 POSITIONAL ARBITRAGE (BEST PER POSITION)</div>{rendered_rows}</div>'
 
+    # Nomination Playbook & AI Generator
     nom_strategy = st.radio("Select Your Tactical Nomination Intent:", ["💸 Bleed Rival Wallets (High-Cost Bait)", "💣 Landmine Trap (Overvalued Decoy)", "🥷 Stealth Sneak ($1-$3 Value Snipe)", "👑 Set the Market (Target Price Discovery)"], horizontal=True)
+    
+    # ==========================================
+    # 🎯 FEATURE 2: AI NOMINATION GENERATOR
+    # ==========================================
+    if st.button("🤖 Generate AI Nomination Trap Suggestion", use_container_width=True):
+        with st.spinner("AI analyzing opponent budgets, positional voids, and traps..."):
+            unpicked_top = ", ".join([f"{r['player_name']} (${r['market_cost']})" for _, r in df_unpicked.head(8).iterrows()])
+            rivals_sum = ", ".join([f"{d['name']} (Cap: ${200-d['spent']})" for s, d in manager_wallets.items() if s != my_slot][:5])
+            needs_sum = ", ".join([f"{pos}: {cnt}" for pos, cnt in pos_gaps.items() if cnt > 0])
+            
+            st.session_state.last_ai_nom = generate_ai_nomination(nom_strategy, unpicked_top, rivals_sum, needs_sum)
+
+    if st.session_state.last_ai_nom:
+        st.markdown(
+            f'<div style="background:#131b2e; border-left:4px solid #f59e0b; padding:12px; border-radius:6px; margin:8px 0;">'
+            f'<div style="font-size:0.8rem; color:#fbbf24; font-weight:700; margin-bottom:4px;">🎯 AI TACTICAL NOMINATION READ</div>'
+            f'<div style="font-size:0.85rem; color:#f1f5f9; line-height:1.4;">{st.session_state.last_ai_nom}</div>'
+            f'</div>', unsafe_allow_html=True
+        )
+
     pos_nom_rows = []
     for target_pos in display_positions:
         pos_pool = df_unpicked[df_unpicked['position'] == target_pos].copy()
@@ -798,6 +832,36 @@ with col_left:
         
         st.markdown(f"**Position:** <span class='badge-pos pos-{p_data['position']}'>{p_data['position']}</span> | **Team:** `{p_data['team']}` | {tag_html} {intel_display}{p_link}", unsafe_allow_html=True)
 
+        # ==========================================
+        # 🧠 FEATURE 1: REAL-TIME AI BID/FADE ADVISOR
+        # ==========================================
+        if st.button("🤖 Generate Real-Time AI Tactical Read", use_container_width=True):
+            with st.spinner("AI evaluating rival psychological histories and budget curve..."):
+                rivals_ctx = "; ".join([
+                    f"{d['name']} (Cap: ${200 - d['spent']}, Spend Hist: {d.get('bias', 'Standard')})"
+                    for s, d in manager_wallets.items() if s != my_slot
+                ][:4])
+                
+                st.session_state.last_ai_read = generate_tactical_advice(
+                    player_name=p_data['player_name'],
+                    pos=p_data['position'],
+                    fair_val=fair_val,
+                    mkt_val=mkt_val,
+                    max_bid_to=bid_to,
+                    inflation_index=inflation_index,
+                    news_note=p_data.get('intel_note', ''),
+                    my_budget=my_cap_left,
+                    rivals_summary=rivals_ctx
+                )
+
+        if st.session_state.last_ai_read:
+            st.markdown(
+                f'<div style="background:#131b2e; border-left:4px solid #10b981; padding:12px; border-radius:6px; margin:8px 0;">'
+                f'<div style="font-size:0.8rem; color:#34d399; font-weight:700; margin-bottom:4px;">🤖 AI TACTICAL VERDICT</div>'
+                f'<div style="font-size:0.85rem; color:#f1f5f9; line-height:1.4;">{st.session_state.last_ai_read}</div>'
+                f'</div>', unsafe_allow_html=True
+            )
+
         bcol1, bcol2, _ = st.columns([1, 1, 2])
         with bcol1:
             is_target = c_name_curr in st.session_state.my_targets
@@ -849,6 +913,7 @@ with col_left:
                     "price": int(won_price), "team": int(won_team),
                     "player_name": p_data['player_name'], "position": p_data['position']
                 }
+                st.session_state.last_ai_read = ""
                 st.rerun()
 
 with col_right:

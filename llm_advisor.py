@@ -1,0 +1,116 @@
+import os
+import requests
+import json
+import streamlit as st
+
+OLLAMA_API_URL = os.getenv("OLLAMA_API_URL", "http://localhost:11434/api/generate")
+LOCAL_MODEL = os.getenv("LOCAL_LLM_MODEL", "llama3.1:8b")
+
+# Retrieve Groq Key from Streamlit Secrets or Environment
+GROQ_API_KEY = st.secrets.get("GROQ_API_KEY", os.getenv("GROQ_API_KEY", ""))
+
+def query_groq_api(prompt: str, system_prompt: str = "You are a quantitative fantasy football auction draft analyst. Be direct, tactical, and concise. No fluff.", model: str = "llama-3.1-8b-instant") -> str:
+    """Ultra-fast cloud fallback via Groq API (~300 tokens/sec)."""
+    if not GROQ_API_KEY:
+        return "⚠️ Add `GROQ_API_KEY` to Streamlit Secrets to enable cloud AI advice."
+    
+    url = "https://api.groq.com/openai/v1/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": prompt}
+        ],
+        "temperature": 0.25,
+        "max_tokens": 200
+    }
+    try:
+        res = requests.post(url, headers=headers, json=payload, timeout=5)
+        if res.status_code == 200:
+            return res.json()["choices"][0]["message"]["content"].strip()
+        return f"⚠️ Groq API Error: {res.status_code}"
+    except Exception as e:
+        return f"⚠️ Groq Error: {e}"
+
+def query_local_ollama(prompt: str, system_prompt: str = "") -> str:
+    """Queries local Ollama endpoint."""
+    full_prompt = f"{system_prompt}\n\n{prompt}" if system_prompt else prompt
+    payload = {
+        "model": LOCAL_MODEL,
+        "prompt": full_prompt,
+        "stream": False,
+        "options": {"temperature": 0.25, "num_predict": 180}
+    }
+    res = requests.post(OLLAMA_API_URL, json=payload, timeout=3)
+    if res.status_code == 200:
+        return res.json().get("response", "").strip()
+    return ""
+
+def query_llm_hybrid(prompt: str, system_prompt: str = "You are an elite fantasy football auction strategist.") -> str:
+    """Tries Local Ollama first; automatically falls back to Groq Cloud."""
+    try:
+        local_resp = query_local_ollama(prompt, system_prompt)
+        if local_resp:
+            return f"*(Local Ollama)*\n\n{local_resp}"
+    except Exception:
+        pass
+    groq_resp = query_groq_api(prompt, system_prompt)
+    return f"*(Groq Cloud)*\n\n{groq_resp}"
+
+# ==============================================================================
+# 3 LIVE AI FEATURES
+# ==============================================================================
+
+def generate_tactical_advice(player_name, pos, fair_val, mkt_val, max_bid_to, inflation_index, news_note, my_budget, rivals_summary):
+    """Feature 1: Situational Bid / Fade Recommendation."""
+    prompt = f"""
+SITUATION:
+- Player: {player_name} ({pos})
+- Model True Value: ${fair_val} | Market ADP: ${mkt_val} | Recommended Max Bid-To: ${max_bid_to}
+- Draft Room Inflation: {inflation_index}x (>1.0x overpaying, <1.0x bargains)
+- Medical / Beat News: {news_note if news_note else 'Healthy & Active'}
+- Your Budget Left: ${my_budget}
+- Key Rivals & Tendencies: {rivals_summary}
+
+TASK:
+Give 2-3 direct bullet points on:
+1. Exact bid/fade verdict (Anchor stud vs. Price-enforce trap vs. Fade).
+2. The exact hard dollar cutoff where you must bail.
+3. Specific rival to exploit or avoid bidding against on this player.
+No conversational intro.
+"""
+    return query_llm_hybrid(prompt)
+
+def generate_ai_nomination(nom_intent, unpicked_summary, rivals_summary, my_needs):
+    """Feature 2: Psychological Nomination Trap Generator."""
+    prompt = f"""
+SITUATION:
+- Tactical Intent: {nom_intent}
+- Your Lineup Needs: {my_needs}
+- Rival Budgets & Roster Openings: {rivals_summary}
+- Available Top Players: {unpicked_summary}
+
+TASK:
+Name the EXACT player to nominate right now and give 2 short reasons why:
+- Why this forces maximum capital spend from specific rivals (e.g. Kopite, Chaitu, Harsha).
+- Why this protects your targets or accelerates room deflation.
+"""
+    return query_llm_hybrid(prompt)
+
+def ask_ai_strategist(user_query, live_draft_state):
+    """Feature 3: Interactive Mid-Draft War Room Chat."""
+    prompt = f"""
+LIVE DRAFT CONTEXT:
+{live_draft_state}
+
+USER QUESTION:
+{user_query}
+
+TASK:
+Provide a razor-sharp, quantitative tactical answer in 2-3 sentences. Reference specific manager budgets or player values when relevant.
+"""
+    return query_llm_hybrid(prompt)
