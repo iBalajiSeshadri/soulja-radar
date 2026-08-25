@@ -324,11 +324,12 @@ def league_market_cost(position, pos_rank):
     if not cv:
         return None
     a, b, c = cv.get("a", 0), cv.get("b", 0), cv.get("c", 0)
-    # Prefer the empirical point for very top ranks (avoids exp overshoot at r1-2),
-    # else use the fitted curve.
     pts = cv.get("points", {})
     key = str(int(pos_rank))
-    if key in pts and pos_rank <= 2:
+    # Prefer the ACTUAL empirical sale price for the top ranks (1-3) where precision
+    # matters most and the smooth exp curve slightly under-fits the real top prices
+    # (esp. premium SF QBs). Use the fitted curve deeper where it tracks well.
+    if key in pts and pos_rank <= 3:
         return max(1, int(round(pts[key])))
     val = a * np.exp(-b * float(pos_rank)) + c
     return max(1, int(round(val)))
@@ -1217,15 +1218,33 @@ if draft_mode == "🔨 Auction / Salary Cap":
             _bid_ceiling = min(my_max_bid, max(_walk, _mkt_fair))
             # "likely to sell" should also respect the real market floor for the tier
             _likely = max(_likely, int(_league_price or 0)) if _league_price else _likely
+            # TIER-DROP / cost-of-waiting: what does the NEXT available player at this
+            # position cost, and where's the next cliff? Uses live availability.
+            _pos_avail = df_unpicked[
+                (df_unpicked['position'] == _pr['position']) if _pr['position'] not in ('LB','DL','DB')
+                else df_unpicked['position'].isin(['LB','DL','DB'])
+            ].sort_values('proj_fpts', ascending=False)
+            _pos_avail = _pos_avail[_pos_avail['clean_name'] != _pr['clean_name']]
+            _tier_drop_txt = ""
+            if not _pos_avail.empty:
+                _next_p = _pos_avail.iloc[0]
+                _next_rank = _pos_rank + 1
+                _next_price = league_market_cost(_pr['position'], _next_rank) or int(_next_p['fair_value'])
+                _drop = max(0, _likely - int(_next_price))
+                if _drop >= 8:
+                    _tier_drop_txt = (f" ⛰️ Next {_pr['position']} ({_next_p['player_name']}) ~${int(_next_price)} "
+                                      f"— a ${_drop} drop if you wait.")
+                else:
+                    _tier_drop_txt = (f" Next {_pr['position']} ({_next_p['player_name']}) ~${int(_next_price)} "
+                                      f"(only ${_drop} cheaper — depth here, can wait).")
             if _fair > my_max_bid and _mkt_fair > my_max_bid:
                 _verdict, _color, _msg = "CAN'T AFFORD", "#ef4444", f"Market ~${max(_likely,_mkt_fair)} exceeds your max ${my_max_bid}. Would strand your roster."
             elif not _need_pos and not _want:
-                _verdict, _color, _msg = "SKIP", "#f59e0b", f"You don't need {_pr['position']} — let a rival spend ~${_likely}. Nominate to bleed them."
+                _verdict, _color, _msg = "SKIP", "#f59e0b", f"You don't need {_pr['position']} — let a rival spend ~${_likely}. Nominate to bleed them.{_tier_drop_txt}"
             else:
                 _verdict, _color = f"BID to ${_bid_ceiling}", "#10b981"
                 _msg = (f"League market for {_pr['position']}{_pos_rank if _pos_rank<99 else ''} ~${_likely}. "
-                        f"Ceiling ${_bid_ceiling} (real tier price, not theoretical fair). "
-                        f"Winning is fine — see the build plan below.")
+                        f"Ceiling ${_bid_ceiling} (real tier price).{_tier_drop_txt}")
             _star = "⭐ TARGET · " if _want else ""
             st.markdown(
                 f'<div style="background:{_color};border-radius:8px;padding:14px 18px;margin:4px 0 8px 0;">'
@@ -1245,19 +1264,34 @@ if draft_mode == "🔨 Auction / Salary Cap":
                 if _sim_gaps.get(_bkt, 0) > 0:
                     _sim_gaps[_bkt] -= 1
                 _still = [p for p in ['QB','RB','WR','TE','IDP','DEF'] if _sim_gaps.get(p,0) > 0]
-                # affordable players per still-needed position (fair within ~1.6x avg/slot)
-                _budget_each = max(1, _per_slot * 1.6)
                 _plan_bits = []
                 for _p in _still[:4]:
-                    _ppool = df_unpicked[
-                        (df_unpicked['position'] == _p) if _p not in ('IDP',)
-                        else (df_unpicked['position'].isin(['LB','DL','DB']))]
-                    _ppool = _ppool[(_ppool['clean_name'] != _pr['clean_name']) &
-                                    (df_unpicked['fair_value'] <= _budget_each)].sort_values('fair_value', ascending=False)
-                    if not _ppool.empty:
-                        _names = ", ".join(f"{r['player_name']} (${int(r['fair_value'])})"
-                                           for _, r in _ppool.head(3).iterrows())
-                        _plan_bits.append(f"<b>{_p}×{_sim_gaps[_p]}:</b> {_names}")
+                    _is_idp = _p == 'IDP'
+                    _ppool_all = df_unpicked[df_unpicked['position'].isin(['LB','DL','DB'])] if _is_idp \
+                                 else df_unpicked[df_unpicked['position'] == _p]
+                    _ppool_all = _ppool_all[_ppool_all['clean_name'] != _pr['clean_name']].sort_values('proj_fpts', ascending=False)
+                    # realistic cost per candidate = league market price at its positional rank
+                    _cands = []
+                    for _i2, (_, _rr) in enumerate(_ppool_all.head(12).iterrows(), start=1):
+                        _rk = _i2  # positional rank among AVAILABLE (approx)
+                        _lp = league_market_cost(_p if not _is_idp else 'LB', _rk) or int(_rr['fair_value'])
+                        if _lp <= max(1, _per_slot * 1.8):   # affordable within plan budget
+                            _cands.append((_rr['player_name'], int(_lp)))
+                        if len(_cands) >= 3:
+                            break
+                    # CONTESTED-POSITION FLAG: rivals still needing this pos vs startable left
+                    _pp = pos_pressure.get(_p, {})
+                    _rivals_need = _pp.get('rivals_needing', 0)
+                    _startable_left = int((_ppool_all['fair_value'] >= 5).sum()) if not _is_idp else len(_ppool_all)
+                    _flag = ""
+                    if _rivals_need >= 3 and _startable_left <= _rivals_need + 1:
+                        _flag = (f' <span style="color:#f59e0b;font-weight:700;">⚠️ {_rivals_need} rivals need '
+                                 f'{_p}, only {_startable_left} startable left — inflating, prioritize now</span>')
+                    if _cands:
+                        _names = ", ".join(f"{n} (~${c})" for n, c in _cands)
+                        _plan_bits.append(f"<b>{_p}×{_sim_gaps[_p]}:</b> {_names}{_flag}")
+                    elif _flag:
+                        _plan_bits.append(f"<b>{_p}×{_sim_gaps[_p]}:</b>{_flag}")
                 _viable = _cap_after >= _slots_after  # at least $1/slot
                 _vcolor = "#10b981" if _viable else "#ef4444"
                 _plan_html = "<br>".join(_plan_bits) if _plan_bits else "Tight — lean on $1-3 value at your remaining slots."
