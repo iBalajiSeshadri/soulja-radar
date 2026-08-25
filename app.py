@@ -182,6 +182,14 @@ def load_draft_board():
         df['market_adp'] = pd.to_numeric(df['adp'], errors='coerce').fillna(df['custom_rank'])
     else:
         df['market_adp'] = df['custom_rank']
+    # SANITIZE: custom_rank/search_rank use a 9999999 sentinel for unranked players
+    # (deep IDP, backups with no real ADP). That sentinel leaks into ADP-surplus math
+    # (board_rank - adp) and produces absurd "+9999884 spots value" steals. Mark any
+    # player at/above a sane ADP ceiling as HAVING NO ADP (NaN) so ADP-based cards
+    # (snake "steals at ADP", spots-value) can exclude them instead of ranking garbage.
+    _ADP_SENTINEL = 900  # anything >= this is not a real ADP
+    df['has_adp'] = df['market_adp'] < _ADP_SENTINEL
+    df.loc[~df['has_adp'], 'market_adp'] = _ADP_SENTINEL  # clamp for display, but has_adp=False
 
     # NOTE: market_adp is derived from the CURRENT board's custom_rank (live
     # Sleeper search_rank + FFToday consensus, refreshed each sync) — i.e. present
@@ -2136,8 +2144,16 @@ else:
             )
 
     with snake_col2:
-        non_faded_unpicked['adp_surplus'] = non_faded_unpicked['market_adp'] - non_faded_unpicked['board_rank']
-        fallers = non_faded_unpicked[non_faded_unpicked['adp_surplus'] >= 2].sort_values(by=['adp_surplus', 'live_vorp'], ascending=[False, False]).head(4)
+        # "Steals at ADP" is an OFFENSE concept — ADP tracks QB/RB/WR/TE draft
+        # position; IDP/DST have no meaningful ADP (their custom_rank is a huge
+        # sentinel), so restrict to offense AND require a real ADP. This kills the
+        # LB/DL flood ('+9999884 spots value') at the root.
+        _adp_pool = non_faded_unpicked[
+            non_faded_unpicked.get('has_adp', True)
+            & non_faded_unpicked['position'].isin(['QB', 'RB', 'WR', 'TE'])
+        ].copy()
+        _adp_pool['adp_surplus'] = _adp_pool['market_adp'] - _adp_pool['board_rank']
+        fallers = _adp_pool[_adp_pool['adp_surplus'] >= 2].sort_values(by=['adp_surplus', 'live_vorp'], ascending=[False, False]).head(4)
         
         faller_rows = []
         for _, f_row in fallers.iterrows():
@@ -2166,7 +2182,10 @@ else:
         # Monte-Carlo survival: simulate the picks between now and my next selection
         # to estimate P(gone) — far better than a single ADP threshold.
         _picks_gap = max(0, next_my_pick_num - curr_overall_pick)
-        _cand_pool = non_faded_unpicked.head(40)
+        _cand_pool = non_faded_unpicked[
+            non_faded_unpicked.get('has_adp', True)
+            & non_faded_unpicked['position'].isin(['QB', 'RB', 'WR', 'TE'])
+        ].head(40)
         _mc_cands = [{'clean_name': r['clean_name'], 'market_adp': float(r['market_adp']),
                       'position': r['position']} for _, r in _cand_pool.iterrows()]
         _surv = ds.mc_snake_survival(_mc_cands, picks_until_next=_picks_gap, n_sims=250, seed=11)
