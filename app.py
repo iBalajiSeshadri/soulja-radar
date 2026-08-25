@@ -1473,10 +1473,19 @@ if draft_mode == "🔨 Auction / Salary Cap":
             _sel_risk = ('RISK' in _sel_tag) or ('CONCERN' in str(_pr.get('intel_tag', '')).upper())
             if _sel_risk:
                 _sel_vorp = float(_pr.get('live_vorp', _pr.get('vorp', 0)))
+                _sel_tier = str(_pr.get('tier', 'Tier 9'))
                 _alt_pool = _pos_pool_avail.copy()
                 _alt_pool = _alt_pool[_alt_pool['clean_name'] != _pr['clean_name']]
-                # within 18% VORP, not itself a risk, prefer scheme-fit / positive intel
-                _alt_pool = _alt_pool[_alt_pool['live_vorp'] >= _sel_vorp * 0.82]
+                # A genuine sidegrade only: VORP within a TIGHT band around the
+                # selected player (0.80x–1.20x — not a much better higher-tier guy,
+                # which would be obvious/unavailable) AND same tier or one adjacent.
+                _lo, _hi = _sel_vorp * 0.80, _sel_vorp * 1.20
+                _alt_pool = _alt_pool[(_alt_pool['live_vorp'] >= _lo) & (_alt_pool['live_vorp'] <= _hi)]
+                # keep same-tier or one-tier neighbours only
+                def _tier_num(t):
+                    m = re.search(r'(\d+)', str(t)); return int(m.group(1)) if m else 9
+                _st_n = _tier_num(_sel_tier)
+                _alt_pool = _alt_pool[_alt_pool['tier'].apply(lambda t: abs(_tier_num(t) - _st_n) <= 1)]
                 def _outlook_score(rr):
                     t = str(rr.get('scheme_tag', '')).upper()
                     s = 0
@@ -1485,8 +1494,11 @@ if draft_mode == "🔨 Auction / Salary Cap":
                     if str(rr.get('intel_note', '')).strip(): s += 1
                     return s
                 if not _alt_pool.empty:
+                    _sel_ol = _outlook_score(_pr)   # selected player's own outlook (negative, has risk)
                     _alt_pool = _alt_pool.assign(_ol=_alt_pool.apply(_outlook_score, axis=1))
-                    _alt_pool = _alt_pool[_alt_pool['_ol'] > -1].sort_values(
+                    # only a MEANINGFULLY better outlook qualifies (beat the risky
+                    # selected player by >=2), and the alt must be net-positive.
+                    _alt_pool = _alt_pool[(_alt_pool['_ol'] >= _sel_ol + 2) & (_alt_pool['_ol'] >= 1)].sort_values(
                         ['_ol', 'live_vorp'], ascending=[False, False])
                     if not _alt_pool.empty:
                         _alt = _alt_pool.iloc[0]
