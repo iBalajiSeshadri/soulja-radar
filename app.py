@@ -1040,6 +1040,38 @@ if draft_mode == "🐍 Snake Draft":
 else:
     df_board['my_value'] = df_board['fair_value'] * df_board['need_mult']
 
+# ── FORWARD EDGE SCORE: who is best-POSITIONED for THIS year (tier-jumpers) ────
+# Fuses value with FORWARD-looking outlook signals (all grounded in real data):
+#   base VORP + scheme-FIT bonus + tier-jumper/positive-intel bonus (the cited
+#   vacated-role risers) − scheme-RISK penalty. Higher = more likely to outperform
+#   its price this year. Powers the 🚀 Edge Board.
+def _edge_components(r):
+    base = float(r.get('live_vorp', 0))
+    tag = str(r.get('scheme_tag', '')).upper()
+    itag = str(r.get('intel_tag', '')).upper()
+    mult = float(r.get('live_multiplier', 1.0))
+    bonus = 0.0
+    reasons = []
+    if 'FIT' in tag:
+        bonus += 12; reasons.append('scheme fit')
+    if 'RISK' in tag:
+        bonus -= 15; reasons.append('scheme RISK')
+    # tier-jumper / positive camp intel (the cited risers) — the news multiplier
+    # above 1.0 encodes a real, cited opportunity/role bump.
+    if mult > 1.03:
+        bonus += (mult - 1.0) * 120  # 1.10 => +12
+        if 'JUMPER' in itag or 'SURGE' in itag or 'BREAKOUT' in itag:
+            reasons.append('tier-jumper (cited)')
+        elif str(r.get('intel_note', '')).strip():
+            reasons.append('camp riser')
+    elif mult < 0.97:
+        bonus -= (1.0 - mult) * 80
+    return base + bonus, reasons
+
+_edge_vals = df_board.apply(lambda r: _edge_components(r), axis=1)
+df_board['edge_score'] = [e[0] for e in _edge_vals]
+df_board['edge_reasons'] = ["; ".join(e[1]) for e in _edge_vals]
+
 def pos_run_flag(pos):
     """Return a short run/demand badge string for a position, or ''."""
     b = _bucket(pos)
@@ -2097,7 +2129,8 @@ with col_right:
 st.markdown("---")
 
 # 7. Multi-Tab War Rooms
-tab_off, tab_def, tab_intel, tab_matrix, tab_log = st.tabs([
+tab_edge, tab_off, tab_def, tab_intel, tab_matrix, tab_log = st.tabs([
+    "🚀 EDGE / Tier-Jumpers",
     "⚔️ Offense War Room", 
     "🛡️ IDP & D/ST War Room", 
     "🚀 Live News & Active Intel Board", 
@@ -2148,6 +2181,35 @@ def render_board_table(df_subset):
         table_rows.append(row_dict)
         
     st.write(pd.DataFrame(table_rows).to_html(escape=False, index=False), unsafe_allow_html=True)
+
+with tab_edge:
+    st.markdown("#### 🚀 EDGE BOARD — players best-positioned to OUTPERFORM this year")
+    st.caption("Forward-looking: fuses value with cited outlook signals — vacated-role tier-jumpers "
+               "(Tuten-type: inherits a departed teammate's touches), camp risers, and scheme fits. "
+               "Grounded in real news (📰 pull latest for fresh reads) — never a hallucinated breakout.")
+    _edge_pool = df_unpicked[df_unpicked['position'].isin(['QB','RB','WR','TE'])].copy()
+    # only surface players with a REAL forward reason (cited riser/jumper or scheme fit),
+    # so the board is signal, not the whole board re-sorted.
+    _edge_pool = _edge_pool[_edge_pool['edge_reasons'].str.strip() != ""]
+    _edge_pool = _edge_pool.sort_values('edge_score', ascending=False).head(25)
+    if _edge_pool.empty:
+        st.info("No cited tier-jumpers/risers yet. Click **🚀 Pull Latest News** (with a Groq key) to "
+                "populate live vacated-role jumpers (Tuten/Burden/Bucky-type) from the beat wires.")
+    else:
+        _erows = []
+        for _, r in _edge_pool.iterrows():
+            _mp = get_market_price(r)
+            _erows.append({
+                "Edge": round(float(r['edge_score']), 0),
+                "Player": r['player_name'],
+                "Pos": f'<span class="badge-pos pos-{r["position"]}">{r["position"]}</span>',
+                "Tier": r['tier'],
+                "Why positioned well": r['edge_reasons'],
+                "Cited note": (str(r.get('intel_note','')).strip() or str(r.get('scheme_note','')).strip() or "—")[:120],
+                "Market $": f"${int(_mp)}" if _mp else "—",
+            })
+        st.write(pd.DataFrame(_erows).to_html(escape=False, index=False), unsafe_allow_html=True)
+        st.caption("Edge = VORP + scheme-fit + cited-riser bonus − risk. Higher = better bet vs price this year.")
 
 with tab_off:
     pos_sub = st.radio("Offense Filter:", ["ALL OFFENSE", "RB", "WR", "TE", "QB"], horizontal=True)
