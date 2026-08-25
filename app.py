@@ -1441,13 +1441,22 @@ if draft_mode == "🔨 Auction / Salary Cap":
                          "(Lamar/Burrow pattern) — pounce here, don't chase the top-3." if _qb_edge else "")
             # #WR value zone (user-confirmed): WR1-2 go high, then WR3->4 drop opens a
             # long value tier (~WR4+) where camp-riser tier-jumpers (JSN) become steals.
-            _wr_value = (_pr['position'] == 'WR' and _pos_rank >= 4 and _need_pos)
+            # #WR value zone (user-confirmed): after the top studs, a mid-tier WR
+            # becomes a JSN-type steal ONLY if it's a genuine flier — a real riser
+            # signal (camp intel or vacated targets) AND not an elite established
+            # stud (high tier / high VORP). Don't fire on ARSB-caliber WRs.
+            import re as _re_tier
+            def _tnum2(t):
+                m = _re_tier.search(r'(\d+)', str(t)); return int(m.group(1)) if m else 9
+            _has_intel = bool(str(_pr.get('intel_note','')).strip())
+            _has_vac = bool(vacated_roles.get(_pr['clean_name'], {}).get('inherits_targets'))
+            _is_elite = (_tnum2(_pr.get('tier','Tier 9')) <= 2) or (_pos_rank <= 4)
+            _wr_value = (_pr['position'] == 'WR' and _pos_rank >= 5 and _need_pos
+                         and not _is_elite and (_has_intel or _has_vac))
             if _wr_value and not _edge_txt:
-                _has_intel = bool(str(_pr.get('intel_note','')).strip())
-                _edge_txt = (" 💎 <b>WR VALUE ZONE:</b> top-2 WRs go high, but this tier is where "
-                             "tier-jumpers hide (JSN-type). "
-                             + ("This one has live camp buzz — prime breakout target." if _has_intel
-                                else "Target camp risers here for league-winning value."))
+                _edge_txt = (" 💎 <b>WR VALUE ZONE:</b> mid-tier WR where tier-jumpers hide (JSN-type). "
+                             + ("Live camp buzz — prime breakout target." if _has_intel
+                                else f"Inherits vacated targets — breakout upside."))
             if _fair > my_max_bid and _mkt_fair > my_max_bid:
                 _verdict, _color, _msg = "CAN'T AFFORD", "#ef4444", f"Market ~${max(_likely,_mkt_fair)} exceeds your max ${my_max_bid}. Would strand your roster."
             elif not _need_pos and not _want:
@@ -1529,34 +1538,44 @@ if draft_mode == "🔨 Auction / Salary Cap":
                 if _sim_gaps.get(_bkt, 0) > 0:
                     _sim_gaps[_bkt] -= 1
                 _still = [p for p in ['QB','RB','WR','TE','IDP','DEF'] if _sim_gaps.get(p,0) > 0]
+                # ALLOCATE the remaining cap across still-needed positions by realistic
+                # weight (RB/WR are expensive & primary; TE/QB2/DEF/IDP are cheap fills).
+                # This replaces the old flat per-slot cap that WRONGLY dropped RB/WR
+                # (their cheapest options cost far more than the flat cap).
+                _POS_W = {'RB': 3.0, 'WR': 3.0, 'QB': 1.6, 'TE': 1.0, 'IDP': 0.5, 'DEF': 0.3}
+                _wsum = sum(_POS_W.get(p, 1.0) * _sim_gaps[p] for p in _still) or 1.0
                 _plan_bits = []
-                for _p in _still[:4]:
+                for _p in _still:
                     _is_idp = _p == 'IDP'
+                    # this position's slice of the remaining budget, per open slot
+                    _pos_budget = _cap_after * (_POS_W.get(_p, 1.0) * _sim_gaps[_p]) / _wsum
+                    _per_pos_slot = max(1.0, _pos_budget / max(1, _sim_gaps[_p]))
                     _ppool_all = df_unpicked[df_unpicked['position'].isin(['LB','DL','DB'])] if _is_idp \
                                  else df_unpicked[df_unpicked['position'] == _p]
                     _ppool_all = _ppool_all[_ppool_all['clean_name'] != _pr['clean_name']].sort_values('proj_fpts', ascending=False)
-                    # realistic cost per candidate = league market price at its positional rank
-                    _cands = []
-                    for _i2, (_, _rr) in enumerate(_ppool_all.head(12).iterrows(), start=1):
-                        _rk = _i2  # positional rank among AVAILABLE (approx)
-                        _lp = league_market_cost(_p if not _is_idp else 'LB', _rk) or int(_rr['fair_value'])
-                        if _lp <= max(1, _per_slot * 1.8):   # affordable within plan budget
+                    # best targets within this position's allocated budget (generous
+                    # band so realistic RB/WR prices qualify); if none fit, show the
+                    # cheapest available so the position is never silently dropped.
+                    _cands, _cheapest = [], None
+                    for _i2, (_, _rr) in enumerate(_ppool_all.head(20).iterrows(), start=1):
+                        _lp = league_market_cost(_p if not _is_idp else 'LB', _i2) or int(_rr['fair_value'])
+                        if _cheapest is None or _lp < _cheapest[1]:
+                            _cheapest = (_rr['player_name'], _lp)
+                        if _lp <= _per_pos_slot * 1.5:
                             _cands.append((_rr['player_name'], int(_lp)))
                         if len(_cands) >= 3:
                             break
-                    # CONTESTED-POSITION FLAG: rivals still needing this pos vs startable left
-                    _pp = pos_pressure.get(_p, {})
-                    _rivals_need = _pp.get('rivals_needing', 0)
+                    if not _cands and _cheapest:
+                        _cands = [(_cheapest[0], int(_cheapest[1]))]   # never drop a needed position
+                    _pp2 = pos_pressure.get(_p, {})
+                    _rivals_need = _pp2.get('rivals_needing', 0)
                     _startable_left = int((_ppool_all['fair_value'] >= 5).sum()) if not _is_idp else len(_ppool_all)
                     _flag = ""
                     if _rivals_need >= 3 and _startable_left <= _rivals_need + 1:
                         _flag = (f' <span style="color:#f59e0b;font-weight:700;">⚠️ {_rivals_need} rivals need '
-                                 f'{_p}, only {_startable_left} startable left — inflating, prioritize now</span>')
-                    if _cands:
-                        _names = ", ".join(f"{n} (~${c})" for n, c in _cands)
-                        _plan_bits.append(f"<b>{_p}×{_sim_gaps[_p]}:</b> {_names}{_flag}")
-                    elif _flag:
-                        _plan_bits.append(f"<b>{_p}×{_sim_gaps[_p]}:</b>{_flag}")
+                                 f'{_p}, only {_startable_left} left — inflating</span>')
+                    _names = ", ".join(f"{n} (~${c})" for n, c in _cands)
+                    _plan_bits.append(f"<b>{_p}×{_sim_gaps[_p]} (~${int(_pos_budget)}):</b> {_names}{_flag}")
                 _viable = _cap_after >= _slots_after  # at least $1/slot
                 _vcolor = "#10b981" if _viable else "#ef4444"
                 _plan_html = "<br>".join(_plan_bits) if _plan_bits else "Tight — lean on $1-3 value at your remaining slots."
