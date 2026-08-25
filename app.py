@@ -586,6 +586,23 @@ off_mask = df_board['position'].isin(['QB', 'RB', 'WR', 'TE'])
 pos_off_vorp = df_board.loc[off_mask, 'live_vorp'].clip(lower=0).sum()
 df_board.loc[off_mask, 'fair_value'] = (df_board.loc[off_mask, 'live_vorp'].clip(lower=0) / max(1.0, pos_off_vorp)) * (180 * league_size * 0.75)
 df_board.loc[off_mask, 'fair_value'] = df_board.loc[off_mask, 'fair_value'].apply(lambda x: max(1, int(round(float(x)))))
+# SUPERFLEX QB reconciliation: pure VORP underweights elite QBs in 2-QB formats
+# because the replacement bar (QB20) is itself a high-scoring starter — so Allen's
+# dyn_vorp (~94) trails an elite RB's (~147) even though the LEAGUE pays MORE for
+# the QB. That's a real, data-backed superflex scarcity premium that VORP misses,
+# and it made Fair ($~37) contradict the correct market/Likely ($~57). Blend QB
+# fair toward the empirical league market so the two stop fighting. Format-gated:
+# only in superflex; standard 1-QB keeps pure VORP fair.
+if qb_format != "🏈 Standard 1-QB":
+    _qbm = df_board['position'] == 'QB'
+    for _qi, _qr in df_board[_qbm].iterrows():
+        _qrank = int((df_board[_qbm]['proj_fpts'] > _qr['proj_fpts']).sum()) + 1
+        _qmkt = league_market_cost('QB', _qrank)
+        if _qmkt:
+            # 55% market / 45% VORP-fair — respects scarcity premium without fully
+            # abandoning value discipline (so Fair still flags true overpays).
+            _blended = 0.55 * float(_qmkt) + 0.45 * float(_qr['fair_value'])
+            df_board.at[_qi, 'fair_value'] = max(1, int(round(_blended)))
 # market_cost: prefer league-history-calibrated per-position curve (captures SF QB
 # premium + TE cliff), fall back to the generic exp curve where no fit exists.
 for _p in ['QB', 'RB', 'WR', 'TE']:
@@ -714,6 +731,35 @@ try:
         df_board['ffa_flag'] = df_board['clean_name'].map(_fo_map).fillna("")
 except Exception:
     df_board['ffa_flag'] = ""
+
+# --- LIVE Sleeper depth-chart refresh (team + depth) so ALL cards use accurate
+# roster data, + grounded RB handcuffs. Cached 6h; on any failure we keep the
+# board exactly as-is (feature silently off, never crashes the app). ---
+@st.cache_data(ttl=21600, show_spinner=False)
+def load_sleeper_depth():
+    return sl.fetch_players_nfl(clean_name)
+
+_players_nfl = load_sleeper_depth()
+df_board['handcuff'] = ""
+df_board['handcuff_on_board'] = False
+if _players_nfl:
+    _bset = set(df_board['clean_name'])
+    _by = _players_nfl.get('by_clean', {})
+    for _idx, _r in df_board.iterrows():
+        _lv = _by.get(_r['clean_name'])
+        # refresh team + depth from live Sleeper (keep board value if missing)
+        if _lv:
+            if _lv.get('team'):
+                df_board.at[_idx, 'team'] = _lv['team']
+            if _lv.get('depth') is not None:
+                df_board.at[_idx, 'depth_chart_order'] = _lv['depth']
+        # grounded handcuff for lead-back RBs (confidence-guarded)
+        if _r['position'] == 'RB':
+            _hc = sl.handcuff_for(_r['clean_name'], df_board.at[_idx, 'team'],
+                                  _players_nfl, _bset, clean_name)
+            if _hc and _hc.get('confident'):
+                df_board.at[_idx, 'handcuff'] = _hc['name']
+                df_board.at[_idx, 'handcuff_on_board'] = bool(_hc['on_board'])
 
 player_pos_map = dict(zip(df_board['clean_name'], df_board['position']))
 player_display_map = dict(zip(df_board['clean_name'], df_board['player_name']))
@@ -1500,6 +1546,15 @@ if draft_mode == "🔨 Auction / Salary Cap":
             _ffa_f = str(_pr.get('ffa_flag', '')).strip()
             if _ffa_f:
                 _ffa_txt = f" {_ffa_f}"
+            # HANDCUFF (grounded, live Sleeper depth): for a workhorse RB worth
+            # protecting, name his backup. Only fires when we confidently know the
+            # RB2 (confidence guard in sleeper_live). Value: late-round insurance.
+            _hc_txt = ""
+            _hc = str(_pr.get('handcuff', '')).strip()
+            if _pr['position'] == 'RB' and _hc and float(_pr.get('live_vorp', _pr.get('vorp', 0))) >= 40:
+                _where = "grab him late as insurance" if _pr.get('handcuff_on_board') else "stash off waivers"
+                _hc_txt = (f" 🔗 <b>Handcuff:</b> {_hc} — if you win {_pr['player_name']}, "
+                           f"{_where} (protects a workhorse pick).")
             if _fair > my_max_bid and _mkt_fair > my_max_bid:
                 _verdict, _color, _msg = "CAN'T AFFORD", "#ef4444", f"Market ~${max(_likely,_mkt_fair)} exceeds your max ${my_max_bid}. Would strand your roster."
             elif not _need_pos and not _want:
@@ -1507,7 +1562,7 @@ if draft_mode == "🔨 Auction / Salary Cap":
             else:
                 _verdict, _color = f"BID to ${_bid_ceiling}", "#10b981"
                 _msg = (f"League market for {_pr['position']}{_pos_rank if _pos_rank<99 else ''} ~${_likely}. "
-                        f"Ceiling ${_bid_ceiling} (real tier price).{_tier_drop_txt}{_edge_txt}{_ffa_txt}")
+                        f"Ceiling ${_bid_ceiling} (real tier price).{_tier_drop_txt}{_edge_txt}{_ffa_txt}{_hc_txt}")
             _star = "⭐ TARGET · " if _want else ""
             st.markdown(
                 f'<div style="background:{_color};border-radius:8px;padding:14px 18px;margin:4px 0 8px 0;">'
@@ -2144,36 +2199,11 @@ else:
             f'</div>', unsafe_allow_html=True
         )
 
-# Advisor metric legend (mode-aware) so the new signals are self-explaining.
-with st.expander("ℹ️ How to read the advisor metrics"):
-    if draft_mode == "🔨 Auction / Salary Cap":
-        st.markdown(
-            "- **Fair $** — value at par (VORP share of budget), already adjusted for live **room inflation**.\n"
-            "- **Likely sells / Walk-away** — Monte-Carlo of the winning price from rivals' remaining cap, "
-            "positional need, and archetype aggression. *Likely* = median sim; *Walk-away* = 80th-percentile "
-            "(don't chase past it).\n"
-            "- **Surplus / VORP-$** — arbitrage: fair value above market cost, and points-of-VORP per dollar.\n"
-            "- **🏃 RUN / 🎯 rivals need** — a positional run is underway, or N rivals still must fill that slot "
-            "(demand holds prices up).\n"
-            "- **Nomination drain** — the Smart Nominations card bleeds rivals on **deep** "
-            "positions (WR/RB mid-tier) where replacement is cheap, so their spend is wasted. "
-            "It protects your studs and scarce TE/QB — fitted from 3 years of your league's real auctions."
-        )
-    else:
-        st.markdown(
-            "- **VORP** — value over a realistic replacement starter (Superflex boosts QB scarcity).\n"
-            "- **% GONE (Monte-Carlo)** — simulated probability a player is drafted **before your next pick**, "
-            "using ADP + draft noise over the exact serpentine gap. ≥50% = grab now or lose him.\n"
-            "- **+Spots Value** — falling past consensus ADP (a steal if he lasts to you).\n"
-            "- **VONA** — value lost if you wait: high = a real positional cliff (draft now), low = depth remains (wait)."
-        )
-st.markdown("---")
-
 # 6. Draft Console
-col_left, col_right = st.columns([1.2, 1])
+col_left, col_right = st.columns([1.4, 1])
 
 with col_left:
-    st.markdown("---"); st.markdown("##### 🎯 Player console & mark drafted")
+    st.markdown("##### 🎯 Player console & mark drafted")
     player_options = df_unpicked['player_name'].tolist()
     if player_options:
         selected_player = st.selectbox("Search or Select Player:", player_options)
@@ -2332,6 +2362,32 @@ with col_right:
                 f'<div><b>{tr["player_name"]}</b> <span class="badge-pos pos-{tr["position"]}">{tr["position"]}</span><br>'
                 f'<span style="font-size:0.75rem; color:#94a3b8;">{_sub}</span></div>'
                 f'{_right}</div>', unsafe_allow_html=True)
+
+# Advisor metric legend — moved to the BOTTOM (reference, out of the draft flow).
+with st.expander("ℹ️ How to read the advisor metrics"):
+    if draft_mode == "🔨 Auction / Salary Cap":
+        st.markdown(
+            "- **Fair $** — value at par (VORP share of budget), already adjusted for live **room inflation**. "
+            "For superflex QBs, blended toward the real league market to reflect 2-QB scarcity.\n"
+            "- **Likely sells / Walk-away** — Monte-Carlo of the winning price from rivals' remaining cap, "
+            "positional need, and archetype aggression. *Likely* = median sim; *Walk-away* = 80th-percentile "
+            "(don't chase past it).\n"
+            "- **Surplus / VORP-$** — arbitrage: fair value above market cost, and points-of-VORP per dollar.\n"
+            "- **🏃 RUN / 🎯 rivals need** — a positional run is underway, or N rivals still must fill that slot "
+            "(demand holds prices up).\n"
+            "- **🔗 Handcuff** — the backup RB behind a workhorse (live Sleeper depth) — late insurance.\n"
+            "- **Nomination drain** — Smart Nominations bleeds rivals on **deep** positions (WR/RB mid-tier) "
+            "where replacement is cheap, so their spend is wasted. Protects your studs and scarce TE/QB — "
+            "fitted from 3 years of your league's real auctions."
+        )
+    else:
+        st.markdown(
+            "- **VORP** — value over a realistic replacement starter (Superflex boosts QB scarcity).\n"
+            "- **% GONE (Monte-Carlo)** — simulated probability a player is drafted **before your next pick**, "
+            "using ADP + draft noise over the exact serpentine gap. ≥50% = grab now or lose him.\n"
+            "- **+Spots Value** — falling past consensus ADP (a steal if he lasts to you).\n"
+            "- **VONA** — value lost if you wait: high = a real positional cliff (draft now), low = depth remains (wait)."
+        )
 
 st.markdown("---")
 

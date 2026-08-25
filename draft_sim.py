@@ -174,7 +174,7 @@ def nomination_scores(candidates, rivals, my_interest_names, n_top=6):
 # ─────────────────────── Depth-based nomination (preferred) ───────────────────
 
 def nomination_by_depth(candidates, rivals, position_depth, my_interest_names=None,
-                        n_top=6, min_depth=0.4, protect_top_n=3):
+                        n_top=6, min_depth=0.9, protect_top_n=3):
     """Rank nominations by POSITIONAL DEPTH x rival demand — bleed rivals on
     replaceable talent at deep positions (WR/RB), never on scarce ones (TE/QB top).
 
@@ -232,7 +232,15 @@ def nomination_by_depth(candidates, rivals, position_depth, my_interest_names=No
         # the rival is overpaying for depth they could get cheap. Studs (fv high,
         # low waste ratio) score lower so we bleed on mid-tier, not your studs.
         waste_ratio = waste / max(1.0, fv)
-        score = depth * top_price * (0.4 + waste_ratio) * (1 + 0.25 * interested)
+        # BLEED score — reward DEPTH x WASTE (rivals overpaying for replaceable
+        # talent at a deep position), NOT raw price. Previously top_price dominated,
+        # which biased the card toward the most EXPENSIVE names (studs/RBs) even when
+        # rivals weren't actually overpaying. The point of a bleed nomination is to
+        # make a rival waste cap on depth they could get cheap — that peaks at the
+        # DEEPEST positions (WR 1.0, RB ~0.99 per league history), which is exactly
+        # where 3yr data says to drain them. So: wasted cap is the primary driver,
+        # scaled by how deep the position is; price is a mild tiebreaker only.
+        score = (depth ** 2) * (waste + 0.15 * top_price) * (1 + 0.4 * interested)
         out.append({
             "clean_name": c["clean_name"],
             "player_name": c.get("player_name", c["clean_name"]),
@@ -247,4 +255,25 @@ def nomination_by_depth(candidates, rivals, position_depth, my_interest_names=No
                     f"still need {pos} and will pay ~${int(top_price)} — ~${int(waste)} wasted cap"),
         })
     out.sort(key=lambda d: d["score"], reverse=True)
+    # DIVERSIFY the top-N: nominating the same position 4x in a row is a weak play
+    # (it telegraphs your disinterest and floods one market). Since the league's
+    # deepest positions (WR 1.0 / RB 0.99) are near-tied bleed targets, interleave
+    # them so the card surfaces the best WR bleed alongside the best RB bleed rather
+    # than letting a marginal price edge crowd one position out. Greedy round-robin
+    # by position, best-scoring first within each.
+    if len(out) > n_top:
+        from collections import defaultdict as _dd
+        _by = _dd(list)
+        for d in out:
+            _by[d["position"]].append(d)
+        _pos_order = sorted(_by.keys(), key=lambda p: _by[p][0]["score"], reverse=True)
+        _diverse, _i = [], 0
+        while len(_diverse) < n_top and any(_by.values()):
+            p = _pos_order[_i % len(_pos_order)]
+            if _by[p]:
+                _diverse.append(_by[p].pop(0))
+            _i += 1
+            if _i > 200:
+                break
+        return _diverse[:n_top]
     return out[:n_top]
