@@ -1054,14 +1054,20 @@ else:
     df_board['my_value'] = df_board['fair_value'] * df_board['need_mult']
 
 # ── FORWARD EDGE SCORE: who is best-POSITIONED for THIS year (tier-jumpers) ────
-# Fuses value with FORWARD-looking outlook signals (all grounded in real data):
-#   base VORP + scheme-FIT bonus + tier-jumper/positive-intel bonus (the cited
-#   vacated-role risers) − scheme-RISK penalty. Higher = more likely to outperform
-#   its price this year. Powers the 🚀 Edge Board.
+# The real signal = MATCH data (vacated opportunity) WITH news (reality). Vacated
+# volume shows the opportunity but over-credits (assumes 100% inheritance). The
+# beat news CONFIRMS (clear lead) or DISCOUNTS (committee/split) it. So news
+# MODULATES the vacated bonus rather than stacking on top of it.
+import re as _re_edge
+_SPLIT_KW = _re_edge.compile(r"\bsplit|committee|timeshare|time-share|share|rotation|"
+                            r"1a|1b|tandem|competition|competing|rookie|signed|"
+                            r"backfield by committee|two-back|duo\b", _re_edge.I)
+
 def _edge_components(r):
     base = float(r.get('live_vorp', 0))
     tag = str(r.get('scheme_tag', '')).upper()
     itag = str(r.get('intel_tag', '')).upper()
+    note = str(r.get('intel_note', '')).strip()
     mult = float(r.get('live_multiplier', 1.0))
     bonus = 0.0
     reasons = []
@@ -1069,28 +1075,38 @@ def _edge_components(r):
         bonus += 12; reasons.append('scheme fit')
     if 'RISK' in tag:
         bonus -= 15; reasons.append('scheme RISK')
-    # tier-jumper / positive camp intel (the cited risers) — the news multiplier
-    # above 1.0 encodes a real, cited opportunity/role bump.
-    if mult > 1.03:
-        bonus += (mult - 1.0) * 120  # 1.10 => +12
-        if 'JUMPER' in itag or 'SURGE' in itag or 'BREAKOUT' in itag:
-            reasons.append('tier-jumper (cited)')
-        elif str(r.get('intel_note', '')).strip():
-            reasons.append('camp riser')
-    elif mult < 0.97:
-        bonus -= (1.0 - mult) * 80
-    # DETERMINISTIC vacated-role signal (2025 usage vs 2026 roster) — the grounded
-    # tier-jumper: inherited carries+targets from a departed teammate. Bonus scales
-    # with the vacated volume; reason names who left (cited by real 2025 stats).
+
     _vac = vacated_roles.get(r['clean_name'])
-    if _vac:
-        _inh = _vac.get('inherits_carries', 0) + _vac.get('inherits_targets', 0)
-        if _inh >= 40:
-            bonus += min(25, _inh / 12.0)   # up to +25 for a huge vacated role
-            _src = _vac.get('from', [])
-            reasons.append(f"inherits {_vac.get('inherits_carries',0)}c/"
-                           f"{_vac.get('inherits_targets',0)}tgt vacated by "
-                           f"{_src[0].split(' (')[0] if _src else 'departure'}")
+    _vac_inh = (_vac.get('inherits_carries', 0) + _vac.get('inherits_targets', 0)) if _vac else 0
+    _has_vac = bool(_vac) and _vac_inh >= 40
+    _pos_news = mult > 1.03 and ('JUMPER' in itag or 'SURGE' in itag or 'BREAKOUT' in itag or note)
+    _split_risk = ('PINCH' in itag) or (bool(note) and bool(_SPLIT_KW.search(note)))
+
+    if _has_vac:
+        _src = _vac.get('from', [])
+        _from = _src[0].split(' (')[0] if _src else 'departure'
+        _vac_desc = f"{_vac.get('inherits_carries',0)}c/{_vac.get('inherits_targets',0)}tgt from {_from}"
+        _base_vac = min(25, _vac_inh / 12.0)   # opportunity size
+        # MATCH with news: confirm (clear lead), discount (split), or unconfirmed
+        if _pos_news and not _split_risk:
+            bonus += _base_vac * 1.15            # confirmed — full/boosted
+            reasons.append(f"✅ CONFIRMED lead: inherits {_vac_desc}; camp buzz backs clear role")
+        elif _split_risk:
+            bonus += _base_vac * 0.5             # discount — pool gets split
+            reasons.append(f"⚠️ SPLIT RISK: inherits {_vac_desc} but news signals committee")
+        else:
+            bonus += _base_vac * 0.85            # unconfirmed opportunity
+            reasons.append(f"inherits {_vac_desc} (unconfirmed — watch camp)")
+    else:
+        # no vacated pool → news stands on its own (camp riser / scheme buzz)
+        if mult > 1.03:
+            bonus += (mult - 1.0) * 120
+            if 'JUMPER' in itag or 'SURGE' in itag or 'BREAKOUT' in itag:
+                reasons.append('tier-jumper (cited)')
+            elif note:
+                reasons.append('camp riser')
+        elif mult < 0.97:
+            bonus -= (1.0 - mult) * 80
     return base + bonus, reasons
 
 _edge_vals = df_board.apply(lambda r: _edge_components(r), axis=1)
