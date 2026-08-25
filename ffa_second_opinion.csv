@@ -1,0 +1,17 @@
+clean,player_name,position,board_z,ffa_z,z_gap,ffa_flag
+dallas goedert,Dallas Goedert,TE,-1.1480926716482103,0.048023860182956464,1.2,📈 Multi-source consensus is HIGHER on Dallas Goedert than your board (relative to TE peers) — possible value / your board may be light.
+daniel jones,Daniel Jones,QB,-1.5680321027526742,-0.6459624409638772,0.92,📈 Multi-source consensus is HIGHER on Daniel Jones than your board (relative to QB peers) — possible value / your board may be light.
+nico collins,Nico Collins,WR,1.171946873111117,0.3404499221861808,-0.83,📉 Multi-source consensus is LOWER on Nico Collins than your board — possible reach / your board may be rich here.
+drake maye,Drake Maye,QB,1.174324670423903,0.3761604328436722,-0.8,📉 Multi-source consensus is LOWER on Drake Maye than your board — possible reach / your board may be rich here.
+matthew stafford,Matthew Stafford,QB,-0.12952484354626398,0.6594588412628524,0.79,📈 Multi-source consensus is HIGHER on Matthew Stafford than your board (relative to QB peers) — possible value / your board may be light.
+sam laporta,Sam LaPorta,TE,0.7743322400318308,0.02416673980370802,-0.75,📉 Multi-source consensus is LOWER on Sam LaPorta than your board — possible reach / your board may be rich here.
+oronde gadsden,Oronde Gadsden,TE,-0.9613969377904723,-1.6953508928586007,-0.73,📉 Multi-source consensus is LOWER on Oronde Gadsden than your board — possible reach / your board may be rich here.
+courtland sutton,Courtland Sutton,WR,-1.3777085378558187,-0.6549394367942958,0.72,📈 Multi-source consensus is HIGHER on Courtland Sutton than your board (relative to WR peers) — possible value / your board may be light.
+mike evans,Mike Evans,WR,0.10847218195780245,-0.5687529436650354,-0.68,📉 Multi-source consensus is LOWER on Mike Evans than your board — possible reach / your board may be rich here.
+fernando mendoza,Fernando Mendoza,QB,-1.9486991902474395,-2.6223756957494144,-0.67,📉 Multi-source consensus is LOWER on Fernando Mendoza than your board — possible reach / your board may be rich here.
+trey mcbride,Trey McBride,TE,1.9242697311845633,2.5885577195739917,0.66,📈 Multi-source consensus is HIGHER on Trey McBride than your board (relative to TE peers) — possible value / your board may be light.
+dj moore,DJ Moore,WR,-1.2166776697947488,-0.5563931357544091,0.66,📈 Multi-source consensus is HIGHER on DJ Moore than your board (relative to WR peers) — possible value / your board may be light.
+jaxon smithnjigba,Jaxon Smith-Njigba,WR,1.7053616235634104,2.3600237960050516,0.65,📈 Multi-source consensus is HIGHER on Jaxon Smith-Njigba than your board (relative to WR peers) — possible value / your board may be light.
+davante adams,Davante Adams,WR,-0.9147447921802441,-0.301306017507636,0.61,📈 Multi-source consensus is HIGHER on Davante Adams than your board (relative to WR peers) — possible value / your board may be light.
+brock bowers,Brock Bowers,TE,2.727873107354826,2.126518877310038,-0.6,📉 Multi-source consensus is LOWER on Brock Bowers than your board — possible reach / your board may be rich here.
+jayden reed,Jayden Reed,WR,-0.7033917778500899,-1.3060487631177136,-0.6,📉 Multi-source consensus is LOWER on Jayden Reed than your board — possible reach / your board may be rich here.
