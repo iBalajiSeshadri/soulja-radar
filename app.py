@@ -1205,15 +1205,27 @@ if draft_mode == "🔨 Auction / Salary Cap":
             # NOT flag paying market as an "overpay". The engine's job is to tell you
             # what the market cost is and whether you can still build after paying it.
             _prem = stud_premium_for_rank(int(_pr['board_rank']))
-            _mkt_fair = max(_fair, int(round(_fair * _prem)))   # market-realistic value
+            # Position-specific fitted market price from the league's own auction
+            # history (market_curves.json) — this is what THIS tier actually sells for
+            # (e.g. SF QB1-3 ~$52-53), far more accurate than a generic fair*premium.
+            _pos_rank = int((df_board[df_board['position'] == _pr['position']]
+                             .sort_values('proj_fpts', ascending=False)['clean_name']
+                             .tolist().index(_pr['clean_name']) + 1)) if _pr['clean_name'] in \
+                        df_board[df_board['position'] == _pr['position']]['clean_name'].tolist() else 99
+            _league_price = league_market_cost(_pr['position'], _pos_rank)
+            _mkt_fair = max(_fair, int(round(_fair * _prem)), int(_league_price or 0))
             _bid_ceiling = min(my_max_bid, max(_walk, _mkt_fair))
+            # "likely to sell" should also respect the real market floor for the tier
+            _likely = max(_likely, int(_league_price or 0)) if _league_price else _likely
             if _fair > my_max_bid and _mkt_fair > my_max_bid:
                 _verdict, _color, _msg = "CAN'T AFFORD", "#ef4444", f"Market ~${max(_likely,_mkt_fair)} exceeds your max ${my_max_bid}. Would strand your roster."
             elif not _need_pos and not _want:
                 _verdict, _color, _msg = "SKIP", "#f59e0b", f"You don't need {_pr['position']} — let a rival spend ~${_likely}. Nominate to bleed them."
             else:
                 _verdict, _color = f"BID to ${_bid_ceiling}", "#10b981"
-                _msg = f"Market price for this tier ~${_likely}. Your ceiling ${_bid_ceiling} (fair ${_fair}, +premium). Winning is fine — see the build plan below."
+                _msg = (f"League market for {_pr['position']}{_pos_rank if _pos_rank<99 else ''} ~${_likely}. "
+                        f"Ceiling ${_bid_ceiling} (real tier price, not theoretical fair). "
+                        f"Winning is fine — see the build plan below.")
             _star = "⭐ TARGET · " if _want else ""
             st.markdown(
                 f'<div style="background:{_color};border-radius:8px;padding:14px 18px;margin:4px 0 8px 0;">'
