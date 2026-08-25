@@ -1,0 +1,1099 @@
+{
+  "_meta": {
+    "source": "nflverse games.csv (2026 schedule + 2025 offensive PPG)",
+    "source_url": "https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv",
+    "open_weeks": 4,
+    "league_avg_ppg_2025": 23.0,
+    "soft_open_cutoff_ppg": 20.9,
+    "note": "Streaming DST read: low avg_opp_ppg over Weeks 1-4 = soft opening slate (weak offenses faced). Fused with DC-change context.",
+    "generated_by": "build_dst_streamers.py"
+  },
+  "ARI": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "LAC",
+        "home": false,
+        "opp_ppg": 21.6
+      },
+      {
+        "wk": 2,
+        "opp": "SEA",
+        "home": true,
+        "opp_ppg": 28.4
+      },
+      {
+        "wk": 3,
+        "opp": "SF",
+        "home": false,
+        "opp_ppg": 25.7
+      },
+      {
+        "wk": 4,
+        "opp": "NYG",
+        "home": false,
+        "opp_ppg": 22.4
+      }
+    ],
+    "avg_opp_ppg": 24.5,
+    "soft_open": false,
+    "dc": "Nick Rallis",
+    "dc_changed": false,
+    "def_scheme": "",
+    "streamer_note": "\ud83d\udfe1 Average open (24 opp PPG). Wks1-4: @ LAC(22), vs SEA(28), @ SF(26), @ NYG(22)."
+  },
+  "ATL": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "PIT",
+        "home": false,
+        "opp_ppg": 23.4
+      },
+      {
+        "wk": 2,
+        "opp": "CAR",
+        "home": true,
+        "opp_ppg": 18.3
+      },
+      {
+        "wk": 3,
+        "opp": "GB",
+        "home": false,
+        "opp_ppg": 23.0
+      },
+      {
+        "wk": 4,
+        "opp": "NO",
+        "home": false,
+        "opp_ppg": 18.0
+      }
+    ],
+    "avg_opp_ppg": 20.7,
+    "soft_open": true,
+    "dc": "Jeff Ulbrich",
+    "dc_changed": false,
+    "def_scheme": "",
+    "streamer_note": "\ud83d\udfe2 SOFT open (21 opp PPG; 2 bottom-third offenses) \u2014 strong streaming DST early. Wks1-4: @ PIT(23), vs CAR(18), @ GB(23), @ NO(18)."
+  },
+  "BAL": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "IND",
+        "home": false,
+        "opp_ppg": 27.4
+      },
+      {
+        "wk": 2,
+        "opp": "NO",
+        "home": true,
+        "opp_ppg": 18.0
+      },
+      {
+        "wk": 3,
+        "opp": "DAL",
+        "home": false,
+        "opp_ppg": 27.7
+      },
+      {
+        "wk": 4,
+        "opp": "TEN",
+        "home": true,
+        "opp_ppg": 16.7
+      }
+    ],
+    "avg_opp_ppg": 22.4,
+    "soft_open": false,
+    "dc": "Anthony Weaver",
+    "dc_changed": false,
+    "def_scheme": "improved pass rush",
+    "streamer_note": "\ud83d\udfe1 Average open (22 opp PPG). Wks1-4: @ IND(27), vs NO(18), @ DAL(28), vs TEN(17)."
+  },
+  "BUF": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "HOU",
+        "home": false,
+        "opp_ppg": 23.8
+      },
+      {
+        "wk": 2,
+        "opp": "DET",
+        "home": true,
+        "opp_ppg": 28.3
+      },
+      {
+        "wk": 3,
+        "opp": "LAC",
+        "home": true,
+        "opp_ppg": 21.6
+      },
+      {
+        "wk": 4,
+        "opp": "NE",
+        "home": true,
+        "opp_ppg": 28.8
+      }
+    ],
+    "avg_opp_ppg": 25.6,
+    "soft_open": false,
+    "dc": "Jim Leonhard",
+    "dc_changed": true,
+    "def_scheme": "More versatile and aggressive defense",
+    "streamer_note": "\ud83d\udd34 TOUGH open (26 opp PPG) \u2014 fade/stash early. \ud83d\udee1\ufe0f New DC Jim Leonhard (More versatile and aggressive defense). Wks1-4: @ HOU(24), vs DET(28), vs LAC(22), vs NE(29)."
+  },
+  "CAR": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "CHI",
+        "home": true,
+        "opp_ppg": 25.9
+      },
+      {
+        "wk": 2,
+        "opp": "ATL",
+        "home": false,
+        "opp_ppg": 20.8
+      },
+      {
+        "wk": 3,
+        "opp": "CLE",
+        "home": false,
+        "opp_ppg": 16.4
+      },
+      {
+        "wk": 4,
+        "opp": "DET",
+        "home": true,
+        "opp_ppg": 28.3
+      }
+    ],
+    "avg_opp_ppg": 22.9,
+    "soft_open": false,
+    "dc": "Ejiro Evero",
+    "dc_changed": false,
+    "def_scheme": "Aggressive/High-Pressure",
+    "streamer_note": "\ud83d\udfe1 Average open (23 opp PPG). Wks1-4: vs CHI(26), @ ATL(21), @ CLE(16), vs DET(28)."
+  },
+  "CHI": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "CAR",
+        "home": false,
+        "opp_ppg": 18.3
+      },
+      {
+        "wk": 2,
+        "opp": "MIN",
+        "home": true,
+        "opp_ppg": 20.2
+      },
+      {
+        "wk": 3,
+        "opp": "PHI",
+        "home": true,
+        "opp_ppg": 22.3
+      },
+      {
+        "wk": 4,
+        "opp": "NYJ",
+        "home": true,
+        "opp_ppg": 17.6
+      }
+    ],
+    "avg_opp_ppg": 19.6,
+    "soft_open": true,
+    "dc": "Dennis Allen",
+    "dc_changed": false,
+    "def_scheme": "",
+    "streamer_note": "\ud83d\udfe2 SOFT open (20 opp PPG; 3 bottom-third offenses) \u2014 strong streaming DST early. Wks1-4: @ CAR(18), vs MIN(20), vs PHI(22), vs NYJ(18)."
+  },
+  "CIN": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "TB",
+        "home": true,
+        "opp_ppg": 22.4
+      },
+      {
+        "wk": 2,
+        "opp": "HOU",
+        "home": false,
+        "opp_ppg": 23.8
+      },
+      {
+        "wk": 3,
+        "opp": "PIT",
+        "home": false,
+        "opp_ppg": 23.4
+      },
+      {
+        "wk": 4,
+        "opp": "JAC",
+        "home": true,
+        "opp_ppg": 27.9
+      }
+    ],
+    "avg_opp_ppg": 24.4,
+    "soft_open": false,
+    "dc": "Al Golden",
+    "dc_changed": false,
+    "def_scheme": "",
+    "streamer_note": "\ud83d\udfe1 Average open (24 opp PPG). Wks1-4: vs TB(22), @ HOU(24), @ PIT(23), vs JAC(28)."
+  },
+  "CLE": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "JAC",
+        "home": false,
+        "opp_ppg": 27.9
+      },
+      {
+        "wk": 2,
+        "opp": "TB",
+        "home": false,
+        "opp_ppg": 22.4
+      },
+      {
+        "wk": 3,
+        "opp": "CAR",
+        "home": true,
+        "opp_ppg": 18.3
+      },
+      {
+        "wk": 4,
+        "opp": "PIT",
+        "home": true,
+        "opp_ppg": 23.4
+      }
+    ],
+    "avg_opp_ppg": 23.0,
+    "soft_open": false,
+    "dc": "Mike Rutenberg",
+    "dc_changed": true,
+    "def_scheme": "",
+    "streamer_note": "\ud83d\udfe1 Average open (23 opp PPG). \ud83d\udee1\ufe0f New DC Mike Rutenberg. Wks1-4: @ JAC(28), @ TB(22), vs CAR(18), vs PIT(23)."
+  },
+  "DAL": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "NYG",
+        "home": false,
+        "opp_ppg": 22.4
+      },
+      {
+        "wk": 2,
+        "opp": "WAS",
+        "home": true,
+        "opp_ppg": 20.9
+      },
+      {
+        "wk": 3,
+        "opp": "BAL",
+        "home": true,
+        "opp_ppg": 24.9
+      },
+      {
+        "wk": 4,
+        "opp": "HOU",
+        "home": false,
+        "opp_ppg": 23.8
+      }
+    ],
+    "avg_opp_ppg": 23.0,
+    "soft_open": false,
+    "dc": "Christian Parker",
+    "dc_changed": true,
+    "def_scheme": "Significant overhaul with a new DC and added talent",
+    "streamer_note": "\ud83d\udfe1 Average open (23 opp PPG). \ud83d\udee1\ufe0f New DC Christian Parker (Significant overhaul with a new DC and added talent). Wks1-4: @ NYG(22), vs WAS(21), vs BAL(25), @ HOU(24)."
+  },
+  "DEN": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "KC",
+        "home": false,
+        "opp_ppg": 21.3
+      },
+      {
+        "wk": 2,
+        "opp": "JAC",
+        "home": true,
+        "opp_ppg": 27.9
+      },
+      {
+        "wk": 3,
+        "opp": "LAR",
+        "home": true,
+        "opp_ppg": 30.5
+      },
+      {
+        "wk": 4,
+        "opp": "SF",
+        "home": false,
+        "opp_ppg": 25.7
+      }
+    ],
+    "avg_opp_ppg": 26.4,
+    "soft_open": false,
+    "dc": "Vance Joseph",
+    "dc_changed": false,
+    "def_scheme": "Aggressive coverage schemes",
+    "streamer_note": "\ud83d\udd34 TOUGH open (26 opp PPG) \u2014 fade/stash early. Wks1-4: @ KC(21), vs JAC(28), vs LAR(30), @ SF(26)."
+  },
+  "DET": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "NO",
+        "home": true,
+        "opp_ppg": 18.0
+      },
+      {
+        "wk": 2,
+        "opp": "BUF",
+        "home": false,
+        "opp_ppg": 28.3
+      },
+      {
+        "wk": 3,
+        "opp": "NYJ",
+        "home": true,
+        "opp_ppg": 17.6
+      },
+      {
+        "wk": 4,
+        "opp": "CAR",
+        "home": false,
+        "opp_ppg": 18.3
+      }
+    ],
+    "avg_opp_ppg": 20.6,
+    "soft_open": true,
+    "dc": "Kelvin Sheppard",
+    "dc_changed": false,
+    "def_scheme": "improved pass rush and secondary with a focus on stopping the run",
+    "streamer_note": "\ud83d\udfe2 SOFT open (21 opp PPG; 3 bottom-third offenses) \u2014 strong streaming DST early. Wks1-4: vs NO(18), @ BUF(28), vs NYJ(18), @ CAR(18)."
+  },
+  "GB": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "MIN",
+        "home": false,
+        "opp_ppg": 20.2
+      },
+      {
+        "wk": 2,
+        "opp": "NYJ",
+        "home": false,
+        "opp_ppg": 17.6
+      },
+      {
+        "wk": 3,
+        "opp": "ATL",
+        "home": true,
+        "opp_ppg": 20.8
+      },
+      {
+        "wk": 4,
+        "opp": "TB",
+        "home": false,
+        "opp_ppg": 22.4
+      }
+    ],
+    "avg_opp_ppg": 20.2,
+    "soft_open": true,
+    "dc": "Jonathan Gannon",
+    "dc_changed": true,
+    "def_scheme": "more aggressive, with three-safety and pressure packages",
+    "streamer_note": "\ud83d\udfe2 SOFT open (20 opp PPG; 3 bottom-third offenses) \u2014 strong streaming DST early. \ud83d\udee1\ufe0f New DC Jonathan Gannon (more aggressive, with three-safety and pressure packages). Wks1-4: @ MIN(20), @ NYJ(18), vs ATL(21), @ TB(22)."
+  },
+  "HOU": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "BUF",
+        "home": true,
+        "opp_ppg": 28.3
+      },
+      {
+        "wk": 2,
+        "opp": "CIN",
+        "home": true,
+        "opp_ppg": 24.4
+      },
+      {
+        "wk": 3,
+        "opp": "IND",
+        "home": false,
+        "opp_ppg": 27.4
+      },
+      {
+        "wk": 4,
+        "opp": "DAL",
+        "home": true,
+        "opp_ppg": 27.7
+      }
+    ],
+    "avg_opp_ppg": 26.9,
+    "soft_open": false,
+    "dc": "Matt Burke",
+    "dc_changed": false,
+    "def_scheme": "strong pass-rushing duo",
+    "streamer_note": "\ud83d\udd34 TOUGH open (27 opp PPG) \u2014 fade/stash early. Wks1-4: vs BUF(28), vs CIN(24), @ IND(27), vs DAL(28)."
+  },
+  "IND": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "BAL",
+        "home": true,
+        "opp_ppg": 24.9
+      },
+      {
+        "wk": 2,
+        "opp": "KC",
+        "home": false,
+        "opp_ppg": 21.3
+      },
+      {
+        "wk": 3,
+        "opp": "HOU",
+        "home": true,
+        "opp_ppg": 23.8
+      },
+      {
+        "wk": 4,
+        "opp": "WAS",
+        "home": false,
+        "opp_ppg": 20.9
+      }
+    ],
+    "avg_opp_ppg": 22.7,
+    "soft_open": false,
+    "dc": "Lou Anarumo",
+    "dc_changed": false,
+    "def_scheme": "Lou Anarumo's second season as defensive coordinator",
+    "streamer_note": "\ud83d\udfe1 Average open (23 opp PPG). Wks1-4: vs BAL(25), @ KC(21), vs HOU(24), @ WAS(21)."
+  },
+  "JAC": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "CLE",
+        "home": true,
+        "opp_ppg": 16.4
+      },
+      {
+        "wk": 2,
+        "opp": "DEN",
+        "home": false,
+        "opp_ppg": 23.6
+      },
+      {
+        "wk": 3,
+        "opp": "NE",
+        "home": true,
+        "opp_ppg": 28.8
+      },
+      {
+        "wk": 4,
+        "opp": "CIN",
+        "home": false,
+        "opp_ppg": 24.4
+      }
+    ],
+    "avg_opp_ppg": 23.3,
+    "soft_open": false,
+    "dc": "Anthony Campanile",
+    "dc_changed": false,
+    "def_scheme": "",
+    "streamer_note": "\ud83d\udfe1 Average open (23 opp PPG). Wks1-4: vs CLE(16), @ DEN(24), vs NE(29), @ CIN(24)."
+  },
+  "KC": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "DEN",
+        "home": true,
+        "opp_ppg": 23.6
+      },
+      {
+        "wk": 2,
+        "opp": "IND",
+        "home": true,
+        "opp_ppg": 27.4
+      },
+      {
+        "wk": 3,
+        "opp": "MIA",
+        "home": false,
+        "opp_ppg": 20.4
+      },
+      {
+        "wk": 4,
+        "opp": "LV",
+        "home": false,
+        "opp_ppg": 14.2
+      }
+    ],
+    "avg_opp_ppg": 21.4,
+    "soft_open": false,
+    "dc": "Steve Spagnuolo",
+    "dc_changed": false,
+    "def_scheme": "solid defense",
+    "streamer_note": "\ud83d\udfe1 Average open (21 opp PPG). Wks1-4: vs DEN(24), vs IND(27), @ MIA(20), @ LV(14)."
+  },
+  "LAC": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "ARI",
+        "home": true,
+        "opp_ppg": 20.9
+      },
+      {
+        "wk": 2,
+        "opp": "LV",
+        "home": true,
+        "opp_ppg": 14.2
+      },
+      {
+        "wk": 3,
+        "opp": "BUF",
+        "home": false,
+        "opp_ppg": 28.3
+      },
+      {
+        "wk": 4,
+        "opp": "SEA",
+        "home": false,
+        "opp_ppg": 28.4
+      }
+    ],
+    "avg_opp_ppg": 22.9,
+    "soft_open": false,
+    "dc": "Chris O\u2019Leary",
+    "dc_changed": true,
+    "def_scheme": "",
+    "streamer_note": "\ud83d\udfe1 Average open (23 opp PPG). \ud83d\udee1\ufe0f New DC Chris O\u2019Leary. Wks1-4: vs ARI(21), vs LV(14), @ BUF(28), @ SEA(28)."
+  },
+  "LAR": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "SF",
+        "home": true,
+        "opp_ppg": 25.7
+      },
+      {
+        "wk": 2,
+        "opp": "NYG",
+        "home": true,
+        "opp_ppg": 22.4
+      },
+      {
+        "wk": 3,
+        "opp": "DEN",
+        "home": false,
+        "opp_ppg": 23.6
+      },
+      {
+        "wk": 4,
+        "opp": "PHI",
+        "home": false,
+        "opp_ppg": 22.3
+      }
+    ],
+    "avg_opp_ppg": 23.5,
+    "soft_open": false,
+    "dc": "Chris Shula",
+    "dc_changed": false,
+    "def_scheme": "one of the most dangerous pass rushes in the league",
+    "streamer_note": "\ud83d\udfe1 Average open (24 opp PPG). Wks1-4: vs SF(26), vs NYG(22), @ DEN(24), @ PHI(22)."
+  },
+  "LV": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "MIA",
+        "home": true,
+        "opp_ppg": 20.4
+      },
+      {
+        "wk": 2,
+        "opp": "LAC",
+        "home": false,
+        "opp_ppg": 21.6
+      },
+      {
+        "wk": 3,
+        "opp": "NO",
+        "home": false,
+        "opp_ppg": 18.0
+      },
+      {
+        "wk": 4,
+        "opp": "KC",
+        "home": true,
+        "opp_ppg": 21.3
+      }
+    ],
+    "avg_opp_ppg": 20.3,
+    "soft_open": true,
+    "dc": "Rob Leonard",
+    "dc_changed": true,
+    "def_scheme": "",
+    "streamer_note": "\ud83d\udfe2 SOFT open (20 opp PPG; 2 bottom-third offenses) \u2014 strong streaming DST early. \ud83d\udee1\ufe0f New DC Rob Leonard. Wks1-4: vs MIA(20), @ LAC(22), @ NO(18), vs KC(21)."
+  },
+  "MIA": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "LV",
+        "home": false,
+        "opp_ppg": 14.2
+      },
+      {
+        "wk": 2,
+        "opp": "SF",
+        "home": false,
+        "opp_ppg": 25.7
+      },
+      {
+        "wk": 3,
+        "opp": "KC",
+        "home": true,
+        "opp_ppg": 21.3
+      },
+      {
+        "wk": 4,
+        "opp": "MIN",
+        "home": false,
+        "opp_ppg": 20.2
+      }
+    ],
+    "avg_opp_ppg": 20.4,
+    "soft_open": true,
+    "dc": "Sean Duggan",
+    "dc_changed": true,
+    "def_scheme": "",
+    "streamer_note": "\ud83d\udfe2 SOFT open (20 opp PPG; 2 bottom-third offenses) \u2014 strong streaming DST early. \ud83d\udee1\ufe0f New DC Sean Duggan. Wks1-4: @ LV(14), @ SF(26), vs KC(21), @ MIN(20)."
+  },
+  "MIN": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "GB",
+        "home": true,
+        "opp_ppg": 23.0
+      },
+      {
+        "wk": 2,
+        "opp": "CHI",
+        "home": false,
+        "opp_ppg": 25.9
+      },
+      {
+        "wk": 3,
+        "opp": "TB",
+        "home": false,
+        "opp_ppg": 22.4
+      },
+      {
+        "wk": 4,
+        "opp": "MIA",
+        "home": true,
+        "opp_ppg": 20.4
+      }
+    ],
+    "avg_opp_ppg": 22.9,
+    "soft_open": false,
+    "dc": "Brian Flores",
+    "dc_changed": false,
+    "def_scheme": "league's better defenses",
+    "streamer_note": "\ud83d\udfe1 Average open (23 opp PPG). Wks1-4: vs GB(23), @ CHI(26), @ TB(22), vs MIA(20)."
+  },
+  "NE": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "SEA",
+        "home": false,
+        "opp_ppg": 28.4
+      },
+      {
+        "wk": 2,
+        "opp": "PIT",
+        "home": true,
+        "opp_ppg": 23.4
+      },
+      {
+        "wk": 3,
+        "opp": "JAC",
+        "home": false,
+        "opp_ppg": 27.9
+      },
+      {
+        "wk": 4,
+        "opp": "BUF",
+        "home": false,
+        "opp_ppg": 28.3
+      }
+    ],
+    "avg_opp_ppg": 27.0,
+    "soft_open": false,
+    "dc": "Zak Kuhr",
+    "dc_changed": false,
+    "def_scheme": "",
+    "streamer_note": "\ud83d\udd34 TOUGH open (27 opp PPG) \u2014 fade/stash early. Wks1-4: @ SEA(28), vs PIT(23), @ JAC(28), @ BUF(28)."
+  },
+  "NO": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "DET",
+        "home": false,
+        "opp_ppg": 28.3
+      },
+      {
+        "wk": 2,
+        "opp": "BAL",
+        "home": false,
+        "opp_ppg": 24.9
+      },
+      {
+        "wk": 3,
+        "opp": "LV",
+        "home": true,
+        "opp_ppg": 14.2
+      },
+      {
+        "wk": 4,
+        "opp": "ATL",
+        "home": true,
+        "opp_ppg": 20.8
+      }
+    ],
+    "avg_opp_ppg": 22.1,
+    "soft_open": false,
+    "dc": "Brandon Staley",
+    "dc_changed": false,
+    "def_scheme": "",
+    "streamer_note": "\ud83d\udfe1 Average open (22 opp PPG). Wks1-4: @ DET(28), @ BAL(25), vs LV(14), vs ATL(21)."
+  },
+  "NYG": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "DAL",
+        "home": true,
+        "opp_ppg": 27.7
+      },
+      {
+        "wk": 2,
+        "opp": "LAR",
+        "home": false,
+        "opp_ppg": 30.5
+      },
+      {
+        "wk": 3,
+        "opp": "TEN",
+        "home": true,
+        "opp_ppg": 16.7
+      },
+      {
+        "wk": 4,
+        "opp": "ARI",
+        "home": true,
+        "opp_ppg": 20.9
+      }
+    ],
+    "avg_opp_ppg": 24.0,
+    "soft_open": false,
+    "dc": "Dennard Wilson",
+    "dc_changed": true,
+    "def_scheme": "",
+    "streamer_note": "\ud83d\udfe1 Average open (24 opp PPG). \ud83d\udee1\ufe0f New DC Dennard Wilson. Wks1-4: vs DAL(28), @ LAR(30), vs TEN(17), vs ARI(21)."
+  },
+  "NYJ": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "TEN",
+        "home": false,
+        "opp_ppg": 16.7
+      },
+      {
+        "wk": 2,
+        "opp": "GB",
+        "home": true,
+        "opp_ppg": 23.0
+      },
+      {
+        "wk": 3,
+        "opp": "DET",
+        "home": false,
+        "opp_ppg": 28.3
+      },
+      {
+        "wk": 4,
+        "opp": "CHI",
+        "home": false,
+        "opp_ppg": 25.9
+      }
+    ],
+    "avg_opp_ppg": 23.5,
+    "soft_open": false,
+    "dc": "Brian Duker",
+    "dc_changed": true,
+    "def_scheme": "",
+    "streamer_note": "\ud83d\udfe1 Average open (24 opp PPG). \ud83d\udee1\ufe0f New DC Brian Duker. Wks1-4: @ TEN(17), vs GB(23), @ DET(28), @ CHI(26)."
+  },
+  "PHI": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "WAS",
+        "home": true,
+        "opp_ppg": 20.9
+      },
+      {
+        "wk": 2,
+        "opp": "TEN",
+        "home": false,
+        "opp_ppg": 16.7
+      },
+      {
+        "wk": 3,
+        "opp": "CHI",
+        "home": false,
+        "opp_ppg": 25.9
+      },
+      {
+        "wk": 4,
+        "opp": "LAR",
+        "home": true,
+        "opp_ppg": 30.5
+      }
+    ],
+    "avg_opp_ppg": 23.5,
+    "soft_open": false,
+    "dc": "Vic Fangio",
+    "dc_changed": false,
+    "def_scheme": "",
+    "streamer_note": "\ud83d\udfe1 Average open (24 opp PPG). Wks1-4: vs WAS(21), @ TEN(17), @ CHI(26), vs LAR(30)."
+  },
+  "PIT": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "ATL",
+        "home": true,
+        "opp_ppg": 20.8
+      },
+      {
+        "wk": 2,
+        "opp": "NE",
+        "home": false,
+        "opp_ppg": 28.8
+      },
+      {
+        "wk": 3,
+        "opp": "CIN",
+        "home": true,
+        "opp_ppg": 24.4
+      },
+      {
+        "wk": 4,
+        "opp": "CLE",
+        "home": false,
+        "opp_ppg": 16.4
+      }
+    ],
+    "avg_opp_ppg": 22.6,
+    "soft_open": false,
+    "dc": "Patrick Graham",
+    "dc_changed": true,
+    "def_scheme": "",
+    "streamer_note": "\ud83d\udfe1 Average open (23 opp PPG). \ud83d\udee1\ufe0f New DC Patrick Graham. Wks1-4: vs ATL(21), @ NE(29), vs CIN(24), @ CLE(16)."
+  },
+  "SEA": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "NE",
+        "home": true,
+        "opp_ppg": 28.8
+      },
+      {
+        "wk": 2,
+        "opp": "ARI",
+        "home": false,
+        "opp_ppg": 20.9
+      },
+      {
+        "wk": 3,
+        "opp": "WAS",
+        "home": false,
+        "opp_ppg": 20.9
+      },
+      {
+        "wk": 4,
+        "opp": "LAC",
+        "home": true,
+        "opp_ppg": 21.6
+      }
+    ],
+    "avg_opp_ppg": 23.0,
+    "soft_open": false,
+    "dc": "Aden Durde",
+    "dc_changed": false,
+    "def_scheme": "",
+    "streamer_note": "\ud83d\udfe1 Average open (23 opp PPG). Wks1-4: vs NE(29), @ ARI(21), @ WAS(21), vs LAC(22)."
+  },
+  "SF": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "LAR",
+        "home": false,
+        "opp_ppg": 30.5
+      },
+      {
+        "wk": 2,
+        "opp": "MIA",
+        "home": true,
+        "opp_ppg": 20.4
+      },
+      {
+        "wk": 3,
+        "opp": "ARI",
+        "home": true,
+        "opp_ppg": 20.9
+      },
+      {
+        "wk": 4,
+        "opp": "DEN",
+        "home": true,
+        "opp_ppg": 23.6
+      }
+    ],
+    "avg_opp_ppg": 23.9,
+    "soft_open": false,
+    "dc": "Raheem Morris",
+    "dc_changed": true,
+    "def_scheme": "defensive scheme/tendencies not described",
+    "streamer_note": "\ud83d\udfe1 Average open (24 opp PPG). \ud83d\udee1\ufe0f New DC Raheem Morris (defensive scheme/tendencies not described). Wks1-4: @ LAR(30), vs MIA(20), vs ARI(21), vs DEN(24)."
+  },
+  "TB": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "CIN",
+        "home": false,
+        "opp_ppg": 24.4
+      },
+      {
+        "wk": 2,
+        "opp": "CLE",
+        "home": true,
+        "opp_ppg": 16.4
+      },
+      {
+        "wk": 3,
+        "opp": "MIN",
+        "home": true,
+        "opp_ppg": 20.2
+      },
+      {
+        "wk": 4,
+        "opp": "GB",
+        "home": true,
+        "opp_ppg": 23.0
+      }
+    ],
+    "avg_opp_ppg": 21.0,
+    "soft_open": false,
+    "dc": "Todd Bowles",
+    "dc_changed": false,
+    "def_scheme": "Pressure and aggressive blitz packages",
+    "streamer_note": "\ud83d\udfe1 Average open (21 opp PPG). Wks1-4: @ CIN(24), vs CLE(16), vs MIN(20), vs GB(23)."
+  },
+  "TEN": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "NYJ",
+        "home": true,
+        "opp_ppg": 17.6
+      },
+      {
+        "wk": 2,
+        "opp": "PHI",
+        "home": true,
+        "opp_ppg": 22.3
+      },
+      {
+        "wk": 3,
+        "opp": "NYG",
+        "home": false,
+        "opp_ppg": 22.4
+      },
+      {
+        "wk": 4,
+        "opp": "BAL",
+        "home": false,
+        "opp_ppg": 24.9
+      }
+    ],
+    "avg_opp_ppg": 21.8,
+    "soft_open": false,
+    "dc": "Gus Bradley",
+    "dc_changed": true,
+    "def_scheme": "defensive-minded approach",
+    "streamer_note": "\ud83d\udfe1 Average open (22 opp PPG). \ud83d\udee1\ufe0f New DC Gus Bradley (defensive-minded approach). Wks1-4: vs NYJ(18), vs PHI(22), @ NYG(22), @ BAL(25)."
+  },
+  "WAS": {
+    "open_games": [
+      {
+        "wk": 1,
+        "opp": "PHI",
+        "home": false,
+        "opp_ppg": 22.3
+      },
+      {
+        "wk": 2,
+        "opp": "DAL",
+        "home": false,
+        "opp_ppg": 27.7
+      },
+      {
+        "wk": 3,
+        "opp": "SEA",
+        "home": true,
+        "opp_ppg": 28.4
+      },
+      {
+        "wk": 4,
+        "opp": "IND",
+        "home": true,
+        "opp_ppg": 27.4
+      }
+    ],
+    "avg_opp_ppg": 26.5,
+    "soft_open": false,
+    "dc": "Daronte Jones",
+    "dc_changed": false,
+    "def_scheme": "more aggressive approach",
+    "streamer_note": "\ud83d\udd34 TOUGH open (26 opp PPG) \u2014 fade/stash early. Wks1-4: @ PHI(22), @ DAL(28), vs SEA(28), vs IND(27)."
+  }
+}

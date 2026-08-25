@@ -33,6 +33,10 @@ except ImportError:
 
 ARTICLE_URL = "https://rotogrinders.com/articles/2026-nfl-team-previews-4213312"
 
+# Local Ollama config (used when USE_OLLAMA=1 or Groq is unavailable/capped).
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
+
 # Full team name (as it appears in the article "## " headers) -> app abbreviation.
 TEAM_ABBR = {
     "Arizona Cardinals": "ARI", "Atlanta Falcons": "ATL", "Baltimore Ravens": "BAL",
@@ -130,6 +134,8 @@ Return a SINGLE valid JSON object (no prose, no markdown fences) with these keys
   "dc": "defensive coordinator name",
   "off_scheme": "one concise phrase describing the offensive scheme/tendencies",
   "def_scheme": "one concise phrase describing the defensive scheme/tendencies (or '' if not described)",
+  "off_changed": true/false (true ONLY if the team changed its HC, OC, or offensive play-caller for 2026 per the text; false if the text says continuity/'didn't make a change'/same staff),
+  "def_changed": true/false (true ONLY if the team changed its defensive coordinator for 2026 per the text; false if the DC returns/continuity),
   "beneficiaries": { "Player Name": "one specific sentence on why this OFFENSIVE player benefits (only if the text clearly says so)" },
   "risk": { "Player Name": "one specific sentence on why this OFFENSIVE player is a risk/downgrade (only if the text clearly says so)" },
   "idp": { "Player Name": "one specific sentence on why this DEFENSIVE (IDP) player benefits (only if the text clearly says so)" },
@@ -142,6 +148,55 @@ RULES:
 - If the text doesn't clearly support a field, use "" or {} — do not guess.
 - Keep each reason to ONE concrete sentence quoting the specific detail (role, volume, scheme fit, injury).
 """
+
+
+def ollama_available():
+    """True if a local Ollama server responds and has the target model."""
+    try:
+        r = requests.get(f"{OLLAMA_URL}/api/tags", timeout=3)
+        if r.status_code == 200:
+            names = [m.get("name", "") for m in r.json().get("models", [])]
+            # match "llama3.1:8b" or bare "llama3.1"
+            return any(OLLAMA_MODEL == n or OLLAMA_MODEL.split(":")[0] == n.split(":")[0]
+                       for n in names)
+    except Exception:
+        pass
+    return False
+
+
+def _parse_json_blob(content):
+    content = re.sub(r"```(?:json)?", "", content)
+    content = re.sub(r"<think>[\s\S]*?</think>", "", content).strip()  # qwen-style
+    m = re.search(r"\{[\s\S]*\}", content)
+    if m:
+        try:
+            return json.loads(m.group(0))
+        except Exception:
+            return None
+    return None
+
+
+def extract_team_ollama(section_text, team_name):
+    user = f"TEAM: {team_name}\n\nSECTION:\n{section_text[:6000]}"
+    try:
+        r = requests.post(
+            f"{OLLAMA_URL}/api/chat",
+            json={
+                "model": OLLAMA_MODEL,
+                "stream": False,
+                "format": "json",          # ask Ollama for strict JSON
+                "options": {"temperature": 0.1, "num_ctx": 8192},
+                "messages": [{"role": "system", "content": SYSTEM_PROMPT},
+                             {"role": "user", "content": user}],
+            },
+            timeout=180,
+        )
+        if r.status_code == 200:
+            content = r.json().get("message", {}).get("content", "")
+            return _parse_json_blob(content)
+    except Exception as e:
+        print(f"      ollama error: {e}")
+    return None
 
 
 def extract_team(section_text, team_name, key, models):
@@ -185,9 +240,27 @@ def extract_team(section_text, team_name, key, models):
 
 
 def main():
+    use_ollama = os.getenv("USE_OLLAMA", "").strip() in ("1", "true", "yes")
     key = get_groq_key()
-    if not key:
-        print("ERROR: no GROQ_API_KEY found (env, .streamlit/secrets.toml, or st.secrets).")
+
+    # Decide backend: explicit USE_OLLAMA, else Groq if key present, else Ollama.
+    backend = None
+    models = []
+    if use_ollama:
+        backend = "ollama"
+    elif key:
+        backend = "groq"
+        models = groq_models(key)
+    elif ollama_available():
+        backend = "ollama"
+
+    if backend == "ollama" and not ollama_available():
+        print(f"ERROR: Ollama backend requested but server/model not reachable at "
+              f"{OLLAMA_URL} (model {OLLAMA_MODEL}). Run `ollama serve` and "
+              f"`ollama pull {OLLAMA_MODEL}`.")
+        sys.exit(1)
+    if backend is None:
+        print("ERROR: no backend. Set GROQ_API_KEY, or run Ollama and set USE_OLLAMA=1.")
         sys.exit(1)
 
     print("1. Fetching RotoGrinders 2026 team preview...")
@@ -197,8 +270,10 @@ def main():
     if len(sections) < 20:
         print("   WARNING: found fewer sections than expected — article layout may have changed.")
 
-    models = groq_models(key)
-    print(f"2. Extracting per-team scheme via Groq ({models[0]})...")
+    if backend == "ollama":
+        print(f"2. Extracting per-team scheme via local Ollama ({OLLAMA_MODEL})...")
+    else:
+        print(f"2. Extracting per-team scheme via Groq ({models[0]})...")
 
     offense = {}
     defense = {}
@@ -206,7 +281,10 @@ def main():
         abbr = TEAM_ABBR.get(name)
         if not abbr:
             continue
-        data = extract_team(section, name, key, models)
+        if backend == "ollama":
+            data = extract_team_ollama(section, name)
+        else:
+            data = extract_team(section, name, key, models)
         if not data:
             print(f"   ! {abbr} ({name}): extraction failed, skipping")
             continue
@@ -216,6 +294,7 @@ def main():
             "oc": data.get("oc", ""),
             "caller": caller,
             "scheme": data.get("off_scheme", ""),
+            "changed": bool(data.get("off_changed", False)),
             "beneficiaries": data.get("beneficiaries", {}) or {},
             "risk": data.get("risk", {}) or {},
             "note": data.get("note", ""),
@@ -223,6 +302,7 @@ def main():
         defense[abbr] = {
             "dc": data.get("dc", ""),
             "scheme": data.get("def_scheme", ""),
+            "changed": bool(data.get("def_changed", False)),
             "idp": data.get("idp", {}) or {},
             "note": data.get("note", ""),
         }
@@ -236,6 +316,8 @@ def main():
             "source_url": ARTICLE_URL,
             "note": "LLM-extracted from a single authoritative current source. Grounded only in the article text; players/coaches not invented.",
             "generated_by": "build_scheme.py",
+            "backend": (f"ollama:{OLLAMA_MODEL}" if backend == "ollama"
+                        else f"groq:{models[0] if models else '?'}"),
         },
         "_defense": {**{"_src": ARTICLE_URL}, **defense},
     }

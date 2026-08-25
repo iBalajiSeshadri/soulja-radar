@@ -1,46 +1,900 @@
 {
   "_meta": {
-    "source": "DraftSharks NFL Coaching Changes 2026 (offense); FantasySixPack AFC+NFC IDP (Steve Hungarter); NYT Athletic DC overview (Mike Jones)",
-    "source_url": "https://www.draftsharks.com/article/nfl-coaching-changes",
-    "note": "Real, sourced 2026 coaching changes + scheme tendencies. Do not fabricate; only teams listed here changed play-caller/scheme for 2026. '_defense' holds new-DC scheme + IDP/DST beneficiaries."
+    "source": "RotoGrinders 2026 NFL Team-by-Team Preview (Derek Farnsworth / Notorious)",
+    "source_url": "https://rotogrinders.com/articles/2026-nfl-team-previews-4213312",
+    "note": "LLM-extracted from a single authoritative current source. Grounded only in the article text; players/coaches not invented.",
+    "generated_by": "build_scheme.py",
+    "backend": "ollama:llama3.1:8b"
   },
   "_defense": {
-    "_src": "FantasySixPack AFC (fantasysixpack.net/2026-afc-coaching-changes-idp-football) + NFC (fantasysixpack.net/2026-nfc-coaching-changes-idp-impact); NYT Athletic 2026 DC overview",
-    "DAL": {"dc": "Christian Parker", "scheme": "Vic Fangio tree: hybrid 3-4/3-3-5, two-high shells, disguise", "idp": {"Jalen Thompson": "Fangio two-high shell boosts safety production across the field", "DaRon Bland": "instinctive DB can still make plays in disguise-heavy scheme"}, "note": "Safety-friendly Fangio shell; LB production roughly steady, CBs fewer INT chances."},
-    "GB": {"dc": "Jonathan Gannon", "scheme": "Fangio tree: 3-4 base, heavy quarters, zone over man, keep everything in front", "idp": {"Micah Parsons": "thrives on isolation from simulated-pressure looks (once back from surgery)", "Edgerrin Cooper": "scheme funnels production to LBs", "Xavier McKinney": "safety production elevated in two-high shells"}, "note": "Zone-heavy funnels tackles to LBs + safeties; edge is talent-driven."},
-    "NYG": {"dc": "Dennard Wilson", "scheme": "Ravens-rooted, bully mentality, zone-heavy Cover 3/4/match, downhill LBs", "idp": {"Bobby Okereke": "starting off-ball LBs are the most valuable assets — bone-crushing hits over the middle", "Brian Burns": "wins matchups, though production spreads out in team-oriented zone", "Abdul Carter": "edge wins matchups in aggressive front"}, "note": "Both LB spots critical; zone spreads production but LB tackle volume is prime."},
-    "SF": {"dc": "Raheem Morris", "scheme": "'Tite' front, 4-3 shifting to 3-4, clogs interior run, funnels outside", "idp": {"Fred Warner": "central figure controlling run flow + cleaning up perimeter plays — elite LB tackle floor", "Nick Bosa": "isolated one-on-one pass-rush chances from tight interior alignment", "Mykel Williams": "flexible DL gets pressure chances sliding inside on passing downs"}, "note": "Tite front = strong IDP value for edges, disruptive DTs, and steady LB tackles."},
-    "WAS": {"dc": "Daronte Jones", "scheme": "Brian Flores tree: 4-2-5 nickel, zone (Cover 2/4/quarters), simulated pressures", "idp": {"Bobby Wagner": "zone spacing + underneath responsibility supports strong LB tackle production", "Odafe Oweh": "sleeper — expanded role, strong underlying efficiency, buy-low window", "Leo Chenal": "sleeper — flashed efficiency, positioned for expanded 2026 role", "Nick Cross": "safety stays active in run support + coverage reads"}, "note": "Structured balanced D; LB tackle floors + Oweh/Chenal buy-low IDP sleepers."},
-    "BAL": {"dc": "Anthony Weaver (Jesse Minter calls it)", "scheme": "Fast/aggressive hybrid 3-4, heavy rotation, nickel/dime, disrupt QB", "idp": {"Roquan Smith": "elite every-down LB anchor — top IDP pick", "Kyle Hamilton": "elite safety anchor — top IDP pick", "Trey Hendrickson": "proven edge (back-to-back 17-sack seasons) in pressure-first scheme", "Nnamdi Madubuike": "led all DTs in sacks in 2023 if healthy"}, "note": "Overhauled pass rush + pressure emphasis; multiple every-down IDP producers."},
-    "BUF": {"dc": "Jim Leonhard", "scheme": "New 3-4, aggressive blitz-heavy, unconventional", "idp": {"Terrel Bernard": "strong bounce-back — speed-based game, healthy season + depressed ADP = value", "Bradley Chubb": "opposite-edge role in blitz-heavy front (health is the question)", "Taylor Rapp": "monitor in deeper formats"}, "note": "3-4 switch may take time to settle; Bernard is the bounce-back IDP value."},
-    "CLE": {"dc": "Mike Rutenberg", "scheme": "4-2-5 'big nickel', speed + versatility, hybrid defenders", "idp": {"Myles Garrett": "reigning DPOY — elite edge regardless of scheme", "Carson Schwesinger": "DROY, competent every-down LB in new nickel scheme", "Quincy Williams": "competent LB2", "Mason Graham": "streamable DT in DT-required leagues (Yr 2)"}, "note": "Big-nickel prioritizes hybrids; Garrett + Schwesinger are the IDP anchors."},
-    "LAC": {"dc": "Chris O'Leary", "scheme": "Continuity — stays 4-3 base (Minter tree)", "idp": {"Derwin James": "effective every-down safety in stable scheme", "Khalil Mack": "veteran edge (113 career sacks)", "Tuli Tuipulotu": "13 sacks last year, Pro Bowl edge"}, "note": "Scheme continuity = IDP certainty; James + the edge trio are reliable."},
-    "LV": {"dc": "Rob Leonard", "scheme": "Switch to 3-4, more flexibility/less predictability, aggressive", "idp": {"Maxx Crosby": "moves to 3-4 OLB — more pass-rush flexibility, could unlock new version", "Tyree Wilson": "4i-technique fits his length/power better than pure edge", "Quay Walker": "target — value to whoever gets green-dot role", "Nakobe Dean": "target — green-dot role adds value", "Jeremy Chinn": "DB1 profile"}, "note": "3-4 overhaul; Crosby flexibility + Walker/Dean green-dot LB battle."},
-    "NYJ": {"dc": "Brian Duker (Aaron Glenn calls it)", "scheme": "Multiple fronts, heavy disguise, man-coverage lean, ~70% nickel", "idp": {"Jamien Sherwood": "in for a volume tackle year", "Will McDonald": "athletic edge in aggressive scheme", "David Bailey": "rookie edge pairing"}, "note": "Man-heavy multiple front; Sherwood is the volume LB play."},
-    "TEN": {"dc": "Gus Bradley (Robert Saleh calls it)", "scheme": "4-3 under, Cover 3 zone, Wide-9 edges, light boxes", "idp": {"Cedric Gray": "huge year expected — Saleh grooms elite LBs; was LB6 in tackles + 92.7 run-D grade", "Anthony Hill": "rookie, 17 career sacks off edge — adapts quickly", "Jeffrey Simmons": "anchor DL"}, "note": "Saleh 4-3 Cover 3; Cedric Gray is the marquee IDP breakout."},
-    "PIT": {"dc": "Patrick Graham", "scheme": "Multiple 4-3/3-4 hybrid, run-defense emphasis, fast turnarounds", "idp": {"Patrick Queen": "athletic ILB — Graham needs more discipline/execution but tone-setter upside", "Payton Wilson": "athletic ILB who can make plays all over"}, "note": "Hybrid run-focused D; Queen + Wilson are the LB tone-setters to watch."},
-    "MIA": {"dc": "Sean Duggan", "scheme": "4-3 with 4-2-5 hybrid base, LB-friendly (Duggan ex-LB coach)", "idp": {}, "note": "LB-friendly rebuild; thin on proven talent, more relevant for 2027 rookies."},
-    "NE": {"dc": "Zak Kuhr", "scheme": "Internal promotion; Vrabel-influenced physicality", "idp": {}, "note": "Limited scheme specifics; physical identity, 'more of the same'."}
+    "_src": "https://rotogrinders.com/articles/2026-nfl-team-previews-4213312",
+    "DEN": {
+      "dc": "Vance Joseph",
+      "scheme": "Aggressive coverage schemes",
+      "changed": false,
+      "idp": {
+        "Nik Bonitto": "He leads a pass rush that generated a league-leading 68 sacks last season.",
+        "Zach Allen": "He\u2019s part of a pass rush that generated a league-leading 68 sacks last season."
+      },
+      "note": "The Broncos offense should remain strong, but the addition of Jaylen Waddle could impact the roles of some players."
+    },
+    "KC": {
+      "dc": "Steve Spagnuolo",
+      "scheme": "solid defense",
+      "changed": false,
+      "idp": {
+        "Mansoor Delane": "1st-round pick Mansoor Delane gives them a talented young corner to build around"
+      },
+      "note": "The Chiefs' offense may become more run-heavy, which could hurt Mahomes' fantasy value, but their defense should remain solid"
+    },
+    "LV": {
+      "dc": "Rob Leonard",
+      "scheme": "",
+      "changed": true,
+      "idp": {
+        "Maxx Crosby": "remains the centerpiece after his proposed trade to Baltimore fell through after a failed physical."
+      },
+      "note": "The Raiders' offense should be more efficient with Kubiak's system, but the quarterback situation is a concern."
+    },
+    "LAC": {
+      "dc": "Chris O\u2019Leary",
+      "scheme": "",
+      "changed": true,
+      "idp": {
+        "Tuli Tuipulotu": "They should have no problem putting pressure on opposing quarterbacks.",
+        "Khalil Mack": "They should have no problem putting pressure on opposing quarterbacks."
+      },
+      "note": "The Chargers could have one of the best offenses in the NFL, and their defense should be strong again this season."
+    },
+    "BUF": {
+      "dc": "Jim Leonhard",
+      "scheme": "More versatile and aggressive defense",
+      "changed": true,
+      "idp": {},
+      "note": "The Bills' offense remains a strong unit, but the defense may experience some volatility with a new system."
+    },
+    "NE": {
+      "dc": "Zak Kuhr",
+      "scheme": "",
+      "changed": false,
+      "idp": {
+        "Kevin Byard": "The Patriots also added Kevin Byard to an already talented secondary."
+      },
+      "note": "Continuity on offense and a strong defense should lead to a solid fantasy season."
+    },
+    "MIA": {
+      "dc": "Sean Duggan",
+      "scheme": "",
+      "changed": true,
+      "idp": {
+        "Kenneth Grant": "Added young talent to the front seven",
+        "Jordyn Brooks": "Provides some veteran stability",
+        "Zach Sieler": "Provides some veteran stability"
+      },
+      "note": "Temper expectations on the Dolphins due to their 4.5 win total and significant coaching changes"
+    },
+    "NYJ": {
+      "dc": "Brian Duker",
+      "scheme": "",
+      "changed": true,
+      "idp": {
+        "David Bailey": "They also spent an early-round pick on edge rusher David Bailey.",
+        "Minkah Fitzpatrick": "",
+        "David Onyemata": "",
+        "Demario Davis": ""
+      },
+      "note": "The Jets' offense should be more run-heavy, with Breece Hall as the centerpiece, while the defense should be improved with new additions and a change in defensive play-calling."
+    },
+    "BAL": {
+      "dc": "Anthony Weaver",
+      "scheme": "improved pass rush",
+      "changed": false,
+      "idp": {
+        "Trey Hendrickson": "Adding Hendrickson to a group that already had plenty of talent gives Baltimore a legitimate chance to be one of the better units in the AFC."
+      },
+      "note": "The Ravens made significant coaching changes, but the roster still looks like a contender, and the new coaching staff may be the key to taking the team to the next level."
+    },
+    "CIN": {
+      "dc": "Al Golden",
+      "scheme": "",
+      "changed": false,
+      "idp": {
+        "Dexter Lawrence": "gives them an elite interior presence"
+      },
+      "note": "The Bengals have an elite offense with real upside, but their defense needs to improve for them to reach their full potential."
+    },
+    "CLE": {
+      "dc": "Mike Rutenberg",
+      "scheme": "",
+      "changed": true,
+      "idp": {
+        "Jared Verse": "Verse is the new centerpiece of the pass rush."
+      },
+      "note": "The Browns' offense is expected to be run-heavy, which could benefit Quinshon Judkins, while the defense will likely take a step back without Myles Garrett."
+    },
+    "PIT": {
+      "dc": "Patrick Graham",
+      "scheme": "",
+      "changed": true,
+      "idp": {
+        "T.J. Watt": "",
+        "Cameron Heyward": "",
+        "Jalen Ramsey": "",
+        "Alex Highsmith": ""
+      },
+      "note": "The Steelers' offense will likely be a run-heavy attack with a new coaching staff and philosophy, while their defense remains a strength with plenty of star power."
+    },
+    "JAC": {
+      "dc": "Anthony Campanile",
+      "scheme": "",
+      "changed": false,
+      "idp": {
+        "Travon Walker": "The Jaguars are hoping Walker can keep this unit among the league\u2019s better defenses.",
+        "Josh Hines-Allen": "The Jaguars are hoping Hines-Allen can keep this unit among the league\u2019s better defenses."
+      },
+      "note": "The Jaguars are hoping to take another step forward this season with continuity on the coaching staff."
+    },
+    "HOU": {
+      "dc": "Matt Burke",
+      "scheme": "strong pass-rushing duo",
+      "changed": false,
+      "idp": {
+        "Will Anderson": "Will Anderson and Danielle Hunter already give Houston one of the league\u2019s better pass-rushing duos",
+        "Danielle Hunter": "Will Anderson and Danielle Hunter already give Houston one of the league\u2019s better pass-rushing duos",
+        "Jadeveon Clowney": "Will Anderson and Danielle Hunter already give Houston one of the league\u2019s better pass-rushing duos"
+      },
+      "note": "The Texans have a strong defense, which should create favorable game scripts for the offense."
+    },
+    "IND": {
+      "dc": "Lou Anarumo",
+      "scheme": "Lou Anarumo's second season as defensive coordinator",
+      "changed": false,
+      "idp": {
+        "DeForest Buckner": "The talent is there, but this unit has to prove it can be more consistent after the Colts\u2019 late-season collapse."
+      },
+      "note": "The Colts are trying to build on a bizarre season that started 7-1 before falling apart down the stretch, with a focus on consistency after a brutal collapse last season."
+    },
+    "TEN": {
+      "dc": "Gus Bradley",
+      "scheme": "defensive-minded approach",
+      "changed": true,
+      "idp": {
+        "Jeffery Simmons": "had 11 sacks last season",
+        "Jermaine Johnson": "added to a front led by Jeffery Simmons",
+        "John Franklin-Myers": "added to a front led by Jeffery Simmons",
+        "Alontae Taylor": "joined the team",
+        "Cor\u2019Dale Flott": "joined the team"
+      },
+      "note": "The Titans are hitting the reset button after going 3-14 for the 2nd straight season, with Robert Saleh taking over as head coach and Brian Daboll running the offense"
+    },
+    "PHI": {
+      "dc": "Vic Fangio",
+      "scheme": "",
+      "changed": false,
+      "idp": {
+        "Jalen Carter": "",
+        "Quinyon Mitchell": "",
+        "Cooper DeJean": ""
+      },
+      "note": "The Eagles' new offense under Mannion should bring improvements, but replacing Brown\u2019s production and volume will be difficult."
+    },
+    "DAL": {
+      "dc": "Christian Parker",
+      "scheme": "Significant overhaul with a new DC and added talent",
+      "changed": true,
+      "idp": {
+        "Rashan Gary": "He was added to the team and brings in a different scheme than the defense had last year.",
+        "Quinnen Williams": "He was added to the team and brings in a different scheme than the defense had last year.",
+        "Kenny Clark": "He was added to the team and brings in a different scheme than the defense had last year.",
+        "Caleb Downs": "He gives them another potentially elite young player."
+      },
+      "note": "The Cowboys have a high-powered offense with a strong WR duo, but the defense is the big story of the season with a significant overhaul and added talent."
+    },
+    "NYG": {
+      "dc": "Dennard Wilson",
+      "scheme": "",
+      "changed": true,
+      "idp": {
+        "Brian Burns": "The pass rush should be solid, as Burns, Kayvon Thibodeaux and Abdul Carter give New York a potentially dangerous edge trio.",
+        "Kayvon Thibodeaux": "The pass rush should be solid, as Burns, Kayvon Thibodeaux and Abdul Carter give New York a potentially dangerous edge trio.",
+        "Abdul Carter": "The pass rush should be solid, as Burns, Kayvon Thibodeaux and Abdul Carter give New York a potentially dangerous edge trio."
+      },
+      "note": "The Giants have a new coaching staff and a talented but inconsistent defensive group, which could lead to some road bumps, but also potential for improvement."
+    },
+    "WAS": {
+      "dc": "Daronte Jones",
+      "scheme": "more aggressive approach",
+      "changed": false,
+      "idp": {
+        "Odafe Oweh": "added as a pass rusher",
+        "Sonny Styles": "gives Washington a unique player who can play near the line of scrimmage or in coverage"
+      },
+      "note": "The Commanders are trying to bounce back from a disappointing 5-12 season with a new offense and a more aggressive defense."
+    },
+    "GB": {
+      "dc": "Jonathan Gannon",
+      "scheme": "more aggressive, with three-safety and pressure packages",
+      "changed": true,
+      "idp": {
+        "Micah Parsons": "Parsons remains the superstar centerpiece, but he\u2019s recovering from the ACL and meniscus injury that ended his 2025 season and is currently on the PUP list"
+      },
+      "note": "The Packers enter 2026 with plenty of continuity on offense but a significantly different look on defense"
+    },
+    "DET": {
+      "dc": "Kelvin Sheppard",
+      "scheme": "improved pass rush and secondary with a focus on stopping the run",
+      "changed": false,
+      "idp": {
+        "Aidan Hutchinson": "He was still dominant, finishing with 14.5 sacks."
+      },
+      "note": "The Lions have a good chance of winning the division with improved offense and defense."
+    },
+    "MIN": {
+      "dc": "Brian Flores",
+      "scheme": "league's better defenses",
+      "changed": false,
+      "idp": {
+        "James Pierre": "",
+        "Caleb Banks": "",
+        "Jake Golday": "",
+        "Domonique Orange": ""
+      },
+      "note": "The Vikings have a stable coaching situation and a strong offense, but the defense lost several key pieces and will need to be rebuilt."
+    },
+    "CHI": {
+      "dc": "Dennis Allen",
+      "scheme": "",
+      "changed": false,
+      "idp": {
+        "Devin Bush": "",
+        "Grady Jarrett": ""
+      },
+      "note": "The Bears have a strong foundation on offense, but the defense is a question mark."
+    },
+    "ATL": {
+      "dc": "Jeff Ulbrich",
+      "scheme": "",
+      "changed": false,
+      "idp": {
+        "Samson Ebukam": "",
+        "Azeez Ojulari": "",
+        "Cameron Thomas": "",
+        "Maason Smith": "",
+        "Sydney Brown": ""
+      },
+      "note": "The Falcons have a new coaching staff and a new system, but Bijan Robinson and Kyle Pitts are safe bets to start the season."
+    },
+    "CAR": {
+      "dc": "Ejiro Evero",
+      "scheme": "Aggressive/High-Pressure",
+      "changed": false,
+      "idp": {
+        "Derrick Brown": "He is the staple of this defense.",
+        "Jaelan Phillips": "He was added to the defense to help with pass rush.",
+        "Devin Lloyd": "He was added to the defense to help with pass rush.",
+        "Tre\u2019von Moehrig": "He was added to the defense to help with safety play.",
+        "Jaycee Horn": "He is an elite player in the secondary."
+      },
+      "note": "The Panthers are betting on continuity heading into 2026, with Dave Canales remaining head coach and Brad Idzik taking on a larger role as offensive coordinator and primary play-caller."
+    },
+    "NO": {
+      "dc": "Brandon Staley",
+      "scheme": "",
+      "changed": false,
+      "idp": {
+        "Bryan Bresee": "Bryan Bresee is out for the season with an ACL injury",
+        "Cameron Jordan": "Cameron Jordan is dealing with a hamstring issue heading into the season"
+      },
+      "note": "The Saints' offense has potential with Shough and Moore, while the defense has concerns with injuries and talent loss."
+    },
+    "TB": {
+      "dc": "Todd Bowles",
+      "scheme": "Pressure and aggressive blitz packages",
+      "changed": false,
+      "idp": {
+        "Antoine Winfield": "Remains the key player in the secondary",
+        "Rueben Bain": "Drafted in the 1st round and expected to contribute to the pass rush",
+        "Al-Quadin Muhammad": "Veteran pass rusher added in the offseason"
+      },
+      "note": "The Buccaneers' offense is expected to adjust to a new system, but the defense should benefit from continuity and added talent"
+    },
+    "ARI": {
+      "dc": "Nick Rallis",
+      "scheme": "",
+      "changed": false,
+      "idp": {
+        "Josh Sweat": "Josh Sweat gives the team a legitimate pass rusher after recording 12 sacks in 2025"
+      },
+      "note": "The Cardinals have a 4.5 win total, which could lead to a lot of pass volume and garbage time, making their offense a sneaky DFS appeal"
+    },
+    "LAR": {
+      "dc": "Chris Shula",
+      "scheme": "one of the most dangerous pass rushes in the league",
+      "changed": false,
+      "idp": {
+        "Myles Garrett": "He set the NFL single-season sack record with 23 sacks in 2025",
+        "Byron Young": "giving Chris Shula one of the most dangerous pass rushes in the league",
+        "Trent McDuffie": "completely changing the outlook of the secondary",
+        "Jaylen Watson": "completely changing the outlook of the secondary"
+      },
+      "note": "The Rams have a strong coaching staff and personnel, making them one of the favorites to win the Super Bowl."
+    },
+    "SF": {
+      "dc": "Raheem Morris",
+      "scheme": "defensive scheme/tendencies not described",
+      "changed": true,
+      "idp": {
+        "Nick Bosa": "Although he is still working his way back from a second ACL surgery, he remains the centerpiece of the pass rush."
+      },
+      "note": "The 49ers have continuity on offense but a new defensive coordinator and potentially different approach on defense."
+    },
+    "SEA": {
+      "dc": "Aden Durde",
+      "scheme": "",
+      "changed": false,
+      "idp": {
+        "Leonard Williams": "Seattle led the NFL in points allowed in 2025 and was particularly dominant against the run.",
+        "Byron Murphy II": "Seattle led the NFL in points allowed in 2025 and was particularly dominant against the run.",
+        "Jarran Reed": "Seattle led the NFL in points allowed in 2025 and was particularly dominant against the run.",
+        "DeMarcus Lawrence": "Seattle lost Boye Mafe in free agency but added veteran Dante Fowler, who gives them another proven pass rusher.",
+        "Uchenna Nwosu": "Seattle lost Boye Mafe in free agency but added veteran Dante Fowler, who gives them another proven pass rusher.",
+        "Derick Hall": "Seattle lost Boye Mafe in free agency but added veteran Dante Fowler, who gives them another proven pass rusher."
+      },
+      "note": "The Seahawks' offense will likely undergo some changes with Brian Fleury taking over as OC and primary play-caller, but the defense remains strong and should continue to be a key factor in the team's success."
+    }
   },
-  "ARI": {"hc": "Mike LaFleur", "oc": "Nathaniel Hackett", "caller": "Mike LaFleur", "scheme": "McVay tree: pre-snap motion + play-action, flexible personnel", "pass_rate_2026": 58.0, "run_rate_2026": 42.0, "beneficiaries": {"Trey McBride": "Petzing gone but McVay-tree still funnels TE targets; motion/PA scheme keeps him a target hog"}, "risk": {}, "note": "More run-leaning than 2025's pass-heavy Petzing offense; efficiency upside."},
-  "ATL": {"hc": "Kevin Stefanski", "oc": "Tommy Rees", "caller": "Tommy Rees", "scheme": "Zone-heavy run-first (Stefanski/Rees college run roots)", "pass_rate_2026": 54.1, "run_rate_2026": 45.9, "beneficiaries": {"Bijan Robinson": "Zone-heavy design fits his 75% career zone runs; balanced offense = 20+ weekly touches, top-5 pick"}, "risk": {}, "note": "Run-focused, RB-friendly. Unsettled Tua/Penix QB keeps run game central."},
-  "BAL": {"hc": "Jesse Minter", "oc": "Declan Doyle", "caller": "Declan Doyle", "scheme": "Ben Johnson tree: explosive, high-pace, creative", "pass_rate_2026": 50.5, "run_rate_2026": 49.5, "beneficiaries": {"Lamar Jackson": "New system Lamar calls 'mind-blowing'; Bears ranked 7th explosive pass rate — rebound upside", "Derrick Henry": "Bears were 2nd in explosive run rate; scheme + age-defying form keeps him RB1"}, "risk": {}, "note": "Explosive scheme upgrade for both stars."},
-  "BUF": {"hc": "Joe Brady", "oc": "Pete Carmichael Jr.", "caller": "Joe Brady", "scheme": "Run-lean, controlled pace, elite per-play efficiency", "pass_rate_2026": 51.2, "run_rate_2026": 48.8, "beneficiaries": {"Josh Allen": "Continuity at play-caller; was fantasy QB1 last year", "James Cook": "RB6 last year; receiving usage may rise under Carmichael", "DJ Moore": "Big setup upgrade as lead WR; commanded 23-26% target share under Brady before"}, "risk": {}, "note": "Same play-caller (Brady) — continuity, whole offense is a fantasy winner."},
-  "CHI": {"hc": "Ben Johnson", "oc": "Press Taylor", "caller": "Ben Johnson", "scheme": "Ben Johnson high-pace, top-10 points/yards", "pass_rate_2026": 54.7, "run_rate_2026": 45.3, "beneficiaries": {}, "risk": {}, "note": "Johnson still calls plays — no regression expected from OC change."},
-  "CLE": {"hc": "Todd Monken", "oc": "Travis Switzer", "caller": "Todd Monken", "scheme": "Flexible; run-focused build w/ elite run-game coordinator", "pass_rate_2026": 57.8, "run_rate_2026": 42.2, "beneficiaries": {"Quinshon Judkins": "Shaky QB battle pushes Cleveland to the run; Monken praised his skill set + power"}, "risk": {}, "note": "QB uncertainty (Watson/Sanders) favors the run game."},
-  "DEN": {"hc": "Sean Payton", "oc": "Davis Webb", "caller": "Davis Webb", "scheme": "Sean Payton system, quick passing game", "pass_rate_2026": 57.8, "run_rate_2026": 42.2, "beneficiaries": {"Jaylen Waddle": "Traded in; fits quick catch-and-run scheme, 5.0 career YAC/rec"}, "risk": {}, "note": "Same Payton philosophy; Webb calls it but 'same offense'."},
-  "DET": {"hc": "Dan Campbell", "oc": "Drew Petzing", "caller": "Drew Petzing", "scheme": "Explosive zone run design (ARI led/2nd explosive run rate)", "pass_rate_2026": 55.8, "run_rate_2026": 44.2, "beneficiaries": {"Jahmyr Gibbs": "Lightest career carry competition + Petzing's explosive run design; explosive-run rebound"}, "risk": {}, "note": "Won't drastically change from Campbell; Gibbs gets proven run scheme."},
-  "KC": {"hc": "Andy Reid", "oc": "Eric Bieniemy", "caller": "Andy Reid", "scheme": "Reid offense; Bieniemy boosts explosive run game", "pass_rate_2026": 58.5, "run_rate_2026": 41.5, "beneficiaries": {"Kenneth Walker": "Bieniemy's explosive-run history (CHI 3rd, WAS 4th) fits Walker's big-play talent"}, "risk": {}, "note": "Bieniemy returns as OC; biggest impact is the run game."},
-  "LAC": {"hc": "Jim Harbaugh", "oc": "Mike McDaniel", "caller": "Mike McDaniel", "scheme": "Shanahan-tree: quick game, YAC, explosive zone run", "pass_rate_2026": 57.2, "run_rate_2026": 42.8, "beneficiaries": {"Justin Herbert": "McDaniel quickening his footwork/release; YAC scheme (MIA 2nd in YAC share)", "Ladd McConkey": "47% of career targets 0-9 yards — perfect McDaniel quick-game fit", "Omarion Hampton": "McDaniel's elite run-game history (made Achane explosive); top-10 RB case if lead role"}, "risk": {}, "note": "Three clear beneficiaries in McDaniel's efficient, YAC-heavy scheme."},
-  "LV": {"hc": "Klint Kubiak", "oc": "Andrew Janocko", "caller": "Klint Kubiak", "scheme": "Under-center, play-action, designed movement; RB1/TE1 volume", "pass_rate_2026": 57.2, "run_rate_2026": 42.8, "beneficiaries": {"Ashton Jeanty": "Could be used like McCaffrey under Kubiak; better O-line + QB (monitor Aug 23 ankle)", "Brock Bowers": "Kubiak called him a 'football robot'; his top pass-catchers (JJ, JSN) drew 28-34% target shares"}, "risk": {}, "note": "Jeanty CMC-usage upside; Bowers is the clear centerpiece / TE1."},
-  "MIA": {"hc": "Jeff Hafley", "oc": "Bobby Slowik", "caller": "Bobby Slowik", "scheme": "Shanahan-tree zone; more run-leaning projection", "pass_rate_2026": 47.6, "run_rate_2026": 52.4, "beneficiaries": {"De'Von Achane": "79.6% career zone carries — no adjustment needed in Slowik's zone scheme"}, "risk": {}, "note": "Big shift to run-heavy (52.4%); uncertain fantasy winners with Willis at QB."},
-  "NYG": {"hc": "John Harbaugh", "oc": "Matt Nagy", "caller": "Matt Nagy", "scheme": "West Coast, 11-personnel; run signals w/ Greg Roman added", "pass_rate_2026": 54.0, "run_rate_2026": 46.0, "beneficiaries": {"Cam Skattebo": "Harbaugh called him 'top-tier back'; FB + Greg Roman (10 top-10 rush finishes) added — clear top back"}, "risk": {}, "note": "Nagy history unsettling, but heavy run-game signals point to Skattebo."},
-  "NYJ": {"hc": "Aaron Glenn", "oc": "Frank Reich", "caller": "Frank Reich", "scheme": "West Coast timing; run-game-first stated", "pass_rate_2026": 56.5, "run_rate_2026": 43.5, "beneficiaries": {"Breece Hall": "Reich says offense starts with run game; fits Geno + Hall's new contract"}, "risk": {}, "note": "Run-first stated approach feeds Hall."},
-  "PHI": {"hc": "Nick Sirianni", "oc": "Sean Mannion", "caller": "Sean Mannion", "scheme": "More under-center + wide-zone; first-time play-caller", "pass_rate_2026": 51.6, "run_rate_2026": 48.4, "beneficiaries": {}, "risk": {"Saquon Barkley": "New wide-zone install + O-line questions; YBC dropped 2.64->1.36 in 2025 behind hurt line — wild card", "Jalen Hurts": "Mannion untested play-caller; A.J. Brown gone — bigger offensive wild card"}, "note": "5th OC since 2021; A.J. Brown gone — one of the league's bigger wild cards."},
-  "PIT": {"hc": "Mike McCarthy", "oc": "Brian Angelichio", "caller": "Mike McCarthy", "scheme": "West Coast timing, willing to push pace, pass-lean", "pass_rate_2026": 58.7, "run_rate_2026": 41.3, "beneficiaries": {}, "risk": {"Aaron Rodgers": "Familiar McCarthy offense helps him, but finished QB26 last year — Superflex-only value"}, "note": "Pass-lean, up-tempo; limited fantasy standouts outside Superflex QB."},
-  "LAR": {"hc": "Sean McVay", "oc": "Nate Scheelhaase", "caller": "Sean McVay", "scheme": "McVay offense unchanged; motion + play-action", "pass_rate_2026": 57.2, "run_rate_2026": 42.8, "beneficiaries": {}, "risk": {}, "note": "McVay still calls plays; all key pieces return (Stafford QB2, Puka WR1, Kyren RB9) — smooth continuity, no change."},
-  "SEA": {"hc": "Mike Macdonald", "oc": "Brian Fleury", "caller": "Brian Fleury", "scheme": "Shanahan-tree (ex-SF); similar to Kubiak's Super Bowl offense", "pass_rate_2026": 51.9, "run_rate_2026": 48.1, "beneficiaries": {"Rashid Shaheed": "Sources: 'major spring', taking more short/intermediate routes; less volatile, upside", "Jaxon Smith-Njigba": "Led NFL at 33.9% target share; could repeat, though slight target redistribution possible"}, "risk": {}, "note": "Profiles similarly to Kubiak's SB offense; Shaheed sneaky winner."},
-  "TB": {"hc": "Todd Bowles", "oc": "Zac Robinson", "caller": "Zac Robinson", "scheme": "McVay tree: balance, above-avg pace, heavy pre-snap motion", "pass_rate_2026": 55.2, "run_rate_2026": 44.8, "beneficiaries": {"Emeka Egbuka": "Retained-promise WR corps w/ Mayfield who trusts Robinson; motion-heavy scheme", "Baker Mayfield": "Trusts Robinson from LA; demands-excellence OC, molds scheme to personnel"}, "risk": {"Mike Evans": "Must adjust — note: on other rosters Evans is aging in a reshaped WR room"}, "note": "Motion-heavy McVay-tree; Mayfield-Robinson trust is real."},
-  "TEN": {"hc": "Robert Saleh", "oc": "Brian Daboll", "caller": "Brian Daboll", "scheme": "11-personnel; Daboll fueled Josh Allen's breakout", "pass_rate_2026": 58.0, "run_rate_2026": 42.0, "beneficiaries": {"Cam Ward": "Mobility + arm talent to grow under Daboll (fueled Allen breakout); stronger 2026 WR help", "Wan'Dale Robinson": "4 yrs w/ Daboll, drew 140 targets each of last 2 years; $38M guaranteed locks a key role"}, "risk": {}, "note": "Daboll's Allen/Jones history; Wan'Dale reunion is the fantasy tell."},
-  "WAS": {"hc": "Dan Quinn", "oc": "David Blough", "caller": "David Blough", "scheme": "More under-center + play-action; move McLaurin around formation", "pass_rate_2026": 52.0, "run_rate_2026": 48.0, "beneficiaries": {"Terry McLaurin": "Blough moving him around formation for better matchups; targeted '10 targets a game' + explosives"}, "risk": {}, "note": "McLaurin is the obvious beneficiary of varied alignment usage."}
+  "DEN": {
+    "hc": "Sean Payton",
+    "oc": "Davis Webb",
+    "caller": "Davis Webb",
+    "scheme": "Similar to last year, with a focus on vertical threats",
+    "changed": true,
+    "beneficiaries": {
+      "Bo Nix": "The addition of Jaylen Waddle could be the piece that unlocks another level of this offense.",
+      "Jaylen Waddle": "He gives Nix something the Broncos didn\u2019t really have last season \u2014 a true vertical threat with explosive speed.",
+      "J.K. Dobbins": "A rushing floor is always a nice bonus for a quarterback in DFS, and Nix added 356 yards and 5 touchdowns on the ground last season.",
+      "Jonah Coleman": "He\u2019s well behind the other two running backs on the depth chart, but he\u2019s made noise early in camp.",
+      "Marvin Mims Jr.": "He remains an explosive gadget player.",
+      "Pat Bryant": "He was a major part of the game plan in the playoffs before suffering a concussion.",
+      "Evan Engram": "The addition of Waddle could open up things for him underneath."
+    },
+    "risk": {
+      "Courtland Sutton": "Sutton\u2019s role is in serious jeopardy with Waddle now in the mix."
+    },
+    "note": "The Broncos offense should remain strong, but the addition of Jaylen Waddle could impact the roles of some players."
+  },
+  "KC": {
+    "hc": "Andy Reid",
+    "oc": "Eric Bieniemy",
+    "caller": "Andy Reid",
+    "scheme": "run-first offense",
+    "changed": false,
+    "beneficiaries": {
+      "Kenneth Walker III": "He forced 61 missed tackles last season and gives the Chiefs something they haven\u2019t consistently had in a long time \u2014 a running back capable of creating explosive plays."
+    },
+    "risk": {
+      "Patrick Mahomes": "The addition of Kenneth Walker could turn this into a run-first offense, which would only hurt Mahomes\u2019 fantasy potential even more."
+    },
+    "note": "The Chiefs' offense may become more run-heavy, which could hurt Mahomes' fantasy value, but their defense should remain solid"
+  },
+  "LV": {
+    "hc": "Klint Kubiak",
+    "oc": "Andrew Janocko",
+    "caller": "Klint Kubiak",
+    "scheme": "heavy outside-zone concepts, play action, and pre-snap motion",
+    "changed": true,
+    "beneficiaries": {
+      "Ashton Jeanty": "Kubiak\u2019s outside-zone system should be a much better fit for Jeanty\u2019s skill set.",
+      "Brock Bowers": "Kubiak should have plenty of ways to manufacture targets for Bowers."
+    },
+    "risk": {
+      "Kirk Cousins": "he hasn\u2019t played well in recent years, and the Raiders eventually want to turn the reins over to the top pick in the draft."
+    },
+    "note": "The Raiders' offense should be more efficient with Kubiak's system, but the quarterback situation is a concern."
+  },
+  "LAC": {
+    "hc": "Jim Harbaugh",
+    "oc": "Mike McDaniel",
+    "caller": "Mike McDaniel",
+    "scheme": "Motion, quick throws, play action, and yards after the catch",
+    "changed": true,
+    "beneficiaries": {
+      "Justin Herbert": "The new scheme should really help in that regard.",
+      "Omarion Hampton": "He now gets a scheme that should fit his skill set.",
+      "Ladd McConkey": "This gives him a much higher floor on a weekly basis."
+    },
+    "risk": {
+      "Justin Herbert": "One of the biggest issues for Herbert over the years has been the offensive line (54 sacks and 268 pressures last season)."
+    },
+    "note": "The Chargers could have one of the best offenses in the NFL, and their defense should be strong again this season."
+  },
+  "BUF": {
+    "hc": "Joe Brady",
+    "oc": "Pete Carmichael",
+    "caller": "Joe Brady",
+    "scheme": "Continuation of a familiar offense with more downfield opportunities",
+    "changed": true,
+    "beneficiaries": {
+      "Josh Allen": "He could create more downfield opportunities without taking away the designed runs that make Allen so valuable."
+    },
+    "risk": {},
+    "note": "The Bills' offense remains a strong unit, but the defense may experience some volatility with a new system."
+  },
+  "NE": {
+    "hc": "Mike Vrabel",
+    "oc": "Josh McDaniels",
+    "caller": "Josh McDaniels",
+    "scheme": "Continuity with same system and play-caller",
+    "changed": false,
+    "beneficiaries": {
+      "Drake Maye": "He gets a true WR1 in A.J. Brown.",
+      "TreVeyon Henderson": "He averaged a healthy 5.1 yards per carry, which was one of the best marks of any running back with his volume.",
+      "A.J. Brown": "He gives the Patriots a true alpha receiver after the team moved on from Diggs.",
+      "Kayshon Boutte": "He had 33 catches, 551 receiving yards, and 6 touchdowns last season."
+    },
+    "risk": {
+      "Rhamondre Stevenson": "Unfortunately, his upside will be limited as long as Stevenson is healthy.",
+      "TreVeyon Henderson": "He\u2019ll be tough to trust in DFS."
+    },
+    "note": "Continuity on offense and a strong defense should lead to a solid fantasy season."
+  },
+  "MIA": {
+    "hc": "Jeff Hafley",
+    "oc": "Bobby Slowik",
+    "caller": "Bobby Slowik",
+    "scheme": "Will keep many of the same fundamentals, but with a different skill set at quarterback",
+    "changed": true,
+    "beneficiaries": {
+      "Malik Willis": "The Dolphins will likely be in trailing game scripts, which could create more passing volume",
+      "De'Von Achane": "He caught 67 passes, which could really come in handy if the Dolphins find themselves in negative game scripts"
+    },
+    "risk": {
+      "De'Von Achane": "Mobile quarterbacks don't throw to running backs very often, and if that part of his game takes a step back, he will not live up to expectations"
+    },
+    "note": "Temper expectations on the Dolphins due to their 4.5 win total and significant coaching changes"
+  },
+  "NYJ": {
+    "hc": "Aaron Glenn",
+    "oc": "Frank Reich",
+    "caller": "Frank Reich",
+    "scheme": "run-heavy, pass-protection focused",
+    "changed": true,
+    "beneficiaries": {
+      "Breece Hall": "Reich has already made it clear that he wants to emphasize the running game, so Hall should remain the centerpiece of the offense.",
+      "Kenyon Sadiq": "Reich has talked about using multiple tight end sets, including 12 and 13 personnel, so there should be opportunities here.",
+      "Garrett Wilson": ""
+    },
+    "risk": {
+      "Geno Smith": "The good news for the passing game is that the Jets are projected to win only 5.5 games, which could create some pass-heavy game scripts, but it will be interesting to see if Reich still has it or if the NFL has passed him by."
+    },
+    "note": "The Jets' offense should be more run-heavy, with Breece Hall as the centerpiece, while the defense should be improved with new additions and a change in defensive play-calling."
+  },
+  "BAL": {
+    "hc": "Jesse Minter",
+    "oc": "Declan Doyle",
+    "caller": "Declan Doyle",
+    "scheme": "run-heavy approach",
+    "changed": true,
+    "beneficiaries": {
+      "Lamar Jackson": "His rushing should continue to be one of his biggest strengths.",
+      "Derrick Henry": "Baltimore has no reason to stop leaning on him this season, especially in scoring situations.",
+      "Zay Flowers": "He should be the focal point of this passing game heading into 2026."
+    },
+    "risk": {
+      "Lamar Jackson": "The big question is whether Doyle\u2019s offense can get Jackson back to the MVP-level efficiency."
+    },
+    "note": "The Ravens made significant coaching changes, but the roster still looks like a contender, and the new coaching staff may be the key to taking the team to the next level."
+  },
+  "CIN": {
+    "hc": "Zac Taylor",
+    "oc": "Dan Pitcher",
+    "caller": "Zac Taylor",
+    "scheme": "Elite, high-volume passing attack",
+    "changed": false,
+    "beneficiaries": {
+      "Joe Burrow": "If Burrow plays a full season, this offense has enough weapons to be one of the best in football.",
+      "Ja'Marr Chase": "That kind of target volume gives him one of the safest floors at receiver, and the ceiling is obviously enormous when Burrow is healthy.",
+      "Tee Higgins": "The Bengals arguably have the best 1-2 punch of any team in the league at receiver."
+    },
+    "risk": {
+      "Joe Burrow": "Burrow doesn\u2019t offer much rushing upside"
+    },
+    "note": "The Bengals have an elite offense with real upside, but their defense needs to improve for them to reach their full potential."
+  },
+  "CLE": {
+    "hc": "Todd Monken",
+    "oc": "Travis Switzer",
+    "caller": "Todd Monken",
+    "scheme": "run-heavy offense",
+    "changed": true,
+    "beneficiaries": {
+      "Quinshon Judkins": "Monken's history with run-heavy offenses makes it reasonable to expect Cleveland to lean on the ground game once again.",
+      "Harold Fannin": "Fannin's versatility should fit well with what Monken and Switzer want to do offensively."
+    },
+    "risk": {
+      "Deshaun Watson": "The biggest issue is quarterback play.",
+      "Jerry Jeudy": "He had 50 catches for 602 yards last season, which isn\u2019t very encouraging."
+    },
+    "note": "The Browns' offense is expected to be run-heavy, which could benefit Quinshon Judkins, while the defense will likely take a step back without Myles Garrett."
+  },
+  "PIT": {
+    "hc": "Mike McCarthy",
+    "oc": "Brian Angelichio",
+    "caller": "Mike McCarthy",
+    "scheme": "new voice and philosophy on offense",
+    "changed": true,
+    "beneficiaries": {
+      "Jaylen Warren": "With Kenneth Gainwell no longer on the roster, Warren could have an even bigger role in the passing game this season.",
+      "DK Metcalf": "",
+      "Michael Pittman": "Pittman is a big, reliable target who should fit well with Rodgers wanting to get the ball out of his hands as quickly as humanly possible.",
+      "Pat Freiermuth": "With Noah Fant now on the Saints, there should be more targets for Freiermuth and Washington",
+      "Darnell Washington": "With Noah Fant now on the Saints, there should be more targets for Freiermuth and Washington"
+    },
+    "risk": {
+      "Aaron Rodgers": "At the age of 42, Rodgers says this will be his final NFL season. He offers zero rushing upside at this stage of his career."
+    },
+    "note": "The Steelers' offense will likely be a run-heavy attack with a new coaching staff and philosophy, while their defense remains a strength with plenty of star power."
+  },
+  "JAC": {
+    "hc": "Liam Coen",
+    "oc": "Grant Udinski",
+    "caller": "Liam Coen",
+    "scheme": "Continuity on the coaching staff, with Liam Coen calling plays",
+    "changed": false,
+    "beneficiaries": {
+      "Trevor Lawrence": "In his second year in Coen\u2019s system, Lawrence will hopefully be able to pick up right where he left off.",
+      "Bhayshul Tuten": "If he wins the high-value touches, he\u2019ll have a ton of upside in DFS.",
+      "Parker Washington": "Washington led Jacksonville with 847 receiving yards last year.",
+      "Brenton Strange": "Strange is quietly coming off a strong season, catching 46 passes for 540 yards and 3 touchdowns."
+    },
+    "risk": {
+      "Brian Thomas Jr.": "Thomas didn\u2019t live up to expectations last season, but we know the talent is there."
+    },
+    "note": "The Jaguars are hoping to take another step forward this season with continuity on the coaching staff."
+  },
+  "HOU": {
+    "hc": "DeMeco Ryans",
+    "oc": "Nick Caley",
+    "caller": "Nick Caley",
+    "scheme": "run-heavy, game-manager offense",
+    "changed": false,
+    "beneficiaries": {
+      "C.J. Stroud": "The biggest positive heading into this season is the improved supporting cast around him.",
+      "David Montgomery": "Many are projecting Montgomery for 350 touches this season",
+      "Nico Collins": "Collins has the combination of target volume, downfield ability, and red-zone involvement.",
+      "Dalton Schultz": "Schultz remains the veteran option and should continue to see consistent work",
+      "Marlin Klein": "Rookie Klein is a player to keep an eye on. If his role grows quickly, he could become an interesting value play in DFS."
+    },
+    "risk": {
+      "C.J. Stroud": "I fear the Texans could use him as a game manager."
+    },
+    "note": "The Texans have a strong defense, which should create favorable game scripts for the offense."
+  },
+  "IND": {
+    "hc": "Shane Steichen",
+    "oc": "Jim Bob Cooter",
+    "caller": "Shane Steichen",
+    "scheme": "Continuity on offense with Shane Steichen and Jim Bob Cooter remaining in place",
+    "changed": false,
+    "beneficiaries": {
+      "Jonathan Taylor": "He\u2019s still one of the safest high-volume backs in DFS, although his price will reflect that early in the season.",
+      "Tyler Warren": "He has legitimate breakout potential in Year 2 and could quickly become one of the more valuable tight ends in DFS."
+    },
+    "risk": {
+      "Daniel Jones": "His recovery is the biggest variable here. He\u2019s not a player that I want to roster early in the season."
+    },
+    "note": "The Colts are trying to build on a bizarre season that started 7-1 before falling apart down the stretch, with a focus on consistency after a brutal collapse last season."
+  },
+  "TEN": {
+    "hc": "Robert Saleh",
+    "oc": "Brian Daboll",
+    "caller": "Brian Daboll",
+    "scheme": "Daboll gets the opportunity to build an offense around a young quarterback",
+    "changed": true,
+    "beneficiaries": {
+      "Cam Ward": "Ward\u2019s rushing ability and willingness to push the ball downfield give him legitimate DFS upside if the offense takes a step forward",
+      "Tony Pollard": "The volume makes him an intriguing value in DFS",
+      "Tyjae Spears": "Spears is the more explosive option and should continue to see work in the passing game",
+      "Calvin Ridley": "With Ward\u2019s willingness to throw the ball downfield, Ridley could be a sneaky bet in both DFS and season-long leagues",
+      "Carnell Tate": "He immediately has a chance to become one of the more important pieces of this offense",
+      "Gunnar Helm": "With Chig Okonkwo no longer in the picture, there is an opportunity for Helm to become a much bigger part of the passing game"
+    },
+    "risk": {
+      "Tony Pollard": "I do worry about his upside"
+    },
+    "note": "The Titans are hitting the reset button after going 3-14 for the 2nd straight season, with Robert Saleh taking over as head coach and Brian Daboll running the offense"
+  },
+  "PHI": {
+    "hc": "Nick Sirianni",
+    "oc": "Sean Mannion",
+    "caller": "Sean Mannion",
+    "scheme": "play-action, motion, and concepts from the Kyle Shanahan / Sean McVay coaching tree",
+    "changed": true,
+    "beneficiaries": {
+      "Jalen Hurts": "He gets a completely new offense under Mannion, who has emphasized play-action, motion, and concepts from the Kyle Shanahan / Sean McVay coaching tree.",
+      "Saquon Barkley": "He should flourish in the new offense, and he should have positive touchdown regression coming his way.",
+      "Tank Bigsby": "Mannion\u2019s offense should feature plenty of under-center and play-action concepts, which could create some interesting opportunities for these running backs.",
+      "Makai Lemon": "He\u2019s one of my favorite rookies to target early in the season.",
+      "DeVonta Smith": "He can handle the alpha role.",
+      "Dallas Goedert": "He could have a slightly bigger red-zone role with Brown no longer on the roster."
+    },
+    "risk": {
+      "Jalen Hurts": "His 421 rushing yards and 8 rushing touchdowns would be great for most quarterbacks, but they were a bit underwhelming based on our expectations."
+    },
+    "note": "The Eagles' new offense under Mannion should bring improvements, but replacing Brown\u2019s production and volume will be difficult."
+  },
+  "DAL": {
+    "hc": "Brian Schottenheimer",
+    "oc": "Klayton Adams",
+    "caller": "Brian Schottenheimer",
+    "scheme": "High-powered, pass-happy offense with a strong WR duo",
+    "changed": false,
+    "beneficiaries": {
+      "Dak Prescott": "He has one of the best wide receiver duos in the NFL in CeeDee Lamb and George Pickens.",
+      "CeeDee Lamb": "He finished last season with 1,077 receiving yards, and has a legitimate high-end weapon in George Pickens.",
+      "George Pickens": "He flourished in Lamb's absence and posted 1,429 receiving yards and 9 touchdowns in his first season with Dallas.",
+      "Javonte Williams": "He rushed for 1,201 yards and 11 touchdowns and earned himself a 3-year extension, and has a combination of rushing volume and touchdown upside.",
+      "Jake Ferguson": "He was a target monster at times last season, and has a best path to fantasy relevance being a weapon in the red zone."
+    },
+    "risk": {
+      "Dak Prescott": "He was forced to put up big numbers because the defense gave up a ton of points last season, and may see lower passing volume if the defense improves."
+    },
+    "note": "The Cowboys have a high-powered offense with a strong WR duo, but the defense is the big story of the season with a significant overhaul and added talent."
+  },
+  "NYG": {
+    "hc": "John Harbaugh",
+    "oc": "Matt Nagy",
+    "caller": "Matt Nagy",
+    "scheme": "Under-center concepts, emphasis on run game",
+    "changed": true,
+    "beneficiaries": {
+      "Jaxson Dart": "Nagy has already talked about tailoring the offense around Dart\u2019s strengths, and the Giants are expected to use more under-center concepts and emphasize the run game."
+    },
+    "risk": {
+      "Cam Skattebo": "He\u2019s coming back from an ankle injury. I worry about his volume."
+    },
+    "note": "The Giants have a new coaching staff and a talented but inconsistent defensive group, which could lead to some road bumps, but also potential for improvement."
+  },
+  "WAS": {
+    "hc": "Dan Quinn",
+    "oc": "David Blough",
+    "caller": "David Blough",
+    "scheme": "under-center concepts, emphasizing run game",
+    "changed": true,
+    "beneficiaries": {
+      "Jayden Daniels": "The good news is that Daniels seems healthy entering the season and gets a new offensive coordinator who already knows him well.",
+      "Terry McLaurin": "The addition of Diggs gives Washington another legitimate target earner and should make life easier for McLaurin.",
+      "Treylon Burks": "The biggest winner here is Daniels, who now has two excellent receivers at his disposal.",
+      "Chig Okonkwo": "If all goes well, he could end up being the second-best receiving option on the roster behind McLaurin."
+    },
+    "risk": {
+      "Jayden Daniels": "It was a massive drop from his rookie season, when he threw for 3,568 yards and 25 touchdowns while adding 891 yards on the ground."
+    },
+    "note": "The Commanders are trying to bounce back from a disappointing 5-12 season with a new offense and a more aggressive defense."
+  },
+  "GB": {
+    "hc": "Matt LaFleur",
+    "oc": "Adam Stenavich",
+    "caller": "Matt LaFleur",
+    "scheme": "run-heavy, but may open up more downfield passing",
+    "changed": false,
+    "beneficiaries": {
+      "Jordan Love": "With Christian Watson, Jayden Reed, and Matthew Golden all capable of creating explosive plays, there\u2019s legitimate fantasy upside if Green Bay becomes more aggressive.",
+      "Christian Watson": "Watson has the highest ceiling of the group thanks to his explosive ability",
+      "Jayden Reed": "Reed should provide consistency from the slot",
+      "Tucker Kraft": "If he\u2019s ready for Week 1, he immediately gives Love a high-upside option over the middle of the field"
+    },
+    "risk": {
+      "Jordan Love": "Unfortunately, that doesn\u2019t happen very often"
+    },
+    "note": "The Packers enter 2026 with plenty of continuity on offense but a significantly different look on defense"
+  },
+  "DET": {
+    "hc": "Dan Campbell",
+    "oc": "Drew Petzing",
+    "caller": "Dan Campbell",
+    "scheme": "run-heavy, pass-happy offense with a focus on tight end involvement",
+    "changed": true,
+    "beneficiaries": {
+      "Jahmyr Gibbs": "He has even less competition for touches this season.",
+      "Amon-Ra St. Brown": "He offers a nice floor/ceiling combo.",
+      "Jameson Williams": "He is a high-ceiling player with a cheaper price point.",
+      "Sam LaPorta": "He should benefit from Petzing\u2019s arrival, as his offenses have heavily featured the tight end in the past."
+    },
+    "risk": {
+      "Sam LaPorta": "He also has more competition for targets than most tight ends."
+    },
+    "note": "The Lions have a good chance of winning the division with improved offense and defense."
+  },
+  "MIN": {
+    "hc": "Kevin O\u2019Connell",
+    "oc": "Wes Phillips",
+    "caller": "Kevin O\u2019Connell",
+    "scheme": "stable, quarterback-driven offense",
+    "changed": false,
+    "beneficiaries": {
+      "Justin Jefferson": "He\u2019s one of the most talented receivers in the NFL, but there\u2019s only so much he can do with bad quarterback play.",
+      "Jordan Addison": "He gives Minnesota another dangerous player who can win downfield.",
+      "Jauan Jennings": "He brings a physical presence and should immediately compete for significant snaps and targets.",
+      "T.J. Hockenson": "",
+      "Kyler Murray": "He offers mobility and a good arm, and O\u2019Connell has gotten the most out of his quarterbacks."
+    },
+    "risk": {
+      "Aaron Jones": "He is another year older, and his numbers don\u2019t exactly jump off the page."
+    },
+    "note": "The Vikings have a stable coaching situation and a strong offense, but the defense lost several key pieces and will need to be rebuilt."
+  },
+  "CHI": {
+    "hc": "Ben Johnson",
+    "oc": "Press Taylor",
+    "caller": "Press Taylor",
+    "scheme": "run-heavy, physical rushing attack",
+    "changed": true,
+    "beneficiaries": {
+      "Caleb Williams": "He already has the physical talent and mobility to produce fantasy-friendly numbers, and another year in Ben Johnson\u2019s system is a positive.",
+      "D\u2019Andre Swift": "Swift is the more established fantasy option, but Monangai could become increasingly interesting if Chicago continues to emphasize a physical rushing attack.",
+      "Rome Odunze": "This creates a massive opportunity for both Odunze and Burden.",
+      "Luther Burden III": "This creates a massive opportunity for both Odunze and Burden.",
+      "Colston Loveland": "He showed flashes as a rookie and should have an even bigger role with Moore out of the picture."
+    },
+    "risk": {
+      "Caleb Williams": "The biggest question now is whether Williams can take another step as a passer."
+    },
+    "note": "The Bears have a strong foundation on offense, but the defense is a question mark."
+  },
+  "ATL": {
+    "hc": "Kevin Stefanski",
+    "oc": "Tommy Rees",
+    "caller": "Tommy Rees",
+    "scheme": "new system",
+    "changed": true,
+    "beneficiaries": {
+      "Bijan Robinson": "Stefanski\u2019s history of emphasizing the running game makes Robinson an even more appealing option.",
+      "Kyle Pitts": "The new coaching staff has emphasized the tight end position."
+    },
+    "risk": {
+      "Tua Tagovailoa": "Unfortunately, I don\u2019t see it.",
+      "Michael Penix Jr.": "Unfortunately, I don\u2019t see it."
+    },
+    "note": "The Falcons have a new coaching staff and a new system, but Bijan Robinson and Kyle Pitts are safe bets to start the season."
+  },
+  "CAR": {
+    "hc": "Dave Canales",
+    "oc": "Brad Idzik",
+    "caller": "Brad Idzik",
+    "scheme": "West Coast/Control-oriented",
+    "changed": false,
+    "beneficiaries": {
+      "Bryce Young": "He throws for 3,011 yards and had 23 passing touchdowns in 2025.",
+      "Tetairoa McMillan": "The volume should continue to be elite this season.",
+      "Chuba Hubbard": "The Panthers expect him to take control of the rushing attack.",
+      "Jalen Coker": "He is firmly entrenched as the WR2.",
+      "Mitchell Evans": "He is a developmental tight end with potential.",
+      "Ikem Ekwonu": "He is recovering from a torn patellar tendon, but will be back.",
+      "Rasheed Walker": "He was added in free agency to help with the tackle situation.",
+      "Monroe Freeling": "He was selected in the first round to help with the tackle situation.",
+      "Derrick Brown": "He is the staple of this defense.",
+      "Jaelan Phillips": "He was added to the defense to help with pass rush.",
+      "Devin Lloyd": "He was added to the defense to help with pass rush.",
+      "Tre\u2019von Moehrig": "He was added to the defense to help with safety play.",
+      "Jaycee Horn": "He is an elite player in the secondary."
+    },
+    "risk": {
+      "Tetairoa McMillan": "He had 70 receptions for 1,014 yards in his rookie season, but may not be as efficient this season.",
+      "Chuba Hubbard": "He may not be as effective with a heavier workload.",
+      "Jalen Coker": "He may not be as effective with a heavier workload.",
+      "Ikem Ekwonu": "He is recovering from a torn patellar tendon.",
+      "Taylor Moton": "He is dealing with blood clots that are expected to keep him out for the start of the season.",
+      "Bryce Young": "He may not be as effective with a heavier workload.",
+      "Feleipe Franks": "He is a developmental tight end with potential, but may not be ready for a significant role.",
+      "Mitchell Evans": "He is a developmental tight end with potential, but may not be ready for a significant role.",
+      "Ja\u2019Tavion Sanders": "He has a low target share and may not be as effective this season.",
+      "Tommy Tremble": "He has a low target share and may not be as effective this season.",
+      "Xavier Legette": "He has not consistently produced at the level expected of a former 1st-round pick.",
+      "Chris Brazzell II": "He is a rookie and may not be ready for a significant role.",
+      "Trevor Etienne": "He may not be as effective with a lighter workload.",
+      "Jonathon Brooks": "He is recovering from an ACL injury and may not be ready for a significant role."
+    },
+    "note": "The Panthers are betting on continuity heading into 2026, with Dave Canales remaining head coach and Brad Idzik taking on a larger role as offensive coordinator and primary play-caller."
+  },
+  "NO": {
+    "hc": "Kellen Moore",
+    "oc": "Doug Nussmeier",
+    "caller": "Kellen Moore",
+    "scheme": "Moore's offense",
+    "changed": false,
+    "beneficiaries": {
+      "Tyler Shough": "Another year in Moore\u2019s offense is a positive.",
+      "Chris Olave": "His usage suggested positive regression, and it finally paid off in the second half of the year.",
+      "Juwan Johnson": "Those numbers are pretty great for a tight end, especially one as cheap as he was most of last season."
+    },
+    "risk": {
+      "Tyler Shough": "The biggest question is whether Shough can become more consistent as a passer."
+    },
+    "note": "The Saints' offense has potential with Shough and Moore, while the defense has concerns with injuries and talent loss."
+  },
+  "TB": {
+    "hc": "Todd Bowles",
+    "oc": "Zac Robinson",
+    "caller": "Zac Robinson",
+    "scheme": "Strong emphasis on running game, wide-zone concepts, play-action, and movement",
+    "changed": true,
+    "beneficiaries": {
+      "Bucky Irving": "Should have the edge on early downs",
+      "Cade Otton": "Should continue to be the TE1 for the Buccaneers",
+      "Emeka Egbuka": "Expected to be a trusted target and have favorable matchups",
+      "Tristan Wirfs": "Should help establish a consistent running game and give Mayfield time in the pocket"
+    },
+    "risk": {
+      "Baker Mayfield": "Expected to adjust to a new offense with more wide-zone concepts, play-action, and movement"
+    },
+    "note": "The Buccaneers' offense is expected to adjust to a new system, but the defense should benefit from continuity and added talent"
+  },
+  "ARI": {
+    "hc": "Mike LaFleur",
+    "oc": "Nathaniel Hackett",
+    "caller": "Mike LaFleur",
+    "scheme": "LaFleur's offense should create plenty of easy completions and opportunities after the catch",
+    "changed": true,
+    "beneficiaries": {
+      "Trey McBride": "He dominated Arizona\u2019s targets last season, finishing with 126 receptions for 1,239 yards and 11 touchdowns",
+      "Marvin Harrison Jr.": "Perhaps a new offense is what he needs to live up to the lofty expectations",
+      "Michael Wilson": "Wilson had a breakout season in 2025, catching 78 passes for 1,006 yards and 7 touchdowns"
+    },
+    "risk": {
+      "Marvin Harrison Jr.": "The big question is if LaFleur and Hackett can create enough passing opportunities for Harrison, Wilson, and McBride to all be fantasy relevant"
+    },
+    "note": "The Cardinals have a 4.5 win total, which could lead to a lot of pass volume and garbage time, making their offense a sneaky DFS appeal"
+  },
+  "LAR": {
+    "hc": "Sean McVay",
+    "oc": "Nate Scheelhaase",
+    "caller": "Sean McVay",
+    "scheme": "McVay's offense",
+    "changed": true,
+    "beneficiaries": {
+      "Matthew Stafford": "With Puka Nacua, Davante Adams, and Kyren Williams around him, Stafford has one of the best collections of skill-position talent in football.",
+      "Puka Nacua": "That kind of target volume makes him one of the highest-floor/highest-ceiling receivers in DFS.",
+      "Kyren Williams": "While he\u2019s still the RB1 in this offense, Corum is the player who could complicate things if the Rams decide to lighten Williams\u2019 workload.",
+      "Davante Adams": "The Rams also gave him a decent amount of carries.",
+      "Terrance Ferguson": "He is extremely athletic and could play his way into a bigger role this season."
+    },
+    "risk": {
+      "Matthew Stafford": "At 38 years old, the mileage is obvious"
+    },
+    "note": "The Rams have a strong coaching staff and personnel, making them one of the favorites to win the Super Bowl."
+  },
+  "SF": {
+    "hc": "Kyle Shanahan",
+    "oc": "Klay Kubiak",
+    "caller": "Kyle Shanahan",
+    "scheme": "Kyle Shanahan's offense is known for efficiency and mobility",
+    "changed": false,
+    "beneficiaries": {
+      "Brock Purdy": "He has a ton of weapons, an offensive genius as a head coach, and a great track record.",
+      "Christian McCaffrey": "His volume was unreal.",
+      "Deebo Samuel": "If he becomes a starter, he has the athletic profile to become a major fantasy asset in Shanahan\u2019s offense.",
+      "Mike Evans": "His ability to catch touchdowns should be huge for this offense."
+    },
+    "risk": {
+      "Christian McCaffrey": "The two questions entering this season are if Father Time is eventually going to start winning the battle, and if he can stay as healthy as he did last season."
+    },
+    "note": "The 49ers have continuity on offense but a new defensive coordinator and potentially different approach on defense."
+  },
+  "SEA": {
+    "hc": "Mike Macdonald",
+    "oc": "Brian Fleury",
+    "caller": "Brian Fleury",
+    "scheme": "West Coast/Shanahan-style offense",
+    "changed": true,
+    "beneficiaries": {
+      "Sam Darnold": "He has some of the best weapons of any quarterback in the NFL.",
+      "Jaxon Smith-Njigba": "He should continue to command a massive target share from Darnold.",
+      "AJ Barner": "He emerged as an important part of the offense in 2025, finishing second on the team with 52 receptions, 519 yards, and 6 touchdowns."
+    },
+    "risk": {
+      "Sam Darnold": "The biggest question is whether Darnold can maintain that level of efficiency without Kubiak calling the offense."
+    },
+    "note": "The Seahawks' offense will likely undergo some changes with Brian Fleury taking over as OC and primary play-caller, but the defense remains strong and should continue to be a key factor in the team's success."
+  }
 }
