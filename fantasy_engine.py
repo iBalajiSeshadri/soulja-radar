@@ -249,7 +249,15 @@ def calculate_dynamic_natural_tiers(pos_df):
         
     return tiers
 
-def calculate_master_board():
+def calculate_master_board(scoring=None, starters=None, superflex=True, include_idp=True):
+    """Build the VORP board. Optionally accept a league-specific scoring dict and
+    starters config (from Sleeper) so the board reflects ANY league's rules.
+    Defaults to the module config (Soulja) for backward compatibility."""
+    global SCORING_WEIGHTS, STARTERS_CONFIG
+    if scoring:
+        SCORING_WEIGHTS = {**SCORING_WEIGHTS, **scoring}
+    if starters:
+        STARTERS_CONFIG = {**STARTERS_CONFIG, **starters}
     fftoday_ranks, ff_idp_pts = fetch_fftoday_all_projections()
     players_db = requests.get(f"{SLEEPER_API_URL}/players/nfl").json()
     df_off, df_idp = fetch_dynamic_players(players_db, ff_idp_pts)

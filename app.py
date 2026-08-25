@@ -1200,20 +1200,62 @@ if draft_mode == "🔨 Auction / Salary Cap":
             _likely = int(_mc['median'])
             _want = _pr['clean_name'] in st.session_state.my_targets
             _need_pos = pos_gaps.get('IDP' if _pr['position'] in ('LB','DL','DB') else _pr['position'], 0) > 0
-            if _fair > my_max_bid:
-                _verdict, _color, _msg = "PASS", "#ef4444", f"Can't afford — fair ${_fair} > your max ${my_max_bid}."
+            # MARKET-AWARE fair bar: scarce/premium players (SF QB, elite RB) cost a
+            # real market premium — the fitted premium IS their fair price. So we do
+            # NOT flag paying market as an "overpay". The engine's job is to tell you
+            # what the market cost is and whether you can still build after paying it.
+            _prem = stud_premium_for_rank(int(_pr['board_rank']))
+            _mkt_fair = max(_fair, int(round(_fair * _prem)))   # market-realistic value
+            _bid_ceiling = min(my_max_bid, max(_walk, _mkt_fair))
+            if _fair > my_max_bid and _mkt_fair > my_max_bid:
+                _verdict, _color, _msg = "CAN'T AFFORD", "#ef4444", f"Market ~${max(_likely,_mkt_fair)} exceeds your max ${my_max_bid}. Would strand your roster."
             elif not _need_pos and not _want:
-                _verdict, _color, _msg = "PASS", "#ef4444", f"You don't need {_pr['position']} — let a rival overpay (~${_likely})."
-            elif _likely > _fair * 1.25:
-                _verdict, _color, _msg = "LET IT GO", "#f59e0b", f"Room will overpay (~${_likely} vs ${_fair} fair). Bid only if it stalls under ${_fair}."
+                _verdict, _color, _msg = "SKIP", "#f59e0b", f"You don't need {_pr['position']} — let a rival spend ~${_likely}. Nominate to bleed them."
             else:
-                _verdict, _color, _msg = f"BID to ${_walk}", "#10b981", f"Fair ${_fair} · likely sells ${_likely} · walk away past ${_walk}."
+                _verdict, _color = f"BID to ${_bid_ceiling}", "#10b981"
+                _msg = f"Market price for this tier ~${_likely}. Your ceiling ${_bid_ceiling} (fair ${_fair}, +premium). Winning is fine — see the build plan below."
             _star = "⭐ TARGET · " if _want else ""
             st.markdown(
-                f'<div style="background:{_color};border-radius:8px;padding:14px 18px;margin:4px 0 12px 0;">'
+                f'<div style="background:{_color};border-radius:8px;padding:14px 18px;margin:4px 0 8px 0;">'
                 f'<span style="font-size:1.5rem;font-weight:800;color:white;">{_star}{_verdict}</span>'
                 f'<span style="font-size:0.95rem;color:#f8fafc;margin-left:12px;">{_pr["player_name"]} ({_pr["position"]}) — {_msg}</span>'
                 f'</div>', unsafe_allow_html=True)
+
+            # ── BUILD PLAN: "if you win at ~$X, here's how you fill the rest" ──────
+            _spend = min(my_max_bid, _likely)
+            _cap_after = my_cap_left - _spend
+            _slots_after = max(0, my_slots_left - 1)
+            if _slots_after > 0 and _verdict.startswith("BID"):
+                _per_slot = _cap_after / _slots_after
+                # need list after this hypothetical win (this player fills one slot)
+                _sim_gaps = dict(pos_gaps)
+                _bkt = 'IDP' if _pr['position'] in ('LB','DL','DB') else _pr['position']
+                if _sim_gaps.get(_bkt, 0) > 0:
+                    _sim_gaps[_bkt] -= 1
+                _still = [p for p in ['QB','RB','WR','TE','IDP','DEF'] if _sim_gaps.get(p,0) > 0]
+                # affordable players per still-needed position (fair within ~1.6x avg/slot)
+                _budget_each = max(1, _per_slot * 1.6)
+                _plan_bits = []
+                for _p in _still[:4]:
+                    _ppool = df_unpicked[
+                        (df_unpicked['position'] == _p) if _p not in ('IDP',)
+                        else (df_unpicked['position'].isin(['LB','DL','DB']))]
+                    _ppool = _ppool[(_ppool['clean_name'] != _pr['clean_name']) &
+                                    (df_unpicked['fair_value'] <= _budget_each)].sort_values('fair_value', ascending=False)
+                    if not _ppool.empty:
+                        _names = ", ".join(f"{r['player_name']} (${int(r['fair_value'])})"
+                                           for _, r in _ppool.head(3).iterrows())
+                        _plan_bits.append(f"<b>{_p}×{_sim_gaps[_p]}:</b> {_names}")
+                _viable = _cap_after >= _slots_after  # at least $1/slot
+                _vcolor = "#10b981" if _viable else "#ef4444"
+                _plan_html = "<br>".join(_plan_bits) if _plan_bits else "Tight — lean on $1-3 value at your remaining slots."
+                st.markdown(
+                    f'<div style="background:#131b2e;border-left:4px solid {_vcolor};padding:10px 14px;'
+                    f'border-radius:6px;margin-bottom:12px;font-size:0.85rem;">'
+                    f'📐 <b>If you win at ~${_spend}:</b> ${_cap_after} left for {_slots_after} slots '
+                    f'(~${_per_slot:.0f}/slot). {"✅ Roster stays viable." if _viable else "⚠️ Leaves you thin — only do it for a true anchor."}<br>'
+                    f'<span style="color:#94a3b8;">Still affordable to complete:</span><br>{_plan_html}</div>',
+                    unsafe_allow_html=True)
 
     # ── LIVE QoL BANNER: recent picks ticker + roster + guardrails ────────────
     if live_mode:
