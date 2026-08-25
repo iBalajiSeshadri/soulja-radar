@@ -1239,13 +1239,16 @@ if draft_mode == "🔨 Auction / Salary Cap":
             # NOT flag paying market as an "overpay". The engine's job is to tell you
             # what the market cost is and whether you can still build after paying it.
             _prem = stud_premium_for_rank(int(_pr['board_rank']))
-            # Position-specific fitted market price from the league's own auction
-            # history (market_curves.json) — this is what THIS tier actually sells for
-            # (e.g. SF QB1-3 ~$52-53), far more accurate than a generic fair*premium.
-            _pos_rank = int((df_board[df_board['position'] == _pr['position']]
-                             .sort_values('proj_fpts', ascending=False)['clean_name']
-                             .tolist().index(_pr['clean_name']) + 1)) if _pr['clean_name'] in \
-                        df_board[df_board['position'] == _pr['position']]['clean_name'].tolist() else 99
+            # Positional rank computed over AVAILABLE players (df_unpicked), sorted by
+            # projection — so it's consistent with the "next available" logic below.
+            # (Bug fix: previously ranked over the FULL board incl. drafted players,
+            # which let a higher-ranked available player show up as the "next down".)
+            _pos_pool_avail = df_unpicked[
+                df_unpicked['position'].isin(['LB','DL','DB']) if _pr['position'] in ('LB','DL','DB')
+                else (df_unpicked['position'] == _pr['position'])
+            ].sort_values('proj_fpts', ascending=False).reset_index(drop=True)
+            _names_avail = _pos_pool_avail['clean_name'].tolist()
+            _pos_rank = (_names_avail.index(_pr['clean_name']) + 1) if _pr['clean_name'] in _names_avail else 99
             _league_price = league_market_cost(_pr['position'], _pos_rank)
             _mkt_fair = max(_fair, int(round(_fair * _prem)), int(_league_price or 0))
             # "Likely to sell" anchors to the league's REAL historical price for this
@@ -1254,26 +1257,18 @@ if draft_mode == "🔨 Auction / Salary Cap":
             # (e.g. TE), which would overstate the price. Blend 70% league / 30% MC.
             if _league_price:
                 _likely = int(round(0.7 * float(_league_price) + 0.3 * float(_likely)))
-            # TIER-DROP / cost-of-waiting: what does the NEXT available player at this
-            # position cost, and where's the next cliff? Uses live availability.
-            _pos_avail = df_unpicked[
-                (df_unpicked['position'] == _pr['position']) if _pr['position'] not in ('LB','DL','DB')
-                else df_unpicked['position'].isin(['LB','DL','DB'])
-            ].sort_values('proj_fpts', ascending=False)
-            _pos_avail = _pos_avail[_pos_avail['clean_name'] != _pr['clean_name']]
-            # LAST-IN-TIER scarcity: read the SHARED df_board['tier_ender'] flag
-            # (computed once above) so the board table, cliff tracker, and this
-            # verdict never disagree. Data (3yr): tier-enders sell ~+$5 over curve.
+            # TIER-DROP / cost-of-waiting: the NEXT player is the one immediately
+            # BELOW the selected player among AVAILABLE players (not the top of the
+            # pool) — so it's always a lower-ranked fallback, never a better player.
+            _next_p = _pos_pool_avail.iloc[_pos_rank] if _pos_rank < len(_pos_pool_avail) else None
             TIER_END_PREMIUM = 5
             _is_tier_ender = bool(_pr.get('tier_ender', False))
             _next_price = None
             _tier_drop_txt = ""
-            if not _pos_avail.empty:
-                _next_p = _pos_avail.iloc[0]
+            if _next_p is not None:
                 _next_price = league_market_cost(_pr['position'], _pos_rank + 1) or int(_next_p['fair_value'])
                 # Compare LIKE FOR LIKE: this player's league-market price vs the next
-                # player's league-market price (both from the same curve) so the "drop"
-                # is consistent. Do NOT compare the MC-inflated _likely to a curve price.
+                # player's league-market price (both from the same curve).
                 _this_mktprice = league_market_cost(_pr['position'], _pos_rank) or _fair
                 _drop = max(0, int(_this_mktprice) - int(_next_price))
                 if _is_tier_ender:
