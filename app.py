@@ -1590,11 +1590,22 @@ if draft_mode == "🔨 Auction / Salary Cap":
                     if _p in ('QB', 'RB', 'WR', 'TE') and _rivals_need >= 3 and _startable_left <= _rivals_need + 1:
                         _flag = (f' <span style="color:#f59e0b;font-weight:700;">⚠️ {_rivals_need} rivals need '
                                  f'{_p}, only {_startable_left} left — inflating</span>')
+                    # TIER-SCARCITY: how many left in the CURRENT tier at this position,
+                    # so you know to grab a plan target before its tier cliffs.
+                    _tier_note = ""
+                    if _p in ('QB', 'RB', 'WR', 'TE') and not _ppool_all.empty:
+                        _cur_tier = str(_ppool_all.iloc[0]['tier'])
+                        _tier_left = int((_ppool_all['tier'] == _cur_tier).sum())
+                        if _tier_left <= 3:
+                            _tier_note = (f' <span style="color:#fca5a5;">⛰️ only {_tier_left} left in '
+                                          f'{_cur_tier} — grab before the cliff</span>')
+                        else:
+                            _tier_note = f' <span style="color:#64748b;">({_tier_left} left in {_cur_tier})</span>'
                     _names = ", ".join(f"{n} (~${c})" for n, c in _cands)
                     if _p in ('IDP', 'DEF'):
                         _plan_bits.append(f"<b>{_p}×{_sim_gaps[_p]} ($1 streamers):</b> {_names}")
                     else:
-                        _plan_bits.append(f"<b>{_p}×{_sim_gaps[_p]} (~${int(_pos_budget)}):</b> {_names}{_flag}")
+                        _plan_bits.append(f"<b>{_p}×{_sim_gaps[_p]} (~${int(_pos_budget)}):</b> {_names}{_flag}{_tier_note}")
                 _viable = _cap_after >= _slots_after  # at least $1/slot
                 _vcolor = "#10b981" if _viable else "#ef4444"
                 _plan_html = "<br>".join(_plan_bits) if _plan_bits else "Tight — lean on $1-3 value at your remaining slots."
