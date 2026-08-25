@@ -1168,11 +1168,21 @@ if draft_mode == "🔨 Auction / Salary Cap":
     _auto_row = _rec_pool.iloc[0] if not _rec_pool.empty else None
     _auto_label = (f"⭐ Auto: {_auto_row['player_name']} ({_auto_row['position']})"
                    if _auto_row is not None else "— no affordable target —")
-    _player_opts = [f"{r['player_name']} ({r['position']})" for _, r in _avail_names.head(250).iterrows()]
+    # Position filter so the picker is short & findable (a 250-long list buries
+    # players like a QB in Superflex). Tap a position, then type-to-search.
+    _pos_choices = ["ALL", "QB", "RB", "WR", "TE"] + (["IDP", "DEF"] if include_idp else [])
+    _bid_pos = st.radio("Filter by position:", _pos_choices, horizontal=True,
+                        key="bid_pos_filter", label_visibility="collapsed")
+    if _bid_pos == "ALL":
+        _pool_df = _avail_names
+    elif _bid_pos == "IDP":
+        _pool_df = _avail_names[_avail_names['position'].isin(['LB', 'DL', 'DB'])]
+    else:
+        _pool_df = _avail_names[_avail_names['position'] == _bid_pos]
+    _player_opts = [f"{r['player_name']} ({r['position']})" for _, r in _pool_df.head(300).iterrows()]
     _opts = [_auto_label] + _player_opts
-    _sel = st.selectbox("Player currently on the block:", _opts, index=0, key="bid_verdict_sel",
-                        label_visibility="collapsed",
-                        help="Auto-set to your top recommended pickup. Change it only when the room nominates someone else.")
+    _sel = st.selectbox("Player on the block (type to search):", _opts, index=0, key="bid_verdict_sel",
+                        help="⭐ Auto = your top pickup. Filter by position + type a name to jump to the nominated player.")
     # resolve selection -> player row (auto option maps to the recommended player)
     if _sel.startswith("⭐ Auto:"):
         _prow = _rec_pool.head(1) if _auto_row is not None else _avail_names.head(0)
@@ -1248,10 +1258,18 @@ else:
     _sauto = _srec.iloc[0] if not _srec.empty else None
     _sauto_label = (f"⭐ Auto: {_sauto['player_name']} ({_sauto['position']})"
                     if _sauto is not None else "— no players available —")
-    _sopts = [_sauto_label] + [f"{r['player_name']} ({r['position']})" for _, r in _savail.head(250).iterrows()]
-    _ssel = st.selectbox("Player you're considering:", _sopts, index=0, key="draft_verdict_sel",
-                         label_visibility="collapsed",
-                         help="Auto-set to your best available pickup. Change it to compare a specific player.")
+    _spos_choices = ["ALL", "QB", "RB", "WR", "TE"] + (["IDP", "DEF"] if include_idp else [])
+    _draft_pos = st.radio("Filter by position:", _spos_choices, horizontal=True,
+                          key="draft_pos_filter", label_visibility="collapsed")
+    if _draft_pos == "ALL":
+        _spool_df = _savail
+    elif _draft_pos == "IDP":
+        _spool_df = _savail[_savail['position'].isin(['LB', 'DL', 'DB'])]
+    else:
+        _spool_df = _savail[_savail['position'] == _draft_pos]
+    _sopts = [_sauto_label] + [f"{r['player_name']} ({r['position']})" for _, r in _spool_df.head(300).iterrows()]
+    _ssel = st.selectbox("Player you're considering (type to search):", _sopts, index=0, key="draft_verdict_sel",
+                         help="⭐ Auto = your best available. Filter by position + type a name to compare a specific player.")
     if _ssel.startswith("⭐ Auto:"):
         _sprow = _srec.head(1) if _sauto is not None else _savail.head(0)
     else:
