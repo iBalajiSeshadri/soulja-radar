@@ -1242,8 +1242,12 @@ if draft_mode == "🔨 Auction / Salary Cap":
                         df_board[df_board['position'] == _pr['position']]['clean_name'].tolist() else 99
             _league_price = league_market_cost(_pr['position'], _pos_rank)
             _mkt_fair = max(_fair, int(round(_fair * _prem)), int(_league_price or 0))
-            # "likely to sell" should also respect the real market floor for the tier
-            _likely = max(_likely, int(_league_price or 0)) if _league_price else _likely
+            # "Likely to sell" anchors to the league's REAL historical price for this
+            # tier (the ground truth), nudged toward the MC estimate but not dominated
+            # by it — MC can over-inflate positions whose fair_value carries a premium
+            # (e.g. TE), which would overstate the price. Blend 70% league / 30% MC.
+            if _league_price:
+                _likely = int(round(0.7 * float(_league_price) + 0.3 * float(_likely)))
             # TIER-DROP / cost-of-waiting: what does the NEXT available player at this
             # position cost, and where's the next cliff? Uses live availability.
             _pos_avail = df_unpicked[
@@ -1261,15 +1265,22 @@ if draft_mode == "🔨 Auction / Salary Cap":
             if not _pos_avail.empty:
                 _next_p = _pos_avail.iloc[0]
                 _next_price = league_market_cost(_pr['position'], _pos_rank + 1) or int(_next_p['fair_value'])
-                _drop = int(_pr.get('tier_cliff', 0)) or max(0, _likely - int(_next_price))
+                # Compare LIKE FOR LIKE: this player's league-market price vs the next
+                # player's league-market price (both from the same curve) so the "drop"
+                # is consistent. Do NOT compare the MC-inflated _likely to a curve price.
+                _this_mktprice = league_market_cost(_pr['position'], _pos_rank) or _fair
+                _drop = max(0, int(_this_mktprice) - int(_next_price))
                 if _is_tier_ender:
                     _tier_drop_txt = (f" ⚠️ You're bidding the LAST elite {_pr['position']} before a ${_drop} "
                                       f"cliff (next: {_next_p['player_name']} ~${int(_next_price)}). Expect a "
                                       f"bidding war — tier-enders historically go ~${TIER_END_PREMIUM} over. "
                                       f"Win it now or pay the panic later.")
+                elif _drop >= 5:
+                    _tier_drop_txt = (f" Next {_pr['position']} ({_next_p['player_name']}) ~${int(_next_price)} "
+                                      f"(${_drop} cheaper — modest drop).")
                 else:
                     _tier_drop_txt = (f" Next {_pr['position']} ({_next_p['player_name']}) ~${int(_next_price)} "
-                                      f"(only ${max(0,_likely-int(_next_price))} cheaper — depth here, can wait).")
+                                      f"(only ${_drop} cheaper — depth here, can wait).")
             # apply the data-derived tier-ender premium to the ceiling (mild, ~+$5)
             if _is_tier_ender:
                 _mkt_fair += TIER_END_PREMIUM
