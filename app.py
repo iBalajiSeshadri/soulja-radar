@@ -1766,7 +1766,8 @@ else:
 st.markdown("---")
 
 # 5. Positional Cliff Tracker
-st.markdown("#### 🚨 POSITIONAL ACTIVE TIER CLIFF TRACKER")
+st.markdown("---")
+st.markdown("##### 🚨 Positional tier cliffs")
 cliff_cols = st.columns(4)
 tier_order = ['Tier 1', 'Tier 2', 'Tier 3', 'Tier 4', 'Tier 5']
 
@@ -1824,7 +1825,8 @@ offense_needed = [p for p in ['QB', 'RB', 'WR', 'TE'] if pos_gaps.get(p, 0) > 0]
 display_positions = ['QB', 'RB', 'WR', 'TE'] if offense_needed else (['LB', 'DL', 'DB', 'DEF'] if include_idp else ['DEF'])
 
 if draft_mode == "🔨 Auction / Salary Cap":
-    st.markdown("#### 🧠 REAL-TIME DYNAMIC TARGETING & NOMINATION ADVISOR")
+    st.markdown("---")
+    st.markdown("##### 🎯 Targets — best value per position + smart nominations")
     affordable_df = non_faded_unpicked[non_faded_unpicked['fair_value'] <= my_max_bid].copy()
     primary_candidate_pool = affordable_df[affordable_df['position'].isin(display_positions)].copy()
 
@@ -1976,7 +1978,7 @@ if draft_mode == "🔨 Auction / Salary Cap":
     with rec_col3: st.markdown(nom_card_html, unsafe_allow_html=True)
 
 else:
-    st.markdown(f"#### 🐍 SNAKE DRAFT TURN PREDICTOR & VALUE ENGINE ({qb_format})")
+    st.markdown("---"); st.markdown(f"##### 🎯 Targets & turn predictor ({qb_format})")
     snake_col1, snake_col2, snake_col3 = st.columns(3)
     
     primary_candidate_pool = non_faded_unpicked[non_faded_unpicked['position'].isin(display_positions)].copy()
@@ -2098,7 +2100,7 @@ st.markdown("---")
 col_left, col_right = st.columns([1.2, 1])
 
 with col_left:
-    st.markdown("#### 🎯 PLAYER DRAFT CONSOLE")
+    st.markdown("---"); st.markdown("##### 🎯 Player console & mark drafted")
     player_options = df_unpicked['player_name'].tolist()
     if player_options:
         selected_player = st.selectbox("Search or Select Player:", player_options)
