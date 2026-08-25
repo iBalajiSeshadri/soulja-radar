@@ -2199,36 +2199,11 @@ else:
             f'</div>', unsafe_allow_html=True
         )
 
-# Advisor metric legend (mode-aware) so the new signals are self-explaining.
-with st.expander("ℹ️ How to read the advisor metrics"):
-    if draft_mode == "🔨 Auction / Salary Cap":
-        st.markdown(
-            "- **Fair $** — value at par (VORP share of budget), already adjusted for live **room inflation**.\n"
-            "- **Likely sells / Walk-away** — Monte-Carlo of the winning price from rivals' remaining cap, "
-            "positional need, and archetype aggression. *Likely* = median sim; *Walk-away* = 80th-percentile "
-            "(don't chase past it).\n"
-            "- **Surplus / VORP-$** — arbitrage: fair value above market cost, and points-of-VORP per dollar.\n"
-            "- **🏃 RUN / 🎯 rivals need** — a positional run is underway, or N rivals still must fill that slot "
-            "(demand holds prices up).\n"
-            "- **Nomination drain** — the Smart Nominations card bleeds rivals on **deep** "
-            "positions (WR/RB mid-tier) where replacement is cheap, so their spend is wasted. "
-            "It protects your studs and scarce TE/QB — fitted from 3 years of your league's real auctions."
-        )
-    else:
-        st.markdown(
-            "- **VORP** — value over a realistic replacement starter (Superflex boosts QB scarcity).\n"
-            "- **% GONE (Monte-Carlo)** — simulated probability a player is drafted **before your next pick**, "
-            "using ADP + draft noise over the exact serpentine gap. ≥50% = grab now or lose him.\n"
-            "- **+Spots Value** — falling past consensus ADP (a steal if he lasts to you).\n"
-            "- **VONA** — value lost if you wait: high = a real positional cliff (draft now), low = depth remains (wait)."
-        )
-st.markdown("---")
-
 # 6. Draft Console
-col_left, col_right = st.columns([1.2, 1])
+col_left, col_right = st.columns([1.4, 1])
 
 with col_left:
-    st.markdown("---"); st.markdown("##### 🎯 Player console & mark drafted")
+    st.markdown("##### 🎯 Player console & mark drafted")
     player_options = df_unpicked['player_name'].tolist()
     if player_options:
         selected_player = st.selectbox("Search or Select Player:", player_options)
@@ -2387,6 +2362,32 @@ with col_right:
                 f'<div><b>{tr["player_name"]}</b> <span class="badge-pos pos-{tr["position"]}">{tr["position"]}</span><br>'
                 f'<span style="font-size:0.75rem; color:#94a3b8;">{_sub}</span></div>'
                 f'{_right}</div>', unsafe_allow_html=True)
+
+# Advisor metric legend — moved to the BOTTOM (reference, out of the draft flow).
+with st.expander("ℹ️ How to read the advisor metrics"):
+    if draft_mode == "🔨 Auction / Salary Cap":
+        st.markdown(
+            "- **Fair $** — value at par (VORP share of budget), already adjusted for live **room inflation**. "
+            "For superflex QBs, blended toward the real league market to reflect 2-QB scarcity.\n"
+            "- **Likely sells / Walk-away** — Monte-Carlo of the winning price from rivals' remaining cap, "
+            "positional need, and archetype aggression. *Likely* = median sim; *Walk-away* = 80th-percentile "
+            "(don't chase past it).\n"
+            "- **Surplus / VORP-$** — arbitrage: fair value above market cost, and points-of-VORP per dollar.\n"
+            "- **🏃 RUN / 🎯 rivals need** — a positional run is underway, or N rivals still must fill that slot "
+            "(demand holds prices up).\n"
+            "- **🔗 Handcuff** — the backup RB behind a workhorse (live Sleeper depth) — late insurance.\n"
+            "- **Nomination drain** — Smart Nominations bleeds rivals on **deep** positions (WR/RB mid-tier) "
+            "where replacement is cheap, so their spend is wasted. Protects your studs and scarce TE/QB — "
+            "fitted from 3 years of your league's real auctions."
+        )
+    else:
+        st.markdown(
+            "- **VORP** — value over a realistic replacement starter (Superflex boosts QB scarcity).\n"
+            "- **% GONE (Monte-Carlo)** — simulated probability a player is drafted **before your next pick**, "
+            "using ADP + draft noise over the exact serpentine gap. ≥50% = grab now or lose him.\n"
+            "- **+Spots Value** — falling past consensus ADP (a steal if he lasts to you).\n"
+            "- **VONA** — value lost if you wait: high = a real positional cliff (draft now), low = depth remains (wait)."
+        )
 
 st.markdown("---")
 
