@@ -1316,6 +1316,48 @@ if draft_mode == "🔨 Auction / Salary Cap":
                 f'<span style="font-size:0.95rem;color:#f8fafc;margin-left:12px;">{_pr["player_name"]} ({_pr["position"]}) — {_msg}</span>'
                 f'</div>', unsafe_allow_html=True)
 
+            # ── FORWARD-LOOKING COMPARATIVE REC: steer to the better bet ──────────
+            # If the selected player carries a scheme RISK (or negative intel) AND a
+            # similar-value AVAILABLE alternative at the same position has a better
+            # outlook (scheme FIT / no risk / positive intel) for close/less money,
+            # surface "Consider [alt] instead". This is the real edge — the model
+            # recommending who will likely do BETTER this year, not just grading.
+            _sel_tag = str(_pr.get('scheme_tag', '')).upper()
+            _sel_risk = ('RISK' in _sel_tag) or ('CONCERN' in str(_pr.get('intel_tag', '')).upper())
+            if _sel_risk:
+                _sel_vorp = float(_pr.get('live_vorp', _pr.get('vorp', 0)))
+                _alt_pool = _pos_pool_avail.copy()
+                _alt_pool = _alt_pool[_alt_pool['clean_name'] != _pr['clean_name']]
+                # within 18% VORP, not itself a risk, prefer scheme-fit / positive intel
+                _alt_pool = _alt_pool[_alt_pool['live_vorp'] >= _sel_vorp * 0.82]
+                def _outlook_score(rr):
+                    t = str(rr.get('scheme_tag', '')).upper()
+                    s = 0
+                    if 'FIT' in t: s += 2
+                    if 'RISK' in t: s -= 3
+                    if str(rr.get('intel_note', '')).strip(): s += 1
+                    return s
+                if not _alt_pool.empty:
+                    _alt_pool = _alt_pool.assign(_ol=_alt_pool.apply(_outlook_score, axis=1))
+                    _alt_pool = _alt_pool[_alt_pool['_ol'] > -1].sort_values(
+                        ['_ol', 'live_vorp'], ascending=[False, False])
+                    if not _alt_pool.empty:
+                        _alt = _alt_pool.iloc[0]
+                        _alt_rank = _pos_pool_avail['clean_name'].tolist().index(_alt['clean_name']) + 1
+                        _alt_price = league_market_cost(_pr['position'], _alt_rank) or int(_alt['fair_value'])
+                        _alt_why = "scheme FIT" if 'FIT' in str(_alt.get('scheme_tag','')).upper() else \
+                                   ("live camp buzz" if str(_alt.get('intel_note','')).strip() else "no scheme risk")
+                        _risk_note = str(_pr.get('scheme_note','')).replace('🎬 SCHEME RISK','').strip()[:90]
+                        st.markdown(
+                            f'<div style="background:#1e293b;border-left:4px solid #a78bfa;padding:10px 14px;'
+                            f'border-radius:6px;margin-bottom:10px;font-size:0.9rem;">'
+                            f'🔮 <b>MODEL EDGE — consider {_alt["player_name"]} instead:</b> '
+                            f'{_pr["player_name"]} carries a risk ({_risk_note}). '
+                            f'{_alt["player_name"]} is close value (VORP +{round(float(_alt["live_vorp"]),0)} vs '
+                            f'+{round(_sel_vorp,0)}) at ~${int(_alt_price)} with a better {_pr["position"]} outlook '
+                            f'({_alt_why}) — likely the better bet this year.</div>',
+                            unsafe_allow_html=True)
+
             # ── BUILD PLAN: "if you win at ~$X, here's how you fill the rest" ──────
             _spend = min(my_max_bid, _likely)
             _cap_after = my_cap_left - _spend
