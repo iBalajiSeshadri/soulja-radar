@@ -69,6 +69,9 @@ st.markdown("""
     /* Defensive-coordinator scheme badges (IDP / D-ST) */
     .intel-def-fit { background-color: #0e766535; color: #5eead4; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.72rem; border: 1px solid #0d9488; }
     .intel-def-new { background-color: #1e3a5f35; color: #93c5fd; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.72rem; border: 1px solid #1d4ed8; }
+    /* D/ST opening-slate streamer badges (Wks 1-4 schedule + DC change) */
+    .intel-dst-soft { background-color: #15803d35; color: #86efac; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.72rem; border: 1px solid #16a34a; }
+    .intel-dst { background-color: #37415535; color: #cbd5e1; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.72rem; border: 1px solid #475569; }
 
     .arch-badge { padding: 3px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; }
     .arch-stars { background: #dc262625; color: #f87171; border: 1px solid #ef444460; }
@@ -191,10 +194,13 @@ def load_coaching_scheme():
             continue
         caller = info.get("caller", info.get("oc", ""))
         scheme = info.get("scheme", "")
-        team_map[team] = {
-            "caller": caller, "scheme": scheme,
-            "summary": f"New play-caller {caller} — {scheme}. {info.get('note','')}".strip()
-        }
+        # Only advertise a team-level "NEW SCHEME" badge when the play-caller
+        # actually changed for 2026 (continuity teams still get player-level fits).
+        if info.get("changed", True):
+            team_map[team] = {
+                "caller": caller, "scheme": scheme,
+                "summary": f"New play-caller {caller} — {scheme}. {info.get('note','')}".strip()
+            }
         for pname, why in (info.get("beneficiaries") or {}).items():
             player_map[clean_name(pname)] = {
                 "tag": "SCHEME_FIT", "team": team,
@@ -212,10 +218,12 @@ def load_coaching_scheme():
             continue
         dc = dinfo.get("dc", "")
         dscheme = dinfo.get("scheme", "")
-        def_map[team] = {
-            "dc": dc, "scheme": dscheme,
-            "summary": f"New DC {dc} — {dscheme}. {dinfo.get('note','')}".strip()
-        }
+        # Only show a team-level "NEW DC" D/ST badge when the DC actually changed.
+        if dinfo.get("changed", True):
+            def_map[team] = {
+                "dc": dc, "scheme": dscheme,
+                "summary": f"New DC {dc} — {dscheme}. {dinfo.get('note','')}".strip()
+            }
         for pname, why in (dinfo.get("idp") or {}).items():
             # don't overwrite an offensive fit if a name collides
             if clean_name(pname) not in player_map:
@@ -226,6 +234,20 @@ def load_coaching_scheme():
     return player_map, team_map, def_map
 
 scheme_players, scheme_teams, scheme_defense = load_coaching_scheme()
+
+@st.cache_data(show_spinner=False)
+def load_dst_streamers():
+    """Opening-slate (Wks 1-4) streaming-DST reads fused with DC-change context.
+    Maps TEAM -> {note, soft_open, avg_opp_ppg}. Static data, safe pre-draft."""
+    if not os.path.exists("dst_streamers.json"):
+        return {}
+    try:
+        raw = json.load(open("dst_streamers.json"))
+    except Exception:
+        return {}
+    return {t: v for t, v in raw.items() if not t.startswith("_")}
+
+dst_streamers = load_dst_streamers()
 
 # 3. Sidebar Controls & League Customizer
 st.sidebar.title("⚡ Soulja Soulja Radar")
@@ -342,6 +364,13 @@ for idx, row in df_board.iterrows():
     if sch:
         df_board.at[idx, 'scheme_note'] = sch['note']
         df_board.at[idx, 'scheme_tag'] = sch['tag']
+    elif row.get('position') == 'DEF' and row.get('team') in dst_streamers:
+        # Prefer the richer opening-slate streamer read (already folds in DC change).
+        stn = dst_streamers[row['team']]['streamer_note']
+        df_board.at[idx, 'scheme_note'] = stn
+        df_board.at[idx, 'scheme_tag'] = (
+            "DST_STREAM_SOFT" if dst_streamers[row['team']]['soft_open'] else "DST_STREAM"
+        )
     elif row.get('position') == 'DEF' and row.get('team') in scheme_defense:
         df_board.at[idx, 'scheme_note'] = f"🛡️ NEW DC: {scheme_defense[row['team']]['summary']}"
         df_board.at[idx, 'scheme_tag'] = "DEF_SCHEME_NEW"
@@ -462,6 +491,10 @@ def format_intel_cell(r):
         scheme_html = f'<span class="intel-def-fit">🛡️ DEF SCHEME FIT</span> <span class="intel-note-hot">{scheme_note}</span>'
     elif scheme_tag == "DEF_SCHEME_NEW":
         scheme_html = f'<span class="intel-def-new">🛡️ NEW DC</span> <span class="intel-note">{scheme_note}</span>'
+    elif scheme_tag == "DST_STREAM_SOFT":
+        scheme_html = f'<span class="intel-dst-soft">🟢 DST STREAMER</span> <span class="intel-note-hot">{scheme_note}</span>'
+    elif scheme_tag == "DST_STREAM":
+        scheme_html = f'<span class="intel-dst">📅 DST OUTLOOK</span> <span class="intel-note">{scheme_note}</span>'
 
     body = f"{pref_badge}{tag_badge}{note_html}{link_html}".strip()
     if scheme_html:
