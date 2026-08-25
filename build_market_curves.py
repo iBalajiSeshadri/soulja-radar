@@ -18,7 +18,10 @@ import json
 import numpy as np
 import pandas as pd
 
-HIST = "soulja_3yr_auction_history.csv"
+# Prefer the stable-handle Sleeper pull (accurate attribution) over the older
+# team-name CSV. Column names differ: handle/amount vs manager/winning_bid.
+import os as _os
+HIST = "sleeper_history_3yr.csv" if _os.path.exists("sleeper_history_3yr.csv") else "soulja_3yr_auction_history.csv"
 OUT = "market_curves.json"
 MIN_ROWS = 25  # need enough picks at a position to trust a fit
 
@@ -51,8 +54,11 @@ def fit_exp(ranks, prices):
 def main():
     d = pd.read_csv(HIST)
     d = d[d.get("draft_type", "auction") == "auction"] if "draft_type" in d else d
+    # normalize column name across the two possible sources
+    _amt = "amount" if "amount" in d.columns else "winning_bid"
+    d = d.dropna(subset=[_amt])
     # positional rank within each season (1 = most expensive at that position)
-    d["pos_rank"] = d.groupby(["season", "position"])["winning_bid"].rank(
+    d["pos_rank"] = d.groupby(["season", "position"])[_amt].rank(
         ascending=False, method="first")
 
     curves = {"_meta": {
@@ -68,7 +74,16 @@ def main():
         if len(sub) < MIN_ROWS:
             continue
         # average bid by positional rank across seasons (the empirical curve)
-        pts = sub.groupby("pos_rank")["winning_bid"].mean()
+        pts = sub.groupby("pos_rank")[_amt].mean()
+        # enforce monotonic non-increasing (a deeper rank can't cost more than a
+        # shallower one — kills small sample bumps like RB4 > RB3)
+        _mono = {}
+        _prev = 10 ** 9
+        for _k in sorted(pts.index):
+            _v = min(float(pts[_k]), _prev)
+            _mono[_k] = _v
+            _prev = _v
+        pts = pd.Series(_mono)
         ranks = pts.index.values.astype(float)
         prices = pts.values.astype(float)
         a, b, c = fit_exp(ranks, prices)
