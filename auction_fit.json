@@ -1,0 +1,97 @@
+{
+  "_meta": {
+    "source": "soulja_3yr_auction_history.csv",
+    "seasons": [
+      2024,
+      2025
+    ],
+    "note": "Per-manager aggression from top-3 spend share (normalized); stud_premium = actual top-12 stud price vs par expectation.",
+    "generated_by": "build_auction_fit.py",
+    "league_mean_top3_pct": 0.598
+  },
+  "by_manager": {
+    "addyrao": {
+      "aggression": 1.0,
+      "top3_pct": 0.598,
+      "max_bid": 54,
+      "avg_bid": 11.7
+    },
+    "chaituat": {
+      "aggression": 1.174,
+      "top3_pct": 0.665,
+      "max_bid": 52,
+      "avg_bid": 11.8
+    },
+    "kopite": {
+      "aggression": 1.464,
+      "top3_pct": 0.777,
+      "max_bid": 62,
+      "avg_bid": 11.8
+    },
+    "bluewatermelon": {
+      "aggression": 1.088,
+      "top3_pct": 0.632,
+      "max_bid": 52,
+      "avg_bid": 11.8
+    },
+    "skongara": {
+      "aggression": 0.842,
+      "top3_pct": 0.537,
+      "max_bid": 50,
+      "avg_bid": 11.8
+    },
+    "rookieqbme": {
+      "aggression": 0.808,
+      "top3_pct": 0.524,
+      "max_bid": 48,
+      "avg_bid": 11.7
+    },
+    "djballz": {
+      "aggression": 1.031,
+      "top3_pct": 0.61,
+      "max_bid": 50,
+      "avg_bid": 11.8
+    },
+    "vnayini": {
+      "aggression": 0.901,
+      "top3_pct": 0.56,
+      "max_bid": 42,
+      "avg_bid": 11.8
+    },
+    "siddharthasagar": {
+      "aggression": 0.8,
+      "top3_pct": 0.448,
+      "max_bid": 47,
+      "avg_bid": 11.8
+    },
+    "cardinalsin": {
+      "aggression": 1.08,
+      "top3_pct": 0.629,
+      "max_bid": 55,
+      "avg_bid": 11.7
+    }
+  },
+  "stud_premium": 1.317,
+  "premium_by_rank": {
+    "1": 1.391,
+    "2": 1.299,
+    "3": 1.26,
+    "4": 1.521,
+    "5": 1.503,
+    "6": 1.633,
+    "7": 1.658,
+    "8": 1.7,
+    "9": 1.741,
+    "10": 1.707,
+    "11": 1.702,
+    "12": 1.616,
+    "13": 1.61,
+    "14": 1.537,
+    "15": 1.522,
+    "16": 1.492,
+    "17": 1.537,
+    "18": 1.518,
+    "19": 1.483,
+    "20": 1.49
+  }
+}

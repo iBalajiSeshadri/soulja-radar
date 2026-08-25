@@ -264,6 +264,35 @@ def load_market_curves():
 
 market_curves = load_market_curves()
 
+@st.cache_data(show_spinner=False)
+def load_auction_fit():
+    """League auction behavior fitted from 3yr history: per-handle aggression +
+    stud price premium. Replaces hardcoded archetype-class aggression guesses."""
+    if not os.path.exists("auction_fit.json"):
+        return {}
+    try:
+        return json.load(open("auction_fit.json"))
+    except Exception:
+        return {}
+
+auction_fit = load_auction_fit()
+
+def stud_premium_for_rank(overall_rank):
+    """Market premium over engine-fair for a top overall player (decays to ~1.0
+    by ~rank 25), fitted from real winning bids. Used to reflect that the market
+    pays up for elites the VORP-share fair value under-prices."""
+    pbr = auction_fit.get("premium_by_rank", {})
+    key = str(int(overall_rank))
+    if key in pbr:
+        return float(pbr[key])
+    base = float(auction_fit.get("stud_premium", 1.0))
+    if overall_rank <= 3:
+        return base
+    if overall_rank >= 25:
+        return 1.0
+    # linear decay from base (rank 3) to 1.0 (rank 25)
+    return round(1.0 + (base - 1.0) * (25 - overall_rank) / 22.0, 3)
+
 def league_market_cost(position, pos_rank):
     """Predicted winning bid from league history for a player at positional rank.
     Falls back to None when no fitted curve exists for that position."""
@@ -886,24 +915,31 @@ def pos_run_flag(pos):
         bits.append(f"🎯 {pp['rivals_needing']} rivals still need {b}")
     return " · ".join(bits)
 
-# Archetype spend aggression (from each manager's historical top-3 spend behaviour).
+# Archetype spend aggression — prefer per-manager values FITTED from 3yr auction
+# history (auction_fit.json), fall back to archetype-class estimates if missing.
 _ARCH_AGGR = {"arch-stars": 1.45, "arch-idp": 1.15, "arch-hoard": 0.85, "arch-balanced": 1.05}
+
+def _rival_aggression(tid):
+    info = SOULJA_SOULJA_DEFAULTS.get(tid, {})
+    handle = str(info.get("handle", "")).lower()
+    fit = auction_fit.get("by_manager", {}).get(handle)
+    if fit and "aggression" in fit:
+        return float(fit["aggression"])
+    return _ARCH_AGGR.get(info.get("class", "arch-balanced"), 1.05)
 
 def build_rivals_for_sim(target_position=None):
     """Assemble the rival list draft_sim needs: each opponent's remaining cap,
-    whether they still need the target position, and their archetype aggression."""
+    whether they still need the target position, and their FITTED aggression."""
     rivals = []
     for _tid, _w in manager_wallets.items():
         if _tid == my_slot:
             continue
         _cap = max(0, 200 - _w["spent"])
-        # positions this rival still needs to fill starters
         _needs = set()
         for _b, _req in _start_req.items():
             if _req > 0 and _w["pos_counts"].get(_b, 0) < _req:
                 _needs.add(_b)
-        _cls = SOULJA_SOULJA_DEFAULTS.get(_tid, {}).get("class", "arch-balanced")
-        _aggr = _ARCH_AGGR.get(_cls, 1.05)
+        _aggr = _rival_aggression(_tid)
         _need_at = 1.0 if (target_position and _bucket(target_position) in _needs) else 0.4
         rivals.append({"cap_left": _cap, "needs": _needs,
                        "aggression": _aggr, "need_at_pos": _need_at})
@@ -1114,7 +1150,7 @@ if draft_mode == "🔨 Auction / Salary Cap":
     user_priority_pool = primary_candidate_pool[primary_candidate_pool['clean_name'].isin(st.session_state.my_targets)]
 
     if not user_priority_pool.empty:
-        top_stud = user_priority_pool.sort_values(by='fair_value', ascending=False).iloc[0]
+        top_stud = user_priority_pool.sort_values(by=('my_value' if 'my_value' in user_priority_pool else 'fair_value'), ascending=False).iloc[0]
         top_stud_name = top_stud['clean_name']
         rec_bid = min(my_max_bid, int(round(top_stud['fair_value'])))  # fair_value already live-inflated
         stud_card_html = (
@@ -1157,28 +1193,35 @@ if draft_mode == "🔨 Auction / Salary Cap":
             pos_pool['surplus_val'] = pos_pool['fair_value'] - pos_pool['market_cost']
             pos_pool['ppd'] = pos_pool['live_vorp'] / pos_pool['market_cost'].clip(lower=1)
             pos_pool['target_boost'] = pos_pool['clean_name'].apply(lambda x: 1.6 if x in st.session_state.my_targets else 1.0)
-            
+            # need-adjusted tilt: weight by my_value so open-slot positions rank up
+            _mv = pos_pool['my_value'] if 'my_value' in pos_pool else pos_pool['fair_value']
+            pos_pool['need_w'] = (_mv / _mv.clip(lower=1).max()).clip(lower=0.5)
+
             pos_surplus = pos_pool[pos_pool['surplus_val'] > 0].copy()
             if not pos_surplus.empty:
-                pos_surplus['score'] = pos_surplus['surplus_val'] * pos_surplus['ppd'] * pos_surplus['target_boost']
-                best_p = pos_surplus.sort_values(by=['score', 'live_vorp'], ascending=[False, False]).iloc[0]
+                pos_surplus['score'] = pos_surplus['surplus_val'] * pos_surplus['ppd'] * pos_surplus['target_boost'] * pos_surplus['need_w']
+                best_p = pos_surplus.sort_values(by=['score', 'my_value' if 'my_value' in pos_surplus else 'live_vorp'], ascending=[False, False]).iloc[0]
                 val_text = f"+${int(best_p['surplus_val'])} Surplus"
                 val_color = "#10b981"
             else:
-                pos_pool['eff_score'] = pos_pool['ppd'] * pos_pool['target_boost']
+                pos_pool['eff_score'] = pos_pool['ppd'] * pos_pool['target_boost'] * pos_pool['need_w']
                 best_p = pos_pool.sort_values(by=['eff_score', 'live_vorp'], ascending=[False, False]).iloc[0]
                 ppd_val = round(float(best_p['live_vorp']) / max(1, float(best_p['market_cost'])), 1)
                 val_text = f"{ppd_val} VORP/$"
                 val_color = "#60a5fa"
-                
+
             is_p_starred = "⭐ " if best_p['clean_name'] in st.session_state.my_targets else ""
+            # MC likely sell price for this value target (so you know the real cost)
+            _rv = build_rivals_for_sim(best_p['position'])
+            _mc = ds.mc_auction_price({'fair_value': float(best_p['fair_value']), 'position': best_p['position']},
+                                      _rv, my_max_bid=my_max_bid, n_sims=150, seed=int(best_p['board_rank']))
             exec_price = max(1, min(int(best_p['fair_value']), int(round(best_p['market_cost'] * 0.95))))
-            
+
             row_html = (
                 '<div style="display:flex; justify-content:space-between; align-items:center; background:#0b0f19; padding:5px 8px; margin-bottom:4px; border-radius:4px; border-left:3px solid #3b82f6;">'
                 '<div>'
                 f'<span class="badge-pos pos-{best_p["position"]}">{best_p["position"]}</span> <b>{is_p_starred}{best_p["player_name"]}</b> <span style="font-size:0.75rem; color:#94a3b8;">({best_p["tier"]})</span><br>'
-                f'<span style="font-size:0.72rem; color:#94a3b8;">Fair: <b>${int(best_p["fair_value"])}</b> | Mkt: <b>${int(best_p["market_cost"])}</b> | Bid-To: <b>${exec_price}</b></span>'
+                f'<span style="font-size:0.72rem; color:#94a3b8;">Fair: <b>${int(best_p["fair_value"])}</b> | Likely: <b>${int(_mc["median"])}</b> | Bid-To: <b>${exec_price}</b></span>'
                 '</div>'
                 f'<div style="font-size:0.8rem; font-weight:700; color:{val_color}; text-align:right;">{val_text}</div>'
                 '</div>'
@@ -1188,82 +1231,58 @@ if draft_mode == "🔨 Auction / Salary Cap":
     rendered_rows = "".join(pos_arb_rows) if pos_arb_rows else '<div style="font-size:0.85rem; color:#94a3b8;">No arbitrage available.</div>'
     bargain_card_html = f'<div style="background:#131b2e; border-top:4px solid #3b82f6; padding:10px 12px; border-radius:6px; height:100%;"><div style="font-size:0.75rem; color:#3b82f6; font-weight:700; margin-bottom:6px;">💎 POSITIONAL ARBITRAGE (BEST PER POSITION)</div>{rendered_rows}</div>'
 
-    # Nomination Playbook & AI Generator
-    nom_strategy = st.radio("Select Your Tactical Nomination Intent:", ["💸 Bleed Rival Wallets (High-Cost Bait)", "💣 Landmine Trap (Overvalued Decoy)", "🥷 Stealth Sneak ($1-$3 Value Snipe)", "👑 Set the Market (Target Price Discovery)"], horizontal=True)
-    
-    if st.button("🤖 Generate AI Nomination Trap Suggestion", use_container_width=True):
-        with st.spinner("AI analyzing opponent budgets, positional voids, and traps..."):
-            unpicked_top = ", ".join([f"{r['player_name']} (${r['market_cost']})" for _, r in df_unpicked.head(8).iterrows()])
-            rivals_sum = ", ".join([f"{d['name']} (Cap: ${200-d['spent']})" for s, d in manager_wallets.items() if s != my_slot][:5])
-            needs_sum = ", ".join([f"{pos}: {cnt}" for pos, cnt in pos_gaps.items() if cnt > 0])
+    # ── SMART NOMINATION (one optimizer-driven default + optional advanced) ────
+    # Default: the game-theory optimizer picks the single best player to nominate
+    # to bleed rival cap on someone you DON'T want. Advanced users can still pick a
+    # manual intent, but they no longer have to.
+    _nom_cands_full = [{'clean_name': r['clean_name'], 'player_name': r['player_name'],
+                        'position': r['position'], 'fair_value': float(r['fair_value']),
+                        'market_cost': float(r['market_cost'])}
+                       for _, r in df_unpicked.head(50).iterrows()]
+    _gt_rivals = build_rivals_for_sim()
+    _best_bleeds = ds.nomination_scores(_nom_cands_full, _gt_rivals, set(st.session_state.my_targets), n_top=5)
 
-            # Game-theory optimizer: rank unpicked players by expected rival cap-drain
-            # minus my own interest, and feed the top bleeds into the AI prompt so its
-            # suggestion is grounded in real willingness-to-pay math (not vibes).
-            _nom_cands = [{'clean_name': r['clean_name'], 'player_name': r['player_name'],
-                           'position': r['position'], 'fair_value': float(r['fair_value']),
-                           'market_cost': float(r['market_cost'])}
-                          for _, r in df_unpicked.head(40).iterrows()]
-            _gt_rivals = build_rivals_for_sim()
-            _bleeds = ds.nomination_scores(_nom_cands, _gt_rivals, set(st.session_state.my_targets), n_top=6)
-            drain_str = "; ".join(f"{n['player_name']} ({n['position']}, ~${n['drain']} rival drain, "
-                                  f"{n['interested_rivals']} bidders)" for n in _bleeds if not n['i_want'])
-            st.session_state.last_ai_nom = generate_ai_nomination(
-                nom_strategy, unpicked_top, rivals_sum, needs_sum + f"\nTop rival-cap-drain targets (nominate these): {drain_str}")
-
-    if st.session_state.last_ai_nom:
-        with st.chat_message("assistant", avatar="🎯"):
-            st.markdown(st.session_state.last_ai_nom)
-
-    pos_nom_rows = []
-    for target_pos in display_positions:
-        pos_pool = df_unpicked[df_unpicked['position'] == target_pos].copy()
-        if pos_pool.empty: continue
-        if nom_strategy == "💸 Bleed Rival Wallets (High-Cost Bait)":
-            safe_pool = pos_pool[~pos_pool['clean_name'].isin(st.session_state.my_targets)].copy()
-            fade_pool = safe_pool[safe_pool['clean_name'].isin(st.session_state.my_fades)].sort_values(by='market_cost', ascending=False)
-            nom_p = fade_pool.iloc[0] if not fade_pool.empty else safe_pool.sort_values(by='market_cost', ascending=False).iloc[0]
-            val_text = f"${int(nom_p['market_cost'])} Fade" if not fade_pool.empty else f"${int(nom_p['market_cost'])} Drain"
-            val_color = "#ef4444" if not fade_pool.empty else "#f59e0b"
-            is_p_starred = "🚫 " if nom_p['clean_name'] in st.session_state.my_fades else ""
-            sub_desc = f"Fair: ${int(nom_p['fair_value'])} | Drain rival cap on non-target"
-        elif nom_strategy == "💣 Landmine Trap (Overvalued Decoy)":
-            safe_pool = pos_pool[~pos_pool['clean_name'].isin(st.session_state.my_targets)].copy()
-            safe_pool['landmine_gap'] = safe_pool['market_cost'] - safe_pool['fair_value']
-            nom_p = safe_pool.sort_values(by='landmine_gap', ascending=False).iloc[0]
-            gap = int(nom_p['market_cost'] - nom_p['fair_value'])
-            val_text = f"+${gap} Trap" if gap > 0 else f"${gap} Fair"
-            val_color = "#ef4444" if gap > 0 else "#94a3b8"
-            is_p_starred = "🚫 " if nom_p['clean_name'] in st.session_state.my_fades else ""
-            sub_desc = f"Bait: ${int(nom_p['market_cost'])} vs True Value ${int(nom_p['fair_value'])}"
-        elif nom_strategy == "🥷 Stealth Sneak ($1-$3 Value Snipe)":
-            cheap_pool = pos_pool[(pos_pool['market_cost'] <= 3) & (~pos_pool['clean_name'].isin(st.session_state.my_fades))].sort_values(by='live_vorp', ascending=False)
-            nom_p = cheap_pool.iloc[0] if not cheap_pool.empty else pos_pool.sort_values(by='market_cost', ascending=True).iloc[0]
-            val_text = f"${int(nom_p['market_cost'])} Snipe"
-            val_color = "#10b981"
-            is_p_starred = "⭐ " if nom_p['clean_name'] in st.session_state.my_targets else ""
-            sub_desc = f"Sneak {round(nom_p['live_vorp'], 1)} VORP while room is sleeping"
-        else:
-            user_targets = pos_pool[pos_pool['clean_name'].isin(st.session_state.my_targets)].sort_values(by='fair_value', ascending=False)
-            nom_p = user_targets.iloc[0] if not user_targets.empty else pos_pool.sort_values(by='fair_value', ascending=False).iloc[0]
-            val_text = f"${int(nom_p['fair_value'])} Floor"
-            val_color = "#10b981" if not user_targets.empty else "#60a5fa"
-            is_p_starred = "⭐ " if not user_targets.empty else ""
-            sub_desc = f"Establish floor price on your wishlist target"
-
-        row_html = (
+    bleed_rows = []
+    for _n in _best_bleeds:
+        if _n['i_want']:
+            continue
+        bleed_rows.append(
             '<div style="display:flex; justify-content:space-between; align-items:center; background:#0b0f19; padding:5px 8px; margin-bottom:4px; border-radius:4px; border-left:3px solid #f59e0b;">'
             '<div>'
-            f'<span class="badge-pos pos-{nom_p["position"]}">{nom_p["position"]}</span> <b>{is_p_starred}{nom_p["player_name"]}</b> <span style="font-size:0.75rem; color:#94a3b8;">({nom_p["tier"]})</span><br>'
-            f'<span style="font-size:0.72rem; color:#94a3b8;">{sub_desc}</span>'
+            f'<span class="badge-pos pos-{_n["position"]}">{_n["position"]}</span> <b>{_n["player_name"]}</b><br>'
+            f'<span style="font-size:0.72rem; color:#94a3b8;">{_n["interested_rivals"]} rivals likely bid · winner pays ~${_n["drain"]}</span>'
             '</div>'
-            f'<div style="font-size:0.8rem; font-weight:700; color:{val_color}; text-align:right;">{val_text}</div>'
+            f'<div style="font-size:0.8rem; font-weight:700; color:#f59e0b; text-align:right;">${_n["drain"]} drain</div>'
             '</div>'
         )
-        pos_nom_rows.append(row_html)
+    rendered_bleeds = "".join(bleed_rows[:4]) if bleed_rows else '<div style="font-size:0.85rem; color:#94a3b8;">No strong bleed targets — nominate a filler.</div>'
+    nom_card_html = (
+        '<div style="background:#131b2e; border-top:4px solid #f59e0b; padding:10px 12px; border-radius:6px; height:100%;">'
+        '<div style="font-size:0.75rem; color:#f59e0b; font-weight:700; margin-bottom:6px;">🎯 SMART NOMINATIONS (BLEED RIVAL CAP)</div>'
+        f'{rendered_bleeds}</div>'
+    )
 
-    rendered_nom_rows = "".join(pos_nom_rows) if pos_nom_rows else '<div style="font-size:0.85rem; color:#94a3b8;">No nominations available.</div>'
-    nom_card_html = f'<div style="background:#131b2e; border-top:4px solid #f59e0b; padding:10px 12px; border-radius:6px; height:100%;"><div style="font-size:0.75rem; color:#f59e0b; font-weight:700; margin-bottom:6px;">🎯 POSITIONAL NOMINATIONS (BEST BAIT / SNIPES)</div>{rendered_nom_rows}</div>'
+    with st.expander("⚙️ Advanced nomination tactics (optional)"):
+        st.caption("The Smart Nominations card above already picks the best cap-bleed target. "
+                   "Use these only if you want a specific manual intent.")
+        nom_strategy = st.radio(
+            "Manual nomination intent:",
+            ["🎯 Smart (bleed rival cap — recommended)", "💣 Landmine Trap (overvalued decoy)",
+             "🥷 Stealth Sneak ($1-$3 value snipe)", "👑 Set the Market (price your own target)"],
+            horizontal=False)
+        if st.button("🤖 Generate AI Nomination Suggestion", use_container_width=True):
+            with st.spinner("AI analyzing opponent budgets and traps..."):
+                unpicked_top = ", ".join([f"{r['player_name']} (${r['market_cost']})" for _, r in df_unpicked.head(8).iterrows()])
+                rivals_sum = ", ".join([f"{d['name']} (Cap: ${200-d['spent']})" for s, d in manager_wallets.items() if s != my_slot][:5])
+                needs_sum = ", ".join([f"{pos}: {cnt}" for pos, cnt in pos_gaps.items() if cnt > 0])
+                drain_str = "; ".join(f"{n['player_name']} ({n['position']}, ~${n['drain']} drain, {n['interested_rivals']} bidders)"
+                                      for n in _best_bleeds if not n['i_want'])
+                st.session_state.last_ai_nom = generate_ai_nomination(
+                    nom_strategy, unpicked_top, rivals_sum,
+                    needs_sum + f"\nTop rival-cap-drain targets (nominate these): {drain_str}")
+        if st.session_state.last_ai_nom:
+            with st.chat_message("assistant", avatar="🎯"):
+                st.markdown(st.session_state.last_ai_nom)
 
     rec_col1, rec_col2, rec_col3 = st.columns(3)
     with rec_col1: st.markdown(stud_card_html, unsafe_allow_html=True)
@@ -1277,12 +1296,15 @@ else:
     primary_candidate_pool = non_faded_unpicked[non_faded_unpicked['position'].isin(display_positions)].copy()
     user_targets_pool = primary_candidate_pool[primary_candidate_pool['clean_name'].isin(st.session_state.my_targets)]
     
+    # snake: rank by need-adjusted VONA (my_value = vona*need_mult in snake mode),
+    # so scarce positions you must act on now outrank deep positions you can wait on.
+    _snake_sort = 'my_value' if 'my_value' in primary_candidate_pool else 'live_vorp'
     if not user_targets_pool.empty:
-        best_p = user_targets_pool.sort_values(by='live_vorp', ascending=False).iloc[0]
+        best_p = user_targets_pool.sort_values(by=[_snake_sort, 'live_vorp'], ascending=False).iloc[0]
         s_title = "⭐ YOUR PRIORITY TARGET"
     elif not primary_candidate_pool.empty:
-        best_p = primary_candidate_pool.sort_values(by='live_vorp', ascending=False).iloc[0]
-        s_title = "👑 BEST AVAILABLE (VORP ANCHOR)"
+        best_p = primary_candidate_pool.sort_values(by=[_snake_sort, 'live_vorp'], ascending=False).iloc[0]
+        s_title = "👑 BEST AVAILABLE (VONA + VORP)"
     else:
         best_p = None
 
@@ -1292,8 +1314,8 @@ else:
                 '<div style="background:#131b2e; border-top:4px solid #10b981; padding:12px; border-radius:6px; height:100%;">'
                 f'<div style="font-size:0.75rem; color:#10b981; font-weight:700;">{s_title}</div>'
                 f'<div style="font-size:1.15rem; font-weight:700; color:white; margin:4px 0;">{best_p["player_name"]} <span class="badge-pos pos-{best_p["position"]}">{best_p["position"]}</span></div>'
-                f'<div style="font-size:0.85rem; color:#94a3b8;">Consensus ADP: <b>#{int(best_p["market_adp"])}</b> | True VORP: <b style="color:#10b981;">+{round(best_p["live_vorp"], 1)}</b> ({best_p["tier"]})</div>'
-                f'<div style="font-size:0.75rem; color:#cbd5e1; margin-top:6px;"><b>Recommendation:</b> Premier VORP target to fill your starting {best_p["position"]} slot.</div>'
+                f'<div style="font-size:0.85rem; color:#94a3b8;">Consensus ADP: <b>#{int(best_p["market_adp"])}</b> | VORP: <b style="color:#10b981;">+{round(best_p["live_vorp"], 1)}</b> | VONA: <b style="color:#38bdf8;">+{round(best_p.get("vona", 0), 1)}</b> ({best_p["tier"]})</div>'
+                f'<div style="font-size:0.75rem; color:#cbd5e1; margin-top:6px;"><b>Recommendation:</b> {"High VONA — a positional cliff, grab now." if best_p.get("vona", 0) >= 15 else "Solid value; depth remains, can wait if needed."} Fills your {best_p["position"]} slot.</div>'
                 '</div>', unsafe_allow_html=True
             )
 
