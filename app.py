@@ -919,17 +919,31 @@ def pos_run_flag(pos):
 # history (auction_fit.json), fall back to archetype-class estimates if missing.
 _ARCH_AGGR = {"arch-stars": 1.45, "arch-idp": 1.15, "arch-hoard": 0.85, "arch-balanced": 1.05}
 
-def _rival_aggression(tid):
+def _rival_profile(tid):
+    """Full fitted profile for a rival by stable handle (aggression, pos lean,
+    stud-vs-depth), falling back to archetype-class aggression if missing."""
     info = SOULJA_SOULJA_DEFAULTS.get(tid, {})
     handle = str(info.get("handle", "")).lower()
-    fit = auction_fit.get("by_manager", {}).get(handle)
-    if fit and "aggression" in fit:
-        return float(fit["aggression"])
-    return _ARCH_AGGR.get(info.get("class", "arch-balanced"), 1.05)
+    fit = auction_fit.get("by_manager", {}).get(handle, {})
+    aggr = float(fit.get("aggression", _ARCH_AGGR.get(info.get("class", "arch-balanced"), 1.05)))
+    return {
+        "aggression": aggr,
+        "pos_lean": fit.get("pos_lean", {}),
+        "top_positions": fit.get("top_positions", []),
+        "nominates_early": fit.get("nominates_early", ""),
+        "stud_vs_depth": fit.get("stud_vs_depth", None),
+        "handle": handle,
+        "name": info.get("name", handle),
+    }
+
+def _rival_aggression(tid):
+    return _rival_profile(tid)["aggression"]
 
 def build_rivals_for_sim(target_position=None):
     """Assemble the rival list draft_sim needs: each opponent's remaining cap,
-    whether they still need the target position, and their FITTED aggression."""
+    whether they still need the target position, and their FITTED aggression.
+    need_at_pos now blends roster gap WITH each rival's real positional $ lean
+    (a rival who historically pours money into RB will contest RB harder)."""
     rivals = []
     for _tid, _w in manager_wallets.items():
         if _tid == my_slot:
@@ -939,8 +953,12 @@ def build_rivals_for_sim(target_position=None):
         for _b, _req in _start_req.items():
             if _req > 0 and _w["pos_counts"].get(_b, 0) < _req:
                 _needs.add(_b)
-        _aggr = _rival_aggression(_tid)
-        _need_at = 1.0 if (target_position and _bucket(target_position) in _needs) else 0.4
+        _prof = _rival_profile(_tid)
+        _aggr = _prof["aggression"]
+        # need_at_pos: roster gap (0.4/1.0) nudged up by historical $ lean at pos
+        _gap_need = 1.0 if (target_position and _bucket(target_position) in _needs) else 0.4
+        _lean = float(_prof["pos_lean"].get(target_position, 0.0)) if target_position else 0.0
+        _need_at = min(1.0, _gap_need + 0.6 * _lean)   # lean of 0.30 => +0.18
         rivals.append({"cap_left": _cap, "needs": _needs,
                        "aggression": _aggr, "need_at_pos": _need_at})
     return rivals
@@ -1679,7 +1697,19 @@ with tab_matrix:
         })
         hist_title = def_p['archetype']
         hist_class = def_p['class']
-        hist_exploit = f"<b>{def_p['bias']}:</b> {def_p['exploit']}"
+        # Enrich the historical exploit with FITTED tendencies from 3yr Sleeper data.
+        _h = str(def_p.get('handle', '')).lower()
+        _fit = auction_fit.get('by_manager', {}).get(_h, {})
+        _fit_bits = ""
+        if _fit:
+            _lean = ", ".join(_fit.get('top_positions', [])[:2])
+            _aggr = _fit.get('aggression')
+            _nom = _fit.get('nominates_early', '')
+            _sh = _fit.get('stud_vs_depth')
+            _fit_bits = (f" <span style='color:#38bdf8;'>[Fitted: leans {_lean}, "
+                         f"aggression {_aggr:.2f}, nominates {_nom} early, "
+                         f"{int((_sh or 0)*100)}% top-3 spend]</span>")
+        hist_exploit = f"<b>{def_p['bias']}:</b> {def_p['exploit']}{_fit_bits}"
 
         if spent >= 100 or (len(bids) >= 1 and bids[0] >= 55) or (len(bids) >= 2 and (bids[0] + bids[1]) >= 85):
             return "👑 Stars & Scrubs (Live)", "arch-stars", f"<b>{mgr_display}:</b> Blew budget on top anchors (${spent} spent). Let him exhaust capital; push next wants to full fair value."

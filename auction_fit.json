@@ -1,98 +1,219 @@
 {
   "_meta": {
-    "source": "soulja_3yr_auction_history.csv",
+    "source": "sleeper_history_3yr.csv",
     "seasons": [
+      2023,
       2024,
       2025
     ],
     "note": "Per-manager aggression from top-3 spend share (normalized); stud_premium = actual top-12 stud price vs par expectation.",
     "generated_by": "build_auction_fit.py",
-    "league_mean_top3_pct": 0.598
+    "league_mean_top3_pct": 0.613
   },
   "by_manager": {
     "addyrao": {
-      "aggression": 1.0,
-      "top3_pct": 0.598,
+      "aggression": 0.938,
+      "top3_pct": 0.587,
       "max_bid": 54,
-      "avg_bid": 11.7
+      "avg_bid": 11.7,
+      "pos_lean": {
+        "QB": 0.299,
+        "RB": 0.296,
+        "WR": 0.334,
+        "TE": 0.04
+      },
+      "top_positions": [
+        "WR",
+        "QB"
+      ],
+      "nominates_early": "QB",
+      "stud_vs_depth": 0.587
     },
     "chaituat": {
-      "aggression": 1.174,
-      "top3_pct": 0.665,
-      "max_bid": 52,
-      "avg_bid": 11.8
+      "aggression": 1.282,
+      "top3_pct": 0.728,
+      "max_bid": 64,
+      "avg_bid": 11.8,
+      "pos_lean": {
+        "QB": 0.31,
+        "RB": 0.278,
+        "WR": 0.275,
+        "TE": 0.102
+      },
+      "top_positions": [
+        "QB",
+        "RB"
+      ],
+      "nominates_early": "QB",
+      "stud_vs_depth": 0.728
     },
     "kopite": {
-      "aggression": 1.464,
-      "top3_pct": 0.777,
+      "aggression": 1.39,
+      "top3_pct": 0.772,
       "max_bid": 62,
-      "avg_bid": 11.8
+      "avg_bid": 11.8,
+      "pos_lean": {
+        "QB": 0.305,
+        "RB": 0.325,
+        "WR": 0.238,
+        "TE": 0.115
+      },
+      "top_positions": [
+        "RB",
+        "QB"
+      ],
+      "nominates_early": "RB",
+      "stud_vs_depth": 0.772
     },
     "bluewatermelon": {
-      "aggression": 1.088,
-      "top3_pct": 0.632,
-      "max_bid": 52,
-      "avg_bid": 11.8
+      "aggression": 1.045,
+      "top3_pct": 0.631,
+      "max_bid": 57,
+      "avg_bid": 11.6,
+      "pos_lean": {
+        "QB": 0.261,
+        "RB": 0.205,
+        "WR": 0.382,
+        "TE": 0.112
+      },
+      "top_positions": [
+        "WR",
+        "QB"
+      ],
+      "nominates_early": "WR",
+      "stud_vs_depth": 0.631
     },
     "skongara": {
-      "aggression": 0.842,
-      "top3_pct": 0.537,
-      "max_bid": 50,
-      "avg_bid": 11.8
+      "aggression": 0.95,
+      "top3_pct": 0.592,
+      "max_bid": 55,
+      "avg_bid": 11.8,
+      "pos_lean": {
+        "QB": 0.18,
+        "RB": 0.34,
+        "WR": 0.388,
+        "TE": 0.068
+      },
+      "top_positions": [
+        "WR",
+        "RB"
+      ],
+      "nominates_early": "WR",
+      "stud_vs_depth": 0.592
     },
     "rookieqbme": {
-      "aggression": 0.808,
-      "top3_pct": 0.524,
+      "aggression": 0.828,
+      "top3_pct": 0.542,
       "max_bid": 48,
-      "avg_bid": 11.7
+      "avg_bid": 11.2,
+      "pos_lean": {
+        "QB": 0.258,
+        "RB": 0.36,
+        "WR": 0.291,
+        "TE": 0.046
+      },
+      "top_positions": [
+        "RB",
+        "WR"
+      ],
+      "nominates_early": "QB",
+      "stud_vs_depth": 0.542
     },
     "djballz": {
-      "aggression": 1.031,
-      "top3_pct": 0.61,
+      "aggression": 1.035,
+      "top3_pct": 0.627,
       "max_bid": 50,
-      "avg_bid": 11.8
+      "avg_bid": 11.8,
+      "pos_lean": {
+        "QB": 0.375,
+        "RB": 0.235,
+        "WR": 0.34,
+        "TE": 0.033
+      },
+      "top_positions": [
+        "QB",
+        "WR"
+      ],
+      "nominates_early": "QB",
+      "stud_vs_depth": 0.627
     },
     "vnayini": {
-      "aggression": 0.901,
-      "top3_pct": 0.56,
-      "max_bid": 42,
-      "avg_bid": 11.8
+      "aggression": 0.982,
+      "top3_pct": 0.605,
+      "max_bid": 57,
+      "avg_bid": 11.8,
+      "pos_lean": {
+        "QB": 0.257,
+        "RB": 0.353,
+        "WR": 0.298,
+        "TE": 0.055
+      },
+      "top_positions": [
+        "RB",
+        "WR"
+      ],
+      "nominates_early": "RB",
+      "stud_vs_depth": 0.605
     },
     "siddharthasagar": {
       "aggression": 0.8,
-      "top3_pct": 0.448,
+      "top3_pct": 0.424,
       "max_bid": 47,
-      "avg_bid": 11.8
+      "avg_bid": 11.7,
+      "pos_lean": {
+        "QB": 0.254,
+        "RB": 0.28,
+        "WR": 0.389,
+        "TE": 0.028
+      },
+      "top_positions": [
+        "WR",
+        "RB"
+      ],
+      "nominates_early": "WR",
+      "stud_vs_depth": 0.424
     },
     "cardinalsin": {
-      "aggression": 1.08,
-      "top3_pct": 0.629,
+      "aggression": 1.011,
+      "top3_pct": 0.617,
       "max_bid": 55,
-      "avg_bid": 11.7
+      "avg_bid": 11.7,
+      "pos_lean": {
+        "QB": 0.197,
+        "RB": 0.5,
+        "WR": 0.217,
+        "TE": 0.028
+      },
+      "top_positions": [
+        "RB",
+        "WR"
+      ],
+      "nominates_early": "RB",
+      "stud_vs_depth": 0.617
     }
   },
-  "stud_premium": 1.317,
+  "stud_premium": 1.347,
   "premium_by_rank": {
-    "1": 1.391,
-    "2": 1.299,
-    "3": 1.26,
-    "4": 1.521,
-    "5": 1.503,
-    "6": 1.633,
-    "7": 1.658,
-    "8": 1.7,
-    "9": 1.741,
-    "10": 1.707,
-    "11": 1.702,
-    "12": 1.616,
-    "13": 1.61,
-    "14": 1.537,
-    "15": 1.522,
-    "16": 1.492,
-    "17": 1.537,
-    "18": 1.518,
-    "19": 1.483,
-    "20": 1.49
+    "1": 1.43,
+    "2": 1.314,
+    "3": 1.296,
+    "4": 1.565,
+    "5": 1.538,
+    "6": 1.67,
+    "7": 1.69,
+    "8": 1.74,
+    "9": 1.77,
+    "10": 1.755,
+    "11": 1.714,
+    "12": 1.658,
+    "13": 1.646,
+    "14": 1.587,
+    "15": 1.567,
+    "16": 1.524,
+    "17": 1.578,
+    "18": 1.582,
+    "19": 1.504,
+    "20": 1.497
   },
   "position_depth": {
     "QB": {
