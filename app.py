@@ -1274,6 +1274,21 @@ if draft_mode == "🔨 Auction / Salary Cap":
             if _is_tier_ender:
                 _mkt_fair += TIER_END_PREMIUM
             _bid_ceiling = min(my_max_bid, max(_walk, _mkt_fair))
+            # #3 YOUR EDGE (user-confirmed anecdote): user reliably lands the QB
+            # second wave (QB4-6, e.g. Lamar goes ~4th, Burrow) cheap. When a
+            # second-wave QB is up and QB is a need, nudge to pounce over top-3.
+            _qb_edge = (_pr['position'] == 'QB' and 4 <= _pos_rank <= 7 and _need_pos)
+            _edge_txt = (" 🎯 <b>YOUR EDGE:</b> you land this QB tier cheap most years "
+                         "(Lamar/Burrow pattern) — pounce here, don't chase the top-3." if _qb_edge else "")
+            # #WR value zone (user-confirmed): WR1-2 go high, then WR3->4 drop opens a
+            # long value tier (~WR4+) where camp-riser tier-jumpers (JSN) become steals.
+            _wr_value = (_pr['position'] == 'WR' and _pos_rank >= 4 and _need_pos)
+            if _wr_value and not _edge_txt:
+                _has_intel = bool(str(_pr.get('intel_note','')).strip())
+                _edge_txt = (" 💎 <b>WR VALUE ZONE:</b> top-2 WRs go high, but this tier is where "
+                             "tier-jumpers hide (JSN-type). "
+                             + ("This one has live camp buzz — prime breakout target." if _has_intel
+                                else "Target camp risers here for league-winning value."))
             if _fair > my_max_bid and _mkt_fair > my_max_bid:
                 _verdict, _color, _msg = "CAN'T AFFORD", "#ef4444", f"Market ~${max(_likely,_mkt_fair)} exceeds your max ${my_max_bid}. Would strand your roster."
             elif not _need_pos and not _want:
@@ -1281,7 +1296,7 @@ if draft_mode == "🔨 Auction / Salary Cap":
             else:
                 _verdict, _color = f"BID to ${_bid_ceiling}", "#10b981"
                 _msg = (f"League market for {_pr['position']}{_pos_rank if _pos_rank<99 else ''} ~${_likely}. "
-                        f"Ceiling ${_bid_ceiling} (real tier price).{_tier_drop_txt}")
+                        f"Ceiling ${_bid_ceiling} (real tier price).{_tier_drop_txt}{_edge_txt}")
             _star = "⭐ TARGET · " if _want else ""
             st.markdown(
                 f'<div style="background:{_color};border-radius:8px;padding:14px 18px;margin:4px 0 8px 0;">'
@@ -1362,6 +1377,26 @@ if draft_mode == "🔨 Auction / Salary Cap":
             f'💰 <b>Max bid ${my_max_bid}</b> · ${my_cap_left} left · {my_slots_left} slots open '
             f'(reserve ≥${_reserve}) · <b>Still need:</b> {_need_txt}</div>',
             unsafe_allow_html=True)
+        # #4 ENDGAME $1-NOMINATION (user-confirmed): at $1 everyone's tied, so the
+        # NOMINATOR gets the player. Holding 2+ slots & $2+ into the endgame lets you
+        # control 2 nominations = 2 players you choose, vs being at others' mercy.
+        _endgame = (my_slots_left <= 3) or (my_cap_left <= my_slots_left + 2)
+        if _endgame and my_slots_left > 0:
+            # best $1 survivor to nominate for yourself = highest live_vorp among
+            # cheap unpicked players (market_cost <= 2) that will reach the $1 zone
+            _dollar_pool = df_unpicked[(df_unpicked['market_cost'] <= 2) &
+                                       (~df_unpicked['clean_name'].isin(st.session_state.my_fades))]
+            _dollar_pool = _dollar_pool.sort_values('live_vorp', ascending=False)
+            _best1 = _dollar_pool.iloc[0] if not _dollar_pool.empty else None
+            _best1_txt = (f" Best $1 nomination target: <b>{_best1['player_name']} "
+                          f"({_best1['position']}, {round(float(_best1['live_vorp']),1)} VORP)</b> — "
+                          f"nominate to claim him yourself." if _best1 is not None else "")
+            _ctrl = "✅ You control 2 endgame nominations." if (my_slots_left >= 2 and my_cap_left >= 2) \
+                    else "⚠️ Keep 2 slots + $2 so you control 2 nominations (nominator wins $1 ties)."
+            st.markdown(
+                f'<div style="background:#131b2e;border-left:4px solid #f59e0b;padding:8px 12px;'
+                f'border-radius:6px;margin-bottom:10px;font-size:0.85rem;">'
+                f'🏁 <b>Endgame:</b> {_ctrl}{_best1_txt}</div>', unsafe_allow_html=True)
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("League Capital Remaining", f"${remaining_league_cash}", f"-${total_cash_spent} Spent")
     c2.metric("Room Inflation Index", f"{inflation_index}x", "Deflation (Bargains)" if inflation_index < 1.0 else "Inflation (Overpay)")
@@ -2079,6 +2114,13 @@ with tab_matrix:
                 _ctr = f"Disciplined value-spreader — won't chase; don't expect him to bail you out of bidding wars."
             else:
                 _ctr = f"Balanced — contest his {_lean} targets at fair value to force full spend."
+            # #6 (user-confirmed): cardinalsin is RB-heavy but STREAKY — baitable
+            # only a little, not a lock. Flag strong single-position leans as streaky.
+            _lean_top = _fit.get('pos_lean', {})
+            _top_share = max(_lean_top.values()) if _lean_top else 0
+            if _h == 'cardinalsin' or _top_share >= 0.45:
+                _ctr += (" ⚠️ Usually RB-heavy but STREAKY — bait into RB wars with caution, "
+                         "not a guaranteed tell.")
             hist_exploit = (f"<b>Leans {_lean}</b> · aggression {_aggr:.2f} · {_t3}% top-3 spend · "
                             f"nominates {_nom} early · max bid ${_mx}.<br>"
                             f"<span style='color:#38bdf8;'>{_ctr}</span>")
