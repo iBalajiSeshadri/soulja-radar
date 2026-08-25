@@ -84,14 +84,17 @@ def mc_auction_price(player, rivals, my_max_bid, n_sims=400, seed=None):
                 continue
             need = float(r.get("need_at_pos", 0.5))
             aggr = float(r.get("aggression", 1.0))
-            wtp = fv * aggr * (0.6 + 0.8 * need) * rng.gauss(1.0, 0.15)
+            # willingness centered near fair value; needy+aggressive rivals stretch a
+            # bit past it, but bounded so a single stud can't imply an absurd price.
+            wtp = fv * aggr * (0.75 + 0.35 * need) * rng.gauss(1.0, 0.12)
             wtp = min(cap, max(1.0, wtp))
             wtps.append(wtp)
-        # include my own bid pressure so price reflects a contested auction
         wtps.append(min(my_max_bid, fv * rng.gauss(1.0, 0.1)))
         wtps.sort(reverse=True)
         if len(wtps) >= 2:
-            price = min(wtps[0], wtps[1] + 1.0)   # closes just above runner-up
+            # price closes partway between runner-up and top bidder (not a full +1 jump)
+            price = wtps[1] + 0.4 * (wtps[0] - wtps[1]) + 1.0
+            price = min(price, wtps[0])
         else:
             price = max(1.0, wtps[0] if wtps else 1.0)
         prices.append(price)
@@ -128,21 +131,29 @@ def nomination_scores(candidates, rivals, my_interest_names, n_top=6):
         pos = c.get("position", "")
         drain = 0.0
         interested_rivals = 0
+        _wtps = []
         for r in rivals:
             cap = float(r.get("cap_left", 0))
             if cap < fv * 0.5:
                 continue  # can't really contest
             need = 1.0 if pos in r.get("needs", set()) else 0.4
             aggr = float(r.get("aggression", 1.0))
-            wtp = min(cap, fv * aggr * (0.6 + 0.8 * need))
-            if wtp >= fv * 0.7:
+            wtp = min(cap, fv * aggr * (0.75 + 0.35 * need))
+            _wtps.append(wtp)
+            if wtp >= fv * 0.8:
                 interested_rivals += 1
-            drain += wtp
+        # "drain" = what the WINNING rival actually pays (the price this nomination
+        # pulls out of one wallet), ~ the top rival WTP — not the sum of all WTPs.
+        if _wtps:
+            _wtps.sort(reverse=True)
+            drain = _wtps[0]
         i_want = c["clean_name"] in my_interest_names
-        score = drain * (0.15 if i_want else 1.0)
+        # good bleed = high winner-pays (drain) AND multiple rivals contesting it;
+        # heavily penalize nominating a player I actually want.
+        score = drain * (1 + 0.25 * interested_rivals) * (0.15 if i_want else 1.0)
         # a good bleed target: rivals want him, I don't, price is high
-        why = (f"{interested_rivals} rival(s) likely bid; ~${int(drain)} total rival "
-               f"willingness pulled off the board")
+        why = (f"{interested_rivals} rival(s) likely bid; winner pays ~${int(drain)} "
+               f"— cap pulled from a rival wallet")
         if i_want:
             why = "AVOID nominating — this is one of YOUR targets."
         out.append({
