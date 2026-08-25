@@ -963,6 +963,31 @@ def get_market_price(clean_or_row):
         return league_market_cost(_r['position'], _rk) or int(_r.get('market_cost', 1))
     return int(_r.get('market_cost', 1))
 
+def player_price(clean_or_row):
+    """CANONICAL price for a player — the SINGLE source used by the verdict AND
+    every advisor card AND board tables, so the same player shows the same price
+    everywhere. Returns {fair, market, likely, ceiling}:
+      fair    = engine VORP-share fair value (inflation-adjusted)
+      market  = league historical price for this player's available-pos rank
+      likely  = what it'll realistically sell for (league-anchored, premium-aware)
+      ceiling = your walk-away bid (likely + tier-ender premium, capped)
+    Cheap (no Monte-Carlo) so it's safe to call per-row across tables."""
+    if isinstance(clean_or_row, str):
+        _q = df_board[df_board['clean_name'] == clean_or_row]
+        if _q.empty:
+            return {"fair": 1, "market": 1, "likely": 1, "ceiling": 1}
+        _r = _q.iloc[0]
+    else:
+        _r = clean_or_row
+    _fairv = int(_r.get('fair_value', 1))
+    _mkt = int(get_market_price(_r) or _fairv)
+    # likely = league market is the ground truth for the tier; nudge toward fair
+    # only when fair is higher (e.g. a stud the market hasn't caught up to).
+    _lik = int(round(0.75 * _mkt + 0.25 * max(_fairv, _mkt)))
+    _prem = 5 if bool(_r.get('tier_ender', False)) else 0   # TIER_END_PREMIUM
+    _ceil = _lik + _prem
+    return {"fair": _fairv, "market": _mkt, "likely": _lik, "ceiling": _ceil}
+
 df_unpicked = df_board[~df_board['clean_name'].isin(picked_clean_names)].copy()  # refresh w/ updated cols
 
 # ── SHARED tier-ender flag (single source of truth for every card) ────────────
@@ -1373,13 +1398,13 @@ if draft_mode == "🔨 Auction / Salary Cap":
             ].sort_values('proj_fpts', ascending=False).reset_index(drop=True)
             _pos_rank = int(_pr.get('pos_rank_avail', 99))
             _league_price = league_market_cost(_pr['position'], _pos_rank)
-            _mkt_fair = max(_fair, int(round(_fair * _prem)), int(_league_price or 0))
-            # "Likely to sell" anchors to the league's REAL historical price for this
-            # tier (the ground truth), nudged toward the MC estimate but not dominated
-            # by it — MC can over-inflate positions whose fair_value carries a premium
-            # (e.g. TE), which would overstate the price. Blend 70% league / 30% MC.
-            if _league_price:
-                _likely = int(round(0.7 * float(_league_price) + 0.3 * float(_likely)))
+            # CANONICAL price — identical to what the advisor cards + board show, so
+            # the verdict never disagrees with the other cards. MC only tightens the
+            # walk-away upper bound for a contested stud.
+            _cp = player_price(_pr)
+            _likely = _cp['likely']
+            _mkt_fair = max(_cp['market'], int(round(_fair * _prem)))
+            _walk = min(my_max_bid, max(int(_mc['p80']), _cp['ceiling']))
             # TIER-DROP / cost-of-waiting: the NEXT player is the one immediately
             # BELOW the selected player among AVAILABLE players (not the top of the
             # pool) — so it's always a lower-ranked fallback, never a better player.
@@ -1405,10 +1430,9 @@ if draft_mode == "🔨 Auction / Salary Cap":
                 else:
                     _tier_drop_txt = (f" Next {_pr['position']} ({_next_p['player_name']}) ~${int(_next_price)} "
                                       f"(only ${_drop} cheaper — depth here, can wait).")
-            # apply the data-derived tier-ender premium to the ceiling (mild, ~+$5)
-            if _is_tier_ender:
-                _mkt_fair += TIER_END_PREMIUM
-            _bid_ceiling = min(my_max_bid, max(_walk, _mkt_fair))
+            # Bid ceiling = canonical ceiling (already includes the tier-ender
+            # premium), bounded by the MC walk-away and your max bid. No double-add.
+            _bid_ceiling = min(my_max_bid, max(_cp['ceiling'], int(_mc['p80']) if _is_tier_ender else _cp['ceiling']))
             # #3 YOUR EDGE (user-confirmed anecdote): user reliably lands the QB
             # second wave (QB4-6, e.g. Lamar goes ~4th, Burrow) cheap. When a
             # second-wave QB is up and QB is a need, nudge to pounce over top-3.
@@ -1747,12 +1771,13 @@ if draft_mode == "🔨 Auction / Salary Cap":
     if not user_priority_pool.empty:
         top_stud = user_priority_pool.sort_values(by=('my_value' if 'my_value' in user_priority_pool else 'fair_value'), ascending=False).iloc[0]
         top_stud_name = top_stud['clean_name']
-        rec_bid = min(my_max_bid, int(round(top_stud['fair_value'])))  # fair_value already live-inflated
+        _pp = player_price(top_stud)  # CANONICAL price (same as verdict + all cards)
+        rec_bid = min(my_max_bid, _pp['ceiling'])
         stud_card_html = (
             '<div style="background:#131b2e; border-top:4px solid #10b981; padding:12px; border-radius:6px; height:100%;">'
             '<div style="font-size:0.75rem; color:#10b981; font-weight:700;">⭐ YOUR PRIORITY TARGET</div>'
             f'<div style="font-size:1.15rem; font-weight:700; color:white; margin:4px 0;">{top_stud["player_name"]} <span class="badge-pos pos-{top_stud["position"]}">{top_stud["position"]}</span></div>'
-            f'<div style="font-size:0.85rem; color:#94a3b8;">Max Bid-To: <b style="color:#10b981;">${rec_bid}</b> | Market ADP: ${top_stud["market_cost"]}</div>'
+            f'<div style="font-size:0.85rem; color:#94a3b8;">Bid-To: <b style="color:#10b981;">${rec_bid}</b> | Likely: ${_pp["likely"]} | Fair: ${_pp["fair"]}</div>'
             f'<div style="font-size:0.75rem; color:#cbd5e1; margin-top:6px;"><b>Strategy:</b> Starred priority target. Secure before positional runs exhaust budget.</div>'
             '</div>'
         )
@@ -1761,20 +1786,16 @@ if draft_mode == "🔨 Auction / Salary Cap":
         _sort_col = 'my_value' if 'my_value' in primary_candidate_pool else 'fair_value'
         top_stud = primary_candidate_pool.sort_values(by=_sort_col, ascending=False).iloc[0]
         top_stud_name = top_stud['clean_name']
-        rec_bid = min(my_max_bid, int(round(top_stud['fair_value'])))  # fair_value already live-inflated
-        # Monte-Carlo: what will he ACTUALLY go for given the room's budgets?
-        _rivals = build_rivals_for_sim(top_stud['position'])
-        _mc = ds.mc_auction_price({'fair_value': float(top_stud['fair_value']), 'position': top_stud['position']},
-                                  _rivals, my_max_bid=my_max_bid, n_sims=250, seed=7)
-        _walk = min(my_max_bid, int(_mc['p80']))   # walk-away ceiling = 80th pct sim price
+        _pp = player_price(top_stud)  # CANONICAL price (same everywhere)
+        rec_bid = min(my_max_bid, _pp['ceiling'])
         _run_flag = pos_run_flag(top_stud['position'])
         _run_line = f'<div style="font-size:0.72rem; color:#fbbf24; margin-top:4px;">{_run_flag}</div>' if _run_flag else ''
         stud_card_html = (
             '<div style="background:#131b2e; border-top:4px solid #10b981; padding:12px; border-radius:6px; height:100%;">'
             '<div style="font-size:0.75rem; color:#10b981; font-weight:700;">👑 RECOMMENDED ANCHOR / STUD</div>'
             f'<div style="font-size:1.15rem; font-weight:700; color:white; margin:4px 0;">{top_stud["player_name"]} <span class="badge-pos pos-{top_stud["position"]}">{top_stud["position"]}</span></div>'
-            f'<div style="font-size:0.85rem; color:#94a3b8;">Fair: <b style="color:#10b981;">${rec_bid}</b> | Likely sells: <b>${int(_mc["median"])}</b> | Walk-away: <b style="color:#f59e0b;">${_walk}</b></div>'
-            f'<div style="font-size:0.75rem; color:#cbd5e1; margin-top:6px;"><b>Strategy:</b> Need-adjusted top value ({round(top_stud.get("my_value", top_stud["live_vorp"]), 1)}) for your open {top_stud["position"]}. MC price band ${int(_mc["p20"])}-${int(_mc["p80"])}.</div>'
+            f'<div style="font-size:0.85rem; color:#94a3b8;">Bid-To: <b style="color:#10b981;">${rec_bid}</b> | Likely sells: <b>${_pp["likely"]}</b> | Fair: <b>${_pp["fair"]}</b></div>'
+            f'<div style="font-size:0.75rem; color:#cbd5e1; margin-top:6px;"><b>Strategy:</b> Need-adjusted top value ({round(top_stud.get("my_value", top_stud["live_vorp"]), 1)}) for your open {top_stud["position"]}. Market ${_pp["market"]}.</div>'
             f'{_run_line}'
             '</div>'
         )
@@ -1806,17 +1827,14 @@ if draft_mode == "🔨 Auction / Salary Cap":
                 val_color = "#60a5fa"
 
             is_p_starred = "⭐ " if best_p['clean_name'] in st.session_state.my_targets else ""
-            # MC likely sell price for this value target (so you know the real cost)
-            _rv = build_rivals_for_sim(best_p['position'])
-            _mc = ds.mc_auction_price({'fair_value': float(best_p['fair_value']), 'position': best_p['position']},
-                                      _rv, my_max_bid=my_max_bid, n_sims=150, seed=int(best_p['board_rank']))
-            exec_price = max(1, min(int(best_p['fair_value']), int(round(best_p['market_cost'] * 0.95))))
+            _pp = player_price(best_p)   # CANONICAL price (same as verdict + stud card)
+            exec_price = min(my_max_bid, _pp['ceiling'])
 
             row_html = (
                 '<div style="display:flex; justify-content:space-between; align-items:center; background:#0b0f19; padding:5px 8px; margin-bottom:4px; border-radius:4px; border-left:3px solid #3b82f6;">'
                 '<div>'
                 f'<span class="badge-pos pos-{best_p["position"]}">{best_p["position"]}</span> <b>{is_p_starred}{best_p["player_name"]}</b> <span style="font-size:0.75rem; color:#94a3b8;">({best_p["tier"]})</span><br>'
-                f'<span style="font-size:0.72rem; color:#94a3b8;">Fair: <b>${int(best_p["fair_value"])}</b> | Likely: <b>${int(_mc["median"])}</b> | Bid-To: <b>${exec_price}</b></span>'
+                f'<span style="font-size:0.72rem; color:#94a3b8;">Fair: <b>${_pp["fair"]}</b> | Likely: <b>${_pp["likely"]}</b> | Bid-To: <b>${exec_price}</b></span>'
                 '</div>'
                 f'<div style="font-size:0.8rem; font-weight:700; color:{val_color}; text-align:right;">{val_text}</div>'
                 '</div>'
