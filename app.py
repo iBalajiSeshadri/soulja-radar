@@ -1430,8 +1430,27 @@ if draft_mode == "🔨 Auction / Salary Cap":
                     _tier_drop_txt = (f" Next {_pr['position']} ({_next_p['player_name']}) ~${int(_next_price)} "
                                       f"(${_drop} cheaper — modest drop).")
                 else:
-                    _tier_drop_txt = (f" Next {_pr['position']} ({_next_p['player_name']}) ~${int(_next_price)} "
-                                      f"(only ${_drop} cheaper — depth here, can wait).")
+                    # TOSS-UP (similar price): don't just name the next guy — say WHO'S
+                    # BETTER using forward signals (edge_score fuses VORP + scheme fit/
+                    # risk + vacated + workhorse). Helps pick between similar options.
+                    _sel_edge = float(_pr.get('edge_score', _pr.get('live_vorp', 0)))
+                    _nxt_edge = float(_next_p.get('edge_score', _next_p.get('live_vorp', 0)))
+                    def _why1(rr):
+                        t = str(rr.get('scheme_tag','')).upper()
+                        if 'FIT' in t: return 'scheme fit'
+                        if 'RISK' in t: return 'scheme risk'
+                        er = str(rr.get('edge_reasons','')).split(';')[0].strip()
+                        return er or str(rr.get('tier',''))
+                    if _sel_edge >= _nxt_edge + 3:
+                        _tier_drop_txt = (f" ✅ <b>{_pr['player_name']} is the better pick</b> vs "
+                                          f"{_next_p['player_name']} (~${int(_next_price)}) — better outlook "
+                                          f"({_why1(_pr)} vs {_why1(_next_p)}).")
+                    elif _nxt_edge >= _sel_edge + 3:
+                        _tier_drop_txt = (f" 🔀 <b>Consider {_next_p['player_name']} instead</b> (~${int(_next_price)}, "
+                                          f"same price) — better outlook ({_why1(_next_p)} vs {_why1(_pr)}).")
+                    else:
+                        _tier_drop_txt = (f" Next {_pr['position']} ({_next_p['player_name']}) ~${int(_next_price)} "
+                                          f"— basically a coin-flip ({_why1(_pr)} vs {_why1(_next_p)}); take either or wait.")
             # Bid ceiling = canonical ceiling (already includes the tier-ender
             # premium), bounded by the MC walk-away and your max bid. No double-add.
             _bid_ceiling = min(my_max_bid, max(_cp['ceiling'], int(_mc['p80']) if _is_tier_ender else _cp['ceiling']))
