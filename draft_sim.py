@@ -169,3 +169,82 @@ def nomination_scores(candidates, rivals, my_interest_names, n_top=6):
         })
     out.sort(key=lambda d: d["score"], reverse=True)
     return out[:n_top]
+
+
+# ─────────────────────── Depth-based nomination (preferred) ───────────────────
+
+def nomination_by_depth(candidates, rivals, position_depth, my_interest_names=None,
+                        n_top=6, min_depth=0.4, protect_top_n=3):
+    """Rank nominations by POSITIONAL DEPTH x rival demand — bleed rivals on
+    replaceable talent at deep positions (WR/RB), never on scarce ones (TE/QB top).
+
+    candidates: list {clean_name, player_name, position, fair_value, market_cost}
+    rivals: list {cap_left, needs:set, aggression}
+    position_depth: {pos: {"depth_index": 0..1, "marginal_price": $}}  (from history)
+    my_interest_names: optional set to still avoid nominating your explicit targets.
+    protect_top_n: skip the top-N priced players at each position (the studs YOU
+        might want) — nominate genuine mid-tier depth instead, not elites.
+
+    A player is a good bleed if his position is DEEP (cheap replacement) yet the
+    market still pays a real price AND rivals still need the slot — wasted cap for
+    them. Scarce positions (low depth_index) and each position's elites are
+    excluded so we never nominate a player you'd plausibly want.
+    """
+    my_interest_names = my_interest_names or set()
+    # rank within each deep position to identify (and skip) the elites
+    by_pos = {}
+    for c in candidates:
+        by_pos.setdefault(c.get("position", ""), []).append(c)
+    protected = set()
+    for pos, lst in by_pos.items():
+        lst_sorted = sorted(lst, key=lambda x: float(x.get("fair_value", 0)), reverse=True)
+        for c in lst_sorted[:protect_top_n]:
+            protected.add(c["clean_name"])
+
+    out = []
+    for c in candidates:
+        pos = c.get("position", "")
+        pd_info = position_depth.get(pos, {})
+        depth = float(pd_info.get("depth_index", 0.0))
+        if depth < min_depth:
+            continue  # scarce position — protect, don't nominate
+        if c["clean_name"] in my_interest_names or c["clean_name"] in protected:
+            continue  # honor explicit targets + skip each position's elites
+        fv = float(c.get("fair_value", 1))
+        interested = 0
+        top_price = 0.0
+        for r in rivals:
+            cap = float(r.get("cap_left", 0))
+            if cap < fv * 0.5:
+                continue
+            need = 1.0 if pos in r.get("needs", set()) else 0.4
+            aggr = float(r.get("aggression", 1.0))
+            wtp = min(cap, fv * aggr * (0.75 + 0.35 * need))
+            top_price = max(top_price, wtp)
+            if pos in r.get("needs", set()) and wtp >= fv * 0.7:
+                interested += 1
+        if interested == 0 and top_price < fv:
+            continue
+        # waste = what a rival pays above the cheap marginal replacement at this pos
+        marginal = float(pd_info.get("marginal_price", 1.0))
+        waste = max(0.0, top_price - marginal)
+        # prefer REPLACEABLE players: high waste relative to their own value means
+        # the rival is overpaying for depth they could get cheap. Studs (fv high,
+        # low waste ratio) score lower so we bleed on mid-tier, not your studs.
+        waste_ratio = waste / max(1.0, fv)
+        score = depth * top_price * (0.4 + waste_ratio) * (1 + 0.25 * interested)
+        out.append({
+            "clean_name": c["clean_name"],
+            "player_name": c.get("player_name", c["clean_name"]),
+            "position": pos,
+            "fair_value": int(fv),
+            "expected_price": int(round(top_price)),
+            "wasted_cap": int(round(waste)),
+            "interested_rivals": interested,
+            "depth_index": round(depth, 2),
+            "score": round(score, 1),
+            "why": (f"deep {pos} (replacement ~${int(marginal)}); {interested} rival(s) "
+                    f"still need {pos} and will pay ~${int(top_price)} — ~${int(waste)} wasted cap"),
+        })
+    out.sort(key=lambda d: d["score"], reverse=True)
+    return out[:n_top]

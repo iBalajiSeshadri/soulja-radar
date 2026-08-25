@@ -93,5 +93,31 @@
     "18": 1.518,
     "19": 1.483,
     "20": 1.49
+  },
+  "position_depth": {
+    "QB": {
+      "n_per_yr": 29.7,
+      "depth_spend_per_yr": 371.0,
+      "marginal_price": 26.4,
+      "depth_index": 0.784
+    },
+    "RB": {
+      "n_per_yr": 43.0,
+      "depth_spend_per_yr": 468.0,
+      "marginal_price": 29.4,
+      "depth_index": 0.989
+    },
+    "WR": {
+      "n_per_yr": 49.7,
+      "depth_spend_per_yr": 473.0,
+      "marginal_price": 28.4,
+      "depth_index": 1.0
+    },
+    "TE": {
+      "n_per_yr": 13.0,
+      "depth_spend_per_yr": 43.0,
+      "marginal_price": 2.9,
+      "depth_index": 0.091
+    }
   }
 }

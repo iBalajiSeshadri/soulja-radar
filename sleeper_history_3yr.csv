@@ -1,0 +1,511 @@
+season,pick_no,amount,player,position,manager
+2025,1,7,Rashee Rice,WR,Aaron it Around
+2025,2,43,CeeDee Lamb,WR,Come CMC
+2025,3,38,Brock Bowers,TE,Come CMC
+2025,4,52,Ja'Marr Chase,WR,Stud's and Duds
+2025,5,52,Bijan Robinson,RB,Come CMC
+2025,6,52,Justin Jefferson,WR,JJ&J Slay
+2025,7,16,Tyler Warren,TE,Hurt Locker
+2025,8,48,Jahmyr Gibbs,RB,Mahomeboy Gibbs
+2025,9,56,Saquon Barkley,RB,Stud's and Duds
+2025,10,54,Lamar Jackson,QB,Aaron it Around
+2025,11,40,Joe Burrow,QB,The Dawgfather
+2025,12,27,Amon-Ra St. Brown,WR,The Dawgfather
+2025,13,50,Christian McCaffrey,RB,Aaron it Around
+2025,14,32,Malik Nabers,WR,Hurt Locker
+2025,15,32,Nico Collins,WR,Achanak Randi
+2025,16,24,Puka Nacua,WR,Overgeared
+2025,17,47,Jalen Hurts,QB,Overgeared
+2025,18,55,Josh Allen,QB,Stud's and Duds
+2025,19,50,Ashton Jeanty,RB,Hurt Locker
+2025,20,35,De'Von Achane,RB,Achanak Randi
+2025,21,29,Drake London,WR,Aaron it Around
+2025,22,34,Patrick Mahomes,QB,Mahomeboy Gibbs
+2025,23,36,Brian Thomas,WR,Achanak Randi
+2025,24,54,Jayden Daniels,QB,Cardinal Bejaan
+2025,25,34,Jonathan Taylor,RB,Overgeared
+2025,26,42,Derrick Henry,RB,The Dawgfather
+2025,27,15,Jordan Love,QB,Mahomeboy Gibbs
+2025,28,32,Bucky Irving,RB,JJ&J Slay
+2025,29,23,George Kittle,TE,Hurt Locker
+2025,30,24,Ladd McConkey,WR,Hurt Locker
+2025,31,14,Travis Hunter,WR,Stud's and Duds
+2025,32,12,Garrett Wilson,WR,Overgeared
+2025,33,28,Josh Jacobs,RB,Cardinal Bejaan
+2025,34,33,Trey McBride,TE,JJ&J Slay
+2025,35,26,A.J. Brown,WR,Mahomeboy Gibbs
+2025,36,21,Jaxon Smith-Njigba,WR,Achanak Randi
+2025,37,16,Baker Mayfield,QB,Aaron it Around
+2025,38,19,Bo Nix,QB,The Dawgfather
+2025,39,38,Chase Brown,RB,Cardinal Bejaan
+2025,40,14,Brock Purdy,QB,Hurt Locker
+2025,41,14,Breece Hall,RB,The Dawgfather
+2025,42,10,Sam LaPorta,TE,Mahomeboy Gibbs
+2025,43,24,Tyreek Hill,WR,The Dawgfather
+2025,44,17,Marvin Harrison,WR,The Dawgfather
+2025,45,27,Kyren Williams,RB,Cardinal Bejaan
+2025,46,25,James Cook,RB,Hurt Locker
+2025,47,14,Kyler Murray,QB,Achanak Randi
+2025,48,15,Tee Higgins,WR,Come CMC
+2025,49,11,Caleb Williams,QB,Achanak Randi
+2025,50,13,Dak Prescott,QB,Overgeared
+2025,51,8,Travis Kelce,TE,Overgeared
+2025,52,16,C.J. Stroud,QB,Come CMC
+2025,53,13,Mike Evans,WR,JJ&J Slay
+2025,54,18,Omarion Hampton,RB,Aaron it Around
+2025,55,18,Kenneth Walker,RB,Mahomeboy Gibbs
+2025,56,7,George Pickens,WR,Aaron it Around
+2025,57,5,Stefon Diggs,WR,Cardinal Bejaan
+2025,58,8,Jameson Williams,WR,Mahomeboy Gibbs
+2025,59,10,James Conner,RB,Come CMC
+2025,60,17,Alvin Kamara,RB,Achanak Randi
+2025,61,1,Rachaad White,RB,Come CMC
+2025,62,18,Terry McLaurin,WR,Cardinal Bejaan
+2025,63,9,Chuba Hubbard,RB,Mahomeboy Gibbs
+2025,64,8,Tetairoa McMillan,WR,Overgeared
+2025,65,7,DJ Moore,WR,Mahomeboy Gibbs
+2025,66,11,RJ Harvey,RB,JJ&J Slay
+2025,67,10,Justin Herbert,QB,Mahomeboy Gibbs
+2025,68,11,Davante Adams,WR,JJ&J Slay
+2025,69,10,TreVeyon Henderson,RB,Overgeared
+2025,70,15,Justin Fields,QB,JJ&J Slay
+2025,71,10,DK Metcalf,WR,Overgeared
+2025,72,6,Jared Goff,QB,Come CMC
+2025,73,10,Isiah Pacheco,RB,Overgeared
+2025,74,11,Drake Maye,QB,Overgeared
+2025,75,5,DeVonta Smith,WR,Cardinal Bejaan
+2025,76,16,J.J. McCarthy,QB,JJ&J Slay
+2025,77,11,Trevor Lawrence,QB,Achanak Randi
+2025,78,3,Kaleb Johnson,RB,Mahomeboy Gibbs
+2025,79,9,Courtland Sutton,WR,Stud's and Duds
+2025,80,5,Denver Broncos,DEF,Come CMC
+2025,81,8,Xavier Worthy,WR,Cardinal Bejaan
+2025,82,4,T.J. Watt,LB,Achanak Randi
+2025,83,10,Tony Pollard,RB,Achanak Randi
+2025,84,4,Philadelphia Eagles,DEF,Overgeared
+2025,85,3,T.J. Hockenson,TE,Cardinal Bejaan
+2025,86,3,Pittsburgh Steelers,DEF,Mahomeboy Gibbs
+2025,87,3,Blake Corum,RB,Achanak Randi
+2025,88,4,Matthew Stafford,QB,JJ&J Slay
+2025,89,2,Aaron Jones,RB,Stud's and Duds
+2025,90,3,Zay Flowers,WR,Come CMC
+2025,91,7,David Montgomery,RB,The Dawgfather
+2025,92,3,Roquan Smith,LB,Come CMC
+2025,93,6,D'Andre Swift,RB,Hurt Locker
+2025,94,2,Zack Baun,LB,Overgeared
+2025,95,2,Tua Tagovailoa,QB,Cardinal Bejaan
+2025,96,1,Cooper Kupp,WR,JJ&J Slay
+2025,97,2,Baltimore Ravens,DEF,Cardinal Bejaan
+2025,98,3,David Njoku,TE,Aaron it Around
+2025,99,1,Jaylen Waddle,WR,Hurt Locker
+2025,100,5,Calvin Ridley,WR,Aaron it Around
+2025,101,3,Travis Etienne,RB,Come CMC
+2025,102,3,Mark Andrews,TE,JJ&J Slay
+2025,103,3,Houston Texans,DEF,Cardinal Bejaan
+2025,104,2,Zaire Franklin,LB,Overgeared
+2025,105,2,Tucker Kraft,TE,Overgeared
+2025,106,3,Nick Chubb,RB,JJ&J Slay
+2025,107,1,Fred Warner,LB,Achanak Randi
+2025,108,1,Jordan Mason,RB,Aaron it Around
+2025,109,2,Buffalo Bills,DEF,Hurt Locker
+2025,110,2,Jacory Croskey-Merritt,RB,Mahomeboy Gibbs
+2025,111,1,Rome Odunze,WR,Come CMC
+2025,112,2,Quinshon Judkins,RB,Stud's and Duds
+2025,113,1,Ernest Jones,LB,Cardinal Bejaan
+2025,114,3,Ricky Pearsall,WR,Cardinal Bejaan
+2025,115,1,Kyle Pitts,TE,Stud's and Duds
+2025,116,1,Tyrone Tracy,RB,JJ&J Slay
+2025,117,1,Jordan Addison,WR,Achanak Randi
+2025,118,3,Emeka Egbuka,WR,Aaron it Around
+2025,119,1,Michael Penix,QB,Hurt Locker
+2025,120,1,Chris Olave,WR,Mahomeboy Gibbs
+2025,121,2,Foyesade Oluokun,LB,Mahomeboy Gibbs
+2025,122,2,Evan Engram,TE,The Dawgfather
+2025,123,2,T.J. Edwards,LB,Mahomeboy Gibbs
+2025,124,2,Matthew Golden,WR,Aaron it Around
+2025,125,1,Geno Smith,QB,Stud's and Duds
+2025,126,1,New England Patriots,DEF,JJ&J Slay
+2025,127,1,Minnesota Vikings,DEF,Achanak Randi
+2025,128,1,Aidan Hutchinson,DL,Aaron it Around
+2025,129,1,Zach Charbonnet,RB,Hurt Locker
+2025,130,2,Jakobi Meyers,WR,Mahomeboy Gibbs
+2025,131,1,Khalil Shakir,WR,Come CMC
+2025,132,1,Deebo Samuel,WR,The Dawgfather
+2025,133,2,Daiyan Henley,LB,JJ&J Slay
+2025,134,1,Bryce Young,QB,Overgeared
+2025,135,1,Cam Ward,QB,Stud's and Duds
+2025,136,1,Robert Spillane,LB,JJ&J Slay
+2025,137,1,Colston Loveland,TE,Achanak Randi
+2025,138,1,Austin Ekeler,RB,Aaron it Around
+2025,139,1,Sam Darnold,QB,Hurt Locker
+2025,140,1,Demario Davis,LB,Come CMC
+2025,141,1,Blake Cashman,LB,The Dawgfather
+2025,142,1,Bobby Okereke,LB,Cardinal Bejaan
+2025,143,2,Josh Downs,WR,Overgeared
+2025,144,1,Javonte Williams,RB,Stud's and Duds
+2025,145,1,Jerry Jeudy,WR,JJ&J Slay
+2025,146,1,Jaxson Dart,QB,Achanak Randi
+2025,147,1,Seattle Seahawks,DEF,Aaron it Around
+2025,148,1,Jamien Sherwood,LB,Hurt Locker
+2025,149,1,Wan'Dale Robinson,WR,Come CMC
+2025,150,1,Jaylen Warren,RB,The Dawgfather
+2025,151,1,J.K. Dobbins,RB,Cardinal Bejaan
+2025,152,1,Chris Godwin,WR,Stud's and Duds
+2025,153,1,Detroit Lions,DEF,Achanak Randi
+2025,154,1,Kyle Hamilton,DB,Aaron it Around
+2025,155,1,Kaden Elliss,LB,Hurt Locker
+2025,156,1,Ty Chandler,RB,Come CMC
+2025,157,1,Terrel Bernard,LB,The Dawgfather
+2025,158,1,Anthony Richardson,QB,Cardinal Bejaan
+2025,159,1,Edgerrin Cooper,LB,Stud's and Duds
+2025,160,1,Alex Singleton,LB,Aaron it Around
+2025,161,1,Arizona Cardinals,DEF,Hurt Locker
+2025,162,1,Budda Baker,DB,The Dawgfather
+2025,163,1,Maxx Crosby,DL,Stud's and Duds
+2025,164,1,Green Bay Packers,DEF,Hurt Locker
+2025,165,1,Aaron Rodgers,QB,The Dawgfather
+2025,166,1,San Francisco 49ers,DEF,Stud's and Duds
+2025,167,1,Washington Commanders,DEF,The Dawgfather
+2025,168,1,Dalton Kincaid,TE,Stud's and Duds
+2025,169,1,Tank Bigsby,RB,The Dawgfather
+2025,170,1,Tampa Bay Buccaneers,DEF,Stud's and Duds
+2024,1,51,Josh Allen,QB,Stud's and Duds
+2024,2,47,CeeDee Lamb,WR,C Dee Achane Cook
+2024,3,51,Breece Hall,RB,Cardinal Bejaan
+2024,4,62,Christian McCaffrey,RB,Stud's and Duds
+2024,5,51,Patrick Mahomes,QB,Not Mahomies 
+2024,6,49,C.J. Stroud,QB,Come CMC
+2024,7,49,Jalen Hurts,QB,Come CMC
+2024,8,46,Justin Jefferson,WR,Aaron it Around
+2024,9,55,Bijan Robinson,RB,Cardinal Bejaan
+2024,10,51,Tyreek Hill,WR,Not Mahomies 
+2024,11,46,Lamar Jackson,QB,The Dawgfather
+2024,12,36,Jahmyr Gibbs,RB,Cancun Chandras 
+2024,13,48,Ja'Marr Chase,WR,Ja'Marr The Merrier
+2024,14,39,Anthony Richardson,QB,The Dawgfather
+2024,15,34,Puka Nacua,WR,Not Mahomies 
+2024,16,42,Kyler Murray,QB,Cancun Chandras 
+2024,17,50,Garrett Wilson,WR,The Dawgfather
+2024,18,25,Chris Olave,WR,Cardinal Bejaan
+2024,19,29,Marvin Harrison,WR,The Dawgfather
+2024,20,29,Isiah Pacheco,RB,Aaron it Around
+2024,21,14,DK Metcalf,WR,Cancun Chandras 
+2024,22,24,James Cook,RB,C Dee Achane Cook
+2024,23,38,Jonathan Taylor,RB,Cancun Chandras 
+2024,24,35,Saquon Barkley,RB,Stud's and Duds
+2024,25,26,Kyren Williams,RB,Ja'Marr The Merrier
+2024,26,33,Joe Burrow,QB,Ja'Marr The Merrier
+2024,27,29,Travis Etienne,RB,Come CMC
+2024,28,26,Dak Prescott,QB,Aaron it Around
+2024,29,41,Amon-Ra St. Brown,WR,Cancun Chandras 
+2024,30,26,Travis Kelce,TE,Stud's and Duds
+2024,31,5,Dallas Cowboys,DEF,Cancun Chandras 
+2024,32,14,Joe Mixon,RB,Not Mahomies 
+2024,33,27,Josh Jacobs,RB,Ja'Marr The Merrier
+2024,34,26,Drake London,WR,Overgeared
+2024,35,24,Sam LaPorta,TE,Not Mahomies 
+2024,36,30,Jordan Love,QB,Aaron it Around
+2024,37,35,A.J. Brown,WR,Come CMC
+2024,38,14,Brock Purdy,QB,Overgeared
+2024,39,29,De'Von Achane,RB,C Dee Achane Cook
+2024,40,15,Trey McBride,TE,The Dawgfather
+2024,41,12,Brandon Aiyuk,WR,Aaron it Around
+2024,42,31,Derrick Henry,RB,Overgeared
+2024,43,21,Kenneth Walker,RB,Ja'Marr The Merrier
+2024,44,15,Malik Nabers,WR,Overgeared
+2024,45,14,Caleb Williams,QB,C Dee Achane Cook
+2024,46,15,Jayden Daniels,QB,Overgeared
+2024,47,14,DJ Moore,WR,Overgeared
+2024,48,11,Dalton Kincaid,TE,Aaron it Around
+2024,49,19,Cooper Kupp,WR,Aaron it Around
+2024,50,22,Mark Andrews,TE,Come CMC
+2024,51,6,Baltimore Ravens,DEF,Not Mahomies 
+2024,52,14,Jaylen Waddle,WR,Overgeared
+2024,53,20,Nico Collins,WR,Ja'Marr The Merrier
+2024,54,14,Aaron Rodgers,QB,Stud's and Duds
+2024,55,5,Michael Pittman,WR,Overgeared
+2024,56,18,Tua Tagovailoa,QB,C Dee Achane Cook
+2024,57,10,Rachaad White,RB,C Dee Achane Cook
+2024,58,5,Trevor Lawrence,QB,Overgeared
+2024,59,5,San Francisco 49ers,DEF,Overgeared
+2024,60,10,Alvin Kamara,RB,Overgeared
+2024,61,7,Kyle Pitts,TE,C Dee Achane Cook
+2024,62,9,Justin Herbert,QB,Cardinal Bejaan
+2024,63,10,Davante Adams,WR,Overgeared
+2024,64,6,DeVonta Smith,WR,C Dee Achane Cook
+2024,65,1,Brock Bowers,TE,Overgeared
+2024,66,14,Jared Goff,QB,Cardinal Bejaan
+2024,67,7,Aaron Jones,RB,The Dawgfather
+2024,68,4,Najee Harris,RB,Aaron it Around
+2024,69,14,Deebo Samuel,WR,Cancun Chandras 
+2024,70,6,Zamir White,RB,Overgeared
+2024,71,6,Stefon Diggs,WR,C Dee Achane Cook
+2024,72,14,James Conner,RB,C Dee Achane Cook
+2024,73,8,George Kittle,TE,Cardinal Bejaan
+2024,74,1,Christian Watson,WR,C Dee Achane Cook
+2024,75,7,Foyesade Oluokun,LB,Overgeared
+2024,76,4,Kirk Cousins,QB,C Dee Achane Cook
+2024,77,8,Matthew Stafford,QB,Ja'Marr The Merrier
+2024,78,5,Roquan Smith,LB,Overgeared
+2024,79,5,T.J. Watt,LB,Cardinal Bejaan
+2024,80,5,D'Andre Swift,RB,Not Mahomies 
+2024,81,4,Evan Engram,TE,C Dee Achane Cook
+2024,82,6,Tee Higgins,WR,Not Mahomies 
+2024,83,8,New York Jets,DEF,C Dee Achane Cook
+2024,84,1,Micah Parsons,LB,C Dee Achane Cook
+2024,85,17,Tony Pollard,RB,Overgeared
+2024,86,1,Baker Mayfield,QB,Come CMC
+2024,87,5,David Montgomery,RB,Cardinal Bejaan
+2024,88,4,Rhamondre Stevenson,RB,Aaron it Around
+2024,89,6,Cleveland Browns,DEF,Cardinal Bejaan
+2024,90,6,Mike Evans,WR,Ja'Marr The Merrier
+2024,91,2,Javonte Williams,RB,The Dawgfather
+2024,92,7,Jerome Ford,RB,Aaron it Around
+2024,93,3,Pittsburgh Steelers,DEF,Come CMC
+2024,94,3,Bobby Okereke,LB,Come CMC
+2024,95,1,Brian Robinson,RB,Come CMC
+2024,96,2,Zay Flowers,WR,Cardinal Bejaan
+2024,97,1,Christian Kirk,WR,The Dawgfather
+2024,98,3,Rashee Rice,WR,Cardinal Bejaan
+2024,99,1,Terry McLaurin,WR,Aaron it Around
+2024,100,4,Tank Dell,WR,Cardinal Bejaan
+2024,101,2,Joshua Palmer,WR,Aaron it Around
+2024,102,1,Jake Ferguson,TE,Ja'Marr The Merrier
+2024,103,3,Zaire Franklin,LB,C Dee Achane Cook
+2024,104,2,Amari Cooper,WR,The Dawgfather
+2024,105,1,Austin Ekeler,RB,Stud's and Duds
+2024,106,1,Zack Moss,RB,The Dawgfather
+2024,107,4,Raheem Mostert,RB,Cardinal Bejaan
+2024,108,1,Terrel Bernard,LB,Aaron it Around
+2024,109,1,David Njoku,TE,Cancun Chandras 
+2024,110,1,Khalil Shakir,WR,Not Mahomies 
+2024,111,1,Kansas City Chiefs,DEF,Ja'Marr The Merrier
+2024,112,1,Nick Chubb,RB,C Dee Achane Cook
+2024,113,1,George Pickens,WR,Come CMC
+2024,114,1,Xavier Worthy,WR,Stud's and Duds
+2024,115,1,Deshaun Watson,QB,The Dawgfather
+2024,116,1,Geno Smith,QB,Cardinal Bejaan
+2024,117,1,Drake Maye,QB,Cancun Chandras 
+2024,118,1,Calvin Ridley,WR,Aaron it Around
+2024,119,1,Derek Carr,QB,Not Mahomies 
+2024,120,3,Devin Singletary,RB,Ja'Marr The Merrier
+2024,121,1,Chris Godwin,WR,Come CMC
+2024,122,1,Jayden Reed,WR,Stud's and Duds
+2024,123,1,Gus Edwards,RB,The Dawgfather
+2024,124,3,Houston Texans,DEF,Cardinal Bejaan
+2024,125,1,Philadelphia Eagles,DEF,Aaron it Around
+2024,126,1,Rico Dowdle,RB,Cancun Chandras 
+2024,127,1,Ezekiel Elliott,RB,Not Mahomies 
+2024,128,2,Fred Warner,LB,Aaron it Around
+2024,129,1,Jaylen Warren,RB,Come CMC
+2024,130,1,Alex Singleton,LB,Stud's and Duds
+2024,131,2,Courtland Sutton,WR,Aaron it Around
+2024,132,3,Jonathon Brooks,RB,Cardinal Bejaan
+2024,133,1,Tyjae Spears,RB,Cancun Chandras 
+2024,134,1,T.J. Edwards,LB,Not Mahomies 
+2024,135,1,Maxx Crosby,DL,Ja'Marr The Merrier
+2024,136,1,Bobby Wagner,LB,Come CMC
+2024,137,1,Ladd McConkey,WR,Stud's and Duds
+2024,138,1,Detroit Lions,DEF,The Dawgfather
+2024,139,1,Jaxon Smith-Njigba,WR,Cardinal Bejaan
+2024,140,1,Chase Brown,RB,Cancun Chandras 
+2024,141,1,Will Levis,QB,Not Mahomies 
+2024,142,2,Keenan Allen,WR,The Dawgfather
+2024,143,1,Diontae Johnson,WR,Come CMC
+2024,144,1,Chicago Bears,DEF,Stud's and Duds
+2024,145,1,Blake Corum,RB,The Dawgfather
+2024,146,1,C.J. Mosley,LB,Cancun Chandras 
+2024,147,1,Cincinnati Bengals,DEF,Not Mahomies 
+2024,148,1,Danielle Hunter,DL,Ja'Marr The Merrier
+2024,149,1,Chuba Hubbard,RB,Come CMC
+2024,150,1,Dallas Goedert,TE,Stud's and Duds
+2024,151,1,Nick Bolton,LB,The Dawgfather
+2024,152,1,Azeez Al-Shaair,LB,Cancun Chandras 
+2024,153,1,Logan Wilson,LB,Not Mahomies 
+2024,154,1,Miami Dolphins,DEF,Ja'Marr The Merrier
+2024,155,1,Antoine Winfield,DB,Come CMC
+2024,156,1,Russell Wilson,QB,Stud's and Duds
+2024,157,1,Tyrel Dodson,LB,The Dawgfather
+2024,158,1,Sam Darnold,QB,Cancun Chandras 
+2024,159,1,Tyler Allgeier,RB,Not Mahomies 
+2024,160,1,Rome Odunze,WR,Ja'Marr The Merrier
+2024,161,1,DeAndre Hopkins,WR,Come CMC
+2024,162,1,Patrick Queen,LB,Stud's and Duds
+2024,163,1,Dalton Schultz,TE,Cancun Chandras 
+2024,164,1,Jakobi Meyers,WR,Not Mahomies 
+2024,165,1,Bryce Young,QB,Ja'Marr The Merrier
+2024,166,1,Keon Coleman,WR,Stud's and Duds
+2024,167,1,Greg Dortch,WR,Cancun Chandras 
+2024,168,1,J.K. Dobbins,RB,Ja'Marr The Merrier
+2024,169,1,Bo Nix,QB,Stud's and Duds
+2024,170,1,Seattle Seahawks,DEF,Stud's and Duds
+2023,1,57,Patrick Mahomes,QB,Mahal se Marriage Hall
+2023,2,40,Travis Kelce,TE,Mahal se Marriage Hall
+2023,3,52,Christian McCaffrey,RB,Cardinal Jin
+2023,4,35,Trevor Lawrence,QB,Cardinal Jin
+2023,5,57,Josh Allen,QB,Cleaning staff
+2023,6,12,J.K. Dobbins,RB,Overgeared
+2023,7,55,Justin Jefferson,WR,Mahal se Marriage Hall
+2023,8,30,Mark Andrews,TE,Relax Ranga 
+2023,9,55,Tyreek Hill,WR,Cheetha Bhi Peetha 
+2023,10,52,Bijan Robinson,RB,Relax Ranga 
+2023,11,53,Ja'Marr Chase,WR,Come CMC
+2023,12,54,Austin Ekeler,RB,Come CMC
+2023,13,48,Lamar Jackson,QB,The Dawgfather
+2023,14,43,Stefon Diggs,WR,The Dawgfather
+2023,15,64,Jalen Hurts,QB,Come CMC
+2023,16,15,Alvin Kamara,RB,Relax Ranga 
+2023,17,13,Isiah Pacheco,RB,The Dawgfather
+2023,18,14,Deshaun Watson,QB,Overgeared
+2023,19,48,Joe Burrow,QB,Lamburrowghini
+2023,20,41,Saquon Barkley,RB,The Dawgfather
+2023,21,45,Justin Fields,QB,Cheetha Bhi Peetha 
+2023,22,57,Justin Herbert,QB,Relax Ranga 
+2023,23,32,Cooper Kupp,WR,Overgeared
+2023,24,30,Davante Adams,WR,Cardinal Jin
+2023,25,35,A.J. Brown,WR,Cheetha Bhi Peetha 
+2023,26,27,Amon-Ra St. Brown,WR,Overgeared
+2023,27,7,D'Andre Swift,RB,Mahal se Marriage Hall
+2023,28,9,Jonathan Taylor,RB,The Dawgfather
+2023,29,47,Nick Chubb,RB,Aaron it Around
+2023,30,35,Garrett Wilson,WR,Aaron it Around
+2023,31,27,Jaylen Waddle,WR,Cleaning staff
+2023,32,16,Anthony Richardson,QB,Relax Ranga 
+2023,33,31,Tua Tagovailoa,QB,The Dawgfather
+2023,34,30,CeeDee Lamb,WR,Lamburrowghini
+2023,35,36,Tony Pollard,RB,Cleaning staff
+2023,36,11,Najee Harris,RB,Mahal se Marriage Hall
+2023,37,13,Breece Hall,RB,Mahal se Marriage Hall
+2023,38,31,Aaron Rodgers,QB,Aaron it Around
+2023,39,40,Derrick Henry,RB,Cheetha Bhi Peetha 
+2023,40,4,Foyesade Oluokun,LB,Overgeared
+2023,41,20,Chris Olave,WR,Aaron it Around
+2023,42,16,Travis Etienne,RB,Overgeared
+2023,43,15,Tee Higgins,WR,Relax Ranga 
+2023,44,10,Darren Waller,TE,Aaron it Around
+2023,45,31,Josh Jacobs,RB,Cardinal Jin
+2023,46,13,Deebo Samuel,WR,Lamburrowghini
+2023,47,15,Kirk Cousins,QB,Aaron it Around
+2023,48,17,DK Metcalf,WR,Cleaning staff
+2023,49,13,Jahmyr Gibbs,RB,Come CMC
+2023,50,15,Calvin Ridley,WR,Overgeared
+2023,51,17,DeVonta Smith,WR,Cardinal Jin
+2023,52,8,Brandon Aiyuk,WR,Cleaning staff
+2023,53,8,Aaron Jones,RB,Lamburrowghini
+2023,54,15,Rhamondre Stevenson,RB,Overgeared
+2023,55,10,Dak Prescott,QB,Overgeared
+2023,56,5,Micah Parsons,LB,Cardinal Jin
+2023,57,11,Amari Cooper,WR,Lamburrowghini
+2023,58,8,Russell Wilson,QB,Cleaning staff
+2023,59,9,Kenneth Walker,RB,Aaron it Around
+2023,60,4,San Francisco 49ers,DEF,Relax Ranga 
+2023,61,6,Kyle Pitts,TE,Cardinal Jin
+2023,62,3,New Orleans Saints,DEF,Lamburrowghini
+2023,63,6,Dallas Goedert,TE,Cleaning staff
+2023,64,2,Brock Purdy,QB,Lamburrowghini
+2023,65,5,Miles Sanders,RB,Cleaning staff
+2023,66,23,Joe Mixon,RB,Lamburrowghini
+2023,67,1,Bryce Young,QB,Mahal se Marriage Hall
+2023,68,6,T.J. Hockenson,TE,Overgeared
+2023,69,8,Dameon Pierce,RB,Lamburrowghini
+2023,70,11,Geno Smith,QB,Overgeared
+2023,71,4,Roquan Smith,LB,Aaron it Around
+2023,72,3,Khalil Herbert,RB,Aaron it Around
+2023,73,4,Cam Akers,RB,Lamburrowghini
+2023,74,3,New England Patriots,DEF,Aaron it Around
+2023,75,4,Javonte Williams,RB,Lamburrowghini
+2023,76,2,T.J. Watt,LB,Aaron it Around
+2023,77,3,Drake London,WR,Mahal se Marriage Hall
+2023,78,6,DJ Moore,WR,Overgeared
+2023,79,13,Keenan Allen,WR,Overgeared
+2023,80,7,Dallas Cowboys,DEF,Cardinal Jin
+2023,81,5,James Conner,RB,Overgeared
+2023,82,3,Jordan Addison,WR,Mahal se Marriage Hall
+2023,83,3,David Montgomery,RB,Mahal se Marriage Hall
+2023,84,3,Mike Evans,WR,Aaron it Around
+2023,85,5,Rachaad White,RB,Cleaning staff
+2023,86,5,DeAndre Hopkins,WR,Aaron it Around
+2023,87,2,George Pickens,WR,The Dawgfather
+2023,88,10,Christian Watson,WR,Cheetha Bhi Peetha 
+2023,89,5,George Kittle,TE,Lamburrowghini
+2023,90,10,Daniel Jones,QB,Overgeared
+2023,91,4,Philadelphia Eagles,DEF,Cleaning staff
+2023,92,2,Sam Howell,QB,Lamburrowghini
+2023,93,2,Dalvin Cook,RB,Overgeared
+2023,94,1,Baltimore Ravens,DEF,Aaron it Around
+2023,95,4,James Cook,RB,Aaron it Around
+2023,96,4,Diontae Johnson,WR,Lamburrowghini
+2023,97,2,Marquise Brown,WR,The Dawgfather
+2023,98,5,Buffalo Bills,DEF,Cleaning staff
+2023,99,7,Alexander Mattison,RB,Cleaning staff
+2023,100,7,Jared Goff,QB,Aaron it Around
+2023,101,1,Derek Carr,QB,Overgeared
+2023,102,3,Jerry Jeudy,WR,The Dawgfather
+2023,103,3,Tyler Lockett,WR,Cardinal Jin
+2023,104,1,Courtland Sutton,WR,Aaron it Around
+2023,105,1,Zay Flowers,WR,Cleaning staff
+2023,106,3,Nick Bolton,LB,Lamburrowghini
+2023,107,1,Michael Pittman,WR,Mahal se Marriage Hall
+2023,108,1,Miami Dolphins,DEF,The Dawgfather
+2023,109,2,Jamaal Williams,RB,Relax Ranga 
+2023,110,4,Jordan Love,QB,Cheetha Bhi Peetha 
+2023,111,1,Elijah Moore,WR,Relax Ranga 
+2023,112,4,Mike Williams,WR,Lamburrowghini
+2023,113,1,Matthew Stafford,QB,Cleaning staff
+2023,114,1,Bobby Wagner,LB,Lamburrowghini
+2023,115,1,Terry McLaurin,WR,Mahal se Marriage Hall
+2023,116,1,Brian Robinson,RB,The Dawgfather
+2023,117,1,Samaje Perine,RB,Cheetha Bhi Peetha 
+2023,118,4,Christian Kirk,WR,Come CMC
+2023,119,2,Jahan Dotson,WR,Cardinal Jin
+2023,120,1,Chris Godwin,WR,Come CMC
+2023,121,1,Maxx Crosby,DL,Cleaning staff
+2023,122,1,AJ Dillon,RB,Mahal se Marriage Hall
+2023,123,2,Gabe Davis,WR,Cleaning staff
+2023,124,1,Pat Freiermuth,TE,Cheetha Bhi Peetha 
+2023,125,1,Kenny Pickett,QB,Cardinal Jin
+2023,126,1,Jaxon Smith-Njigba,WR,Relax Ranga 
+2023,127,4,Raheem Mostert,RB,Cardinal Jin
+2023,128,1,C.J. Mosley,LB,Cleaning staff
+2023,129,1,C.J. Stroud,QB,Mahal se Marriage Hall
+2023,130,1,Jalen Pitre,DB,The Dawgfather
+2023,131,1,Ezekiel Elliott,RB,Cheetha Bhi Peetha 
+2023,132,1,Treylon Burks,WR,Cardinal Jin
+2023,133,1,Zach Charbonnet,RB,Relax Ranga 
+2023,134,1,Evan Engram,TE,Come CMC
+2023,135,1,New York Jets,DEF,Mahal se Marriage Hall
+2023,136,1,Bobby Okereke,LB,The Dawgfather
+2023,137,1,Antonio Gibson,RB,Cheetha Bhi Peetha 
+2023,138,1,Rashod Bateman,WR,Cardinal Jin
+2023,139,1,Fred Warner,LB,Relax Ranga 
+2023,140,1,Cleveland Browns,DEF,Come CMC
+2023,141,1,Zaire Franklin,LB,Mahal se Marriage Hall
+2023,142,1,Brandin Cooks,WR,The Dawgfather
+2023,143,2,Skyy Moore,WR,Cardinal Jin
+2023,144,1,Ryan Tannehill,QB,Cardinal Jin
+2023,145,1,Michael Thomas,WR,Relax Ranga 
+2023,146,1,JuJu Smith-Schuster,WR,Come CMC
+2023,147,1,Rashaad Penny,RB,Mahal se Marriage Hall
+2023,148,1,Cole Kmet,TE,The Dawgfather
+2023,149,1,Devin White,LB,Cheetha Bhi Peetha 
+2023,150,1,Derwin James,DB,Cardinal Jin
+2023,151,1,Logan Wilson,LB,Relax Ranga 
+2023,152,1,Mac Jones,QB,Come CMC
+2023,153,1,Sam LaPorta,TE,The Dawgfather
+2023,154,1,De'Von Achane,RB,Cheetha Bhi Peetha 
+2023,155,1,Josey Jewell,LB,Relax Ranga 
+2023,156,1,Nick Bosa,DL,Come CMC
+2023,157,1,Greg Dulcich,TE,The Dawgfather
+2023,158,1,Pittsburgh Steelers,DEF,Cheetha Bhi Peetha 
+2023,159,1,Sauce Gardner,DB,Relax Ranga 
+2023,160,1,Myles Garrett,DL,Come CMC
+2023,161,1,T.J. Edwards,LB,Cheetha Bhi Peetha 
+2023,162,1,Quentin Johnston,WR,Relax Ranga 
+2023,163,1,Elijah Mitchell,RB,Come CMC
+2023,164,1,Odell Beckham,WR,Cheetha Bhi Peetha 
+2023,165,1,Jakobi Meyers,WR,Come CMC
+2023,166,1,Washington Commanders,DEF,Cheetha Bhi Peetha 
+2023,167,1,Elijah Jones,DB,Come CMC
+2023,168,1,Kyler Murray,QB,Cheetha Bhi Peetha 
+2023,169,1,Nico Collins,WR,Come CMC
+2023,170,1,Romeo Doubs,WR,Come CMC

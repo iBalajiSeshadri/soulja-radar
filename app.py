@@ -1240,25 +1240,35 @@ if draft_mode == "🔨 Auction / Salary Cap":
                         'market_cost': float(r['market_cost'])}
                        for _, r in df_unpicked.head(50).iterrows()]
     _gt_rivals = build_rivals_for_sim()
-    _best_bleeds = ds.nomination_scores(_nom_cands_full, _gt_rivals, set(st.session_state.my_targets), n_top=5)
+    _pos_depth = auction_fit.get("position_depth", {})
+    if _pos_depth:
+        _best_bleeds = ds.nomination_by_depth(_nom_cands_full, _gt_rivals, _pos_depth,
+                                              my_interest_names=set(st.session_state.my_targets),
+                                              n_top=6, protect_top_n=3)
+    else:
+        _best_bleeds = ds.nomination_scores(_nom_cands_full, _gt_rivals, set(st.session_state.my_targets), n_top=5)
 
     bleed_rows = []
     for _n in _best_bleeds:
-        if _n['i_want']:
+        if _n.get('i_want'):
             continue
+        _price = _n.get('expected_price', _n.get('drain', 0))
+        _sub = (f"{_n['interested_rivals']} rivals need {_n['position']} · pays ~${_price}"
+                + (f" · ${_n['wasted_cap']} wasted" if 'wasted_cap' in _n else ""))
         bleed_rows.append(
             '<div style="display:flex; justify-content:space-between; align-items:center; background:#0b0f19; padding:5px 8px; margin-bottom:4px; border-radius:4px; border-left:3px solid #f59e0b;">'
             '<div>'
             f'<span class="badge-pos pos-{_n["position"]}">{_n["position"]}</span> <b>{_n["player_name"]}</b><br>'
-            f'<span style="font-size:0.72rem; color:#94a3b8;">{_n["interested_rivals"]} rivals likely bid · winner pays ~${_n["drain"]}</span>'
+            f'<span style="font-size:0.72rem; color:#94a3b8;">{_sub}</span>'
             '</div>'
-            f'<div style="font-size:0.8rem; font-weight:700; color:#f59e0b; text-align:right;">${_n["drain"]} drain</div>'
+            f'<div style="font-size:0.8rem; font-weight:700; color:#f59e0b; text-align:right;">${_price}</div>'
             '</div>'
         )
     rendered_bleeds = "".join(bleed_rows[:4]) if bleed_rows else '<div style="font-size:0.85rem; color:#94a3b8;">No strong bleed targets — nominate a filler.</div>'
     nom_card_html = (
         '<div style="background:#131b2e; border-top:4px solid #f59e0b; padding:10px 12px; border-radius:6px; height:100%;">'
-        '<div style="font-size:0.75rem; color:#f59e0b; font-weight:700; margin-bottom:6px;">🎯 SMART NOMINATIONS (BLEED RIVAL CAP)</div>'
+        '<div style="font-size:0.75rem; color:#f59e0b; font-weight:700; margin-bottom:6px;">🎯 SMART NOMINATIONS (BLEED DEEP WR/RB)</div>'
+        '<div style="font-size:0.68rem; color:#64748b; margin-bottom:6px;">Mid-tier depth rivals overpay for — protects your studs & scarce TE/QB</div>'
         f'{rendered_bleeds}</div>'
     )
 
@@ -1275,8 +1285,8 @@ if draft_mode == "🔨 Auction / Salary Cap":
                 unpicked_top = ", ".join([f"{r['player_name']} (${r['market_cost']})" for _, r in df_unpicked.head(8).iterrows()])
                 rivals_sum = ", ".join([f"{d['name']} (Cap: ${200-d['spent']})" for s, d in manager_wallets.items() if s != my_slot][:5])
                 needs_sum = ", ".join([f"{pos}: {cnt}" for pos, cnt in pos_gaps.items() if cnt > 0])
-                drain_str = "; ".join(f"{n['player_name']} ({n['position']}, ~${n['drain']} drain, {n['interested_rivals']} bidders)"
-                                      for n in _best_bleeds if not n['i_want'])
+                drain_str = "; ".join(f"{n['player_name']} ({n['position']}, ~${n.get('expected_price', n.get('drain', 0))} spend, {n['interested_rivals']} bidders)"
+                                      for n in _best_bleeds if not n.get('i_want'))
                 st.session_state.last_ai_nom = generate_ai_nomination(
                     nom_strategy, unpicked_top, rivals_sum,
                     needs_sum + f"\nTop rival-cap-drain targets (nominate these): {drain_str}")
@@ -1394,8 +1404,9 @@ with st.expander("ℹ️ How to read the advisor metrics"):
             "- **Surplus / VORP-$** — arbitrage: fair value above market cost, and points-of-VORP per dollar.\n"
             "- **🏃 RUN / 🎯 rivals need** — a positional run is underway, or N rivals still must fill that slot "
             "(demand holds prices up).\n"
-            "- **Nomination drain** — expected dollars the *winning* rival pays; the optimizer nominates players "
-            "rivals want and **you don't**, to bleed their cap. Your own targets are excluded."
+            "- **Nomination drain** — the Smart Nominations card bleeds rivals on **deep** "
+            "positions (WR/RB mid-tier) where replacement is cheap, so their spend is wasted. "
+            "It protects your studs and scarce TE/QB — fitted from 3 years of your league's real auctions."
         )
     else:
         st.markdown(

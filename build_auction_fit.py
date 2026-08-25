@@ -86,6 +86,40 @@ def main():
         "stud_premium": stud_premium,
         "premium_by_rank": {str(k): v for k, v in prem_points.items()},
     }
+
+    # ── per-position DEPTH score (from full Sleeper history if available) ──────
+    # Depth = how much a position rewards bidding on non-elite players. Deep
+    # positions (lots drafted, lots of $ on rank-4+) are the best NOMINATION bait:
+    # rivals overspend on replaceable talent. Scarce positions (QB/TE) score low
+    # and are protected from nomination. Prefer the richer sleeper_history file.
+    import os as _os
+    depth_src = "sleeper_history_3yr.csv" if _os.path.exists("sleeper_history_3yr.csv") else HIST
+    dd = pd.read_csv(depth_src)
+    amt_col = "amount" if "amount" in dd else "winning_bid"
+    dd = dd.dropna(subset=[amt_col])
+    dseasons = max(1, dd["season"].nunique())
+    dd["pr"] = dd.groupby(["season", "position"])[amt_col].rank(ascending=False, method="first")
+    position_depth = {}
+    for pos in ["QB", "RB", "WR", "TE"]:
+        sub = dd[dd["position"] == pos]
+        if len(sub) == 0:
+            continue
+        n_per = len(sub) / dseasons                       # players drafted per yr
+        depth_spend = sub[sub["pr"] > 3][amt_col].sum() / dseasons   # $ on rank-4+
+        # marginal-starter cheapness: avg price of rank 6-12 (the "you can wait" band)
+        marg = sub[(sub["pr"] >= 6) & (sub["pr"] <= 12)][amt_col].mean()
+        position_depth[pos] = {
+            "n_per_yr": round(float(n_per), 1),
+            "depth_spend_per_yr": round(float(depth_spend), 0),
+            "marginal_price": round(float(marg) if not np.isnan(marg) else 0.0, 1),
+        }
+    # normalize a 0..1 depth index off depth_spend (WR/RB high, QB/TE low)
+    _ds = {p: v["depth_spend_per_yr"] for p, v in position_depth.items()}
+    _mx = max(_ds.values()) if _ds else 1.0
+    for p in position_depth:
+        position_depth[p]["depth_index"] = round(_ds[p] / max(1.0, _mx), 3)
+    out["position_depth"] = position_depth
+
     with open(OUT, "w") as f:
         json.dump(out, f, indent=2)
 
@@ -96,6 +130,11 @@ def main():
     for m, v in sorted(by_manager.items(), key=lambda kv: -kv[1]["aggression"]):
         print(f"  {m:18} aggr={v['aggression']:.2f}  (top3 {v['top3_pct']:.0%}, max ${v['max_bid']})")
     print(f"\n✅ Wrote {OUT}.")
+    if "position_depth" in out:
+        print("Position depth (bleed targets high, protect low):")
+        for p, v in sorted(out["position_depth"].items(), key=lambda kv: -kv[1]["depth_index"]):
+            print(f"  {p}: depth_index={v['depth_index']:.2f} "
+                  f"(${v['depth_spend_per_yr']:.0f}/yr on rank-4+, marginal ${v['marginal_price']:.0f})")
 
 
 if __name__ == "__main__":
