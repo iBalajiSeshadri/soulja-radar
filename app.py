@@ -521,6 +521,51 @@ else:
 
 df_board['fair_value'] = df_board['fair_value'].fillna(1).astype(int)
 df_board['market_cost'] = df_board['market_cost'].fillna(1).astype(int)
+
+# ── SNAKE VONA (Value Over Next Available at MY next pick) ─────────────────────
+# Snake has no dollars: value = whether a comparable player at this position will
+# still be there when the serpentine wheel returns to me. VONA = this player's
+# dyn_vorp minus the dyn_vorp of the best same-position player expected to survive
+# until my NEXT pick. High VONA = real positional cliff (draft now); low VONA =
+# depth remains, so wait. Picks-until-next-pick uses the snake round-trip gap.
+df_board['vona'] = 0.0
+df_board['picks_to_next'] = 0
+if draft_mode == "🐍 Snake Draft":
+    _picked_ct = len(st.session_state.get("drafted_picks", {}))
+    _cur_pick = _picked_ct + 1                       # overall pick number on the clock
+    _rnd = (_cur_pick - 1) // league_size            # 0-based round
+    _slot_in_rnd = (_cur_pick - 1) % league_size + 1 # 1-based position in this round
+    # snake: even rounds (0-based) go 1..N, odd rounds go N..1
+    # compute overall number of MY next pick after the current clock position.
+    def _my_overall_picks(n_rounds):
+        picks = []
+        for r in range(n_rounds):
+            if r % 2 == 0:                            # L->R
+                picks.append(r * league_size + my_slot)
+            else:                                     # R->L
+                picks.append(r * league_size + (league_size - my_slot + 1))
+        return picks
+    _my_picks = _my_overall_picks(40)
+    _my_next = next((p for p in _my_picks if p >= _cur_pick), _cur_pick)
+    _my_after = next((p for p in _my_picks if p > _my_next), _my_next + 2 * league_size)
+    _gap = max(1, _my_after - _my_next)              # picks between my next and the one after
+    df_board['picks_to_next'] = _gap
+    # Expected # of players at each position taken in that gap ~ position's recent
+    # share of picks (fallback to a flat share). Then best available after the gap.
+    _picked_names = set(st.session_state.get("drafted_picks", {}).keys())
+    _avail = df_board[~df_board['clean_name'].isin(_picked_names)]
+    for _p in df_board['position'].unique():
+        _pm = df_board['position'] == _p
+        _pool = _avail[_avail['position'] == _p].sort_values('dyn_vorp', ascending=False)
+        if len(_pool) == 0:
+            continue
+        # crude survival: assume ~ (position share of a typical board) of the gap
+        # picks hit this position. Share by pool size relative to all available.
+        _share = len(_pool) / max(1, len(_avail))
+        _expected_gone = int(round(_gap * _share))
+        _next_idx = min(_expected_gone, len(_pool) - 1)
+        _next_best_vorp = float(_pool.iloc[_next_idx]['dyn_vorp'])
+        df_board.loc[_pm, 'vona'] = df_board.loc[_pm, 'dyn_vorp'] - _next_best_vorp
 df_board = df_board.sort_values(by=['fair_value', 'live_vorp'], ascending=[False, False]).reset_index(drop=True)
 df_board['board_rank'] = df_board.index + 1
 
@@ -768,6 +813,78 @@ my_cap_left = 200 - my_wallet['spent']
 my_slots_left = total_roster_slots - my_wallet['picks']
 my_max_bid = max(1, my_cap_left - (my_slots_left - 1))
 
+# ── RUN DETECTOR + RIVAL DEMAND + ROSTER-NEED (shared: auction & snake) ────────
+# 1) Run velocity: share of the LAST ~league_size picks that hit each position —
+#    a spike means a positional run is underway (pay up / act before the cliff).
+# 2) Rival demand: how many OTHER teams still haven't filled their starting slots
+#    at each position (more unmet demand => more competition => value holds/ rises).
+# 3) My roster need: my own open starting slots by position (boost value for spots
+#    I still must fill; decay once filled).
+_start_req = {'QB': (2 if qb_format == "⚡ Superflex / 2-QB" else 1),
+              'RB': 2, 'WR': 3, 'TE': 1, 'IDP': 4 if include_idp else 0, 'DEF': 1}
+
+def _bucket(pos):
+    return 'IDP' if pos in ('LB', 'DL', 'DB') else pos
+
+# recent picks (preserve insertion order of drafted_picks; last N)
+_all_picks = list(st.session_state.get("drafted_picks", {}).items())
+_recent = _all_picks[-league_size:] if len(_all_picks) >= 1 else []
+_run_counts = {}
+for _cn, _pd in _recent:
+    _bp = _bucket(_pd.get("position", player_pos_map.get(_cn, "")))
+    _run_counts[_bp] = _run_counts.get(_bp, 0) + 1
+_run_share = {p: round(c / max(1, len(_recent)), 2) for p, c in _run_counts.items()}
+
+# rival demand: for each position, how many teams (excluding me) are still below
+# their starting requirement; my own need tracked separately.
+pos_pressure = {}    # bucket -> {"run": share, "rivals_needing": int}
+my_pos_need = {}     # bucket -> open starting slots for ME
+for _b, _req in _start_req.items():
+    if _req <= 0:
+        continue
+    _rivals_needing = 0
+    for _tid, _w in manager_wallets.items():
+        _have = _w["pos_counts"].get(_b, 0)
+        if _tid == my_slot:
+            my_pos_need[_b] = max(0, _req - _have)
+        elif _have < _req:
+            _rivals_needing += 1
+    pos_pressure[_b] = {"run": _run_share.get(_b, 0.0), "rivals_needing": _rivals_needing}
+
+# Roster-need multiplier applied to MY view of value: boost positions I still need
+# to start, gently fade positions I've already filled. Kept mild (0.85–1.20) so it
+# nudges rather than distorts. Feeds a "my_value" column used by the recs.
+def _need_mult(pos):
+    b = _bucket(pos)
+    req = _start_req.get(b, 0)
+    if req <= 0:
+        return 1.0
+    open_slots = my_pos_need.get(b, req)
+    if open_slots <= 0:
+        return 0.85                     # already have my starters here
+    frac_open = open_slots / req
+    return round(1.0 + 0.20 * frac_open, 3)   # up to +20% when fully unfilled
+
+df_board['need_mult'] = df_board['position'].map(_need_mult).fillna(1.0)
+# my_value = the format-appropriate base value, tilted by my roster need.
+if draft_mode == "🐍 Snake Draft":
+    df_board['my_value'] = df_board['vona'] * df_board['need_mult']
+else:
+    df_board['my_value'] = df_board['fair_value'] * df_board['need_mult']
+
+def pos_run_flag(pos):
+    """Return a short run/demand badge string for a position, or ''."""
+    b = _bucket(pos)
+    pp = pos_pressure.get(b)
+    if not pp:
+        return ""
+    bits = []
+    if pp["run"] >= 0.4:
+        bits.append(f"🏃 RUN ({int(pp['run']*100)}% of last {len(_recent)} picks)")
+    if pp["rivals_needing"] >= max(3, league_size // 2):
+        bits.append(f"🎯 {pp['rivals_needing']} rivals still need {b}")
+    return " · ".join(bits)
+
 # 💬 FEATURE 3: ASK THE AI STRATEGIST
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🤖 Ask the AI War Room")
@@ -845,12 +962,39 @@ if st.sidebar.button("Ask AI Strategist", use_container_width=True):
         else:
             telemetry_str = "\n".join(grounded_player_cards)
         
-        live_snapshot = (
-            f"Draft Format: {draft_mode} ({qb_format})\n"
-            f"Your Remaining Budget: ${my_cap_left} (Max Single Bid: ${my_max_bid}, Open Slots: {my_slots_left})\n"
-            f"Room Inflation Index: {inflation_index}x\n"
-            f"Your Current Roster: {', '.join(my_wallet['roster']) if my_wallet['roster'] else 'None'}"
-        )
+        # format-aware strategic context so the AI reasons correctly per mode
+        _pressure_bits = []
+        for _b, _pp in pos_pressure.items():
+            _tags = []
+            if _pp["run"] >= 0.4:
+                _tags.append(f"RUN {int(_pp['run']*100)}%")
+            if _pp["rivals_needing"] >= 3:
+                _tags.append(f"{_pp['rivals_needing']} rivals need")
+            if _tags:
+                _pressure_bits.append(f"{_b}: {', '.join(_tags)}")
+        _pressure_line = ("Positional pressure: " + " | ".join(_pressure_bits)) if _pressure_bits else "No active positional runs."
+        _open_slots = [f"{_b}×{_n}" for _b, _n in my_pos_need.items() if _n > 0]
+        _my_need_line = ("My open starting slots: " + ", ".join(_open_slots)) if _open_slots else "My starters: filled."
+
+        if draft_mode == "🐍 Snake Draft":
+            _vona_top = df_unpicked.sort_values('vona', ascending=False).head(6)
+            _vona_line = "Top VONA (draft-now cliffs, value lost if you wait to your next pick): " + \
+                "; ".join(f"{r['player_name']}({r['position']} VONA{r['vona']:.0f})" for _, r in _vona_top.iterrows())
+            live_snapshot = (
+                f"Draft Format: {draft_mode} ({qb_format})\n"
+                f"You are at snake slot {my_slot}; ~{int(df_board['picks_to_next'].iloc[0]) if 'picks_to_next' in df_board and len(df_board) else '?'} picks until your wheel returns.\n"
+                f"{_vona_line}\n{_pressure_line}\n{_my_need_line}\n"
+                f"Your Current Roster: {', '.join(my_wallet['roster']) if my_wallet['roster'] else 'None'}\n"
+                f"Rank snake advice by VONA + positional scarcity (NOT dollars). Wait on deep positions, grab cliff positions now."
+            )
+        else:
+            live_snapshot = (
+                f"Draft Format: {draft_mode} ({qb_format})\n"
+                f"Your Remaining Budget: ${my_cap_left} (Max Single Bid: ${my_max_bid}, Open Slots: {my_slots_left})\n"
+                f"Room Inflation Index: {inflation_index}x (>1 pay up, <1 bargains ahead)\n"
+                f"{_pressure_line}\n{_my_need_line}\n"
+                f"Your Current Roster: {', '.join(my_wallet['roster']) if my_wallet['roster'] else 'None'}"
+            )
         
         with st.spinner("AI evaluating exact player values, VORPs, and draft room state..."):
             ans = ask_ai_strategist(ai_query, live_snapshot, telemetry_str)
@@ -908,7 +1052,9 @@ for idx, pos in enumerate(['RB', 'WR', 'TE', 'QB']):
             badge = "🔥 URGENT" if is_danger else ("⚠️ CLIFF" if drop_pts >= 10 else "STABLE")
             tier_label = active_tier.upper()
             drop_html = f'<span style="font-size:0.85rem; color:#ef4444;">(-{drop_pts} pts)</span>' if drop_pts > 0 else ''
-            
+            run_txt = pos_run_flag(pos)
+            run_html = f'<div style="font-size:0.72rem; color:#fbbf24; margin-top:3px;">{run_txt}</div>' if run_txt else ''
+
             card_html = (
                 f'<div class="{alert_class}">'
                 f'<div style="font-size:0.8rem; color:#94a3b8; display:flex; justify-content:space-between;">'
@@ -917,6 +1063,7 @@ for idx, pos in enumerate(['RB', 'WR', 'TE', 'QB']):
                 f'<div style="font-size:1.4rem; font-weight:700; color:white; margin-top:4px;">'
                 f'{t_count} Left {drop_html}'
                 f'</div>'
+                f'{run_html}'
                 f'</div>'
             )
             st.markdown(card_html, unsafe_allow_html=True)
