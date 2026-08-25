@@ -915,6 +915,43 @@ total_cash_spent = sum(v["price"] for v in st.session_state.drafted_picks.values
 picked_clean_names = set(st.session_state.drafted_picks.keys())
 df_unpicked = df_board[~df_board['clean_name'].isin(picked_clean_names)].copy()
 
+# ══ CONSISTENCY LAYER — single source of truth for rank & price ═══════════════
+# Recompute positional rank + market_cost over AVAILABLE players so EVERY card
+# (board table, verdict, arbitrage, build plan) reads the same number. Previously
+# market_cost was frozen at build (full-board rank incl. drafted) while the verdict
+# used available-pool rank — they drifted mid-draft. Now they can't.
+_avail_pos_rank = {}   # clean_name -> positional rank among available players
+for _cp in ['QB', 'RB', 'WR', 'TE', 'LB', 'DL', 'DB', 'DEF']:
+    _cpool = df_unpicked[df_unpicked['position'] == _cp].sort_values('proj_fpts', ascending=False)
+    for _ri, _cn in enumerate(_cpool['clean_name'].tolist(), start=1):
+        _avail_pos_rank[_cn] = _ri
+# refresh market_cost on the FULL board from available-pool rank (offense via the
+# fitted league curve; IDP/DEF keep their tier-based cost set at build).
+for _idx2, _row2 in df_board.iterrows():
+    _cn2 = _row2['clean_name']
+    if _row2['position'] in ('QB', 'RB', 'WR', 'TE') and _cn2 in _avail_pos_rank:
+        _mc2 = league_market_cost(_row2['position'], _avail_pos_rank[_cn2])
+        if _mc2:
+            df_board.at[_idx2, 'market_cost'] = int(_mc2)
+df_board['pos_rank_avail'] = df_board['clean_name'].map(_avail_pos_rank).fillna(99).astype(int)
+
+def get_market_price(clean_or_row):
+    """SINGLE source for a player's league market price. Accepts a clean_name or a
+    board row. Uses available-pool positional rank so every card agrees."""
+    if isinstance(clean_or_row, str):
+        _r = df_board[df_board['clean_name'] == clean_or_row]
+        if _r.empty:
+            return None
+        _r = _r.iloc[0]
+    else:
+        _r = clean_or_row
+    _rk = _avail_pos_rank.get(_r['clean_name'], 99)
+    if _r['position'] in ('QB', 'RB', 'WR', 'TE'):
+        return league_market_cost(_r['position'], _rk) or int(_r.get('market_cost', 1))
+    return int(_r.get('market_cost', 1))
+
+df_unpicked = df_board[~df_board['clean_name'].isin(picked_clean_names)].copy()  # refresh w/ updated cols
+
 # ── SHARED tier-ender flag (single source of truth for every card) ────────────
 # A player is a "tier-ender" if the league-market price gap to the next-cheaper
 # AVAILABLE player at their position is a real cliff (>=$8) — the scarcity point
@@ -1239,16 +1276,14 @@ if draft_mode == "🔨 Auction / Salary Cap":
             # NOT flag paying market as an "overpay". The engine's job is to tell you
             # what the market cost is and whether you can still build after paying it.
             _prem = stud_premium_for_rank(int(_pr['board_rank']))
-            # Positional rank computed over AVAILABLE players (df_unpicked), sorted by
-            # projection — so it's consistent with the "next available" logic below.
-            # (Bug fix: previously ranked over the FULL board incl. drafted players,
-            # which let a higher-ranked available player show up as the "next down".)
+            # Use the SHARED available-pool positional rank (pos_rank_avail) computed
+            # in the consistency layer, so the verdict, board table, and arbitrage all
+            # agree on rank + price. _pos_pool_avail rebuilt here only for "next player".
             _pos_pool_avail = df_unpicked[
                 df_unpicked['position'].isin(['LB','DL','DB']) if _pr['position'] in ('LB','DL','DB')
                 else (df_unpicked['position'] == _pr['position'])
             ].sort_values('proj_fpts', ascending=False).reset_index(drop=True)
-            _names_avail = _pos_pool_avail['clean_name'].tolist()
-            _pos_rank = (_names_avail.index(_pr['clean_name']) + 1) if _pr['clean_name'] in _names_avail else 99
+            _pos_rank = int(_pr.get('pos_rank_avail', 99))
             _league_price = league_market_cost(_pr['position'], _pos_rank)
             _mkt_fair = max(_fair, int(round(_fair * _prem)), int(_league_price or 0))
             # "Likely to sell" anchors to the league's REAL historical price for this
