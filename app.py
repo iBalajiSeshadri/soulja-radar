@@ -1537,19 +1537,33 @@ if draft_mode == "🔨 Auction / Salary Cap":
                 _bkt = 'IDP' if _pr['position'] in ('LB','DL','DB') else _pr['position']
                 if _sim_gaps.get(_bkt, 0) > 0:
                     _sim_gaps[_bkt] -= 1
+                # User rules: IDP starters ~2 (not 4) and IDP/DEF are $1 streamers
+                # (abundant on waivers — never spend real money). Cap IDP need at 2.
+                if _sim_gaps.get('IDP', 0) > 2:
+                    _sim_gaps['IDP'] = 2
                 _still = [p for p in ['QB','RB','WR','TE','IDP','DEF'] if _sim_gaps.get(p,0) > 0]
-                # ALLOCATE the remaining cap across still-needed positions by realistic
-                # weight (RB/WR are expensive & primary; TE/QB2/DEF/IDP are cheap fills).
-                # This replaces the old flat per-slot cap that WRONGLY dropped RB/WR
-                # (their cheapest options cost far more than the flat cap).
-                _POS_W = {'RB': 3.0, 'WR': 3.0, 'QB': 1.6, 'TE': 1.0, 'IDP': 0.5, 'DEF': 0.3}
-                _wsum = sum(_POS_W.get(p, 1.0) * _sim_gaps[p] for p in _still) or 1.0
+
+                # ── SMART ALLOCATION ──────────────────────────────────────────
+                # 1) Reserve ~$5 for the endgame ($1 nominations you control).
+                # 2) IDP/DEF are FIXED $1 each (streamers) — they never draw from the
+                #    skill-player budget. 3) The REAL money goes to skill positions
+                #    (RB/WR primary, QB/TE next), weighted.
+                _RESERVE = 5
+                _skill = [p for p in _still if p in ('QB', 'RB', 'WR', 'TE')]
+                _cheap = [p for p in _still if p in ('IDP', 'DEF')]
+                _cheap_cost = sum(_sim_gaps[p] * 1 for p in _cheap)   # $1 per streamer slot
+                _skill_budget = max(0, _cap_after - _RESERVE - _cheap_cost)
+                _POS_W = {'RB': 3.0, 'WR': 3.0, 'QB': 1.6, 'TE': 1.0}
+                _wsum = sum(_POS_W.get(p, 1.0) * _sim_gaps[p] for p in _skill) or 1.0
                 _plan_bits = []
                 for _p in _still:
                     _is_idp = _p == 'IDP'
-                    # this position's slice of the remaining budget, per open slot
-                    _pos_budget = _cap_after * (_POS_W.get(_p, 1.0) * _sim_gaps[_p]) / _wsum
-                    _per_pos_slot = max(1.0, _pos_budget / max(1, _sim_gaps[_p]))
+                    if _p in ('IDP', 'DEF'):
+                        _pos_budget = _sim_gaps[_p] * 1     # $1 streamers, no real spend
+                        _per_pos_slot = 1.0
+                    else:
+                        _pos_budget = _skill_budget * (_POS_W.get(_p, 1.0) * _sim_gaps[_p]) / _wsum
+                        _per_pos_slot = max(1.0, _pos_budget / max(1, _sim_gaps[_p]))
                     _ppool_all = df_unpicked[df_unpicked['position'].isin(['LB','DL','DB'])] if _is_idp \
                                  else df_unpicked[df_unpicked['position'] == _p]
                     _ppool_all = _ppool_all[_ppool_all['clean_name'] != _pr['clean_name']].sort_values('proj_fpts', ascending=False)
@@ -1569,22 +1583,29 @@ if draft_mode == "🔨 Auction / Salary Cap":
                         _cands = [(_cheapest[0], int(_cheapest[1]))]   # never drop a needed position
                     _pp2 = pos_pressure.get(_p, {})
                     _rivals_need = _pp2.get('rivals_needing', 0)
-                    _startable_left = int((_ppool_all['fair_value'] >= 5).sum()) if not _is_idp else len(_ppool_all)
+                    _startable_left = int((_ppool_all['fair_value'] >= 5).sum())
                     _flag = ""
-                    if _rivals_need >= 3 and _startable_left <= _rivals_need + 1:
+                    # scarcity flag ONLY for skill positions — IDP/DEF are streamer
+                    # pools (32 defenses, deep IDP), never a bidding war.
+                    if _p in ('QB', 'RB', 'WR', 'TE') and _rivals_need >= 3 and _startable_left <= _rivals_need + 1:
                         _flag = (f' <span style="color:#f59e0b;font-weight:700;">⚠️ {_rivals_need} rivals need '
                                  f'{_p}, only {_startable_left} left — inflating</span>')
                     _names = ", ".join(f"{n} (~${c})" for n, c in _cands)
-                    _plan_bits.append(f"<b>{_p}×{_sim_gaps[_p]} (~${int(_pos_budget)}):</b> {_names}{_flag}")
+                    if _p in ('IDP', 'DEF'):
+                        _plan_bits.append(f"<b>{_p}×{_sim_gaps[_p]} ($1 streamers):</b> {_names}")
+                    else:
+                        _plan_bits.append(f"<b>{_p}×{_sim_gaps[_p]} (~${int(_pos_budget)}):</b> {_names}{_flag}")
                 _viable = _cap_after >= _slots_after  # at least $1/slot
                 _vcolor = "#10b981" if _viable else "#ef4444"
                 _plan_html = "<br>".join(_plan_bits) if _plan_bits else "Tight — lean on $1-3 value at your remaining slots."
                 st.markdown(
                     f'<div style="background:#131b2e;border-left:4px solid {_vcolor};padding:10px 14px;'
                     f'border-radius:6px;margin-bottom:12px;font-size:0.85rem;">'
-                    f'📐 <b>If you win at ~${_spend}:</b> ${_cap_after} left for {_slots_after} slots '
-                    f'(~${_per_slot:.0f}/slot). {"✅ Roster stays viable." if _viable else "⚠️ Leaves you thin — only do it for a true anchor."}<br>'
-                    f'<span style="color:#94a3b8;">Still affordable to complete:</span><br>{_plan_html}</div>',
+                    f'📐 <b>If you win at ~${_spend}:</b> ${_cap_after} left. Plan: '
+                    f'<b>${_skill_budget}</b> on skill players, <b>${_cheap_cost}</b> on IDP/DEF ($1 streamers), '
+                    f'<b>${_RESERVE}</b> reserved for endgame $1-nominations. '
+                    f'{"✅ Viable." if _viable else "⚠️ Thin — only for a true anchor."}<br>'
+                    f'<span style="color:#94a3b8;">Spend your real money here:</span><br>{_plan_html}</div>',
                     unsafe_allow_html=True)
 
     # ── LIVE QoL BANNER: recent picks ticker + roster + guardrails ────────────
