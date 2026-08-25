@@ -586,6 +586,23 @@ off_mask = df_board['position'].isin(['QB', 'RB', 'WR', 'TE'])
 pos_off_vorp = df_board.loc[off_mask, 'live_vorp'].clip(lower=0).sum()
 df_board.loc[off_mask, 'fair_value'] = (df_board.loc[off_mask, 'live_vorp'].clip(lower=0) / max(1.0, pos_off_vorp)) * (180 * league_size * 0.75)
 df_board.loc[off_mask, 'fair_value'] = df_board.loc[off_mask, 'fair_value'].apply(lambda x: max(1, int(round(float(x)))))
+# SUPERFLEX QB reconciliation: pure VORP underweights elite QBs in 2-QB formats
+# because the replacement bar (QB20) is itself a high-scoring starter — so Allen's
+# dyn_vorp (~94) trails an elite RB's (~147) even though the LEAGUE pays MORE for
+# the QB. That's a real, data-backed superflex scarcity premium that VORP misses,
+# and it made Fair ($~37) contradict the correct market/Likely ($~57). Blend QB
+# fair toward the empirical league market so the two stop fighting. Format-gated:
+# only in superflex; standard 1-QB keeps pure VORP fair.
+if qb_format != "🏈 Standard 1-QB":
+    _qbm = df_board['position'] == 'QB'
+    for _qi, _qr in df_board[_qbm].iterrows():
+        _qrank = int((df_board[_qbm]['proj_fpts'] > _qr['proj_fpts']).sum()) + 1
+        _qmkt = league_market_cost('QB', _qrank)
+        if _qmkt:
+            # 55% market / 45% VORP-fair — respects scarcity premium without fully
+            # abandoning value discipline (so Fair still flags true overpays).
+            _blended = 0.55 * float(_qmkt) + 0.45 * float(_qr['fair_value'])
+            df_board.at[_qi, 'fair_value'] = max(1, int(round(_blended)))
 # market_cost: prefer league-history-calibrated per-position curve (captures SF QB
 # premium + TE cliff), fall back to the generic exp curve where no fit exists.
 for _p in ['QB', 'RB', 'WR', 'TE']:
