@@ -2440,6 +2440,14 @@ with tab_matrix:
             if _h == 'cardinalsin' or _top_share >= 0.45:
                 _ctr += (" ⚠️ Usually RB-heavy but STREAKY — bait into RB wars with caution, "
                          "not a guaranteed tell.")
+            # NOMINATE-vs-LEAN DIVERGENCE (user insight): if he nominates a position
+            # he does NOT spend on, his early nominations are BAIT / price-setting —
+            # read them as him draining others or pricing a position, not his intent.
+            _lean_pos = _fit.get('top_positions', [])
+            if _nom and _nom not in ('?', '') and _lean_pos and _nom not in _lean_pos:
+                _ctr += (f" 🎭 <b>Nomination tell:</b> spends on {_lean} but nominates {_nom} early — "
+                         f"his {_nom} noms are BAIT/price-setting, not what he wants. Don't chase his {_nom} "
+                         f"nominations; his real targets are {_lean}.")
             hist_exploit = (f"<b>Leans {_lean}</b> · aggression {_aggr:.2f} · {_t3}% top-3 spend · "
                             f"nominates {_nom} early · max bid ${_mx}.<br>"
                             f"<span style='color:#38bdf8;'>{_ctr}</span>")
