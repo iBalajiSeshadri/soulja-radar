@@ -1215,7 +1215,6 @@ if draft_mode == "🔨 Auction / Salary Cap":
                         df_board[df_board['position'] == _pr['position']]['clean_name'].tolist() else 99
             _league_price = league_market_cost(_pr['position'], _pos_rank)
             _mkt_fair = max(_fair, int(round(_fair * _prem)), int(_league_price or 0))
-            _bid_ceiling = min(my_max_bid, max(_walk, _mkt_fair))
             # "likely to sell" should also respect the real market floor for the tier
             _likely = max(_likely, int(_league_price or 0)) if _league_price else _likely
             # TIER-DROP / cost-of-waiting: what does the NEXT available player at this
@@ -1225,18 +1224,30 @@ if draft_mode == "🔨 Auction / Salary Cap":
                 else df_unpicked['position'].isin(['LB','DL','DB'])
             ].sort_values('proj_fpts', ascending=False)
             _pos_avail = _pos_avail[_pos_avail['clean_name'] != _pr['clean_name']]
+            # LAST-IN-TIER scarcity: if the price gap from THIS player to the next
+            # available one is a real cliff (>=$8), the room panics on the tier-ender
+            # and bids it up. Data (3yr): tier-enders sell ~+$5 over the rank curve.
+            TIER_END_PREMIUM = 5
+            _is_tier_ender = False
+            _next_price = None
             _tier_drop_txt = ""
             if not _pos_avail.empty:
                 _next_p = _pos_avail.iloc[0]
-                _next_rank = _pos_rank + 1
-                _next_price = league_market_cost(_pr['position'], _next_rank) or int(_next_p['fair_value'])
+                _next_price = league_market_cost(_pr['position'], _pos_rank + 1) or int(_next_p['fair_value'])
                 _drop = max(0, _likely - int(_next_price))
                 if _drop >= 8:
-                    _tier_drop_txt = (f" ⛰️ Next {_pr['position']} ({_next_p['player_name']}) ~${int(_next_price)} "
-                                      f"— a ${_drop} drop if you wait.")
+                    _is_tier_ender = True
+                    _tier_drop_txt = (f" ⚠️ You're bidding the LAST elite {_pr['position']} before a ${_drop} "
+                                      f"cliff (next: {_next_p['player_name']} ~${int(_next_price)}). Expect a "
+                                      f"bidding war — tier-enders historically go ~${TIER_END_PREMIUM} over. "
+                                      f"Win it now or pay the panic later.")
                 else:
                     _tier_drop_txt = (f" Next {_pr['position']} ({_next_p['player_name']}) ~${int(_next_price)} "
                                       f"(only ${_drop} cheaper — depth here, can wait).")
+            # apply the data-derived tier-ender premium to the ceiling (mild, ~+$5)
+            if _is_tier_ender:
+                _mkt_fair += TIER_END_PREMIUM
+            _bid_ceiling = min(my_max_bid, max(_walk, _mkt_fair))
             if _fair > my_max_bid and _mkt_fair > my_max_bid:
                 _verdict, _color, _msg = "CAN'T AFFORD", "#ef4444", f"Market ~${max(_likely,_mkt_fair)} exceeds your max ${my_max_bid}. Would strand your roster."
             elif not _need_pos and not _want:
