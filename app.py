@@ -1361,6 +1361,28 @@ else:
             f'</div>', unsafe_allow_html=True
         )
 
+# Advisor metric legend (mode-aware) so the new signals are self-explaining.
+with st.expander("ℹ️ How to read the advisor metrics"):
+    if draft_mode == "🔨 Auction / Salary Cap":
+        st.markdown(
+            "- **Fair $** — value at par (VORP share of budget), already adjusted for live **room inflation**.\n"
+            "- **Likely sells / Walk-away** — Monte-Carlo of the winning price from rivals' remaining cap, "
+            "positional need, and archetype aggression. *Likely* = median sim; *Walk-away* = 80th-percentile "
+            "(don't chase past it).\n"
+            "- **Surplus / VORP-$** — arbitrage: fair value above market cost, and points-of-VORP per dollar.\n"
+            "- **🏃 RUN / 🎯 rivals need** — a positional run is underway, or N rivals still must fill that slot "
+            "(demand holds prices up).\n"
+            "- **Nomination drain** — expected dollars the *winning* rival pays; the optimizer nominates players "
+            "rivals want and **you don't**, to bleed their cap. Your own targets are excluded."
+        )
+    else:
+        st.markdown(
+            "- **VORP** — value over a realistic replacement starter (Superflex boosts QB scarcity).\n"
+            "- **% GONE (Monte-Carlo)** — simulated probability a player is drafted **before your next pick**, "
+            "using ADP + draft noise over the exact serpentine gap. ≥50% = grab now or lose him.\n"
+            "- **+Spots Value** — falling past consensus ADP (a steal if he lasts to you).\n"
+            "- **VONA** — value lost if you wait: high = a real positional cliff (draft now), low = depth remains (wait)."
+        )
 st.markdown("---")
 
 # 6. Draft Console
