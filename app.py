@@ -1157,14 +1157,30 @@ if draft_mode == "🔨 Auction / Salary Cap":
     # ══ "SHOULD I BID?" — top of console, always visible (connected or not) ════
     st.markdown("#### 🔨 SHOULD I BID?")
     _avail_names = df_unpicked.sort_values('fair_value', ascending=False)
-    _opts = ["— select the player up for bid —"] + [
-        f"{r['player_name']} ({r['position']})" for _, r in _avail_names.head(250).iterrows()]
+    # Auto-default to your #1 recommended pickup so a live verdict is ALWAYS shown
+    # without tapping. (Sleeper's API can't tell us who the room nominated, so you
+    # only change this when a rival puts up a different player.)
+    _affordable = _avail_names[_avail_names['fair_value'] <= max(1, my_max_bid)]
+    _rec_pool = _affordable[_affordable['clean_name'].isin(st.session_state.my_targets)]
+    if _rec_pool.empty:
+        _rank_col = 'my_value' if 'my_value' in _affordable else 'fair_value'
+        _rec_pool = _affordable.sort_values(_rank_col, ascending=False)
+    _auto_row = _rec_pool.iloc[0] if not _rec_pool.empty else None
+    _auto_label = (f"⭐ Auto: {_auto_row['player_name']} ({_auto_row['position']})"
+                   if _auto_row is not None else "— no affordable target —")
+    _player_opts = [f"{r['player_name']} ({r['position']})" for _, r in _avail_names.head(250).iterrows()]
+    _opts = [_auto_label] + _player_opts
     _sel = st.selectbox("Player currently on the block:", _opts, index=0, key="bid_verdict_sel",
-                        label_visibility="collapsed")
-    if _sel and not _sel.startswith("—"):
+                        label_visibility="collapsed",
+                        help="Auto-set to your top recommended pickup. Change it only when the room nominates someone else.")
+    # resolve selection -> player row (auto option maps to the recommended player)
+    if _sel.startswith("⭐ Auto:"):
+        _prow = _rec_pool.head(1) if _auto_row is not None else _avail_names.head(0)
+    else:
         _pname = _sel.rsplit(" (", 1)[0]
         _prow = _avail_names[_avail_names['player_name'] == _pname]
-        if not _prow.empty:
+    if not _prow.empty:
+        if True:  # (guard kept for indentation; body renders the verdict)
             _pr = _prow.iloc[0]
             _fair = int(_pr['fair_value'])
             _rv = build_rivals_for_sim(_pr['position'])
@@ -1222,13 +1238,26 @@ else:
     # ══ "SHOULD I DRAFT?" — VONA + Monte-Carlo survival (no dollars) ═══════════
     st.markdown("#### 🐍 SHOULD I DRAFT?")
     _savail = df_unpicked.sort_values('live_vorp', ascending=False)
-    _sopts = ["— select a player you're considering —"] + [
-        f"{r['player_name']} ({r['position']})" for _, r in _savail.head(250).iterrows()]
+    # Auto-default to your best available pickup (need-adjusted), so a verdict is
+    # always shown without selecting. On snake this is the best-available at your
+    # slot; change it only to compare a specific player.
+    _srec = _savail[_savail['clean_name'].isin(st.session_state.my_targets)]
+    if _srec.empty:
+        _srank = 'my_value' if 'my_value' in _savail else 'live_vorp'
+        _srec = _savail.sort_values(_srank, ascending=False)
+    _sauto = _srec.iloc[0] if not _srec.empty else None
+    _sauto_label = (f"⭐ Auto: {_sauto['player_name']} ({_sauto['position']})"
+                    if _sauto is not None else "— no players available —")
+    _sopts = [_sauto_label] + [f"{r['player_name']} ({r['position']})" for _, r in _savail.head(250).iterrows()]
     _ssel = st.selectbox("Player you're considering:", _sopts, index=0, key="draft_verdict_sel",
-                         label_visibility="collapsed")
-    if _ssel and not _ssel.startswith("—"):
+                         label_visibility="collapsed",
+                         help="Auto-set to your best available pickup. Change it to compare a specific player.")
+    if _ssel.startswith("⭐ Auto:"):
+        _sprow = _srec.head(1) if _sauto is not None else _savail.head(0)
+    else:
         _spname = _ssel.rsplit(" (", 1)[0]
         _sprow = _savail[_savail['player_name'] == _spname]
+    if not _sprow.empty:
         if not _sprow.empty:
             _sp = _sprow.iloc[0]
             _gap = max(0, next_my_pick_num - curr_overall_pick)
