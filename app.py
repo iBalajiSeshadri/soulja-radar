@@ -79,6 +79,7 @@ st.markdown("""
     /* D/ST opening-slate streamer badges (Wks 1-4 schedule + DC change) */
     .intel-dst-soft { background-color: #15803d35; color: #86efac; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.72rem; border: 1px solid #16a34a; }
     .intel-dst { background-color: #37415535; color: #cbd5e1; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.72rem; border: 1px solid #475569; }
+    .intel-scarce { background-color: #dc262635; color: #fca5a5; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.72rem; border: 1px solid #dc2626; }
 
     .arch-badge { padding: 3px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; }
     .arch-stars { background: #dc262625; color: #f87171; border: 1px solid #ef444460; }
@@ -753,6 +754,13 @@ def format_intel_cell(r):
     body = f"{pref_badge}{tag_badge}{note_html}{link_html}".strip()
     if scheme_html:
         body = f"{body}<br>{scheme_html}" if body and body != "—" else scheme_html
+    # 🔥 tier-ender scarcity flag (shared df_board['tier_ender']) — shows on every
+    # tab/card, not just the bid verdict, so scarce players are flagged everywhere.
+    if bool(r.get('tier_ender', False)):
+        _cliff = int(r.get('tier_cliff', 0))
+        te_html = (f'<span class="intel-scarce">🔥 LAST IN TIER</span> '
+                   f'<span class="intel-note">${_cliff} cliff after — bidding-war risk</span>')
+        body = f"{body}<br>{te_html}" if body and body != "—" else te_html
     return body if body else "—"
 
 # Sidebar Wishlist & Fade Manager
@@ -900,6 +908,25 @@ for c_p, pdata in st.session_state.drafted_picks.items():
 total_cash_spent = sum(v["price"] for v in st.session_state.drafted_picks.values())
 picked_clean_names = set(st.session_state.drafted_picks.keys())
 df_unpicked = df_board[~df_board['clean_name'].isin(picked_clean_names)].copy()
+
+# ── SHARED tier-ender flag (single source of truth for every card) ────────────
+# A player is a "tier-ender" if the league-market price gap to the next-cheaper
+# AVAILABLE player at their position is a real cliff (>=$8) — the scarcity point
+# where the room panics and overpays. Computed once here so the verdict, board
+# table, and cliff tracker all read the SAME value (no duplicated/inconsistent logic).
+df_board['tier_ender'] = False
+df_board['tier_cliff'] = 0
+_TIER_CLIFF = 8
+for _tpos in ['QB', 'RB', 'WR', 'TE']:
+    _tp = df_unpicked[df_unpicked['position'] == _tpos].sort_values('proj_fpts', ascending=False)
+    for _i, (_idx, _r) in enumerate(_tp.iterrows(), start=1):
+        _this = league_market_cost(_tpos, _i) or int(_r['fair_value'])
+        _nxt = league_market_cost(_tpos, _i + 1) or 0
+        _cliff = int((_this or 0) - (_nxt or 0))
+        if _cliff >= _TIER_CLIFF:
+            df_board.at[_idx, 'tier_ender'] = True
+            df_board.at[_idx, 'tier_cliff'] = _cliff
+df_unpicked = df_board[~df_board['clean_name'].isin(picked_clean_names)].copy()  # refresh with flag
 
 remaining_league_cash = (league_size * 200) - total_cash_spent
 unpicked_fair_sum = df_unpicked['fair_value_base'].sum() if 'fair_value_base' in df_unpicked else df_unpicked['fair_value'].sum()
@@ -1224,26 +1251,25 @@ if draft_mode == "🔨 Auction / Salary Cap":
                 else df_unpicked['position'].isin(['LB','DL','DB'])
             ].sort_values('proj_fpts', ascending=False)
             _pos_avail = _pos_avail[_pos_avail['clean_name'] != _pr['clean_name']]
-            # LAST-IN-TIER scarcity: if the price gap from THIS player to the next
-            # available one is a real cliff (>=$8), the room panics on the tier-ender
-            # and bids it up. Data (3yr): tier-enders sell ~+$5 over the rank curve.
+            # LAST-IN-TIER scarcity: read the SHARED df_board['tier_ender'] flag
+            # (computed once above) so the board table, cliff tracker, and this
+            # verdict never disagree. Data (3yr): tier-enders sell ~+$5 over curve.
             TIER_END_PREMIUM = 5
-            _is_tier_ender = False
+            _is_tier_ender = bool(_pr.get('tier_ender', False))
             _next_price = None
             _tier_drop_txt = ""
             if not _pos_avail.empty:
                 _next_p = _pos_avail.iloc[0]
                 _next_price = league_market_cost(_pr['position'], _pos_rank + 1) or int(_next_p['fair_value'])
-                _drop = max(0, _likely - int(_next_price))
-                if _drop >= 8:
-                    _is_tier_ender = True
+                _drop = int(_pr.get('tier_cliff', 0)) or max(0, _likely - int(_next_price))
+                if _is_tier_ender:
                     _tier_drop_txt = (f" ⚠️ You're bidding the LAST elite {_pr['position']} before a ${_drop} "
                                       f"cliff (next: {_next_p['player_name']} ~${int(_next_price)}). Expect a "
                                       f"bidding war — tier-enders historically go ~${TIER_END_PREMIUM} over. "
                                       f"Win it now or pay the panic later.")
                 else:
                     _tier_drop_txt = (f" Next {_pr['position']} ({_next_p['player_name']}) ~${int(_next_price)} "
-                                      f"(only ${_drop} cheaper — depth here, can wait).")
+                                      f"(only ${max(0,_likely-int(_next_price))} cheaper — depth here, can wait).")
             # apply the data-derived tier-ender premium to the ceiling (mild, ~+$5)
             if _is_tier_ender:
                 _mkt_fair += TIER_END_PREMIUM
