@@ -15,6 +15,12 @@ try:
     HAS_AUTOREFRESH = True
 except Exception:
     HAS_AUTOREFRESH = False
+try:
+    import plotly.express as px
+    import plotly.graph_objects as go
+    HAS_PLOTLY = True
+except Exception:
+    HAS_PLOTLY = False
 from llm_advisor import (
     generate_live_auction_advice, 
     generate_snake_turn_advice, 
@@ -2200,30 +2206,82 @@ with tab_matrix:
     
     # Visual Analytics Section
     st.markdown("---")
-    st.markdown("##### 📊 Visual League Analytics: Purchasing Power & Spending Distributions")
-    chart_col1, chart_col2 = st.columns(2)
-    with chart_col1:
-        st.caption("Real top-3 spend per manager — fitted from 3 years of your league's Sleeper auctions.")
-        _hist_rows = []
-        _hmap = {v.get("handle", "").lower(): v.get("name", "") for v in SOULJA_SOULJA_DEFAULTS.values()}
-        for _hnd, _f in auction_fit.get("by_manager", {}).items():
-            _nm = _hmap.get(_hnd, _hnd)
-            _t3 = _f.get("top3_pct")
-            if _t3 is not None:
-                _hist_rows.append({"Manager": _nm, "Top-3 Spend ($)": round(_t3 * 200)})
-        if _hist_rows:
-            top3_hist_df = pd.DataFrame(sorted(_hist_rows, key=lambda r: -r["Top-3 Spend ($)"])).set_index("Manager")
-            st.bar_chart(top3_hist_df)
-        else:
-            st.info("Run build_auction_fit.py to populate real spend data.")
-            
-    with chart_col2:
-        live_spend_df = pd.DataFrame([{
-            "Manager": data['name'],
-            "Cash Left": 200 - data['spent'],
-            "Max Single Bid": max(1, (200 - data['spent']) - ((total_roster_slots - data['picks']) - 1))
-        } for data in manager_wallets.values()]).set_index("Manager")
-        st.bar_chart(live_spend_df)
+    st.markdown("##### 📊 League Exploit Map — Interactive (fitted from 3yr Sleeper auctions)")
+
+    _hmap = {v.get("handle", "").lower(): v.get("name", "") for v in SOULJA_SOULJA_DEFAULTS.values()}
+    _bm = auction_fit.get("by_manager", {})
+
+    if HAS_PLOTLY and _bm:
+        # ── Chart 1: positional spend HEATMAP (manager x position % of budget) ──
+        _pos_order = ["QB", "RB", "WR", "TE"]
+        _hm_rows, _hm_names = [], []
+        for _hnd, _f in _bm.items():
+            _lean = _f.get("pos_lean", {})
+            if not _lean:
+                continue
+            _hm_names.append(_hmap.get(_hnd, _hnd))
+            _hm_rows.append([round(100 * float(_lean.get(p, 0.0)), 0) for p in _pos_order])
+        if _hm_rows:
+            _hmdf = pd.DataFrame(_hm_rows, index=_hm_names, columns=_pos_order)
+            _fig1 = px.imshow(_hmdf, text_auto=True, aspect="auto", color_continuous_scale="RdYlGn_r",
+                              labels=dict(x="Position", y="Manager", color="% of $"))
+            _fig1.update_layout(title="Where each manager pours their money (% of budget by position)",
+                                height=380, margin=dict(l=10, r=10, t=40, b=10))
+            st.plotly_chart(_fig1, use_container_width=True)
+            st.caption("🔴 Red = they overspend there → bait them / expect wars. 🟢 Green = they ignore it → your value.")
+
+        _c1, _c2 = st.columns(2)
+        # ── Chart 2: aggression vs. discipline SCATTER ──────────────────────────
+        with _c1:
+            _sc = []
+            for _hnd, _f in _bm.items():
+                _lean = _f.get("pos_lean", {})
+                _spread = 1.0 - (max(_lean.values()) if _lean else 0.25)   # higher = more balanced
+                _sc.append({"Manager": _hmap.get(_hnd, _hnd),
+                            "Aggression (top-3 spend %)": round(100 * (_f.get("top3_pct") or 0), 0),
+                            "Roster balance": round(100 * _spread, 0),
+                            "Leans": " / ".join(_f.get("top_positions", [])[:2]),
+                            "Nominates": _f.get("nominates_early", "?")})
+            if _sc:
+                _scdf = pd.DataFrame(_sc)
+                _fig2 = px.scatter(_scdf, x="Aggression (top-3 spend %)", y="Roster balance",
+                                   text="Manager", color="Aggression (top-3 spend %)",
+                                   color_continuous_scale="Reds", size_max=18,
+                                   hover_data=["Leans", "Nominates"])
+                _fig2.update_traces(textposition="top center", marker=dict(size=14))
+                _fig2.update_layout(title="Aggression vs. balance (top-right = blows budget early)",
+                                    height=380, margin=dict(l=10, r=10, t=40, b=10), showlegend=False)
+                st.plotly_chart(_fig2, use_container_width=True)
+                st.caption("Top-right = stud-hungry (let them exhaust cap). Bottom-left = disciplined spreaders.")
+        # ── Chart 3: price-vs-rank CURVES by position (cliffs visible) ──────────
+        with _c2:
+            _rows3 = []
+            for _p in ["QB", "RB", "WR", "TE"]:
+                for _r in range(1, 13):
+                    _pr3 = league_market_cost(_p, _r)
+                    if _pr3:
+                        _rows3.append({"Positional Rank": _r, "Price ($)": _pr3, "Position": _p})
+            if _rows3:
+                _cdf = pd.DataFrame(_rows3)
+                _fig3 = px.line(_cdf, x="Positional Rank", y="Price ($)", color="Position", markers=True)
+                _fig3.update_layout(title="What each position actually sells for (hover $, see the cliffs)",
+                                    height=380, margin=dict(l=10, r=10, t=40, b=10))
+                st.plotly_chart(_fig3, use_container_width=True)
+                st.caption("Steep drops = tier cliffs (grab before them). Flat = depth (wait). TE cliffs hardest.")
+    else:
+        # fallback: original static bars if plotly unavailable
+        chart_col1, chart_col2 = st.columns(2)
+        with chart_col1:
+            _hist_rows = [{"Manager": _hmap.get(h, h), "Top-3 Spend ($)": round((f.get("top3_pct") or 0) * 200)}
+                          for h, f in _bm.items() if f.get("top3_pct") is not None]
+            if _hist_rows:
+                st.bar_chart(pd.DataFrame(sorted(_hist_rows, key=lambda r: -r["Top-3 Spend ($)"])).set_index("Manager"))
+        with chart_col2:
+            live_spend_df = pd.DataFrame([{
+                "Manager": data['name'], "Cash Left": 200 - data['spent'],
+                "Max Single Bid": max(1, (200 - data['spent']) - ((total_roster_slots - data['picks']) - 1))
+            } for data in manager_wallets.values()]).set_index("Manager")
+            st.bar_chart(live_spend_df)
 
 with tab_log:
     if st.session_state.drafted_picks:
