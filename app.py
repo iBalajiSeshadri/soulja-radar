@@ -100,16 +100,16 @@ st.markdown("""
 
 # 🌟 DEFAULT HISTORICAL LEAGUE CREW
 SOULJA_SOULJA_DEFAULTS = {
-    1: {"handle": "addyrao", "name": "Addy Rao", "archetype": "🐢 Patient Value Shark", "class": "arch-hoard", "bias": "$119 Top-3 Spend | Late Monopolist", "exploit": "Holds budget until mid-round deflation; surged to 2025 #3 finish with league-high 2,537 pts. Nominate his starting targets early to force spend."},
-    2: {"handle": "skongara", "name": "Shantanu", "archetype": "👑 Stud Anchor + Value Weapons", "class": "arch-stars", "bias": "$107.5 Top-3 Spend | 2025 Champion", "exploit": "2025 champion (73.2% win rate, 2,443.4 avg pts). Secures 1 stud at ~$50, then dominates the $25-$33 tier. Push his secondary targets to full fair value."},
-    3: {"handle": "bluewatermelon", "name": "Bluewatermelon", "archetype": "🛡️ Top-Heavy / Depth Starved", "class": "arch-idp", "bias": "$126.5 Top-3 Spend | Rebuild Floor", "exploit": "Spends $102-$136 on 3 stars, starving bench depth ($2,163.7 pts). Secure deflated Tier 1/2 players while he sits on empty cap."},
-    4: {"handle": "DjBallz", "name": "Balaji (You)", "archetype": "👑 Disciplined Anchor (VORP Surplus)", "class": "arch-stars", "bias": "$122 Top-3 Spend | 2024 Final Four", "exploit": "1 Stud Anchor + disciplined surplus spread and IDP value snipes; avoids emotional bidding wars."},
-    5: {"handle": "vnayini", "name": "Vivek", "archetype": "⚖️ Mid-Tier Value Optimizer", "class": "arch-balanced", "bias": "$112 Top-3 Spend | Playoff Lock", "exploit": "Constructs high-floor rosters in $32-$42 range with zero $50+ studs (2025 #4, 2024 #5). Nominate his key positions early to disrupt planned values."},
-    6: {"handle": "Kopite", "name": "Kopite", "archetype": "🔥 Extreme Stud Triple-Dipper", "class": "arch-stars", "bias": "$155.5 Top-3 Spend (77.8% of Cap)", "exploit": "2025 runner-up (66.1% win rate, 2,428.2 avg pts). Spent $163 on Saquon ($56), Allen ($55), Chase ($52) in '25. Force him to pay full retail on his 2nd/3rd stud."},
+    1: {"handle": "addyrao", "name": "Addy Rao", "archetype": "🐢 Patient Value Shark", "class": "arch-hoard", "bias": "See fitted 3yr behavior", "exploit": "Holds budget until mid-round deflation; surged to 2025 #3 finish with league-high 2,537 pts. Nominate his starting targets early to force spend."},
+    2: {"handle": "skongara", "name": "Shantanu", "archetype": "👑 Stud Anchor + Value Weapons", "class": "arch-stars", "bias": "See fitted 3yr behavior", "exploit": "2025 champion (73.2% win rate, 2,443.4 avg pts). Secures 1 stud at ~$50, then dominates the $25-$33 tier. Push his secondary targets to full fair value."},
+    3: {"handle": "bluewatermelon", "name": "Bluewatermelon", "archetype": "🛡️ Top-Heavy / Depth Starved", "class": "arch-idp", "bias": "See fitted 3yr behavior", "exploit": "Spends $102-$136 on 3 stars, starving bench depth ($2,163.7 pts). Secure deflated Tier 1/2 players while he sits on empty cap."},
+    4: {"handle": "DjBallz", "name": "Balaji (You)", "archetype": "👑 Disciplined Anchor (VORP Surplus)", "class": "arch-stars", "bias": "See fitted 3yr behavior", "exploit": "1 Stud Anchor + disciplined surplus spread and IDP value snipes; avoids emotional bidding wars."},
+    5: {"handle": "vnayini", "name": "Vivek", "archetype": "⚖️ Mid-Tier Value Optimizer", "class": "arch-balanced", "bias": "See fitted 3yr behavior", "exploit": "Constructs high-floor rosters in $32-$42 range with zero $50+ studs (2025 #4, 2024 #5). Nominate his key positions early to disrupt planned values."},
+    6: {"handle": "Kopite", "name": "Kopite", "archetype": "🔥 Extreme Stud Triple-Dipper", "class": "arch-stars", "bias": "See fitted 3yr behavior", "exploit": "2025 runner-up (66.1% win rate, 2,428.2 avg pts). Spent $163 on Saquon ($56), Allen ($55), Chase ($52) in '25. Force him to pay full retail on his 2nd/3rd stud."},
     7: {"handle": "chaituat", "name": "Chaitu", "archetype": "💥 High-Spend Aggressor", "class": "arch-stars", "bias": "$133 Flat Top-3 Spend | High Volatility", "exploit": "Spends exactly $133 on 3 stars every year ($98 on dual QBs in '24). Nominate high-cost non-targets early to burn his capital quickly."},
-    8: {"handle": "cardinalsin", "name": "Harsha", "archetype": "🛡️ Dual-RB Anchor + Elite IDP", "class": "arch-idp", "bias": "$125.5 Top-3 Spend | 2024 Runner-Up", "exploit": "Spent $106 on Bijan/Breece in '24 + heavy IDP/TE budget. Reached 2024 finals (#2). Nominate top LBs/TEs early to burn offensive cap."},
-    9: {"handle": "rookieqbme", "name": "Siddanth", "archetype": "🥷 Post-Cliff Value Sniper", "class": "arch-hoard", "bias": "$104 Top-3 Spend | 2025 Top 5", "exploit": "Waits out the initial stud spike to grab post-cliff bargains ($24-$29 range). Trigger positional runs to force him into suboptimal reaches."},
-    10: {"handle": "siddharthasagar", "name": "Siddu", "archetype": "👑 High-Ceiling Value Builder", "class": "arch-stars", "bias": "$89.5 Top-3 Spend | 2024 Champion", "exploit": "Won 2024 Championship on $74 top-3 spend + elite IDP depth ($2,439.5 avg pts). Bait with overvalued landmines; avoid bidding wars on his target anchors."}
+    8: {"handle": "cardinalsin", "name": "Harsha", "archetype": "🛡️ Dual-RB Anchor + Elite IDP", "class": "arch-idp", "bias": "See fitted 3yr behavior", "exploit": "Spent $106 on Bijan/Breece in '24 + heavy IDP/TE budget. Reached 2024 finals (#2). Nominate top LBs/TEs early to burn offensive cap."},
+    9: {"handle": "rookieqbme", "name": "Siddanth", "archetype": "🥷 Post-Cliff Value Sniper", "class": "arch-hoard", "bias": "See fitted 3yr behavior", "exploit": "Waits out the initial stud spike to grab post-cliff bargains ($24-$29 range). Trigger positional runs to force him into suboptimal reaches."},
+    10: {"handle": "siddharthasagar", "name": "Siddu", "archetype": "👑 High-Ceiling Value Builder", "class": "arch-stars", "bias": "See fitted 3yr behavior", "exploit": "Won 2024 Championship on $74 top-3 spend + elite IDP depth ($2,439.5 avg pts). Bait with overvalued landmines; avoid bidding wars on his target anchors."}
 }
 
 def clean_name(name):
@@ -1884,7 +1884,7 @@ def render_board_table(df_subset):
         
         if draft_mode == "🔨 Auction / Salary Cap":
             row_dict["Fair Value"] = f"${int(r['fair_value'])}"
-            row_dict["Market ADP"] = f"${int(r['market_cost'])}"
+            row_dict["Market $"] = f"${int(r['market_cost'])}"
         else:
             row_dict["Consensus ADP"] = f"#{int(r['market_adp'])}"
             val_delta = int(r['market_adp']) - int(r['board_rank'])
@@ -1937,19 +1937,28 @@ with tab_matrix:
         })
         hist_title = def_p['archetype']
         hist_class = def_p['class']
-        # Enrich the historical exploit with FITTED tendencies from 3yr Sleeper data.
+        # Lead with REAL fitted behavior from 3yr Sleeper data (not the stale
+        # hardcoded $ prose). The archetype title stays; the exploit is now data.
         _h = str(def_p.get('handle', '')).lower()
         _fit = auction_fit.get('by_manager', {}).get(_h, {})
-        _fit_bits = ""
         if _fit:
-            _lean = ", ".join(_fit.get('top_positions', [])[:2])
-            _aggr = _fit.get('aggression')
-            _nom = _fit.get('nominates_early', '')
-            _sh = _fit.get('stud_vs_depth')
-            _fit_bits = (f" <span style='color:#38bdf8;'>[Fitted: leans {_lean}, "
-                         f"aggression {_aggr:.2f}, nominates {_nom} early, "
-                         f"{int((_sh or 0)*100)}% top-3 spend]</span>")
-        hist_exploit = f"<b>{def_p['bias']}:</b> {def_p['exploit']}{_fit_bits}"
+            _lean = " / ".join(_fit.get('top_positions', [])[:2]) or "balanced"
+            _aggr = _fit.get('aggression', 1.0)
+            _nom = _fit.get('nominates_early', '?')
+            _t3 = int((_fit.get('top3_pct') or 0) * 100)
+            _mx = _fit.get('max_bid', '?')
+            # data-driven counter based on their real tendency
+            if _aggr >= 1.25:
+                _ctr = f"Aggressive triple-dipper — let him exhaust cap on 3 studs, then feast on his deflation."
+            elif _aggr <= 0.85:
+                _ctr = f"Disciplined value-spreader — won't chase; don't expect him to bail you out of bidding wars."
+            else:
+                _ctr = f"Balanced — contest his {_lean} targets at fair value to force full spend."
+            hist_exploit = (f"<b>Leans {_lean}</b> · aggression {_aggr:.2f} · {_t3}% top-3 spend · "
+                            f"nominates {_nom} early · max bid ${_mx}.<br>"
+                            f"<span style='color:#38bdf8;'>{_ctr}</span>")
+        else:
+            hist_exploit = f"<b>{def_p['bias']}:</b> {def_p['exploit']}"
 
         if spent >= 100 or (len(bids) >= 1 and bids[0] >= 55) or (len(bids) >= 2 and (bids[0] + bids[1]) >= 85):
             return "👑 Stars & Scrubs (Live)", "arch-stars", f"<b>{mgr_display}:</b> Blew budget on top anchors (${spent} spent). Let him exhaust capital; push next wants to full fair value."
@@ -1972,10 +1981,10 @@ with tab_matrix:
         counts = data['pos_counts']
         needs = []
         if counts['QB'] < (2 if qb_format == '⚡ Superflex / 2-QB' else 1): needs.append(f"QB ({counts['QB']})")
-        if counts['RB'] < 3: needs.append(f"RB ({counts['RB']}/3)")
-        if counts['WR'] < 3: needs.append(f"WR ({counts['WR']}/3)")
-        if counts['TE'] < 1: needs.append(f"TE ({counts['TE']}/1)")
-        if include_idp and counts['IDP'] < 3: needs.append(f"IDP ({counts['IDP']}/3)")
+        if counts['RB'] < 4: needs.append(f"RB ({counts['RB']}/4)")
+        if counts['WR'] < 4: needs.append(f"WR ({counts['WR']}/4)")
+        if counts['TE'] < 2: needs.append(f"TE ({counts['TE']}/2)")
+        if include_idp and counts['IDP'] < 4: needs.append(f"IDP ({counts['IDP']}/4)")
         if counts['DEF'] < 1: needs.append(f"DEF ({counts['DEF']}/1)")
         needs_str = ", ".join(needs) if needs else "✅ Lineup Filled"
         
@@ -2016,19 +2025,19 @@ with tab_matrix:
     st.markdown("##### 📊 Visual League Analytics: Purchasing Power & Spending Distributions")
     chart_col1, chart_col2 = st.columns(2)
     with chart_col1:
-        top3_hist_df = pd.DataFrame([
-            {"Manager": "Kopite", "Top-3 Spend ($)": 155.5},
-            {"Manager": "Chaitu", "Top-3 Spend ($)": 133.0},
-            {"Manager": "Bluewatermelon", "Top-3 Spend ($)": 126.5},
-            {"Manager": "Harsha", "Top-3 Spend ($)": 125.5},
-            {"Manager": "Balaji", "Top-3 Spend ($)": 122.0},
-            {"Manager": "Addy Rao", "Top-3 Spend ($)": 119.0},
-            {"Manager": "Vivek", "Top-3 Spend ($)": 112.0},
-            {"Manager": "Shantanu", "Top-3 Spend ($)": 107.5},
-            {"Manager": "Siddanth", "Top-3 Spend ($)": 104.0},
-            {"Manager": "Siddu", "Top-3 Spend ($)": 89.5}
-        ]).set_index("Manager")
-        st.bar_chart(top3_hist_df)
+        st.caption("Real top-3 spend per manager — fitted from 3 years of your league's Sleeper auctions.")
+        _hist_rows = []
+        _hmap = {v.get("handle", "").lower(): v.get("name", "") for v in SOULJA_SOULJA_DEFAULTS.values()}
+        for _hnd, _f in auction_fit.get("by_manager", {}).items():
+            _nm = _hmap.get(_hnd, _hnd)
+            _t3 = _f.get("top3_pct")
+            if _t3 is not None:
+                _hist_rows.append({"Manager": _nm, "Top-3 Spend ($)": round(_t3 * 200)})
+        if _hist_rows:
+            top3_hist_df = pd.DataFrame(sorted(_hist_rows, key=lambda r: -r["Top-3 Spend ($)"])).set_index("Manager")
+            st.bar_chart(top3_hist_df)
+        else:
+            st.info("Run build_auction_fit.py to populate real spend data.")
             
     with chart_col2:
         live_spend_df = pd.DataFrame([{
