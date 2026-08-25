@@ -1152,6 +1152,8 @@ def _edge_components(r):
 _edge_vals = df_board.apply(lambda r: _edge_components(r), axis=1)
 df_board['edge_score'] = [e[0] for e in _edge_vals]
 df_board['edge_reasons'] = ["; ".join(e[1]) for e in _edge_vals]
+# refresh df_unpicked so downstream tabs (Edge Board, plan) see edge_score/reasons
+df_unpicked = df_board[~df_board['clean_name'].isin(picked_clean_names)].copy()
 
 def pos_run_flag(pos):
     """Return a short run/demand badge string for a position, or ''."""
@@ -1566,21 +1568,41 @@ if draft_mode == "🔨 Auction / Salary Cap":
                         _per_pos_slot = max(1.0, _pos_budget / max(1, _sim_gaps[_p]))
                     _ppool_all = df_unpicked[df_unpicked['position'].isin(['LB','DL','DB'])] if _is_idp \
                                  else df_unpicked[df_unpicked['position'] == _p]
-                    _ppool_all = _ppool_all[_ppool_all['clean_name'] != _pr['clean_name']].sort_values('proj_fpts', ascending=False)
-                    # best targets within this position's allocated budget (generous
-                    # band so realistic RB/WR prices qualify); if none fit, show the
-                    # cheapest available so the position is never silently dropped.
-                    _cands, _cheapest = [], None
-                    for _i2, (_, _rr) in enumerate(_ppool_all.head(20).iterrows(), start=1):
-                        _lp = league_market_cost(_p if not _is_idp else 'LB', _i2) or int(_rr['fair_value'])
-                        if _cheapest is None or _lp < _cheapest[1]:
-                            _cheapest = (_rr['player_name'], _lp)
-                        if _lp <= _per_pos_slot * 1.5:
-                            _cands.append((_rr['player_name'], int(_lp)))
+                    _ppool_all = _ppool_all[_ppool_all['clean_name'] != _pr['clean_name']].sort_values(
+                        'live_vorp', ascending=False)   # BEST players first, not cheapest
+                    # DEF: prefer the SOFT-opening-slate streamers (your Wks1-4 work),
+                    # not random $1 defenses — order by soft_open then avg opp PPG.
+                    if _p == 'DEF' and dst_streamers:
+                        _ppool_all = _ppool_all.copy()
+                        _ppool_all['_soft'] = _ppool_all['team'].map(
+                            lambda t: 0 if dst_streamers.get(t, {}).get('soft_open') else 1)
+                        _ppool_all['_oppppg'] = _ppool_all['team'].map(
+                            lambda t: dst_streamers.get(t, {}).get('avg_opp_ppg', 99))
+                        _ppool_all = _ppool_all.sort_values(['_soft', '_oppppg'])
+                    # Suggest the BEST available players at this position, each shown
+                    # with its own tier + realistic price + a short reason — so the
+                    # list is the top targets (not random cheap scrubs). For IDP/DEF
+                    # these are the best $1 streamers.
+                    _cands = []
+                    for _i2, (_, _rr) in enumerate(_ppool_all.head(30).iterrows(), start=1):
+                        _rk_pos = int(_rr.get('pos_rank_avail', _i2))
+                        _lp = league_market_cost(_p if not _is_idp else 'LB', _rk_pos) or int(_rr['fair_value'])
+                        if _p in ('IDP', 'DEF'):
+                            _lp = 1
+                        # reason: scheme fit / vacated / workhorse / tier / just value
+                        _rsn = str(_rr.get('edge_reasons', '')).split(';')[0].strip()
+                        if _p == 'DEF':
+                            _dst = dst_streamers.get(_rr['team'], {})
+                            _rsn = ("🟢 soft Wk1-4 slate" if _dst.get('soft_open')
+                                    else f"opp {int(_dst.get('avg_opp_ppg',0))} PPG" if _dst else "streamer")
+                        elif not _rsn:
+                            _rsn = str(_rr.get('tier', ''))
+                        _cands.append((_rr['player_name'], int(_lp), str(_rr.get('tier','')), _rsn[:40]))
+                        # skill: keep to players roughly within this position's budget,
+                        # but always show at least the top 3 regardless so you see the
+                        # best options even if they cost a bit more.
                         if len(_cands) >= 3:
                             break
-                    if not _cands and _cheapest:
-                        _cands = [(_cheapest[0], int(_cheapest[1]))]   # never drop a needed position
                     _pp2 = pos_pressure.get(_p, {})
                     _rivals_need = _pp2.get('rivals_needing', 0)
                     _startable_left = int((_ppool_all['fair_value'] >= 5).sum())
@@ -1591,19 +1613,29 @@ if draft_mode == "🔨 Auction / Salary Cap":
                         _flag = (f' <span style="color:#f59e0b;font-weight:700;">⚠️ {_rivals_need} rivals need '
                                  f'{_p}, only {_startable_left} left — inflating</span>')
                     # TIER-SCARCITY: how many left in the CURRENT tier at this position,
-                    # so you know to grab a plan target before its tier cliffs.
+                    # TIER-SCARCITY based on the SUGGESTED players' tier (the ones
+                    # actually listed), so the note matches the names shown — not an
+                    # abstract pool-top tier that contradicts the list.
                     _tier_note = ""
-                    if _p in ('QB', 'RB', 'WR', 'TE') and not _ppool_all.empty:
-                        _cur_tier = str(_ppool_all.iloc[0]['tier'])
-                        _tier_left = int((_ppool_all['tier'] == _cur_tier).sum())
+                    if _p in ('QB', 'RB', 'WR', 'TE') and _cands:
+                        _top_sugg_tier = _cands[0][2]   # tier of the best suggested player
+                        _tier_left = int((_ppool_all['tier'] == _top_sugg_tier).sum())
                         if _tier_left <= 3:
                             _tier_note = (f' <span style="color:#fca5a5;">⛰️ only {_tier_left} left in '
-                                          f'{_cur_tier} — grab before the cliff</span>')
+                                          f'{_top_sugg_tier} — grab before the cliff</span>')
                         else:
-                            _tier_note = f' <span style="color:#64748b;">({_tier_left} left in {_cur_tier})</span>'
-                    _names = ", ".join(f"{n} (~${c})" for n, c in _cands)
+                            _tier_note = f' <span style="color:#64748b;">({_tier_left} in {_top_sugg_tier})</span>'
+                    # each candidate shown WITH its tier + price + short reason, so the
+                    # list is self-explaining ("why is this suggested?").
+                    def _fmt_cand(c):
+                        _n, _c, _t, _r = c
+                        _tshort = _t.replace('Tier ', 'T')
+                        _rtxt = f" · {_r}" if _r and _r != _t else ""
+                        return f"{_n} <span style='color:#64748b'>({_tshort}, ~${_c}{_rtxt})</span>"
+                    _names = ", ".join(_fmt_cand(c) for c in _cands)
                     if _p in ('IDP', 'DEF'):
-                        _plan_bits.append(f"<b>{_p}×{_sim_gaps[_p]} ($1 streamers):</b> {_names}")
+                        _lbl = "best $1 streamers" if _p == 'DEF' else "best $1 IDP"
+                        _plan_bits.append(f"<b>{_p}×{_sim_gaps[_p]} ({_lbl}):</b> {_names}")
                     else:
                         _plan_bits.append(f"<b>{_p}×{_sim_gaps[_p]} (~${int(_pos_budget)}):</b> {_names}{_flag}{_tier_note}")
                 _viable = _cap_after >= _slots_after  # at least $1/slot
@@ -2324,7 +2356,9 @@ with tab_edge:
     _edge_pool = df_unpicked[df_unpicked['position'].isin(['QB','RB','WR','TE'])].copy()
     # only surface players with a REAL forward reason (cited riser/jumper or scheme fit),
     # so the board is signal, not the whole board re-sorted.
-    _edge_pool = _edge_pool[_edge_pool['edge_reasons'].str.strip() != ""]
+    if 'edge_reasons' not in _edge_pool.columns:
+        _edge_pool = _edge_pool.assign(edge_reasons="", edge_score=_edge_pool.get('live_vorp', 0))
+    _edge_pool = _edge_pool[_edge_pool['edge_reasons'].astype(str).str.strip() != ""]
     _edge_pool = _edge_pool.sort_values('edge_score', ascending=False).head(25)
     if _edge_pool.empty:
         st.info("No cited tier-jumpers/risers yet. Click **🚀 Pull Latest News** (with a Groq key) to "
