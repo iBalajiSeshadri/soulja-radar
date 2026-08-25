@@ -324,7 +324,45 @@ OUTPUT FORMAT: Return ONLY a valid JSON array, no prose:
                 time.sleep(1.0)
         except Exception:
             continue
-            
+
+    # ── OLLAMA (local Llama) FALLBACK ─────────────────────────────────────────
+    # If Groq is capped/unavailable/empty, fall back to a local Ollama model so the
+    # pipeline stays up (no daily token cap, free). Quality is a notch below
+    # gpt-oss-120b but solid for this structured crunch.
+    ollama_res = process_batch_ollama(system_prompt, prompt_payload, batch_map)
+    if ollama_res:
+        return ollama_res
+
+    return {}
+
+
+def process_batch_ollama(system_prompt, prompt_payload, batch_map):
+    """Local Ollama fallback for the beat-crunch when Groq is unavailable/capped."""
+    ollama_url = os.getenv("OLLAMA_URL", "http://localhost:11434")
+    ollama_model = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
+    try:
+        # quick reachability check
+        tags = requests.get(f"{ollama_url}/api/tags", timeout=3)
+        if tags.status_code != 200:
+            return {}
+    except Exception:
+        return {}
+    try:
+        r = requests.post(
+            f"{ollama_url}/api/chat",
+            json={"model": ollama_model, "stream": False, "format": "json",
+                  "options": {"temperature": 0.1, "num_ctx": 8192},
+                  "messages": [
+                      {"role": "system", "content": system_prompt},
+                      {"role": "user", "content": f"Analyze these {len(prompt_payload)} beat reports:\n"
+                                                   + json.dumps(prompt_payload)}]},
+            timeout=180,
+        )
+        if r.status_code == 200:
+            content = r.json().get("message", {}).get("content", "")
+            return parse_llm_batch_response(content, batch_map)
+    except Exception:
+        pass
     return {}
 
 # ==============================================================================
@@ -818,7 +856,18 @@ llm_evaluated_count = 0
 api_key = get_active_groq_key()
 candidate_models = get_available_groq_models(api_key) if api_key else []
 
-if queue_list and api_key:
+def _ollama_up():
+    try:
+        return requests.get(f"{os.getenv('OLLAMA_URL','http://localhost:11434')}/api/tags", timeout=3).status_code == 200
+    except Exception:
+        return False
+
+# Run the LLM crunch if we have EITHER Groq OR a local Ollama fallback, so the
+# pipeline stays up on local Llama when Groq is missing/capped.
+_have_llm = bool(api_key) or _ollama_up()
+if queue_list and _have_llm:
+    if not api_key:
+        print("   (no Groq key — using local Ollama/Llama fallback for the crunch)")
     batch_size = 5
     batches = [queue_list[i:i + batch_size] for i in range(0, target_count, batch_size)]
     
