@@ -8,6 +8,7 @@ import re
 import random
 import subprocess
 import sys
+import draft_sim as ds
 from llm_advisor import (
     generate_live_auction_advice, 
     generate_snake_turn_advice, 
@@ -885,6 +886,29 @@ def pos_run_flag(pos):
         bits.append(f"🎯 {pp['rivals_needing']} rivals still need {b}")
     return " · ".join(bits)
 
+# Archetype spend aggression (from each manager's historical top-3 spend behaviour).
+_ARCH_AGGR = {"arch-stars": 1.45, "arch-idp": 1.15, "arch-hoard": 0.85, "arch-balanced": 1.05}
+
+def build_rivals_for_sim(target_position=None):
+    """Assemble the rival list draft_sim needs: each opponent's remaining cap,
+    whether they still need the target position, and their archetype aggression."""
+    rivals = []
+    for _tid, _w in manager_wallets.items():
+        if _tid == my_slot:
+            continue
+        _cap = max(0, 200 - _w["spent"])
+        # positions this rival still needs to fill starters
+        _needs = set()
+        for _b, _req in _start_req.items():
+            if _req > 0 and _w["pos_counts"].get(_b, 0) < _req:
+                _needs.add(_b)
+        _cls = SOULJA_SOULJA_DEFAULTS.get(_tid, {}).get("class", "arch-balanced")
+        _aggr = _ARCH_AGGR.get(_cls, 1.05)
+        _need_at = 1.0 if (target_position and _bucket(target_position) in _needs) else 0.4
+        rivals.append({"cap_left": _cap, "needs": _needs,
+                       "aggression": _aggr, "need_at_pos": _need_at})
+    return rivals
+
 # 💬 FEATURE 3: ASK THE AI STRATEGIST
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🤖 Ask the AI War Room")
@@ -1102,15 +1126,25 @@ if draft_mode == "🔨 Auction / Salary Cap":
             '</div>'
         )
     elif not primary_candidate_pool.empty:
-        top_stud = primary_candidate_pool.sort_values(by='fair_value', ascending=False).iloc[0]
+        # rank by NEED-ADJUSTED value (my_value), not raw fair_value
+        _sort_col = 'my_value' if 'my_value' in primary_candidate_pool else 'fair_value'
+        top_stud = primary_candidate_pool.sort_values(by=_sort_col, ascending=False).iloc[0]
         top_stud_name = top_stud['clean_name']
         rec_bid = min(my_max_bid, int(round(top_stud['fair_value'])))  # fair_value already live-inflated
+        # Monte-Carlo: what will he ACTUALLY go for given the room's budgets?
+        _rivals = build_rivals_for_sim(top_stud['position'])
+        _mc = ds.mc_auction_price({'fair_value': float(top_stud['fair_value']), 'position': top_stud['position']},
+                                  _rivals, my_max_bid=my_max_bid, n_sims=250, seed=7)
+        _walk = min(my_max_bid, int(_mc['p80']))   # walk-away ceiling = 80th pct sim price
+        _run_flag = pos_run_flag(top_stud['position'])
+        _run_line = f'<div style="font-size:0.72rem; color:#fbbf24; margin-top:4px;">{_run_flag}</div>' if _run_flag else ''
         stud_card_html = (
             '<div style="background:#131b2e; border-top:4px solid #10b981; padding:12px; border-radius:6px; height:100%;">'
             '<div style="font-size:0.75rem; color:#10b981; font-weight:700;">👑 RECOMMENDED ANCHOR / STUD</div>'
             f'<div style="font-size:1.15rem; font-weight:700; color:white; margin:4px 0;">{top_stud["player_name"]} <span class="badge-pos pos-{top_stud["position"]}">{top_stud["position"]}</span></div>'
-            f'<div style="font-size:0.85rem; color:#94a3b8;">Max Bid-To: <b style="color:#10b981;">${rec_bid}</b> | Market ADP: ${top_stud["market_cost"]}</div>'
-            f'<div style="font-size:0.75rem; color:#cbd5e1; margin-top:6px;"><b>Strategy:</b> Highest available VORP ({round(top_stud["live_vorp"], 1)}) to fill your open {top_stud["position"]} slot.</div>'
+            f'<div style="font-size:0.85rem; color:#94a3b8;">Fair: <b style="color:#10b981;">${rec_bid}</b> | Likely sells: <b>${int(_mc["median"])}</b> | Walk-away: <b style="color:#f59e0b;">${_walk}</b></div>'
+            f'<div style="font-size:0.75rem; color:#cbd5e1; margin-top:6px;"><b>Strategy:</b> Need-adjusted top value ({round(top_stud.get("my_value", top_stud["live_vorp"]), 1)}) for your open {top_stud["position"]}. MC price band ${int(_mc["p20"])}-${int(_mc["p80"])}.</div>'
+            f'{_run_line}'
             '</div>'
         )
     else:
@@ -1162,8 +1196,20 @@ if draft_mode == "🔨 Auction / Salary Cap":
             unpicked_top = ", ".join([f"{r['player_name']} (${r['market_cost']})" for _, r in df_unpicked.head(8).iterrows()])
             rivals_sum = ", ".join([f"{d['name']} (Cap: ${200-d['spent']})" for s, d in manager_wallets.items() if s != my_slot][:5])
             needs_sum = ", ".join([f"{pos}: {cnt}" for pos, cnt in pos_gaps.items() if cnt > 0])
-            
-            st.session_state.last_ai_nom = generate_ai_nomination(nom_strategy, unpicked_top, rivals_sum, needs_sum)
+
+            # Game-theory optimizer: rank unpicked players by expected rival cap-drain
+            # minus my own interest, and feed the top bleeds into the AI prompt so its
+            # suggestion is grounded in real willingness-to-pay math (not vibes).
+            _nom_cands = [{'clean_name': r['clean_name'], 'player_name': r['player_name'],
+                           'position': r['position'], 'fair_value': float(r['fair_value']),
+                           'market_cost': float(r['market_cost'])}
+                          for _, r in df_unpicked.head(40).iterrows()]
+            _gt_rivals = build_rivals_for_sim()
+            _bleeds = ds.nomination_scores(_nom_cands, _gt_rivals, set(st.session_state.my_targets), n_top=6)
+            drain_str = "; ".join(f"{n['player_name']} ({n['position']}, ~${n['drain']} rival drain, "
+                                  f"{n['interested_rivals']} bidders)" for n in _bleeds if not n['i_want'])
+            st.session_state.last_ai_nom = generate_ai_nomination(
+                nom_strategy, unpicked_top, rivals_sum, needs_sum + f"\nTop rival-cap-drain targets (nominate these): {drain_str}")
 
     if st.session_state.last_ai_nom:
         with st.chat_message("assistant", avatar="🎯"):
@@ -1279,33 +1325,64 @@ else:
         )
 
     with snake_col3:
-        dead_zone_targets = non_faded_unpicked[
-            (non_faded_unpicked['market_adp'] > curr_overall_pick) &
-            (non_faded_unpicked['market_adp'] <= next_my_pick_num)
-        ].sort_values(by='live_vorp', ascending=False).head(4)
-        
+        # Monte-Carlo survival: simulate the picks between now and my next selection
+        # to estimate P(gone) — far better than a single ADP threshold.
+        _picks_gap = max(0, next_my_pick_num - curr_overall_pick)
+        _cand_pool = non_faded_unpicked.head(40)
+        _mc_cands = [{'clean_name': r['clean_name'], 'market_adp': float(r['market_adp']),
+                      'position': r['position']} for _, r in _cand_pool.iterrows()]
+        _surv = ds.mc_snake_survival(_mc_cands, picks_until_next=_picks_gap, n_sims=250, seed=11)
+        _cand_pool = _cand_pool.copy()
+        _cand_pool['p_gone'] = _cand_pool['clean_name'].map(_surv).fillna(0.0)
+        # "at-risk" = players I'd want (high VORP) with meaningful chance of vanishing
+        dead_zone_targets = _cand_pool[(_cand_pool['p_gone'] >= 0.5)].sort_values(
+            by=['live_vorp'], ascending=False).head(4)
+
         turn_rows = []
         for _, t_row in dead_zone_targets.iterrows():
             t_starred = "⭐ " if t_row['clean_name'] in st.session_state.my_targets else ""
+            _pg = int(round(t_row['p_gone'] * 100))
             row_html = (
                 '<div style="display:flex; justify-content:space-between; align-items:center; background:#0b0f19; padding:5px 8px; margin-bottom:4px; border-radius:4px; border-left:3px solid #ef4444;">'
                 '<div>'
                 f'<span class="badge-pos pos-{t_row["position"]}">{t_row["position"]}</span> <b>{t_row["player_name"]}</b> {t_starred}<br>'
-                f'<span style="font-size:0.72rem; color:#94a3b8;">Market ADP #{int(t_row["market_adp"])} (Won\'t make pick #{next_my_pick_num})</span>'
+                f'<span style="font-size:0.72rem; color:#94a3b8;">ADP #{int(t_row["market_adp"])} · VORP +{round(t_row["live_vorp"],1)} · won\'t reach pick #{next_my_pick_num}</span>'
                 '</div>'
-                f'<div style="font-size:0.75rem; font-weight:700; color:#f87171;">REACH TARGET</div>'
+                f'<div style="font-size:0.8rem; font-weight:700; color:#f87171; text-align:right;">{_pg}% GONE</div>'
                 '</div>'
             )
             turn_rows.append(row_html)
-            
-        rendered_turns = "".join(turn_rows) if turn_rows else '<div style="font-size:0.85rem; color:#94a3b8;">Next pick is close or all top targets safely spaced.</div>'
+
+        rendered_turns = "".join(turn_rows) if turn_rows else '<div style="font-size:0.85rem; color:#94a3b8;">Next pick is close or top targets likely survive.</div>'
         st.markdown(
             f'<div style="background:#131b2e; border-top:4px solid #ef4444; padding:10px 12px; border-radius:6px; height:100%;">'
-            f'<div style="font-size:0.75rem; color:#ef4444; font-weight:700; margin-bottom:6px;">🚨 TURN SURVIVAL WATCH (WON\'T MAKE IT BACK)</div>'
+            f'<div style="font-size:0.75rem; color:#ef4444; font-weight:700; margin-bottom:6px;">🚨 TURN SURVIVAL WATCH (MONTE-CARLO — {_picks_gap} PICKS TO YOUR TURN)</div>'
             f'{rendered_turns}'
             f'</div>', unsafe_allow_html=True
         )
 
+# Advisor metric legend (mode-aware) so the new signals are self-explaining.
+with st.expander("ℹ️ How to read the advisor metrics"):
+    if draft_mode == "🔨 Auction / Salary Cap":
+        st.markdown(
+            "- **Fair $** — value at par (VORP share of budget), already adjusted for live **room inflation**.\n"
+            "- **Likely sells / Walk-away** — Monte-Carlo of the winning price from rivals' remaining cap, "
+            "positional need, and archetype aggression. *Likely* = median sim; *Walk-away* = 80th-percentile "
+            "(don't chase past it).\n"
+            "- **Surplus / VORP-$** — arbitrage: fair value above market cost, and points-of-VORP per dollar.\n"
+            "- **🏃 RUN / 🎯 rivals need** — a positional run is underway, or N rivals still must fill that slot "
+            "(demand holds prices up).\n"
+            "- **Nomination drain** — expected dollars the *winning* rival pays; the optimizer nominates players "
+            "rivals want and **you don't**, to bleed their cap. Your own targets are excluded."
+        )
+    else:
+        st.markdown(
+            "- **VORP** — value over a realistic replacement starter (Superflex boosts QB scarcity).\n"
+            "- **% GONE (Monte-Carlo)** — simulated probability a player is drafted **before your next pick**, "
+            "using ADP + draft noise over the exact serpentine gap. ≥50% = grab now or lose him.\n"
+            "- **+Spots Value** — falling past consensus ADP (a steal if he lasts to you).\n"
+            "- **VONA** — value lost if you wait: high = a real positional cliff (draft now), low = depth remains (wait)."
+        )
 st.markdown("---")
 
 # 6. Draft Console
