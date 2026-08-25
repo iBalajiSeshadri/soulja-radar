@@ -700,6 +700,21 @@ if draft_mode == "🐍 Snake Draft":
 df_board = df_board.sort_values(by=['fair_value', 'live_vorp'], ascending=[False, False]).reset_index(drop=True)
 df_board['board_rank'] = df_board.index + 1
 
+# --- FFA multi-source second-opinion (optional, additive) ---
+# If ffa_second_opinion.csv is present (generated offline by _ffa_flag.py from Isaac
+# Petersen's ffanalytics multi-source robust projections, compared on a scoring-agnostic,
+# same-pool z-score basis), attach a grounded consensus flag. Purely a second opinion —
+# never overrides our fair_value/VORP. Absent file = feature silently off.
+df_board['ffa_flag'] = ""
+try:
+    import os as _os
+    if _os.path.exists("ffa_second_opinion.csv"):
+        _fo = pd.read_csv("ffa_second_opinion.csv")
+        _fo_map = dict(zip(_fo['clean'], _fo['ffa_flag']))
+        df_board['ffa_flag'] = df_board['clean_name'].map(_fo_map).fillna("")
+except Exception:
+    df_board['ffa_flag'] = ""
+
 player_pos_map = dict(zip(df_board['clean_name'], df_board['position']))
 player_display_map = dict(zip(df_board['clean_name'], df_board['player_name']))
 
@@ -1478,14 +1493,21 @@ if draft_mode == "🔨 Auction / Salary Cap":
                 _edge_txt = (" 💎 <b>WR VALUE ZONE:</b> mid-tier WR where tier-jumpers hide (JSN-type). "
                              + ("Live camp buzz — prime breakout target." if _has_intel
                                 else f"Inherits vacated targets — breakout upside."))
+            # FFA multi-source second opinion (grounded, scoring-agnostic z-score consensus).
+            # Additive note only — never changes the price. Surfaces genuine cross-source
+            # disagreements ("consensus is higher/lower on him than your board").
+            _ffa_txt = ""
+            _ffa_f = str(_pr.get('ffa_flag', '')).strip()
+            if _ffa_f:
+                _ffa_txt = f" {_ffa_f}"
             if _fair > my_max_bid and _mkt_fair > my_max_bid:
                 _verdict, _color, _msg = "CAN'T AFFORD", "#ef4444", f"Market ~${max(_likely,_mkt_fair)} exceeds your max ${my_max_bid}. Would strand your roster."
             elif not _need_pos and not _want:
-                _verdict, _color, _msg = "SKIP", "#f59e0b", f"You don't need {_pr['position']} — let a rival spend ~${_likely}. Nominate to bleed them.{_tier_drop_txt}"
+                _verdict, _color, _msg = "SKIP", "#f59e0b", f"You don't need {_pr['position']} — let a rival spend ~${_likely}. Nominate to bleed them.{_tier_drop_txt}{_ffa_txt}"
             else:
                 _verdict, _color = f"BID to ${_bid_ceiling}", "#10b981"
                 _msg = (f"League market for {_pr['position']}{_pos_rank if _pos_rank<99 else ''} ~${_likely}. "
-                        f"Ceiling ${_bid_ceiling} (real tier price).{_tier_drop_txt}{_edge_txt}")
+                        f"Ceiling ${_bid_ceiling} (real tier price).{_tier_drop_txt}{_edge_txt}{_ffa_txt}")
             _star = "⭐ TARGET · " if _want else ""
             st.markdown(
                 f'<div style="background:{_color};border-radius:8px;padding:14px 18px;margin:4px 0 8px 0;">'
