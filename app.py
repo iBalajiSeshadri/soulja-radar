@@ -175,7 +175,14 @@ def load_draft_board():
         df['market_adp'] = pd.to_numeric(df['adp'], errors='coerce').fillna(df['custom_rank'])
     else:
         df['market_adp'] = df['custom_rank']
-        
+
+    # NOTE: market_adp is derived from the CURRENT board's custom_rank (live
+    # Sleeper search_rank + FFToday consensus, refreshed each sync) — i.e. present
+    # 2026 projections/tiers, NOT last year's prices. We deliberately do NOT
+    # overlay historical ADP here: stale prices would wrongly outrank players whose
+    # value moved (rookies, breakouts, injuries). The 3yr history is used only for
+    # MANAGER behavior (aggression/depth/premium), which is stable year-over-year.
+
     return df
 
 @st.cache_data(ttl=5)
@@ -1146,6 +1153,42 @@ pos_gaps = {pos: max(0, target - my_counts.get(pos, 0)) for pos, target in pos_t
 
 if draft_mode == "🔨 Auction / Salary Cap":
     st.markdown(f"### 🏈 SALARY CAP AUCTION RADAR • `{my_manager_display}` • `{qb_format}`")
+
+    # ══ "SHOULD I BID?" — top of console, always visible (connected or not) ════
+    st.markdown("#### 🔨 SHOULD I BID?")
+    _avail_names = df_unpicked.sort_values('fair_value', ascending=False)
+    _opts = ["— select the player up for bid —"] + [
+        f"{r['player_name']} ({r['position']})" for _, r in _avail_names.head(250).iterrows()]
+    _sel = st.selectbox("Player currently on the block:", _opts, index=0, key="bid_verdict_sel",
+                        label_visibility="collapsed")
+    if _sel and not _sel.startswith("—"):
+        _pname = _sel.rsplit(" (", 1)[0]
+        _prow = _avail_names[_avail_names['player_name'] == _pname]
+        if not _prow.empty:
+            _pr = _prow.iloc[0]
+            _fair = int(_pr['fair_value'])
+            _rv = build_rivals_for_sim(_pr['position'])
+            _mc = ds.mc_auction_price({'fair_value': float(_fair), 'position': _pr['position']},
+                                      _rv, my_max_bid=my_max_bid, n_sims=250, seed=int(_pr['board_rank']))
+            _walk = min(my_max_bid, int(_mc['p80']))
+            _likely = int(_mc['median'])
+            _want = _pr['clean_name'] in st.session_state.my_targets
+            _need_pos = pos_gaps.get('IDP' if _pr['position'] in ('LB','DL','DB') else _pr['position'], 0) > 0
+            if _fair > my_max_bid:
+                _verdict, _color, _msg = "PASS", "#ef4444", f"Can't afford — fair ${_fair} > your max ${my_max_bid}."
+            elif not _need_pos and not _want:
+                _verdict, _color, _msg = "PASS", "#ef4444", f"You don't need {_pr['position']} — let a rival overpay (~${_likely})."
+            elif _likely > _fair * 1.25:
+                _verdict, _color, _msg = "LET IT GO", "#f59e0b", f"Room will overpay (~${_likely} vs ${_fair} fair). Bid only if it stalls under ${_fair}."
+            else:
+                _verdict, _color, _msg = f"BID to ${_walk}", "#10b981", f"Fair ${_fair} · likely sells ${_likely} · walk away past ${_walk}."
+            _star = "⭐ TARGET · " if _want else ""
+            st.markdown(
+                f'<div style="background:{_color};border-radius:8px;padding:14px 18px;margin:4px 0 12px 0;">'
+                f'<span style="font-size:1.5rem;font-weight:800;color:white;">{_star}{_verdict}</span>'
+                f'<span style="font-size:0.95rem;color:#f8fafc;margin-left:12px;">{_pr["player_name"]} ({_pr["position"]}) — {_msg}</span>'
+                f'</div>', unsafe_allow_html=True)
+
     # ── LIVE QoL BANNER: recent picks ticker + roster + guardrails ────────────
     if live_mode:
         _recent = sorted(st.session_state.drafted_picks.items(),
@@ -1173,41 +1216,47 @@ if draft_mode == "🔨 Auction / Salary Cap":
     c2.metric("Room Inflation Index", f"{inflation_index}x", "Deflation (Bargains)" if inflation_index < 1.0 else "Inflation (Overpay)")
     c3.metric("Players Drafted", f"{len(picked_clean_names)} / {league_size * total_roster_slots}", f"{(league_size * total_roster_slots) - len(picked_clean_names)} Left")
     c4.metric("Your Max Single Bid", f"${my_max_bid}", f"${my_cap_left} Budget Left")
-
-    # ── "SHOULD I BID?" one-glance verdict for the player on the block ─────────
-    _avail_names = df_unpicked.sort_values('fair_value', ascending=False)
-    _opts = ["— select player on the block —"] + [
-        f"{r['player_name']} ({r['position']})" for _, r in _avail_names.head(200).iterrows()]
-    _sel = st.selectbox("🔨 Player currently up for bid:", _opts, index=0, key="bid_verdict_sel")
-    if _sel and not _sel.startswith("—"):
-        _pname = _sel.rsplit(" (", 1)[0]
-        _prow = _avail_names[_avail_names['player_name'] == _pname]
-        if not _prow.empty:
-            _pr = _prow.iloc[0]
-            _fair = int(_pr['fair_value'])
-            _rv = build_rivals_for_sim(_pr['position'])
-            _mc = ds.mc_auction_price({'fair_value': float(_fair), 'position': _pr['position']},
-                                      _rv, my_max_bid=my_max_bid, n_sims=250, seed=int(_pr['board_rank']))
-            _walk = min(my_max_bid, int(_mc['p80']))
-            _likely = int(_mc['median'])
-            _want = _pr['clean_name'] in st.session_state.my_targets
-            _need_pos = pos_gaps.get('IDP' if _pr['position'] in ('LB','DL','DB') else _pr['position'], 0) > 0
-            if _fair > my_max_bid:
-                _verdict, _color, _msg = "PASS", "#ef4444", f"Can't afford — fair ${_fair} > your max ${my_max_bid}."
-            elif not _need_pos and not _want:
-                _verdict, _color, _msg = "PASS", "#ef4444", f"You don't need {_pr['position']} — let a rival overpay (~${_likely})."
-            elif _likely > _fair * 1.25:
-                _verdict, _color, _msg = "LET IT GO", "#f59e0b", f"Room will overpay (~${_likely} vs ${_fair} fair). Bid only if it stalls under ${_fair}."
-            else:
-                _verdict, _color, _msg = f"BID to ${_walk}", "#10b981", f"Fair ${_fair} · likely ${_likely} · walk away past ${_walk}."
-            _star = "⭐ TARGET · " if _want else ""
-            st.markdown(
-                f'<div style="background:{_color};border-radius:8px;padding:12px 16px;margin:4px 0;">'
-                f'<span style="font-size:1.3rem;font-weight:800;color:white;">{_star}{_verdict}</span>'
-                f'<span style="font-size:0.9rem;color:#f8fafc;margin-left:10px;">{_pr["player_name"]} ({_pr["position"]}) — {_msg}</span>'
-                f'</div>', unsafe_allow_html=True)
 else:
     st.markdown(f"### 🐍 SNAKE DRAFT WAR ROOM • `{my_manager_display}` • `{qb_format}`")
+
+    # ══ "SHOULD I DRAFT?" — VONA + Monte-Carlo survival (no dollars) ═══════════
+    st.markdown("#### 🐍 SHOULD I DRAFT?")
+    _savail = df_unpicked.sort_values('live_vorp', ascending=False)
+    _sopts = ["— select a player you're considering —"] + [
+        f"{r['player_name']} ({r['position']})" for _, r in _savail.head(250).iterrows()]
+    _ssel = st.selectbox("Player you're considering:", _sopts, index=0, key="draft_verdict_sel",
+                         label_visibility="collapsed")
+    if _ssel and not _ssel.startswith("—"):
+        _spname = _ssel.rsplit(" (", 1)[0]
+        _sprow = _savail[_savail['player_name'] == _spname]
+        if not _sprow.empty:
+            _sp = _sprow.iloc[0]
+            _gap = max(0, next_my_pick_num - curr_overall_pick)
+            # survival prob before my next pick
+            _pool = [{'clean_name': r['clean_name'], 'market_adp': float(r['market_adp']),
+                      'position': r['position']} for _, r in _savail.head(60).iterrows()]
+            _surv = ds.mc_snake_survival(_pool, picks_until_next=_gap, n_sims=250, seed=int(_sp['board_rank']))
+            _pgone = int(round(_surv.get(_sp['clean_name'], 0.0) * 100))
+            _vona = round(float(_sp.get('vona', 0)), 1)
+            _need_pos = pos_gaps.get('IDP' if _sp['position'] in ('LB','DL','DB') else _sp['position'], 0) > 0
+            _want = _sp['clean_name'] in st.session_state.my_targets
+            if _pgone >= 55 and (_need_pos or _want):
+                _sv, _sc, _sm = "DRAFT NOW", "#10b981", f"{_pgone}% gone before your next pick (#{next_my_pick_num}) · VONA +{_vona} cliff."
+            elif _vona >= 15 and (_need_pos or _want):
+                _sv, _sc, _sm = "DRAFT NOW", "#10b981", f"VONA +{_vona} — steep positional cliff, little comparable value returns."
+            elif _pgone < 30:
+                _sv, _sc, _sm = "CAN WAIT", "#f59e0b", f"Only {_pgone}% gone before your turn — likely still there, take best value now."
+            elif not _need_pos and not _want:
+                _sv, _sc, _sm = "SKIP", "#ef4444", f"You don't need {_sp['position']}; VONA +{_vona} is low. Address a need."
+            else:
+                _sv, _sc, _sm = "TOSS-UP", "#64748b", f"{_pgone}% gone · VONA +{_vona}. Fine either way; weigh your other needs."
+            _sstar = "⭐ TARGET · " if _want else ""
+            st.markdown(
+                f'<div style="background:{_sc};border-radius:8px;padding:14px 18px;margin:4px 0 12px 0;">'
+                f'<span style="font-size:1.5rem;font-weight:800;color:white;">{_sstar}{_sv}</span>'
+                f'<span style="font-size:0.95rem;color:#f8fafc;margin-left:12px;">{_sp["player_name"]} ({_sp["position"]}) — {_sm}</span>'
+                f'</div>', unsafe_allow_html=True)
+
     # ── LIVE QoL BANNER: on-the-clock alert + recent picks ticker ─────────────
     if live_mode:
         if picks_until_my_turn == 0:
