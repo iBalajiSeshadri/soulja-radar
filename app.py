@@ -915,6 +915,43 @@ total_cash_spent = sum(v["price"] for v in st.session_state.drafted_picks.values
 picked_clean_names = set(st.session_state.drafted_picks.keys())
 df_unpicked = df_board[~df_board['clean_name'].isin(picked_clean_names)].copy()
 
+# ══ CONSISTENCY LAYER — single source of truth for rank & price ═══════════════
+# Recompute positional rank + market_cost over AVAILABLE players so EVERY card
+# (board table, verdict, arbitrage, build plan) reads the same number. Previously
+# market_cost was frozen at build (full-board rank incl. drafted) while the verdict
+# used available-pool rank — they drifted mid-draft. Now they can't.
+_avail_pos_rank = {}   # clean_name -> positional rank among available players
+for _cp in ['QB', 'RB', 'WR', 'TE', 'LB', 'DL', 'DB', 'DEF']:
+    _cpool = df_unpicked[df_unpicked['position'] == _cp].sort_values('proj_fpts', ascending=False)
+    for _ri, _cn in enumerate(_cpool['clean_name'].tolist(), start=1):
+        _avail_pos_rank[_cn] = _ri
+# refresh market_cost on the FULL board from available-pool rank (offense via the
+# fitted league curve; IDP/DEF keep their tier-based cost set at build).
+for _idx2, _row2 in df_board.iterrows():
+    _cn2 = _row2['clean_name']
+    if _row2['position'] in ('QB', 'RB', 'WR', 'TE') and _cn2 in _avail_pos_rank:
+        _mc2 = league_market_cost(_row2['position'], _avail_pos_rank[_cn2])
+        if _mc2:
+            df_board.at[_idx2, 'market_cost'] = int(_mc2)
+df_board['pos_rank_avail'] = df_board['clean_name'].map(_avail_pos_rank).fillna(99).astype(int)
+
+def get_market_price(clean_or_row):
+    """SINGLE source for a player's league market price. Accepts a clean_name or a
+    board row. Uses available-pool positional rank so every card agrees."""
+    if isinstance(clean_or_row, str):
+        _r = df_board[df_board['clean_name'] == clean_or_row]
+        if _r.empty:
+            return None
+        _r = _r.iloc[0]
+    else:
+        _r = clean_or_row
+    _rk = _avail_pos_rank.get(_r['clean_name'], 99)
+    if _r['position'] in ('QB', 'RB', 'WR', 'TE'):
+        return league_market_cost(_r['position'], _rk) or int(_r.get('market_cost', 1))
+    return int(_r.get('market_cost', 1))
+
+df_unpicked = df_board[~df_board['clean_name'].isin(picked_clean_names)].copy()  # refresh w/ updated cols
+
 # ── SHARED tier-ender flag (single source of truth for every card) ────────────
 # A player is a "tier-ender" if the league-market price gap to the next-cheaper
 # AVAILABLE player at their position is a real cliff (>=$8) — the scarcity point
@@ -1002,6 +1039,38 @@ if draft_mode == "🐍 Snake Draft":
     df_board['my_value'] = df_board['vona'] * df_board['need_mult']
 else:
     df_board['my_value'] = df_board['fair_value'] * df_board['need_mult']
+
+# ── FORWARD EDGE SCORE: who is best-POSITIONED for THIS year (tier-jumpers) ────
+# Fuses value with FORWARD-looking outlook signals (all grounded in real data):
+#   base VORP + scheme-FIT bonus + tier-jumper/positive-intel bonus (the cited
+#   vacated-role risers) − scheme-RISK penalty. Higher = more likely to outperform
+#   its price this year. Powers the 🚀 Edge Board.
+def _edge_components(r):
+    base = float(r.get('live_vorp', 0))
+    tag = str(r.get('scheme_tag', '')).upper()
+    itag = str(r.get('intel_tag', '')).upper()
+    mult = float(r.get('live_multiplier', 1.0))
+    bonus = 0.0
+    reasons = []
+    if 'FIT' in tag:
+        bonus += 12; reasons.append('scheme fit')
+    if 'RISK' in tag:
+        bonus -= 15; reasons.append('scheme RISK')
+    # tier-jumper / positive camp intel (the cited risers) — the news multiplier
+    # above 1.0 encodes a real, cited opportunity/role bump.
+    if mult > 1.03:
+        bonus += (mult - 1.0) * 120  # 1.10 => +12
+        if 'JUMPER' in itag or 'SURGE' in itag or 'BREAKOUT' in itag:
+            reasons.append('tier-jumper (cited)')
+        elif str(r.get('intel_note', '')).strip():
+            reasons.append('camp riser')
+    elif mult < 0.97:
+        bonus -= (1.0 - mult) * 80
+    return base + bonus, reasons
+
+_edge_vals = df_board.apply(lambda r: _edge_components(r), axis=1)
+df_board['edge_score'] = [e[0] for e in _edge_vals]
+df_board['edge_reasons'] = ["; ".join(e[1]) for e in _edge_vals]
 
 def pos_run_flag(pos):
     """Return a short run/demand badge string for a position, or ''."""
@@ -1239,16 +1308,14 @@ if draft_mode == "🔨 Auction / Salary Cap":
             # NOT flag paying market as an "overpay". The engine's job is to tell you
             # what the market cost is and whether you can still build after paying it.
             _prem = stud_premium_for_rank(int(_pr['board_rank']))
-            # Positional rank computed over AVAILABLE players (df_unpicked), sorted by
-            # projection — so it's consistent with the "next available" logic below.
-            # (Bug fix: previously ranked over the FULL board incl. drafted players,
-            # which let a higher-ranked available player show up as the "next down".)
+            # Use the SHARED available-pool positional rank (pos_rank_avail) computed
+            # in the consistency layer, so the verdict, board table, and arbitrage all
+            # agree on rank + price. _pos_pool_avail rebuilt here only for "next player".
             _pos_pool_avail = df_unpicked[
                 df_unpicked['position'].isin(['LB','DL','DB']) if _pr['position'] in ('LB','DL','DB')
                 else (df_unpicked['position'] == _pr['position'])
             ].sort_values('proj_fpts', ascending=False).reset_index(drop=True)
-            _names_avail = _pos_pool_avail['clean_name'].tolist()
-            _pos_rank = (_names_avail.index(_pr['clean_name']) + 1) if _pr['clean_name'] in _names_avail else 99
+            _pos_rank = int(_pr.get('pos_rank_avail', 99))
             _league_price = league_market_cost(_pr['position'], _pos_rank)
             _mkt_fair = max(_fair, int(round(_fair * _prem)), int(_league_price or 0))
             # "Likely to sell" anchors to the league's REAL historical price for this
@@ -2062,7 +2129,8 @@ with col_right:
 st.markdown("---")
 
 # 7. Multi-Tab War Rooms
-tab_off, tab_def, tab_intel, tab_matrix, tab_log = st.tabs([
+tab_edge, tab_off, tab_def, tab_intel, tab_matrix, tab_log = st.tabs([
+    "🚀 EDGE / Tier-Jumpers",
     "⚔️ Offense War Room", 
     "🛡️ IDP & D/ST War Room", 
     "🚀 Live News & Active Intel Board", 
@@ -2113,6 +2181,35 @@ def render_board_table(df_subset):
         table_rows.append(row_dict)
         
     st.write(pd.DataFrame(table_rows).to_html(escape=False, index=False), unsafe_allow_html=True)
+
+with tab_edge:
+    st.markdown("#### 🚀 EDGE BOARD — players best-positioned to OUTPERFORM this year")
+    st.caption("Forward-looking: fuses value with cited outlook signals — vacated-role tier-jumpers "
+               "(Tuten-type: inherits a departed teammate's touches), camp risers, and scheme fits. "
+               "Grounded in real news (📰 pull latest for fresh reads) — never a hallucinated breakout.")
+    _edge_pool = df_unpicked[df_unpicked['position'].isin(['QB','RB','WR','TE'])].copy()
+    # only surface players with a REAL forward reason (cited riser/jumper or scheme fit),
+    # so the board is signal, not the whole board re-sorted.
+    _edge_pool = _edge_pool[_edge_pool['edge_reasons'].str.strip() != ""]
+    _edge_pool = _edge_pool.sort_values('edge_score', ascending=False).head(25)
+    if _edge_pool.empty:
+        st.info("No cited tier-jumpers/risers yet. Click **🚀 Pull Latest News** (with a Groq key) to "
+                "populate live vacated-role jumpers (Tuten/Burden/Bucky-type) from the beat wires.")
+    else:
+        _erows = []
+        for _, r in _edge_pool.iterrows():
+            _mp = get_market_price(r)
+            _erows.append({
+                "Edge": round(float(r['edge_score']), 0),
+                "Player": r['player_name'],
+                "Pos": f'<span class="badge-pos pos-{r["position"]}">{r["position"]}</span>',
+                "Tier": r['tier'],
+                "Why positioned well": r['edge_reasons'],
+                "Cited note": (str(r.get('intel_note','')).strip() or str(r.get('scheme_note','')).strip() or "—")[:120],
+                "Market $": f"${int(_mp)}" if _mp else "—",
+            })
+        st.write(pd.DataFrame(_erows).to_html(escape=False, index=False), unsafe_allow_html=True)
+        st.caption("Edge = VORP + scheme-fit + cited-riser bonus − risk. Higher = better bet vs price this year.")
 
 with tab_off:
     pos_sub = st.radio("Offense Filter:", ["ALL OFFENSE", "RB", "WR", "TE", "QB"], horizontal=True)

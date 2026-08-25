@@ -247,6 +247,12 @@ Your job is to CRUNCH each raw report into ONE genuine, specific scouting insigh
 
 TAG CRITERIA (pick the single best-fit tag):
 - TIER_JUMPER: Concrete camp dominance / winning a starting job / manufactured-touch design / breakout usage. (mult 1.06-1.15)
+  ** HIGHEST-CONFIDENCE TIER_JUMPER = VACATED ROLE: this player inherits a DEPARTED teammate's
+     targets/touches/role (the teammate was traded, left in free agency, is injured/out, or retired).
+     Examples of the pattern: "With [Teammate] gone/traded/injured, [Player] inherits the vacated
+     touches/targets/lead role." When you see this, tag TIER_JUMPER, use mult 1.10-1.15, and the note
+     MUST name the departed teammate and the specific vacated volume (e.g. "Inherits the ~250 touches
+     vacated by [Teammate]'s trade — now the clear lead back"). This is the single most valuable signal. **
 - SUPERFLEX_EDGE: 2QB/Superflex value surge, dual-threat rushing floor, late-round QB leverage. (mult 1.05-1.12)
 - CLEARED: Full participant in 11-on-11 contact after an injury. (mult 1.00-1.03)
 - WAIVER_SURGE: Surging pickup (+thousands of adds in 24h) signaling a role/opportunity spike. (mult 1.04-1.08)
@@ -278,6 +284,13 @@ CRUNCHY NOTE RULES (this is the most important part):
   "Placed on PUP", "IR") with NO performance description, you MUST NOT invent camp performance, separation,
   routes, or "flashes". Report ONLY the injury status factually and tag it INJURY_ALERT/QUESTIONABLE/CLEARED.
   NEVER tag a bare injury line as TIER_JUMPER.
+- DO NOT tag as TIER_JUMPER (these are NOISE or their own tag, not tier-jumps):
+  * a generic depth-chart/projection line with no performance detail (e.g. "Active starting DB
+    projection on depth chart") — that is NOISE, not a jump.
+  * a bare waiver/add-count line with no role reason (e.g. "+20,000 adds") — that is WAIVER_SURGE at most.
+  * an injury-return/participation line ("participated in agility drills", "did side work") — that is
+    CLEARED/QUESTIONABLE, never TIER_JUMPER.
+  A TIER_JUMPER requires a CONCRETE performance/role/opportunity reason, ideally a vacated role.
 - Never fabricate stats, defenders, or quotes that are not supported by the report text.
 - One sentence, present tense, punchy, specific.
 
