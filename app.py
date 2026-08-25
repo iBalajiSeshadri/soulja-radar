@@ -9,6 +9,12 @@ import random
 import subprocess
 import sys
 import draft_sim as ds
+import sleeper_live as sl
+try:
+    from streamlit_autorefresh import st_autorefresh
+    HAS_AUTOREFRESH = True
+except Exception:
+    HAS_AUTOREFRESH = False
 from llm_advisor import (
     generate_live_auction_advice, 
     generate_snake_turn_advice, 
@@ -135,6 +141,17 @@ if "last_ai_read" not in st.session_state:
     st.session_state.last_ai_read = ""
 if "last_ai_nom" not in st.session_state:
     st.session_state.last_ai_nom = ""
+# Live-draft state
+if "live_connected" not in st.session_state:
+    st.session_state.live_connected = False
+if "live_draft_id" not in st.session_state:
+    st.session_state.live_draft_id = ""
+if "live_info" not in st.session_state:
+    st.session_state.live_info = {}
+if "live_pick_count" not in st.session_state:
+    st.session_state.live_pick_count = -1
+if "live_slot_map" not in st.session_state:
+    st.session_state.live_slot_map = {}
 
 # 2. Data Loading Engine
 @st.cache_data(ttl=10)
@@ -359,7 +376,62 @@ if st.sidebar.button("🚀 Pull Latest News & Sync Wire", use_container_width=Tr
                 st.sidebar.caption(san_line.strip())
         st.rerun()
 
-draft_mode = st.sidebar.radio("Draft Format:", ["🔨 Auction / Salary Cap", "🐍 Snake Draft"], horizontal=True)
+# ═══════════════════════ 🔴 LIVE DRAFT CONNECTION ═══════════════════════════
+st.sidebar.markdown("---")
+st.sidebar.markdown("### 🔴 Live Draft")
+_live_id_input = st.sidebar.text_input(
+    "Sleeper League ID", value=st.session_state.live_draft_id or LEAGUE_ID,
+    help="Paste your Sleeper LEAGUE id (from the league URL). The app finds the draft automatically.")
+
+_lc1, _lc2 = st.sidebar.columns(2)
+with _lc1:
+    if st.button("🔴 Connect", use_container_width=True, type="primary"):
+        info = sl.resolve_draft(_live_id_input)
+        if info.get("ok") and info.get("draft_id"):
+            st.session_state.live_connected = True
+            st.session_state.live_draft_id = _live_id_input.strip()
+            st.session_state.live_info = info
+            st.session_state.live_slot_map = sl.slot_manager_map(info.get("league_id") or _live_id_input.strip())
+            st.session_state.live_pick_count = -1  # force first reconcile
+            st.toast(f"🟢 Connected — {info['type']} draft, {info.get('status')}", icon="🔴")
+        else:
+            st.sidebar.error(f"Couldn't resolve draft: {info.get('error') or 'check the League ID'}")
+        st.rerun()
+with _lc2:
+    if st.button("⏹️ Disconnect", use_container_width=True):
+        st.session_state.live_connected = False
+        st.rerun()
+
+live_mode = st.session_state.live_connected
+live_info = st.session_state.live_info if live_mode else {}
+
+# Auto-detect format from the connected draft (auction vs snake).
+_detected_mode = None
+if live_mode and live_info.get("type"):
+    _detected_mode = "🔨 Auction / Salary Cap" if live_info["type"] == "auction" else "🐍 Snake Draft"
+
+if live_mode:
+    _stt = live_info.get("status", "?")
+    _dot = "🟢" if _stt == "drafting" else ("🟡" if _stt == "pre_draft" else "⚪")
+    st.sidebar.caption(f"{_dot} Live: **{live_info.get('type','?')}** · {_stt} · "
+                       f"{live_info.get('teams','?')} teams · draft `{str(live_info.get('draft_id',''))[-6:]}`")
+    # Adaptive poll: refresh every 2s, but the heavy redraw is gated on pick-count
+    # change below, so idle polls are cheap and bursts are caught in one reconcile.
+    if HAS_AUTOREFRESH and _stt != "complete":
+        st_autorefresh(interval=2000, key="live_poll")
+    elif not HAS_AUTOREFRESH:
+        st.sidebar.warning("Auto-refresh unavailable — tap 🔄 after each pick.")
+        if st.sidebar.button("🔄 Refresh picks", use_container_width=True):
+            st.session_state.live_pick_count = -1
+            st.rerun()
+
+draft_mode = st.sidebar.radio(
+    "Draft Format:", ["🔨 Auction / Salary Cap", "🐍 Snake Draft"], horizontal=True,
+    index=(0 if (_detected_mode or "🔨 Auction / Salary Cap") == "🔨 Auction / Salary Cap" else 1),
+    disabled=live_mode,
+    help="Auto-detected from your live draft when connected." if live_mode else None)
+if live_mode and _detected_mode:
+    draft_mode = _detected_mode
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("### ⚙️ League Format Controls")
@@ -389,7 +461,8 @@ my_slot = st.sidebar.number_input(
 my_manager_display = st.session_state.custom_manager_names.get(my_slot, f"Team {my_slot}")
 st.sidebar.caption(f"Drafting as: **{my_manager_display}** (Slot {my_slot})")
 
-room_mode = st.sidebar.radio("Connection Mode:", ["🎮 Mock Sim Sandbox", "🌐 Live Sleeper Room Sync"], horizontal=True)
+# (Legacy "Connection Mode" radio removed — the 🔴 Live Draft panel now handles
+# live connection, and mock/manual tools live in the Practice expander.)
 
 # 4. Dynamic VORP & Multi-Source Override Binding
 df_board['live_multiplier'] = 1.0
@@ -730,86 +803,73 @@ next_my_pick_num = get_next_my_pick(curr_overall_pick, my_slot, league_size, tot
 picks_until_my_turn = max(0, next_my_pick_num - curr_overall_pick)
 teams_between = get_teams_picking_between(curr_overall_pick, next_my_pick_num, league_size)
 
-if room_mode == "🎮 Mock Sim Sandbox":
-    st.sidebar.markdown("---")
-    st.sidebar.markdown("#### 🎲 Sim Controls")
-    col_s1, col_s2 = st.sidebar.columns(2)
-    with col_s1:
-        if st.button("⚡ Sim 1 Pick", use_container_width=True):
-            unpicked_now = df_board[~df_board['clean_name'].isin(st.session_state.drafted_picks.keys())]
-            if len(unpicked_now) > 0:
-                target_p = unpicked_now.iloc[0]
-                if draft_mode == "🔨 Auction / Salary Cap":
-                    rand_team = random.choice([t for t in range(1, league_size + 1) if t != my_slot])
-                    var_price = max(1, int(round(target_p['market_cost'] * random.uniform(0.92, 1.08))))
-                else:
-                    rand_team = snake_on_clock_team
-                    var_price = curr_overall_pick
-                st.session_state.drafted_picks[target_p['clean_name']] = {
-                    "price": var_price, "team": rand_team,
-                    "player_name": target_p['player_name'], "position": target_p['position']
-                }
-                st.rerun()
-    with col_s2:
-        if st.button("🎲 Sim 5 Picks", use_container_width=True):
-            unpicked_now = df_board[~df_board['clean_name'].isin(st.session_state.drafted_picks.keys())]
-            for i in range(min(5, len(unpicked_now))):
-                target_p = unpicked_now.iloc[i]
-                sim_pick_num = len(st.session_state.drafted_picks) + 1
-                if draft_mode == "🔨 Auction / Salary Cap":
-                    rand_team = random.choice([t for t in range(1, league_size + 1) if t != my_slot])
-                    var_price = max(1, int(round(target_p['market_cost'] * random.uniform(0.90, 1.10))))
-                else:
-                    rand_team = get_snake_team_on_clock(sim_pick_num, league_size)
-                    var_price = sim_pick_num
-                st.session_state.drafted_picks[target_p['clean_name']] = {
-                    "price": var_price, "team": rand_team,
-                    "player_name": target_p['player_name'], "position": target_p['position']
-                }
-            st.rerun()
-    if st.sidebar.button("🗑️ Reset Draft Board", use_container_width=True):
-        st.session_state.drafted_picks = {}
-        st.session_state.last_ai_read = ""
-        st.session_state.last_ai_nom = ""
-        st.rerun()
+if live_mode:
+    # ── LIVE RECONCILE (burst-safe, change-gated) ─────────────────────────────
+    _did = live_info.get("draft_id")
+    _is_auction = (live_info.get("type") == "auction")
+    _raw = sl.fetch_picks(_did)
+    _recs, _cnt = sl.reconcile_picks(_raw, clean_name, pos_map=player_pos_map,
+                                     display_map=player_display_map, is_auction=_is_auction)
+    # Rebuild the FULL pick set every poll so a burst of picks between polls can't
+    # desync us. Cheap when nothing changed; the UI only "reacts" on count change.
+    _new_picks = {}
+    for r in _recs:
+        _new_picks[r["clean_name"]] = {"price": r["price"], "team": r["team"],
+                                       "player_name": r["player_name"], "position": r["position"],
+                                       "pick_no": r["pick_no"]}
+    st.session_state.drafted_picks = _new_picks
+    # map draft slots -> named managers (populates once draft order is set)
+    if st.session_state.live_slot_map:
+        for _slot, _nm in st.session_state.live_slot_map.items():
+            disp = _nm
+            for _di in SOULJA_SOULJA_DEFAULTS.values():
+                if _di.get("handle", "").lower() == str(_nm).lower():
+                    disp = _di["name"]; break
+            st.session_state.custom_manager_names[_slot] = disp
+    if _cnt != st.session_state.live_pick_count:
+        st.session_state.live_pick_count = _cnt   # note the change; render reflects it
+    st.sidebar.caption(f"📥 {_cnt} picks synced from Sleeper.")
 else:
-    draft_id = st.sidebar.text_input("Sleeper Draft / League ID", value=LEAGUE_ID)
-    if st.sidebar.button("🔄 Sync Live Sleeper API", use_container_width=True):
-        st.rerun()
-    if draft_id and draft_id.strip():
-        try:
-            u_res = requests.get(f"https://api.sleeper.app/v1/league/{draft_id.strip()}/users", timeout=4)
-            if u_res.status_code == 200:
-                user_map_raw = {u['user_id']: (u.get('display_name') or u.get('metadata', {}).get('team_name')) for u in u_res.json()}
-                r_res = requests.get(f"https://api.sleeper.app/v1/league/{draft_id.strip()}/rosters", timeout=4)
-                if r_res.status_code == 200:
-                    for r in r_res.json():
-                        r_id = r.get('roster_id')
-                        owner_id = r.get('owner_id')
-                        disp_name = user_map_raw.get(owner_id)
-                        if disp_name and r_id and r_id <= league_size:
-                            for def_info in SOULJA_SOULJA_DEFAULTS.values():
-                                if def_info['handle'].lower() == disp_name.lower():
-                                    disp_name = def_info['name']
-                                    break
-                            st.session_state.custom_manager_names[r_id] = disp_name
-                        
-            p_res = requests.get(f"https://api.sleeper.app/v1/draft/{draft_id.strip()}/picks", timeout=4)
-            if p_res.status_code == 200:
-                for p in p_res.json():
-                    meta = p.get('metadata', {})
-                    c_name = clean_name(f"{meta.get('first_name', '')} {meta.get('last_name', '')}")
-                    amt = int(meta.get('amount') or p.get('amount') or p.get('pick_no') or 1)
-                    slot = p.get('draft_slot', 1)
-                    pos = player_pos_map.get(c_name, meta.get('position', 'FLEX'))
-                    display_name = player_display_map.get(c_name, f"{meta.get('first_name', '')} {meta.get('last_name', '')}")
-                    if c_name:
-                        st.session_state.drafted_picks[c_name] = {
-                            "price": amt, "team": slot,
-                            "player_name": display_name, "position": pos
-                        }
-        except Exception as e:
-            st.sidebar.error(f"Sync Notice: {e}")
+    # ── PRACTICE / MOCK tools (tucked away so live UI stays clean) ─────────────
+    with st.sidebar.expander("⚙️ Practice / Mock (not live)", expanded=False):
+        st.caption("Simulate picks to rehearse. Connect a live draft above for the real thing.")
+        col_s1, col_s2 = st.columns(2)
+        with col_s1:
+            if st.button("⚡ Sim 1 Pick", use_container_width=True):
+                unpicked_now = df_board[~df_board['clean_name'].isin(st.session_state.drafted_picks.keys())]
+                if len(unpicked_now) > 0:
+                    target_p = unpicked_now.iloc[0]
+                    if draft_mode == "🔨 Auction / Salary Cap":
+                        rand_team = random.choice([t for t in range(1, league_size + 1) if t != my_slot])
+                        var_price = max(1, int(round(target_p['market_cost'] * random.uniform(0.92, 1.08))))
+                    else:
+                        rand_team = snake_on_clock_team
+                        var_price = curr_overall_pick
+                    st.session_state.drafted_picks[target_p['clean_name']] = {
+                        "price": var_price, "team": rand_team,
+                        "player_name": target_p['player_name'], "position": target_p['position']}
+                    st.rerun()
+        with col_s2:
+            if st.button("🎲 Sim 5 Picks", use_container_width=True):
+                unpicked_now = df_board[~df_board['clean_name'].isin(st.session_state.drafted_picks.keys())]
+                for i in range(min(5, len(unpicked_now))):
+                    target_p = unpicked_now.iloc[i]
+                    sim_pick_num = len(st.session_state.drafted_picks) + 1
+                    if draft_mode == "🔨 Auction / Salary Cap":
+                        rand_team = random.choice([t for t in range(1, league_size + 1) if t != my_slot])
+                        var_price = max(1, int(round(target_p['market_cost'] * random.uniform(0.90, 1.10))))
+                    else:
+                        rand_team = get_snake_team_on_clock(sim_pick_num, league_size)
+                        var_price = sim_pick_num
+                    st.session_state.drafted_picks[target_p['clean_name']] = {
+                        "price": var_price, "team": rand_team,
+                        "player_name": target_p['player_name'], "position": target_p['position']}
+                st.rerun()
+        if st.button("🗑️ Reset Board", use_container_width=True):
+            st.session_state.drafted_picks = {}
+            st.session_state.last_ai_read = ""
+            st.session_state.last_ai_nom = ""
+            st.rerun()
 
 # Wallet Accounting
 for c_p, pdata in st.session_state.drafted_picks.items():
@@ -919,17 +979,31 @@ def pos_run_flag(pos):
 # history (auction_fit.json), fall back to archetype-class estimates if missing.
 _ARCH_AGGR = {"arch-stars": 1.45, "arch-idp": 1.15, "arch-hoard": 0.85, "arch-balanced": 1.05}
 
-def _rival_aggression(tid):
+def _rival_profile(tid):
+    """Full fitted profile for a rival by stable handle (aggression, pos lean,
+    stud-vs-depth), falling back to archetype-class aggression if missing."""
     info = SOULJA_SOULJA_DEFAULTS.get(tid, {})
     handle = str(info.get("handle", "")).lower()
-    fit = auction_fit.get("by_manager", {}).get(handle)
-    if fit and "aggression" in fit:
-        return float(fit["aggression"])
-    return _ARCH_AGGR.get(info.get("class", "arch-balanced"), 1.05)
+    fit = auction_fit.get("by_manager", {}).get(handle, {})
+    aggr = float(fit.get("aggression", _ARCH_AGGR.get(info.get("class", "arch-balanced"), 1.05)))
+    return {
+        "aggression": aggr,
+        "pos_lean": fit.get("pos_lean", {}),
+        "top_positions": fit.get("top_positions", []),
+        "nominates_early": fit.get("nominates_early", ""),
+        "stud_vs_depth": fit.get("stud_vs_depth", None),
+        "handle": handle,
+        "name": info.get("name", handle),
+    }
+
+def _rival_aggression(tid):
+    return _rival_profile(tid)["aggression"]
 
 def build_rivals_for_sim(target_position=None):
     """Assemble the rival list draft_sim needs: each opponent's remaining cap,
-    whether they still need the target position, and their FITTED aggression."""
+    whether they still need the target position, and their FITTED aggression.
+    need_at_pos now blends roster gap WITH each rival's real positional $ lean
+    (a rival who historically pours money into RB will contest RB harder)."""
     rivals = []
     for _tid, _w in manager_wallets.items():
         if _tid == my_slot:
@@ -939,8 +1013,12 @@ def build_rivals_for_sim(target_position=None):
         for _b, _req in _start_req.items():
             if _req > 0 and _w["pos_counts"].get(_b, 0) < _req:
                 _needs.add(_b)
-        _aggr = _rival_aggression(_tid)
-        _need_at = 1.0 if (target_position and _bucket(target_position) in _needs) else 0.4
+        _prof = _rival_profile(_tid)
+        _aggr = _prof["aggression"]
+        # need_at_pos: roster gap (0.4/1.0) nudged up by historical $ lean at pos
+        _gap_need = 1.0 if (target_position and _bucket(target_position) in _needs) else 0.4
+        _lean = float(_prof["pos_lean"].get(target_position, 0.0)) if target_position else 0.0
+        _need_at = min(1.0, _gap_need + 0.6 * _lean)   # lean of 0.30 => +0.18
         rivals.append({"cap_left": _cap, "needs": _needs,
                        "aggression": _aggr, "need_at_pos": _need_at})
     return rivals
@@ -1061,15 +1139,97 @@ if st.sidebar.button("Ask AI Strategist", use_container_width=True):
             with st.chat_message("assistant", avatar="⚡"):
                 st.markdown(ans)
 
+# roster-need targets (needed by the live QoL banner + advisor below)
+my_counts = my_wallet['pos_counts']
+pos_targets = {'QB': 2 if qb_format == '⚡ Superflex / 2-QB' else 1, 'RB': 4, 'WR': 4, 'TE': 2, 'IDP': 4 if include_idp else 0, 'DEF': 1}
+pos_gaps = {pos: max(0, target - my_counts.get(pos, 0)) for pos, target in pos_targets.items()}
+
 if draft_mode == "🔨 Auction / Salary Cap":
     st.markdown(f"### 🏈 SALARY CAP AUCTION RADAR • `{my_manager_display}` • `{qb_format}`")
+    # ── LIVE QoL BANNER: recent picks ticker + roster + guardrails ────────────
+    if live_mode:
+        _recent = sorted(st.session_state.drafted_picks.items(),
+                         key=lambda kv: kv[1].get("pick_no", 0), reverse=True)[:6]
+        if _recent:
+            _chips = " ".join(
+                f'<span style="background:#0b0f19;border:1px solid #334155;border-radius:4px;'
+                f'padding:2px 7px;margin-right:4px;font-size:0.78rem;">'
+                f'{v["player_name"]} <b style="color:#f59e0b;">${v["price"]}</b> '
+                f'<span style="color:#64748b;">→ {st.session_state.custom_manager_names.get(v["team"], "T"+str(v["team"]))}</span></span>'
+                for _, v in _recent)
+            st.markdown(f'<div style="margin-bottom:8px;">🔴 <b>LIVE</b> · Recent: {_chips}</div>',
+                        unsafe_allow_html=True)
+        # my roster tracker + guardrail line
+        _need_txt = ", ".join(f"{p}×{pos_gaps[p]}" for p in ['QB','RB','WR','TE'] if pos_gaps.get(p,0)>0) or "starters full"
+        _reserve = max(0, my_slots_left - 1)  # $1 min for each other open slot
+        st.markdown(
+            f'<div style="background:#131b2e;border-left:4px solid #10b981;padding:8px 12px;'
+            f'border-radius:6px;margin-bottom:10px;font-size:0.9rem;">'
+            f'💰 <b>Max bid ${my_max_bid}</b> · ${my_cap_left} left · {my_slots_left} slots open '
+            f'(reserve ≥${_reserve}) · <b>Still need:</b> {_need_txt}</div>',
+            unsafe_allow_html=True)
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("League Capital Remaining", f"${remaining_league_cash}", f"-${total_cash_spent} Spent")
     c2.metric("Room Inflation Index", f"{inflation_index}x", "Deflation (Bargains)" if inflation_index < 1.0 else "Inflation (Overpay)")
     c3.metric("Players Drafted", f"{len(picked_clean_names)} / {league_size * total_roster_slots}", f"{(league_size * total_roster_slots) - len(picked_clean_names)} Left")
     c4.metric("Your Max Single Bid", f"${my_max_bid}", f"${my_cap_left} Budget Left")
+
+    # ── "SHOULD I BID?" one-glance verdict for the player on the block ─────────
+    _avail_names = df_unpicked.sort_values('fair_value', ascending=False)
+    _opts = ["— select player on the block —"] + [
+        f"{r['player_name']} ({r['position']})" for _, r in _avail_names.head(200).iterrows()]
+    _sel = st.selectbox("🔨 Player currently up for bid:", _opts, index=0, key="bid_verdict_sel")
+    if _sel and not _sel.startswith("—"):
+        _pname = _sel.rsplit(" (", 1)[0]
+        _prow = _avail_names[_avail_names['player_name'] == _pname]
+        if not _prow.empty:
+            _pr = _prow.iloc[0]
+            _fair = int(_pr['fair_value'])
+            _rv = build_rivals_for_sim(_pr['position'])
+            _mc = ds.mc_auction_price({'fair_value': float(_fair), 'position': _pr['position']},
+                                      _rv, my_max_bid=my_max_bid, n_sims=250, seed=int(_pr['board_rank']))
+            _walk = min(my_max_bid, int(_mc['p80']))
+            _likely = int(_mc['median'])
+            _want = _pr['clean_name'] in st.session_state.my_targets
+            _need_pos = pos_gaps.get('IDP' if _pr['position'] in ('LB','DL','DB') else _pr['position'], 0) > 0
+            if _fair > my_max_bid:
+                _verdict, _color, _msg = "PASS", "#ef4444", f"Can't afford — fair ${_fair} > your max ${my_max_bid}."
+            elif not _need_pos and not _want:
+                _verdict, _color, _msg = "PASS", "#ef4444", f"You don't need {_pr['position']} — let a rival overpay (~${_likely})."
+            elif _likely > _fair * 1.25:
+                _verdict, _color, _msg = "LET IT GO", "#f59e0b", f"Room will overpay (~${_likely} vs ${_fair} fair). Bid only if it stalls under ${_fair}."
+            else:
+                _verdict, _color, _msg = f"BID to ${_walk}", "#10b981", f"Fair ${_fair} · likely ${_likely} · walk away past ${_walk}."
+            _star = "⭐ TARGET · " if _want else ""
+            st.markdown(
+                f'<div style="background:{_color};border-radius:8px;padding:12px 16px;margin:4px 0;">'
+                f'<span style="font-size:1.3rem;font-weight:800;color:white;">{_star}{_verdict}</span>'
+                f'<span style="font-size:0.9rem;color:#f8fafc;margin-left:10px;">{_pr["player_name"]} ({_pr["position"]}) — {_msg}</span>'
+                f'</div>', unsafe_allow_html=True)
 else:
     st.markdown(f"### 🐍 SNAKE DRAFT WAR ROOM • `{my_manager_display}` • `{qb_format}`")
+    # ── LIVE QoL BANNER: on-the-clock alert + recent picks ticker ─────────────
+    if live_mode:
+        if picks_until_my_turn == 0:
+            st.markdown('<div style="background:#15803d;border-radius:6px;padding:10px 14px;'
+                        'margin-bottom:10px;font-size:1.05rem;font-weight:700;color:white;">'
+                        '🟢 YOU ARE ON THE CLOCK — make your pick!</div>', unsafe_allow_html=True)
+        elif picks_until_my_turn <= 2:
+            st.markdown(f'<div style="background:#b45309;border-radius:6px;padding:8px 14px;'
+                        f'margin-bottom:10px;font-weight:700;color:white;">⏰ Get ready — '
+                        f'{picks_until_my_turn} pick(s) until your turn (#{next_my_pick_num}).</div>',
+                        unsafe_allow_html=True)
+        _recent = sorted(st.session_state.drafted_picks.items(),
+                         key=lambda kv: kv[1].get("pick_no", 0), reverse=True)[:6]
+        if _recent:
+            _chips = " ".join(
+                f'<span style="background:#0b0f19;border:1px solid #334155;border-radius:4px;'
+                f'padding:2px 7px;margin-right:4px;font-size:0.78rem;">#{v.get("pick_no","?")} '
+                f'{v["player_name"]} <span style="color:#64748b;">→ '
+                f'{st.session_state.custom_manager_names.get(v["team"], "T"+str(v["team"]))}</span></span>'
+                for _, v in _recent)
+            st.markdown(f'<div style="margin-bottom:8px;">🔴 <b>LIVE</b> · Recent: {_chips}</div>',
+                        unsafe_allow_html=True)
     c1, c2, c3, c4 = st.columns(4)
     curr_round = (curr_overall_pick - 1) // league_size + 1
     curr_round_pick = (curr_overall_pick - 1) % league_size + 1
@@ -1134,8 +1294,10 @@ st.markdown("---")
 
 # 5.5 Dynamic Targeting & Playbook
 my_counts = my_wallet['pos_counts']
+my_counts = my_wallet['pos_counts']
 pos_targets = {'QB': 2 if qb_format == '⚡ Superflex / 2-QB' else 1, 'RB': 4, 'WR': 4, 'TE': 2, 'IDP': 4 if include_idp else 0, 'DEF': 1}
 pos_gaps = {pos: max(0, target - my_counts.get(pos, 0)) for pos, target in pos_targets.items()}
+# (pos_gaps/targets also computed above for the live banner; recomputed here is harmless)
 
 non_faded_unpicked = df_unpicked[~df_unpicked['clean_name'].isin(st.session_state.my_fades)].copy()
 offense_needed = [p for p in ['QB', 'RB', 'WR', 'TE'] if pos_gaps.get(p, 0) > 0]
@@ -1240,25 +1402,35 @@ if draft_mode == "🔨 Auction / Salary Cap":
                         'market_cost': float(r['market_cost'])}
                        for _, r in df_unpicked.head(50).iterrows()]
     _gt_rivals = build_rivals_for_sim()
-    _best_bleeds = ds.nomination_scores(_nom_cands_full, _gt_rivals, set(st.session_state.my_targets), n_top=5)
+    _pos_depth = auction_fit.get("position_depth", {})
+    if _pos_depth:
+        _best_bleeds = ds.nomination_by_depth(_nom_cands_full, _gt_rivals, _pos_depth,
+                                              my_interest_names=set(st.session_state.my_targets),
+                                              n_top=6, protect_top_n=3)
+    else:
+        _best_bleeds = ds.nomination_scores(_nom_cands_full, _gt_rivals, set(st.session_state.my_targets), n_top=5)
 
     bleed_rows = []
     for _n in _best_bleeds:
-        if _n['i_want']:
+        if _n.get('i_want'):
             continue
+        _price = _n.get('expected_price', _n.get('drain', 0))
+        _sub = (f"{_n['interested_rivals']} rivals need {_n['position']} · pays ~${_price}"
+                + (f" · ${_n['wasted_cap']} wasted" if 'wasted_cap' in _n else ""))
         bleed_rows.append(
             '<div style="display:flex; justify-content:space-between; align-items:center; background:#0b0f19; padding:5px 8px; margin-bottom:4px; border-radius:4px; border-left:3px solid #f59e0b;">'
             '<div>'
             f'<span class="badge-pos pos-{_n["position"]}">{_n["position"]}</span> <b>{_n["player_name"]}</b><br>'
-            f'<span style="font-size:0.72rem; color:#94a3b8;">{_n["interested_rivals"]} rivals likely bid · winner pays ~${_n["drain"]}</span>'
+            f'<span style="font-size:0.72rem; color:#94a3b8;">{_sub}</span>'
             '</div>'
-            f'<div style="font-size:0.8rem; font-weight:700; color:#f59e0b; text-align:right;">${_n["drain"]} drain</div>'
+            f'<div style="font-size:0.8rem; font-weight:700; color:#f59e0b; text-align:right;">${_price}</div>'
             '</div>'
         )
     rendered_bleeds = "".join(bleed_rows[:4]) if bleed_rows else '<div style="font-size:0.85rem; color:#94a3b8;">No strong bleed targets — nominate a filler.</div>'
     nom_card_html = (
         '<div style="background:#131b2e; border-top:4px solid #f59e0b; padding:10px 12px; border-radius:6px; height:100%;">'
-        '<div style="font-size:0.75rem; color:#f59e0b; font-weight:700; margin-bottom:6px;">🎯 SMART NOMINATIONS (BLEED RIVAL CAP)</div>'
+        '<div style="font-size:0.75rem; color:#f59e0b; font-weight:700; margin-bottom:6px;">🎯 SMART NOMINATIONS (BLEED DEEP WR/RB)</div>'
+        '<div style="font-size:0.68rem; color:#64748b; margin-bottom:6px;">Mid-tier depth rivals overpay for — protects your studs & scarce TE/QB</div>'
         f'{rendered_bleeds}</div>'
     )
 
@@ -1275,8 +1447,8 @@ if draft_mode == "🔨 Auction / Salary Cap":
                 unpicked_top = ", ".join([f"{r['player_name']} (${r['market_cost']})" for _, r in df_unpicked.head(8).iterrows()])
                 rivals_sum = ", ".join([f"{d['name']} (Cap: ${200-d['spent']})" for s, d in manager_wallets.items() if s != my_slot][:5])
                 needs_sum = ", ".join([f"{pos}: {cnt}" for pos, cnt in pos_gaps.items() if cnt > 0])
-                drain_str = "; ".join(f"{n['player_name']} ({n['position']}, ~${n['drain']} drain, {n['interested_rivals']} bidders)"
-                                      for n in _best_bleeds if not n['i_want'])
+                drain_str = "; ".join(f"{n['player_name']} ({n['position']}, ~${n.get('expected_price', n.get('drain', 0))} spend, {n['interested_rivals']} bidders)"
+                                      for n in _best_bleeds if not n.get('i_want'))
                 st.session_state.last_ai_nom = generate_ai_nomination(
                     nom_strategy, unpicked_top, rivals_sum,
                     needs_sum + f"\nTop rival-cap-drain targets (nominate these): {drain_str}")
@@ -1394,8 +1566,9 @@ with st.expander("ℹ️ How to read the advisor metrics"):
             "- **Surplus / VORP-$** — arbitrage: fair value above market cost, and points-of-VORP per dollar.\n"
             "- **🏃 RUN / 🎯 rivals need** — a positional run is underway, or N rivals still must fill that slot "
             "(demand holds prices up).\n"
-            "- **Nomination drain** — expected dollars the *winning* rival pays; the optimizer nominates players "
-            "rivals want and **you don't**, to bleed their cap. Your own targets are excluded."
+            "- **Nomination drain** — the Smart Nominations card bleeds rivals on **deep** "
+            "positions (WR/RB mid-tier) where replacement is cheap, so their spend is wasted. "
+            "It protects your studs and scarce TE/QB — fitted from 3 years of your league's real auctions."
         )
     else:
         st.markdown(
@@ -1668,7 +1841,19 @@ with tab_matrix:
         })
         hist_title = def_p['archetype']
         hist_class = def_p['class']
-        hist_exploit = f"<b>{def_p['bias']}:</b> {def_p['exploit']}"
+        # Enrich the historical exploit with FITTED tendencies from 3yr Sleeper data.
+        _h = str(def_p.get('handle', '')).lower()
+        _fit = auction_fit.get('by_manager', {}).get(_h, {})
+        _fit_bits = ""
+        if _fit:
+            _lean = ", ".join(_fit.get('top_positions', [])[:2])
+            _aggr = _fit.get('aggression')
+            _nom = _fit.get('nominates_early', '')
+            _sh = _fit.get('stud_vs_depth')
+            _fit_bits = (f" <span style='color:#38bdf8;'>[Fitted: leans {_lean}, "
+                         f"aggression {_aggr:.2f}, nominates {_nom} early, "
+                         f"{int((_sh or 0)*100)}% top-3 spend]</span>")
+        hist_exploit = f"<b>{def_p['bias']}:</b> {def_p['exploit']}{_fit_bits}"
 
         if spent >= 100 or (len(bids) >= 1 and bids[0] >= 55) or (len(bids) >= 2 and (bids[0] + bids[1]) >= 85):
             return "👑 Stars & Scrubs (Live)", "arch-stars", f"<b>{mgr_display}:</b> Blew budget on top anchors (${spent} spent). Let him exhaust capital; push next wants to full fair value."

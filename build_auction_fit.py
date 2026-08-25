@@ -19,39 +19,77 @@ Writes auction_fit.json:
 """
 
 import json
+import os
 import pandas as pd
 import numpy as np
 
-HIST = "soulja_3yr_auction_history.csv"
+HIST = "sleeper_history_3yr.csv"          # stable @display_name-keyed history
+HIST_FALLBACK = "soulja_3yr_auction_history.csv"
 OUT = "auction_fit.json"
 
 
 def main():
-    d = pd.read_csv(HIST)
+    _src = HIST if os.path.exists(HIST) else HIST_FALLBACK
+    d = pd.read_csv(_src)
     if "draft_type" in d:
         d = d[d["draft_type"] == "auction"]
+    # normalize column names across the two possible sources
+    _mgr = "handle" if "handle" in d else "manager"
+    _amt = "amount" if "amount" in d else "winning_bid"
+    d = d.dropna(subset=[_amt])
     n_seasons = d["season"].nunique()
 
-    # ── per-manager aggression from top-3 spend share ─────────────────────────
+    # ── per-manager aggression from top-3 spend share (stable @display_name) ──
     stats = {}
-    for m in d["manager"].unique():
-        md = d[d["manager"] == m]
+    for m in d[_mgr].unique():
+        md = d[d[_mgr] == m]
         seasons = max(1, md["season"].nunique())
-        tot = md["winning_bid"].sum() / seasons
-        top3 = md.sort_values("winning_bid", ascending=False).groupby("season").head(3)["winning_bid"].sum() / seasons
+        tot = md[_amt].sum() / seasons
+        top3 = md.sort_values(_amt, ascending=False).groupby("season").head(3)[_amt].sum() / seasons
         top3_pct = round(float(top3) / max(1.0, float(tot)), 3)
-        stats[m] = {"top3_pct": top3_pct, "max_bid": int(md["winning_bid"].max()),
-                    "avg_bid": round(float(md["winning_bid"].mean()), 1)}
+        stats[m] = {"top3_pct": top3_pct, "max_bid": int(md[_amt].max()),
+                    "avg_bid": round(float(md[_amt].mean()), 1)}
 
     mean_t3 = float(np.mean([s["top3_pct"] for s in stats.values()]))
     std_t3 = float(np.std([s["top3_pct"] for s in stats.values()])) or 0.01
     # map z-score of top3% to a multiplier centered on 1.0 (±~0.35 band)
     by_manager = {}
+    handle_col = "manager" if "manager" in d else None
     for m, s in stats.items():
         z = (s["top3_pct"] - mean_t3) / std_t3
         aggr = round(float(np.clip(1.0 + 0.22 * z, 0.80, 1.55)), 3)
         by_manager[m.lower()] = {"aggression": aggr, "top3_pct": s["top3_pct"],
                                  "max_bid": s["max_bid"], "avg_bid": s["avg_bid"]}
+
+    # ── per-manager RICH profile from the stable-handle Sleeper history ───────
+    # positional $ lean, nomination lean, stud-vs-depth — keyed on @display_name
+    # so it lines up with the app's archetype handles across seasons.
+    if os.path.exists("sleeper_history_3yr.csv"):
+        hd = pd.read_csv("sleeper_history_3yr.csv").dropna(subset=["amount"])
+        for hnd in hd["handle"].unique():
+            md = hd[hd["handle"] == hnd]
+            tot = float(md["amount"].sum()) or 1.0
+            pos_share = {p: round(float(v) / tot, 3)
+                         for p, v in md.groupby("position")["amount"].sum().items()}
+            top2 = sorted(pos_share.items(), key=lambda kv: -kv[1])[:2]
+            early = md[md["pick_no"] <= 40]
+            nom_lean = early["position"].mode().iloc[0] if len(early) else ""
+            t3 = md.sort_values("amount", ascending=False).groupby("season").head(3)["amount"].sum()
+            t3pct = round(float(t3) / tot, 3)
+            key = hnd.lower()
+            prof = by_manager.setdefault(key, {})
+            prof.update({
+                "pos_lean": {p: pos_share.get(p, 0.0) for p in ("QB", "RB", "WR", "TE")},
+                "top_positions": [p for p, _ in top2],
+                "nominates_early": nom_lean,
+                "stud_vs_depth": t3pct,   # higher = more top-heavy
+                "max_bid": int(md["amount"].max()),
+            })
+            # if aggression wasn't set from the (team-name) stats above, derive here
+            if "aggression" not in prof:
+                z = (t3pct - mean_t3) / std_t3
+                prof["aggression"] = round(float(np.clip(1.0 + 0.22 * z, 0.80, 1.55)), 3)
+                prof["top3_pct"] = t3pct
 
     # ── league-wide stud price premium vs the ENGINE's VORP-fair value ────────
     # The VORP-share fair_value flattens the very top, but the market pays a
@@ -63,10 +101,10 @@ def main():
     o["fair"] = (_v / _v.sum()) * (180 * 10 * 0.75)
     o = o.sort_values("fair", ascending=False).reset_index(drop=True)
     off = d[d["position"].isin(["QB", "RB", "WR", "TE"])].copy()
-    off["ov_rank"] = off.groupby("season")["winning_bid"].rank(ascending=False, method="first")
+    off["ov_rank"] = off.groupby("season")[_amt].rank(ascending=False, method="first")
     prem_points = {}
     for r in range(1, 21):
-        act = off[off["ov_rank"] == r]["winning_bid"].mean()
+        act = off[off["ov_rank"] == r][_amt].mean()
         if r - 1 < len(o) and o.iloc[r - 1]["fair"] > 0 and not np.isnan(act):
             prem_points[r] = round(float(act) / float(o.iloc[r - 1]["fair"]), 3)
     # smooth into a decaying premium: top-rank premium fading to ~1.0 by rank ~25
@@ -86,6 +124,40 @@ def main():
         "stud_premium": stud_premium,
         "premium_by_rank": {str(k): v for k, v in prem_points.items()},
     }
+
+    # ── per-position DEPTH score (from full Sleeper history if available) ──────
+    # Depth = how much a position rewards bidding on non-elite players. Deep
+    # positions (lots drafted, lots of $ on rank-4+) are the best NOMINATION bait:
+    # rivals overspend on replaceable talent. Scarce positions (QB/TE) score low
+    # and are protected from nomination. Prefer the richer sleeper_history file.
+    import os as _os
+    depth_src = "sleeper_history_3yr.csv" if _os.path.exists("sleeper_history_3yr.csv") else HIST
+    dd = pd.read_csv(depth_src)
+    amt_col = "amount" if "amount" in dd else "winning_bid"
+    dd = dd.dropna(subset=[amt_col])
+    dseasons = max(1, dd["season"].nunique())
+    dd["pr"] = dd.groupby(["season", "position"])[amt_col].rank(ascending=False, method="first")
+    position_depth = {}
+    for pos in ["QB", "RB", "WR", "TE"]:
+        sub = dd[dd["position"] == pos]
+        if len(sub) == 0:
+            continue
+        n_per = len(sub) / dseasons                       # players drafted per yr
+        depth_spend = sub[sub["pr"] > 3][amt_col].sum() / dseasons   # $ on rank-4+
+        # marginal-starter cheapness: avg price of rank 6-12 (the "you can wait" band)
+        marg = sub[(sub["pr"] >= 6) & (sub["pr"] <= 12)][amt_col].mean()
+        position_depth[pos] = {
+            "n_per_yr": round(float(n_per), 1),
+            "depth_spend_per_yr": round(float(depth_spend), 0),
+            "marginal_price": round(float(marg) if not np.isnan(marg) else 0.0, 1),
+        }
+    # normalize a 0..1 depth index off depth_spend (WR/RB high, QB/TE low)
+    _ds = {p: v["depth_spend_per_yr"] for p, v in position_depth.items()}
+    _mx = max(_ds.values()) if _ds else 1.0
+    for p in position_depth:
+        position_depth[p]["depth_index"] = round(_ds[p] / max(1.0, _mx), 3)
+    out["position_depth"] = position_depth
+
     with open(OUT, "w") as f:
         json.dump(out, f, indent=2)
 
@@ -96,6 +168,11 @@ def main():
     for m, v in sorted(by_manager.items(), key=lambda kv: -kv[1]["aggression"]):
         print(f"  {m:18} aggr={v['aggression']:.2f}  (top3 {v['top3_pct']:.0%}, max ${v['max_bid']})")
     print(f"\n✅ Wrote {OUT}.")
+    if "position_depth" in out:
+        print("Position depth (bleed targets high, protect low):")
+        for p, v in sorted(out["position_depth"].items(), key=lambda kv: -kv[1]["depth_index"]):
+            print(f"  {p}: depth_index={v['depth_index']:.2f} "
+                  f"(${v['depth_spend_per_yr']:.0f}/yr on rank-4+, marginal ${v['marginal_price']:.0f})")
 
 
 if __name__ == "__main__":
