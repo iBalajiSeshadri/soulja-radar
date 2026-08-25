@@ -1766,7 +1766,8 @@ else:
 st.markdown("---")
 
 # 5. Positional Cliff Tracker
-st.markdown("#### 🚨 POSITIONAL ACTIVE TIER CLIFF TRACKER")
+st.markdown("---")
+st.markdown("##### 🚨 Positional tier cliffs")
 cliff_cols = st.columns(4)
 tier_order = ['Tier 1', 'Tier 2', 'Tier 3', 'Tier 4', 'Tier 5']
 
@@ -1824,7 +1825,8 @@ offense_needed = [p for p in ['QB', 'RB', 'WR', 'TE'] if pos_gaps.get(p, 0) > 0]
 display_positions = ['QB', 'RB', 'WR', 'TE'] if offense_needed else (['LB', 'DL', 'DB', 'DEF'] if include_idp else ['DEF'])
 
 if draft_mode == "🔨 Auction / Salary Cap":
-    st.markdown("#### 🧠 REAL-TIME DYNAMIC TARGETING & NOMINATION ADVISOR")
+    st.markdown("---")
+    st.markdown("##### 🎯 Targets — best value per position + smart nominations")
     affordable_df = non_faded_unpicked[non_faded_unpicked['fair_value'] <= my_max_bid].copy()
     primary_candidate_pool = affordable_df[affordable_df['position'].isin(display_positions)].copy()
 
@@ -1976,7 +1978,7 @@ if draft_mode == "🔨 Auction / Salary Cap":
     with rec_col3: st.markdown(nom_card_html, unsafe_allow_html=True)
 
 else:
-    st.markdown(f"#### 🐍 SNAKE DRAFT TURN PREDICTOR & VALUE ENGINE ({qb_format})")
+    st.markdown("---"); st.markdown(f"##### 🎯 Targets & turn predictor ({qb_format})")
     snake_col1, snake_col2, snake_col3 = st.columns(3)
     
     primary_candidate_pool = non_faded_unpicked[non_faded_unpicked['position'].isin(display_positions)].copy()
@@ -2098,15 +2100,16 @@ st.markdown("---")
 col_left, col_right = st.columns([1.2, 1])
 
 with col_left:
-    st.markdown("#### 🎯 PLAYER DRAFT CONSOLE")
+    st.markdown("---"); st.markdown("##### 🎯 Player console & mark drafted")
     player_options = df_unpicked['player_name'].tolist()
     if player_options:
         selected_player = st.selectbox("Search or Select Player:", player_options)
         p_data = df_unpicked[df_unpicked['player_name'] == selected_player].iloc[0]
-        fair_val = int(round(float(p_data['fair_value'])))
-        mkt_val = int(round(float(p_data['market_cost'])))
-        bid_to = int(round(fair_val * max(0.90, inflation_index)))
-        plan_cap = int(round(fair_val * 0.95))
+        _cpp = player_price(p_data)          # CANONICAL price (same as verdict/cards)
+        fair_val = _cpp['fair']
+        mkt_val = _cpp['market']
+        bid_to = min(my_max_bid, _cpp['ceiling'])
+        plan_cap = _cpp['likely']
         delta_vs_mkt = int(bid_to - mkt_val)
         adp_rank = int(p_data['market_adp'])
         my_board_rank = int(p_data['board_rank'])
@@ -2114,8 +2117,8 @@ with col_left:
         p_card_col1, p_card_col2, p_card_col3, p_card_col4 = st.columns(4)
         if draft_mode == "🔨 Auction / Salary Cap":
             p_card_col1.metric("Fair Value", f"${fair_val}")
-            p_card_col2.metric("Market ADP", f"${mkt_val}")
-            p_card_col3.metric("Plan Budget", f"${plan_cap}")
+            p_card_col2.metric("Market $", f"${mkt_val}")
+            p_card_col3.metric("Likely Sells", f"${plan_cap}")
             p_card_col4.metric("MAX BID-TO", f"${bid_to}", f"{delta_vs_mkt:+d} vs Mkt")
         else:
             p_card_col1.metric("Consensus ADP", f"#{adp_rank}")
@@ -2233,35 +2236,29 @@ with col_left:
                 st.rerun()
 
 with col_right:
-    if draft_mode == "🔨 Auction / Salary Cap":
-        st.markdown("#### 💣 TOP LANDMINE NOMINATIONS (DECOYS)")
-        df_unpicked['landmine_delta'] = (df_unpicked['market_cost'] - df_unpicked['fair_value']).astype(int)
-        safe_landmines_box = df_unpicked[~df_unpicked['clean_name'].isin(st.session_state.my_targets)]
-        landmines = safe_landmines_box[safe_landmines_box['landmine_delta'] > 5].sort_values(by='landmine_delta', ascending=False).head(4)
-        for _, lm in landmines.iterrows():
-            p_name = lm['player_name']
-            pos = lm['position']
-            mkt = lm['market_cost']
-            fv = lm['fair_value']
-            delta = int(lm['landmine_delta'])
-            card_html = (
-                '<div style="background:#131b2e; border-left:3px solid #ef4444; padding:8px 12px; margin-bottom:6px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">'
-                f'<div><b>{p_name}</b> <span class="badge-pos pos-{pos}">{pos}</span><br>'
-                f'<span style="font-size:0.75rem; color:#94a3b8;">Bait Market: <b>${mkt}</b> | True Value: <b>${fv}</b></span></div>'
-                f'<span class="landmine-tag">+${delta} TRAP</span></div>'
-            )
-            st.markdown(card_html, unsafe_allow_html=True)
+    # Your starred targets still on the board — the one list you glance at to see
+    # what YOU still want (replaces the old stale LANDMINE/QUICK-REACH cards, whose
+    # nomination role is now covered by the game-theory Smart Nominations).
+    st.markdown("#### ⭐ YOUR TARGETS REMAINING")
+    _my_left = df_unpicked[df_unpicked['clean_name'].isin(st.session_state.my_targets)]
+    if _my_left.empty:
+        st.caption("No starred targets on the board. Star players in the sidebar Wishlist, "
+                   "or check the 🚀 Edge tab for tier-jumpers.")
     else:
-        st.markdown("#### 🎯 QUICK REACH CANDIDATES")
-        high_vorp_unpicked = df_unpicked.sort_values(by='live_vorp', ascending=False).head(4)
-        for _, hr in high_vorp_unpicked.iterrows():
-            card_html = (
-                '<div style="background:#131b2e; border-left:3px solid #3b82f6; padding:8px 12px; margin-bottom:6px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">'
-                f'<div><b>{hr["player_name"]}</b> <span class="badge-pos pos-{hr["position"]}">{hr["position"]}</span><br>'
-                f'<span style="font-size:0.75rem; color:#94a3b8;">Market ADP: #{int(hr["market_adp"])} | True VORP: <b>+{round(hr["live_vorp"], 1)}</b> ({hr["tier"]})</span></div>'
-                f'<span class="landmine-tag" style="background:#3b82f620; color:#60a5fa; border:1px solid #3b82f640;">ELITE VORP</span></div>'
-            )
-            st.markdown(card_html, unsafe_allow_html=True)
+        _my_left = _my_left.sort_values('live_vorp', ascending=False).head(6)
+        for _, tr in _my_left.iterrows():
+            _tp = player_price(tr)
+            if draft_mode == "🔨 Auction / Salary Cap":
+                _right = f'<span class="landmine-tag" style="background:#10b98120; color:#34d399; border:1px solid #10b98140;">~${_tp["likely"]}</span>'
+                _sub = f'Bid-to ${min(my_max_bid, _tp["ceiling"])} | Fair ${_tp["fair"]}'
+            else:
+                _right = f'<span class="landmine-tag" style="background:#3b82f620; color:#60a5fa; border:1px solid #3b82f640;">ADP #{int(tr["market_adp"])}</span>'
+                _sub = f'VORP +{round(tr["live_vorp"],1)} ({tr["tier"]})'
+            st.markdown(
+                '<div style="background:#131b2e; border-left:3px solid #10b981; padding:8px 12px; margin-bottom:6px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">'
+                f'<div><b>{tr["player_name"]}</b> <span class="badge-pos pos-{tr["position"]}">{tr["position"]}</span><br>'
+                f'<span style="font-size:0.75rem; color:#94a3b8;">{_sub}</span></div>'
+                f'{_right}</div>', unsafe_allow_html=True)
 
 st.markdown("---")
 
