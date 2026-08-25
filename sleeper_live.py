@@ -346,3 +346,79 @@ def reconcile_picks(raw_picks, clean_name_fn, pos_map=None, display_map=None,
             "pick_no": pick_no,
         })
     return records, len(records)
+
+
+# ── LIVE DEPTH CHARTS (team + depth_chart_order) + HANDCUFFS ───────────────────
+# Sleeper's /players/nfl is the same live roster system running the draft. We use
+# it to (a) keep the board's team/depth accurate and (b) name RB handcuffs. The
+# depth_chart_order field is mostly reliable but has some noise in the RB2 slot,
+# so the handcuff logic below applies a CONFIDENCE GUARD (never surface a wrong
+# backup — say "check depth chart" instead).
+
+def fetch_players_nfl(clean_name_fn, timeout=30):
+    """Pull the full active NFL player table from Sleeper. Returns:
+      { 'by_clean': {clean_name: {'team','depth','position'}},
+        'rb_depth': {team: [(depth_order, clean_name, display_name), ...] sorted} }
+    Returns None on any failure (caller keeps existing board — no crash)."""
+    try:
+        data = _get(f"{SLEEPER}/players/nfl", timeout=timeout)
+    except Exception:
+        return None
+    if not isinstance(data, dict) or not data:
+        return None
+    by_clean, rb_depth = {}, {}
+    for p in data.values():
+        if not isinstance(p, dict) or not p.get("active"):
+            continue
+        team = p.get("team")
+        pos = p.get("position")
+        full = f"{p.get('first_name','')} {p.get('last_name','')}".strip()
+        if not full:
+            continue
+        cn = clean_name_fn(full)
+        if not cn:
+            continue
+        depth = p.get("depth_chart_order")
+        # JAX/JAC normalize (board DST uses JAC)
+        if team == "JAX":
+            team_norm = "JAX"
+        else:
+            team_norm = team
+        by_clean[cn] = {"team": team_norm, "depth": depth, "position": pos}
+        if pos == "RB" and team_norm:
+            rb_depth.setdefault(team_norm, []).append(
+                (depth if depth else 99, cn, full))
+    for t in rb_depth:
+        rb_depth[t].sort(key=lambda x: x[0])
+    return {"by_clean": by_clean, "rb_depth": rb_depth}
+
+
+def handcuff_for(clean_name, team, players_nfl, on_board_set, clean_name_fn):
+    """Given a board RB (clean_name, team) return a GROUNDED handcuff suggestion:
+      {'name': <display>, 'clean': <clean>, 'on_board': bool, 'confident': bool}
+    or None if we can't confidently name one. CONFIDENCE GUARD:
+      - the player must be the clear RB1 (depth 1) on his team,
+      - there must be exactly one RB at depth 2 (no scrambled/duplicate slot),
+      - the RB2 must have a real depth number (not the 99 'unknown' bucket).
+    If any check fails we return {'confident': False} so the UI shows a soft
+    'check depth chart' instead of a possibly-wrong name."""
+    if not players_nfl or not team:
+        return None
+    chart = players_nfl.get("rb_depth", {}).get(team, [])
+    if len(chart) < 2:
+        return None
+    me = clean_name
+    my_depth = next((d for d, c, _ in chart if c == me), None)
+    if my_depth != 1:
+        return None  # only suggest handcuffs for the lead back
+    # candidates at depth 2 with a REAL depth number
+    d2 = [(d, c, disp) for d, c, disp in chart if d == 2]
+    if len(d2) != 1:
+        return {"confident": False}  # noisy/ambiguous RB2 slot
+    _, hc_clean, hc_disp = d2[0]
+    return {
+        "name": hc_disp,
+        "clean": hc_clean,
+        "on_board": hc_clean in on_board_set,
+        "confident": True,
+    }

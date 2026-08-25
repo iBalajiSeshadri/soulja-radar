@@ -715,6 +715,35 @@ try:
 except Exception:
     df_board['ffa_flag'] = ""
 
+# --- LIVE Sleeper depth-chart refresh (team + depth) so ALL cards use accurate
+# roster data, + grounded RB handcuffs. Cached 6h; on any failure we keep the
+# board exactly as-is (feature silently off, never crashes the app). ---
+@st.cache_data(ttl=21600, show_spinner=False)
+def load_sleeper_depth():
+    return sl.fetch_players_nfl(clean_name)
+
+_players_nfl = load_sleeper_depth()
+df_board['handcuff'] = ""
+df_board['handcuff_on_board'] = False
+if _players_nfl:
+    _bset = set(df_board['clean_name'])
+    _by = _players_nfl.get('by_clean', {})
+    for _idx, _r in df_board.iterrows():
+        _lv = _by.get(_r['clean_name'])
+        # refresh team + depth from live Sleeper (keep board value if missing)
+        if _lv:
+            if _lv.get('team'):
+                df_board.at[_idx, 'team'] = _lv['team']
+            if _lv.get('depth') is not None:
+                df_board.at[_idx, 'depth_chart_order'] = _lv['depth']
+        # grounded handcuff for lead-back RBs (confidence-guarded)
+        if _r['position'] == 'RB':
+            _hc = sl.handcuff_for(_r['clean_name'], df_board.at[_idx, 'team'],
+                                  _players_nfl, _bset, clean_name)
+            if _hc and _hc.get('confident'):
+                df_board.at[_idx, 'handcuff'] = _hc['name']
+                df_board.at[_idx, 'handcuff_on_board'] = bool(_hc['on_board'])
+
 player_pos_map = dict(zip(df_board['clean_name'], df_board['position']))
 player_display_map = dict(zip(df_board['clean_name'], df_board['player_name']))
 
@@ -1500,6 +1529,15 @@ if draft_mode == "🔨 Auction / Salary Cap":
             _ffa_f = str(_pr.get('ffa_flag', '')).strip()
             if _ffa_f:
                 _ffa_txt = f" {_ffa_f}"
+            # HANDCUFF (grounded, live Sleeper depth): for a workhorse RB worth
+            # protecting, name his backup. Only fires when we confidently know the
+            # RB2 (confidence guard in sleeper_live). Value: late-round insurance.
+            _hc_txt = ""
+            _hc = str(_pr.get('handcuff', '')).strip()
+            if _pr['position'] == 'RB' and _hc and float(_pr.get('live_vorp', _pr.get('vorp', 0))) >= 40:
+                _where = "grab him late as insurance" if _pr.get('handcuff_on_board') else "stash off waivers"
+                _hc_txt = (f" 🔗 <b>Handcuff:</b> {_hc} — if you win {_pr['player_name']}, "
+                           f"{_where} (protects a workhorse pick).")
             if _fair > my_max_bid and _mkt_fair > my_max_bid:
                 _verdict, _color, _msg = "CAN'T AFFORD", "#ef4444", f"Market ~${max(_likely,_mkt_fair)} exceeds your max ${my_max_bid}. Would strand your roster."
             elif not _need_pos and not _want:
@@ -1507,7 +1545,7 @@ if draft_mode == "🔨 Auction / Salary Cap":
             else:
                 _verdict, _color = f"BID to ${_bid_ceiling}", "#10b981"
                 _msg = (f"League market for {_pr['position']}{_pos_rank if _pos_rank<99 else ''} ~${_likely}. "
-                        f"Ceiling ${_bid_ceiling} (real tier price).{_tier_drop_txt}{_edge_txt}{_ffa_txt}")
+                        f"Ceiling ${_bid_ceiling} (real tier price).{_tier_drop_txt}{_edge_txt}{_ffa_txt}{_hc_txt}")
             _star = "⭐ TARGET · " if _want else ""
             st.markdown(
                 f'<div style="background:{_color};border-radius:8px;padding:14px 18px;margin:4px 0 8px 0;">'
