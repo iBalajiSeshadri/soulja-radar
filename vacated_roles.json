@@ -1,7 +1,7 @@
 {
   "_meta": {
     "source": "Sleeper 2025 stats vs 2026 rosters",
-    "note": "Deterministic vacated targets/carries attributed to the top returning player at each team+position."
+    "note": "Deterministic vacated targets/carries attributed to the top returning player at each team+position; plus 2025 workhorse carry-share (RB) and target-share (WR) for returning players."
   },
   "players": {
     "jeremiyah love": {
@@ -22,7 +22,9 @@
       "inherits_targets": 17,
       "from": [
         "Emanuel Wilson (125c/17tgt)"
-      ]
+      ],
+      "workhorse_share": 0.61,
+      "carries_2025": 234
     },
     "rhamondre stevenson": {
       "team": "NE",
@@ -32,7 +34,9 @@
       "from": [
         "Antonio Gibson (25c/3tgt)",
         "Terrell Jennings (23c/1tgt)"
-      ]
+      ],
+      "workhorse_share": 0.35,
+      "carries_2025": 130
     },
     "chig okonkwo": {
       "team": "WAS",
@@ -59,7 +63,9 @@
       "inherits_targets": 39,
       "from": [
         "DeAndre Hopkins (0c/39tgt)"
-      ]
+      ],
+      "target_share": 0.56,
+      "targets_2025": 118
     },
     "ladd mcconkey": {
       "team": "LAC",
@@ -68,7 +74,9 @@
       "inherits_targets": 122,
       "from": [
         "Keenan Allen (0c/122tgt)"
-      ]
+      ],
+      "target_share": 0.29,
+      "targets_2025": 106
     },
     "dk metcalf": {
       "team": "PIT",
@@ -79,7 +87,9 @@
         "Calvin Austin (0c/55tgt)",
         "Adam Thielen (0c/35tgt)",
         "Marquez Valdes-Scantling (0c/29tgt)"
-      ]
+      ],
+      "target_share": 0.38,
+      "targets_2025": 99
     },
     "dj moore": {
       "team": "BUF",
@@ -98,7 +108,9 @@
       "from": [
         "Mike Evans (0c/61tgt)",
         "Sterling Shepard (4c/53tgt)"
-      ]
+      ],
+      "target_share": 0.35,
+      "targets_2025": 127
     },
     "jonathan taylor": {
       "team": "IND",
@@ -107,7 +119,9 @@
       "inherits_targets": 17,
       "from": [
         "Ameer Abdullah (14c/17tgt)"
-      ]
+      ],
+      "workhorse_share": 0.87,
+      "carries_2025": 323
     },
     "aj brown": {
       "team": "NE",
@@ -126,7 +140,9 @@
       "inherits_targets": 12,
       "from": [
         "Raheem Mostert (22c/12tgt)"
-      ]
+      ],
+      "workhorse_share": 0.87,
+      "carries_2025": 266
     },
     "hunter henry": {
       "team": "NE",
@@ -154,7 +170,9 @@
       "inherits_targets": 30,
       "from": [
         "Kalif Raymond (2c/30tgt)"
-      ]
+      ],
+      "target_share": 0.51,
+      "targets_2025": 172
     },
     "harold fannin": {
       "team": "CLE",
@@ -173,7 +191,9 @@
       "from": [
         "Marquise Brown (0c/74tgt)",
         "JuJu Smith-Schuster (0c/45tgt)"
-      ]
+      ],
+      "target_share": 0.25,
+      "targets_2025": 78
     },
     "kenneth walker": {
       "team": "KC",
@@ -203,7 +223,9 @@
       "from": [
         "Dyami Brown (6c/37tgt)",
         "Tim Patrick (0c/24tgt)"
-      ]
+      ],
+      "target_share": 0.23,
+      "targets_2025": 95
     },
     "juwan johnson": {
       "team": "NO",
@@ -241,7 +263,9 @@
       "inherits_targets": 52,
       "from": [
         "Christian Kirk (0c/52tgt)"
-      ]
+      ],
+      "target_share": 0.35,
+      "targets_2025": 120
     },
     "rome odunze": {
       "team": "CHI",
@@ -251,7 +275,9 @@
       "from": [
         "DJ Moore (15c/85tgt)",
         "Olamide Zaccheaus (4c/65tgt)"
-      ]
+      ],
+      "target_share": 0.29,
+      "targets_2025": 90
     },
     "devonta smith": {
       "team": "PHI",
@@ -261,7 +287,9 @@
       "from": [
         "A.J. Brown (0c/121tgt)",
         "Jahan Dotson (0c/36tgt)"
-      ]
+      ],
+      "target_share": 0.4,
+      "targets_2025": 113
     },
     "jahmyr gibbs": {
       "team": "DET",
@@ -270,7 +298,9 @@
       "inherits_targets": 29,
       "from": [
         "David Montgomery (158c/29tgt)"
-      ]
+      ],
+      "workhorse_share": 0.6,
+      "carries_2025": 243
     },
     "tetairoa mcmillan": {
       "team": "CAR",
@@ -279,7 +309,9 @@
       "inherits_targets": 26,
       "from": [
         "Hunter Renfrow (0c/26tgt)"
-      ]
+      ],
+      "target_share": 0.42,
+      "targets_2025": 122
     },
     "marvin harrison": {
       "team": "ARI",
@@ -288,7 +320,9 @@
       "inherits_targets": 33,
       "from": [
         "Greg Dortch (7c/33tgt)"
-      ]
+      ],
+      "target_share": 0.26,
+      "targets_2025": 73
     },
     "javonte williams": {
       "team": "DAL",
@@ -297,7 +331,9 @@
       "inherits_targets": 8,
       "from": [
         "Miles Sanders (20c/8tgt)"
-      ]
+      ],
+      "workhorse_share": 0.69,
+      "carries_2025": 252
     },
     "drake london": {
       "team": "ATL",
@@ -307,7 +343,9 @@
       "from": [
         "Darnell Mooney (0c/72tgt)",
         "David Sills (0c/36tgt)"
-      ]
+      ],
+      "target_share": 0.43,
+      "targets_2025": 112
     },
     "malik willis": {
       "team": "MIA",
@@ -325,7 +363,9 @@
       "inherits_targets": 111,
       "from": [
         "Michael Pittman (0c/111tgt)"
-      ]
+      ],
+      "target_share": 0.28,
+      "targets_2025": 84
     },
     "carnell tate": {
       "team": "TEN",
@@ -343,7 +383,9 @@
       "inherits_targets": 50,
       "from": [
         "Rico Dowdle (236c/50tgt)"
-      ]
+      ],
+      "workhorse_share": 0.34,
+      "carries_2025": 134
     },
     "bhayshul tuten": {
       "team": "JAX",
@@ -361,7 +403,9 @@
       "inherits_targets": 85,
       "from": [
         "Kenny Gainwell (114c/85tgt)"
-      ]
+      ],
+      "workhorse_share": 0.6,
+      "carries_2025": 211
     },
     "geno smith": {
       "team": "NYJ",
@@ -389,7 +433,9 @@
       "inherits_targets": 4,
       "from": [
         "Khalil Herbert (16c/4tgt)"
-      ]
+      ],
+      "workhorse_share": 0.73,
+      "carries_2025": 243
     },
     "ceedee lamb": {
       "team": "DAL",
@@ -398,7 +444,9 @@
       "inherits_targets": 34,
       "from": [
         "Jalen Tolbert (0c/34tgt)"
-      ]
+      ],
+      "target_share": 0.3,
+      "targets_2025": 117
     },
     "christian watson": {
       "team": "GB",
@@ -417,7 +465,9 @@
       "inherits_targets": 4,
       "from": [
         "Hassan Haskins (17c/4tgt)"
-      ]
+      ],
+      "workhorse_share": 0.35,
+      "carries_2025": 124
     },
     "malik nabers": {
       "team": "NYG",
@@ -444,7 +494,9 @@
       "inherits_targets": 16,
       "from": [
         "Tyler Allgeier (143c/16tgt)"
-      ]
+      ],
+      "workhorse_share": 0.65,
+      "carries_2025": 287
     },
     "bucky irving": {
       "team": "TB",
@@ -453,7 +505,9 @@
       "inherits_targets": 45,
       "from": [
         "Rachaad White (132c/45tgt)"
-      ]
+      ],
+      "workhorse_share": 0.43,
+      "carries_2025": 173
     },
     "quinshon judkins": {
       "team": "CLE",
@@ -462,7 +516,9 @@
       "inherits_targets": 32,
       "from": [
         "Jerome Ford (24c/32tgt)"
-      ]
+      ],
+      "workhorse_share": 0.65,
+      "carries_2025": 230
     },
     "jadarian price": {
       "team": "SEA",
@@ -480,7 +536,9 @@
       "inherits_targets": 12,
       "from": [
         "Brian Robinson (92c/12tgt)"
-      ]
+      ],
+      "workhorse_share": 0.77,
+      "carries_2025": 311
     },
     "jordan love": {
       "team": "GB",
@@ -498,7 +556,9 @@
       "inherits_targets": 53,
       "from": [
         "Jalen Nailor (2c/53tgt)"
-      ]
+      ],
+      "target_share": 0.51,
+      "targets_2025": 141
     },
     "isaiah likely": {
       "team": "NYG",
@@ -516,7 +576,9 @@
       "inherits_targets": 4,
       "from": [
         "Ty Chandler (17c/4tgt)"
-      ]
+      ],
+      "workhorse_share": 0.47,
+      "carries_2025": 159
     },
     "travis etienne": {
       "team": "NO",
@@ -534,7 +596,193 @@
       "inherits_targets": 12,
       "from": [
         "Keaton Mitchell (59c/12tgt)"
-      ]
+      ],
+      "workhorse_share": 0.79,
+      "carries_2025": 307
+    },
+    "tre tucker": {
+      "target_share": 0.43,
+      "targets_2025": 92
+    },
+    "michael wilson": {
+      "target_share": 0.45,
+      "targets_2025": 126
+    },
+    "blake corum": {
+      "workhorse_share": 0.35,
+      "carries_2025": 145
+    },
+    "xavier worthy": {
+      "target_share": 0.23,
+      "targets_2025": 73
+    },
+    "adonai mitchell": {
+      "target_share": 0.25,
+      "targets_2025": 74
+    },
+    "troy franklin": {
+      "target_share": 0.28,
+      "targets_2025": 104
+    },
+    "brian thomas": {
+      "target_share": 0.22,
+      "targets_2025": 91
+    },
+    "kimani vidal": {
+      "workhorse_share": 0.44,
+      "carries_2025": 155
+    },
+    "tyrone tracy": {
+      "workhorse_share": 0.44,
+      "carries_2025": 176
+    },
+    "woody marks": {
+      "workhorse_share": 0.5,
+      "carries_2025": 196
+    },
+    "cam skattebo": {
+      "workhorse_share": 0.26,
+      "carries_2025": 101
+    },
+    "rj harvey": {
+      "workhorse_share": 0.42,
+      "carries_2025": 146
+    },
+    "elic ayomanor": {
+      "target_share": 0.32,
+      "targets_2025": 89
+    },
+    "treveyon henderson": {
+      "workhorse_share": 0.48,
+      "carries_2025": 180
+    },
+    "jacory croskeymerritt": {
+      "workhorse_share": 0.51,
+      "carries_2025": 175
+    },
+    "kyle monangai": {
+      "workhorse_share": 0.42,
+      "carries_2025": 169
+    },
+    "chimere dike": {
+      "target_share": 0.27,
+      "targets_2025": 74
+    },
+    "davante adams": {
+      "target_share": 0.31,
+      "targets_2025": 114
+    },
+    "alvin kamara": {
+      "workhorse_share": 0.43,
+      "carries_2025": 131
+    },
+    "cooper kupp": {
+      "target_share": 0.2,
+      "targets_2025": 70
+    },
+    "aaron jones": {
+      "workhorse_share": 0.39,
+      "carries_2025": 132
+    },
+    "saquon barkley": {
+      "workhorse_share": 0.76,
+      "carries_2025": 280
+    },
+    "courtland sutton": {
+      "target_share": 0.33,
+      "targets_2025": 124
+    },
+    "jakobi meyers": {
+      "target_share": 0.27,
+      "targets_2025": 110
+    },
+    "tony pollard": {
+      "workhorse_share": 0.74,
+      "carries_2025": 242
+    },
+    "devin singletary": {
+      "workhorse_share": 0.3,
+      "carries_2025": 119
+    },
+    "jerry jeudy": {
+      "target_share": 0.46,
+      "targets_2025": 106
+    },
+    "dandre swift": {
+      "workhorse_share": 0.56,
+      "carries_2025": 223
+    },
+    "tee higgins": {
+      "target_share": 0.27,
+      "targets_2025": 98
+    },
+    "jk dobbins": {
+      "workhorse_share": 0.44,
+      "carries_2025": 153
+    },
+    "jamarr chase": {
+      "target_share": 0.5,
+      "targets_2025": 185
+    },
+    "khalil shakir": {
+      "target_share": 0.34,
+      "targets_2025": 95
+    },
+    "george pickens": {
+      "target_share": 0.35,
+      "targets_2025": 137
+    },
+    "james cook": {
+      "workhorse_share": 0.74,
+      "carries_2025": 309
+    },
+    "chris olave": {
+      "target_share": 0.62,
+      "targets_2025": 156
+    },
+    "jameson williams": {
+      "target_share": 0.3,
+      "targets_2025": 102
+    },
+    "kyren williams": {
+      "workhorse_share": 0.63,
+      "carries_2025": 259
+    },
+    "rashid shaheed": {
+      "target_share": 0.26,
+      "targets_2025": 92
+    },
+    "chase brown": {
+      "workhorse_share": 0.69,
+      "carries_2025": 232
+    },
+    "devon achane": {
+      "workhorse_share": 0.63,
+      "carries_2025": 238
+    },
+    "jaxon smithnjigba": {
+      "target_share": 0.46,
+      "targets_2025": 163
+    },
+    "puka nacua": {
+      "target_share": 0.45,
+      "targets_2025": 166
+    },
+    "josh downs": {
+      "target_share": 0.3,
+      "targets_2025": 88
+    },
+    "zach charbonnet": {
+      "workhorse_share": 0.42,
+      "carries_2025": 184
+    },
+    "quentin johnston": {
+      "target_share": 0.23,
+      "targets_2025": 85
+    },
+    "jordan addison": {
+      "target_share": 0.29,
+      "targets_2025": 79
     }
   }
 }

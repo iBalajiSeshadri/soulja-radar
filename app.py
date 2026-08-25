@@ -1107,6 +1107,21 @@ def _edge_components(r):
                 reasons.append('camp riser')
         elif mult < 0.97:
             bonus -= (1.0 - mult) * 80
+    # WORKHORSE SHARE (user: 'solo RB1 with low shared carries is gold'). A proven
+    # bell-cow role carries over; a committee is a discount. From 2025 team share.
+    _sh = vacated_roles.get(r['clean_name'], {})
+    _whs = _sh.get('workhorse_share')
+    if _whs is not None:
+        if _whs >= 0.70:
+            bonus += 10 + (_whs - 0.70) * 40      # +10 at 70%, up to ~+17 at 87%
+            reasons.append(f"🐴 workhorse: {int(_whs*100)}% of team carries (bell-cow)")
+        elif _whs < 0.50:
+            bonus -= 6
+            reasons.append(f"committee back ({int(_whs*100)}% share) — capped upside")
+    _tgs = _sh.get('target_share')
+    if _tgs is not None and _tgs >= 0.28:
+        bonus += 8 + (_tgs - 0.28) * 40
+        reasons.append(f"🎯 target hog: {int(_tgs*100)}% of team targets")
     return base + bonus, reasons
 
 _edge_vals = df_board.apply(lambda r: _edge_components(r), axis=1)

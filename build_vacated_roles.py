@@ -82,6 +82,33 @@ def main():
 
     print(f"   {len(vacated)} team-position vacated pools found.")
 
+    # ── WORKHORSE / TARGET SHARE (user: 'solo RB1 with low shared carries = gold')
+    # For each team, compute each RB's share of team RB carries and each WR's share
+    # of team WR targets in 2025. A returning player who commanded a high share is a
+    # proven bell-cow (fantasy gold); a low share = committee risk.
+    team_rb_car = defaultdict(float)   # team2025 -> total RB carries
+    team_wr_tgt = defaultdict(float)   # team2025 -> total WR targets
+    for pid, e in vol.items():
+        p = pdb.get(pid, {})
+        pos = p.get("position")
+        if pos == "RB":
+            team_rb_car[e["team2025"]] += e["rush_att"]
+        elif pos == "WR":
+            team_wr_tgt[e["team2025"]] += e["rec_tgt"]
+    share_map = {}   # clean_name -> {workhorse_share / target_share} for RETURNING players
+    for pid, e in vol.items():
+        p = pdb.get(pid, {})
+        pos = p.get("position"); cur = p.get("team"); t25 = e["team2025"]
+        if cur != t25:   # only returning players (same team) — a proven role that carries over
+            continue
+        cn = clean_name(f"{p.get('first_name','')} {p.get('last_name','')}")
+        if pos == "RB" and team_rb_car.get(t25, 0) > 50 and e["rush_att"] >= 100:
+            share_map[cn] = {"workhorse_share": round(e["rush_att"] / team_rb_car[t25], 2),
+                             "carries_2025": int(e["rush_att"])}
+        elif pos == "WR" and team_wr_tgt.get(t25, 0) > 50 and e["rec_tgt"] >= 70:
+            share_map[cn] = {"target_share": round(e["rec_tgt"] / team_wr_tgt[t25], 2),
+                             "targets_2025": int(e["rec_tgt"])}
+
     # attribute each vacated pool to the top RETURNING/incoming player at that
     # team+position, using the draft board's projections (proj_fpts).
     import csv
@@ -104,19 +131,26 @@ def main():
             "from": [f"{n} ({c}c/{t}tgt)" for n, c, t in sorted(pool["from"], key=lambda x: -(x[1]+x[2]))[:3]],
         }
 
+    # merge in workhorse/target share for returning players (may or may not also
+    # be a vacated inheritor)
+    for cn, sh in share_map.items():
+        out.setdefault(cn, {}).update(sh)
+
     with open(OUT, "w") as f:
         json.dump({"_meta": {"source": "Sleeper 2025 stats vs 2026 rosters",
                              "note": "Deterministic vacated targets/carries attributed to the top "
-                                     "returning player at each team+position."},
+                                     "returning player at each team+position; plus 2025 workhorse "
+                                     "carry-share (RB) and target-share (WR) for returning players."},
                    "players": out}, f, indent=2)
     print(f"2. Wrote {OUT} — {len(out)} players inheriting vacated volume.")
     # show the biggest inheritors
-    top_inheritors = sorted(out.items(), key=lambda kv: -(kv[1]["inherits_carries"] + kv[1]["inherits_targets"]))[:10]
+    top_inheritors = sorted(out.items(), key=lambda kv: -(kv[1].get("inherits_carries", 0) + kv[1].get("inherits_targets", 0)))[:10]
     print("   Biggest vacated-role inheritors:")
     for cn, v in top_inheritors:
         nm = next((r["player_name"] for r in board if r["clean_name"] == cn), cn)
-        print(f"     {nm:22} {v['position']} {v['team']}: +{v['inherits_carries']}c/+{v['inherits_targets']}tgt "
-              f"from {v['from'][0] if v['from'] else '?'}")
+        print(f"     {nm:22} {v.get('position','?')} {v.get('team','?')}: "
+              f"+{v.get('inherits_carries',0)}c/+{v.get('inherits_targets',0)}tgt "
+              f"from {v['from'][0] if v.get('from') else '?'}")
 
 
 if __name__ == "__main__":
