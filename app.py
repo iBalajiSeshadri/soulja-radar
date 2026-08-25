@@ -308,6 +308,19 @@ def load_auction_fit():
 
 auction_fit = load_auction_fit()
 
+@st.cache_data(show_spinner=False)
+def load_vacated_roles():
+    """Deterministic vacated targets/carries (2025 usage vs 2026 rosters) — the
+    grounded tier-jumper signal. Maps clean_name -> inherited volume + who left."""
+    if not os.path.exists("vacated_roles.json"):
+        return {}
+    try:
+        return json.load(open("vacated_roles.json")).get("players", {})
+    except Exception:
+        return {}
+
+vacated_roles = load_vacated_roles()
+
 def stud_premium_for_rank(overall_rank):
     """Market premium over engine-fair for a top overall player (decays to ~1.0
     by ~rank 25), fitted from real winning bids. Used to reflect that the market
@@ -1066,6 +1079,18 @@ def _edge_components(r):
             reasons.append('camp riser')
     elif mult < 0.97:
         bonus -= (1.0 - mult) * 80
+    # DETERMINISTIC vacated-role signal (2025 usage vs 2026 roster) — the grounded
+    # tier-jumper: inherited carries+targets from a departed teammate. Bonus scales
+    # with the vacated volume; reason names who left (cited by real 2025 stats).
+    _vac = vacated_roles.get(r['clean_name'])
+    if _vac:
+        _inh = _vac.get('inherits_carries', 0) + _vac.get('inherits_targets', 0)
+        if _inh >= 40:
+            bonus += min(25, _inh / 12.0)   # up to +25 for a huge vacated role
+            _src = _vac.get('from', [])
+            reasons.append(f"inherits {_vac.get('inherits_carries',0)}c/"
+                           f"{_vac.get('inherits_targets',0)}tgt vacated by "
+                           f"{_src[0].split(' (')[0] if _src else 'departure'}")
     return base + bonus, reasons
 
 _edge_vals = df_board.apply(lambda r: _edge_components(r), axis=1)
