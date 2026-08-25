@@ -2144,28 +2144,52 @@ else:
             )
 
     with snake_col2:
-        # "Steals at ADP" is an OFFENSE concept — ADP tracks QB/RB/WR/TE draft
-        # position; IDP/DST have no meaningful ADP (their custom_rank is a huge
-        # sentinel), so restrict to offense AND require a real ADP. This kills the
-        # LB/DL flood ('+9999884 spots value') at the root.
+        # "Steals at ADP" — a genuine steal is when a player's VALUE (VORP) outranks
+        # where the room drafts him (ADP). Offense-only + real-ADP (IDP/DST have no
+        # ADP). Score = VORP-vs-ADP: how far his live_vorp rank beats his ADP slot.
+        # Then DIVERSIFY across QB/RB/WR/TE (round-robin) so the card is a real mix,
+        # not all-QB (superflex QBs skew a raw board_rank surplus).
         _adp_pool = non_faded_unpicked[
             non_faded_unpicked.get('has_adp', True)
             & non_faded_unpicked['position'].isin(['QB', 'RB', 'WR', 'TE'])
         ].copy()
         _adp_pool['adp_surplus'] = _adp_pool['market_adp'] - _adp_pool['board_rank']
-        fallers = _adp_pool[_adp_pool['adp_surplus'] >= 2].sort_values(by=['adp_surplus', 'live_vorp'], ascending=[False, False]).head(4)
-        
+        # value-vs-cost: rank by VORP among the ADP pool, compare to ADP order.
+        _adp_pool = _adp_pool.sort_values('live_vorp', ascending=False).reset_index(drop=True)
+        _adp_pool['vorp_rank'] = _adp_pool.index + 1
+        _adp_pool = _adp_pool.sort_values('market_adp').reset_index(drop=True)
+        _adp_pool['adp_order'] = _adp_pool.index + 1
+        # steal_score: drafted later (high adp_order) than his value warrants (low vorp_rank)
+        _adp_pool['steal_score'] = _adp_pool['adp_order'] - _adp_pool['vorp_rank']
+        _cand = _adp_pool[_adp_pool['steal_score'] >= 2].sort_values(
+            by=['steal_score', 'live_vorp'], ascending=[False, False])
+        # round-robin by position for a balanced mix (max ~2 per position in top 4)
+        from collections import defaultdict as _ddf
+        _byp = _ddf(list)
+        for _, _rw in _cand.iterrows():
+            _byp[_rw['position']].append(_rw)
+        _porder = sorted(_byp.keys(), key=lambda p: _byp[p][0]['steal_score'], reverse=True) if _byp else []
+        _mix, _k = [], 0
+        while len(_mix) < 4 and any(_byp.values()) and _porder:
+            _pp = _porder[_k % len(_porder)]
+            if _byp[_pp]:
+                _mix.append(_byp[_pp].pop(0))
+            _k += 1
+            if _k > 100:
+                break
+        fallers = pd.DataFrame(_mix) if _mix else _cand.head(4)
+
         faller_rows = []
         for _, f_row in fallers.iterrows():
             f_starred = "⭐ " if f_row['clean_name'] in st.session_state.my_targets else ""
-            val_spots = int(f_row['adp_surplus'])
+            val_spots = int(f_row.get('steal_score', f_row.get('adp_surplus', 0)))
             row_html = (
                 '<div style="display:flex; justify-content:space-between; align-items:center; background:#0b0f19; padding:5px 8px; margin-bottom:4px; border-radius:4px; border-left:3px solid #3b82f6;">'
                 '<div>'
                 f'<span class="badge-pos pos-{f_row["position"]}">{f_row["position"]}</span> <b>{f_row["player_name"]}</b> {f_starred}<br>'
-                f'<span style="font-size:0.72rem; color:#94a3b8;">Market ADP: #{int(f_row["market_adp"])} | Board Rank: #{int(f_row["board_rank"])}</span>'
+                f'<span style="font-size:0.72rem; color:#94a3b8;">ADP #{int(f_row["market_adp"])} · VORP +{round(f_row["live_vorp"],1)} ({f_row["tier"]})</span>'
                 '</div>'
-                f'<div style="font-size:0.8rem; font-weight:700; color:#38bdf8;">+{val_spots} Spots Value</div>'
+                f'<div style="font-size:0.8rem; font-weight:700; color:#38bdf8;">+{val_spots} value slots</div>'
                 '</div>'
             )
             faller_rows.append(row_html)
