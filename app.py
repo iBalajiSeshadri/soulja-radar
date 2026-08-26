@@ -118,7 +118,7 @@ LEAGUE_PRESETS = {
         "idp_mode": "🛡️ Offense + IDP (Soulja)",
         "league_size": 10,
         "my_slot": 4,
-        "league_id": "",
+        "league_id": "1385816551680143360",
         "use_soulja_names": True,
         "board": None,          # Soulja uses the default board (UNCHANGED)
         "scoring": "soulja",    # 0.4 PPR / 0.9 TE premium (config.py)
@@ -468,9 +468,16 @@ if st.sidebar.button("🚀 Pull Latest News & Sync Wire", use_container_width=Tr
 # ═══════════════════════ 🔴 LIVE DRAFT CONNECTION ═══════════════════════════
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🔴 Live Draft")
+# Auto-fill the League ID from the active preset (set on the previous run; defaults
+# to Soulja on first load). You can still overwrite it manually. This means picking
+# a league from the 🏟️ selector below auto-populates its Sleeper ID here.
+_active_preset_name = st.session_state.get("active_preset", list(LEAGUE_PRESETS.keys())[0])
+_active_preset_cfg = LEAGUE_PRESETS.get(_active_preset_name) or {}
+_preset_league_id = _active_preset_cfg.get("league_id", "") if isinstance(_active_preset_cfg, dict) else ""
+_live_id_default = st.session_state.live_draft_id or _preset_league_id or LEAGUE_ID
 _live_id_input = st.sidebar.text_input(
-    "Sleeper League ID", value=st.session_state.live_draft_id or LEAGUE_ID,
-    help="Paste your Sleeper LEAGUE id (from the league URL). The app finds the draft automatically.")
+    "Sleeper League ID", value=_live_id_default,
+    help="Auto-filled from your selected League preset — or paste any Sleeper LEAGUE id. The app finds the draft automatically.")
 
 _lc1, _lc2 = st.sidebar.columns(2)
 with _lc1:
@@ -532,6 +539,9 @@ if _chosen_preset != st.session_state.active_preset:
     for _k in ("qb_format_ctl", "idp_mode_ctl", "league_size_ctl", "my_slot_ctl", "draft_mode_ctl"):
         st.session_state.pop(_k, None)
     st.session_state.active_preset = _chosen_preset
+    # follow the new preset's Sleeper league id (unless we're mid-connection)
+    if not st.session_state.get("live_connected"):
+        st.session_state.live_draft_id = (_preset or {}).get("league_id", "") if _preset else ""
     if _preset and _preset.get("use_soulja_names"):
         st.session_state.custom_manager_names = {s: p["name"] for s, p in SOULJA_SOULJA_DEFAULTS.items()}
     elif _preset is not None:
