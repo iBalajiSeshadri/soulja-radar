@@ -135,6 +135,11 @@ LEAGUE_PRESETS = {
         "use_soulja_names": False,
         "board": None,          # nearly identical scoring to Soulja (0.4 PPR); reuse default board
         "scoring": "snake_04ppr_te02",
+        # This league's TE premium is 0.2 vs Soulja's 0.9. The shared board's TE
+        # values are Soulja-weighted (0.9), so TEs read RICHER here than they play.
+        "te_caution": "TE premium here is 0.2 (Soulja is 0.9) — the board's TE values "
+                      "are Soulja-weighted, so TEs are worth LESS in this league. "
+                      "Fade TEs a tier / don't pay the board's TE price.",
     },
     # VERIFIED live from Sleeper 2026-08-26: 'Congress' (keeper/dynasty) — 10 team,
     # SUPERFLEX, 2x IDP_FLEX, FULL 1.0 PPR, NO TE premium, SNAKE draft.
@@ -596,6 +601,12 @@ if _preset_board and os.path.exists(_preset_board):
     # re-apply the same sanitize/derive the default load did (market_adp/has_adp
     # are set inside load_draft_board, so a fresh load already has them).
     st.sidebar.caption(f"📊 Rankings scored for **{_chosen_preset}** ({(_preset or {}).get('scoring','custom')}).")
+
+# Scoring-mismatch caution: when a preset reuses the default (Soulja) board but its
+# scoring differs on a specific position, warn so you don't over/under-value it.
+_te_caution = (_preset or {}).get("te_caution")
+if _te_caution and not _preset_board:
+    st.sidebar.warning(f"⚠️ TE note for {_chosen_preset}: {_te_caution}")
 
 # (Legacy "Connection Mode" radio removed — the 🔴 Live Draft panel now handles
 # live connection, and mock/manual tools live in the Practice expander.)
