@@ -120,24 +120,34 @@ LEAGUE_PRESETS = {
         "my_slot": 4,
         "league_id": "",
         "use_soulja_names": True,
+        "board": None,          # Soulja uses the default board (UNCHANGED)
+        "scoring": "soulja",    # 0.4 PPR / 0.9 TE premium (config.py)
     },
+    # VERIFIED live from Sleeper 2026-08-26: 'How Can She Still Slap' — 12 team,
+    # SUPERFLEX, 2x IDP_FLEX, 0.4 PPR, 0.2 TE premium, SNAKE draft.
     "🐍 12-Man Snake": {
         "draft_mode": "🐍 Snake Draft",
-        "qb_format": "🏈 Standard 1-QB",
-        "idp_mode": "⚔️ Offense Only (Standard)",
-        "league_size": 12,
-        "my_slot": 1,
-        "league_id": "",
-        "use_soulja_names": False,
-    },
-    "🔗 Dynasty Superflex": {
-        "draft_mode": "🔨 Auction / Salary Cap",
         "qb_format": "⚡ Superflex / 2-QB",
-        "idp_mode": "⚔️ Offense Only (Standard)",
+        "idp_mode": "🛡️ Offense + IDP (Soulja)",
         "league_size": 12,
         "my_slot": 1,
-        "league_id": "",
+        "league_id": "1386927120835436544",
         "use_soulja_names": False,
+        "board": None,          # nearly identical scoring to Soulja (0.4 PPR); reuse default board
+        "scoring": "snake_04ppr_te02",
+    },
+    # VERIFIED live from Sleeper 2026-08-26: 'Congress' (keeper/dynasty) — 10 team,
+    # SUPERFLEX, 2x IDP_FLEX, FULL 1.0 PPR, NO TE premium, SNAKE draft.
+    "🔗 Dynasty Superflex": {
+        "draft_mode": "🐍 Snake Draft",
+        "qb_format": "⚡ Superflex / 2-QB",
+        "idp_mode": "🛡️ Offense + IDP (Soulja)",
+        "league_size": 10,
+        "my_slot": 1,
+        "league_id": "1316149572426280960",
+        "use_soulja_names": False,
+        "board": "board_dynasty_ppr.csv",   # FULL PPR rescored board (built offline)
+        "scoring": "dynasty_full_ppr",
     },
     "⚙️ Custom (manual)": None,   # no auto-set — use the controls below as-is
 }
@@ -198,8 +208,10 @@ if "live_slot_map" not in st.session_state:
 
 # 2. Data Loading Engine
 @st.cache_data(ttl=10)
-def load_draft_board():
-    board_file = "top_150_draft_board.csv"
+def load_draft_board(board_file="top_150_draft_board.csv"):
+    if not os.path.exists(board_file):
+        # fall back to the default Soulja board if a preset board is missing
+        board_file = "top_150_draft_board.csv"
     if not os.path.exists(board_file):
         st.error(f"Missing '{board_file}'. Run fantasy_engine.py first!")
         st.stop()
@@ -573,6 +585,17 @@ my_slot = st.sidebar.number_input(
 )
 my_manager_display = st.session_state.custom_manager_names.get(my_slot, f"Team {my_slot}")
 st.sidebar.caption(f"Drafting as: **{my_manager_display}** (Slot {my_slot})")
+
+# LEAGUE-AWARE BOARD: if the active preset points to a different board file (e.g. the
+# full-PPR dynasty board), reload it here — BEFORE any VORP/fair-value processing —
+# so rankings/recommendations reflect that league's scoring. Soulja's preset has
+# board=None so the default board is used and its behavior is byte-identical.
+_preset_board = (_preset or {}).get("board")
+if _preset_board and os.path.exists(_preset_board):
+    df_board = load_draft_board(_preset_board)
+    # re-apply the same sanitize/derive the default load did (market_adp/has_adp
+    # are set inside load_draft_board, so a fresh load already has them).
+    st.sidebar.caption(f"📊 Rankings scored for **{_chosen_preset}** ({(_preset or {}).get('scoring','custom')}).")
 
 # (Legacy "Connection Mode" radio removed — the 🔴 Live Draft panel now handles
 # live connection, and mock/manual tools live in the Practice expander.)
