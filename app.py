@@ -106,6 +106,42 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # 🌟 DEFAULT HISTORICAL LEAGUE CREW
+# ── LEAGUE PRESETS ────────────────────────────────────────────────────────────
+# Bala plays 3 leagues with different rules. A preset auto-sets the format controls
+# (draft mode, QB format, IDP, teams, your slot) so switching leagues is one click
+# instead of re-toggling everything. Soulja is the default and unchanged. Manual
+# controls remain as overrides; a live Sleeper League-ID overrides the preset.
+LEAGUE_PRESETS = {
+    "⭐ Soulja Soulja (main)": {
+        "draft_mode": "🔨 Auction / Salary Cap",
+        "qb_format": "⚡ Superflex / 2-QB",
+        "idp_mode": "🛡️ Offense + IDP (Soulja)",
+        "league_size": 10,
+        "my_slot": 4,
+        "league_id": "",
+        "use_soulja_names": True,
+    },
+    "🐍 12-Man Snake": {
+        "draft_mode": "🐍 Snake Draft",
+        "qb_format": "🏈 Standard 1-QB",
+        "idp_mode": "⚔️ Offense Only (Standard)",
+        "league_size": 12,
+        "my_slot": 1,
+        "league_id": "",
+        "use_soulja_names": False,
+    },
+    "🔗 Dynasty Superflex": {
+        "draft_mode": "🔨 Auction / Salary Cap",
+        "qb_format": "⚡ Superflex / 2-QB",
+        "idp_mode": "⚔️ Offense Only (Standard)",
+        "league_size": 12,
+        "my_slot": 1,
+        "league_id": "",
+        "use_soulja_names": False,
+    },
+    "⚙️ Custom (manual)": None,   # no auto-set — use the controls below as-is
+}
+
 SOULJA_SOULJA_DEFAULTS = {
     1: {"handle": "addyrao", "name": "Addy Rao", "archetype": "🐢 Patient Value Shark", "class": "arch-hoard", "bias": "See fitted 3yr behavior", "exploit": "Holds budget until mid-round deflation; surged to 2025 #3 finish with league-high 2,537 pts. Nominate his starting targets early to force spend."},
     2: {"handle": "skongara", "name": "Shantanu", "archetype": "👑 Stud Anchor + Value Weapons", "class": "arch-stars", "bias": "See fitted 3yr behavior", "exploit": "2025 champion (73.2% win rate, 2,443.4 avg pts). Secures 1 stud at ~$50, then dominates the $25-$33 tier. Push his secondary targets to full fair value."},
@@ -461,21 +497,61 @@ if live_mode:
             st.session_state.live_pick_count = -1
             st.rerun()
 
-draft_mode = st.sidebar.radio(
-    "Draft Format:", ["🔨 Auction / Salary Cap", "🐍 Snake Draft"], horizontal=True,
-    index=(0 if (_detected_mode or "🔨 Auction / Salary Cap") == "🔨 Auction / Salary Cap" else 1),
+# LEAGUE PRESET selector — pick a league and its rules auto-fill the controls below
+# (Soulja is default). Manual controls remain as overrides. A live Sleeper draft
+# still overrides draft mode. Placed before Draft Format so it can drive its default.
+_preset_names = list(LEAGUE_PRESETS.keys())
+if "active_preset" not in st.session_state:
+    st.session_state.active_preset = _preset_names[0]
+_chosen_preset = st.sidebar.selectbox(
+    "🏟️ League:", _preset_names,
+    index=_preset_names.index(st.session_state.active_preset),
     disabled=live_mode,
-    help="Auto-detected from your live draft when connected." if live_mode else None)
+    help="Switch leagues — auto-sets draft mode, teams, QB format, IDP, and your "
+         "slot. Choose 'Custom' to set everything manually. Live draft overrides.")
+_preset = LEAGUE_PRESETS.get(_chosen_preset)
+if _chosen_preset != st.session_state.active_preset:
+    # reset the format widgets so they re-init to the new league's defaults
+    for _k in ("qb_format_ctl", "idp_mode_ctl", "league_size_ctl", "my_slot_ctl", "draft_mode_ctl"):
+        st.session_state.pop(_k, None)
+    st.session_state.active_preset = _chosen_preset
+    if _preset and _preset.get("use_soulja_names"):
+        st.session_state.custom_manager_names = {s: p["name"] for s, p in SOULJA_SOULJA_DEFAULTS.items()}
+    elif _preset is not None:
+        st.session_state.custom_manager_names = {i: f"Team {i}" for i in range(1, _preset["league_size"] + 1)}
+    st.rerun()
+
+_dm_opts = ["🔨 Auction / Salary Cap", "🐍 Snake Draft"]
+_preset_dm = (_preset or {}).get("draft_mode", "🔨 Auction / Salary Cap")
+# live detection wins; else preset default
+_dm_default = (_detected_mode if (live_mode and _detected_mode) else _preset_dm)
+draft_mode = st.sidebar.radio(
+    "Draft Format:", _dm_opts, horizontal=True,
+    index=_dm_opts.index(_dm_default) if _dm_default in _dm_opts else 0,
+    disabled=live_mode,
+    help="Auto-detected from your live draft when connected." if live_mode else "Set by your League preset — change it here to override.")
 if live_mode and _detected_mode:
     draft_mode = _detected_mode
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("### ⚙️ League Format Controls")
-qb_format = st.sidebar.radio("QB Roster Format:", ["⚡ Superflex / 2-QB", "🏈 Standard 1-QB"], horizontal=True)
-idp_mode = st.sidebar.radio("Defensive Format:", ["🛡️ Offense + IDP (Soulja)", "⚔️ Offense Only (Standard)"], horizontal=True)
+
+# defaults from preset (fall back to Soulja values when Custom)
+_pd_qb = (_preset or {}).get("qb_format", "⚡ Superflex / 2-QB")
+_pd_idp = (_preset or {}).get("idp_mode", "🛡️ Offense + IDP (Soulja)")
+_pd_size = (_preset or {}).get("league_size", 10)
+_pd_slot = (_preset or {}).get("my_slot", 4)
+
+_qb_opts = ["⚡ Superflex / 2-QB", "🏈 Standard 1-QB"]
+_idp_opts = ["🛡️ Offense + IDP (Soulja)", "⚔️ Offense Only (Standard)"]
+qb_format = st.sidebar.radio("QB Roster Format:", _qb_opts,
+    index=_qb_opts.index(_pd_qb), horizontal=True, key="qb_format_ctl")
+idp_mode = st.sidebar.radio("Defensive Format:", _idp_opts,
+    index=_idp_opts.index(_pd_idp), horizontal=True, key="idp_mode_ctl")
 include_idp = (idp_mode == "🛡️ Offense + IDP (Soulja)")
 
-league_size = st.sidebar.number_input("League Teams:", min_value=8, max_value=16, value=10)
+league_size = st.sidebar.number_input("League Teams:", min_value=8, max_value=16,
+    value=_pd_size, key="league_size_ctl")
 total_roster_slots = 18 if include_idp else 16
 
 if "custom_manager_names" not in st.session_state:
@@ -488,11 +564,12 @@ with st.sidebar.expander("👥 League Managers", expanded=False):
         st.session_state.custom_manager_names[i] = new_n
 
 my_slot = st.sidebar.number_input(
-    "Your Draft Slot / Team #", 
-    min_value=1, 
-    max_value=league_size, 
-    value=4 if league_size >= 4 else 1,
-    format="%d"
+    "Your Draft Slot / Team #",
+    min_value=1,
+    max_value=league_size,
+    value=min(_pd_slot, league_size),
+    format="%d",
+    key="my_slot_ctl",
 )
 my_manager_display = st.session_state.custom_manager_names.get(my_slot, f"Team {my_slot}")
 st.sidebar.caption(f"Drafting as: **{my_manager_display}** (Slot {my_slot})")
@@ -2742,5 +2819,4 @@ with tab_log:
             "Manager": st.session_state.custom_manager_names.get(v['team'], f"Team {v['team']}")
         } for v in st.session_state.drafted_picks.values()]
         st.table(pd.DataFrame(log_rows))
-    else:
-        st.info("No players drafted yet.")
+    else:        st.info("No players drafted yet.")
