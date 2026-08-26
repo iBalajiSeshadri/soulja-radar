@@ -44,6 +44,12 @@ def _widget_return(name, args, kwargs):
         return opts[0] if opts else ""
     if name == "selectbox":
         opts = args[1] if len(args) > 1 else kwargs.get("options", [""])
+        # allow the test to force a specific League preset via env
+        _force = os.environ.get("FORCE_PRESET")
+        if _force and isinstance(label, str) and "League" in label:
+            for o in opts:
+                if _force in str(o):
+                    return o
         return opts[0] if opts else ""
     if name == "number_input":
         return kwargs.get("value", args[2] if len(args) > 2 else 10)
