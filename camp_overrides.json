@@ -110,20 +110,20 @@
   "Chuba Hubbard": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Footballguys view : Brooks worked to the side at Wednesday's practice. Meanwhile, Chuba Hubbard has returned to practice after missing practice for a couple of weeks with a...",
-    "source_url": "https://www.footballguys.com/news"
-  },
-  "Nick Bosa": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "Lynch: \u2018We didn\u2019t foresee tendonitis\u201d with Nick Bosa ACL injury. The Niners defensive end is finally overcoming the setback that kept him out for much of the last month.",
-    "source_url": "https://sports.yahoo.com/articles/lynch-didn-t-foresee-tendonitis-203236001.html"
+    "note": "#Panthers RB Chuba Hubbard has a hamstring injury. He\u2019s week to week, per Dave Canales. ( Mike Kaye on X ) FFToday's Take: This Chuba injury isn't going to slow down the Jonathon...",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
   "DK Metcalf": {
     "multiplier": 1.0,
     "type": "BEAT",
     "note": "DK Metcalf and Michael Pittman Jr. are also in pads and going through stretch in the shooting period. Neither WR has practiced since undisclosed injuries at Saturday Night Lights...",
     "source_url": "https://www.fftoday.com/news/index.php"
+  },
+  "Derwin James": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Swanson: For Derwin James Jr. and the Chargers, winning over L.A. starts with playoff success. Derwin James Jr., the outstanding safety for the Chargers, doesn&#39;t get the...",
+    "source_url": "https://sports.yahoo.com/articles/swanson-derwin-james-jr-chargers-111500147.html"
   },
   "Jadarian Price": {
     "multiplier": 1.0,
@@ -160,6 +160,12 @@
     "type": "BEAT",
     "note": "Mike McDaniel on the running back share between Omarion Hampton , Kimani Vidal and Keaton Mitchell : \u201cBad news, fantasy owners. Good news is I see all three of those guys...",
     "source_url": "https://www.fftoday.com/news/index.php"
+  },
+  "Harrison Smith": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "S - MIN \u00bb Rankings \u00bb Stats \u00bb More News Harrison Smith returning to Vikings on one-year deal Sat, Sep 5th 8:16pm EDT By Garrett Ball Harrison Smith is returning to the Vikings on a...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
   },
   "Chase Brown": {
     "multiplier": 1.0,
@@ -221,6 +227,12 @@
     "note": "TE - DAL \u00bb Rankings \u00bb Stats \u00bb More News Jake Ferguson restructures contract with Cowboys Fri, Sep 4th 12:28pm EDT By Ari Koslow The Cowboys restructured TE Jake Ferguson\u2019s...",
     "source_url": "https://www.fantasypros.com/nfl/player-news.php"
   },
+  "Quinshon Judkins": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Quinshon Judkins, Jonathon Brooks and Jacory Croskey-Merritt enter 2026 with opportunities to outperform their fantasy football ADPs. Judkins could benefit from Cleveland's...",
+    "source_url": "https://www.pff.com/news"
+  },
   "DeVonta Smith": {
     "multiplier": 1.0,
     "type": "BEAT",
@@ -248,49 +260,31 @@
   "Cleveland Browns": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Cleveland Browns WR Isaiah Bond (concussion) did not practice on Wednesday.",
-    "source_url": "https://www.footballguys.com/news"
+    "note": "Cleveland Browns: Can HC Todd Monken break this streak in Week 1?. Todd Monken is looking to become the first full-time head coach to win his Cleveland debut since Bud Carson in...",
+    "source_url": "https://sports.yahoo.com/articles/cleveland-browns-hc-todd-monken-120000499.html"
   },
-  "Drake Maye": {
+  "Sam Darnold": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Drake Maye: \u2018Hard not to be excited\u2019 about Patriots wide receiver group. The third-year quarterback is working with a revamped set of wideouts this season.",
-    "source_url": "https://sports.yahoo.com/articles/drake-maye-hard-not-excited-224950273.html"
-  },
-  "Brock Purdy": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "Brock Purdy, Mr. Reliable, is player 49ers can count on most. The 49ers\u2018 star power can make it easy to forget what has been the franchise\u2019s ultimate steadying force: the...",
-    "source_url": "https://sports.yahoo.com/articles/brock-purdy-mr-reliable-player-210210978.html"
-  },
-  "Jaylen Warren": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "Jaylen Warren - Start 'Em, Sit 'Em Fantasy Football Picks for Week 1 (2026). BALLER MOVE: Start as RB2 in PPR leagues POSITIONAL VALUE: RB2 ANALYSIS: After three seasons as the...",
-    "source_url": "https://www.rotoballer.com/jaylen-warren-start-em-sit-em-fantasy-football-picks-for-week-1-2026/1924031"
-  },
-  "Marvin Harrison": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "Marvin Harrison Jr. - Start 'Em, Sit 'Em Fantasy Football Picks for Week 1 (2026). BALLER MOVE: Start as WR3 in 12-Team PPR leagues POSITIONAL VALUE: WR3/FLEX ANALYSIS: Are NFL...",
-    "source_url": "https://www.rotoballer.com/marvin-harrison-jr-start-em-sit-em-fantasy-football-picks-for-week-1-2026/1924039"
+    "note": "Why Seahawks national \u2018disrespect\u2019 is really Sam Darnold disrespect. The Seahawks are not getting the typical attention a Super Bowl champion gets. I think there\u2019s a clear reason...",
+    "source_url": "https://sports.yahoo.com/articles/why-seahawks-national-disrespect-really-150000497.html"
   },
   "MarShawn Lloyd": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+38502 adds in 24h)",
+    "note": "Waiver Surge (+40401 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Malik Willis": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+16338 adds in 24h)",
+    "note": "Waiver Surge (+17374 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Tyler Shough": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+13088 adds in 24h)",
+    "note": "Waiver Surge (+14248 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Omarr Norman-Lott": {
@@ -418,6 +412,12 @@
     "type": "INJURY_ALERT",
     "note": "Questionable (Calf)",
     "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Nick Bosa": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active starting DL projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
   },
   "Breece Hall": {
     "multiplier": 1.0,
@@ -707,12 +707,6 @@
     "note": "Active starting DB projection on FFToday depth chart",
     "source_url": "https://www.fftoday.com"
   },
-  "Derwin James": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "Active starting DB projection on FFToday depth chart",
-    "source_url": "https://www.fftoday.com"
-  },
   "Amani Hooker": {
     "multiplier": 1.0,
     "type": "BEAT",
@@ -791,12 +785,6 @@
     "note": "Active starting DB projection on FFToday depth chart",
     "source_url": "https://www.fftoday.com"
   },
-  "Grant Delpit": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "Active starting DB projection on FFToday depth chart",
-    "source_url": "https://www.fftoday.com"
-  },
   "Minkah Fitzpatrick": {
     "multiplier": 1.0,
     "type": "BEAT",
@@ -842,13 +830,13 @@
   "Khalil Shakir": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+12195 adds in 24h)",
+    "note": "Waiver Surge (+13266 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Isiah Pacheco": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+20832 adds in 24h)",
+    "note": "Waiver Surge (+23808 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Jalen McMillan": {
@@ -860,13 +848,19 @@
   "Keaton Mitchell": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+13248 adds in 24h)",
+    "note": "Waiver Surge (+14364 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Jacory Croskey-Merritt": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Who Should I Draft for Fantasy Football? Jacory Croskey-Merritt, Chris Rodriguez, Kyle Monangai, Dk Metcalf, Ja'Marr Chase, Caleb Douglas, Rachaad White, Kenny Gainwell, Michael...",
+    "source_url": "https://www.rotoballer.com/who-should-i-draft-for-fantasy-football-outlooks-for-jacory-croskey-merritt-chris-rodriguez-jr-kyle-monangai-dk-metcalf-jamarr-chase-caleb-douglas-rachaad-white-kenny-gainwell-michael-wilso/1923624"
   },
   "Zech McPhearson": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Zech McPhearson CB | LAR 6H ago Zech McPhearson: Agrees to injury settlement with Rams By RotoWire Staff The Rams cut McPhearson from IR with an injury settlement Saturday, Aaron...",
+    "note": "Zech McPhearson CB | LAR 17H ago Zech McPhearson: Agrees to injury settlement with Rams By RotoWire Staff The Rams cut McPhearson from IR with an injury settlement Saturday, Aaron...",
     "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
   },
   "Jordyn Tyson": {
@@ -878,13 +872,13 @@
   "Keivie Rose": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Keivie Rose DT | JAC 6H ago Keivie Rose: Waived from IR by Jaguars with settlement By RotoWire Staff Jacksonville waived Rose (undisclosed) from injured reserve with an injury...",
+    "note": "Keivie Rose DT | JAC 17H ago Keivie Rose: Waived from IR by Jaguars with settlement By RotoWire Staff Jacksonville waived Rose (undisclosed) from injured reserve with an injury...",
     "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
   },
   "Kenny Dyson": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Kenny Dyson Jr. LB | MIN 6H ago Kenny Dyson: Cut from IR by Vikings with settlement By RotoWire Staff Minnesota waived Dyson (undisclosed) from injured reserve with an injury...",
+    "note": "Kenny Dyson Jr. LB | MIN 17H ago Kenny Dyson: Cut from IR by Vikings with settlement By RotoWire Staff Minnesota waived Dyson (undisclosed) from injured reserve with an injury...",
     "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
   },
   "Jayden Higgins": {
@@ -892,6 +886,12 @@
     "type": "BEAT",
     "note": "Sources: #Texans WR Jayden Higgins suffered a torn ACL yesterday during the joint practice against the #Raiders. A tough blow to the Houston receiving room. ( Ian Rapoport on X )...",
     "source_url": "https://www.fftoday.com/news/index.php"
+  },
+  "Wan'Dale Robinson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Who Should I Draft for Fantasy Football? Wan'Dale Robinson, Xavier Worthy, MarShawn Lloyd, Jakobi Meyers, TreVeyon Henderson, Mike Washington, RJ Harvey, Brian Thomas, Alec...",
+    "source_url": "https://www.rotoballer.com/who-should-i-draft-for-fantasy-football-outlooks-for-wandale-robinson-xavier-worthy-marshawn-lloyd-jakobi-meyers-treveyon-henderson-mike-washington-jr-rj-harvey-brian-thomas-jr-alec-pierce/1923623"
   },
   "Alvin Kamara": {
     "multiplier": 1.0,
@@ -917,10 +917,16 @@
     "note": "Zach Charbonnet placed on PUP list to start the season. Will miss at least the first four games The Seahawks just announced the moves they made today to trim their roster to 53. A...",
     "source_url": "https://www.fftoday.com/news/index.php?Item=16975"
   },
+  "Michael Pittman": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Who Should I Draft for Fantasy Football? Michael Pittman, George Pickens, KC Concepcion, JK Dobbins, Tony Pollard, Rhamondre Stevenson, Quentin Johnston, Jaylen Warren, Stefon...",
+    "source_url": "https://www.rotoballer.com/who-should-i-draft-for-fantasy-football-outlooks-for-michael-pittman-jr-george-pickens-kc-concepcion-j-k-dobbins-tony-pollard-rhamondre-stevenson-quentin-johnston-jaylen-warren-stefon-diggs/1923060"
+  },
   "Terrel Bernard": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Terrel Bernard LB | BUF 10H ago Bills' Terrel Bernard: Back to work By RotoWire Staff Bernard (undisclosed) returned to practice this week, Sal Capaccio of WGR Sports Radio 550...",
+    "note": "Terrel Bernard LB | BUF 22H ago Bills' Terrel Bernard: Back to work By RotoWire Staff Bernard (undisclosed) returned to practice this week, Sal Capaccio of WGR Sports Radio 550...",
     "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
   },
   "Josh Jacobs": {
@@ -983,16 +989,10 @@
     "note": "Former Pro-Bowl tight end Darren Waller and the Carolina Panthers reached agreement today on a one-year deal, per source. ( Adam Schefter on X ) FFToday's Take: The Panthers have...",
     "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "Harrison Smith": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "S - MIN \u00bb Rankings \u00bb Stats \u00bb More News Harrison Smith returning to Vikings on one-year deal Sat, Sep 5th 8:16pm EDT By Garrett Ball Harrison Smith is returning to the Vikings on a...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
-  },
   "Power Echols": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Power Echols LB | SEA 6H ago Power Echols: Reaches injury settlement with Seattle By RotoWire Staff The Seahawks waived Echols from injured reserve with an injury settlement...",
+    "note": "Power Echols LB | SEA 17H ago Power Echols: Reaches injury settlement with Seattle By RotoWire Staff The Seahawks waived Echols from injured reserve with an injury settlement...",
     "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
   },
   "Brayden Willis": {
@@ -1175,142 +1175,136 @@
     "note": "Footballguys view : Earlier this week, Browns HC Todd Monken said Bond had cleared the league's concussion protocol. The team is being cautious with Bond, so he may not be cleared...",
     "source_url": "https://www.footballguys.com/news"
   },
-  "Bill Belichick": {
+  "Broderick Jones": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "NFL news, live updates: Pro Football Hall of Fame voting process revamped after Bill Belichick snub; WR Michael Wilson, Cardinals reportedly agree on 3-year extension. Follow...",
-    "source_url": "https://sports.yahoo.com/nfl/live/nfl-news-injury-roster-updates-contract-extension-news-ahead-of-week-1-143714619.html"
+    "note": "Pittsburgh perspective of new Cowboys OT Broderick Jones. How many games do you think Broderick Jones will start this season?",
+    "source_url": "https://sports.yahoo.com/articles/pittsburgh-perspective-cowboys-ot-broderick-150000613.html"
   },
-  "Steve Sarkisian": {
+  "Joey Porter": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "No. 5 Texas vs. Texas State final score: Horns blow out Bobcats, 59-7. Steve Sarkisian\u2019s team took care of business in decisive fashion.",
-    "source_url": "https://sports.yahoo.com/articles/no-5-texas-vs-texas-192817806.html"
+    "note": "Trade prediction links Joey Porter Jr to NFC power. Trade prediction sends Steelers CB Joey Porter Jr to NFC.",
+    "source_url": "https://sports.yahoo.com/articles/trade-prediction-links-joey-porter-143000134.html"
+  },
+  "Greg Gaines": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "How integral to Bills defense line will Greg Gaines be in 2026?. Buffalo had been linked to a nose tackle from the Tampa Bay Buccaneers, but they acquired his former teammate...",
+    "source_url": "https://sports.yahoo.com/articles/integral-bills-defense-line-greg-141506116.html"
   },
   "Dallas Cowboys": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Dallas Cowboys countdown to kickoff: Top 100 iconic games - Day 8. We countdown 100 days until kickoff with a series of the most iconic games in Cowboys history. Today is Day 8",
-    "source_url": "https://sports.yahoo.com/articles/dallas-cowboys-countdown-kickoff-top-210000357.html"
-  },
-  "Patrick Johnson": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "Raiders\u2019 Patrick Johnson a feel-good story, but veteran earned his spot. Defensive end was a late-July addition but produced high-impact plays on defense and special teams in...",
-    "source_url": "https://sports.yahoo.com/articles/raiders-patrick-johnson-feel-good-200100305.html"
-  },
-  "Dan Quinn": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "Commanders debate: How much pressure is Dan Quinn under heading into 2026?. If the Commanders finish in the 6-8 win range, should Dan Quinn remain as Washington head coach?",
-    "source_url": "https://sports.yahoo.com/articles/commanders-debate-much-pressure-dan-191258719.html"
+    "note": "Cowboys news: Moves Dallas should make to improve the roster. Here is today\u2019s Dallas Cowboys news.",
+    "source_url": "https://sports.yahoo.com/articles/cowboys-news-moves-dallas-improve-110000462.html"
   },
   "Roschon Johnson": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+179376 adds in 24h)",
+    "note": "Waiver Surge (+170448 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Devaughn Vele": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+73549 adds in 24h)",
+    "note": "Waiver Surge (+77637 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Las Vegas Raiders": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+44700 adds in 24h)",
+    "note": "Waiver Surge (+47226 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Malik Davis": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+35154 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
-  },
-  "Caleb Douglas": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+26824 adds in 24h)",
+    "note": "Waiver Surge (+37269 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Tyler Loop": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+25806 adds in 24h)",
+    "note": "Waiver Surge (+27276 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Caleb Douglas": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+26544 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Chris Bell": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+21910 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
-  },
-  "Jacob Saylors": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+19430 adds in 24h)",
+    "note": "Waiver Surge (+23968 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Tre Tucker": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+19068 adds in 24h)",
+    "note": "Waiver Surge (+20292 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Kaelon Black": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+18998 adds in 24h)",
+    "note": "Waiver Surge (+20013 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Jacob Saylors": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+19290 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Matt Gay": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+16465 adds in 24h)",
+    "note": "Waiver Surge (+18130 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Justice Hill": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+15921 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
-  },
-  "Sione Vaki": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+14532 adds in 24h)",
+    "note": "Waiver Surge (+16641 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Jalen Nailor": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+14346 adds in 24h)",
+    "note": "Waiver Surge (+15471 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
-  "Dohnte Meyers": {
+  "Sione Vaki": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+12906 adds in 24h)",
+    "note": "Waiver Surge (+14161 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "AJ Barner": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+12150 adds in 24h)",
+    "note": "Waiver Surge (+13746 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
-  "Zavion Thomas": {
+  "Dohnte Meyers": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+11952 adds in 24h)",
+    "note": "Waiver Surge (+13041 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Kirk Cousins": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+11784 adds in 24h)",
+    "note": "Waiver Surge (+12592 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Emmett Johnson": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+12195 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Jacob Thomas": {
@@ -1911,6 +1905,12 @@
     "multiplier": 1.0,
     "type": "INJURY_ALERT",
     "note": "IR (Knee - PCL)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jakorian Bennett": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "IR (Knee)",
     "source_url": "https://www.rotowire.com/football/player/"
   }
 }
