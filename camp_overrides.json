@@ -2,8 +2,8 @@
   "Sam Darnold": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "QB - SEA \u00bb Rankings \u00bb Stats \u00bb More News Sam Darnold suffered glute injury Wednesday Sun, Sep 13th 9:50am EDT By Chris Schommer Sam Darnold suffered a glute injury in Wednesday\u2019s...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+    "note": "Sam Darnold exits early with hip injury. Will have an MRI on Thursday Sources: Seahawks QB Sam Darnold has been at Harborview Medical Center in Seattle, undergoing a CT scan on...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16986"
   },
   "Justin Jefferson": {
     "multiplier": 1.0,
@@ -17,35 +17,35 @@
     "note": "TreVeyon Henderson ruled out for season opener. Ankle injury to sideline RB vs. Seattle on Wednesday night Patriots listed RB TreVeyon Henderson as out for Wednesday night\u2019s...",
     "source_url": "https://www.fftoday.com/news/index.php?Item=16984"
   },
-  "Myles Garrett": {
+  "Ladd McConkey": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "DE - LAR \u00bb Rankings \u00bb Stats \u00bb More News Myles Garrett (knee) to undergo surgery, placed on injured reserve Sun, Sep 13th 11:20am EDT By Chris Schommer Myles Garrett (knee) will...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+    "note": "Chargers WR Ladd McConkey led the team with seven targets, five catches, 83 yards and a touchdown before leaving the game with a chest injury after absorbing a hard hit. Coach Jim...",
+    "source_url": "https://www.footballguys.com/news"
   },
-  "Jeremiyah Love": {
+  "Alec Pierce": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "RB - ARI \u00bb Rankings \u00bb Stats \u00bb More News Jeremiyah Love (ankle) expected to play on Sunday against Chargers Sun, Sep 13th 7:30am EDT By Garrett Ball Jeremiyah Love (ankle) is...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+    "note": "Colts active Alec Pierce off PUP list One step closer to returning to practice By: Mike Krueger | Aug 27 2026, 10:19 am",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "Malik Nabers": {
+  "Brian Thomas": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "WR - NYG \u00bb Rankings \u00bb Stats \u00bb More News Malik Nabers (knee) game-time decision for Week 1 Sun, Sep 13th 10:55am EDT By Chris Schommer Malik Nabers (knee) will be a game-time...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+    "note": "Brian Thomas Jr. left the Week 1 game in the first half after suffering a shoulder injury. He had three catches for 40 yards before his departure, but did not add any catches...",
+    "source_url": "https://www.footballguys.com/news"
+  },
+  "Zay Flowers": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Footballguys view : Lane had a chance to step up into the No. 1 wide receiver role with Zay Flowers sidelined, but he promptly left with a wrist injury. We should assume that he...",
+    "source_url": "https://www.footballguys.com/news"
   },
   "Brock Bowers": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Brock Bowers Chance to return in Week 2 TE Las Vegas Raiders Knee - Meniscus September 13, 2026 The Raiders believe Bowers (knee) has a chance to return to action Week 2 at the...",
-    "source_url": "https://www.rotowire.com/football/news.php"
-  },
-  "Maxx Crosby": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "Rams reportedly tried to trade for Maxx Crosby after Ravens&#39; deal fell through. Maxx Crosby reportedly told teams he did not want to be traded.",
-    "source_url": "https://sports.yahoo.com/nfl/article/rams-reportedly-tried-to-trade-for-maxx-crosby-after-ravens-deal-fell-through-151511804.html"
+    "note": "Brock Bowers expected to miss a game or two. Had meniscus surgery on Tuesday Raiders All-Pro tight end Brock Bowers underwent a meniscus trim Tuesday in Dallas with Dr. Daniel...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16985"
   },
   "Nick Bosa": {
     "multiplier": 1.0,
@@ -56,8 +56,8 @@
   "Rome Odunze": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "WR - CHI \u00bb Rankings \u00bb Stats \u00bb More News Rome Odunze (calf) active for Week 1 Sun, Sep 13th 11:37am EDT By Chris Schommer Rome Odunze (calf) is officially active for Week 1 for the...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+    "note": "Rome Odunze expected to play Week 1. Calf injury #Bears WR Rome Odunze, questionable with a calf injury, is expected to go today against the #Panthers, source said. (Ian Rapoport...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16996"
   },
   "Ashton Jeanty": {
     "multiplier": 1.0,
@@ -76,6 +76,12 @@
     "type": "BEAT",
     "note": "Breece Hall seems good to go for Week 1. Groin injury Breece Hall, who missed a couple of weeks with a strained groin, says he\u2019s good to go and can handle a full workload, if...",
     "source_url": "https://www.fftoday.com/news/index.php?Item=16988"
+  },
+  "Jeremiyah Love": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Jeremiyah Love not a Week 1 starter?. No. 3 overall pick listed as RB2 on team&#039;s Week 1 depth chart Jeremiyah Love is listed behind Tyler Allgeier on the team's unofficial...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16983"
   },
   "Christian McCaffrey": {
     "multiplier": 1.0,
@@ -107,12 +113,6 @@
     "note": "Seattle HC talks up Jadarian Price Beat writer predicts \"heavy dose\" of George Holani By: Doug Orth | Aug 31 2026, 11:55 pm",
     "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "Alec Pierce": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "WR - IND \u00bb Rankings \u00bb Stats \u00bb More News Alec Pierce (heel) on snap count for Week 1 Sun, Sep 13th 11:05am EDT By Chris Schommer Alec Pierce (heel) will operate on a snap count in...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
-  },
   "Chris Olave": {
     "multiplier": 1.0,
     "type": "BEAT",
@@ -137,16 +137,82 @@
     "note": "Lions TE Sam LaPorta \u2019s status for Detroit\u2019s regular-season opener is unclear after he suffered a hip injury. The star tight end sustained the injury during a recent practice and...",
     "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "Patrick Mahomes": {
+  "George Pickens": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Is Matthew Golden poised to break out in Year 2? How does Patrick Mahomes look in his return from knee surgery? Are DJ Moore and Josh Allen jelling? With training camps in full...",
-    "source_url": "https://www.nfl.com/news/"
+    "note": "George Pickens Kept in check by Giants WR Dallas Cowboys September 13, 2026 Pickens caught three of six targets for 28 yards in Sunday's 28-20 loss to the Giants. ANALYSIS...",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "CeeDee Lamb": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "CeeDee Lamb Scores in Week 1 loss on SNF WR Dallas Cowboys September 13, 2026 Lamb caught five of eight targets for 44 yards and a touchdown while adding one carry for no gain in...",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Dak Prescott": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Cowboys vs. Giants Start 'Em, Sit 'Em: Sunday Night Football - Dak Prescott, Jaxson Dart, Javonte Williams, Cam Skattebo, CeeDee Lamb, Malik Nabers, George Pickens, and more. The...",
+    "source_url": "https://www.rotoballer.com/fantasy-football-start-em-sit-em-sunday-night-cowboys-vs-giants-week-1-snf-2026/1930208"
+  },
+  "Chase Brown": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Perine was the only Bengals running back besides starter Chase Brown (16-56-1 rushing line) to record a carry, and he also finished with Cincinnati's third-highest receiving...",
+    "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
+  },
+  "Marvin Harrison": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Marvin Harrison Held to one catch in win WR Arizona Cardinals September 13, 2026 Harrison brought in one of three targets for 33 yards in the Cardinals' 26-14 win over the...",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "T.J. Hockenson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "T.J. Hockenson Catches touchdown in Week 1 TE Minnesota Vikings September 13, 2026 Hockenson caught four of five targets for 36 yards and a touchdown in the Vikings' 39-22 win...",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Dalton Schultz": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Dalton Schultz Sees eight targets in Week 1 loss TE Houston Texans September 13, 2026 Schultz caught four of eight targets for 35 yards in Sunday's 36-31 loss to the Bills....",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Justin Herbert": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Justin Herbert Disappointing in Week 1 loss QB Los Angeles Chargers September 13, 2026 Herbert completed 17 of 27 passes for 209 yards with one touchdown and one interception...",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Brenton Strange": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "TE - JAC \u00bb Rankings \u00bb Stats \u00bb More News Brenton Strange grabs touchdown in win over Browns Sun, Sep 13th 9:45pm EDT By Garrett Ball Brenton Strange caught two of three targets for...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+  },
+  "Malik Willis": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Malik Willis Uneven performance in team debut QB Miami Dolphins September 13, 2026 Willis completed 15 of 27 passes for 200 yards with no touchdowns and one interception while...",
+    "source_url": "https://www.rotowire.com/football/news.php"
   },
   "Minnesota Vikings": {
     "multiplier": 1.0,
     "type": "BEAT",
     "note": "With NFL training camp season upon us, Kevin Patra provides a refresher on the Minnesota Vikings' roster changes, position battles and notable subplots.",
+    "source_url": "https://www.nfl.com/news/"
+  },
+  "Baltimore Ravens": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "NFL Week 1 Recap: Baltimore Ravens 41, Indianapolis Colts 23 NFL The Baltimore Ravens cruised past the Indianapolis Colts 41\u201323 in Week 1 on September 13, 2026. Ravens outgained...",
+    "source_url": "https://www.pff.com/news"
+  },
+  "Patrick Mahomes": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Is Matthew Golden poised to break out in Year 2? How does Patrick Mahomes look in his return from knee surgery? Are DJ Moore and Josh Allen jelling? With training camps in full...",
     "source_url": "https://www.nfl.com/news/"
   },
   "Detroit Lions": {
@@ -161,23 +227,47 @@
     "note": "With NFL training camp season upon us, Jeremy Bergman provides a refresher on the Philadelphia Eagles' roster changes, position battles and notable subplots.",
     "source_url": "https://www.nfl.com/news/"
   },
-  "Lamar Jackson": {
+  "Trevor Lawrence": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "QB - BAL \u00bb Rankings \u00bb Stats \u00bb More News Lamar Jackson to play without contract extension to begin season Sun, Sep 13th 10:09am EDT By Chris Schommer Lamar Jackson will play...",
+    "note": "QB - JAC \u00bb Rankings \u00bb Stats \u00bb More News Trevor Lawrence flawless in big win over Browns Sun, Sep 13th 9:35pm EDT By Garrett Ball Trevor Lawrence completed 18-of-23 passes for 245...",
     "source_url": "https://www.fantasypros.com/nfl/player-news.php"
   },
-  "Baltimore Ravens": {
+  "Parker Washington": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Fantasy Impact: Jackson is focused on football entering the 2026-27 season under a new Baltimore Ravens coaching staff, as the superstar quarterback is poised for another elite...",
+    "note": "WR - JAC \u00bb Rankings \u00bb Stats \u00bb More News Parker Washington snags touchdown in win Sun, Sep 13th 9:32pm EDT By Garrett Ball Parker Washington caught five of six targets for 83 yards...",
     "source_url": "https://www.fantasypros.com/nfl/player-news.php"
   },
-  "C.J. Stroud": {
+  "Bhayshul Tuten": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "QB - HOU \u00bb Rankings \u00bb Stats \u00bb More News C.J. Stroud, Texans pause extension talks Sat, Sep 12th 7:53pm EDT By Ari Koslow The Texans and QB C.J. Stroud will pause contract...",
+    "note": "RB - JAC \u00bb Rankings \u00bb Stats \u00bb More News Bhayshul Tuten racks up 66 yards on the ground in win Sun, Sep 13th 9:29pm EDT By Garrett Ball Bhayshul Tuten ran 15 times for 66 yards in...",
     "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+  },
+  "Cleveland Browns": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "CLE DST - CLE \u00bb Rankings \u00bb Stats \u00bb More News Cleveland Browns D/ST outmatched in loss to Jaguars Sun, Sep 13th 9:24pm EDT By Garrett Ball The Cleveland Browns D/ST was outmatched...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+  },
+  "Harold Fannin": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "TE - CLE \u00bb Rankings \u00bb Stats \u00bb More News Harold Fannin Jr. held in check on Sunday Sun, Sep 13th 8:58pm EDT By Garrett Ball Harold Fannin Jr. caught two of three targets for 21...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+  },
+  "Quinshon Judkins": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "RB - CLE \u00bb Rankings \u00bb Stats \u00bb More News Quinshon Judkins quiet in blowout loss to Jaguars Sun, Sep 13th 8:41pm EDT By Garrett Ball Quinshon Judkins ran 12 times for 33 yards in...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+  },
+  "Houston Texans": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "The Buffalo Bills held off the Houston Texans 36\u201331 in Week 1 on September 13, 2026. Bills outgained the Texans, 410 total yards to 386. Sun, 13 Sep 26 21:24:20 +0000 By Mark...",
+    "source_url": "https://www.pff.com/news"
   },
   "Javonte Williams": {
     "multiplier": 1.0,
@@ -185,53 +275,125 @@
     "note": "NFL anytime touchdown picks for Week 1 feature Javonte Williams, Saquon Barkley and Dalton Kincaid in favorable scoring situations. Williams and Barkley draw defenses that...",
     "source_url": "https://www.pff.com/news"
   },
-  "Zay Flowers": {
+  "Josh Allen": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "After a limited practice on Wednesday, Zay Flowers logged back-to-back full practices to close out the week and is not on the final injury report.",
+    "note": "Bills QB Josh Allen had a dominant performance against a tough Texans defense on Sunday. Allen had 334 yards passing with two touchdowns and ran for two more scores after losing...",
     "source_url": "https://www.footballguys.com/news"
   },
-  "Omarion Hampton": {
+  "James Cook": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Footballguys view : Mitchell is expected to be in a change-of-pace role behind Omarion Hampton. He's an explosive playmaker who can find a path to fantasy relevance on efficiency...",
+    "note": "James Cook carried the ball 13 times for 57 yards and caught three of his four targets for 12 yards in the 36-31 win over Houston.",
     "source_url": "https://www.footballguys.com/news"
   },
-  "Drake London": {
+  "David Montgomery": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Footballguys view : Drake London, Bijan Robinson, and Kyle Pitts are Falcons players you'll be starting every week - even with Tagovailoa at quarterback. If he's okay to play...",
+    "note": "David Montgomery carried the ball 20 times for 60 yards and two scores and added 19 yards and a score with three catches on three targets.",
     "source_url": "https://www.footballguys.com/news"
   },
-  "Denver Broncos": {
+  "Dalton Kincaid": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Dan Graziano, from ESPN, believes Denver Broncos WR Pat Bryant \"might force his way into a bigger role than expected.\"",
+    "note": "Dalton Kincaid led the Bills with 130 receiving yards on his five catches out of six targets -- and he did it on a day in which DJ Moore turned his eight targets into five...",
     "source_url": "https://www.footballguys.com/news"
   },
-  "Seattle Seahawks": {
+  "Chuba Hubbard": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Seattle Seahawks QB Sam Darnold, who suffered a hip injury against the New England Patriots Wednesday night, is expected to miss next week's game, but he should be back sooner...",
+    "note": "Chuba Hubbard ran the ball 10 times for 49 yards and a score and caught all three of his targets for 38 yards and another score. Jonathon Brooks got four carries for 14 yards and...",
+    "source_url": "https://www.footballguys.com/news"
+  },
+  "Bryce Young": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Panthers QB Bryce Young completed 23 of 37 pass attempts for 361 yards, three touchdowns and one interception in the 59-37 loss to Chicago. He added ten yards and a score on two...",
+    "source_url": "https://www.footballguys.com/news"
+  },
+  "D'Andre Swift": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "D'Andre Swift scored three times on 18 carries and racked up 124 yards. He also caught his only target for 10 yards. Kyle Monangai added 100 yards and a score on his 10 carries...",
+    "source_url": "https://www.footballguys.com/news"
+  },
+  "Colston Loveland": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Colston Loveland failed to catch either of his targets in a 59-37 win at Carolina.",
+    "source_url": "https://www.footballguys.com/news"
+  },
+  "Bijan Robinson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Bijan Robinson carried the ball 21 times for 83 yards and caught 8 of 10 targets for 90 yards and a score. Drake London caught two of four targets for 29 yards and Kyle Pitts...",
+    "source_url": "https://www.footballguys.com/news"
+  },
+  "Daniel Jones": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Colts QB Daniel Jones completed 19 of 31 passes for 166 yards, one score and one interception. Alec Pierce led the receivers with 61 yards on his four catches (six targets, while...",
+    "source_url": "https://www.footballguys.com/news"
+  },
+  "Jonathan Taylor": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Colts RB Jonathan Taylor carried the ball 19 times for 98 yards and two scores and added three catches for 23 yards on four targets. He also lost one fumble in the 41-23 loss.",
+    "source_url": "https://www.footballguys.com/news"
+  },
+  "Derrick Henry": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Ravens RB Derrick Henry carried the ball 24 times for 144 yards and three scores in the 41-23 win at Indianapolis. He added 19 yards on his only reception.",
+    "source_url": "https://www.footballguys.com/news"
+  },
+  "Lamar Jackson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Lamar Jackson completed 17 of 25 passes for 324 yards and a score, and added 40 yards and a score on seven carries in the 41-23 win over Indianapolis",
+    "source_url": "https://www.footballguys.com/news"
+  },
+  "Cam Ward": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Cam Ward completed 19 of 32 passes for 140 yards and a score and added 21 yards on four rushes. Tony Pollard ran for 35 yards on seven carries and turned two targets into one...",
+    "source_url": "https://www.footballguys.com/news"
+  },
+  "Jameson Williams": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Lions WR Amon-Ra St. Brown caught 10 of 14 targets for two touchdowns. Jameson Williams caught four of nine targets for 45 yards in the 31-30 overtime win over the Saints.",
+    "source_url": "https://www.footballguys.com/news"
+  },
+  "Jahmyr Gibbs": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Lions RB Jahmyr Gibbs had 29 carries for 156 yards and two scores and caught all five targets for 30-yards in the 31-30 overtime win.",
+    "source_url": "https://www.footballguys.com/news"
+  },
+  "Travis Etienne": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Saints RB Travis Etienne caught seven of nine targets for 32 yards. He also had nine carries for 46 yards. Backup Kendre Miller had the same number of carries as Etienne, but...",
+    "source_url": "https://www.footballguys.com/news"
+  },
+  "Tyler Shough": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Saints QB Tyler Shough completed 35 of 56 pass attempts for 410 yards, three scores and two interceptions in the 31-30 overtime loss at Detroit. He added eight yards on four...",
     "source_url": "https://www.footballguys.com/news"
   },
   "Joe Burrow": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Ex-NFL QB on Joe Burrow&#39;s Bengals future: &#39;I think he wants to leave&#39;. Joe Burrow&#39;s future in Cincinnati is based on winning this season, Russell Wilson says. If...",
-    "source_url": "https://sports.yahoo.com/articles/ex-nfl-qb-joe-burrows-151117535.html"
+    "note": "Joe Burrow completed 25 of 35 passes for 254 yards, one touchdown and one interception. He added 20 yards on five rush attempts. Ja'Marr only got targeted four times and converted...",
+    "source_url": "https://www.footballguys.com/news"
   },
-  "Cleveland Browns": {
+  "Jaxson Dart": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Cleveland Browns vs. Jacksonville Jaguars Week 1 discussion. The Cleveland Browns take on the Jacksonville Jaguars to kick off the regular season.",
-    "source_url": "https://sports.yahoo.com/articles/cleveland-browns-vs-jacksonville-jaguars-150000362.html"
-  },
-  "Dak Prescott": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "Cowboys vs. Giants Start 'Em, Sit 'Em: Sunday Night Football - Dak Prescott, Jaxson Dart, Javonte Williams, Cam Skattebo, CeeDee Lamb, Malik Nabers, George Pickens, and more. The...",
-    "source_url": "https://www.rotoballer.com/fantasy-football-start-em-sit-em-sunday-night-cowboys-vs-giants-week-1-snf-2026/1930208"
+    "note": "Sunday Night Football: Jaxson Dart throws three TDs, Giants beat Cowboys 28-20. New York won its first game under new head coach John Harbaugh by controlling the ball and the...",
+    "source_url": "https://sports.yahoo.com/articles/sunday-night-football-jaxson-dart-033933807.html"
   },
   "Rico Dowdle": {
     "multiplier": 1.0,
@@ -239,23 +401,29 @@
     "note": "Key Starters and Tough Calls - Lineup Spotlights for Week 1 Fantasy Football Include Tre Tucker, Rico Dowdle, Michael Mayer, Marvin Harrison Jr.. Welcome to RotoBaller\u2019s Key...",
     "source_url": "https://www.rotoballer.com/key-fantasy-football-starts-and-sits-for-week-1-2026/1929891"
   },
+  "Isaiah Likely": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Isaiah Likely&#39;s second touchdown of the night gives Giants 21-7 lead. Don&#39;t look now, but the Giants are putting it on the Cowboys.",
+    "source_url": "https://sports.yahoo.com/articles/isaiah-likelys-second-touchdown-night-022232225.html"
+  },
   "Bo Nix": {
     "multiplier": 1.0,
     "type": "BEAT",
     "note": "Broncos vs. Chiefs Start 'Em, Sit 'Em: Monday Night Football - Bo Nix, Patrick Mahomes, Jaylen Waddle, Kenneth Walker, RJ Harvey, Rashee Rice. The first week of the 2026 NFL...",
     "source_url": "https://www.rotoballer.com/fantasy-football-start-em-sit-em-monday-broncos-vs-chiefs-week-1-mnf-2026/1930170"
   },
-  "Kyler Murray": {
+  "Kyle Monangai": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+15112 adds in 24h)",
+    "note": "Waiver Surge (+49998 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
-  "Tyler Shough": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+13888 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  "Ricky Barber": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Omarr Norman-Lott": {
     "multiplier": 1.0,
@@ -287,6 +455,12 @@
     "note": "Active starting DB projection on FFToday depth chart",
     "source_url": "https://www.fftoday.com"
   },
+  "JJ Pegues": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
   "Wesley Williams": {
     "multiplier": 1.0,
     "type": "INJURY_ALERT",
@@ -299,17 +473,71 @@
     "note": "Questionable (Ankle)",
     "source_url": "https://www.rotowire.com/football/player/"
   },
+  "Cole Bishop": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active starting DB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
+  },
+  "Myles Garrett": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active starting DL projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
+  },
+  "Elijah Williams": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
   "Cedric Gray": {
     "multiplier": 1.0,
     "type": "BEAT",
     "note": "Active starting LB projection on FFToday depth chart",
     "source_url": "https://www.fftoday.com"
   },
-  "Tuli Tuipulotu": {
+  "Bobby Jamison-Travis": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Gabriel Rubio": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "DeMonte Capehart": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Mekhi Wingo": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Minkah Fitzpatrick": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Active starting DL projection on FFToday depth chart",
+    "note": "Active starting DB projection on FFToday depth chart",
     "source_url": "https://www.fftoday.com"
+  },
+  "Ahmed Hassanein": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "John Ridgeway": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
   },
   "Warren Brinson": {
     "multiplier": 1.0,
@@ -317,10 +545,28 @@
     "note": "Out (Calf)",
     "source_url": "https://www.rotowire.com/football/player/"
   },
+  "Jarvis Brownlee": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Calf)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
   "Cam Jackson": {
     "multiplier": 1.0,
     "type": "INJURY_ALERT",
     "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "B.J. Green": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Elbow)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Kyler Murray": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Concussion)",
     "source_url": "https://www.rotowire.com/football/player/"
   },
   "Brian Burns": {
@@ -335,6 +581,12 @@
     "note": "Active starting DL projection on FFToday depth chart",
     "source_url": "https://www.fftoday.com"
   },
+  "Maxx Crosby": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active starting DL projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
+  },
   "Danielle Hunter": {
     "multiplier": 1.0,
     "type": "BEAT",
@@ -342,6 +594,12 @@
     "source_url": "https://www.fftoday.com"
   },
   "Will Anderson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active starting DL projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
+  },
+  "Tuli Tuipulotu": {
     "multiplier": 1.0,
     "type": "BEAT",
     "note": "Active starting DL projection on FFToday depth chart",
@@ -683,18 +941,6 @@
     "note": "Active starting DB projection on FFToday depth chart",
     "source_url": "https://www.fftoday.com"
   },
-  "Cole Bishop": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "Active starting DB projection on FFToday depth chart",
-    "source_url": "https://www.fftoday.com"
-  },
-  "Minkah Fitzpatrick": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "Active starting DB projection on FFToday depth chart",
-    "source_url": "https://www.fftoday.com"
-  },
   "Keisean Nixon": {
     "multiplier": 1.0,
     "type": "BEAT",
@@ -731,29 +977,17 @@
     "note": "Active starting DB projection on FFToday depth chart",
     "source_url": "https://www.fftoday.com"
   },
-  "Devontez Walker": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "WR - BAL \u00bb Rankings \u00bb Stats \u00bb More News Devontez Walker (groin) inactive for Week 1 Sun, Sep 13th 11:51am EDT By Chris Schommer Devontez Walker (groin) is inactive for Week 1 for...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
-  },
   "Tua Tagovailoa": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "NEWS Tua (oblique) limited at Falcons practice; Rush takes first-team QB reps Tua Tagovailoa appeared to aggravate his oblique during the Falcons' Thursday practice session,...",
-    "source_url": "https://www.nfl.com/news/"
+    "note": "Tua Tagovailoa Out for Week 1, Cooper Rush to start. Atlanta rolling with QB3 to begin the season QB Tua Tagovailoa has been ruled OUT of Sunday's game. Billy Bowman, Michael...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16992"
   },
   "Jalen McMillan": {
     "multiplier": 1.0,
     "type": "BEAT",
     "note": "Bowles said he expects Jalen McMillan and \"hopefully\" Emeka Egbuka to be ready for Week 1, doesn't think they'll need to carry extra receiver on the 53 to offset short-term...",
     "source_url": "https://www.fftoday.com/news/index.php"
-  },
-  "Christian Izien": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "Lions Week 1 inactives: Christian Izien, Ahmed Hassanein OUT vs. Saints. The Detroit Lions have released their inactives ahead of their Week 1 matchup with the New Orleans Saints.",
-    "source_url": "https://sports.yahoo.com/articles/lions-week-1-inactives-christian-153434685.html"
   },
   "Billy Bowman": {
     "multiplier": 1.0,
@@ -764,32 +998,56 @@
   "De'Zhaun Stribling": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "De'Zhaun Stribling WR | SF 2H ago 49ers' De'Zhaun Stribling: Likely out at least one month By RotoWire Staff Stribling (ankle) is expected to miss at least one month after he was...",
-    "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
+    "note": "De'Zhaun Stribling expected to miss at least a month. Sprained ankle #49ers rookie WR De'Zhaun Stribling, who left the opener early with an injury, is out at least a month with a...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16997"
   },
   "A.J. Brown": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "WR - NE \u00bb Rankings \u00bb Stats \u00bb More News A.J. Brown (ankle) out at least six weeks Sun, Sep 13th 9:57am EDT By Chris Schommer A.J. Brown (ankle) is expected to miss at least six...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+    "note": "NEWS Report: Patriots to place A.J. Brown (ankle) on injured reserve; WR out at least 4 games The New England Patriots are placing wide receiver A.J. Brown on injured reserve...",
+    "source_url": "https://www.nfl.com/news/"
   },
-  "Michael Penix": {
+  "DeMarvion Overshown": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "QB - ATL \u00bb Rankings \u00bb Stats \u00bb More News Michael Penix Jr. (knee) could start in week or two for Falcons Sun, Sep 13th 10:04am EDT By Chris Schommer Michael Penix Jr. (knee) could...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+    "note": "DeMarvion Overshown LB | DAL 1H ago Cowboys' DeMarvion Overshown: Injures hamstring Sunday night By RotoWire Staff Overshown exited Sunday night's game against the Giants with a...",
+    "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
   },
-  "Joey Porter": {
+  "Malik Hooker": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "CB - PIT \u00bb Rankings \u00bb Stats \u00bb More News Joey Porter Jr. (back) unlikely to play in Week 1 Sun, Sep 13th 10:13am EDT By Chris Schommer Joey Porter Jr. (back) is unlikely to play in...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+    "note": "Malik Hooker FS | DAL 1H ago Cowboys' Malik Hooker: Suffers forearm injury By RotoWire Staff Hooker exited Sunday night's game against the Giants with a forearm injury and will...",
+    "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
+  },
+  "Omar Cooper": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Jets wide receiver Omar Cooper Jr. left Sunday's 23-10 win over the Titans in the first quarter with an ankle injury and never returned. Ian Rapoport of NFL Media reports that...",
+    "source_url": "https://www.footballguys.com/news"
+  },
+  "Dylan Sampson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Cleveland RB Dylan Sampson left the Week 1 game with a knee injury",
+    "source_url": "https://www.footballguys.com/news"
   },
   "Jayden Higgins": {
     "multiplier": 1.0,
     "type": "BEAT",
     "note": "Sources: #Texans WR Jayden Higgins suffered a torn ACL yesterday during the joint practice against the #Raiders. A tough blow to the Houston receiving room. ( Ian Rapoport on X )...",
     "source_url": "https://www.fftoday.com/news/index.php"
+  },
+  "Ty Johnson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Footballguys view : Cook was held in check as a runner, but he did do more as a receiver with Ty Johnson sitting because of a camp leg injury that isn't 100% yet. With Josh Allen...",
+    "source_url": "https://www.footballguys.com/news"
+  },
+  "Ja'Kobi Lane": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "WR - BAL \u00bb Rankings \u00bb Stats \u00bb More News Ja'Kobi Lane (wrist) out for several weeks with broken wrist Sun, Sep 13th 10:11pm EDT By Garrett Ball Ja'Kobi Lane (wrist) will miss the...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
   },
   "Malik Davis": {
     "multiplier": 1.0,
@@ -800,8 +1058,8 @@
   "Alvin Kamara": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "RB - NO \u00bb Rankings \u00bb Stats \u00bb More News Alvin Kamara (knee) inactive for Week 1 Sun, Sep 13th 11:41am EDT By Chris Schommer Alvin Kamara (knee) is inactive for Week 1 for the New...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+    "note": "Saints RB Alvin Kamara is expected to be sidelined for at least the next month due to a sprained MCL, per source. ( Adam Schefter on X ) FFToday's Take: On the heels of Jordyn...",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
   "Tank Dell": {
     "multiplier": 1.0,
@@ -815,23 +1073,23 @@
     "note": "Zach Charbonnet placed on PUP list to start the season Will miss at least the first four games By: Mike Krueger | Aug 30 2026, 6:53 pm",
     "source_url": "https://www.fftoday.com/news/index.php"
   },
-  "Devon Witherspoon": {
+  "T.J. Watt": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Seattle is finding more ways to unleash Devon Witherspoon NFL Devon Witherspoon\u2019s role with the Seattle Seahawks extends well beyond his cornerback designation. After lining up...",
-    "source_url": "https://www.pff.com/news"
+    "note": "T.J. Watt imposes his will on Falcons in Week 1 victory. T.J. Watt amasses two sacks and returns an interception for a touchdown as part of his Week 1 performance against the...",
+    "source_url": "https://sports.yahoo.com/articles/t-j-watt-imposes-falcons-025123861.html"
   },
   "Cooper Rush": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "QB - ATL \u00bb Rankings \u00bb Stats \u00bb More News Cooper Rush (back) active for Week 1 Sun, Sep 13th 11:46am EDT By Chris Schommer Cooper Rush (back) is active for Week 1 for the Atlanta...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+    "note": "Tua limited Thursday with an oblique injury. Cooper Rush took all the first team reps Atlanta Falcons quarterback Tua Tagovailoa sustained an oblique injury in practice Thursday...",
+    "source_url": "https://www.fftoday.com/news/index.php?Item=16989"
   },
   "Josh Jacobs": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Josh Jacobs: Time on exempt list could equal time served. Jacobs (personal) remains on the Commissioner's Exempt List, but the NFL may count time on the list as time served if it...",
-    "source_url": "https://www.rotowire.com//football/player/josh-jacobs-13582"
+    "note": "The NFL is placing Packers RB Josh Jacobs on the commissioner\u2019s exempt list, as @adamschefter said. Jacobs, who was charged Thursday with two misdemeanors related to an alleged...",
+    "source_url": "https://www.fftoday.com/news/index.php"
   },
   "Keenan Allen": {
     "multiplier": 1.0,
@@ -842,8 +1100,8 @@
   "Indianapolis Colts": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Indianapolis Colts wide receiver Keenan Allen was arrested early Sunday morning on drunken driving charges. Police said officers approached Allen's vehicle, which was parked in a...",
-    "source_url": "https://www.fftoday.com/news/index.php"
+    "note": "The Baltimore Ravens cruised past the Indianapolis Colts 41\u201323 in Week 1 on September 13, 2026. Ravens outgained the Colts, 496 total yards to 251. Sun, 13 Sep 26 21:24:12 +0000...",
+    "source_url": "https://www.pff.com/news"
   },
   "Jarquez Hunter": {
     "multiplier": 1.0,
@@ -866,19 +1124,109 @@
   "Deshaun Watson": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Sources say that the decision between Deshaun Watson and Shedeur Sanders truly came down to the end. Both showed flashes of what a QB1 in Todd Monken\u2019s offense could look like. In...",
-    "source_url": "https://www.fftoday.com/news/index.php"
+    "note": "QB - CLE \u00bb Rankings \u00bb Stats \u00bb More News Deshaun Watson struggles in season opener Sun, Sep 13th 9:18pm EDT By Garrett Ball Deshaun Watson completed 16-of-22 passes for 205 yards,...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
   },
   "Michael Mayer": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Fantasy football Week 1 waiver wire targets include Michael Mayer, Tyler Shough and several running backs with paths to increased opportunities. Mayer enters the opener as Las...",
-    "source_url": "https://www.pff.com/news"
+    "note": "Michael Mayer Six catches in top TE role TE Las Vegas Raiders September 13, 2026 Mayer brought in six of seven targets for 32 yards in the Raiders' 27-13 win over the Dolphins on...",
+    "source_url": "https://www.rotowire.com/football/news.php"
   },
-  "Braxton Berrios": {
+  "Malik Washington": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Braxton Berrios Gets elevated from practice squad WR New York Giants September 12, 2026 The Giants elevated Berrios from the practice squad to the active roster Saturday ahead of...",
+    "note": "Malik Washington Solid in all-purpose role WR Miami Dolphins September 13, 2026 Washington brought in three of eight targets for 53 yards, returned three kickoffs for 56 yards and...",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Caleb Douglas": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Caleb Douglas Impressive in NFL debut WR Miami Dolphins September 13, 2026 Douglas brought in five of seven targets for 94 yards in the Dolphins' 27-13 loss to the Raiders on...",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Samaje Perine": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Samaje Perine Efficient in Week 1 win RB Cincinnati Bengals September 13, 2026 Perine rushed five times for 20 yards and caught all three targets for 30 yards in a 33-27 win over...",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Michael Wilson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Michael Wilson Opens season with five catches WR Arizona Cardinals September 13, 2026 Wilson secured five of seven targets for 56 yards in the Cardinals' 26-14 win over the...",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Kendrick Bourne": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Wilson saw No. 3 receiver Kendrick Bourne outpace him by three catches, 19 receiving yards and one target, an interesting development to at least keep in mind in the early portion...",
+    "source_url": "https://www.cbssports.com/fantasy/football/players/news/all/"
+  },
+  "Tyler Allgeier": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Tyler Allgeier Robust workload in Week 1 win RB Arizona Cardinals September 13, 2026 Allgeier rushed 17 times for 61 yards and brought in both targets for nine yards in the...",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Wan'Dale Robinson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Wan'Dale Robinson Logs five catches in Titans debut WR Tennessee Titans September 13, 2026 Robinson finished Sunday's Week 1 loss to the Jets with five catches for 38 yards....",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Jacoby Brissett": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Jacoby Brissett Stellar numbers in Week 1 upset QB Arizona Cardinals September 13, 2026 Brissett completed 27 of 37 passes for 277 yards with a touchdown and no interceptions...",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Darren Waller": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Darren Waller Goes for 28 yards in Week 1 TE Carolina Panthers September 13, 2026 Waller secured both of his targets for 28 yards in the Panthers' 59-37 loss to the Bears on...",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Keaton Mitchell": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Keaton Mitchell Unimpressive in Chargers debut RB Los Angeles Chargers September 13, 2026 Mitchell rushed four times for nine yards in a Week 1 loss to Arizona on Sunday. He added...",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Tre Tucker": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Tre Tucker Logs two catches in Week 1 win WR Las Vegas Raiders September 13, 2026 Tucker caught two of four targets for 27 yards in a 27-13 win against Miami on Sunday. ANALYSIS...",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Gunnar Helm": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Gunnar Helm Secures four passes in loss TE Tennessee Titans September 13, 2026 Helm caught four of five targets for 28 yards in the Titans' 23-10 loss to the Jets on Sunday....",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Woody Marks": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Woody Marks Splits snaps 50-50 with Montgomery RB Houston Texans September 13, 2026 Marks rushed nine times for 42 yards and caught his lone target for a two-yard loss in the...",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Josh Downs": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Josh Downs Catches two passes in Week 1 WR Indianapolis Colts September 13, 2026 Downs caught two of four targets for 37 yards in Sunday's 41-23 loss to the Ravens. ANALYSIS...",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Kirk Cousins": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Kirk Cousins Sidesteps pair of picks in win QB Las Vegas Raiders September 13, 2026 Cousins completed 21 of 30 passes for 160 yards with three touchdowns and two interceptions and...",
+    "source_url": "https://www.rotowire.com/football/news.php"
+  },
+  "Brian Robinson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Brian Robinson Handles nine carries in Week 1 RB Atlanta Falcons September 13, 2026 Robinson rushed nine times for 31 yards in the Falcons' 20-13 loss to the Steelers on Sunday....",
     "source_url": "https://www.rotowire.com/football/news.php"
   },
   "Cincinnati Bengals": {
@@ -890,110 +1238,194 @@
   "Chicago Bears": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "With NFL training camp season upon us, Kevin Patra provides a refresher on the Chicago Bears' roster changes, position battles and notable subplots.",
-    "source_url": "https://www.nfl.com/news/"
+    "note": "NFL Week 1 Recap: Chicago Bears 59, Carolina Panthers 37 NFL The Chicago Bears routed the Carolina Panthers 59\u201337 in Week 1 on September 13, 2026. Bears outgained the Panthers,...",
+    "source_url": "https://www.pff.com/news"
   },
   "Carolina Panthers": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "With NFL training camp season upon us, Michael Baca provides a refresher on the Carolina Panthers' roster changes, position battles and notable subplots.",
-    "source_url": "https://www.nfl.com/news/"
-  },
-  "Kevin Stefanski": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "Fantasy Impact: Rush is good to go and will start behind center for new head coach Kevin Stefanski after experiencing back spasms Saturday. The veteran signal-caller will look to...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
-  },
-  "Penei Sewell": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "OT - DET \u00bb Rankings \u00bb Stats \u00bb More News Penei Sewell has contract restructured by Lions Sat, Sep 12th 8:01pm EDT By Ari Koslow The Lions restructured the contract of LT Penei...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
-  },
-  "Erick Hallett": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "CB - TEN \u00bb Rankings \u00bb Stats \u00bb More News Erick Hallett II elevated for Week 1 Sat, Sep 12th 7:59pm EDT By Ari Koslow The Titans elevated S Erick Hallett II for Week 1 against the...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
-  },
-  "Mohamoud Diabate": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "LB - TEN \u00bb Rankings \u00bb Stats \u00bb More News Mohamoud Diabate elevated for Week 1 Sat, Sep 12th 7:58pm EDT By Ari Koslow The Titans elevated LB Mohamoud Diabate for Week 1 against the...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
-  },
-  "Kaden Davis": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "WR - CHI \u00bb Rankings \u00bb Stats \u00bb More News Kaden Davis elevated by Bears for Week 1 Sat, Sep 12th 7:57pm EDT By Ari Koslow The Bears elevated WR Kaden Davis for Week 1 against the...",
-    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
-  },
-  "Christian Gonzalez": {
-    "multiplier": 1.0,
-    "type": "BEAT",
-    "note": "Christian Gonzalez shuts down Seahawks again in Week 1 NFL Christian Gonzalez opened the 2026 season with an 87.4 PFF grade in the New England Patriots\u2019 loss to the Seattle...",
+    "note": "The Chicago Bears routed the Carolina Panthers 59\u201337 in Week 1 on September 13, 2026. Bears outgained the Panthers, 533 total yards to 471. Sun, 13 Sep 26 21:24:28 +0000 By Mark...",
     "source_url": "https://www.pff.com/news"
   },
-  "Dallas Cowboys": {
+  "Ameer Abdullah": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "As expected, Dallas Cowboys RB Malik Davis will miss some time with a hip injury suffered at practice on Friday. The team announced on Saturday that Davis has been placed on...",
-    "source_url": "https://www.footballguys.com/news"
+    "note": "RB - JAC \u00bb Rankings \u00bb Stats \u00bb More News Ameer Abdullah racks up 32 yards on the ground in win Sun, Sep 13th 10:05pm EDT By Garrett Ball Ameer Abdullah ran four times for 32 yards...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+  },
+  "Josh Cameron": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "WR - JAC \u00bb Rankings \u00bb Stats \u00bb More News Josh Cameron snags touchdown in NFL debut Sun, Sep 13th 9:58pm EDT By Garrett Ball Josh Cameron caught both of his targets for 20 yards and...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+  },
+  "Travis Hunter": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "WR - JAC \u00bb Rankings \u00bb Stats \u00bb More News Travis Hunter quiet in win over Browns Sun, Sep 13th 9:54pm EDT By Garrett Ball Travis Hunter had one catch for eight yards and one carry...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+  },
+  "Cam Little": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "K - JAC \u00bb Rankings \u00bb Stats \u00bb More News Cam Little has nice day against Browns Sun, Sep 13th 9:49pm EDT By Garrett Ball Cam Little made both of his field goal attempts and all four...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+  },
+  "Jacksonville Jaguars": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "JAC DST - JAC \u00bb Rankings \u00bb Stats \u00bb More News Jacksonville Jaguars D/ST shut down hapless Browns Sun, Sep 13th 9:47pm EDT By Garrett Ball The Jacksonville Jaguars D/ST shut down...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
   },
   "Jakobi Meyers": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Jakobi Meyers (thumb) is off the final injury report for Week 1's game against the Browns, while LeQuint Allen Jr. (hip) is officially questionable.",
-    "source_url": "https://www.footballguys.com/news"
+    "note": "WR - JAC \u00bb Rankings \u00bb Stats \u00bb More News Jakobi Meyers snags touchdown in win Sun, Sep 13th 9:42pm EDT By Garrett Ball Jakobi Meyers caught both of his targets for 40 yards and a...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
   },
-  "Keaton Mitchell": {
+  "Chris Rodriguez": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Keaton Mitchell and Brenen Thompson, both limited on Wednesday and Thursday, were upgraded to full participants on Friday's practice and removed from the final injury report.",
+    "note": "RB - JAC \u00bb Rankings \u00bb Stats \u00bb More News Chris Rodriguez Jr. quiet in win over Browns Sun, Sep 13th 9:38pm EDT By Garrett Ball Chris Rodriguez Jr. ran six times for 23 yards in the...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+  },
+  "Andre Szmyt": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "K - CLE \u00bb Rankings \u00bb Stats \u00bb More News Andre Szmyt manages four kicking points in loss Sun, Sep 13th 9:20pm EDT By Garrett Ball Andre Szmyt made his only PAT and field goal...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+  },
+  "Jerry Jeudy": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "WR - CLE \u00bb Rankings \u00bb Stats \u00bb More News Jerry Jeudy catches two passes in loss Sun, Sep 13th 9:10pm EDT By Garrett Ball Jerry Jeudy caught two of four targets for 26 yards in the...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+  },
+  "Denzel Boston": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "WR - CLE \u00bb Rankings \u00bb Stats \u00bb More News Denzel Boston snags bomb touchdown in loss Sun, Sep 13th 9:06pm EDT By Garrett Ball Denzel Boston caught two of four targets for 59 yards...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+  },
+  "KC Concepcion": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "WR - CLE \u00bb Rankings \u00bb Stats \u00bb More News KC Concepcion snags four passes in loss to Jags Sun, Sep 13th 9:02pm EDT By Garrett Ball KC Concepcion caught four of five targets for 43...",
+    "source_url": "https://www.fantasypros.com/nfl/player-news.php"
+  },
+  "Miami Dolphins": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "NFL Week 1 Recap: Miami Dolphins 13, Las Vegas Raiders 27 NFL The Las Vegas Raiders cruised past the Miami Dolphins 27\u201313 in Week 1 on September 13, 2026. Raiders outgained the...",
+    "source_url": "https://www.pff.com/news"
+  },
+  "Washington Commanders": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "NFL Week 1 Recap: Washington Commanders 22, Philadelphia Eagles 24 NFL The Philadelphia Eagles edged the Washington Commanders 24\u201322 in Week 1 on September 13, 2026. Eagles...",
+    "source_url": "https://www.pff.com/news"
+  },
+  "Arizona Cardinals": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "NFL Week 1 Recap: Arizona Cardinals 26, Los Angeles Chargers 14 NFL The Arizona Cardinals beat the Los Angeles Chargers 26\u201314 in Week 1 on September 13, 2026. Cardinals outgained...",
+    "source_url": "https://www.pff.com/news"
+  },
+  "Tennessee Titans": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "NFL Week 1 Recap: New York Jets 23, Tennessee Titans 10 NFL The New York Jets beat the Tennessee Titans 23\u201310 in Week 1 on September 13, 2026. Jets outgained the Titans, 361 total...",
+    "source_url": "https://www.pff.com/news"
+  },
+  "Buffalo Bills": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "NFL Week 1 Recap: Buffalo Bills 36, Houston Texans 31 NFL The Buffalo Bills held off the Houston Texans 36\u201331 in Week 1 on September 13, 2026. Bills outgained the Texans, 410...",
+    "source_url": "https://www.pff.com/news"
+  },
+  "Chimere Dike": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Titans WR Chimere Dike left Sunday's loss to the Jets to be checked for a concussion. He was cleared and returned.",
+    "source_url": "https://www.footballguys.com/news"
+  },
+  "Jalen Coker": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Waiver Wire Express - Week 2 Lightning Round for Jalen Coker, Devaughn Vele, Kaelon Black, Antonio Williams, Kendre Miller, Tre Harris, Caleb Douglas, Mike Gesicki, Tyler Shough....",
+    "source_url": "https://www.rotoballer.com/waiver-wire-express-week-2-fantasy-football-pickups-adds-2026/1930581"
+  },
+  "Kalif Raymond": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Kalif Raymond caught eight of his nine targets for 84 yards to lead the Bears in all three categories. Luther Burden III caught all five of his targets for 63 yards and lost a...",
     "source_url": "https://www.footballguys.com/news"
   },
   "Ben Johnson": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Bears head coach Ben Johnson said that Rome Odunze's Week 1 status would be assessed after Friday's practice. Johnson said Odunze \"looked good from his perspective\" in limited...",
+    "note": "Footballguys view : Raymond is a favorite of Ben Johnson and the team, and he might put the brakes on a Luther Burden III breakout by being so reliable and so well-versed in...",
     "source_url": "https://www.footballguys.com/news"
   },
-  "Jaydon Blue": {
+  "Aaron Rodgers": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Footballguys view : After the team released Jaydon Blue and Phil Mafah, Davis and Emari Demercado were the only backs on the Cowboys' roster behind Javonte Williams. If Davis is...",
+    "note": "Footballguys view : Aaron Rodgers threw the ball 40 times in this game, so the lack of good fantasy lines from the wide receivers is a problem. Warren and Rico Dowdle combined for...",
     "source_url": "https://www.footballguys.com/news"
   },
-  "Kellen Moore": {
+  "Mike Gesicki": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Saints head coach Kellen Moore said RB Alvin Kamara (knee) is questionable for Week 1 at Detroit.",
+    "note": "Bengals TE Mike Gesicki led the team with seven targets, five catches, 78 receiving yards and the team's only receiving touchdown in the 33-27 win over Tampa.",
     "source_url": "https://www.footballguys.com/news"
   },
-  "Jacory Croskey-Merritt": {
+  "Erick All": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Adam Schefter reports that Commanders RB Jacory Croskey-Merritt (groin), OLB Odafe Oweh (calf) and OLB K'Lavon Chaisson are all \"cleared to play\" for the season opener at...",
+    "note": "Footballguys view : There was a lot of talk about Erick All being on the field a lot after he successful came back from his second ACL tear. His blocking ability was supposed to...",
     "source_url": "https://www.footballguys.com/news"
   },
-  "Pat McAfee": {
+  "Carson Wentz": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "ESPN's Adam Schefter, appearing on the Pat McAfee Show, told viewers that Raiders RB Ashton Jeanty \"is back at practice and he's gonna play.\" Jeanty was asked if there were any...",
+    "note": "Footballguys view : Carson Wentz has replaced him, and of course he threw a touchdown to Justin Jefferson. We'll see if Murray can get cleared before a game at Chicago next week,...",
     "source_url": "https://www.footballguys.com/news"
   },
-  "Washington Commanders": {
+  "Deebo Samuel": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Footballguys view : With 17 days from Wednesday until their Week 3 game against the Washington Commanders, Darnold gets a schedule break as well. Drew Lock should be added in...",
+    "note": "Footballguys view : Deebo Samuel will be startable for as long as Stribling is out, and if he went undrafted in your league, he should be a priority waiver pickup. The rookie was...",
     "source_url": "https://www.footballguys.com/news"
   },
-  "Olamide Zaccheaus": {
+  "Matt Harmon": {
     "multiplier": 1.0,
     "type": "BEAT",
-    "note": "Olamide Zaccheaus will be the Falcons&#39; emergency option at QB. The Falcons kept four quarterbacks on their 53-man roster, but they still needed to get creative with their...",
-    "source_url": "https://sports.yahoo.com/articles/olamide-zaccheaus-falcons-emergency-option-152015631.html"
+    "note": "Fantasy football week 1 recap - everything has changed. Josh Norris and Hayden Winks are joined by Matt Harmon and Ray Garvin to break down all of the action from Week 1 of the...",
+    "source_url": "https://sports.yahoo.com/article/fantasy-football-week-1-recap---everything-has-changed-034159815.html"
+  },
+  "John Harbaugh": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Giants-Cowboys, Week 1: Live updates, discussion, score, highlights. Can the Giants get the John Harbaugh Era off to a good start?",
+    "source_url": "https://sports.yahoo.com/articles/giants-cowboys-week-1-live-230342489.html"
+  },
+  "Mike Tomlin": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Mike Tomlin offers theory to explain Week 1&#39;s record-breaking offensive explosion across the NFL. Per multiple metrics, Sunday&#39;s Week 1 slate and the entire set of games...",
+    "source_url": "https://sports.yahoo.com/nfl/breaking-news/article/mike-tomlin-offers-theory-to-explain-week-1s-record-breaking-offensive-explosion-across-the-nfl-025017361.html"
+  },
+  "Kaleb Johnson": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Packers Snap Counts, Week 1: Kaleb Johnson absent on offense. Only Chris Brooks and MarShawn Lloyd played running back for the Packers\u2019 offense in Week 1",
+    "source_url": "https://sports.yahoo.com/articles/packers-snap-counts-week-1-024910011.html"
+  },
+  "Kenyon Sadiq": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Kenyon Sadiq&#39;s &#39;dream&#39; debut demonstrated his value to new-look Jets offense. New York Jets first-round rookie Kenyon Sadiq had a debut to remember in the team&#39;s...",
+    "source_url": "https://sports.yahoo.com/articles/kenyon-sadiqs-dream-debut-demonstrated-015931352.html"
   },
   "Ryan Flournoy": {
     "multiplier": 1.0,
@@ -1001,154 +1433,106 @@
     "note": "Weekend Waiver Wire Rankings for Week 1 (2026): Fantasy Football Pickups for Ryan Flournoy, Tre Tucker, Braelon Allen, Dylan Sampson, Rashod Bateman, Malachi Fields, Emari...",
     "source_url": "https://www.rotoballer.com/weekend-waiver-wire-rankings-fantasy-football-week-1-2026/1930135"
   },
+  "Devaughn Vele": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+567063 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
   "Kaelon Black": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+81228 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
-  },
-  "Chris Bell": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+74851 adds in 24h)",
+    "note": "Waiver Surge (+183652 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Malachi Fields": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+56615 adds in 24h)",
+    "note": "Waiver Surge (+136280 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
-  "Demarcus Robinson": {
+  "Dontayvion Wicks": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+54258 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
-  },
-  "Tre Tucker": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+50730 adds in 24h)",
+    "note": "Waiver Surge (+131121 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Darnell Mooney": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+40896 adds in 24h)",
+    "note": "Waiver Surge (+91026 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
-  "Devaughn Vele": {
+  "Chris Bell": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+39648 adds in 24h)",
+    "note": "Waiver Surge (+88935 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Devin Singletary": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+87300 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Tampa Bay Buccaneers": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+83105 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "Demarcus Robinson": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+80736 adds in 24h)",
+    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
+  },
+  "San Francisco 49ers": {
+    "multiplier": 1.04,
+    "type": "WAIVER_SURGE",
+    "note": "Waiver Surge (+62685 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Las Vegas Raiders": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+35994 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
-  },
-  "Jack Strand": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+35760 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
-  },
-  "Darren Waller": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+35055 adds in 24h)",
+    "note": "Waiver Surge (+61710 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Odell Beckham": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+30359 adds in 24h)",
+    "note": "Waiver Surge (+61271 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
-  "Justice Hill": {
+  "Cole Kmet": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+26802 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
-  },
-  "Seth McGowan": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+24152 adds in 24h)",
+    "note": "Waiver Surge (+43497 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Matt Gay": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+22430 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
-  },
-  "Jalen Nailor": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+21285 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
-  },
-  "Samaje Perine": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+18140 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
-  },
-  "Kenny Gainwell": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+15640 adds in 24h)",
+    "note": "Waiver Surge (+38300 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Tyler Loop": {
     "multiplier": 1.04,
     "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+15588 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
-  },
-  "Jacksonville Jaguars": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+15354 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
-  },
-  "Cade Otton": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+15270 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
-  },
-  "Jacob Saylors": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+14505 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
-  },
-  "Caleb Douglas": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+14328 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
-  },
-  "Juwan Johnson": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+14246 adds in 24h)",
-    "source_url": "https://www.rotoballer.com/nfl/player-news?player="
-  },
-  "Daniel Bellinger": {
-    "multiplier": 1.04,
-    "type": "WAIVER_SURGE",
-    "note": "Waiver Surge (+13853 adds in 24h)",
+    "note": "Waiver Surge (+34818 adds in 24h)",
     "source_url": "https://www.rotoballer.com/nfl/player-news?player="
   },
   "Toriano Pride": {
     "multiplier": 1.0,
     "type": "INJURY_ALERT",
     "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jake Hummel": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Abdomen)",
     "source_url": "https://www.rotowire.com/football/player/"
   },
   "Mykel Williams": {
@@ -1169,6 +1553,12 @@
     "note": "IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/"
   },
+  "Kyle Louis": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Knee)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
   "Beau Stephens": {
     "multiplier": 1.0,
     "type": "INJURY_ALERT",
@@ -1187,7 +1577,25 @@
     "note": "IR (Groin)",
     "source_url": "https://www.rotowire.com/football/player/"
   },
+  "Devontez Walker": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Groin)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
   "Behren Morton": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Dalton Johnson": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Tyrus Wheat": {
     "multiplier": 1.0,
     "type": "INJURY_ALERT",
     "note": "Out (Coach's Decision)",
@@ -1205,6 +1613,12 @@
     "note": "Active starting LB projection on FFToday depth chart",
     "source_url": "https://www.fftoday.com"
   },
+  "RJ Mickens": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
   "Cade Mays": {
     "multiplier": 1.0,
     "type": "INJURY_ALERT",
@@ -1217,6 +1631,12 @@
     "note": "IR (Undisclosed) - Bruise",
     "source_url": "https://www.rotowire.com/football/player/"
   },
+  "Henry To'oTo'o": {
+    "multiplier": 1.0,
+    "type": "BEAT",
+    "note": "Active starting LB projection on FFToday depth chart",
+    "source_url": "https://www.fftoday.com"
+  },
   "Anterio Thompson": {
     "multiplier": 1.0,
     "type": "INJURY_ALERT",
@@ -1226,7 +1646,7 @@
   "Justin Skule": {
     "multiplier": 1.0,
     "type": "INJURY_ALERT",
-    "note": "Doubtful (Oblique)",
+    "note": "Out (Oblique)",
     "source_url": "https://www.rotowire.com/football/player/"
   },
   "Jake Tonges": {
@@ -1265,6 +1685,12 @@
     "note": "IR (Thigh)",
     "source_url": "https://www.rotowire.com/football/player/"
   },
+  "Darien Porter": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Foot)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
   "Johnny Wilson": {
     "multiplier": 1.0,
     "type": "INJURY_ALERT",
@@ -1289,10 +1715,28 @@
     "note": "IR (Undisclosed)",
     "source_url": "https://www.rotowire.com/football/player/"
   },
+  "Josh Newton": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Chris Lindstrom": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Concussion)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
   "M.J. Stewart": {
     "multiplier": 1.0,
     "type": "INJURY_ALERT",
     "note": "PUP (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Landon Robinson": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
     "source_url": "https://www.rotowire.com/football/player/"
   },
   "Justin Pickett": {
@@ -1308,6 +1752,12 @@
     "source_url": "https://www.rotowire.com/football/player/"
   },
   "Efton Chism": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Micah Morris": {
     "multiplier": 1.0,
     "type": "INJURY_ALERT",
     "note": "Out (Coach's Decision)",
@@ -1329,6 +1779,12 @@
     "multiplier": 1.0,
     "type": "INJURY_ALERT",
     "note": "IR (Undisclosed)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Da'Shawn Hand": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Questionable (Knee)",
     "source_url": "https://www.rotowire.com/football/player/"
   },
   "Ja'Sir Taylor": {
@@ -1361,6 +1817,12 @@
     "note": "Active starting LB projection on FFToday depth chart",
     "source_url": "https://www.fftoday.com"
   },
+  "Jack Endries": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
   "Bryce Baringer": {
     "multiplier": 1.0,
     "type": "INJURY_ALERT",
@@ -1379,6 +1841,12 @@
     "note": "Out (Thumb)",
     "source_url": "https://www.rotowire.com/football/player/"
   },
+  "Justin Joly": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
   "Rejzohn Wright": {
     "multiplier": 1.0,
     "type": "INJURY_ALERT",
@@ -1395,6 +1863,12 @@
     "multiplier": 1.0,
     "type": "INJURY_ALERT",
     "note": "IR (Back) - Surgery",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
+  "Jason Pinnock": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
     "source_url": "https://www.rotowire.com/football/player/"
   },
   "Miller Moss": {
@@ -1427,490 +1901,16 @@
     "note": "IR (Knee) - Surgery",
     "source_url": "https://www.rotowire.com/football/player/"
   },
+  "Zach Wilson": {
+    "multiplier": 1.0,
+    "type": "INJURY_ALERT",
+    "note": "Out (Coach's Decision)",
+    "source_url": "https://www.rotowire.com/football/player/"
+  },
   "Tyler Batty": {
     "multiplier": 1.0,
     "type": "INJURY_ALERT",
     "note": "IR (Knee - ACL)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Rene Konga": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Josh Simmons": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Out (Back)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Levelle Bailey": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Leg) - Fracture",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Taki Taimani": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "John Metchie": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Out (Coach's Decision)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "John Michael Gyllenborg": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Deshawn McKnight": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Kingsley Jonathan": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Thigh) - Bruise",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Noah Igbinoghene": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Out (Coach's Decision)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Bam Martin-Scott": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "DeAngelo Malone": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Will Mallory": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Thumb)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Logan Lee": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Isiah Pacheco": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Back)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "E.J. Speed": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "PUP (Quadriceps) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Trey Benson": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Jimmy Holiday": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Kerby Joseph": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "PUP (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Jake Bobo": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Khalil Jacobs": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Grant Calcaterra": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Back)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Calvin Austin": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "George Gumbs": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Out (Coach's Decision)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Jaren Kanak": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Pectoral)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Giovanni Manu": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "PUP (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Myles Montgomery": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Patrick Jones": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Out (Back)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Chase Bisontis": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Knee - MCL) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Tony Fields": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Tyler Baron": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "PUP (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Eli Stowers": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Jeremy McNichols": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Quadriceps)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "James Conner": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Foot)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Zach Carter": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Nick Gargiulo": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "PUP (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Karon Prunty": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Out (Coach's Decision)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Sean Tucker": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Doubtful (Hamstring)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Dontae Fleming": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Questionable (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Isaac Guerendo": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "PUP (Pectoral) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Jalen Huskey": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Out (Coach's Decision)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Ricky Pearsall": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Knee - PCL)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Jakorian Bennett": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Trey Moore": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Ankle) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Mason Tipton": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "PUP (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Caleb Lohner": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Lower Body) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Joey Blount": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Undisclosed) - Stinger",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Daniel Thomas": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Out (Coach's Decision)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Andre' Sam": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Foot)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Donte Kent": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "D'Angelo Ponds": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Doubtful (Calf) - Strain",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Skylar Thompson": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Laremy Tunsil": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Triceps) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Kelvin Gilliam": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Triceps)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Haynes King": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Out (Coach's Decision)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Mike Morris": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Out (Coach's Decision)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Tutu Atwell": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Out (Coach's Decision)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Donnie Ernsberger": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Questionable",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Nikola Kalinic": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Devin Moore": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Darrell Baker": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "PUP (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Parker Hughes": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "T.J. Sanders": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Out (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Savion Williams": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Joshua Williams": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Pectoral)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Teven Jenkins": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Out (Back)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Mohamed Kamara": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Knee) - Sprain",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Irv Charles": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Tim Patrick": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Groin)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Michael Jurgens": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Tyler Smith": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Thumb) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Robbie Ouzts": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Aaron Banks": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Questionable (Knee) - Tendinitis",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Marcus Bryant": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Ankle)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Darrick Forrest": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "David Long": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Undisclosed)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Bill Murray": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "Out (Coach's Decision)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Gunner Olszewski": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Achilles) - Surgery",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Bilhal Kone": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Lower Body)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Chris Brazzell": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Knee)",
-    "source_url": "https://www.rotowire.com/football/player/"
-  },
-  "Braden Smith": {
-    "multiplier": 1.0,
-    "type": "INJURY_ALERT",
-    "note": "IR (Foot) - Plantar Fasciitis",
     "source_url": "https://www.rotowire.com/football/player/"
   }
 }
