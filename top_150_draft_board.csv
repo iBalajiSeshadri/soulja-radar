@@ -77,8 +77,8 @@ Bucky Irving,RB,TB,200.8,bucky irving,1.0,32.0,32.0,31.80000000000001,Tier 5,75
 Kyle Hamilton,DB,BAL,171.75,kyle hamilton,1.0,118.0,118.0,31.75,Tier 1,76
 Christian Watson,WR,GB,175.0,christian watson,1.0,64.0,64.0,31.299999999999983,Tier 4,77
 Greg Rousseau,DL,BUF,132.5,greg rousseau,1.0,262.0,262.0,31.25,Tier 2,78
-Devin Lloyd,LB,CAR,196.75,devin lloyd,1.0,212.0,212.0,31.0,Tier 1,79
-Seattle Seahawks,DEF,SEA,225.0,seattle seahawks,1.0,152.0,152.0,31.0,Tier 1,80
+Seattle Seahawks,DEF,SEA,225.0,seattle seahawks,1.0,152.0,152.0,31.0,Tier 1,79
+Devin Lloyd,LB,CAR,196.75,devin lloyd,1.0,212.0,212.0,31.0,Tier 1,80
 Cam Skattebo,RB,NYG,199.4,cam skattebo,1.0,36.0,36.0,30.400000000000006,Tier 5,81
 Evan Williams,DB,GB,169.75,evan williams,1.0,451.0,451.0,29.75,Tier 1,82
 Aidan Hutchinson,DL,DET,130.25,aidan hutchinson,1.0,82.0,82.0,29.0,Tier 2,83
@@ -89,9 +89,9 @@ Jameson Williams,WR,DET,171.0,jameson williams,2.0,53.0,53.0,27.299999999999983,
 Minnesota Vikings,DEF,MIN,220.0,minnesota vikings,1.0,153.0,153.0,26.0,Tier 2,88
 Jacob Rodriguez,LB,MIA,191.25,jacob rodriguez,1.0,295.0,295.0,25.5,Tier 1,89
 Parker Washington,WR,JAX,168.20000000000002,parker washington,1.0,68.0,68.0,24.5,Tier 5,90
-Maason Smith,DL,ATL,125.0,maason smith,1.0,9999999.0,9999999.0,23.75,Tier 2,91
-Adetomiwa Adebawore,DL,IND,125.0,adetomiwa adebawore,1.0,9999999.0,9999999.0,23.75,Tier 2,92
-Khristian Boyd,DL,NO,125.0,khristian boyd,1.0,9999999.0,9999999.0,23.75,Tier 2,93
+Khristian Boyd,DL,NO,125.0,khristian boyd,1.0,9999999.0,9999999.0,23.75,Tier 2,91
+Maason Smith,DL,ATL,125.0,maason smith,1.0,9999999.0,9999999.0,23.75,Tier 2,92
+Adetomiwa Adebawore,DL,IND,125.0,adetomiwa adebawore,1.0,9999999.0,9999999.0,23.75,Tier 2,93
 Rome Odunze,WR,CHI,167.2,rome odunze,2.0,63.0,63.0,23.49999999999997,Tier 5,94
 Luther Burden III,WR,CHI,166.79999999999998,luther burden,1.0,40.0,40.0,23.099999999999966,Tier 5,95
 Tucker Kraft,TE,GB,206.40000000000003,tucker kraft,1.0,64.0,64.0,22.650000000000034,Tier 4,96
@@ -103,17 +103,17 @@ Ernest Jones IV,LB,SEA,185.0,ernest jones,1.0,209.0,209.0,19.25,Tier 2,101
 Kyle Pitts Sr.,TE,ATL,202.8,kyle pitts,1.0,68.0,68.0,19.05000000000001,Tier 4,102
 Travis Kelce,TE,KC,200.10000000000002,travis kelce,1.0,89.0,89.0,16.350000000000023,Tier 4,103
 Los Angeles Rams,DEF,LAR,210.0,los angeles rams,1.0,155.0,155.0,16.0,Tier 2,104
-Tuli Tuipulotu,DL,LAC,116.25,tuli tuipulotu,1.0,211.0,211.0,15.0,Tier 3,105
-George Kittle,TE,SF,198.75,george kittle,1.0,80.0,80.0,15.0,Tier 4,106
+George Kittle,TE,SF,198.75,george kittle,1.0,80.0,80.0,15.0,Tier 4,105
+Tuli Tuipulotu,DL,LAC,116.25,tuli tuipulotu,1.0,211.0,211.0,15.0,Tier 3,106
 Brian Thomas Jr.,WR,JAX,158.5,brian thomas,3.0,74.0,74.0,14.799999999999983,Tier 5,107
 Demetrius Knight Jr.,LB,CIN,180.5,demetrius knight,1.0,280.0,280.0,14.75,Tier 2,108
 Josiah Trotter,LB,TB,180.0,josiah trotter,1.0,332.0,332.0,14.25,Tier 2,109
 Arvell Reese,LB,NYG,179.0,arvell reese,1.0,166.0,166.0,13.25,Tier 2,110
-Jadarian Price,RB,SEA,181.8,jadarian price,8.0,52.0,52.0,12.800000000000011,Tier 5,111
-Budda Baker,DB,ARI,152.5,budda baker,1.0,218.0,218.0,12.5,Tier 2,112
-Roquan Smith,LB,BAL,178.25,roquan smith,1.0,96.0,96.0,12.5,Tier 2,113
-Jeremy Chinn,DB,LV,152.0,jeremy chinn,1.0,277.0,277.0,12.0,Tier 2,114
-Philadelphia Eagles,DEF,PHI,206.0,philadelphia eagles,1.0,156.0,156.0,12.0,Tier 3,115
+Jadarian Price,RB,SEA,181.8,jadarian price,3.0,52.0,52.0,12.800000000000011,Tier 5,111
+Roquan Smith,LB,BAL,178.25,roquan smith,1.0,96.0,96.0,12.5,Tier 2,112
+Budda Baker,DB,ARI,152.5,budda baker,1.0,218.0,218.0,12.5,Tier 2,113
+Philadelphia Eagles,DEF,PHI,206.0,philadelphia eagles,1.0,156.0,156.0,12.0,Tier 3,114
+Jeremy Chinn,DB,LV,152.0,jeremy chinn,1.0,277.0,277.0,12.0,Tier 2,115
 Dalton Kincaid,TE,BUF,193.8,dalton kincaid,1.0,81.0,81.0,10.050000000000011,Tier 5,116
 Donovan Ezeiruaku,DL,DAL,109.5,donovan ezeiruaku,1.0,456.0,456.0,8.25,Tier 3,117
 New Orleans Saints,DEF,NO,202.0,new orleans saints,1.0,157.0,157.0,8.0,Tier 3,118
@@ -135,26 +135,26 @@ DK Metcalf,WR,PIT,146.3,dk metcalf,1.0,73.0,73.0,2.5999999999999943,Tier 5,133
 Azeez Al-Shaair,LB,HOU,168.25,azeez alshaair,1.0,322.0,322.0,2.5,Tier 3,134
 Maxx Crosby,DL,LV,103.5,maxx crosby,1.0,93.0,93.0,2.25,Tier 3,135
 Jake Ferguson,TE,DAL,185.70000000000002,jake ferguson,1.0,97.0,97.0,1.950000000000017,Tier 5,136
-Xavier Watts,DB,ATL,141.75,xavier watts,1.0,232.0,232.0,1.75,Tier 3,137
-Foyesade Oluokun,LB,JAX,167.5,foyesade oluokun,1.0,144.0,144.0,1.75,Tier 3,138
+Foyesade Oluokun,LB,JAX,167.5,foyesade oluokun,1.0,144.0,144.0,1.75,Tier 3,137
+Xavier Watts,DB,ATL,141.75,xavier watts,1.0,232.0,232.0,1.75,Tier 3,138
 Jaylen Warren,RB,PIT,170.20000000000002,jaylen warren,1.0,52.0,52.0,1.200000000000017,Tier 5,139
 Cooper DeJean,DB,PHI,140.25,cooper dejean,1.0,214.0,214.0,0.25,Tier 3,140
-Dane Belton,DB,NYJ,140.0,dane belton,1.0,999.0,999.0,0.0,Tier 3,141
-DJ Moore,WR,BUF,143.70000000000002,dj moore,1.0,50.0,50.0,0.0,Tier 5,142
-Nate Landman,LB,LAR,165.75,nate landman,1.0,228.0,228.0,0.0,Tier 3,143
-DeForest Buckner,DL,SF,101.25,deforest buckner,1.0,467.0,467.0,0.0,Tier 3,144
-TreVeyon Henderson,RB,NE,169.0,treveyon henderson,5.0,39.0,39.0,0.0,Tier 5,145
-Baltimore Ravens,DEF,BAL,194.0,baltimore ravens,1.0,159.0,159.0,0.0,Tier 3,146
-Payton Wilson,LB,PIT,165.75,payton wilson,1.0,373.0,373.0,0.0,Tier 3,147
-Isaiah Likely,TE,NYG,183.75,isaiah likely,1.0,106.0,106.0,0.0,Tier 5,148
-Aaron Rodgers,QB,PIT,172.7,aaron rodgers,1.0,186.0,186.0,0.0,Tier 5,149
+DeForest Buckner,DL,SF,101.25,deforest buckner,1.0,467.0,467.0,0.0,Tier 3,141
+Isaiah Likely,TE,NYG,183.75,isaiah likely,1.0,106.0,106.0,0.0,Tier 5,142
+Aaron Rodgers,QB,PIT,172.7,aaron rodgers,1.0,186.0,186.0,0.0,Tier 5,143
+DJ Moore,WR,BUF,143.70000000000002,dj moore,1.0,50.0,50.0,0.0,Tier 5,144
+Baltimore Ravens,DEF,BAL,194.0,baltimore ravens,1.0,159.0,159.0,0.0,Tier 3,145
+Payton Wilson,LB,PIT,165.75,payton wilson,1.0,373.0,373.0,0.0,Tier 3,146
+TreVeyon Henderson,RB,NE,169.0,treveyon henderson,5.0,39.0,39.0,0.0,Tier 5,147
+Nate Landman,LB,LAR,165.75,nate landman,1.0,228.0,228.0,0.0,Tier 3,148
+Dane Belton,DB,NYJ,140.0,dane belton,1.0,999.0,999.0,0.0,Tier 3,149
 Danielle Hunter,DL,HOU,100.75,danielle hunter,1.0,174.0,174.0,-0.5,Tier 3,150
-Carl Granderson,DL,NO,100.5,carl granderson,1.0,286.0,286.0,-0.75,Tier 4,151
-Nick Bolton,LB,KC,165.0,nick bolton,1.0,165.0,165.0,-0.75,Tier 4,152
+Nick Bolton,LB,KC,165.0,nick bolton,1.0,165.0,165.0,-0.75,Tier 4,151
+Carl Granderson,DL,NO,100.5,carl granderson,1.0,286.0,286.0,-0.75,Tier 4,152
 Josh Hines-Allen,DL,JAX,100.25,josh hinesallen,1.0,221.0,221.0,-1.0,Tier 4,153
 Akeem Davis-Gaither,LB,IND,164.5,akeem davisgaither,1.0,478.0,478.0,-1.25,Tier 4,154
-Elijah Ponder,DL,NE,99.75,elijah ponder,2.0,9999999.0,9999999.0,-1.5,Tier 4,155
-Jalen Ramsey,DB,PIT,138.5,jalen ramsey,1.0,999.0,999.0,-1.5,Tier 3,156
+Jalen Ramsey,DB,PIT,138.5,jalen ramsey,1.0,999.0,999.0,-1.5,Tier 3,155
+Elijah Ponder,DL,NE,99.75,elijah ponder,2.0,9999999.0,9999999.0,-1.5,Tier 4,156
 Mason Graham,DL,CLE,99.5,mason graham,1.0,543.0,543.0,-1.75,Tier 4,157
 Lukas Van Ness,DL,GB,99.25,lukas van ness,1.0,9999999.0,9999999.0,-2.0,Tier 4,158
 T.J. Hockenson,TE,MIN,180.9,tj hockenson,1.0,128.0,128.0,-2.8499999999999943,Tier 5,159
@@ -166,136 +166,136 @@ Tony Pollard,RB,TEN,164.20000000000002,tony pollard,1.0,63.0,63.0,-4.79999999999
 Courtland Sutton,WR,DEN,138.9,courtland sutton,2.0,72.0,72.0,-4.800000000000011,Tier 5,165
 Carnell Tate,WR,TEN,138.5,carnell tate,7.0,61.0,61.0,-5.200000000000017,Tier 5,166
 Jaquan Brisker,DB,PIT,134.75,jaquan brisker,1.0,399.0,399.0,-5.25,Tier 4,167
-Jessie Bates III,DB,ATL,134.25,jessie bates,1.0,298.0,298.0,-5.75,Tier 4,168
-Abdul Carter,DL,NYG,95.5,abdul carter,1.0,168.0,168.0,-5.75,Tier 5,169
-Leonard Williams,DL,SEA,95.5,leonard williams,1.0,367.0,367.0,-5.75,Tier 4,170
-Akheem Mesidor,DL,LAC,95.5,akheem mesidor,2.0,330.0,330.0,-5.75,Tier 5,171
+Leonard Williams,DL,SEA,95.5,leonard williams,1.0,367.0,367.0,-5.75,Tier 5,168
+Jessie Bates III,DB,ATL,134.25,jessie bates,1.0,298.0,298.0,-5.75,Tier 4,169
+Abdul Carter,DL,NYG,95.5,abdul carter,1.0,168.0,168.0,-5.75,Tier 5,170
+Akheem Mesidor,DL,LAC,95.5,akheem mesidor,2.0,330.0,330.0,-5.75,Tier 4,171
 Cleveland Browns,DEF,CLE,188.0,cleveland browns,1.0,160.0,160.0,-6.0,Tier 4,172
-Jalen McLeod,DL,JAX,95.0,jalen mcleod,2.0,9999999.0,9999999.0,-6.25,Tier 5,173
-Christen Miller,DL,NO,95.0,christen miller,2.0,516.0,516.0,-6.25,Tier 5,174
-Ty Hamilton,DL,LAR,95.0,ty hamilton,2.0,9999999.0,9999999.0,-6.25,Tier 5,175
-TJ Parker,DL,BUF,95.0,tj parker,2.0,9999999.0,9999999.0,-6.25,Tier 5,176
-Brandon Pili,DL,SEA,95.0,brandon pili,2.0,9999999.0,9999999.0,-6.25,Tier 5,177
-C.J. Okoye,DL,NYG,95.0,cj okoye,2.0,9999999.0,9999999.0,-6.25,Tier 5,178
-Ashton Gillotte,DL,KC,95.0,ashton gillotte,2.0,9999999.0,9999999.0,-6.25,Tier 5,179
-Mike Hall Jr.,DL,CLE,95.0,mike hall,2.0,9999999.0,9999999.0,-6.25,Tier 5,180
-Jamien Sherwood,LB,NYJ,159.5,jamien sherwood,1.0,160.0,160.0,-6.25,Tier 4,181
-Byron Murphy II,DL,SEA,95.0,byron murphy,1.0,365.0,365.0,-6.25,Tier 5,182
-Landon Jackson,DL,BUF,95.0,landon jackson,2.0,634.0,634.0,-6.25,Tier 5,183
-Ty Robinson,DL,PHI,95.0,ty robinson,2.0,675.0,675.0,-6.25,Tier 5,184
-Tyler Lacy,DL,DET,95.0,tyler lacy,2.0,682.0,682.0,-6.25,Tier 5,185
-Wesley Bailey,DL,LAR,95.0,wesley bailey,2.0,685.0,685.0,-6.25,Tier 5,186
-Jackie Marshall,DL,TEN,95.0,jackie marshall,2.0,9999999.0,9999999.0,-6.25,Tier 5,187
-Gabriel Rubio,DL,PIT,95.0,gabriel rubio,2.0,9999999.0,9999999.0,-6.25,Tier 5,188
-Bobby Jamison-Travis,DL,NYG,95.0,bobby jamisontravis,2.0,9999999.0,9999999.0,-6.25,Tier 5,189
-LaCale London,DL,ATL,95.0,lacale london,2.0,685.0,685.0,-6.25,Tier 5,190
-Jerry Tillery,DL,IND,95.0,jerry tillery,2.0,9999999.0,9999999.0,-6.25,Tier 5,191
-Jordan Jackson,DL,DEN,95.0,jordan jackson,2.0,9999999.0,9999999.0,-6.25,Tier 5,192
-Nick Barrett,DL,LAC,95.0,nick barrett,2.0,9999999.0,9999999.0,-6.25,Tier 5,193
-Elijah Simmons,DL,TB,95.0,elijah simmons,2.0,9999999.0,9999999.0,-6.25,Tier 5,194
-Max Llewellyn,DL,MIA,95.0,max llewellyn,2.0,9999999.0,9999999.0,-6.25,Tier 5,195
-Talanoa Hufanga,DB,DEN,133.75,talanoa hufanga,1.0,263.0,263.0,-6.25,Tier 4,196
-Nazir Stackhouse,DL,TEN,95.0,nazir stackhouse,2.0,671.0,671.0,-6.25,Tier 5,197
-John Ridgeway III,DL,NO,95.0,john ridgeway,2.0,9999999.0,9999999.0,-6.25,Tier 5,198
-TeRah Edwards,DL,CAR,95.0,terah edwards,2.0,9999999.0,9999999.0,-6.25,Tier 5,199
-Rakeem Nunez-Roches,DL,TB,95.0,rakeem nunezroches,2.0,9999999.0,9999999.0,-6.25,Tier 5,200
-Tim Smith,DL,IND,95.0,tim smith,2.0,9999999.0,9999999.0,-6.25,Tier 5,201
-Tyler Davis,DL,LAR,95.0,tyler davis,2.0,9999999.0,9999999.0,-6.25,Tier 5,202
-Sai'vion Jones,DL,DEN,95.0,saivion jones,2.0,657.0,657.0,-6.25,Tier 5,203
-Danny Striggow,DL,JAX,95.0,danny striggow,2.0,9999999.0,9999999.0,-6.25,Tier 5,204
-Albert Regis,DL,JAX,95.0,albert regis,2.0,9999999.0,9999999.0,-6.25,Tier 5,205
-Eric O'Neill,DL,DET,95.0,eric oneill,2.0,663.0,663.0,-6.25,Tier 5,206
-Jordon Riley,DL,GB,95.0,jordon riley,2.0,9999999.0,9999999.0,-6.25,Tier 5,207
-Chris McClellan,DL,GB,95.0,chris mcclellan,2.0,9999999.0,9999999.0,-6.25,Tier 5,208
-DeWayne Carter,DL,BUF,95.0,dewayne carter,2.0,9999999.0,9999999.0,-6.25,Tier 5,209
-Rylie Mills,DL,SEA,95.0,rylie mills,2.0,695.0,695.0,-6.25,Tier 5,210
-L.J. Collier,DL,ARI,95.0,lj collier,2.0,9999999.0,9999999.0,-6.25,Tier 5,211
-Aaron Hall,DL,CAR,95.0,aaron hall,2.0,9999999.0,9999999.0,-6.25,Tier 5,212
-Skyler Gill-Howard,DL,DET,95.0,skyler gillhoward,2.0,662.0,662.0,-6.25,Tier 5,213
-Sabastian Harsh,DL,HOU,95.0,sabastian harsh,2.0,682.0,682.0,-6.25,Tier 5,214
-Leonard Taylor III,DL,NE,95.0,leonard taylor,2.0,9999999.0,9999999.0,-6.25,Tier 5,215
-Thomas Booker IV,DL,LV,95.0,thomas booker,2.0,681.0,681.0,-6.25,Tier 5,216
-Mike Morris,DL,SEA,95.0,mike morris,2.0,9999999.0,9999999.0,-6.25,Tier 5,217
-Darrell Jackson Jr.,DL,NYJ,95.0,darrell jackson,2.0,9999999.0,9999999.0,-6.25,Tier 5,218
-Domonique Orange,DL,MIN,95.0,domonique orange,2.0,9999999.0,9999999.0,-6.25,Tier 5,219
-Aeneas Peebles,DL,BAL,95.0,aeneas peebles,2.0,674.0,674.0,-6.25,Tier 5,220
-Nate Lynn,DL,NYJ,95.0,nate lynn,2.0,9999999.0,9999999.0,-6.25,Tier 5,221
-Elijah Williams,DL,MIN,95.0,elijah williams,2.0,9999999.0,9999999.0,-6.25,Tier 5,222
-Al-Quadin Muhammad,DL,TB,95.0,alquadin muhammad,2.0,691.0,691.0,-6.25,Tier 5,223
-Jordan Mason,RB,MIN,162.7,jordan mason,2.0,91.0,91.0,-6.300000000000011,Tier 5,224
-J.K. Dobbins,RB,DEN,161.70000000000002,jk dobbins,1.0,68.0,68.0,-7.299999999999983,Tier 5,225
+TeRah Edwards,DL,CAR,95.0,terah edwards,2.0,9999999.0,9999999.0,-6.25,Tier 5,173
+Aaron Hall,DL,CAR,95.0,aaron hall,2.0,9999999.0,9999999.0,-6.25,Tier 5,174
+Brandon Pili,DL,SEA,95.0,brandon pili,2.0,9999999.0,9999999.0,-6.25,Tier 5,175
+Leonard Taylor III,DL,NE,95.0,leonard taylor,2.0,9999999.0,9999999.0,-6.25,Tier 5,176
+Tim Smith,DL,IND,95.0,tim smith,2.0,9999999.0,9999999.0,-6.25,Tier 5,177
+Rylie Mills,DL,SEA,95.0,rylie mills,2.0,695.0,695.0,-6.25,Tier 5,178
+Ty Hamilton,DL,LAR,95.0,ty hamilton,2.0,9999999.0,9999999.0,-6.25,Tier 5,179
+Sai'vion Jones,DL,DEN,95.0,saivion jones,2.0,657.0,657.0,-6.25,Tier 5,180
+Elijah Simmons,DL,TB,95.0,elijah simmons,2.0,9999999.0,9999999.0,-6.25,Tier 5,181
+Landon Jackson,DL,BUF,95.0,landon jackson,2.0,634.0,634.0,-6.25,Tier 5,182
+Wesley Bailey,DL,LAR,95.0,wesley bailey,2.0,685.0,685.0,-6.25,Tier 5,183
+C.J. Okoye,DL,NYG,95.0,cj okoye,2.0,9999999.0,9999999.0,-6.25,Tier 5,184
+Byron Murphy II,DL,SEA,95.0,byron murphy,1.0,365.0,365.0,-6.25,Tier 5,185
+Jerry Tillery,DL,IND,95.0,jerry tillery,2.0,9999999.0,9999999.0,-6.25,Tier 5,186
+Mike Hall Jr.,DL,CLE,95.0,mike hall,2.0,9999999.0,9999999.0,-6.25,Tier 5,187
+Ashton Gillotte,DL,KC,95.0,ashton gillotte,2.0,9999999.0,9999999.0,-6.25,Tier 5,188
+LaCale London,DL,ATL,95.0,lacale london,2.0,685.0,685.0,-6.25,Tier 5,189
+Ty Robinson,DL,PHI,95.0,ty robinson,2.0,675.0,675.0,-6.25,Tier 5,190
+Albert Regis,DL,JAX,95.0,albert regis,2.0,9999999.0,9999999.0,-6.25,Tier 5,191
+Danny Striggow,DL,JAX,95.0,danny striggow,2.0,9999999.0,9999999.0,-6.25,Tier 5,192
+L.J. Collier,DL,ARI,95.0,lj collier,2.0,9999999.0,9999999.0,-6.25,Tier 5,193
+Skyler Gill-Howard,DL,DET,95.0,skyler gillhoward,2.0,662.0,662.0,-6.25,Tier 5,194
+Domonique Orange,DL,MIN,95.0,domonique orange,2.0,9999999.0,9999999.0,-6.25,Tier 5,195
+Tyler Lacy,DL,DET,95.0,tyler lacy,2.0,682.0,682.0,-6.25,Tier 5,196
+Nate Lynn,DL,NYJ,95.0,nate lynn,2.0,9999999.0,9999999.0,-6.25,Tier 5,197
+Rakeem Nunez-Roches,DL,TB,95.0,rakeem nunezroches,2.0,9999999.0,9999999.0,-6.25,Tier 5,198
+Eric O'Neill,DL,DET,95.0,eric oneill,2.0,663.0,663.0,-6.25,Tier 5,199
+Jordon Riley,DL,GB,95.0,jordon riley,2.0,9999999.0,9999999.0,-6.25,Tier 5,200
+Chris McClellan,DL,GB,95.0,chris mcclellan,2.0,9999999.0,9999999.0,-6.25,Tier 5,201
+Jackie Marshall,DL,TEN,95.0,jackie marshall,2.0,9999999.0,9999999.0,-6.25,Tier 5,202
+Talanoa Hufanga,DB,DEN,133.75,talanoa hufanga,1.0,263.0,263.0,-6.25,Tier 4,203
+Nick Barrett,DL,LAC,95.0,nick barrett,2.0,9999999.0,9999999.0,-6.25,Tier 5,204
+John Ridgeway III,DL,NO,95.0,john ridgeway,2.0,9999999.0,9999999.0,-6.25,Tier 5,205
+Nazir Stackhouse,DL,TEN,95.0,nazir stackhouse,2.0,671.0,671.0,-6.25,Tier 5,206
+Darrell Jackson Jr.,DL,NYJ,95.0,darrell jackson,2.0,9999999.0,9999999.0,-6.25,Tier 5,207
+Tyler Davis,DL,LAR,95.0,tyler davis,2.0,9999999.0,9999999.0,-6.25,Tier 5,208
+Jamien Sherwood,LB,NYJ,159.5,jamien sherwood,1.0,160.0,160.0,-6.25,Tier 4,209
+Bobby Jamison-Travis,DL,NYG,95.0,bobby jamisontravis,2.0,9999999.0,9999999.0,-6.25,Tier 5,210
+TJ Parker,DL,BUF,95.0,tj parker,2.0,9999999.0,9999999.0,-6.25,Tier 5,211
+Sabastian Harsh,DL,HOU,95.0,sabastian harsh,2.0,682.0,682.0,-6.25,Tier 5,212
+Mike Morris,DL,SEA,95.0,mike morris,2.0,9999999.0,9999999.0,-6.25,Tier 5,213
+Thomas Booker IV,DL,LV,95.0,thomas booker,2.0,681.0,681.0,-6.25,Tier 5,214
+Jalen McLeod,DL,JAX,95.0,jalen mcleod,2.0,9999999.0,9999999.0,-6.25,Tier 5,215
+DeWayne Carter,DL,BUF,95.0,dewayne carter,2.0,9999999.0,9999999.0,-6.25,Tier 5,216
+Aeneas Peebles,DL,BAL,95.0,aeneas peebles,2.0,674.0,674.0,-6.25,Tier 5,217
+Al-Quadin Muhammad,DL,TB,95.0,alquadin muhammad,2.0,691.0,691.0,-6.25,Tier 5,218
+Elijah Williams,DL,MIN,95.0,elijah williams,2.0,9999999.0,9999999.0,-6.25,Tier 5,219
+Christen Miller,DL,NO,95.0,christen miller,2.0,516.0,516.0,-6.25,Tier 5,220
+Jordan Jackson,DL,DEN,95.0,jordan jackson,2.0,9999999.0,9999999.0,-6.25,Tier 5,221
+Gabriel Rubio,DL,PIT,95.0,gabriel rubio,2.0,9999999.0,9999999.0,-6.25,Tier 5,222
+Jordan Mason,RB,MIN,162.7,jordan mason,2.0,91.0,91.0,-6.300000000000011,Tier 5,223
+J.K. Dobbins,RB,DEN,161.70000000000002,jk dobbins,1.0,68.0,68.0,-7.299999999999983,Tier 5,224
+Terrel Bernard,LB,BUF,158.25,terrel bernard,1.0,307.0,307.0,-7.5,Tier 4,225
 Tykee Smith,DB,TB,132.5,tykee smith,1.0,234.0,234.0,-7.5,Tier 4,226
-Terrel Bernard,LB,BUF,158.25,terrel bernard,1.0,307.0,307.0,-7.5,Tier 4,227
-George Karlaftis,DL,KC,93.75,george karlaftis,1.0,383.0,383.0,-7.5,Tier 5,228
-Jordan Addison,WR,MIN,136.1,jordan addison,2.0,99.0,99.0,-7.600000000000023,Tier 5,229
-Matthew Golden,WR,GB,136.00000000000003,matthew golden,2.0,118.0,118.0,-7.699999999999989,Tier 5,230
-Dalton Schultz,TE,HOU,175.95,dalton schultz,1.0,98.0,98.0,-7.800000000000011,Tier 5,231
-Jalen Carter,DL,PHI,92.75,jalen carter,1.0,270.0,270.0,-8.5,Tier 5,232
-Jared Verse,DL,CLE,92.75,jared verse,1.0,126.0,126.0,-8.5,Tier 5,233
-Kyle Monangai,RB,CHI,159.40000000000003,kyle monangai,6.0,61.0,61.0,-9.599999999999966,Tier 5,234
-Jonathan Allen,DL,CIN,91.5,jonathan allen,1.0,999.0,999.0,-9.75,Tier 5,235
-Pittsburgh Steelers,DEF,PIT,184.0,pittsburgh steelers,1.0,161.0,161.0,-10.0,Tier 4,236
-Chris Godwin Jr.,WR,TB,132.89999999999998,chris godwin,1.0,88.0,88.0,-10.80000000000004,Tier 5,237
-Jalyx Hunt,DL,PHI,90.25,jalyx hunt,1.0,375.0,375.0,-11.0,Tier 5,238
+George Karlaftis,DL,KC,93.75,george karlaftis,1.0,383.0,383.0,-7.5,Tier 5,227
+Jordan Addison,WR,MIN,136.1,jordan addison,2.0,99.0,99.0,-7.600000000000023,Tier 5,228
+Matthew Golden,WR,GB,136.00000000000003,matthew golden,2.0,118.0,118.0,-7.699999999999989,Tier 5,229
+Dalton Schultz,TE,HOU,175.95,dalton schultz,1.0,98.0,98.0,-7.800000000000011,Tier 5,230
+Jalen Carter,DL,PHI,92.75,jalen carter,1.0,270.0,270.0,-8.5,Tier 5,231
+Jared Verse,DL,CLE,92.75,jared verse,1.0,126.0,126.0,-8.5,Tier 5,232
+Kyle Monangai,RB,CHI,159.40000000000003,kyle monangai,6.0,61.0,61.0,-9.599999999999966,Tier 5,233
+Jonathan Allen,DL,CIN,91.5,jonathan allen,1.0,999.0,999.0,-9.75,Tier 5,234
+Pittsburgh Steelers,DEF,PIT,184.0,pittsburgh steelers,1.0,161.0,161.0,-10.0,Tier 4,235
+Chris Godwin Jr.,WR,TB,132.89999999999998,chris godwin,1.0,88.0,88.0,-10.80000000000004,Tier 5,236
+Jalyx Hunt,DL,PHI,90.25,jalyx hunt,1.0,375.0,375.0,-11.0,Tier 5,237
+A.J. Brown,WR,NE,132.7,aj brown,6.0,17.0,17.0,-11.000000000000028,Tier 5,238
 Makai Lemon,WR,PHI,132.7,makai lemon,1.0,91.0,91.0,-11.000000000000028,Tier 5,239
-A.J. Brown,WR,NE,132.7,aj brown,6.0,17.0,17.0,-11.000000000000028,Tier 5,240
-Xavier Worthy,WR,KC,132.2,xavier worthy,2.0,122.0,122.0,-11.500000000000028,Tier 5,241
-Zaire Franklin,LB,GB,154.0,zaire franklin,1.0,215.0,215.0,-11.75,Tier 4,242
-Kwity Paye,DL,LV,89.25,kwity paye,1.0,9999999.0,9999999.0,-12.0,Tier 5,243
-Austin Booker,DL,CHI,89.25,austin booker,1.0,469.0,469.0,-12.0,Tier 5,244
-Jacoby Brissett,QB,ARI,160.5,jacoby brissett,1.0,203.0,203.0,-12.199999999999989,Tier 5,245
-Dexter Lawrence II,DL,CIN,89.0,dexter lawrence,1.0,391.0,391.0,-12.25,Tier 5,246
+Xavier Worthy,WR,KC,132.2,xavier worthy,2.0,122.0,122.0,-11.500000000000028,Tier 5,240
+Zaire Franklin,LB,GB,154.0,zaire franklin,1.0,215.0,215.0,-11.75,Tier 4,241
+Kwity Paye,DL,LV,89.25,kwity paye,1.0,9999999.0,9999999.0,-12.0,Tier 5,242
+Austin Booker,DL,CHI,89.25,austin booker,1.0,469.0,469.0,-12.0,Tier 5,243
+Jacoby Brissett,QB,ARI,160.5,jacoby brissett,1.0,203.0,203.0,-12.199999999999989,Tier 5,244
+Dexter Lawrence II,DL,CIN,89.0,dexter lawrence,1.0,391.0,391.0,-12.25,Tier 5,245
+MarShawn Lloyd,RB,GB,156.6,marshawn lloyd,2.0,98.0,98.0,-12.400000000000006,Tier 5,246
 Jakobi Meyers,WR,JAX,131.3,jakobi meyers,2.0,77.0,77.0,-12.400000000000006,Tier 5,247
-MarShawn Lloyd,RB,GB,156.6,marshawn lloyd,2.0,98.0,98.0,-12.400000000000006,Tier 5,248
-Chuck Clark,DB,DET,127.5,chuck clark,2.0,681.0,681.0,-12.5,Tier 4,249
-Blake Cashman,LB,MIN,153.25,blake cashman,1.0,232.0,232.0,-12.5,Tier 5,250
-Laiatu Latu,DL,IND,88.5,laiatu latu,1.0,274.0,274.0,-12.75,Tier 5,251
-Rico Dowdle,RB,PIT,156.2,rico dowdle,2.0,65.0,65.0,-12.800000000000011,Tier 5,252
-Michael Wilson,WR,ARI,130.7,michael wilson,1.0,75.0,75.0,-13.000000000000028,Tier 5,253
-Josh Downs,WR,IND,130.5,josh downs,1.0,111.0,111.0,-13.200000000000017,Tier 5,254
-Travon Walker,DL,JAX,88.0,travon walker,1.0,339.0,339.0,-13.25,Tier 5,255
-Yaya Diaby,DL,TB,87.75,yaya diaby,1.0,314.0,314.0,-13.5,Tier 5,256
-Jalen Coker,WR,CAR,130.0,jalen coker,2.0,132.0,132.0,-13.700000000000017,Tier 5,257
-Detroit Lions,DEF,DET,180.0,detroit lions,1.0,162.0,162.0,-14.0,Tier 4,258
-Chuba Hubbard,RB,CAR,154.8,chuba hubbard,1.0,66.0,66.0,-14.199999999999989,Tier 5,259
-Joshua Metellus,DB,MIN,125.75,joshua metellus,1.0,385.0,385.0,-14.25,Tier 4,260
-Quentin Johnston,WR,LAC,129.3,quentin johnston,2.0,104.0,104.0,-14.400000000000006,Tier 5,261
-Anthony Hill Jr.,LB,TEN,150.75,anthony hill,1.0,229.0,229.0,-15.0,Tier 5,262
-Cameron Heyward,DL,PIT,86.0,cameron heyward,1.0,450.0,450.0,-15.25,Tier 5,263
-Wan'Dale Robinson,WR,TEN,128.4,wandale robinson,1.0,105.0,105.0,-15.300000000000011,Tier 5,264
-Khalil Shakir,WR,BUF,128.3,khalil shakir,2.0,120.0,120.0,-15.400000000000006,Tier 5,265
-Tre'von Moehrig,DB,CAR,124.5,trevon moehrig,1.0,239.0,239.0,-15.5,Tier 5,266
-Chig Okonkwo,TE,WAS,167.55,chig okonkwo,1.0,137.0,137.0,-16.19999999999999,Tier 5,267
-Oronde Gadsden,TE,LAC,167.1,oronde gadsden,1.0,83.0,83.0,-16.650000000000006,Tier 5,268
-DJ Wonnum,DL,DET,84.5,dj wonnum,1.0,9999999.0,9999999.0,-16.75,Tier 5,269
-Trey Hendrickson,DL,BAL,84.25,trey hendrickson,1.0,224.0,224.0,-17.0,Tier 5,270
-Jeremy Reaves,DB,WAS,122.5,jeremy reaves,1.0,9999999.0,9999999.0,-17.5,Tier 5,271
+Chuck Clark,DB,DET,127.5,chuck clark,2.0,681.0,681.0,-12.5,Tier 4,248
+Blake Cashman,LB,MIN,153.25,blake cashman,1.0,232.0,232.0,-12.5,Tier 5,249
+Laiatu Latu,DL,IND,88.5,laiatu latu,1.0,274.0,274.0,-12.75,Tier 5,250
+Rico Dowdle,RB,PIT,156.2,rico dowdle,2.0,65.0,65.0,-12.800000000000011,Tier 5,251
+Michael Wilson,WR,ARI,130.7,michael wilson,1.0,75.0,75.0,-13.000000000000028,Tier 5,252
+Josh Downs,WR,IND,130.5,josh downs,1.0,111.0,111.0,-13.200000000000017,Tier 5,253
+Travon Walker,DL,JAX,88.0,travon walker,1.0,339.0,339.0,-13.25,Tier 5,254
+Yaya Diaby,DL,TB,87.75,yaya diaby,1.0,314.0,314.0,-13.5,Tier 5,255
+Jalen Coker,WR,CAR,130.0,jalen coker,2.0,132.0,132.0,-13.700000000000017,Tier 5,256
+Detroit Lions,DEF,DET,180.0,detroit lions,1.0,162.0,162.0,-14.0,Tier 4,257
+Chuba Hubbard,RB,CAR,154.8,chuba hubbard,1.0,66.0,66.0,-14.199999999999989,Tier 5,258
+Joshua Metellus,DB,MIN,125.75,joshua metellus,1.0,385.0,385.0,-14.25,Tier 4,259
+Quentin Johnston,WR,LAC,129.3,quentin johnston,2.0,104.0,104.0,-14.400000000000006,Tier 5,260
+Anthony Hill Jr.,LB,TEN,150.75,anthony hill,1.0,229.0,229.0,-15.0,Tier 5,261
+Cameron Heyward,DL,PIT,86.0,cameron heyward,1.0,450.0,450.0,-15.25,Tier 5,262
+Wan'Dale Robinson,WR,TEN,128.4,wandale robinson,1.0,105.0,105.0,-15.300000000000011,Tier 5,263
+Khalil Shakir,WR,BUF,128.3,khalil shakir,2.0,120.0,120.0,-15.400000000000006,Tier 5,264
+Tre'von Moehrig,DB,CAR,124.5,trevon moehrig,1.0,239.0,239.0,-15.5,Tier 5,265
+Chig Okonkwo,TE,WAS,167.55,chig okonkwo,1.0,137.0,137.0,-16.19999999999999,Tier 5,266
+Oronde Gadsden,TE,LAC,167.1,oronde gadsden,1.0,83.0,83.0,-16.650000000000006,Tier 5,267
+DJ Wonnum,DL,DET,84.5,dj wonnum,1.0,9999999.0,9999999.0,-16.75,Tier 5,268
+Trey Hendrickson,DL,BAL,84.25,trey hendrickson,1.0,224.0,224.0,-17.0,Tier 5,269
+Jeremy Reaves,DB,WAS,122.5,jeremy reaves,1.0,9999999.0,9999999.0,-17.5,Tier 5,270
+Zach Sieler,DL,MIA,83.5,zach sieler,1.0,567.0,567.0,-17.75,Tier 5,271
 Alex Singleton,LB,DEN,148.0,alex singleton,1.0,265.0,265.0,-17.75,Tier 5,272
-Zach Sieler,DL,MIA,83.5,zach sieler,1.0,567.0,567.0,-17.75,Tier 5,273
-Deebo Samuel Sr.,WR,SF,125.80000000000001,deebo samuel,7.0,130.0,130.0,-17.900000000000006,Tier 5,274
-Jonas Sanker,DB,NO,122.0,jonas sanker,1.0,999.0,999.0,-18.0,Tier 5,275
-Jacksonville Jaguars,DEF,JAC,176.0,jacksonville jaguars,1.0,163.0,163.0,-18.0,Tier 4,276
-Derrick Brown,DL,CAR,83.25,derrick brown,1.0,471.0,471.0,-18.0,Tier 5,277
-Juwan Johnson,TE,NO,165.75,juwan johnson,1.0,103.0,103.0,-18.0,Tier 5,278
+Deebo Samuel Sr.,WR,SF,125.80000000000001,deebo samuel,8.0,130.0,130.0,-17.900000000000006,Tier 5,273
+Derrick Brown,DL,CAR,83.25,derrick brown,1.0,471.0,471.0,-18.0,Tier 5,274
+Jacksonville Jaguars,DEF,JAC,176.0,jacksonville jaguars,1.0,163.0,163.0,-18.0,Tier 4,275
+Juwan Johnson,TE,NO,165.75,juwan johnson,1.0,103.0,103.0,-18.0,Tier 5,276
+Jonas Sanker,DB,NO,122.0,jonas sanker,1.0,999.0,999.0,-18.0,Tier 5,277
+Zach Allen,DL,DEN,83.0,zach allen,1.0,407.0,407.0,-18.25,Tier 5,278
 Ventrell Miller,LB,JAX,147.5,ventrell miller,1.0,319.0,319.0,-18.25,Tier 5,279
-Zach Allen,DL,DEN,83.0,zach allen,1.0,407.0,407.0,-18.25,Tier 5,280
-AJ Barner,TE,SEA,164.79999999999998,aj barner,1.0,126.0,126.0,-18.950000000000017,Tier 5,281
-KC Concepcion Jr.,WR,CLE,124.5,kc concepcion,2.0,111.0,111.0,-19.200000000000017,Tier 5,282
-Quinnen Williams,DL,DAL,82.0,quinnen williams,1.0,379.0,379.0,-19.25,Tier 5,283
-Josh Sweat,DL,ARI,81.75,josh sweat,1.0,415.0,415.0,-19.5,Tier 5,284
-Jevón Holland,DB,NYG,120.5,jevón holland,1.0,581.0,581.0,-19.5,Tier 5,285
-Jarvis Brownlee Jr.,DB,NYJ,120.0,jarvis brownlee,1.0,999.0,999.0,-20.0,Tier 5,286
-Joshua Williams,DB,TEN,120.0,joshua williams,1.0,9999999.0,9999999.0,-20.0,Tier 5,287
-Kei'Trel Clark,DB,ARI,120.0,keitrel clark,1.0,9999999.0,9999999.0,-20.0,Tier 5,288
-D.J. Reed,DB,DET,119.5,dj reed,1.0,9999999.0,9999999.0,-20.5,Tier 5,289
-Quincy Williams,LB,CLE,145.25,quincy williams,1.0,312.0,312.0,-20.5,Tier 5,290
+AJ Barner,TE,SEA,164.79999999999998,aj barner,1.0,126.0,126.0,-18.950000000000017,Tier 5,280
+KC Concepcion Jr.,WR,CLE,124.5,kc concepcion,2.0,111.0,111.0,-19.200000000000017,Tier 5,281
+Quinnen Williams,DL,DAL,82.0,quinnen williams,1.0,379.0,379.0,-19.25,Tier 5,282
+Josh Sweat,DL,ARI,81.75,josh sweat,1.0,415.0,415.0,-19.5,Tier 5,283
+Jevón Holland,DB,NYG,120.5,jevón holland,1.0,581.0,581.0,-19.5,Tier 5,284
+Jarvis Brownlee Jr.,DB,NYJ,120.0,jarvis brownlee,1.0,999.0,999.0,-20.0,Tier 5,285
+Joshua Williams,DB,TEN,120.0,joshua williams,1.0,9999999.0,9999999.0,-20.0,Tier 5,286
+Kei'Trel Clark,DB,ARI,120.0,keitrel clark,1.0,9999999.0,9999999.0,-20.0,Tier 5,287
+D.J. Reed,DB,DET,119.5,dj reed,1.0,9999999.0,9999999.0,-20.5,Tier 5,288
+Quincy Williams,LB,CLE,145.25,quincy williams,1.0,312.0,312.0,-20.5,Tier 5,289
+E.J. Speed,LB,HOU,145.0,ej speed,1.0,999.0,999.0,-20.75,Tier 5,290
 Cooper McDonald,LB,KC,145.0,cooper mcdonald,1.0,682.0,682.0,-20.75,Tier 5,291
 Montez Sweat,DL,CHI,80.5,montez sweat,1.0,320.0,320.0,-20.75,Tier 5,292
-E.J. Speed,LB,HOU,145.0,ej speed,1.0,999.0,999.0,-20.75,Tier 5,293
+Drue Tranquill,LB,KC,144.75,drue tranquill,1.0,372.0,372.0,-21.0,Tier 5,293
 Ji'Ayir Brown,DB,SF,119.0,jiayir brown,1.0,9999999.0,9999999.0,-21.0,Tier 5,294
-Drue Tranquill,LB,KC,144.75,drue tranquill,1.0,372.0,372.0,-21.0,Tier 5,295
-Antoine Winfield Jr.,DB,TB,118.75,antoine winfield,1.0,310.0,310.0,-21.25,Tier 5,296
-Nick Emmanwori,DB,SEA,118.5,nick emmanwori,1.0,205.0,205.0,-21.5,Tier 5,297
-Kansas City Chiefs,DEF,KC,172.0,kansas city chiefs,1.0,164.0,164.0,-22.0,Tier 5,298
-Jalen Redmond,DL,MIN,79.0,jalen redmond,1.0,999.0,999.0,-22.25,Tier 5,299
-Jordan Davis,DL,PHI,78.75,jordan davis,1.0,525.0,525.0,-22.5,Tier 5,300
+Antoine Winfield Jr.,DB,TB,118.75,antoine winfield,1.0,310.0,310.0,-21.25,Tier 5,295
+Nick Emmanwori,DB,SEA,118.5,nick emmanwori,1.0,205.0,205.0,-21.5,Tier 5,296
+Kansas City Chiefs,DEF,KC,172.0,kansas city chiefs,1.0,164.0,164.0,-22.0,Tier 5,297
+Jalen Redmond,DL,MIN,79.0,jalen redmond,1.0,999.0,999.0,-22.25,Tier 5,298
+Jordan Davis,DL,PHI,78.75,jordan davis,1.0,525.0,525.0,-22.5,Tier 5,299
+Kingsley Enagbare,DL,NYJ,78.5,kingsley enagbare,2.0,9999999.0,9999999.0,-22.75,Tier 5,300
