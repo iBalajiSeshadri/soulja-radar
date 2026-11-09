@@ -40,7 +40,7 @@ Nico Collins,WR,HOU,214.9,nico collins,1.0,23.0,23.0,71.19999999999999,Tier 2,38
 Colston Loveland,TE,CHI,254.8,colston loveland,1.0,35.0,35.0,71.05000000000001,Tier 2,39
 C.J. Stroud,QB,HOU,243.45,cj stroud,1.0,101.0,101.0,70.75,Tier 5,40
 Justin Jefferson,WR,MIN,201.5,justin jefferson,1.0,11.0,11.0,57.79999999999998,Tier 3,41
-George Pickens,WR,DAL,200.8,george pickens,2.0,23.0,23.0,57.099999999999994,Tier 3,42
+George Pickens,WR,DAL,200.8,george pickens,4.0,23.0,23.0,57.099999999999994,Tier 3,42
 Bryce Young,QB,CAR,229.3,bryce young,1.0,131.0,131.0,56.60000000000002,Tier 5,43
 Drake London,WR,ATL,199.3,drake london,1.0,19.0,19.0,55.599999999999994,Tier 3,44
 Javonte Williams,RB,DAL,219.8,javonte williams,1.0,30.0,30.0,55.599999999999994,Tier 4,45
@@ -71,7 +71,7 @@ Tetairoa McMillan,WR,CAR,179.9,tetairoa mcmillan,1.0,38.0,38.0,36.19999999999999
 Houston Texans,DEF,HOU,230.0,houston texans,1.0,151.0,151.0,36.0,Tier 1,70
 Nakobe Dean,LB,LV,201.5,nakobe dean,1.0,159.0,159.0,35.75,Tier 1,71
 Fernando Mendoza,QB,LV,208.0,fernando mendoza,3.0,109.0,109.0,35.30000000000001,Tier 5,72
-Cam Skattebo,RB,NYG,199.4,cam skattebo,2.0,36.0,36.0,35.19999999999999,Tier 5,73
+Cam Skattebo,RB,NYG,199.4,cam skattebo,7.0,36.0,36.0,35.19999999999999,Tier 5,73
 Rashee Rice,WR,KC,177.10000000000002,rashee rice,1.0,29.0,29.0,33.400000000000006,Tier 4,74
 Dillon Thieneman,DB,CHI,172.5,dillon thieneman,1.0,214.0,214.0,32.5,Tier 1,75
 Jeffery Simmons,DL,CHI,137.5,jeffery simmons,1.0,227.0,227.0,32.0,Tier 1,76
@@ -177,7 +177,7 @@ Talanoa Hufanga,DB,DEN,133.75,talanoa hufanga,1.0,263.0,263.0,-6.25,Tier 4,175
 Terrel Bernard,LB,BUF,158.25,terrel bernard,1.0,308.0,308.0,-7.5,Tier 5,176
 Tykee Smith,DB,TB,132.5,tykee smith,1.0,234.0,234.0,-7.5,Tier 4,177
 Jordan Addison,WR,MIN,136.1,jordan addison,2.0,99.0,99.0,-7.600000000000023,Tier 5,178
-MarShawn Lloyd,RB,GB,156.6,marshawn lloyd,2.0,98.0,98.0,-7.600000000000023,Tier 5,179
+MarShawn Lloyd,RB,GB,156.6,marshawn lloyd,5.0,98.0,98.0,-7.600000000000023,Tier 5,179
 Matthew Golden,WR,GB,136.00000000000003,matthew golden,2.0,118.0,118.0,-7.699999999999989,Tier 5,180
 Kendal Daniels,LB,ATL,158.0,kendal daniels,1.0,9999999.0,9999999.0,-7.75,Tier 5,181
 Dalton Schultz,TE,HOU,175.95,dalton schultz,1.0,98.0,98.0,-7.800000000000011,Tier 5,182
