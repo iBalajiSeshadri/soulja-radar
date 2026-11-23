@@ -32,7 +32,7 @@ Trey McBride,TE,ARI,273.75,trey mcbride,1.0,22.0,12.0,90.0,Tier 1,30
 Kenneth Walker III,RB,KC,253.70000000000002,kenneth walker,4.0,19.0,13.5,89.5,Tier 3,31
 Bryce Young,QB,CAR,229.3,bryce young,1.0,130.0,77.5,88.80000000000001,Tier 5,32
 Amon-Ra St. Brown,WR,DET,222.20000000000002,amonra st brown,1.0,7.0,5.5,83.30000000000001,Tier 2,33
-Brock Bowers,TE,LV,266.95,brock bowers,1.0,19.0,10.0,83.19999999999999,Tier 1,34
+Brock Bowers,TE,LV,266.95,brock bowers,4.0,19.0,10.0,83.19999999999999,Tier 1,34
 Chase Brown,RB,CIN,247.0,chase brown,1.0,14.0,12.0,82.79999999999998,Tier 3,35
 Geno Smith,QB,NYJ,221.9,geno smith,1.0,211.0,120.0,81.4,Tier 5,36
 Omarion Hampton,RB,LAC,245.29999999999998,omarion hampton,1.0,12.0,10.5,81.09999999999997,Tier 3,37
@@ -45,11 +45,11 @@ Justin Jefferson,WR,MIN,201.5,justin jefferson,1.0,12.0,8.5,62.599999999999994,T
 George Pickens,WR,DAL,200.8,george pickens,2.0,23.0,17.0,61.900000000000006,Tier 3,44
 Drake London,WR,ATL,199.3,drake london,1.0,19.0,12.5,60.400000000000006,Tier 3,45
 Javonte Williams,RB,DAL,219.8,javonte williams,1.0,30.0,21.5,55.599999999999994,Tier 4,46
-Tyler Warren,TE,IND,237.35000000000002,tyler warren,1.0,48.0,26.0,53.60000000000002,Tier 3,47
+Tyler Warren,TE,IND,237.35000000000002,tyler warren,1.0,49.0,26.5,53.60000000000002,Tier 3,47
 Kyren Williams,RB,LAR,215.60000000000002,kyren williams,1.0,13.0,12.5,51.400000000000006,Tier 4,48
 Chris Olave,WR,NO,189.8,chris olave,1.0,29.0,19.5,50.900000000000006,Tier 3,49
 Breece Hall,RB,NYJ,214.8,breece hall,1.0,27.0,21.5,50.599999999999994,Tier 4,50
-Malik Nabers,WR,NYG,188.4,malik nabers,1.0,28.0,20.5,49.5,Tier 3,51
+Malik Nabers,WR,NYG,188.4,malik nabers,1.0,26.0,19.5,49.5,Tier 3,51
 David Montgomery,RB,HOU,212.5,david montgomery,1.0,42.0,32.5,48.29999999999998,Tier 4,52
 Zay Flowers,WR,BAL,187.10000000000002,zay flowers,1.0,40.0,26.0,48.20000000000002,Tier 3,53
 Sam LaPorta,TE,DET,231.25000000000003,sam laporta,1.0,58.0,33.0,47.50000000000003,Tier 3,54
@@ -85,7 +85,7 @@ Ty Hamilton,DL,LAR,125.0,ty hamilton,1.0,9999999.0,9999999.0,26.974999999999994,
 Minnesota Vikings,DEF,MIN,220.0,minnesota vikings,1.0,153.0,78.5,26.0,Tier 2,84
 Will Anderson Jr.,DL,HOU,123.97500000000001,will anderson,1.0,99.0,99.0,25.950000000000003,Tier 1,85
 Carson Schwesinger,LB,CLE,170.05,carson schwesinger,1.0,98.0,98.0,25.287499999999994,Tier 1,86
-Tucker Kraft,TE,GB,206.40000000000003,tucker kraft,1.0,64.0,36.5,22.650000000000034,Tier 4,87
+Tucker Kraft,TE,GB,206.40000000000003,tucker kraft,1.0,65.0,37.0,22.650000000000034,Tier 4,87
 Nakobe Dean,LB,LV,167.01250000000002,nakobe dean,1.0,159.0,159.0,22.25,Tier 1,88
 Jordyn Brooks,LB,MIA,166.91250000000002,jordyn brooks,1.0,135.0,135.0,22.150000000000006,Tier 1,89
 Los Angeles Chargers,DEF,LAC,215.0,los angeles chargers,1.0,154.0,80.5,21.0,Tier 2,90
@@ -110,7 +110,7 @@ Nick Bolton,LB,KC,156.2,nick bolton,1.0,166.0,166.0,11.437499999999972,Tier 2,10
 Jonas Sanker,DB,NO,134.75,jonas sanker,1.0,999.0,999.0,11.25,Tier 1,109
 Maxx Crosby,DL,LV,109.275,maxx crosby,1.0,93.0,93.0,11.25,Tier 2,110
 Marvin Harrison Jr.,WR,HOU,149.0,marvin harrison,6.0,73.0,52.0,10.099999999999994,Tier 5,111
-Dalton Kincaid,TE,BUF,193.8,dalton kincaid,1.0,81.0,45.5,10.050000000000011,Tier 5,112
+Dalton Kincaid,TE,BUF,193.8,dalton kincaid,4.0,81.0,45.5,10.050000000000011,Tier 5,112
 Evan Williams,DB,GB,133.07500000000002,evan williams,1.0,450.0,450.0,9.575000000000017,Tier 1,113
 Ernest Jones IV,LB,SEA,153.925,ernest jones,1.0,207.0,207.0,9.162499999999994,Tier 2,114
 Joshua Metellus,DB,MIN,132.5,joshua metellus,1.0,388.0,388.0,9.0,Tier 2,115
@@ -286,7 +286,7 @@ Nohl Williams,DB,KC,104.25,nohl williams,1.0,9999999.0,9999999.0,-19.25,Tier 5,2
 Nick Emmanwori,DB,SEA,104.1875,nick emmanwori,1.0,203.0,203.0,-19.3125,Tier 5,285
 Julian Love,DB,SEA,104.05000000000001,julian love,1.0,327.0,327.0,-19.44999999999999,Tier 5,286
 Malcolm Roach,DL,DEN,78.5,malcolm roach,1.0,631.0,631.0,-19.525000000000006,Tier 5,287
-Stefon Diggs,WR,WAS,119.00000000000001,stefon diggs,1.0,104.0,74.5,-19.89999999999999,Tier 5,288
+Stefon Diggs,WR,WAS,119.00000000000001,stefon diggs,1.0,105.0,75.0,-19.89999999999999,Tier 5,288
 Bryan Cook,DB,CIN,103.5625,bryan cook,1.0,9999999.0,9999999.0,-19.9375,Tier 5,289
 Josh Sweat,DL,ARI,78.025,josh sweat,1.0,422.0,422.0,-20.0,Tier 5,290
 Keionte Scott,DB,TB,103.5,keionte scott,1.0,579.0,579.0,-20.0,Tier 5,291
